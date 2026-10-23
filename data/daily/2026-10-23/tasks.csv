@@ -270,3 +270,15 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-10-23T16:43:13Z,desk,VERIFY,Company,0x4047f5f7a78ad3962940e0b7b490897eaefccba3,RETRY,fetch_error,try=1 hosts=goplus
 2026-10-23T16:43:13Z,desk,VERIFY,AI,0xa8656b345437b2422f275e1e1bec72f66bf5340c,RETRY,fetch_error,try=1 hosts=goplus
 2026-10-23T16:43:13Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=10 new=3 checked=13 passed=0 bought=0 held=0 deferred=0 requests=29 secs=25.8
+2026-10-23T16:48:13Z,desk,VERIFY,DOAS,0x5294048f0592c2d37f5b19b9929658fa65659096,WATCH,goplus_not_ready,"first_seen=2026-10-23T16:33:12Z checks=2 pending=honeypot,buy_tax_pct,sell_tax_pct,dev_pct,top10_pct,lp_locked_pct"
+2026-10-23T16:48:13Z,desk,VERIFY,Benjumin ,0x0c752a29345b2638952b3789d2332b492f1eff01,SKIP,missing:liq_usd,until=2026-10-24T16:48:13Z
+2026-10-23T16:48:13Z,desk,VERIFY,Company,0x4047f5f7a78ad3962940e0b7b490897eaefccba3,SKIP,liquidity,until=2026-10-24T16:48:13Z
+2026-10-23T16:48:13Z,desk,VERIFY,AI,0xa8656b345437b2422f275e1e1bec72f66bf5340c,SKIP,missing:liq_usd,until=2026-10-24T16:48:13Z
+2026-10-23T16:48:13Z,desk,VERIFY,WEDGIE,0xb200000000000000000000aa3f0ac63f57b3ac00,RETRY,fetch_error,try=1 hosts=goplus
+2026-10-23T16:48:13Z,desk,VERIFY,DOSA,0xc09977e416500cfce9086964200f88e75beb350a,SKIP,liquidity,until=2026-10-24T16:48:13Z
+2026-10-23T16:48:13Z,desk,VERIFY,gork,0x4fd8fb07b7bbfc333a679f9ecd46f5c8a40aa24d,SKIP,liquidity,until=2026-10-24T16:48:13Z
+2026-10-23T16:48:13Z,desk,VERIFY,SAOD,0x1c010268204dd1e12e338bb7d82d779278b6e70d,WATCH,goplus_not_ready,"first_seen=2026-10-23T16:48:13Z checks=1 pending=mint_open,freeze_or_blacklist,honeypot,buy_tax_pct,sell_tax_pct,dev_pct,top10_pct,lp_locked_pct,risk_flags"
+2026-10-23T16:48:13Z,desk,VERIFY,SHEKEL,0xaad7b3e9c9b197801f8a03afda2c8998a196f6ea,SKIP,liquidity,until=2026-10-24T16:48:13Z
+2026-10-23T16:48:13Z,desk,VERIFY,NODF,0xad5e4bdf18d5f152f205abab5a11ea3372023ac8,WATCH,goplus_not_ready,"first_seen=2026-10-23T16:48:13Z checks=1 pending=mint_open,freeze_or_blacklist,honeypot,buy_tax_pct,sell_tax_pct,dev_pct,top10_pct,lp_locked_pct,risk_flags"
+2026-10-23T16:48:13Z,desk,VERIFY,dánwò,0x0ec8146f01d4b1bf601649dac80228662fa18ba3,RETRY,fetch_error,try=1 hosts=goplus
+2026-10-23T16:48:13Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=4 new=7 checked=11 passed=0 bought=0 held=0 deferred=0 requests=25 secs=21.5
