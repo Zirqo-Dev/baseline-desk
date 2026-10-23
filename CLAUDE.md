@@ -128,16 +128,31 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
   tick.yml is triggered by cron-job.org (POST workflow_dispatch every 5 min, :03 ... :58 UTC) with its own fine-grained token
   scoped to baseline-desk only (Actions: read and write). Single point of failure: if cron-job.org stops or the token
   expires, the desk stops SILENTLY (no red run, just no TICK rows). Note the token expiry date and renew before it.
+  cron-job.org live since 2026-10-23 15:28 UTC. By 18:53 UTC: 41 of 42 expected runs (97.6%), no error TICK rows, no overlap,
+  one TICK row each; 17:18 was never dispatched (no Actions run exists for it). 24h window ends 2026-10-24 15:28 UTC.
+- GoPlus diagnosis 2026-10-23 (read-only, tasks.csv to 18:53 UTC + 9 live GoPlus requests). Two separate causes, both
+  logged as fetch_error because adapters/base.py treats any GoPlus "code" != 1 as a rate limit:
+  - 0xb2000000... vanity addresses: GoPlus answers HTTP 200, code 3, message "OK", with a 10-field partial entry
+    (token_name/symbol, total_supply, holder_count 0, buy_tax/sell_tax "", no honeypot/mintable fields). Still code 3
+    5.5 h after first sight (JEVO). 35 addresses, 103 rows, 0 ever got a clean check (34 fetch_error_x3, 1 retrying).
+    Code 3 = partial data is our reading, not GoPlus docs (asserted). Who deploys them is unconfirmed.
+  - All others: never fail in a tick's first 10 checks (0 of 369 rows), fail at check 11+ (most of them) -> GoPlus
+    budget is about 10 calls per tick at 2 s pacing. The code they get is NOT logged and was not reproduced live
+    (would need 11+ calls). 120 addresses, 195 rows; 104 later got a clean check, 14 lost to fetch_error_x3, 2 retrying.
+  - Fix options for Pete (none built): 1) GoPlus code 3 -> final 24h skip "goplus_partial" + write the GoPlus code
+    in the RETRY detail; 2) cap GoPlus calls at 10 per tick (rest deferred) or pace GoPlus slower.
 - Open items:
   - BL-7 done only after 24h of green runs, no overlap, one TICK row per run. The TICK rows show the real run rate for Gate A (90%).
-  - GoPlus non-OK code on 0xb2000000... addresses: rate limit or tokens GoPlus can't read? Watch for fetch_error_x3 in the first day.
   - LP lock: GoPlus can't tie lp_holders to our pool unless it lists exactly one pool, so many leads die on
     missing:lp_locked_pct (Uniswap v4 may never have LP holders). Pete decides after 24-48h of BL-7 skip-reason data.
   - Clanker/Zora factory addresses unconfirmed; launchpad is pool-shape only until BL-10 (CLANKER_CREATORS/ZORA_CREATORS empty).
   - top10 is the top 8-10 after exclusions (GoPlus returns only 10 holders); slightly lenient.
-  - GoPlus rate limit is detected as any non-OK "code" in the body (fetch_error); the exact rate-limit code is unverified live.
+  - GoPlus rate limit is detected as any non-OK "code" in the body (fetch_error); the exact rate-limit code is unverified live
+    (code 3 is NOT a rate limit, see GoPlus diagnosis above).
   - Week-1 review of the watchlist: if more than about 1/3 of watched leads time out, Pete may raise WATCH max_h to 6.
-- Next step: Pete sets up the cron-job.org job (token scoped to baseline-desk), then watch 24h of runs. Then BL-8 (report.py + report.yml).
+- Next step: Pete chooses GoPlus fix option 1 and/or 2 (or neither) in chat. If chosen: implement it under BL-7 with tests,
+  without touching thresholds. Independently: after 2026-10-24 15:28 UTC count TICK rows since 15:28 (expect 288) and runs
+  in the Actions tab; if green with one TICK row per run, mark BL-7 done, then BL-8 (report.py + report.yml).
 - Last updated: 2026-10-23.
 
 ## 12. Glossary
