@@ -232,3 +232,14 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-10-23T16:28:12Z,desk,VERIFY,MX,0x9c1332a96bbcf3a9e5ee0cdf97a2ce7a7c6b6b07,RETRY,fetch_error,try=1 hosts=goplus
 2026-10-23T16:28:12Z,desk,VERIFY,Sahur,0xfab7d21d9b62c60e57377b2c87852e45ca840f4a,RETRY,fetch_error,try=1 hosts=goplus
 2026-10-23T16:28:12Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=6 new=8 checked=14 passed=0 bought=0 held=0 deferred=0 requests=31 secs=27.7
+2026-10-23T16:33:12Z,desk,VERIFY,ZTEST,0x3257de0e0a3d4752c555f8d9dffd054043351765,SKIP,liquidity,until=2026-10-24T16:33:12Z
+2026-10-23T16:33:12Z,desk,VERIFY,MX,0x9c1332a96bbcf3a9e5ee0cdf97a2ce7a7c6b6b07,SKIP,liquidity,until=2026-10-24T16:33:12Z
+2026-10-23T16:33:12Z,desk,VERIFY,cbPIGGY,0xb20000000000000000000028df89f28236955e38,RETRY,fetch_error,try=2 hosts=goplus
+2026-10-23T16:33:12Z,desk,VERIFY,Sahur,0xfab7d21d9b62c60e57377b2c87852e45ca840f4a,SKIP,liquidity,until=2026-10-24T16:33:12Z
+2026-10-23T16:33:12Z,desk,VERIFY,hob20,0xb200000000000000000000b6b6792e22da6b0601,RETRY,fetch_error,try=1 hosts=goplus
+2026-10-23T16:33:12Z,desk,VERIFY,CHUBBY,0x25978b77bfd98eafcb2db3a08d3ce9de41a4778f,SKIP,liquidity,until=2026-10-24T16:33:12Z
+2026-10-23T16:33:12Z,desk,VERIFY,NODF,0xe9bd8c4655bd31d641c04d90a10258094fc3a42d,SKIP,liquidity,until=2026-10-24T16:33:12Z
+2026-10-23T16:33:12Z,desk,VERIFY,LAPTOP,0x85751698d3ee4c1ff4a7d4160c0c423d000d39d4,SKIP,liquidity,until=2026-10-24T16:33:12Z
+2026-10-23T16:33:12Z,desk,VERIFY,BTW,0x00ac9f5447ee89115470a011fc6ba1a52c952ba3,SKIP,missing:liq_usd,until=2026-10-24T16:33:12Z
+2026-10-23T16:33:12Z,desk,VERIFY,DOAS,0x5294048f0592c2d37f5b19b9929658fa65659096,WATCH,goplus_not_ready,"first_seen=2026-10-23T16:33:12Z checks=1 pending=honeypot,buy_tax_pct,sell_tax_pct,dev_pct,top10_pct,lp_locked_pct"
+2026-10-23T16:33:12Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=4 new=6 checked=10 passed=0 bought=0 held=0 deferred=0 requests=23 secs=19.6
