@@ -1,10 +1,15 @@
 # BL-7: one paper tick every 5 min (exits first, then scan). CLAUDE.md sections 7 and 8.
 # Pause: set PAUSED = True in core/config.py, or disable this workflow in the Actions tab.
+#
+# The cadence lives in cron-job.org, not here: it POSTs workflow_dispatch every 5 min
+# at :03, :08 ... :58 UTC (GitHub's schedule fired 0 times in 35 min, DECISIONS BL-7).
+# Never run a GitHub schedule and cron-job.org together (double ticks).
+# To go back: turn cron-job.org off FIRST, then restore under on:
+#   schedule:
+#     - cron: "3-58/5 * * * *"
 name: tick
 
 on:
-  schedule:
-    - cron: "3-58/5 * * * *"   # :03, :08, :13 ... off the busy top of the hour
   workflow_dispatch:
 
 concurrency:

@@ -59,7 +59,8 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
 - Exits are checked every 5-15 min on Actions: log intended vs filled price ("stop slippage").
 
 ## 7. Running
-- tick.yml every 5 min at an odd minute offset: exits first, then scan. One concurrency group, never overlapping.
+- tick.yml every 5 min at :03, :08 ... :58 UTC: exits first, then scan. One concurrency group, never overlapping.
+  Triggered by cron-job.org (POST workflow_dispatch), no GitHub schedule. Never run both; to go back, turn cron-job.org off first.
 - report.yml daily at 02:07 UTC (BL-8).
 - The bot commits data/ to main ("data: tick ..."), only on change, pull --rebase before push.
   Sessions: git pull before working, git pull --rebase before every push, never commit anything under data/.
@@ -117,16 +118,18 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
   scan -> queue (due watch oldest first, then fetch_error retries, then new leads; held-at-start tokens skipped, no row)
   -> at most MAX_CHECKS = 20 facts() -> Leads.record() -> desk.buy() on PASS. One TICK row per tick:
   positions seen rechecks new checked passed bought held deferred requests secs; reason paused/loss_halt/error:<type>.
-  .github/workflows/tick.yml: cron 3-58/5, dispatch on main, concurrency "tick", 10 min timeout, Python 3.13,
+  .github/workflows/tick.yml: workflow_dispatch only (on main), concurrency "tick", 10 min timeout, Python 3.13,
   commit step if: always(), "data: tick ..." only on change, pull --rebase, retry once. Run red on a crash.
 - BL-7 smoke 2026-10-23 (live, scratch folder, nothing committed): 41 requests in 38 s (DexScreener 21, GoPlus 19,
   GeckoTerminal 1, all HTTP 200). 19 leads, 19 checked: 13 liquidity, 1 missing:lp_locked_pct, 1 missing:liq_usd (NDOF, ZORA pair),
   2 WATCH goplus_not_ready, 2 RETRY fetch_error (GoPlus answered 200 with a non-OK code, both addresses 0xb2000000...), 0 PASS.
   quote() checked live on BRETT's own pool: 1 request, source pool.
+- BL-7 scheduler: GitHub's schedule fired 0 times in 35 min after the first manual run (07f3457 -> e13340f). Since 2026-10-23
+  tick.yml is triggered by cron-job.org (POST workflow_dispatch every 5 min, :03 ... :58 UTC) with its own fine-grained token
+  scoped to baseline-desk only (Actions: read and write). Single point of failure: if cron-job.org stops or the token
+  expires, the desk stops SILENTLY (no red run, just no TICK rows). Note the token expiry date and renew before it.
 - Open items:
-  - BL-7 done only after 24h of green runs, no overlap, one TICK row per run. GitHub's 5-min cron is best effort and often late
-    or skipped under load; the TICK rows will show the real run rate for Gate A (90%).
-  - If pushing .github/workflows/tick.yml is refused (app without workflow permission), Pete adds the file in the GitHub web editor.
+  - BL-7 done only after 24h of green runs, no overlap, one TICK row per run. The TICK rows show the real run rate for Gate A (90%).
   - GoPlus non-OK code on 0xb2000000... addresses: rate limit or tokens GoPlus can't read? Watch for fetch_error_x3 in the first day.
   - LP lock: GoPlus can't tie lp_holders to our pool unless it lists exactly one pool, so many leads die on
     missing:lp_locked_pct (Uniswap v4 may never have LP holders). Pete decides after 24-48h of BL-7 skip-reason data.
@@ -134,7 +137,7 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
   - top10 is the top 8-10 after exclusions (GoPlus returns only 10 holders); slightly lenient.
   - GoPlus rate limit is detected as any non-OK "code" in the body (fetch_error); the exact rate-limit code is unverified live.
   - Week-1 review of the watchlist: if more than about 1/3 of watched leads time out, Pete may raise WATCH max_h to 6.
-- Next step: Pete starts tick.yml once (Actions tab -> tick -> Run workflow), then watch 24h of runs. Then BL-8 (report.py + report.yml).
+- Next step: Pete sets up the cron-job.org job (token scoped to baseline-desk), then watch 24h of runs. Then BL-8 (report.py + report.yml).
 - Last updated: 2026-10-23.
 
 ## 12. Glossary
