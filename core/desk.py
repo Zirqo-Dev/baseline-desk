@@ -44,7 +44,7 @@ def buy(book, address, facts, now):
     qty = usd / fill
     book.s["cash"] -= usd
     pos = {
-        "symbol": sym, "qty": qty, "cost_usd": usd,
+        "symbol": sym, "qty": qty, "orig_qty": qty, "cost_usd": usd,
         "entry_intended": facts["price"], "entry_fill": fill,
         "entry_ts": ts(now), "entry_liq_usd": facts["liq_usd"],
         "launchpad": facts["launchpad"],
@@ -61,30 +61,31 @@ def buy(book, address, facts, now):
     return pos
 
 
-def sell(book, address, price, share, reason, liq_usd, now):
-    """Paper sell of `share` (0..1] of the open position at `price` minus friction.
+def sell(book, address, quote, qty, reason, liq_usd, now, intended=None):
+    """Paper sell of `qty` tokens (None = all that remains) at `quote` minus friction.
 
-    `price` is the intended exit price; the logged fill shows the friction gap.
-    Logs one trade row. Returns proceeds in USD.
+    `intended` is the price the exit should have fired at (defaults to the quote);
+    logging it next to the fill shows stop slippage. Logs one trade row. Returns proceeds in USD.
     """
     if config.PAPER is not True:
         raise RuntimeError("Baseline is paper only")
     p = book.positions[address]
-    share = min(max(share, 0.0), 1.0)
-    qty = p["qty"] * share
-    fill, pct = friction.sell_fill(price, liq_usd, p["launchpad"])
+    qty = p["qty"] if qty is None else min(max(qty, 0.0), p["qty"])
+    share = qty / p["qty"]
+    fill, pct = friction.sell_fill(quote, liq_usd, p["launchpad"])
     proceeds = qty * fill
     cost = p["cost_usd"] * share
     pnl = proceeds - cost
     book.s["cash"] += proceeds
     p["qty"] -= qty
     p["cost_usd"] -= cost
-    p["last_price"] = price
+    p["last_price"] = quote
     if share >= 1.0 or p["qty"] <= 0:
         del book.positions[address]
     book.trade(now, {"side": "SELL", "symbol": p["symbol"], "address": address, "qty": qty,
-                     "usd": round(proceeds, 6), "intended_price": price, "fill_price": fill,
-                     "friction_pct": pct, "liq_usd": liq_usd, "launchpad": p["launchpad"],
-                     "reason": reason, "pnl_usd": round(pnl, 6)})
+                     "usd": round(proceeds, 6),
+                     "intended_price": quote if intended is None else intended,
+                     "fill_price": fill, "friction_pct": pct, "liq_usd": liq_usd,
+                     "launchpad": p["launchpad"], "reason": reason, "pnl_usd": round(pnl, 6)})
     book.save()
     return proceeds

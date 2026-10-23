@@ -26,7 +26,7 @@ class DeskTest(unittest.TestCase):
     def round_trip(self, liq):
         pos = desk.buy(self.book, "0xa", facts(liq), NOW)
         cost = pos["cost_usd"]
-        proceeds = desk.sell(self.book, "0xa", 1.0, 1.0, "test", liq, NOW)
+        proceeds = desk.sell(self.book, "0xa", 1.0, None, "test", liq, NOW)
         return proceeds / cost - 1
 
     def test_round_trip_150k_loses_5_8pct(self):

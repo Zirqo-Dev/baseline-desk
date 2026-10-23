@@ -26,14 +26,14 @@ does the desk beat a RANDOM BASELINE after friction? Making money is not a goal.
 
 ## 4. Architecture
 SCAN     adapters/base.py scan()   DexScreener profiles+boosts, GeckoTerminal new_pools -> leads
-VERIFY   core hard_skip()          standard facts dict from adapters/base.py facts()     -> most leads die here
+VERIFY   core/verify.py hard_skip() standard facts dict from adapters/base.py facts()     -> most leads die here
 VERIFY   prompts/x_read.py         optional Grok X-read (GROK_ENABLED, GROK_DAILY_CAP)   -> GO or SKIP
 EXECUTE  core/desk.py              limits -> size off balance -> paper fill minus friction
 EXIT     core/exits.py             liquidity pull, hard stop, ladder, trail, time stop
 REPORT   core/report.py            desk vs random baseline -> data/report.json
 
 Folders:
-- core/: config.py, book.py, desk.py, exits.py, friction.py, baseline.py, report.py
+- core/: config.py, book.py, desk.py, verify.py, exits.py, friction.py, baseline.py, report.py
 - adapters/: base.py (EVM, chain 8453). Adapter pattern kept so other chains could plug in later (parked).
 - prompts/: x_read.py
 - data/: state.json, report.json, daily/YYYY-MM-DD/ (tasks.csv, trades.csv, baseline_trades.csv)
@@ -85,9 +85,14 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
 ## 11. Current state
 - Phase 0 (setup). BL-4 built: core/config.py, friction.py, book.py, desk.py + tests/ (stdlib unittest, `python -m unittest`).
 - Book: data/state.json holds each book by name ("desk", later "baseline"): cash, positions, day, day_start_value, halted_day.
-- desk.buy() logs one EXECUTE task row (BUY or SKIP). desk.sell() logs the trade row only; the EXIT task row is BL-5's job.
+- desk.buy() logs one EXECUTE task row (BUY or SKIP). desk.sell(qty) logs the trade row with intended vs fill price.
+- BL-5 built: core/exits.py check(book, quote, now): 6 rules in order liq_pull, hard_stop, ladder_1, ladder_2, trail, time_stop;
+  one exit per position per run; every check logs one EXIT task row (SELL / HOLD / HOLD no_quote). Gains vs FILLED entry.
+- BL-5 built: core/verify.py hard_skip(facts): every standard field required (missing:<field>), then GoPlus flags,
+  sells_1h == 0 -> "nobody_can_sell", then SKIP_IF. risk_flags is required but has no rule yet: decide at BL-6 on real GoPlus data.
+- Not built yet: the 24h skip memory (non-negotiable 3) — goes with the tick loop (BL-6/BL-7).
 - BL-1 (Actions write permission) still open.
-- Next step: BL-5 core/exits.py (6 exit rules, intended vs filled price), then BL-6 to BL-8.
+- Next step: BL-6 adapters/base.py — first fetch one raw DexScreener + one raw GoPlus response for a live Base token and show Pete the field mapping.
 - Last updated: 2026-10-23.
 
 ## 12. Glossary
