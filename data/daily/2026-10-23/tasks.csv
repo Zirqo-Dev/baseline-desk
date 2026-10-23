@@ -217,3 +217,18 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-10-23T16:23:32Z,desk,VERIFY,1KTO100M,0x98f98786f5a5a6692b94e680a0da21c5a86a5896,RETRY,fetch_error,try=1 hosts=goplus
 2026-10-23T16:23:32Z,desk,VERIFY,WEDGIE,0x8a9a8c0380b43fd4bee8fc1c8bb4b3f9c6be5ba3,RETRY,fetch_error,try=1 hosts=goplus
 2026-10-23T16:23:32Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=10 new=2 checked=12 passed=0 bought=0 held=0 deferred=0 requests=27 secs=23.6
+2026-10-23T16:28:12Z,desk,VERIFY,bit,0x4c3e5199349151d9888abb09789af7a0fa588a39,WATCH,goplus_not_ready,first_seen=2026-10-23T16:13:11Z checks=2 pending=top10_pct
+2026-10-23T16:28:12Z,desk,VERIFY,FTOF,0x782457a6b6f474151c3ced0c211cf5b53e73d8ec,WATCH,goplus_not_ready,"first_seen=2026-10-23T16:13:11Z checks=2 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct"
+2026-10-23T16:28:12Z,desk,VERIFY,WEDGIE,0x8a9a8c0380b43fd4bee8fc1c8bb4b3f9c6be5ba3,SKIP,liquidity,until=2026-10-24T16:28:12Z
+2026-10-23T16:28:12Z,desk,VERIFY,1KTO100M,0x98f98786f5a5a6692b94e680a0da21c5a86a5896,SKIP,liquidity,until=2026-10-24T16:28:12Z
+2026-10-23T16:28:12Z,desk,VERIFY,CBPIG,0xb2000000000000000000004aa6cee129a00b53f8,SKIP,fetch_error_x3,try=3 hosts=goplus until=2026-10-24T16:28:12Z
+2026-10-23T16:28:12Z,desk,VERIFY,CBPIG,0xb2000000000000000000006d9e2909e2c7eef483,SKIP,fetch_error_x3,try=3 hosts=goplus until=2026-10-24T16:28:12Z
+2026-10-23T16:28:12Z,desk,VERIFY,IRYS,0x7444e59a43da4aeb48cf351b1576f8790996fb07,SKIP,liquidity,until=2026-10-24T16:28:12Z
+2026-10-23T16:28:12Z,desk,VERIFY,1KTO100M,0xa25a8a9d942835d211c1fc4c1e00abf84f12728e,SKIP,liquidity,until=2026-10-24T16:28:12Z
+2026-10-23T16:28:12Z,desk,VERIFY,1KTO100M,0x71d315965c47cd2ff3252e8fb455c6d1df6bc160,SKIP,liquidity,until=2026-10-24T16:28:12Z
+2026-10-23T16:28:12Z,desk,VERIFY,194,0xf0eb0d138779cc43a300a3e4b24feb3acc8ecba3,SKIP,missing:liq_usd,until=2026-10-24T16:28:12Z
+2026-10-23T16:28:12Z,desk,VERIFY,cbPIGGY,0xb20000000000000000000028df89f28236955e38,RETRY,fetch_error,try=1 hosts=goplus
+2026-10-23T16:28:12Z,desk,VERIFY,ZTEST,0x3257de0e0a3d4752c555f8d9dffd054043351765,RETRY,fetch_error,try=1 hosts=goplus
+2026-10-23T16:28:12Z,desk,VERIFY,MX,0x9c1332a96bbcf3a9e5ee0cdf97a2ce7a7c6b6b07,RETRY,fetch_error,try=1 hosts=goplus
+2026-10-23T16:28:12Z,desk,VERIFY,Sahur,0xfab7d21d9b62c60e57377b2c87852e45ca840f4a,RETRY,fetch_error,try=1 hosts=goplus
+2026-10-23T16:28:12Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=6 new=8 checked=14 passed=0 bought=0 held=0 deferred=0 requests=31 secs=27.7
