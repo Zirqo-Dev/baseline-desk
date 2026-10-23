@@ -83,16 +83,20 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
 - End of every session also append one line to docs/CHANGELOG.md: date | card | commit hash | what changed | next step. Then print a NOTION UPDATE block for Pete.
 
 ## 11. Current state
-- Phase 0 (setup). BL-4 built: core/config.py, friction.py, book.py, desk.py + tests/ (stdlib unittest, `python -m unittest`).
-- Book: data/state.json holds each book by name ("desk", later "baseline"): cash, positions, day, day_start_value, halted_day.
-- desk.buy() logs one EXECUTE task row (BUY or SKIP). desk.sell(qty) logs the trade row with intended vs fill price.
-- BL-5 built: core/exits.py check(book, quote, now): 6 rules in order liq_pull, hard_stop, ladder_1, ladder_2, trail, time_stop;
+- Phase 0 (setup). Done: BL-1, BL-2, BL-4, BL-5. Tests: stdlib unittest, `python -m unittest` (26 pass on 3.11).
+- BL-4: core/config.py, friction.py, book.py, desk.py. data/state.json holds each book by name ("desk", later "baseline"):
+  cash, positions, day, day_start_value, halted_day. desk.buy() logs one EXECUTE task row (BUY or SKIP);
+  desk.sell(qty) logs the trade row with intended vs fill price.
+- BL-5: core/exits.py check(book, quote, now): 6 rules in order liq_pull, hard_stop, ladder_1, ladder_2, trail, time_stop;
   one exit per position per run; every check logs one EXIT task row (SELL / HOLD / HOLD no_quote). Gains vs FILLED entry.
-- BL-5 built: core/verify.py hard_skip(facts): every standard field required (missing:<field>), then GoPlus flags,
-  sells_1h == 0 -> "nobody_can_sell", then SKIP_IF. risk_flags is required but has no rule yet: decide at BL-6 on real GoPlus data.
-- Not built yet: the 24h skip memory (non-negotiable 3) — goes with the tick loop (BL-6/BL-7).
-- BL-1 (Actions write permission) still open.
-- Next step: BL-6 adapters/base.py — first fetch one raw DexScreener + one raw GoPlus response for a live Base token and show Pete the field mapping.
+- BL-5: core/verify.py hard_skip(facts): every standard field required (missing:<field>), then GoPlus flags,
+  sells_1h == 0 -> "nobody_can_sell", then SKIP_IF.
+- BL-6 BLOCKED: the cloud environment must allow api.dexscreener.com, api.gopluslabs.io and api.geckoterminal.com
+  (environment settings -> Network access -> Custom -> allowed domains, package managers kept).
+- Open items: the 24h skip memory (non-negotiable 3) belongs in the tick loop (BL-6/BL-7).
+  The risk_flags rule is decided at BL-6 after seeing real GoPlus data (field is required, no rule yet).
+- Next step: BL-6. Start by fetching one raw DexScreener and one raw GoPlus response for a live Base token
+  and show Pete the field mapping to the standard facts dict BEFORE writing any adapter code.
 - Last updated: 2026-10-23.
 
 ## 12. Glossary
