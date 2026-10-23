@@ -81,6 +81,8 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
 - docs/LEARNINGS.md: weekly review: hypothesis (written first) | change | result vs baseline | keep or revert.
 - If a session ends mid-task, write "Next step:" in section 11.
 - End of every session also append one line to docs/CHANGELOG.md: date | card | commit hash | what changed | next step. Then print a NOTION UPDATE block for Pete.
+- CHANGELOG hashes: a commit can't contain its own hash, so the session line says 'pending'. At the start of the next session,
+  after confirming git log, replace 'pending' with that commit's short hash. This is the only allowed edit to an old CHANGELOG line.
 
 ## 11. Current state
 - Phase 1 (core engine). Done: BL-1, BL-2, BL-4, BL-5. Building: BL-6. Tests: stdlib unittest, `python -m unittest` (26 pass on 3.11).
