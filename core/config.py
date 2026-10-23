@@ -25,6 +25,9 @@ SKIP_IF = {
     "max_sell_tax_pct": 10,
 }
 
+# Watchlist for leads GoPlus has not indexed yet (DECISIONS 2026-10-23, BL-6 3a)
+WATCH = {"recheck_min": 15, "max_h": 3}
+
 # Exits
 EXIT = {
     "hard_stop_pct": -25,

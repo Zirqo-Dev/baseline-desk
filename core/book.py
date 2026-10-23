@@ -31,6 +31,23 @@ def day(now):
     return now.strftime("%Y-%m-%d")
 
 
+def load_state(path):
+    """Everything in data/state.json (books by name, plus "leads")."""
+    path = Path(path)
+    return json.loads(path.read_text()) if path.exists() else {}
+
+
+def save_key(path, key, value):
+    """Write one top-level key of data/state.json, keeping the others."""
+    path = Path(path)
+    everything = load_state(path)
+    everything[key] = value
+    path.parent.mkdir(parents=True, exist_ok=True)
+    tmp = path.with_suffix(".tmp")
+    tmp.write_text(json.dumps(everything, indent=2, sort_keys=True))
+    os.replace(tmp, path)
+
+
 def _append(path, fields, row):
     path.parent.mkdir(parents=True, exist_ok=True)
     new = not path.exists()
@@ -46,8 +63,7 @@ class Book:
         self.name = name
         self.root = Path(root)
         self.state_path = self.root / config.STATE
-        everything = self._load_all()
-        self.s = everything.get(name) or {
+        self.s = load_state(self.state_path).get(name) or {
             "cash": float(config.START_BALANCE),
             "positions": {},
             "day": "",
@@ -56,18 +72,8 @@ class Book:
         }
 
     # ---- state file ----
-    def _load_all(self):
-        if self.state_path.exists():
-            return json.loads(self.state_path.read_text())
-        return {}
-
     def save(self):
-        everything = self._load_all()
-        everything[self.name] = self.s
-        self.state_path.parent.mkdir(parents=True, exist_ok=True)
-        tmp = self.state_path.with_suffix(".tmp")
-        tmp.write_text(json.dumps(everything, indent=2, sort_keys=True))
-        os.replace(tmp, self.state_path)
+        save_key(self.state_path, self.name, self.s)
 
     # ---- values ----
     @property

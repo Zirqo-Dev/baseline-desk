@@ -41,6 +41,37 @@ class VerifyTest(unittest.TestCase):
         self.assertEqual(hard_skip(dict(GOOD, sells_1h=0)), "nobody_can_sell")
         self.assertEqual(hard_skip(dict(GOOD, sells_1h=1)), "")
 
+    def test_risk_flags_hard_skip(self):
+        for flag in ["hidden_owner", "can_take_back_ownership", "owner_change_balance",
+                     "slippage_modifiable", "personal_slippage_modifiable", "selfdestruct"]:
+            self.assertEqual(hard_skip(dict(GOOD, risk_flags=[flag])), f"risk_flag:{flag}")
+
+    def test_risk_flags_log_only(self):
+        f = dict(GOOD, risk_flags=["external_call", "is_open_source=0", "honeypot_with_same_creator"])
+        self.assertEqual(hard_skip(f), "")
+
+    def test_goplus_not_ready(self):
+        f = dict(GOOD, goplus_pending=["mint_open", "honeypot", "top10_pct"])
+        for k in ["mint_open", "honeypot", "top10_pct"]:
+            del f[k]
+        self.assertEqual(hard_skip(f), "goplus_not_ready")
+        self.assertEqual(hard_skip(dict(f, liq_usd=49_999)), "liquidity")  # final even while waiting
+
+    def test_dexscreener_gap_stays_final(self):
+        f = dict(GOOD, goplus_pending=["mint_open"])
+        del f["mint_open"], f["age_min"]
+        self.assertEqual(hard_skip(f), "missing:age_min")
+
+    def test_goplus_gap_not_flagged_pending_is_final(self):
+        f = dict(GOOD, goplus_pending=["mint_open"])
+        del f["mint_open"], f["lp_locked_pct"]
+        self.assertEqual(hard_skip(f), "missing:lp_locked_pct")
+
+    def test_fetch_error_comes_first(self):
+        self.assertEqual(hard_skip(dict(GOOD, fetch_errors=["gt"])), "fetch_error")
+        self.assertEqual(hard_skip(dict(GOOD, fetch_errors=["ds_pairs"], price=None)), "fetch_error")
+        self.assertEqual(hard_skip(dict(GOOD, fetch_errors=[])), "")
+
 
 if __name__ == "__main__":
     unittest.main()
