@@ -4,7 +4,8 @@ A skip is final for 24h (non-negotiable 3). One exception (DECISIONS 2026-10-23,
 "goplus_not_ready" puts the lead on a watchlist, re-checked every WATCH["recheck_min"],
 until WATCH["max_h"] after first seen; then a final "goplus_timeout".
 "fetch_error" (429, 5xx, timeout) is not locked either: retried next run, at most
-FETCH_TRIES in a row, then a final "fetch_error_x3".
+FETCH_TRIES in a row, then a final "fetch_error_x3". A GoPlus answer code other than 1 is logged
+as goplus_code=<n> in the row detail.
 Every check logs one VERIFY task row. Wiring into the tick is BL-7.
 """
 from datetime import datetime, timedelta, timezone
@@ -88,6 +89,8 @@ class Leads:
         """A failed request says nothing about the token: retry next run, final only after FETCH_TRIES in a row."""
         tries = self.s["retry"].pop(address, {"tries": 0})["tries"] + 1
         detail = [f"try={tries}", "hosts=" + ",".join(facts.get("fetch_errors") or [])]
+        if facts.get("goplus_code") is not None:
+            detail.append(f"goplus_code={facts['goplus_code']}")
         w = self.s["watch"].get(address)
         if w:
             detail.insert(0, f"first_seen={w['first_seen']}")

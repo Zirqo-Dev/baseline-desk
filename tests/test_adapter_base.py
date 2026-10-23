@@ -86,7 +86,23 @@ class MappingTest(unittest.TestCase):
     def test_goplus_rate_limit_in_body_is_a_fetch_error(self):
         c = FakeClient({"token-pairs": load("dexscreener_fresh"),
                         "gopluslabs": {"code": 4029, "message": "too many requests", "result": {}}})
-        self.assertEqual(hard_skip(base.facts(FRESH, NOW, c)), "fetch_error")
+        f = base.facts(FRESH, NOW, c)
+        self.assertEqual(hard_skip(f), "fetch_error")
+        self.assertEqual(f["goplus_code"], 4029)
+
+    def test_goplus_code_3_is_partial_not_a_fetch_error(self):
+        # live answer for a 0xb2000000... token, 2026-10-23: HTTP 200, code 3, 10 fields, no safety data
+        partial = {"code": 3, "message": "OK", "result": {FRESH: {
+            "buy_tax": "", "sell_tax": "", "holder_count": "0", "is_in_dex": "1", "is_open_source": "1",
+            "owner_address": "", "token_name": "Wizard Gang", "token_symbol": "WIZARD",
+            "total_supply": "1000000000", "dex": []}}}
+        c = FakeClient({"token-pairs": load("dexscreener_older"), "gopluslabs": partial,
+                        "geckoterminal": gt_pool("2026-10-23T10:00:00Z")})
+        f = base.facts(FRESH, NOW, c)
+        self.assertEqual(f["fetch_errors"], [])
+        self.assertTrue(f["goplus_partial"])
+        self.assertNotIn("goplus_code", f)
+        self.assertEqual(hard_skip(f), "goplus_partial")
 
     def test_dexscreener_down_is_a_fetch_error(self):
         c = FakeClient({"gopluslabs": load("goplus_older")})

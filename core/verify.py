@@ -21,12 +21,16 @@ def hard_skip(facts):
     "fetch_error" (not final) when any request failed (429, 5xx, timeout): a rate limit
     is our problem, not a fact about the token.
 
+    "goplus_partial" (final) when GoPlus answered code 3: it can't read the token.
+
     "goplus_not_ready" (not final) when every missing field is one the adapter
     listed in facts["goplus_pending"] (GoPlus has not filled it yet), unless the
     pool is already under the liquidity minimum.
     """
     if facts.get("fetch_errors"):
         return "fetch_error"
+    if facts.get("goplus_partial"):
+        return "goplus_partial"
     s = config.SKIP_IF
     missing = [k for k in REQUIRED if facts.get(k) is None]
     if missing:

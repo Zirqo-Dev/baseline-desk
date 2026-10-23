@@ -72,6 +72,11 @@ class VerifyTest(unittest.TestCase):
         self.assertEqual(hard_skip(dict(GOOD, fetch_errors=["ds_pairs"], price=None)), "fetch_error")
         self.assertEqual(hard_skip(dict(GOOD, fetch_errors=[])), "")
 
+    def test_goplus_partial_after_fetch_error_before_gaps(self):
+        part = {k: v for k, v in GOOD.items() if k not in ("honeypot", "buy_tax_pct")}
+        self.assertEqual(hard_skip(dict(part, goplus_partial=True)), "goplus_partial")
+        self.assertEqual(hard_skip(dict(part, goplus_partial=True, fetch_errors=["ds_pairs"])), "fetch_error")
+
 
 if __name__ == "__main__":
     unittest.main()

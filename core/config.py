@@ -28,6 +28,9 @@ SKIP_IF = {
 # Watchlist for leads GoPlus has not indexed yet (DECISIONS 2026-10-23, BL-6 3a)
 WATCH = {"recheck_min": 15, "max_h": 3}
 
+# GoPlus calls per tick; the free API failed from the 11th call on (DECISIONS 2026-10-23, BL-7)
+GOPLUS_MAX_PER_TICK = 9
+
 # Exits
 EXIT = {
     "hard_stop_pct": -25,

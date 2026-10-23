@@ -111,6 +111,27 @@ class LeadsTest(unittest.TestCase):
         self.assertIn("try=2", rows[1]["detail"])
         self.assertIn("hosts=goplus", rows[0]["detail"])
 
+    def test_goplus_code_logged_in_retry_and_final_rows(self):
+        bad = dict(GOOD, fetch_errors=["goplus"], goplus_code=4029)
+        for m in (0, 5, 10):
+            self.leads.record(A, bad, at(m))
+        rows = self.rows()
+        self.assertEqual([r["action"] for r in rows], ["RETRY", "RETRY", "SKIP"])
+        for r in rows:
+            self.assertIn("goplus_code=4029", r["detail"].split())
+
+    def test_goplus_partial_is_final_24h_one_skip_row(self):
+        part = dict(WAIT, goplus_partial=True)
+        self.leads.record(A, WAIT, T0)  # watched first
+        self.assertEqual(self.leads.record(A, part, at(15)), "goplus_partial")
+        self.assertNotIn(A.lower(), self.leads.s["watch"])
+        self.assertNotIn(A.lower(), self.leads.s["retry"])
+        self.assertEqual(self.leads.skipped(A, at(24 * 60 + 14)), "goplus_partial")
+        self.assertTrue(self.leads.due(A, at(24 * 60 + 15)))
+        last = self.rows()[-1]
+        self.assertEqual((last["action"], last["reason"]), ("SKIP", "goplus_partial"))
+        self.assertIn("until=2026-10-24T12:15:00Z", last["detail"])
+
     def test_fetch_error_count_resets_after_a_clean_check(self):
         bad = dict(GOOD, fetch_errors=["ds_pairs"])
         self.leads.record(A, bad, T0)

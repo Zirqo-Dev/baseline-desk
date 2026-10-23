@@ -24,6 +24,8 @@ Field mapping (DECISIONS 2026-10-23, BL-6):
   risk_flags           GoPlus flags set to "1" (see core/verify.py HARD_FLAGS for the skip list)
 Extra keys: "pair" (traded pair address), "goplus_pending" (GoPlus fields not filled yet) and
 "fetch_errors" (buckets whose request failed: 429, 5xx, timeout, bad answer -> hard_skip "fetch_error").
+GoPlus "code" (DECISIONS 2026-10-23, BL-7 GoPlus fixes): 1 = full answer; 3 = partial answer (no honeypot,
+taxes or holders) -> "goplus_partial": True, a final skip; any other code -> fetch error, kept in "goplus_code".
 
 quote(address, pair) prices a held token for EXIT (DECISIONS 2026-10-23, BL-7 B): the pool we
 bought in, else the deepest Base pool ("fallback") only when that pool is gone. 1 request, 2 on fallback.
@@ -344,8 +346,12 @@ def facts(address, now=None, client=None):
             out["age_min"] = _iso_min(created, now)
 
     gp = _fetch(c, "goplus", f"{GOPLUS}?contract_addresses={address}", errors)
-    if isinstance(gp, dict) and gp.get("code") != 1:  # GoPlus reports its rate limit in the body
+    code = gp.get("code") if isinstance(gp, dict) else None
+    if code == 3:  # partial answer: GoPlus can't read this token, waiting doesn't help
+        out["goplus_partial"] = True
+    elif isinstance(gp, dict) and code != 1:  # GoPlus reports its rate limit in the body
         errors.append("goplus")
+        out["goplus_code"] = code
     g = _goplus_entry(gp, address)
     gf, pending = goplus_facts(g, pair_address, bool(pair) and is_v4(pair))
     out.update(gf)
@@ -393,7 +399,7 @@ def quote(address, pair="", client=None):
 # ---------------------------------------------------------------- CLI
 def _show(f, verdict, client):
     print(f"{'field':<20} value")
-    for k in REQUIRED + ["pair", "goplus_pending", "fetch_errors"]:
+    for k in REQUIRED + ["pair", "goplus_pending", "fetch_errors", "goplus_partial", "goplus_code"]:
         v = f.get(k, "MISSING")
         print(f"{k:<20} {round(v, 4) if isinstance(v, float) else v}")
     print(f"\nverdict: {verdict or 'PASS'}")

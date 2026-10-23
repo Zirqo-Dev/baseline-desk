@@ -138,7 +138,7 @@ class TickTest(unittest.TestCase):
 
         def facts(address, now=None, client=None):
             self.order.append(address)
-            client.calls += [("x", address)] * 2
+            client.calls += [("x", address), (base.GOPLUS, 200)]  # every facts() makes one GoPlus call
             return self.facts.get(address, dict(good(0), liq_usd=1))  # unknown lead: liquidity skip
 
         def quote(address, pair="", client=None):
@@ -166,7 +166,7 @@ class TickTest(unittest.TestCase):
         self.assertEqual((hb[0]["action"], hb[0]["reason"]), ("HEARTBEAT", ""))
         self.assertEqual(detail(hb[0]), {"positions": "0", "seen": "1", "rechecks": "0", "new": "1",
                                          "checked": "1", "passed": "0", "bought": "0", "held": "0",
-                                         "deferred": "0", "requests": "5", "secs": "0.0"})
+                                         "deferred": "0", "goplus": "1", "requests": "5", "secs": "0.0"})
         self.assertEqual(detail(hb[1])["checked"], "0")  # the 24h skip holds: no re-check, no row
 
     def test_pass_buys_and_saves_pair(self):
@@ -209,7 +209,7 @@ class TickTest(unittest.TestCase):
         leads.record(addr(90), pending, T0 - timedelta(minutes=5))
         self.facts.update({addr(90): pending, addr(91): pending})
         self.found = [addr(i) for i in range(1, 26)]  # 25 new leads
-        n = self.run_tick(15)
+        n = self.run_tick(15, GOPLUS_MAX_PER_TICK=99)  # MAX_CHECKS alone
         self.assertEqual(self.order[:3], ["scan", addr(91), addr(90)])
         self.assertEqual(self.order[3], addr(1))
         self.assertEqual((n["rechecks"], n["new"], n["checked"], n["deferred"]),
@@ -231,6 +231,35 @@ class TickTest(unittest.TestCase):
         self.found = []
         n = self.run_tick(5)
         self.assertEqual((n["rechecks"], n["checked"]), (1, 1))
+
+    def test_goplus_cap_defers_the_10th_lead_with_no_row(self):
+        self.found = [addr(i) for i in range(1, 13)]  # 12 new leads
+        n = self.run_tick()
+        self.assertEqual((n["checked"], n["deferred"], n["goplus"]), (9, 3, 9))
+        verify = [r["address"] for r in tick_rows(self.root) if r["stage"] == "VERIFY"]
+        self.assertEqual(verify, [addr(i) for i in range(1, 10)])
+        self.assertEqual(detail(self.heartbeats()[0])["goplus"], "9")
+        self.assertEqual(Leads(self.root).s["retry"], {})  # deferred is not a retry try
+        n = self.run_tick(5)  # same queue order next tick, from the 10th lead on
+        self.assertEqual(self.order[-3:], [addr(10), addr(11), addr(12)])
+        self.assertEqual((n["checked"], n["deferred"]), (3, 0))
+
+    def test_goplus_cap_counts_watch_rechecks_and_retries(self):
+        pending = dict(good(0), goplus_pending=["mint_open"])
+        del pending["mint_open"]
+        leads = Leads(self.root)
+        for i in range(90, 95):  # 5 watched, due at +15 min
+            leads.record(addr(i), pending, T0 - timedelta(minutes=1))
+        for i in range(80, 85):  # 5 fetch_error retries
+            leads.record(addr(i), dict(good(i), fetch_errors=["goplus"]), T0 - timedelta(minutes=1))
+        self.facts.update({addr(i): pending for i in range(90, 95)})
+        self.facts.update({addr(i): dict(good(i), fetch_errors=["goplus"]) for i in range(80, 85)})
+        self.found = [addr(1)]
+        n = self.run_tick(15)
+        self.assertEqual((n["rechecks"], n["new"], n["checked"], n["deferred"]), (10, 1, 9, 2))
+        self.assertNotIn(addr(1), self.order)  # deferred: the last retry and the new lead
+        retries = Leads(self.root).s["retry"]
+        self.assertEqual(retries[addr(84)]["tries"], 1)  # the deferred retry kept its try count
 
     def test_paused_runs_exits_but_no_scan(self):
         self.found = [addr(1)]
@@ -271,7 +300,8 @@ class TickWithFixturesTest(unittest.TestCase):
                             f"contract_addresses={FRESH}": load("goplus_fresh")})
             n = tick.run(root, datetime(2026, 10, 23, 11, 30, tzinfo=timezone.utc), c, clock=lambda: 0.0,
                          log=lambda s: None)
-            self.assertEqual((n["seen"], n["checked"], n["deferred"]), (20, 20, 0))
+            self.assertEqual((n["seen"], n["checked"], n["deferred"], n["goplus"]),
+                             (20, config.GOPLUS_MAX_PER_TICK, 20 - config.GOPLUS_MAX_PER_TICK, 9))
             self.assertEqual(n["requests"], len(c.calls))
             rows = tick_rows(root)
             self.assertEqual(rows[-1]["stage"], "TICK")
