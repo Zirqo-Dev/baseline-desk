@@ -909,3 +909,13 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-10-23T19:38:11Z,desk,VERIFY,YMB,0xed938e12abdc752a1d8f0a25f9ced024706f2d43,RETRY,fetch_error,try=2 hosts=goplus
 2026-10-23T19:38:11Z,desk,VERIFY,portfolio,0xb200000000000000000000a0b4ce2b6fe510ff01,RETRY,fetch_error,try=1 hosts=goplus
 2026-10-23T19:38:11Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=19 new=10 checked=20 passed=0 bought=0 held=0 deferred=9 requests=43 secs=39.6
+2026-10-23T19:43:11Z,desk,VERIFY,XLM,0xa205c62147da8858d7faaad38992cf658f23075a,WATCH,goplus_not_ready,first_seen=2026-10-23T19:23:10Z checks=2 pending=top10_pct
+2026-10-23T19:43:11Z,desk,VERIFY,XTO,0x0a7d5698d2bc786f2ad889a2565a523fa83f9fc3,WATCH,goplus_not_ready,"first_seen=2026-10-23T19:43:11Z checks=1 pending=mint_open,freeze_or_blacklist,honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct,risk_flags"
+2026-10-23T19:43:11Z,desk,VERIFY,XTO,0x0ca47c21401b0b0cc067fca0b7e12a87dee1d19a,WATCH,goplus_not_ready,"first_seen=2026-10-23T19:43:11Z checks=1 pending=mint_open,freeze_or_blacklist,honeypot,buy_tax_pct,sell_tax_pct,dev_pct,top10_pct,lp_locked_pct,risk_flags"
+2026-10-23T19:43:11Z,desk,VERIFY,BASEPIG,0x137921e405a1be7dc87433723f9c34cf1beb9ebb,SKIP,liquidity,until=2026-10-24T19:43:11Z
+2026-10-23T19:43:11Z,desk,VERIFY,YMB,0x1797d1db676b85ec96b8bb550728dceb23c5242a,SKIP,liquidity,until=2026-10-24T19:43:11Z
+2026-10-23T19:43:11Z,desk,VERIFY,TAPE,0x7ad9efb9d5e8c3e2381416742d52cdbd5d268c01,SKIP,liquidity,until=2026-10-24T19:43:11Z
+2026-10-23T19:43:11Z,desk,VERIFY,portfolio,0xb200000000000000000000a0b4ce2b6fe510ff01,SKIP,goplus_partial,until=2026-10-24T19:43:11Z
+2026-10-23T19:43:11Z,desk,VERIFY,NODF,0xb2fab39944b8f90de1c8107e69570b07c6d0636b,SKIP,liquidity,until=2026-10-24T19:43:11Z
+2026-10-23T19:43:11Z,desk,VERIFY,USDF,0xc4987aa5ea1a48520262084c4e5804777f6460ba,WATCH,goplus_not_ready,"first_seen=2026-10-23T19:43:11Z checks=1 pending=mint_open,freeze_or_blacklist,honeypot,buy_tax_pct,sell_tax_pct,dev_pct,top10_pct,lp_locked_pct,risk_flags"
+2026-10-23T19:43:11Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=10 new=11 checked=9 passed=0 bought=0 held=0 deferred=12 goplus=9 requests=21 secs=17.7
