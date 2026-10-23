@@ -83,8 +83,11 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
 - End of every session also append one line to docs/CHANGELOG.md: date | card | commit hash | what changed | next step. Then print a NOTION UPDATE block for Pete.
 
 ## 11. Current state
-- Phase 0 (setup). Nothing built yet.
-- Next step: finish BL-1 (Actions write permission), then BL-4 to BL-8.
+- Phase 0 (setup). BL-4 built: core/config.py, friction.py, book.py, desk.py + tests/ (stdlib unittest, `python -m unittest`).
+- Book: data/state.json holds each book by name ("desk", later "baseline"): cash, positions, day, day_start_value, halted_day.
+- desk.buy() logs one EXECUTE task row (BUY or SKIP). desk.sell() logs the trade row only; the EXIT task row is BL-5's job.
+- BL-1 (Actions write permission) still open.
+- Next step: BL-5 core/exits.py (6 exit rules, intended vs filled price), then BL-6 to BL-8.
 - Last updated: 2026-10-23.
 
 ## 12. Glossary
