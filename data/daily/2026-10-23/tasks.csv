@@ -204,3 +204,16 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-10-23T16:18:13Z,desk,VERIFY,CBPIG,0xb2000000000000000000006d9e2909e2c7eef483,RETRY,fetch_error,try=1 hosts=goplus
 2026-10-23T16:18:13Z,desk,VERIFY,REALTAPE,0x337ba60b6bf4e0624e03289d08188f25984a02c1,RETRY,fetch_error,try=1 hosts=goplus
 2026-10-23T16:18:13Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=9 new=5 checked=14 passed=0 bought=0 held=0 deferred=0 requests=31 secs=27.7
+2026-10-23T16:23:32Z,desk,VERIFY,XTO,0x3e73959be7b2c5454d3bbdd319ad0fc52a5e6c4f,WATCH,goplus_not_ready,"first_seen=2026-10-23T15:28:12Z checks=4 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct"
+2026-10-23T16:23:32Z,desk,VERIFY,APO,0xaa67354fd2ea537817a9e7af14c74c21d569d4d3,WATCH,goplus_not_ready,"first_seen=2026-10-23T15:28:12Z checks=4 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct"
+2026-10-23T16:23:32Z,desk,VERIFY,USDF,0x7bbd3f00f8df8311e96ecbd6bf00e59e50e58317,WATCH,goplus_not_ready,"first_seen=2026-10-23T15:33:12Z checks=4 pending=honeypot,buy_tax_pct,sell_tax_pct,dev_pct,top10_pct,lp_locked_pct"
+2026-10-23T16:23:32Z,desk,VERIFY,ODIE,0xcd7fd878d76ff5af519393acecc61dbd75bfcdad,WATCH,goplus_not_ready,first_seen=2026-10-23T15:48:12Z checks=3 pending=top10_pct
+2026-10-23T16:23:32Z,desk,VERIFY,NODF,0x05336a996b69cba9fdda4569c39121b0bc891398,WATCH,goplus_not_ready,"first_seen=2026-10-23T16:08:12Z checks=2 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct"
+2026-10-23T16:23:32Z,desk,VERIFY,REALTAPE,0x337ba60b6bf4e0624e03289d08188f25984a02c1,SKIP,liquidity,until=2026-10-24T16:23:32Z
+2026-10-23T16:23:32Z,desk,VERIFY,SPACEX,0x8bb9d0e33dd5bd3698f3f4e3ac6b88748d756f82,SKIP,liquidity,until=2026-10-24T16:23:32Z
+2026-10-23T16:23:32Z,desk,VERIFY,NIO,0xb200000000000000000000383f5f955050181f01,SKIP,fetch_error_x3,try=3 hosts=goplus until=2026-10-24T16:23:32Z
+2026-10-23T16:23:32Z,desk,VERIFY,CBPIG,0xb2000000000000000000004aa6cee129a00b53f8,RETRY,fetch_error,try=2 hosts=goplus
+2026-10-23T16:23:32Z,desk,VERIFY,CBPIG,0xb2000000000000000000006d9e2909e2c7eef483,RETRY,fetch_error,try=2 hosts=goplus
+2026-10-23T16:23:32Z,desk,VERIFY,1KTO100M,0x98f98786f5a5a6692b94e680a0da21c5a86a5896,RETRY,fetch_error,try=1 hosts=goplus
+2026-10-23T16:23:32Z,desk,VERIFY,WEDGIE,0x8a9a8c0380b43fd4bee8fc1c8bb4b3f9c6be5ba3,RETRY,fetch_error,try=1 hosts=goplus
+2026-10-23T16:23:32Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=10 new=2 checked=12 passed=0 bought=0 held=0 deferred=0 requests=27 secs=23.6
