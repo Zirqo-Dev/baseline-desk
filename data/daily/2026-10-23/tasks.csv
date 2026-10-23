@@ -709,3 +709,17 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-10-23T18:48:13Z,desk,VERIFY,PCAT,0x37b42ef93033090af697bf83026acc5fd0d7997b,RETRY,fetch_error,try=1 hosts=goplus
 2026-10-23T18:48:13Z,desk,VERIFY,PCAT,0x3233aeb555d3288846788870f8f72069a92fc9c5,RETRY,fetch_error,try=1 hosts=goplus
 2026-10-23T18:48:13Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=19 rechecks=14 new=5 checked=19 passed=0 bought=0 held=0 deferred=0 requests=43 secs=37.7
+2026-10-23T18:53:11Z,desk,VERIFY,BASIN,0x1ad35f927ac7b7953ebdd0c5375ed3f4f7f621fb,SKIP,missing:liq_usd,until=2026-10-24T18:53:11Z
+2026-10-23T18:53:11Z,desk,VERIFY,NODF,0x303e0efc64bcba0cd5aa54268cef6fd363a5a22a,WATCH,goplus_not_ready,"first_seen=2026-10-23T18:53:11Z checks=1 pending=mint_open,freeze_or_blacklist,honeypot,buy_tax_pct,sell_tax_pct,dev_pct,top10_pct,lp_locked_pct,risk_flags"
+2026-10-23T18:53:11Z,desk,VERIFY,PCAT,0x3233aeb555d3288846788870f8f72069a92fc9c5,SKIP,liquidity,until=2026-10-24T18:53:11Z
+2026-10-23T18:53:11Z,desk,VERIFY,PCAT,0x37b42ef93033090af697bf83026acc5fd0d7997b,SKIP,liquidity,until=2026-10-24T18:53:11Z
+2026-10-23T18:53:11Z,desk,VERIFY,NODF,0x5501a6b614fa5b8766928edbaab773706add5064,WATCH,goplus_not_ready,"first_seen=2026-10-23T18:53:11Z checks=1 pending=mint_open,freeze_or_blacklist,honeypot,buy_tax_pct,sell_tax_pct,dev_pct,top10_pct,lp_locked_pct,risk_flags"
+2026-10-23T18:53:11Z,desk,VERIFY,IRYS,0x60f54c60fc68a0e7bf4034d0ac069b862ed61c37,WATCH,goplus_not_ready,"first_seen=2026-10-23T18:53:11Z checks=1 pending=mint_open,freeze_or_blacklist,honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct,risk_flags"
+2026-10-23T18:53:11Z,desk,VERIFY,XTO,0x6fa7987b62c7e6030fe8bed73acc660a8656f16b,WATCH,goplus_not_ready,"first_seen=2026-10-23T18:53:11Z checks=1 pending=mint_open,freeze_or_blacklist,honeypot,buy_tax_pct,sell_tax_pct,dev_pct,top10_pct,lp_locked_pct,risk_flags"
+2026-10-23T18:53:11Z,desk,VERIFY,WORK,0x87f21ce9c75e0accda9e1c1c62223298720ef2d6,SKIP,liquidity,until=2026-10-24T18:53:11Z
+2026-10-23T18:53:11Z,desk,VERIFY,UHI,0xf9465bf5395f9af9755c6469fba9366ecb099f8e,WATCH,goplus_not_ready,"first_seen=2026-10-23T18:53:11Z checks=1 pending=mint_open,freeze_or_blacklist,honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct,risk_flags"
+2026-10-23T18:53:11Z,desk,VERIFY,Basedog,0x676ea52fc32362030feba4a029c52e76c6663d05,SKIP,liquidity,until=2026-10-24T18:53:11Z
+2026-10-23T18:53:11Z,desk,VERIFY,伙伴,0xb20000000000000000000068daae1ffe0c0bcc01,RETRY,fetch_error,try=1 hosts=goplus
+2026-10-23T18:53:11Z,desk,VERIFY,openhuman,0xad4a1332a5892b6edf468e3ed80e6909cd873b3d,RETRY,fetch_error,try=1 hosts=goplus
+2026-10-23T18:53:11Z,desk,VERIFY,Dragon,0xd7314cd6f1f16b568e55aa70129313baf3ceb701,RETRY,fetch_error,try=1 hosts=goplus
+2026-10-23T18:53:11Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=19 rechecks=9 new=4 checked=13 passed=0 bought=0 held=0 deferred=0 requests=29 secs=25.4
