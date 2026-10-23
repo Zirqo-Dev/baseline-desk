@@ -80,11 +80,12 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
 - docs/DECISIONS.md is append-only: date | card | decision | why | rejected. Superseded entries are marked, never deleted.
 - docs/LEARNINGS.md: weekly review: hypothesis (written first) | change | result vs baseline | keep or revert.
 - If a session ends mid-task, write "Next step:" in section 11.
+- End of every session also append one line to docs/CHANGELOG.md: date | card | commit hash | what changed | next step. Then print a NOTION UPDATE block for Pete.
 
 ## 11. Current state
 - Phase 0 (setup). Nothing built yet.
-- Next step: BL-4 to BL-8 (core engine).
-- Last updated: 2026-10-22 (seed written in Claude chat).
+- Next step: finish BL-1 (Actions write permission), then BL-4 to BL-8.
+- Last updated: 2026-10-23.
 
 ## 12. Glossary
 - Lead: a token the scanner found. Survivor: a lead that passed every hard skip.
