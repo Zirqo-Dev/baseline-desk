@@ -33,9 +33,10 @@ VERIFY   prompts/x_read.py         optional Grok X-read (GROK_ENABLED, GROK_DAIL
 EXECUTE  core/desk.py              limits -> size off balance -> paper fill minus friction
 EXIT     core/exits.py             liquidity pull, hard stop, ladder, trail, time stop
 REPORT   core/report.py            desk vs random baseline -> data/report.json
+TICK     core/tick.py              one run: roll day, exits, scan -> verify -> buy, one TICK heartbeat row
 
 Folders:
-- core/: config.py, book.py, desk.py, verify.py, leads.py, exits.py, friction.py, baseline.py, report.py
+- core/: config.py, book.py, desk.py, verify.py, leads.py, exits.py, friction.py, tick.py, baseline.py, report.py
 - adapters/: base.py (EVM, chain 8453). Adapter pattern kept so other chains could plug in later (parked).
 - prompts/: x_read.py
 - data/: state.json, report.json, daily/YYYY-MM-DD/ (tasks.csv, trades.csv, baseline_trades.csv)
@@ -59,7 +60,9 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
 
 ## 7. Running
 - tick.yml every 5 min at an odd minute offset: exits first, then scan. One concurrency group, never overlapping.
-- report.yml daily at 02:07 UTC.
+- report.yml daily at 02:07 UTC (BL-8).
+- The bot commits data/ to main ("data: tick ..."), only on change, pull --rebase before push.
+  Sessions: git pull before working, git pull --rebase before every push, never commit anything under data/.
 - pages.yml deploys site/ only when site/ changes (GitHub Pages soft limit: 10 builds/hour).
 - Pause: set PAUSED = True in core/config.py, or disable tick.yml in the Actions tab.
 
@@ -89,34 +92,49 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
   after confirming git log, replace 'pending' with that commit's short hash. This is the only allowed edit to an old CHANGELOG line.
 
 ## 11. Current state
-- Phase 1 (core engine). Done: BL-1, BL-2, BL-4, BL-5, BL-6. Next: BL-7. Tests: stdlib unittest, `python -m unittest` (68 pass on 3.13).
+- Phase 1 (core engine). Done: BL-1, BL-2, BL-4, BL-5, BL-6. BL-7 code done, WAITING on 24h of green tick.yml runs.
+  Tests: stdlib unittest, `python -m unittest` (90 pass on 3.13).
 - BL-4: core/config.py, friction.py, book.py, desk.py. data/state.json holds each book by name ("desk", later "baseline"):
-  cash, positions, day, day_start_value, halted_day. desk.buy() logs one EXECUTE task row (BUY or SKIP);
-  desk.sell(qty) logs the trade row with intended vs fill price. book.load_state()/save_key() write one state key each.
+  cash, positions, day, day_start_value, halted_day. desk.buy() logs one EXECUTE task row (BUY or SKIP) and saves
+  facts["pair"] on the position; desk.sell(qty) logs the trade row with intended vs fill price (+ "note" column).
+  book.load_state()/save_key() write one state key each.
 - BL-5: core/exits.py check(book, quote, now): 6 rules in order liq_pull, hard_stop, ladder_1, ladder_2, trail, time_stop;
   one exit per position per run; every check logs one EXIT task row (SELL / HOLD / HOLD no_quote). Gains vs FILLED entry.
+  A fallback quote adds "quote=fallback" to the EXIT row and the trade row note.
 - BL-5/6: core/verify.py hard_skip(facts): fetch_error if facts["fetch_errors"] is non-empty, then missing:<field> (or goplus_not_ready when every gap is in facts["goplus_pending"];
   liquidity under the minimum still final), then honeypot, mint_open, freeze_or_blacklist, risk_flag:<flag> (HARD_FLAGS),
   sells_1h == 0 -> "nobody_can_sell", then SKIP_IF.
 - BL-6: adapters/base.py. scan() = GeckoTerminal new_pools page 1 + DexScreener latest profiles/boosts on Base, 3 requests,
   deduped, WETH/ETH/stables dropped. facts(address) = 15 fields + "pair" + "goplus_pending" + "fetch_errors", 2 requests
   (3 if the age needs GeckoTerminal); field mapping in the module docstring; sells_1h summed over all Base pairs with the token.
+  quote(address, pair) (BL-7) = our pool via DexScreener latest/dex/pairs, else deepest Base pair ("fallback"); 1-2 requests.
   Client paces per section 8; 429/5xx/timeout/bad JSON -> FETCH_ERROR (retried), other 4xx -> None (missing data).
-  CLI: `python -m adapters.base check <address>` / `scan`.
+  CLI: `python -m adapters.base check <address>` / `scan` / `quote <address> [pair]`.
 - BL-6: core/leads.py Leads(root): skipped(), due(), record(address, facts, now) -> one VERIFY row (PASS/WATCH/RETRY/SKIP) with
   first_seen, checks, pending, goplus_ready_at, try, hosts, until. state.json "leads": skips {until},
   watch {first_seen, last_check, checks}, retry {tries} (fetch_error: 3 tries in a row, then final fetch_error_x3).
-- BL-6 smoke 2026-10-23 (8 requests, before the fetch_error and summed-sells fixes): TOAST (2 min old) -> liquidity (6.2k);
-  GoPlus gave only creator_percent. BRETT -> missing:lp_locked_pct (GoPlus lists 28 pools, LP holders can't be tied to ours);
-  its deepest pool had 0 sells in 1h (17 on Aerodrome), which led to summing sells over all pairs.
+- BL-7: core/tick.py run() / `python -m core.tick`: roll day -> exits (quote per position) -> unless PAUSED or loss_halt:
+  scan -> queue (due watch oldest first, then fetch_error retries, then new leads; held-at-start tokens skipped, no row)
+  -> at most MAX_CHECKS = 20 facts() -> Leads.record() -> desk.buy() on PASS. One TICK row per tick:
+  positions seen rechecks new checked passed bought held deferred requests secs; reason paused/loss_halt/error:<type>.
+  .github/workflows/tick.yml: cron 3-58/5, dispatch on main, concurrency "tick", 10 min timeout, Python 3.13,
+  commit step if: always(), "data: tick ..." only on change, pull --rebase, retry once. Run red on a crash.
+- BL-7 smoke 2026-10-23 (live, scratch folder, nothing committed): 41 requests in 38 s (DexScreener 21, GoPlus 19,
+  GeckoTerminal 1, all HTTP 200). 19 leads, 19 checked: 13 liquidity, 1 missing:lp_locked_pct, 1 missing:liq_usd (NDOF, ZORA pair),
+  2 WATCH goplus_not_ready, 2 RETRY fetch_error (GoPlus answered 200 with a non-OK code, both addresses 0xb2000000...), 0 PASS.
+  quote() checked live on BRETT's own pool: 1 request, source pool.
 - Open items:
+  - BL-7 done only after 24h of green runs, no overlap, one TICK row per run. GitHub's 5-min cron is best effort and often late
+    or skipped under load; the TICK rows will show the real run rate for Gate A (90%).
+  - If pushing .github/workflows/tick.yml is refused (app without workflow permission), Pete adds the file in the GitHub web editor.
+  - GoPlus non-OK code on 0xb2000000... addresses: rate limit or tokens GoPlus can't read? Watch for fetch_error_x3 in the first day.
   - LP lock: GoPlus can't tie lp_holders to our pool unless it lists exactly one pool, so many leads die on
     missing:lp_locked_pct (Uniswap v4 may never have LP holders). Pete decides after 24-48h of BL-7 skip-reason data.
   - Clanker/Zora factory addresses unconfirmed; launchpad is pool-shape only until BL-10 (CLANKER_CREATORS/ZORA_CREATORS empty).
   - top10 is the top 8-10 after exclusions (GoPlus returns only 10 holders); slightly lenient.
   - GoPlus rate limit is detected as any non-OK "code" in the body (fetch_error); the exact rate-limit code is unverified live.
   - Week-1 review of the watchlist: if more than about 1/3 of watched leads time out, Pete may raise WATCH max_h to 6.
-- Next step: BL-7 tick loop: exits first, then scan -> Leads.due() -> facts() -> Leads.record() -> desk.buy() on PASS.
+- Next step: Pete starts tick.yml once (Actions tab -> tick -> Run workflow), then watch 24h of runs. Then BL-8 (report.py + report.yml).
 - Last updated: 2026-10-23.
 
 ## 12. Glossary

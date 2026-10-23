@@ -16,7 +16,7 @@ ROOT = Path(__file__).resolve().parents[1]
 TASK_FIELDS = ["ts", "book", "stage", "symbol", "address", "action", "reason", "detail"]
 TRADE_FIELDS = ["ts", "book", "side", "symbol", "address", "qty", "usd",
                 "intended_price", "fill_price", "friction_pct", "liq_usd",
-                "launchpad", "reason", "pnl_usd"]
+                "launchpad", "reason", "pnl_usd", "note"]
 
 
 def utcnow():

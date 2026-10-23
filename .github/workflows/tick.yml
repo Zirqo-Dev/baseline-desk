@@ -1,0 +1,47 @@
+# BL-7: one paper tick every 5 min (exits first, then scan). CLAUDE.md sections 7 and 8.
+# Pause: set PAUSED = True in core/config.py, or disable this workflow in the Actions tab.
+name: tick
+
+on:
+  schedule:
+    - cron: "3-58/5 * * * *"   # :03, :08, :13 ... off the busy top of the hour
+  workflow_dispatch:
+
+concurrency:
+  group: tick
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  tick:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Tick
+        run: python -m core.tick
+
+      # Runs even when the tick crashed, so the TICK row and any fills land; the run stays red.
+      - name: Commit data (only on change)
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          [ -d data ] || { echo "no data"; exit 0; }
+          git add data/
+          if git diff --cached --quiet; then echo "no change"; exit 0; fi
+          git commit -q -m "data: tick $(date -u +%Y-%m-%dT%H:%MZ)"
+          for try in 1 2; do
+            if git pull --rebase -q origin main && git push -q origin HEAD:main; then exit 0; fi
+            git rebase --abort 2>/dev/null || true
+            echo "push rejected (try $try)"
+          done
+          exit 1

@@ -41,8 +41,9 @@ def decide(pos, price, liq_usd, now):
 def check(book, quote, now):
     """Run the exit rules on every open position.
 
-    quote(address) -> {"price": float, "liq_usd": float} or None.
+    quote(address) -> {"price": float, "liq_usd": float, "source": "pool" | "fallback"} or None.
     A missing number means HOLD (reason "no_quote"); the position is checked again next run.
+    A fallback quote (our pool is gone) adds "quote=fallback" to the EXIT row and the trade row.
     """
     for address in list(book.positions):
         pos = book.positions[address]
@@ -51,16 +52,17 @@ def check(book, quote, now):
         if price is None or liq is None:
             book.task(now, "EXIT", pos["symbol"], address, "HOLD", "no_quote")
             continue
+        note = "quote=fallback" if q.get("source") == "fallback" else ""
         book.mark(address, price)
         pct = (price / pos["entry_fill"] - 1) * 100
         out = decide(pos, price, liq, now)
         if out is None:
-            book.task(now, "EXIT", pos["symbol"], address, "HOLD", "", f"pct={pct:.2f}")
+            book.task(now, "EXIT", pos["symbol"], address, "HOLD", "", " ".join(filter(None, [f"pct={pct:.2f}", note])))
             continue
         rule, qty, intended = out
         if rule.startswith("ladder_"):
             pos["ladder_done"].append(int(rule.split("_")[1]) - 1)
-        desk.sell(book, address, price, qty, rule, liq, now, intended=intended)
+        desk.sell(book, address, price, qty, rule, liq, now, intended=intended, note=note)
         book.task(now, "EXIT", pos["symbol"], address, "SELL", rule,
-                  f"pct={pct:.2f} intended={intended:.10g} quote={price:.10g}")
+                  " ".join(filter(None, [f"pct={pct:.2f} intended={intended:.10g} quote={price:.10g}", note])))
     book.save()

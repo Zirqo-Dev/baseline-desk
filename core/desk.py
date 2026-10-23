@@ -47,7 +47,7 @@ def buy(book, address, facts, now):
         "symbol": sym, "qty": qty, "orig_qty": qty, "cost_usd": usd,
         "entry_intended": facts["price"], "entry_fill": fill,
         "entry_ts": ts(now), "entry_liq_usd": facts["liq_usd"],
-        "launchpad": facts["launchpad"],
+        "launchpad": facts["launchpad"], "pair": facts.get("pair", ""),
         "last_price": facts["price"], "peak_price": facts["price"],
         "ladder_done": [],
     }
@@ -61,11 +61,12 @@ def buy(book, address, facts, now):
     return pos
 
 
-def sell(book, address, quote, qty, reason, liq_usd, now, intended=None):
+def sell(book, address, quote, qty, reason, liq_usd, now, intended=None, note=""):
     """Paper sell of `qty` tokens (None = all that remains) at `quote` minus friction.
 
     `intended` is the price the exit should have fired at (defaults to the quote);
-    logging it next to the fill shows stop slippage. Logs one trade row. Returns proceeds in USD.
+    logging it next to the fill shows stop slippage. `note` goes to the trade row (e.g. "quote=fallback").
+    Logs one trade row. Returns proceeds in USD.
     """
     if config.PAPER is not True:
         raise RuntimeError("Baseline is paper only")
@@ -86,6 +87,7 @@ def sell(book, address, quote, qty, reason, liq_usd, now, intended=None):
                      "usd": round(proceeds, 6),
                      "intended_price": quote if intended is None else intended,
                      "fill_price": fill, "friction_pct": pct, "liq_usd": liq_usd,
-                     "launchpad": p["launchpad"], "reason": reason, "pnl_usd": round(pnl, 6)})
+                     "launchpad": p["launchpad"], "reason": reason, "pnl_usd": round(pnl, 6),
+                     "note": note})
     book.save()
     return proceeds

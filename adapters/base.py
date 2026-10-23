@@ -25,7 +25,10 @@ Field mapping (DECISIONS 2026-10-23, BL-6):
 Extra keys: "pair" (traded pair address), "goplus_pending" (GoPlus fields not filled yet) and
 "fetch_errors" (buckets whose request failed: 429, 5xx, timeout, bad answer -> hard_skip "fetch_error").
 
-CLI: python -m adapters.base check <address>   |   python -m adapters.base scan
+quote(address, pair) prices a held token for EXIT (DECISIONS 2026-10-23, BL-7 B): the pool we
+bought in, else the deepest Base pool ("fallback") only when that pool is gone. 1 request, 2 on fallback.
+
+CLI: python -m adapters.base check <address>   |   python -m adapters.base scan   |   ... quote <address> [pair]
 """
 import json
 import re
@@ -354,6 +357,39 @@ def facts(address, now=None, client=None):
     return {k: v for k, v in out.items() if v is not None}
 
 
+# ---------------------------------------------------------------- EXIT quote
+def quote(address, pair="", client=None):
+    """Price and liquidity of a held token: {"price", "liq_usd", "source": "pool" | "fallback"}.
+
+    Reads the pool we bought in. Only when that pool is gone (no pair in the answer, or a 4xx)
+    falls back to the highest-liquidity Base pair. A failed request (429, 5xx, timeout) or a
+    missing number is left out, so exits.check() logs HOLD no_quote.
+    """
+    c = client or Client()
+    address, pair = _lower(address), _lower(pair)
+    found, side, source = None, "", "pool"
+    if pair:
+        body = c.get("ds_pairs", f"{DS}/latest/dex/pairs/base/{pair}")
+        if body is FETCH_ERROR:
+            return None
+        body = body if isinstance(body, dict) else {}
+        pairs = body.get("pairs") if isinstance(body.get("pairs"), list) else []
+        found, side = pick_pair(pairs + [body.get("pair")], address)
+        if found and _lower(found.get("pairAddress")) != pair:
+            found, side = None, ""
+    if not found:  # no saved pool counts as a fallback too
+        source = "fallback"
+        body = c.get("ds_pairs", f"{DS}/token-pairs/v1/base/{address}")
+        if body is FETCH_ERROR:
+            return None
+        found, side = pick_pair(body, address)
+    if not found:
+        return None
+    f = dex_facts(found, side, datetime.now(timezone.utc))
+    out = {"price": f["price"], "liq_usd": f["liq_usd"], "source": source}
+    return {k: v for k, v in out.items() if v is not None}
+
+
 # ---------------------------------------------------------------- CLI
 def _show(f, verdict, client):
     print(f"{'field':<20} value")
@@ -370,13 +406,18 @@ def main(argv):
         f = facts(argv[1], client=c)
         _show(f, hard_skip(f), c)
         return 0
+    if len(argv) in (2, 3) and argv[0] == "quote":
+        c = Client()
+        print(quote(argv[1], argv[2] if len(argv) == 3 else "", c))
+        print(f"requests: {len(c.calls)} " + ", ".join(str(s) for _, s in c.calls))
+        return 0
     if argv == ["scan"]:
         c = Client()
         for lead in scan(c):
             print(f"{lead['address']}  {lead['symbol'] or '-':<12} {lead['source']}")
         print(f"requests: {len(c.calls)} " + ", ".join(str(s) for _, s in c.calls))
         return 0
-    print("usage: python -m adapters.base check <address> | scan")
+    print("usage: python -m adapters.base check <address> | scan | quote <address> [pair]")
     return 2
 
 
