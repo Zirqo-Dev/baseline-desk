@@ -24,3 +24,4 @@
 | 2026-10-23 | BL-5 | sells_1h == 0 is a hard skip, reason "nobody_can_sell" (article rule); no risk_flags rule yet, decided at BL-6 on real GoPlus data | Zero sells in an hour is a honeypot sign GoPlus can miss | A risk_flags rule before seeing real data |
 | 2026-10-23 | BL-4 | CHANGELOG BL-4 line edited once to put in the real hash 0f87705 (Pete asked) | A commit can't carry its own hash | Leaving "this commit" |
 | 2026-10-23 | BL-5 | CHANGELOG BL-5 line edited once to put in the real hash 51a04ba (Pete asked) | A commit can't carry its own hash | Leaving "this commit" |
+| 2026-10-23 | BL-6 | Dedicated Baseline cloud environment, network Custom allowlist: api.dexscreener.com, api.gopluslabs.io, api.geckoterminal.com, package managers kept | Least access that lets VERIFY run; keeps Baseline separate (non-negotiable 6) | Full network access; sharing the HoodScout environment |
