@@ -825,3 +825,24 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-10-23T19:18:13Z,desk,VERIFY,cbXRP,0xcb585250f852c6c6bf90434ab21a00f02833a4af,RETRY,fetch_error,try=2 hosts=goplus
 2026-10-23T19:18:13Z,desk,VERIFY,openhuman,0xf8b7fe29ac0bddfcc3aea9713a6ebbc289367749,RETRY,fetch_error,try=2 hosts=goplus
 2026-10-23T19:18:13Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=20 new=10 checked=20 passed=0 bought=0 held=0 deferred=10 requests=44 secs=39.4
+2026-10-23T19:23:10Z,desk,VERIFY,FTOF,0x0f799588bbe95a0927594a08ebd265f3b514b121,WATCH,goplus_not_ready,"first_seen=2026-10-23T17:58:12Z checks=5 pending=honeypot,buy_tax_pct,sell_tax_pct,lp_locked_pct"
+2026-10-23T19:23:10Z,desk,VERIFY,XTO,0x9b9a08786a636aa5a8c92cb15c409c9a6b608302,SKIP,liquidity,first_seen=2026-10-23T19:03:12Z checks=2 until=2026-10-24T19:23:10Z
+2026-10-23T19:23:10Z,desk,VERIFY,KEYSAI,0x8864480c7a39bc7ca3704d6d0ced0b44d6313e80,SKIP,liquidity,until=2026-10-24T19:23:10Z
+2026-10-23T19:23:10Z,desk,VERIFY,XLM,0xa205c62147da8858d7faaad38992cf658f23075a,WATCH,goplus_not_ready,"first_seen=2026-10-23T19:23:10Z checks=1 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct"
+2026-10-23T19:23:10Z,desk,VERIFY,Payday,0xb20000000000000000000008e22eefbc7cbad101,SKIP,fetch_error_x3,try=3 hosts=goplus until=2026-10-24T19:23:10Z
+2026-10-23T19:23:10Z,desk,VERIFY,YMB,0xb2000000000000000000009b4a750c204203c501,SKIP,fetch_error_x3,try=3 hosts=goplus until=2026-10-24T19:23:10Z
+2026-10-23T19:23:10Z,desk,VERIFY,YMB,0xbaa59837f16e7a434f32585af769ec82dc0a6701,SKIP,liquidity,until=2026-10-24T19:23:10Z
+2026-10-23T19:23:10Z,desk,VERIFY,Basebird,0xc30cba65d424c2ffaaea14aed750f115d0228fbe,SKIP,liquidity,until=2026-10-24T19:23:10Z
+2026-10-23T19:23:10Z,desk,VERIFY,cbXRP,0xcb585250f852c6c6bf90434ab21a00f02833a4af,SKIP,missing:lp_locked_pct,until=2026-10-24T19:23:10Z
+2026-10-23T19:23:10Z,desk,VERIFY,openhuman,0xf8b7fe29ac0bddfcc3aea9713a6ebbc289367749,SKIP,liquidity,until=2026-10-24T19:23:10Z
+2026-10-23T19:23:10Z,desk,VERIFY,WWR,0x840d647b5f936fe563873866f7a966f46f009cdf,RETRY,fetch_error,try=1 hosts=goplus
+2026-10-23T19:23:10Z,desk,VERIFY,AMEND,0x83c76673361f94b4cc8a86d4d30ad95d13e53401,RETRY,fetch_error,try=1 hosts=goplus
+2026-10-23T19:23:10Z,desk,VERIFY,openhuman,0x84e6a6a87ee01d1092dde79a5124b1401d2a9d12,RETRY,fetch_error,try=1 hosts=goplus
+2026-10-23T19:23:10Z,desk,VERIFY,ECHO,0x3bc6297306266f32c62badaddff9b847e1d4a0eb,RETRY,fetch_error,try=1 hosts=goplus
+2026-10-23T19:23:10Z,desk,VERIFY,YMB,0xdde1b0c4b9119b9df76a3ce57fdd60ceb02e16ea,RETRY,fetch_error,try=1 hosts=goplus
+2026-10-23T19:23:10Z,desk,VERIFY,YMB,0xa0b94d0922b3d9dcf3709bd613c4fbdffbc1e6ea,RETRY,fetch_error,try=1 hosts=goplus
+2026-10-23T19:23:10Z,desk,VERIFY,UHI,0x2452763b61eb08c1cf255c4b629d30871a864563,RETRY,fetch_error,try=1 hosts=goplus
+2026-10-23T19:23:10Z,desk,VERIFY,CONVT,0x4e0a25dede0ad94cedc0288218a48cad1cdc4f01,RETRY,fetch_error,try=1 hosts=goplus
+2026-10-23T19:23:10Z,desk,VERIFY,YMB,0xafcb4983e0273f350acd66199782e7a20e7f86ea,RETRY,fetch_error,try=1 hosts=goplus
+2026-10-23T19:23:10Z,desk,VERIFY,Basefish,0xcb1510103ef33d41f5e374a98899c57865a032fe,RETRY,fetch_error,try=1 hosts=goplus
+2026-10-23T19:23:10Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=10 new=13 checked=20 passed=0 bought=0 held=0 deferred=3 requests=44 secs=39.7
