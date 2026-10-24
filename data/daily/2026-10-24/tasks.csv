@@ -2017,3 +2017,13 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-10-24T17:38:11Z,desk,VERIFY,TEST,0x480fb0c2944b17ba9ba15a96fa2921d8e703d6ea,SKIP,liquidity,until=2026-10-25T17:38:11Z
 2026-10-24T17:38:11Z,desk,VERIFY,KAI,0xb875a6dbb35263929dd65ed0471d6d196d7c0d14,SKIP,liquidity,until=2026-10-25T17:38:11Z
 2026-10-24T17:38:11Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=21 rechecks=6 new=10 checked=9 passed=0 bought=0 held=0 deferred=7 goplus=9 requests=21 secs=17.6
+2026-10-24T17:43:10Z,desk,VERIFY,SOVR,0xb20000000000000000000067f53e04d20a1bf3a3,SKIP,goplus_partial,until=2026-10-25T17:43:10Z
+2026-10-24T17:43:10Z,desk,VERIFY,BSZHD,0x1d392eb58dc90bd4e70636e9b91883b3192b5888,WATCH,goplus_not_ready,"first_seen=2026-10-24T17:43:10Z checks=1 pending=mint_open,freeze_or_blacklist,honeypot,buy_tax_pct,sell_tax_pct,dev_pct,top10_pct,lp_locked_pct,risk_flags"
+2026-10-24T17:43:10Z,desk,VERIFY,NOFT,0xab8ad136e1e40ea52e785ceeab1c88a6ad4477ba,WATCH,goplus_not_ready,"first_seen=2026-10-24T17:43:10Z checks=1 pending=honeypot,buy_tax_pct,sell_tax_pct,dev_pct,top10_pct,lp_locked_pct"
+2026-10-24T17:43:10Z,desk,VERIFY,USOE,0x49b94c6b3e0087be4e4f90f59a171adcf59123cc,SKIP,missing:liq_usd,until=2026-10-25T17:43:10Z
+2026-10-24T17:43:10Z,desk,VERIFY,USDF,0xc47cb0c8247c08c51e62ccff0ee100ebfdcc0bce,SKIP,liquidity,until=2026-10-25T17:43:10Z
+2026-10-24T17:43:10Z,desk,VERIFY,B,0x6e1842f46ee6167fa652de4874453d93f536bf55,SKIP,liquidity,until=2026-10-25T17:43:10Z
+2026-10-24T17:43:10Z,desk,VERIFY,NOTF,0x2f7478510601a113da705534c1e0353dd9b984b9,WATCH,goplus_not_ready,"first_seen=2026-10-24T17:43:10Z checks=1 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct"
+2026-10-24T17:43:10Z,desk,VERIFY,lockinu,0xb20000000000000000000060afa3c9d02c532c01,SKIP,goplus_partial,until=2026-10-25T17:43:10Z
+2026-10-24T17:43:10Z,desk,VERIFY,OnlyAgent,0x876beab94c31b4ae18bcb724331052249c94dba3,SKIP,missing:liq_usd,until=2026-10-25T17:43:10Z
+2026-10-24T17:43:10Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=0 new=16 checked=9 passed=0 bought=0 held=0 deferred=7 goplus=9 requests=21 secs=17.7
