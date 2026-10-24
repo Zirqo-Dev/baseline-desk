@@ -51,12 +51,6 @@
         "symbol": "SPACEX",
         "until": "2026-10-24T23:13:11Z"
       },
-      "0x02252b0b01664057c1790b99a417efd9f7d754a1": {
-        "at": "2026-10-23T18:28:13Z",
-        "reason": "goplus_timeout",
-        "symbol": "HANDPAID",
-        "until": "2026-10-24T18:28:13Z"
-      },
       "0x0284eff744421e9d60e8631914a224f08b64b16f": {
         "at": "2026-10-23T19:03:12Z",
         "reason": "liquidity",
@@ -128,6 +122,12 @@
         "reason": "liquidity",
         "symbol": "NODF",
         "until": "2026-10-24T18:38:12Z"
+      },
+      "0x07b82e39006f31b2431266a5cce47082d33d6bdb": {
+        "at": "2026-10-24T18:33:12Z",
+        "reason": "goplus_timeout",
+        "symbol": "ADTF",
+        "until": "2026-10-25T18:33:12Z"
       },
       "0x081248c4b377af63cc3ead96cd25942fc112c6ea": {
         "at": "2026-10-24T17:38:11Z",
@@ -266,12 +266,6 @@
         "reason": "liquidity",
         "symbol": "BUNDLED",
         "until": "2026-10-25T12:23:10Z"
-      },
-      "0x0dd96417e016ab36384de1b7162186e91aa03ee1": {
-        "at": "2026-10-23T18:33:10Z",
-        "reason": "liquidity",
-        "symbol": "NODF",
-        "until": "2026-10-24T18:33:10Z"
       },
       "0x0de7e06119729cf175d6d2d1f52069f43ec69379": {
         "at": "2026-10-24T11:13:10Z",
@@ -927,6 +921,12 @@
         "symbol": "BOO",
         "until": "2026-10-25T10:43:10Z"
       },
+      "0x2b8677fc936b3faf9cc3f55a73c88c201fccadcb": {
+        "at": "2026-10-24T18:33:12Z",
+        "reason": "liquidity",
+        "symbol": "ORDER",
+        "until": "2026-10-25T18:33:12Z"
+      },
       "0x2bd8eb48a6ccc65547be6ee6a7adaf183c559f7f": {
         "at": "2026-10-24T12:58:11Z",
         "reason": "goplus_timeout",
@@ -1329,23 +1329,11 @@
         "symbol": "DOSA",
         "until": "2026-10-24T19:58:11Z"
       },
-      "0x3e04c4dddcf4e42a72a65e77ab440f91bbbf8341": {
-        "at": "2026-10-23T18:28:13Z",
-        "reason": "goplus_timeout",
-        "symbol": "XTO",
-        "until": "2026-10-24T18:28:13Z"
-      },
       "0x3e5556bd6653ee147a7252d45b10544128e0da99": {
         "at": "2026-10-24T17:33:10Z",
         "reason": "liquidity",
         "symbol": "OFI",
         "until": "2026-10-25T17:33:10Z"
-      },
-      "0x3e73959be7b2c5454d3bbdd319ad0fc52a5e6c4f": {
-        "at": "2026-10-23T18:28:13Z",
-        "reason": "goplus_timeout",
-        "symbol": "XTO",
-        "until": "2026-10-24T18:28:13Z"
       },
       "0x3e7f526098fb5e14de74a4304bab5f4be3bdb716": {
         "at": "2026-10-23T22:53:11Z",
@@ -2829,12 +2817,6 @@
         "symbol": "WWR",
         "until": "2026-10-24T19:33:11Z"
       },
-      "0x84368b3329774e8012a55ca94481c9d6b95ef947": {
-        "at": "2026-10-23T18:33:10Z",
-        "reason": "fetch_error_x3",
-        "symbol": "FFOT",
-        "until": "2026-10-24T18:33:10Z"
-      },
       "0x844747c0bff7cc9e1e69b099a90dd567324e58eb": {
         "at": "2026-10-24T17:33:10Z",
         "reason": "missing:liq_usd",
@@ -3716,12 +3698,6 @@
         "reason": "liquidity",
         "symbol": "THOOK",
         "until": "2026-10-25T12:23:10Z"
-      },
-      "0xaa67354fd2ea537817a9e7af14c74c21d569d4d3": {
-        "at": "2026-10-23T18:28:13Z",
-        "reason": "goplus_timeout",
-        "symbol": "APO",
-        "until": "2026-10-24T18:28:13Z"
       },
       "0xaab436a7250ba69f46958b2ee3eb17fa74e62d1b": {
         "at": "2026-10-24T03:58:14Z",
@@ -4904,12 +4880,6 @@
         "reason": "goplus_timeout",
         "symbol": "ARK",
         "until": "2026-10-25T01:13:13Z"
-      },
-      "0xba5dc3197840d7eceae103fd078a5975a0b676db": {
-        "at": "2026-10-23T18:28:13Z",
-        "reason": "goplus_timeout",
-        "symbol": "FOTF",
-        "until": "2026-10-24T18:28:13Z"
       },
       "0xba8e54a3bebb718e1219fb9f464cd57b11fa4754": {
         "at": "2026-10-24T16:18:11Z",
@@ -6503,28 +6473,22 @@
       }
     },
     "watch": {
-      "0x07b82e39006f31b2431266a5cce47082d33d6bdb": {
-        "checks": 10,
-        "first_seen": "2026-10-24T15:23:10Z",
-        "last_check": "2026-10-24T18:18:11Z",
-        "symbol": "ADTF"
-      },
       "0x0b1ee47115712f69e8ef5fdaa6ef024602b96b8b": {
-        "checks": 8,
+        "checks": 9,
         "first_seen": "2026-10-24T16:13:10Z",
-        "last_check": "2026-10-24T18:18:11Z",
+        "last_check": "2026-10-24T18:33:12Z",
         "symbol": "Moustache"
       },
       "0x136fe0ef352de23962d4f85369056aa0a0af0dda": {
-        "checks": 8,
+        "checks": 9,
         "first_seen": "2026-10-24T16:13:10Z",
-        "last_check": "2026-10-24T18:18:11Z",
+        "last_check": "2026-10-24T18:33:12Z",
         "symbol": "DacityCoin"
       },
       "0x1b304e5b5c4db336a8a518297e01f2297bd728f5": {
-        "checks": 9,
+        "checks": 10,
         "first_seen": "2026-10-24T15:53:10Z",
-        "last_check": "2026-10-24T18:18:11Z",
+        "last_check": "2026-10-24T18:33:12Z",
         "symbol": "GOIF"
       },
       "0x21126a57341bc78ed321b329756943f698516678": {
@@ -6534,21 +6498,21 @@
         "symbol": "Monero"
       },
       "0x268f9736c6994213079ad0f2ff933c3257d4958f": {
-        "checks": 4,
+        "checks": 5,
         "first_seen": "2026-10-24T17:18:12Z",
-        "last_check": "2026-10-24T18:18:11Z",
+        "last_check": "2026-10-24T18:33:12Z",
         "symbol": "USDP"
       },
       "0x29d5a5efe423b9acb2ac91883c870965df5e76bb": {
-        "checks": 5,
+        "checks": 6,
         "first_seen": "2026-10-24T16:58:12Z",
-        "last_check": "2026-10-24T18:18:11Z",
+        "last_check": "2026-10-24T18:33:12Z",
         "symbol": "AOP"
       },
       "0x2f7478510601a113da705534c1e0353dd9b984b9": {
-        "checks": 3,
+        "checks": 4,
         "first_seen": "2026-10-24T17:43:10Z",
-        "last_check": "2026-10-24T18:18:11Z",
+        "last_check": "2026-10-24T18:33:12Z",
         "symbol": "NOTF"
       },
       "0x3363ffa0f429e205e68ba4678925e04ac06e382b": {
@@ -6612,9 +6576,9 @@
         "symbol": "BSC"
       },
       "0xec357403201e85d1859410aa77187b0f4b169f29": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-10-24T18:13:11Z",
-        "last_check": "2026-10-24T18:13:11Z",
+        "last_check": "2026-10-24T18:33:12Z",
         "symbol": "openhuman"
       }
     }
