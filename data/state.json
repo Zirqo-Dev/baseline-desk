@@ -9,6 +9,12 @@
   "leads": {
     "retry": {},
     "skips": {
+      "0x002237338f9188bacd51fb01a36dcc31e60428a0": {
+        "at": "2026-10-25T00:33:11Z",
+        "reason": "goplus_timeout",
+        "symbol": "Dispatch",
+        "until": "2026-10-26T00:33:11Z"
+      },
       "0x0043ac12d460d314bc3e87faff715b44737fd436": {
         "at": "2026-10-24T07:43:09Z",
         "reason": "liquidity",
@@ -692,12 +698,6 @@
         "reason": "liquidity",
         "symbol": "FIRE",
         "until": "2026-10-25T21:08:13Z"
-      },
-      "0x1fc21b04801838a035016ab52d98caa5312c0d71": {
-        "at": "2026-10-24T00:33:10Z",
-        "reason": "liquidity",
-        "symbol": "SPACEX",
-        "until": "2026-10-25T00:33:10Z"
       },
       "0x1fcea7b2e118c46fe049c26341b92b15a55b802a": {
         "at": "2026-10-24T04:18:13Z",
@@ -2631,12 +2631,6 @@
         "symbol": "HOOK",
         "until": "2026-10-25T18:53:10Z"
       },
-      "0x744599da86d02b002db1a9cb0f758852195a7133": {
-        "at": "2026-10-24T00:33:10Z",
-        "reason": "liquidity",
-        "symbol": "GITLAB",
-        "until": "2026-10-25T00:33:10Z"
-      },
       "0x744f2017c13b190432f1537a7c5d9acd7d203fa9": {
         "at": "2026-10-24T04:18:13Z",
         "reason": "goplus_timeout",
@@ -3945,12 +3939,6 @@
         "symbol": "AIPOS",
         "until": "2026-10-25T20:03:10Z"
       },
-      "0xb2000000000000000000000e6c8a331d3a9b2ba6": {
-        "at": "2026-10-24T00:33:10Z",
-        "reason": "goplus_partial",
-        "symbol": "XTO",
-        "until": "2026-10-25T00:33:10Z"
-      },
       "0xb200000000000000000000155fb4f1aa716a1a09": {
         "at": "2026-10-24T21:53:09Z",
         "reason": "goplus_partial",
@@ -4436,12 +4424,6 @@
         "reason": "goplus_partial",
         "symbol": "NODF",
         "until": "2026-10-25T06:33:10Z"
-      },
-      "0xb200000000000000000000ac79bfe77fd8d63025": {
-        "at": "2026-10-24T00:33:10Z",
-        "reason": "goplus_partial",
-        "symbol": "ORCL",
-        "until": "2026-10-25T00:33:10Z"
       },
       "0xb200000000000000000000ae85f7a8f2e1e8cff4": {
         "at": "2026-10-24T11:13:10Z",
@@ -5721,6 +5703,12 @@
         "symbol": "PRIVACY",
         "until": "2026-10-25T15:33:10Z"
       },
+      "0xdb7e7a57f94e5c2700aa9d7d013a93bc0d889424": {
+        "at": "2026-10-25T00:33:11Z",
+        "reason": "goplus_timeout",
+        "symbol": "YELLOW",
+        "until": "2026-10-26T00:33:11Z"
+      },
       "0xdb9c86ba1c7074b1f674f3232e7153094e4fbc51": {
         "at": "2026-10-24T11:58:11Z",
         "reason": "liquidity",
@@ -6527,16 +6515,10 @@
       }
     },
     "watch": {
-      "0x002237338f9188bacd51fb01a36dcc31e60428a0": {
-        "checks": 11,
-        "first_seen": "2026-10-24T21:33:11Z",
-        "last_check": "2026-10-25T00:18:11Z",
-        "symbol": "Dispatch"
-      },
       "0x03be7e35826434a51a41c1080932240ba859c95a": {
-        "checks": 5,
+        "checks": 6,
         "first_seen": "2026-10-24T22:53:10Z",
-        "last_check": "2026-10-25T00:13:13Z",
+        "last_check": "2026-10-25T00:33:11Z",
         "symbol": "DSP"
       },
       "0x04e16e72598b749cf2ae8e47152ffa669a90e553": {
@@ -6546,15 +6528,15 @@
         "symbol": "NOTF"
       },
       "0x2be4b12499594cb4051e734a52a9c201050c5627": {
-        "checks": 10,
+        "checks": 11,
         "first_seen": "2026-10-24T21:43:10Z",
-        "last_check": "2026-10-25T00:18:11Z",
+        "last_check": "2026-10-25T00:33:11Z",
         "symbol": "NOTF"
       },
       "0x2e3344254983dcc99a2f0dc5d2f6a86eb580bac4": {
-        "checks": 7,
+        "checks": 8,
         "first_seen": "2026-10-24T22:13:10Z",
-        "last_check": "2026-10-25T00:13:13Z",
+        "last_check": "2026-10-25T00:33:11Z",
         "symbol": "NFTO"
       },
       "0x35d144c322786acc443d2d0d80058061467f0deb": {
@@ -6576,9 +6558,9 @@
         "symbol": "AOP"
       },
       "0x6ff99a8779a01ced354c3a44c41273af5ebca6bb": {
-        "checks": 7,
+        "checks": 8,
         "first_seen": "2026-10-24T22:13:10Z",
-        "last_check": "2026-10-25T00:13:13Z",
+        "last_check": "2026-10-25T00:33:11Z",
         "symbol": "NOFT"
       },
       "0x780dc6be256e1e97b9082f774b714317dacb1fb2": {
@@ -6618,15 +6600,15 @@
         "symbol": "XOT"
       },
       "0xa884d0aeb0db95183b1b6c2f66cd08340b625fd4": {
-        "checks": 7,
+        "checks": 8,
         "first_seen": "2026-10-24T22:13:10Z",
-        "last_check": "2026-10-25T00:13:13Z",
+        "last_check": "2026-10-25T00:33:11Z",
         "symbol": "ANIME"
       },
       "0xbfc41eb5d41182fc127f94339c71dcaad35e8e67": {
-        "checks": 7,
+        "checks": 8,
         "first_seen": "2026-10-24T22:13:10Z",
-        "last_check": "2026-10-25T00:13:13Z",
+        "last_check": "2026-10-25T00:33:11Z",
         "symbol": "TRUTH"
       },
       "0xcb772b01cdc182f0101f3e373fc559a214468e9f": {
@@ -6641,12 +6623,6 @@
         "last_check": "2026-10-25T00:28:13Z",
         "symbol": "USOE"
       },
-      "0xdb7e7a57f94e5c2700aa9d7d013a93bc0d889424": {
-        "checks": 11,
-        "first_seen": "2026-10-24T21:33:11Z",
-        "last_check": "2026-10-25T00:18:11Z",
-        "symbol": "YELLOW"
-      },
       "0xe740adc249bac4d4a2fe9dbdb899bb41ea54205a": {
         "checks": 4,
         "first_seen": "2026-10-24T23:13:11Z",
@@ -6654,9 +6630,9 @@
         "symbol": "NODF"
       },
       "0xeb9c25a649cadbb8ccbf43376580d798a227eb37": {
-        "checks": 10,
+        "checks": 11,
         "first_seen": "2026-10-24T21:43:10Z",
-        "last_check": "2026-10-25T00:18:11Z",
+        "last_check": "2026-10-25T00:33:11Z",
         "symbol": "TRUE"
       },
       "0xf078fed6c7728d98d80814df651780fee5f6ff66": {
