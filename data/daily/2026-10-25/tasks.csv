@@ -707,3 +707,13 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-10-25T06:23:11Z,desk,VERIFY,LIQUIDBGT,0x8ba64e21414bc65d389f373b55f0eddb31aa6cc6,SKIP,liquidity,until=2026-10-26T06:23:11Z
 2026-10-25T06:23:11Z,desk,VERIFY,UDTF,0x0cdafd5e6616f8c2253f2408e055dbdc0fe511ca,SKIP,missing:liq_usd,until=2026-10-26T06:23:11Z
 2026-10-25T06:23:11Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=17 rechecks=0 new=4 checked=4 passed=0 bought=0 held=0 deferred=0 goplus=4 requests=11 secs=7.5
+2026-10-25T06:28:13Z,desk,VERIFY,USDF,0xabad3de963631a4b6fd36e1305ad4f4313968c51,SKIP,goplus_timeout,first_seen=2026-10-25T03:28:12Z checks=10 until=2026-10-26T06:28:13Z
+2026-10-25T06:28:13Z,desk,VERIFY,NOTF,0xe2cc332525834e89649278e55c3e5ad63b14541d,SKIP,goplus_timeout,first_seen=2026-10-25T03:28:12Z checks=10 until=2026-10-26T06:28:13Z
+2026-10-25T06:28:13Z,desk,VERIFY,AODF,0x0035a02e91e20d9507180b7eba2ffd679274510c,WATCH,goplus_not_ready,"first_seen=2026-10-25T04:23:11Z checks=8 pending=honeypot,buy_tax_pct,sell_tax_pct,lp_locked_pct"
+2026-10-25T06:28:13Z,desk,VERIFY,AODF,0xda372932ba138b3e5af414ed6d393c031aa48f10,WATCH,goplus_not_ready,"first_seen=2026-10-25T04:43:11Z checks=7 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct"
+2026-10-25T06:28:13Z,desk,VERIFY,NODF,0xb3e54069d77ba7b1abc0ef4396ef7baeeb06d332,WATCH,goplus_not_ready,"first_seen=2026-10-25T04:53:10Z checks=6 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct"
+2026-10-25T06:28:13Z,desk,VERIFY,AOP,0x3023c64ebe2f960ee9d14881748908efb70739d1,WATCH,goplus_not_ready,"first_seen=2026-10-25T04:58:13Z checks=6 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct"
+2026-10-25T06:28:13Z,desk,VERIFY,USOE,0xb843ffed606eee6bfbf8f204f021261954f9340c,WATCH,goplus_not_ready,"first_seen=2026-10-25T05:03:11Z checks=6 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct"
+2026-10-25T06:28:13Z,desk,VERIFY,AODF,0xb8879dd74e6e6cb866bd1626eb8f45eef5c8f186,WATCH,goplus_not_ready,"first_seen=2026-10-25T05:18:12Z checks=5 pending=honeypot,buy_tax_pct,sell_tax_pct,dev_pct,top10_pct,lp_locked_pct"
+2026-10-25T06:28:13Z,desk,VERIFY,USDR,0xe2693bcd330964dfc2d8fa6f8eb140b69ddb5b67,WATCH,goplus_not_ready,"first_seen=2026-10-25T05:48:12Z checks=3 pending=honeypot,buy_tax_pct,sell_tax_pct,dev_pct,top10_pct,lp_locked_pct"
+2026-10-25T06:28:13Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=17 rechecks=13 new=2 checked=9 passed=0 bought=0 held=0 deferred=6 goplus=9 requests=21 secs=17.6
