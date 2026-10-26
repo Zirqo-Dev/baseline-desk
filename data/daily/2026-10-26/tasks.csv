@@ -839,3 +839,11 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-10-26T06:53:09Z,desk,VERIFY,XTO,0xece45001d0715f45f93ca7bb886501cb1afa572c,WATCH,goplus_not_ready,"first_seen=2026-10-26T06:53:09Z checks=1 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct"
 2026-10-26T06:53:09Z,desk,VERIFY,TE,0x77c702b1496eafcd53abc170b0537b58cb013844,WATCH,goplus_not_ready,"first_seen=2026-10-26T06:53:09Z checks=1 pending=mint_open,freeze_or_blacklist,honeypot,top10_pct,risk_flags"
 2026-10-26T06:53:09Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=22 rechecks=0 new=5 checked=5 passed=0 bought=0 held=0 deferred=0 dex_only=3 goplus=2 requests=10 secs=4.1
+2026-10-26T06:58:11Z,desk,VERIFY,UDTF,0xe6f0b25b3a7a64e9d99e7f3954cf1ca89ffc01bb,RETRY,fetch_error,first_seen=2026-10-26T05:58:13Z try=1 hosts=goplus goplus_code=5000
+2026-10-26T06:58:11Z,desk,VERIFY,AROS,0x2ac4dbe058e510c58d0c2e36b691c5821e3a2c2d,WATCH,goplus_not_ready,"first_seen=2026-10-26T06:38:14Z checks=2 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct"
+2026-10-26T06:58:11Z,desk,VERIFY,1KTO100M,0xe962e5027b439b9bde29b48771f34f10dd84ab50,SKIP,liquidity,goplus=skipped until=2026-10-27T06:58:11Z
+2026-10-26T06:58:11Z,desk,VERIFY,1KTO100M,0xd60e4389d8bb9b9d2806ae263ae0149561326c1e,SKIP,liquidity,goplus=skipped until=2026-10-27T06:58:11Z
+2026-10-26T06:58:11Z,desk,VERIFY,Bots,0xb200000000000000000000455477a24d7e74855d,SKIP,liquidity,goplus=skipped until=2026-10-27T06:58:11Z
+2026-10-26T06:58:11Z,desk,VERIFY,ZEFET,0x2b69b2d6557a1eaebc44252b35724b5fee5f2ed2,SKIP,liquidity,goplus=skipped until=2026-10-27T06:58:11Z
+2026-10-26T06:58:11Z,desk,VERIFY,COIL,0x8abcc6be5f9876857a87983be392bf28fc6236fe,SKIP,missing:liq_usd,goplus=skipped until=2026-10-27T06:58:11Z
+2026-10-26T06:58:11Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=22 rechecks=2 new=5 checked=7 passed=0 bought=0 held=0 deferred=0 dex_only=5 goplus=2 requests=12 secs=13.1
