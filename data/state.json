@@ -9,12 +9,6 @@
   "leads": {
     "retry": {},
     "skips": {
-      "0x002237338f9188bacd51fb01a36dcc31e60428a0": {
-        "at": "2026-10-25T00:33:11Z",
-        "reason": "goplus_timeout",
-        "symbol": "Dispatch",
-        "until": "2026-10-26T00:33:11Z"
-      },
       "0x0035a02e91e20d9507180b7eba2ffd679274510c": {
         "at": "2026-10-25T07:28:12Z",
         "reason": "goplus_timeout",
@@ -950,6 +944,12 @@
         "reason": "liquidity",
         "symbol": "NODF",
         "until": "2026-10-26T17:13:10Z"
+      },
+      "0x3082b3684cd5a43e6aac513e5576c021c453dadf": {
+        "at": "2026-10-26T00:33:12Z",
+        "reason": "goplus_timeout",
+        "symbol": "NTDA",
+        "until": "2026-10-27T00:33:12Z"
       },
       "0x319359dc430c8869d62f1164aa0102c7c04aa353": {
         "at": "2026-10-25T05:33:10Z",
@@ -4491,6 +4491,12 @@
         "symbol": "SPACEX",
         "until": "2026-10-26T04:33:11Z"
       },
+      "0xb50dceb0570557b9b7fe43d8cbdc9b3457d3dc5a": {
+        "at": "2026-10-26T00:33:12Z",
+        "reason": "missing:lp_locked_pct",
+        "symbol": "SGUIDE",
+        "until": "2026-10-27T00:33:12Z"
+      },
       "0xb51804b6cc70f05b2051a651abafacc6047a8176": {
         "at": "2026-10-25T00:43:10Z",
         "reason": "liquidity",
@@ -5415,12 +5421,6 @@
         "symbol": "USDF",
         "until": "2026-10-26T11:23:11Z"
       },
-      "0xdb7e7a57f94e5c2700aa9d7d013a93bc0d889424": {
-        "at": "2026-10-25T00:33:11Z",
-        "reason": "goplus_timeout",
-        "symbol": "YELLOW",
-        "until": "2026-10-26T00:33:11Z"
-      },
       "0xdb7ed89afc47969127e32f6bd23634e1e62150ad": {
         "at": "2026-10-25T06:33:11Z",
         "reason": "liquidity",
@@ -6198,22 +6198,16 @@
     },
     "watch": {
       "0x1510806bdbd699cdc666024233d974c4fd7578fe": {
-        "checks": 5,
+        "checks": 6,
         "first_seen": "2026-10-25T23:13:12Z",
-        "last_check": "2026-10-26T00:18:12Z",
+        "last_check": "2026-10-26T00:33:12Z",
         "symbol": "OFI"
       },
       "0x237fd0402aa1c955be8302f018b83bd9a2a02b4a": {
-        "checks": 4,
+        "checks": 5,
         "first_seen": "2026-10-25T23:23:12Z",
-        "last_check": "2026-10-26T00:18:12Z",
+        "last_check": "2026-10-26T00:33:12Z",
         "symbol": "ADOF"
-      },
-      "0x3082b3684cd5a43e6aac513e5576c021c453dadf": {
-        "checks": 11,
-        "first_seen": "2026-10-25T21:33:12Z",
-        "last_check": "2026-10-26T00:18:12Z",
-        "symbol": "NTDA"
       },
       "0x32f45ef3bbeedd98cc0697595335cb48b88533cd": {
         "checks": 6,
@@ -6222,15 +6216,15 @@
         "symbol": "NFOT"
       },
       "0x3c18d990652da1802242c448fc30ec3538724d74": {
-        "checks": 8,
+        "checks": 9,
         "first_seen": "2026-10-25T22:23:11Z",
-        "last_check": "2026-10-26T00:18:12Z",
+        "last_check": "2026-10-26T00:33:12Z",
         "symbol": "AAAA"
       },
       "0x40278ec2eeaae06147b8838db151f5a3f4a7ed34": {
-        "checks": 7,
+        "checks": 8,
         "first_seen": "2026-10-25T22:43:11Z",
-        "last_check": "2026-10-26T00:18:12Z",
+        "last_check": "2026-10-26T00:33:12Z",
         "symbol": "FOFT"
       },
       "0x41c7a71b59031d0e1f1a1c5299ca18349ac1460d": {
@@ -6252,15 +6246,15 @@
         "symbol": "NOTF"
       },
       "0x612f4924fe89ba439b96b96c114ab9cc5a768e42": {
-        "checks": 6,
+        "checks": 7,
         "first_seen": "2026-10-25T22:53:10Z",
-        "last_check": "2026-10-26T00:18:12Z",
+        "last_check": "2026-10-26T00:33:12Z",
         "symbol": "DOSA"
       },
       "0x7a2b2f22373f696fc5c9cd2e005e352c4bed21b2": {
-        "checks": 4,
+        "checks": 5,
         "first_seen": "2026-10-25T23:23:12Z",
-        "last_check": "2026-10-26T00:18:12Z",
+        "last_check": "2026-10-26T00:33:12Z",
         "symbol": "AOP"
       },
       "0x9ebfba3fc5d317be7c6e7eb4266f5d4a3ad2f45e": {
@@ -6288,9 +6282,9 @@
         "symbol": "NOTF"
       },
       "0xdbb9e434b16dea3becf2542b41e8ebdd80102b18": {
-        "checks": 7,
+        "checks": 8,
         "first_seen": "2026-10-25T22:38:11Z",
-        "last_check": "2026-10-26T00:18:12Z",
+        "last_check": "2026-10-26T00:33:12Z",
         "symbol": "APO"
       },
       "0xe0c431b92471c24ec5520484570b00665da55762": {
