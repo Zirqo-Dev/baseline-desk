@@ -32,6 +32,13 @@ class FakeClient:
         return base.FETCH_ERROR
 
 
+def fresh_pairs(liq=60_000):
+    """The asci pairs with liquidity over the minimum, so the BL-20 gate lets GoPlus run."""
+    pairs = load("dexscreener_fresh")
+    pairs[0]["liquidity"]["usd"] = liq
+    return pairs
+
+
 def gt_pool(created, name="X / WETH"):
     return {"data": {"attributes": {"pool_created_at": created, "name": name}}}
 
@@ -42,11 +49,11 @@ def gp_with(address, **fields):
 
 class MappingTest(unittest.TestCase):
     def test_fresh_token_waits_on_goplus(self):
-        c = FakeClient({"token-pairs": load("dexscreener_fresh"), "gopluslabs": load("goplus_fresh")})
+        c = FakeClient({"token-pairs": fresh_pairs(), "gopluslabs": load("goplus_fresh")})
         f = base.facts(FRESH, NOW, c)
         self.assertEqual(f["symbol"], "asci")
         self.assertAlmostEqual(f["price"], 0.0002443)
-        self.assertEqual(f["liq_usd"], 9493.9)
+        self.assertEqual(f["liq_usd"], 60_000)
         self.assertEqual(f["sells_1h"], 92)
         self.assertAlmostEqual(f["age_min"], (NOW.timestamp() * 1000 - 1792752795000) / 60000)
         self.assertEqual(f["pair"], "0xd69e052b412840909dda5717dc3f7e0b5fa1a79dcaa1050717a6a51897707771")
@@ -55,9 +62,10 @@ class MappingTest(unittest.TestCase):
             self.assertNotIn(k, f)
             self.assertIn(k, f["goplus_pending"])
         self.assertEqual(len(c.calls), 2)  # pairCreatedAt present: no GeckoTerminal call
-        # GoPlus-only gap, but 9.5k liquidity is under the minimum: final
-        self.assertEqual(hard_skip(f), "liquidity")
-        self.assertEqual(hard_skip(dict(f, liq_usd=60_000)), "goplus_not_ready")
+        self.assertNotIn("goplus_skipped", f)
+        self.assertEqual(hard_skip(f), "goplus_not_ready")
+        # GoPlus-only gap, but under the liquidity minimum: final
+        self.assertEqual(hard_skip(dict(f, liq_usd=9493.9)), "liquidity")
 
     def test_older_token_mapping(self):
         c = FakeClient({"token-pairs": load("dexscreener_older"), "gopluslabs": load("goplus_older"),
@@ -78,13 +86,13 @@ class MappingTest(unittest.TestCase):
         self.assertEqual(hard_skip(f), "missing:lp_locked_pct")
 
     def test_goplus_down_is_a_fetch_error(self):
-        c = FakeClient({"token-pairs": load("dexscreener_fresh")})  # GoPlus 429
+        c = FakeClient({"token-pairs": fresh_pairs()})  # GoPlus 429
         f = base.facts(FRESH, NOW, c)
         self.assertEqual(f["fetch_errors"], ["goplus"])
         self.assertEqual(hard_skip(f), "fetch_error")
 
     def test_goplus_rate_limit_in_body_is_a_fetch_error(self):
-        c = FakeClient({"token-pairs": load("dexscreener_fresh"),
+        c = FakeClient({"token-pairs": fresh_pairs(),
                         "gopluslabs": {"code": 4029, "message": "too many requests", "result": {}}})
         f = base.facts(FRESH, NOW, c)
         self.assertEqual(hard_skip(f), "fetch_error")
@@ -96,8 +104,7 @@ class MappingTest(unittest.TestCase):
             "buy_tax": "", "sell_tax": "", "holder_count": "0", "is_in_dex": "1", "is_open_source": "1",
             "owner_address": "", "token_name": "Wizard Gang", "token_symbol": "WIZARD",
             "total_supply": "1000000000", "dex": []}}}
-        c = FakeClient({"token-pairs": load("dexscreener_older"), "gopluslabs": partial,
-                        "geckoterminal": gt_pool("2026-10-23T10:00:00Z")})
+        c = FakeClient({"token-pairs": fresh_pairs(), "gopluslabs": partial})
         f = base.facts(FRESH, NOW, c)
         self.assertEqual(f["fetch_errors"], [])
         self.assertTrue(f["goplus_partial"])
@@ -130,6 +137,84 @@ class MappingTest(unittest.TestCase):
             err = urllib.error.HTTPError("http://x", code, "x", {}, io.BytesIO(b""))
             with mock.patch("urllib.request.urlopen", side_effect=err):
                 self.assertIs(c.get("gt", "http://x"), want, code)
+
+
+class DexFirstTest(unittest.TestCase):
+    """BL-20: GoPlus only when the DexScreener side hasn't already decided."""
+
+    def gp_calls(self, c):
+        return [url for _, url in c.calls if "gopluslabs" in url]
+
+    def test_gate_fires_on_liquidity_no_goplus_call(self):
+        c = FakeClient({"token-pairs": load("dexscreener_fresh"), "gopluslabs": load("goplus_fresh")})
+        f = base.facts(FRESH, NOW, c)
+        self.assertEqual(self.gp_calls(c), [])
+        self.assertEqual(len(c.calls), 1)
+        self.assertTrue(f["goplus_skipped"])
+        self.assertEqual(f["liq_usd"], 9493.9)
+        self.assertEqual(f["pair"], "0xd69e052b412840909dda5717dc3f7e0b5fa1a79dcaa1050717a6a51897707771")
+        self.assertEqual(hard_skip(f), "liquidity")
+
+    def test_gate_fires_on_dexscreener_fetch_error(self):
+        c = FakeClient({"gopluslabs": load("goplus_older")})
+        f = base.facts(OLDER, NOW, c)
+        self.assertEqual((self.gp_calls(c), f["fetch_errors"], hard_skip(f)), ([], ["ds_pairs"], "fetch_error"))
+
+    def test_gate_fires_on_missing_dexscreener_fields_in_order(self):
+        for field, want in (("symbol", "missing:symbol"), ("price", "missing:price"),
+                            ("liq_usd", "missing:liq_usd"), ("sells_1h", "missing:sells_1h")):
+            pairs = fresh_pairs()
+            for p in pairs:
+                if field == "symbol":
+                    p["baseToken"]["symbol"] = ""
+                elif field == "price":
+                    p["priceUsd"] = None
+                elif field == "liq_usd":
+                    del p["liquidity"]
+                else:
+                    p["txns"]["h1"] = {}
+            c = FakeClient({"token-pairs": pairs, "gopluslabs": load("goplus_fresh")})
+            f = base.facts(FRESH, NOW, c)
+            self.assertEqual((hard_skip(f), self.gp_calls(c)), (want, []), field)
+        c = FakeClient({"token-pairs": [], "gopluslabs": load("goplus_older")})  # no pair at all
+        self.assertEqual(hard_skip(base.facts(OLDER, NOW, c)), "missing:symbol")
+        self.assertEqual(self.gp_calls(c), [])
+
+    def test_age_from_geckoterminal_keeps_todays_flow(self):
+        pairs = fresh_pairs(liq=1000)
+        for p in pairs:
+            p.pop("pairCreatedAt", None)
+        c = FakeClient({"token-pairs": pairs, "geckoterminal": gt_pool("2026-10-23T10:00:00Z"),
+                        "gopluslabs": load("goplus_fresh")})
+        f = base.facts(FRESH, NOW, c)
+        self.assertEqual([b for b, _ in c.calls], ["ds_pairs", "gt"])  # no GoPlus, no extra request
+        self.assertEqual(hard_skip(f), "liquidity")
+        c = FakeClient({"token-pairs": pairs, "gopluslabs": load("goplus_fresh")})  # GeckoTerminal down
+        f = base.facts(FRESH, NOW, c)
+        self.assertEqual((hard_skip(f), self.gp_calls(c)), ("fetch_error", []))
+
+    def test_gate_passes_goplus_called_as_before(self):
+        c = FakeClient({"token-pairs": fresh_pairs(), "gopluslabs": load("goplus_fresh")})
+        f = base.facts(FRESH, NOW, c, goplus_ok=lambda: True)
+        self.assertEqual(len(self.gp_calls(c)), 1)
+        self.assertNotIn("goplus_skipped", f)
+        self.assertIn("launchpad", f)
+        self.assertEqual(hard_skip(f), "goplus_not_ready")
+
+    def test_goplus_budget_used_returns_none_only_when_goplus_needed(self):
+        c = FakeClient({"token-pairs": fresh_pairs(), "gopluslabs": load("goplus_fresh")})
+        self.assertIsNone(base.facts(FRESH, NOW, c, goplus_ok=lambda: False))
+        self.assertEqual(self.gp_calls(c), [])
+        c = FakeClient({"token-pairs": load("dexscreener_fresh")})
+        self.assertEqual(hard_skip(base.facts(FRESH, NOW, c, goplus_ok=lambda: False)), "liquidity")
+
+    def test_low_liquidity_honeypot_now_logs_liquidity(self):
+        # accepted label shift (Pete, 2026-10-25): GoPlus would say honeypot, but it is never asked
+        gp = load("goplus_fresh")
+        gp["result"][FRESH].update(is_honeypot="1", cannot_sell_all="1")
+        c = FakeClient({"token-pairs": load("dexscreener_fresh"), "gopluslabs": gp})
+        f = base.facts(FRESH, NOW, c)
+        self.assertEqual((hard_skip(f), self.gp_calls(c)), ("liquidity", []))
 
 
 class SymbolAndPairTest(unittest.TestCase):

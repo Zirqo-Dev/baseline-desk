@@ -1,6 +1,6 @@
 import unittest
 
-from core.verify import REQUIRED, hard_skip
+from core.verify import DEX_FIELDS, GOPLUS_FIELDS, REQUIRED, dex_skip, hard_skip
 
 GOOD = {"symbol": "TEST", "price": 0.001, "liq_usd": 80_000, "age_min": 60, "sells_1h": 40,
         "mint_open": False, "freeze_or_blacklist": False, "honeypot": False,
@@ -80,3 +80,53 @@ class VerifyTest(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+def gated(f):
+    """What facts() returns when the BL-20 gate fires: the DexScreener side only, GoPlus never asked."""
+    out = {k: f[k] for k in DEX_FIELDS if f.get(k) is not None}
+    return dict(out, fetch_errors=[e for e in f.get("fetch_errors", []) if e != "goplus"], goplus_skipped=True)
+
+
+class DexFirstTest(unittest.TestCase):
+    def test_fields_split(self):
+        self.assertEqual(set(DEX_FIELDS) | set(GOPLUS_FIELDS) | {"launchpad"}, set(REQUIRED))
+        self.assertEqual(DEX_FIELDS, [k for k in REQUIRED if k in DEX_FIELDS])  # same order as hard_skip
+
+    def test_gate_order(self):
+        self.assertEqual(dex_skip(dict(GOOD, fetch_errors=["ds_pairs"], liq_usd=None)), "fetch_error")
+        self.assertEqual(dex_skip(dict(GOOD, symbol=None, liq_usd=1)), "missing:symbol")
+        self.assertEqual(dex_skip(dict(GOOD, liq_usd=49_999)), "liquidity")
+        self.assertEqual(dex_skip(GOOD), "")
+        self.assertEqual(dex_skip({k: GOOD[k] for k in DEX_FIELDS}), "")  # GoPlus fields not needed
+
+    def test_label_shift_only_never_outcome(self):
+        """Every lead the gate settles was a skip before BL-20 too (never PASS or WATCH); only the label can move."""
+        low = dict(GOOD, liq_usd=40_000)
+        pending = {k: v for k, v in low.items() if k != "mint_open"}
+        cases = {  # today's facts (GoPlus called) -> today's label
+            "honeypot": dict(low, honeypot=True),
+            "mint_open": dict(low, mint_open=True),
+            "freeze_or_blacklist": dict(low, freeze_or_blacklist=True),
+            "risk_flag:hidden_owner": dict(low, risk_flags=["hidden_owner"]),
+            "goplus_partial": dict(low, goplus_partial=True),
+            "nobody_can_sell": dict(low, sells_1h=0),
+            "missing:lp_locked_pct": {k: v for k, v in low.items() if k != "lp_locked_pct"},
+            "fetch_error": dict(low, fetch_errors=["goplus"]),  # was RETRY, final skip anyway after
+            "liquidity": dict(pending, goplus_pending=["mint_open"]),  # watched lead, pool too thin
+        }
+        for was, f in cases.items():
+            self.assertEqual(hard_skip(f), was)
+            self.assertEqual(hard_skip(gated(f)), "liquidity", was)  # the label after BL-20
+        self.assertEqual(hard_skip(gated(low)), hard_skip(low))  # plain liquidity skip: no change
+        # missing DexScreener fields and failed DexScreener requests: same label as today
+        no_price = {k: v for k, v in dict(GOOD, honeypot=True).items() if k != "price"}
+        self.assertEqual((hard_skip(no_price), hard_skip(gated(no_price))), ("missing:price", "missing:price"))
+        ds_down = dict(GOOD, fetch_errors=["ds_pairs"])
+        self.assertEqual((hard_skip(ds_down), hard_skip(gated(ds_down))), ("fetch_error", "fetch_error"))
+
+    def test_gate_open_means_goplus_decides_as_before(self):
+        for f in (GOOD, dict(GOOD, honeypot=True), dict(GOOD, top10_pct=50), dict(GOOD, liq_usd=50_000)):
+            self.assertEqual(dex_skip(f), "")
+        self.assertEqual(hard_skip(dict(GOOD, honeypot=True)), "honeypot")
+

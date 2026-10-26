@@ -71,6 +71,30 @@ class LeadsTest(unittest.TestCase):
         self.assertEqual(self.leads.skipped(A, at(16)), "liquidity")
         self.assertNotIn(A.lower(), self.leads.s["watch"])
 
+    def test_goplus_skipped_in_detail(self):
+        dex_only = {"symbol": "LOW", "price": 0.001, "liq_usd": 1_000, "age_min": 60, "sells_1h": 4,
+                    "pair": "0xp", "fetch_errors": [], "goplus_skipped": True}
+        self.assertEqual(self.leads.record(A, dex_only, T0), "liquidity")
+        row = self.rows()[-1]
+        self.assertEqual((row["action"], row["reason"]), ("SKIP", "liquidity"))
+        self.assertTrue(row["detail"].startswith("goplus=skipped until="))
+        self.leads.record("0x2", {"fetch_errors": ["ds_pairs"], "goplus_skipped": True}, T0)
+        self.assertEqual(self.rows()[-1]["detail"], "try=1 hosts=ds_pairs goplus=skipped")
+        self.leads.record("0x3", dict(GOOD, liq_usd=1_000), T0)  # GoPlus was called: no tag
+        self.assertNotIn("goplus=skipped", self.rows()[-1]["detail"])
+
+    def test_watched_lead_liquidity_drop_settled_without_goplus(self):
+        self.leads.record(A, WAIT, T0)
+        dex_only = {k: WAIT[k] for k in ("symbol", "price", "age_min", "sells_1h")}
+        dex_only.update(liq_usd=40_000, pair="0xp", fetch_errors=[], goplus_skipped=True)
+        self.assertEqual(self.leads.record(A, dex_only, at(15)), "liquidity")
+        row = self.rows()[-1]
+        self.assertEqual((row["action"], row["reason"]), ("SKIP", "liquidity"))
+        self.assertIn("first_seen=2026-10-23T12:00:00Z checks=2 goplus=skipped until=", row["detail"])
+        self.assertNotIn("goplus_ready_at", row["detail"])  # GoPlus was not asked, so not "ready"
+        self.assertNotIn(A.lower(), self.leads.s["watch"])
+        self.assertFalse(self.leads.due(A, at(30)))
+
     def test_dexscreener_gap_while_watched_is_final(self):
         self.leads.record(A, WAIT, T0)
         f = dict(WAIT)

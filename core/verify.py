@@ -9,10 +9,31 @@ REQUIRED = ["symbol", "price", "liq_usd", "age_min", "sells_1h", "mint_open",
 GOPLUS_FIELDS = ["mint_open", "freeze_or_blacklist", "honeypot", "buy_tax_pct", "sell_tax_pct",
                  "lp_locked_pct", "dev_pct", "top10_pct", "risk_flags"]
 
+# Fields DexScreener gives on its own (GeckoTerminal only for a missing age), in REQUIRED order.
+# launchpad is neither: it also reads the GoPlus creator. BL-20 gate, see dex_skip().
+DEX_FIELDS = ["symbol", "price", "liq_usd", "age_min", "sells_1h"]
+
 # risk_flags that are a hard skip. Log-only flags (external_call, is_open_source=0,
 # honeypot_with_same_creator) stay in the list but never skip.
 HARD_FLAGS = ["hidden_owner", "can_take_back_ownership", "owner_change_balance",
               "slippage_modifiable", "personal_slippage_modifiable", "selfdestruct"]
+
+
+def dex_skip(facts):
+    """BL-20 gate, before any GoPlus call: the skip DexScreener alone decides, or "" when GoPlus is needed.
+
+    In order: fetch_error (a request so far failed), missing:<first DEX_FIELDS gap>, liquidity.
+    Same outcome as hard_skip() on the full facts; only the label can differ (a low-liquidity
+    honeypot logs "liquidity"). DECISIONS 2026-10-26, BL-20.
+    """
+    if facts.get("fetch_errors"):
+        return "fetch_error"
+    for k in DEX_FIELDS:
+        if facts.get(k) is None:
+            return f"missing:{k}"
+    if facts["liq_usd"] < config.SKIP_IF["min_liquidity_usd"]:
+        return "liquidity"
+    return ""
 
 
 def hard_skip(facts):
@@ -26,7 +47,11 @@ def hard_skip(facts):
     "goplus_not_ready" (not final) when every missing field is one the adapter
     listed in facts["goplus_pending"] (GoPlus has not filled it yet), unless the
     pool is already under the liquidity minimum.
+
+    facts["goplus_skipped"] (BL-20): GoPlus was never called because dex_skip() decided; that reason stands.
     """
+    if facts.get("goplus_skipped"):
+        return dex_skip(facts)
     if facts.get("fetch_errors"):
         return "fetch_error"
     if facts.get("goplus_partial"):

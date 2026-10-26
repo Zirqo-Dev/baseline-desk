@@ -49,6 +49,12 @@ Moved from CLAUDE.md section 11 on 2026-10-23 (BL-2 process cleanup). Wording is
   expires, the desk stops SILENTLY (no red run, just no TICK rows). Note the token expiry date and renew before it.
   cron-job.org live since 2026-10-23 15:28 UTC. By 18:53 UTC: 41 of 42 expected runs (97.6%), no error TICK rows, no overlap,
   one TICK row each; 17:18 was never dispatched (no Actions run exists for it). 24h window ends 2026-10-24 15:28 UTC.
+- BL-7 scheduler token: the cron-job.org fine-grained token "baseline-desk cron" EXPIRES Thu 2027-01-21. Renew it by early
+  January 2027 (new token, paste into the cron-job.org job header), or the desk stops silently.
+- BL-7 closed by chat 2026-10-25 from tasks.csv: 287 of 288 TICK rows in the 24h window (only 17:18 UTC Oct 23 missing),
+  288 of 288 on Oct 24 and Oct 25, 0 error TICK rows, no overlap. Post-fix (5,469 checks): 0 RETRY, 0 fetch_error,
+  GoPlus never above 9 per tick, 0 PASS, 0 trades. 1,653 checks (30%) were DexScreener-only skips that still spent a
+  GoPlus call (-> BL-20). 438 leads watched, 268 (61%) ended goplus_timeout.
 
 ## GoPlus diagnosis 2026-10-23
 - GoPlus diagnosis 2026-10-23 (read-only, tasks.csv to 18:53 UTC + 9 live GoPlus requests). Two separate causes, both
@@ -66,12 +72,47 @@ Moved from CLAUDE.md section 11 on 2026-10-23 (BL-2 process cleanup). Wording is
   - Reported, not built: facts() calls GoPlus even when DexScreener alone already makes the lead a final skip.
     tasks.csv to 19:13 UTC: at least 154 of 757 checks (20%: 134 liquidity, 20 missing:liq_usd) wasted a GoPlus call,
     about 2 of the 9 per tick. Pete decides in chat whether that becomes a new card.
+    -> Built as BL-20 (2026-10-26), see below.
+
+## BL-20
+- DexScreener first (DECISIONS 2026-10-26). adapters/base.py facts(address, now, client, goplus_ok=None): DexScreener
+  token-pairs, then GeckoTerminal only when pairCreatedAt is missing (today's flow, no request added to decide), then
+  core/verify.py dex_skip() on what is in hand. Gate order: 1. fetch_error (any request so far failed: ds_pairs, or gt
+  for the age), 2. missing:<first of symbol, price, liq_usd, age_min, sells_1h> (DEX_FIELDS, REQUIRED order),
+  3. liquidity (liq_usd < SKIP_IF min_liquidity_usd). If it fires: no GoPlus call, facts carry "goplus_skipped": True
+  (no launchpad, no goplus_pending), hard_skip() returns the dex_skip() reason, Leads.record() logs the VERIFY row as
+  before plus "goplus=skipped" (also on RETRY rows), and never adds goplus_ready_at. Otherwise, if goplus_ok() is
+  False, facts() returns None (deferred); else GoPlus and hard_skip() exactly as before.
+- Cap then continue (core/tick.py): todo = queue[:MAX_CHECKS = 20]; each lead gets facts() with
+  goplus_ok = GoPlus calls this tick < GOPLUS_MAX_PER_TICK (9). None -> deferred (no row, not a retry try; watch and retry
+  state untouched, so the same queue order next tick; a deferred NEW lead returns only if the scan lists it again,
+  as before). A deferred lead still spent its DexScreener request (and GeckoTerminal if needed).
+  TICK row: ... deferred dex_only goplus requests secs. dex_only = checks settled without GoPlus (part of checked).
+- Label shift (accepted by Pete 2026-10-25, test tests/test_verify.py DexFirstTest): only labels move, nothing moves to
+  WATCH or PASS. Low liquidity + honeypot / mint_open / freeze / risk_flag / goplus_partial / nobody_can_sell /
+  missing:<GoPlus field> -> "liquidity". Found while building: a token with no DexScreener pair whose GoPlus answer is
+  code 3 was "goplus_partial", now "missing:symbol" (both final 24h). A low-liquidity (or DexScreener-gap) lead whose
+  GoPlus call would have failed was RETRY fetch_error (up to 3 ticks), now a final skip at once; GoPlus fetch errors
+  were 0 in 5,469 post-fix checks.
+- Request budget, worst case per tick: exits 4 positions x 2 DexScreener = 8; scan 1 GeckoTerminal + 2 DexScreener;
+  checks 20 DexScreener + up to 20 GeckoTerminal (only when pairCreatedAt is missing; 0 in the smoke) + 9 GoPlus.
+  DexScreener pairs 28 per tick (limit 300/min, paced 0.2 s), profiles/boosts 2 (60/min), GeckoTerminal up to 21 per
+  tick paced 2 s = at most 30/min (at its limit only in that worst case; was 10 before), GoPlus 9 (unchanged).
+  Time: real ticks so far median 17.6 s, max 39.8 s (the pre-cap Oct 23 ticks did 20 checks with 20 GoPlus calls).
+  Theoretical: if every request took the full 15 s client timeout and still answered, 60 requests = 900 s, over the
+  10 min job timeout (before BL-20 the same bound was 38 requests = 570 s). A request that fails settles the lead
+  (fetch_error) without GeckoTerminal or GoPlus, so all hosts down = 27 requests = 405 s. No time guard built.
+- Live smoke 2026-10-26 (scratch folder, nothing under data/): one full tick, 31 requests in 16.1 s, all HTTP 200:
+  DexScreener 22, GoPlus 8, GeckoTerminal 1. 21 leads, 20 checked, 1 deferred (over MAX_CHECKS), dex_only 12
+  (9 liquidity, 3 missing:liq_usd), 8 GoPlus checks -> 8 WATCH goplus_not_ready, 0 PASS.
+- Open item: Theoretical worst case: ~900 s if every request hangs 15 s (job timeout 600 s); real ticks 17.6 s typical, 39.8 s max. If a tick ever exceeds 120 s, add a time guard.
 
 ## Open items (detail)
 - Open items:
   - BL-7 done only after 24h of green runs, no overlap, one TICK row per run. The TICK rows show the real run rate for Gate A (90%).
   - With the cap, a busy tick checks only 9 leads, so "deferred" will rise; new leads deferred come back only if the next
     scan finds them again. Watch whether watched leads still get their 15-min re-checks on time.
+    BL-20: the tick now goes on after the 9 GoPlus calls, so only GoPlus leads are deferred; compare after ~24h.
   - LP lock: GoPlus can't tie lp_holders to our pool unless it lists exactly one pool, so many leads die on
     missing:lp_locked_pct (Uniswap v4 may never have LP holders). Pete decides after 24-48h of BL-7 skip-reason data.
   - Clanker/Zora factory addresses unconfirmed; launchpad is pool-shape only until BL-10 (CLANKER_CREATORS/ZORA_CREATORS empty).

@@ -91,20 +91,22 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
 - If a session stops mid-story with nothing to commit, commit only a section 11 "Next step" update (and a DECISIONS line if something was decided). Never commit unfinished code.
 
 ## 11. Current state
-- Phase 1 (core engine). Done: BL-1, BL-2, BL-4, BL-5, BL-6. BL-7 code done, WAITING on 24h of green tick.yml runs.
-  Tests: stdlib unittest, `python -m unittest` (96 pass on 3.13).
-- In progress: BL-7 waits until 2026-10-24 15:28 UTC (24h of green runs, no overlap, one TICK row per run). Then BL-8.
-- Technical detail per card, GoPlus diagnosis and full open items: docs/NOTES.md.
+- Phase 1 (core engine). Done: BL-1, BL-2, BL-4, BL-5, BL-6, BL-7 (closed by chat 2026-10-25: 287/288 TICK rows in the
+  24h window, 288/288 on Oct 24 and 25, 0 error rows, no overlap), BL-20 (DexScreener first, GoPlus only when needed).
+  Tests: stdlib unittest, `python -m unittest` (112 pass on 3.13).
+- cron-job.org token "baseline-desk cron" EXPIRES Thu 2027-01-21: renew by early January or the desk stops silently.
+- Technical detail per card, GoPlus diagnosis, BL-20 budget and full open items: docs/NOTES.md.
 - Open items:
-  - BL-7 is done only after the 24h window; TICK rows give the real run rate for Gate A (docs/NOTES.md)
-  - The GoPlus cap raises "deferred"; check watched leads still get their 15-min re-checks (docs/NOTES.md)
-  - LP lock: many leads die on missing:lp_locked_pct; Pete decides after 24-48h of skip data (docs/NOTES.md)
+  - BL-20 label shift: low-liquidity leads log "liquidity" with goplus=skipped even if GoPlus would flag them (docs/NOTES.md)
+  - Theoretical worst case: ~900 s if every request hangs 15 s (job timeout 600 s); real ticks 17.6 s typical, 39.8 s max. If a tick ever exceeds 120 s, add a time guard. (docs/NOTES.md)
+  - Watched leads: 61% ended goplus_timeout in BL-7 data; Pete decides WATCH max_h after BL-20 data (docs/NOTES.md)
+  - LP lock: many leads die on missing:lp_locked_pct; Pete decides (docs/NOTES.md)
   - Clanker/Zora factory addresses unconfirmed until BL-10 (docs/NOTES.md)
   - top10 is the top 8-10 after exclusions, slightly lenient (docs/NOTES.md)
   - The exact GoPlus rate-limit code is unverified; code 3 is not one (docs/NOTES.md)
-  - Week-1 watchlist review: if over 1/3 time out, Pete may raise WATCH max_h to 6 (docs/NOTES.md)
-- Next step: after 2026-10-24 15:28 UTC count TICK rows since 15:28 (expect 288) and runs in the Actions tab; if green with one TICK row per run, mark BL-7 done, then BL-8 (report.py + report.yml). Also confirm the GoPlus fixes live and get Pete's call on the wasted-GoPlus card (docs/NOTES.md).
-- Last updated: 2026-10-23.
+- Next step: after ~24h of BL-20 live data, chat compares dex_only, goplus, deferred, watch timeouts and PASS.
+  Then Pete decides WATCH max_h (3h vs 6h) and the watchlist share of GoPlus. Then BL-8 (report.py + report.yml).
+- Last updated: 2026-10-26.
 
 ## 12. Glossary
 - Lead: a token the scanner found. Survivor: a lead that passed every hard skip.

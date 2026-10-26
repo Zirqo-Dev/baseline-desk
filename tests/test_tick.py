@@ -7,7 +7,7 @@ from pathlib import Path
 from unittest import mock
 
 from adapters import base
-from core import config, desk, exits, tick
+from core import config, desk, exits, tick, verify
 from core.book import Book
 from core.leads import Leads
 from tests.test_adapter_base import FRESH, OLDER, FakeClient, load
@@ -136,10 +136,18 @@ class TickTest(unittest.TestCase):
             client.calls += [("x", "scan")] * 3
             return [{"address": a, "symbol": "", "source": "t", "pool": ""} for a in self.found]
 
-        def facts(address, now=None, client=None):
+        def facts(address, now=None, client=None, goplus_ok=None):
+            # like the real facts(): DexScreener first, GoPlus only when the gate can't decide (BL-20)
             self.order.append(address)
-            client.calls += [("x", address), (base.GOPLUS, 200)]  # every facts() makes one GoPlus call
-            return self.facts.get(address, dict(good(0), liq_usd=1))  # unknown lead: liquidity skip
+            client.calls.append(("x", address))
+            f = self.facts.get(address, dict(good(0), honeypot=True))  # unknown lead: needs GoPlus, then skip
+            dex = dict(f, fetch_errors=[e for e in f.get("fetch_errors", []) if e != "goplus"])
+            if verify.dex_skip(dex):
+                return dict(dex, goplus_skipped=True)
+            if goplus_ok is not None and not goplus_ok():
+                return None
+            client.calls.append((base.GOPLUS, 200))
+            return f
 
         def quote(address, pair="", client=None):
             self.order.append("quote:" + address)
@@ -166,7 +174,8 @@ class TickTest(unittest.TestCase):
         self.assertEqual((hb[0]["action"], hb[0]["reason"]), ("HEARTBEAT", ""))
         self.assertEqual(detail(hb[0]), {"positions": "0", "seen": "1", "rechecks": "0", "new": "1",
                                          "checked": "1", "passed": "0", "bought": "0", "held": "0",
-                                         "deferred": "0", "goplus": "1", "requests": "5", "secs": "0.0"})
+                                         "deferred": "0", "dex_only": "0", "goplus": "1", "requests": "5",
+                                         "secs": "0.0"})
         self.assertEqual(detail(hb[1])["checked"], "0")  # the 24h skip holds: no re-check, no row
 
     def test_pass_buys_and_saves_pair(self):
@@ -257,9 +266,49 @@ class TickTest(unittest.TestCase):
         self.found = [addr(1)]
         n = self.run_tick(15)
         self.assertEqual((n["rechecks"], n["new"], n["checked"], n["deferred"]), (10, 1, 9, 2))
-        self.assertNotIn(addr(1), self.order)  # deferred: the last retry and the new lead
+        verify_rows = [r["address"] for r in tick_rows(self.root) if r["stage"] == "VERIFY"]
+        self.assertNotIn(addr(1), verify_rows)  # deferred: the last retry and the new lead
+        self.assertNotIn(addr(84), verify_rows[-9:])
         retries = Leads(self.root).s["retry"]
         self.assertEqual(retries[addr(84)]["tries"], 1)  # the deferred retry kept its try count
+
+    def test_cap_then_continue_dex_only_leads_still_get_their_row(self):
+        # BL-20: 10 leads need GoPlus, 5 low-liquidity leads after them settle on DexScreener alone
+        self.found = [addr(i) for i in range(1, 16)]
+        self.facts.update({addr(i): dict(good(i), liq_usd=1) for i in range(11, 16)})
+        n = self.run_tick()
+        self.assertEqual((n["checked"], n["deferred"], n["dex_only"], n["goplus"]), (14, 1, 5, 9))
+        rows = [r for r in tick_rows(self.root) if r["stage"] == "VERIFY"]
+        self.assertEqual([r["address"] for r in rows], [addr(i) for i in list(range(1, 10)) + list(range(11, 16))])
+        self.assertTrue(all("goplus=skipped" in r["detail"] for r in rows[9:]))
+        self.assertFalse(any("goplus=skipped" in r["detail"] for r in rows[:9]))
+        self.assertEqual(Leads(self.root).s["retry"], {})  # the deferred lead is not a retry try
+        hb = detail(self.heartbeats()[0])
+        self.assertEqual((hb["dex_only"], hb["deferred"], hb["goplus"]), ("5", "1", "9"))
+        n = self.run_tick(5)  # the deferred lead comes back next tick
+        self.assertEqual((n["checked"], n["deferred"], n["goplus"]), (1, 0, 1))
+        self.assertEqual([a for a in self.order if a.startswith("0x")][-1], addr(10))
+
+    def test_cap_then_continue_keeps_queue_order(self):
+        # a deferred watched lead stays first in line: watch, then retries, then new
+        pending = dict(good(0), goplus_pending=["mint_open"])
+        del pending["mint_open"]
+        Leads(self.root).record(addr(90), pending, T0 - timedelta(minutes=1))
+        self.facts[addr(90)] = pending
+        self.found = [addr(i) for i in range(1, 12)]
+        n = self.run_tick(15, GOPLUS_MAX_PER_TICK=0)  # no GoPlus at all this tick
+        self.assertEqual(self.order[1:3], [addr(90), addr(1)])
+        self.assertEqual((n["checked"], n["deferred"], n["dex_only"]), (0, 12, 0))
+        self.assertEqual(Leads(self.root).s["watch"][addr(90)]["checks"], 1)  # untouched, still due
+        self.order.clear()
+        self.run_tick(20)
+        self.assertEqual(self.order[1:3], [addr(90), addr(1)])
+
+    def test_max_checks_still_bounds_dex_only_checks(self):
+        self.found = [addr(i) for i in range(1, 26)]
+        self.facts.update({addr(i): dict(good(i), liq_usd=1) for i in range(1, 26)})
+        n = self.run_tick()
+        self.assertEqual((n["checked"], n["dex_only"], n["deferred"], n["goplus"]), (tick.MAX_CHECKS, 20, 5, 0))
 
     def test_paused_runs_exits_but_no_scan(self):
         self.found = [addr(1)]
@@ -300,13 +349,17 @@ class TickWithFixturesTest(unittest.TestCase):
                             f"contract_addresses={FRESH}": load("goplus_fresh")})
             n = tick.run(root, datetime(2026, 10, 23, 11, 30, tzinfo=timezone.utc), c, clock=lambda: 0.0,
                          log=lambda s: None)
-            self.assertEqual((n["seen"], n["checked"], n["deferred"], n["goplus"]),
-                             (20, config.GOPLUS_MAX_PER_TICK, 20 - config.GOPLUS_MAX_PER_TICK, 9))
+            # BL-20: 19 leads have no DexScreener route (fetch_error) and asci is under the liquidity
+            # minimum, so the gate settles all 20 and GoPlus is never called
+            self.assertEqual((n["seen"], n["checked"], n["deferred"], n["dex_only"], n["goplus"]),
+                             (20, 20, 0, 20, 0))
             self.assertEqual(n["requests"], len(c.calls))
+            self.assertFalse(any("gopluslabs" in url for _, url in c.calls))
             rows = tick_rows(root)
             self.assertEqual(rows[-1]["stage"], "TICK")
             asci = [r for r in rows if r["address"] == FRESH][0]
             self.assertEqual((asci["action"], asci["reason"]), ("SKIP", "liquidity"))
+            self.assertIn("goplus=skipped", asci["detail"])
 
 
 if __name__ == "__main__":

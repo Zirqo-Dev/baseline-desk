@@ -5,7 +5,8 @@ A skip is final for 24h (non-negotiable 3). One exception (DECISIONS 2026-10-23,
 until WATCH["max_h"] after first seen; then a final "goplus_timeout".
 "fetch_error" (429, 5xx, timeout) is not locked either: retried next run, at most
 FETCH_TRIES in a row, then a final "fetch_error_x3". A GoPlus answer code other than 1 is logged
-as goplus_code=<n> in the row detail.
+as goplus_code=<n> in the row detail. A check settled without GoPlus (BL-20 DexScreener-first gate)
+adds goplus=skipped to its row.
 Every check logs one VERIFY task row. Wiring into the tick is BL-7.
 """
 from datetime import datetime, timedelta, timezone
@@ -75,8 +76,10 @@ class Leads:
                 self._row(now, sym, address, "WATCH", reason, detail)
                 return reason
 
-        if w and not facts.get("goplus_pending"):
+        if w and not facts.get("goplus_pending") and not facts.get("goplus_skipped"):
             detail.append(f"goplus_ready_at={ts(now)}")
+        if facts.get("goplus_skipped"):
+            detail.append("goplus=skipped")
         if reason:
             until = now + timedelta(hours=SKIP_H)
             self.s["skips"][address] = {"symbol": sym, "reason": reason, "at": ts(now), "until": ts(until)}
@@ -91,6 +94,8 @@ class Leads:
         detail = [f"try={tries}", "hosts=" + ",".join(facts.get("fetch_errors") or [])]
         if facts.get("goplus_code") is not None:
             detail.append(f"goplus_code={facts['goplus_code']}")
+        if facts.get("goplus_skipped"):
+            detail.append("goplus=skipped")
         w = self.s["watch"].get(address)
         if w:
             detail.insert(0, f"first_seen={w['first_seen']}")

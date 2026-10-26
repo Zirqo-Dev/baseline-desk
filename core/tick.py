@@ -6,8 +6,10 @@ a crash then re-raises so the Actions run shows red.
 
 Order of lead checks (DECISIONS 2026-10-23, BL-7 4b): watchlist re-checks that are due (oldest
 first_seen first, the 3 h clock), then fetch_error retries, then new leads from the scan.
-At most MAX_CHECKS facts() calls per tick, and at most config.GOPLUS_MAX_PER_TICK GoPlus calls
-(every facts() makes one); the rest count as "deferred", log no row and wait for a later tick.
+At most MAX_CHECKS facts() calls per tick, and at most config.GOPLUS_MAX_PER_TICK GoPlus calls.
+DexScreener first (BL-20): once the GoPlus calls are used, the loop goes on; leads the DexScreener
+side settles still get their row ("dex_only"), leads that need GoPlus are "deferred". Deferred and
+the overflow past MAX_CHECKS log no row, are not a retry try and wait for a later tick.
 Tokens held at the start of the tick (before exits) are not re-checked and log no row;
 they count as "held" (BL-7 4a). So a token sold this tick can't be bought back in the same tick.
 """
@@ -21,7 +23,7 @@ from core.book import ROOT, TASK_FIELDS, Book, _append, day, ts, utcnow
 from core.leads import Leads
 
 MAX_CHECKS = 20  # facts() calls per tick (Pete, BL-7 4b)
-COUNTS = ["positions", "seen", "rechecks", "new", "checked", "passed", "bought", "held", "deferred"]
+COUNTS = ["positions", "seen", "rechecks", "new", "checked", "passed", "bought", "held", "deferred", "dex_only"]
 
 
 def queue(leads, found, held, now):
@@ -53,12 +55,15 @@ def verify_and_buy(book, leads, held, client, now, n):
     todo = first + new
     n["deferred"] = max(len(todo) - MAX_CHECKS, 0)
     todo = todo[:MAX_CHECKS]
-    for i, address in enumerate(todo):
-        if goplus_calls(client) >= config.GOPLUS_MAX_PER_TICK:  # no row, not a retry try
-            n["deferred"] += len(todo) - i
-            break
-        f = base.facts(address, now=now, client=client)
+    for address in todo:
+        f = base.facts(address, now=now, client=client,
+                       goplus_ok=lambda: goplus_calls(client) < config.GOPLUS_MAX_PER_TICK)
+        if f is None:  # needs GoPlus and the cap is used: no row, not a retry try
+            n["deferred"] += 1
+            continue
         n["checked"] += 1
+        if f.get("goplus_skipped"):
+            n["dex_only"] += 1
         if leads.record(address, f, now) == "":
             n["passed"] += 1
             if desk.buy(book, address, f, now):

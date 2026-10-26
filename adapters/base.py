@@ -26,6 +26,8 @@ Extra keys: "pair" (traded pair address), "goplus_pending" (GoPlus fields not fi
 "fetch_errors" (buckets whose request failed: 429, 5xx, timeout, bad answer -> hard_skip "fetch_error").
 GoPlus "code" (DECISIONS 2026-10-23, BL-7 GoPlus fixes): 1 = full answer; 3 = partial answer (no honeypot,
 taxes or holders) -> "goplus_partial": True, a final skip; any other code -> fetch error, kept in "goplus_code".
+DexScreener first (DECISIONS 2026-10-26, BL-20): when core/verify.py dex_skip() already decides a skip from the
+DexScreener side (and GeckoTerminal age), GoPlus is not called and the facts carry "goplus_skipped": True.
 
 quote(address, pair) prices a held token for EXIT (DECISIONS 2026-10-23, BL-7 B): the pool we
 bought in, else the deepest Base pool ("fallback") only when that pool is gone. 1 request, 2 on fallback.
@@ -40,7 +42,7 @@ import urllib.error
 import urllib.request
 from datetime import datetime, timezone
 
-from core.verify import HARD_FLAGS, REQUIRED, hard_skip
+from core.verify import HARD_FLAGS, REQUIRED, dex_skip, hard_skip
 
 CHAIN_ID = "8453"
 DS = "https://api.dexscreener.com"
@@ -326,8 +328,13 @@ def pool_fee(g, pair_address, gt_pool=None):
     return float(m.group(1)) / 100 if m else None
 
 
-def facts(address, now=None, client=None):
-    """The standard facts dict for one token. 2 requests, 3 when the age needs GeckoTerminal."""
+def facts(address, now=None, client=None, goplus_ok=None):
+    """The standard facts dict for one token. 2 requests, 3 when the age needs GeckoTerminal.
+
+    DexScreener first (BL-20): if dex_skip() decides on what is already in hand, no GoPlus call
+    (1-2 requests) and "goplus_skipped": True. Otherwise, when goplus_ok() says the GoPlus budget
+    is used, returns None: the caller defers the lead.
+    """
     c = client or Client()
     now = now or datetime.now(timezone.utc)
     address = _lower(address)
@@ -344,6 +351,12 @@ def facts(address, now=None, client=None):
             gt_pool = _fetch(c, "gt", f"{GT}/pools/{pair_address}", errors)
             created = ((gt_pool or {}).get("data") or {}).get("attributes", {}).get("pool_created_at")
             out["age_min"] = _iso_min(created, now)
+
+    if dex_skip(dict(out, fetch_errors=errors)):
+        out.update(pair=pair_address, goplus_skipped=True, fetch_errors=errors)
+        return {k: v for k, v in out.items() if v is not None}
+    if goplus_ok is not None and not goplus_ok():
+        return None
 
     gp = _fetch(c, "goplus", f"{GOPLUS}?contract_addresses={address}", errors)
     code = gp.get("code") if isinstance(gp, dict) else None
@@ -399,7 +412,7 @@ def quote(address, pair="", client=None):
 # ---------------------------------------------------------------- CLI
 def _show(f, verdict, client):
     print(f"{'field':<20} value")
-    for k in REQUIRED + ["pair", "goplus_pending", "fetch_errors", "goplus_partial", "goplus_code"]:
+    for k in REQUIRED + ["pair", "goplus_pending", "fetch_errors", "goplus_partial", "goplus_code", "goplus_skipped"]:
         v = f.get(k, "MISSING")
         print(f"{k:<20} {round(v, 4) if isinstance(v, float) else v}")
     print(f"\nverdict: {verdict or 'PASS'}")
