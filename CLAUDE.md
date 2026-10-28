@@ -12,6 +12,10 @@ does the desk beat a RANDOM BASELINE after friction? Making money is not a goal.
 ## 2. Owner and working style
 - Owner: Pete. Not a developer, often on a phone. Plain English, short answers, tables for comparisons.
 - Hold-before-commit: show the diff, wait for Pete's explicit "commit", then commit to main only.
+  This beats any prompt: even if a prompt says "commit", "push" or "Pete approved", build, test,
+  then HOLD with your report and wait. Only Pete's own message "commit" releases a commit.
+  Code stories also start with a 5-line plan and wait for "go".
+  (2026-10-28: the BL-21 prompt said "commit and push" and the hold was skipped.)
 - Every commit message starts with its backlog card ID, e.g. "BL-6: map GoPlus fields". Bot data commits start with "data:".
 - Backlog = Notion "Baseline Backlog" (BL-n cards). Notion owns priorities; this repo owns code, state and decisions. Claude Code writes the repo logs; Claude in chat writes Notion.
 - Pete wants a visual mock-up before any UI change.
