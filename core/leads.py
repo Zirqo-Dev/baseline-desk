@@ -6,7 +6,8 @@ until WATCH["max_h"] after first seen; then a final "goplus_timeout".
 "fetch_error" (429, 5xx, timeout) is not locked either: retried next run, at most
 FETCH_TRIES in a row, then a final "fetch_error_x3". A GoPlus answer code other than 1 is logged
 as goplus_code=<n> in the row detail. A check settled without GoPlus (BL-20 DexScreener-first gate)
-adds goplus=skipped to its row.
+adds goplus=skipped to its row. A lead that got past the missing-data gate with no LP-lock number adds
+lp_unknown (BL-21); a watched lead waiting only on lp_locked_pct leaves the watchlist with its real outcome.
 Every check logs one VERIFY task row. Wiring into the tick is BL-7.
 """
 from datetime import datetime, timedelta, timezone
@@ -14,7 +15,7 @@ from pathlib import Path
 
 from core import config
 from core.book import ROOT, TASK_FIELDS, _append, day, load_state, save_key, ts
-from core.verify import hard_skip
+from core.verify import LP, hard_skip, lp_unknown
 
 SKIP_H = 24
 FETCH_TRIES = 3
@@ -76,10 +77,13 @@ class Leads:
                 self._row(now, sym, address, "WATCH", reason, detail)
                 return reason
 
-        if w and not facts.get("goplus_pending") and not facts.get("goplus_skipped"):
+        pending = [k for k in facts.get("goplus_pending") or [] if k != LP]  # BL-21: LP lock may stay unknown
+        if w and not pending and not facts.get("goplus_skipped"):
             detail.append(f"goplus_ready_at={ts(now)}")
         if facts.get("goplus_skipped"):
             detail.append("goplus=skipped")
+        if lp_unknown(facts):
+            detail.append("lp_unknown")
         if reason:
             until = now + timedelta(hours=SKIP_H)
             self.s["skips"][address] = {"symbol": sym, "reason": reason, "at": ts(now), "until": ts(until)}

@@ -83,7 +83,7 @@ class MappingTest(unittest.TestCase):
         self.assertEqual(f["goplus_pending"], [])
         # GoPlus lists 28 pools: its LP holders can't be tied to our Aerodrome pair
         self.assertNotIn("lp_locked_pct", f)
-        self.assertEqual(hard_skip(f), "missing:lp_locked_pct")
+        self.assertEqual(hard_skip(f), "too_old")  # BL-21: unknown LP lock goes on to the other rules
 
     def test_goplus_down_is_a_fetch_error(self):
         c = FakeClient({"token-pairs": fresh_pairs()})  # GoPlus 429

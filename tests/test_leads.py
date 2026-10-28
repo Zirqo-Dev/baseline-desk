@@ -172,6 +172,40 @@ class LeadsTest(unittest.TestCase):
         self.assertIn("first_seen=2026-10-23T12:00:00Z", self.rows()[-1]["detail"])
         self.assertEqual(self.leads.record(A, GOOD, at(20)), "")
 
+    def test_watched_lead_with_only_lp_pending_leaves_with_its_real_outcome(self):
+        """BL-21: lp_locked_pct alone never keeps a lead in WATCH or ends it goplus_timeout."""
+        lp_wait = dict(WAIT, goplus_pending=["mint_open", "honeypot", "lp_locked_pct"])
+        del lp_wait["lp_locked_pct"]
+        self.assertEqual(self.leads.record(A, lp_wait, T0), "goplus_not_ready")
+        self.assertIn("pending=mint_open,honeypot,lp_locked_pct", self.rows()[-1]["detail"])
+        only_lp = {k: v for k, v in GOOD.items() if k != "lp_locked_pct"}
+        only_lp["goplus_pending"] = ["lp_locked_pct"]
+        self.assertEqual(self.leads.record(A, only_lp, at(15)), "")
+        row = self.rows()[-1]
+        self.assertEqual((row["action"], row["reason"]), ("PASS", ""))
+        self.assertEqual(row["detail"], "first_seen=2026-10-23T12:00:00Z checks=2 "
+                                        "goplus_ready_at=2026-10-23T12:15:00Z lp_unknown")
+        self.assertEqual(self.leads.s["watch"], {})
+        # same lead shape, but a hard rule fires: a final SKIP, still tagged lp_unknown
+        B = "0x00000000000000000000000000000000000000b2"
+        self.leads.record(B, lp_wait, at(170))
+        self.assertEqual(self.leads.record(B, dict(only_lp, honeypot=True), at(185)), "honeypot")
+        row = self.rows()[-1]
+        self.assertEqual((row["action"], row["reason"]), ("SKIP", "honeypot"))
+        self.assertIn("lp_unknown", row["detail"].split())
+        self.assertEqual(self.leads.s["watch"], {})
+        self.assertEqual(self.leads.skipped(B, at(186)), "honeypot")
+
+    def test_lp_unknown_not_on_watch_or_gap_rows(self):
+        lp_wait = dict(WAIT, goplus_pending=["mint_open", "honeypot", "lp_locked_pct"])
+        del lp_wait["lp_locked_pct"]
+        self.leads.record(A, lp_wait, T0)
+        self.leads.record("0x2", {k: v for k, v in GOOD.items() if k not in ("lp_locked_pct", "dev_pct")}, T0)
+        self.leads.record("0x3", GOOD, T0)
+        self.assertEqual([r["reason"] for r in self.rows()], ["goplus_not_ready", "missing:dev_pct", ""])
+        for r in self.rows():
+            self.assertNotIn("lp_unknown", r["detail"])
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -17,7 +17,7 @@ Field mapping (DECISIONS 2026-10-23, BL-6):
   buy_tax_pct          GoPlus buy_tax x 100
   sell_tax_pct         GoPlus sell_tax x 100
   lp_locked_pct        GoPlus lp_holders (locked + burned), only when GoPlus lists exactly
-                       one pool and it is ours; else missing
+                       one pool and it is ours; else missing (unknown: allowed, logged lp_unknown, BL-21)
   dev_pct              GoPlus max(creator_percent, owner_percent) x 100
   top10_pct            GoPlus holders, without the traded pool (v4: PoolManager) and burn addresses
   launchpad            GoPlus creator_address vs known factories, else pool shape, else "other"

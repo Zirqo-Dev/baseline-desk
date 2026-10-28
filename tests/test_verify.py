@@ -1,6 +1,6 @@
 import unittest
 
-from core.verify import DEX_FIELDS, GOPLUS_FIELDS, REQUIRED, dex_skip, hard_skip
+from core.verify import DEX_FIELDS, GOPLUS_FIELDS, REQUIRED, dex_skip, hard_skip, lp_unknown
 
 GOOD = {"symbol": "TEST", "price": 0.001, "liq_usd": 80_000, "age_min": 60, "sells_1h": 40,
         "mint_open": False, "freeze_or_blacklist": False, "honeypot": False,
@@ -14,6 +14,8 @@ class VerifyTest(unittest.TestCase):
 
     def test_every_field_missing_is_a_skip(self):
         for k in REQUIRED:
+            if k == "lp_locked_pct":  # BL-21: unknown LP lock is allowed, see LpUnknownTest
+                continue
             f = dict(GOOD)
             del f[k]
             self.assertEqual(hard_skip(f), f"missing:{k}")
@@ -64,8 +66,8 @@ class VerifyTest(unittest.TestCase):
 
     def test_goplus_gap_not_flagged_pending_is_final(self):
         f = dict(GOOD, goplus_pending=["mint_open"])
-        del f["mint_open"], f["lp_locked_pct"]
-        self.assertEqual(hard_skip(f), "missing:lp_locked_pct")
+        del f["mint_open"], f["top10_pct"]
+        self.assertEqual(hard_skip(f), "missing:top10_pct")
 
     def test_fetch_error_comes_first(self):
         self.assertEqual(hard_skip(dict(GOOD, fetch_errors=["gt"])), "fetch_error")
@@ -76,10 +78,6 @@ class VerifyTest(unittest.TestCase):
         part = {k: v for k, v in GOOD.items() if k not in ("honeypot", "buy_tax_pct")}
         self.assertEqual(hard_skip(dict(part, goplus_partial=True)), "goplus_partial")
         self.assertEqual(hard_skip(dict(part, goplus_partial=True, fetch_errors=["ds_pairs"])), "fetch_error")
-
-
-if __name__ == "__main__":
-    unittest.main()
 
 
 def gated(f):
@@ -111,7 +109,7 @@ class DexFirstTest(unittest.TestCase):
             "risk_flag:hidden_owner": dict(low, risk_flags=["hidden_owner"]),
             "goplus_partial": dict(low, goplus_partial=True),
             "nobody_can_sell": dict(low, sells_1h=0),
-            "missing:lp_locked_pct": {k: v for k, v in low.items() if k != "lp_locked_pct"},
+            "missing:top10_pct": {k: v for k, v in low.items() if k != "top10_pct"},
             "fetch_error": dict(low, fetch_errors=["goplus"]),  # was RETRY, final skip anyway after
             "liquidity": dict(pending, goplus_pending=["mint_open"]),  # watched lead, pool too thin
         }
@@ -130,3 +128,60 @@ class DexFirstTest(unittest.TestCase):
             self.assertEqual(dex_skip(f), "")
         self.assertEqual(hard_skip(dict(GOOD, honeypot=True)), "honeypot")
 
+
+
+class LpUnknownTest(unittest.TestCase):
+    """BL-21 (DECISIONS 2026-10-25): an unknown LP lock is allowed and logged lp_unknown."""
+    NO_LP = {k: v for k, v in GOOD.items() if k != "lp_locked_pct"}
+
+    def test_missing_lp_everything_else_clean_passes(self):
+        self.assertEqual(hard_skip(self.NO_LP), "")
+        self.assertEqual(hard_skip(dict(GOOD, lp_locked_pct=None)), "")
+        self.assertTrue(lp_unknown(self.NO_LP))
+        self.assertFalse(lp_unknown(GOOD))
+
+    def test_lp_only_pending_continues(self):
+        f = dict(self.NO_LP, goplus_pending=["lp_locked_pct"])
+        self.assertEqual(hard_skip(f), "")
+        self.assertTrue(lp_unknown(f))
+        self.assertEqual(hard_skip(dict(f, top10_pct=50)), "top10_pct")  # other rules still apply
+
+    def test_lp_and_honeypot_pending_waits(self):
+        f = {k: v for k, v in self.NO_LP.items() if k != "honeypot"}
+        f["goplus_pending"] = ["honeypot", "lp_locked_pct"]
+        self.assertEqual(hard_skip(f), "goplus_not_ready")
+        self.assertFalse(lp_unknown(f))  # stopped at the missing-data gate
+
+    def test_known_lp_under_minimum_still_skips(self):
+        self.assertEqual(hard_skip(dict(GOOD, lp_locked_pct=50)), "lp_locked")
+        self.assertFalse(lp_unknown(dict(GOOD, lp_locked_pct=50)))
+
+    def test_hard_rules_still_win(self):
+        cases = {"honeypot": dict(honeypot=True), "mint_open": dict(mint_open=True),
+                 "freeze_or_blacklist": dict(freeze_or_blacklist=True),
+                 "risk_flag:selfdestruct": dict(risk_flags=["selfdestruct"]),
+                 "nobody_can_sell": dict(sells_1h=0), "liquidity": dict(liq_usd=49_999),
+                 "dev_pct": dict(dev_pct=11), "top10_pct": dict(top10_pct=36),
+                 "too_young": dict(age_min=14), "too_old": dict(age_min=48 * 60 + 1),
+                 "buy_tax": dict(buy_tax_pct=11), "sell_tax": dict(sell_tax_pct=11)}
+        for reason, change in cases.items():
+            f = dict(self.NO_LP, **change)
+            self.assertEqual(hard_skip(f), reason)
+            self.assertTrue(lp_unknown(f), reason)  # past the gate: the SKIP row carries lp_unknown too
+
+    def test_missing_field_order_skips_lp(self):
+        f = {k: v for k, v in GOOD.items() if k not in ("lp_locked_pct", "dev_pct", "top10_pct")}
+        self.assertEqual(hard_skip(f), "missing:dev_pct")
+        f = {k: v for k, v in GOOD.items() if k not in ("sell_tax_pct", "lp_locked_pct", "dev_pct")}
+        self.assertEqual(hard_skip(f), "missing:sell_tax_pct")
+        self.assertEqual(hard_skip(dict(f, goplus_pending=["sell_tax_pct", "lp_locked_pct"])), "missing:dev_pct")
+
+    def test_not_past_the_gate_is_not_lp_unknown(self):
+        self.assertFalse(lp_unknown(dict(self.NO_LP, fetch_errors=["goplus"])))
+        self.assertFalse(lp_unknown(dict(self.NO_LP, goplus_partial=True)))
+        self.assertFalse(lp_unknown({k: self.NO_LP[k] for k in DEX_FIELDS} | {"goplus_skipped": True}))
+        self.assertFalse(lp_unknown({k: v for k, v in self.NO_LP.items() if k != "dev_pct"}))
+
+
+if __name__ == "__main__":
+    unittest.main()

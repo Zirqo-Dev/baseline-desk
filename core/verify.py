@@ -18,6 +18,10 @@ DEX_FIELDS = ["symbol", "price", "liq_usd", "age_min", "sells_1h"]
 HARD_FLAGS = ["hidden_owner", "can_take_back_ownership", "owner_change_balance",
               "slippage_modifiable", "personal_slippage_modifiable", "selfdestruct"]
 
+# BL-21: an unknown LP lock (missing, or still pending at GoPlus) no longer skips or keeps a lead watched.
+# A known lock under min_lp_locked_pct still skips. DECISIONS 2026-10-25, BL-21.
+LP = "lp_locked_pct"
+
 
 def dex_skip(facts):
     """BL-20 gate, before any GoPlus call: the skip DexScreener alone decides, or "" when GoPlus is needed.
@@ -49,6 +53,8 @@ def hard_skip(facts):
     pool is already under the liquidity minimum.
 
     facts["goplus_skipped"] (BL-20): GoPlus was never called because dex_skip() decided; that reason stands.
+
+    lp_locked_pct None (BL-21) is not a gap: the lead goes on with an unknown LP lock (see lp_unknown()).
     """
     if facts.get("goplus_skipped"):
         return dex_skip(facts)
@@ -57,7 +63,7 @@ def hard_skip(facts):
     if facts.get("goplus_partial"):
         return "goplus_partial"
     s = config.SKIP_IF
-    missing = [k for k in REQUIRED if facts.get(k) is None]
+    missing = [k for k in REQUIRED if k != LP and facts.get(k) is None]
     if missing:
         pending = set(facts.get("goplus_pending") or []) & set(GOPLUS_FIELDS)
         final = [k for k in missing if k not in pending]
@@ -79,7 +85,7 @@ def hard_skip(facts):
         return "nobody_can_sell"
     if facts["liq_usd"] < s["min_liquidity_usd"]:
         return "liquidity"
-    if facts["lp_locked_pct"] < s["min_lp_locked_pct"]:
+    if facts.get(LP) is not None and facts[LP] < s["min_lp_locked_pct"]:
         return "lp_locked"
     if facts["dev_pct"] > s["max_dev_pct"]:
         return "dev_pct"
@@ -94,3 +100,10 @@ def hard_skip(facts):
     if facts["sell_tax_pct"] > s["max_sell_tax_pct"]:
         return "sell_tax"
     return ""
+
+
+def lp_unknown(facts):
+    """BL-21: True when the lead got past the missing-data gate of hard_skip() with no LP-lock number."""
+    if facts.get("goplus_skipped") or facts.get("fetch_errors") or facts.get("goplus_partial"):
+        return False
+    return facts.get(LP) is None and all(facts.get(k) is not None for k in REQUIRED if k != LP)

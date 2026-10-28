@@ -107,6 +107,35 @@ Moved from CLAUDE.md section 11 on 2026-10-23 (BL-2 process cleanup). Wording is
   (9 liquidity, 3 missing:liq_usd), 8 GoPlus checks -> 8 WATCH goplus_not_ready, 0 PASS.
 - Open item: Theoretical worst case: ~900 s if every request hangs 15 s (job timeout 600 s); real ticks 17.6 s typical, 39.8 s max. If a tick ever exceeds 120 s, add a time guard.
 
+## BL-20 review (chat, 2026-10-28)
+- 70 h (Oct 26 01:04 to Oct 28 23:13 UTC); 836 of 841 ticks; 0 error ticks; median 16.5 s, max 35.9 s.
+- 9,180 checks, 42% dex_only; GoPlus 6.4 per tick (max 9); deferred 2.8 per tick (BL-7: 6.9).
+- 4,356 leads, 631 watched, 427 timed out (68%, BL-7: 61%); 0 PASS.
+- 405 of 427 timeouts still had honeypot + taxes pending, and none had only lp_locked_pct pending.
+- 39 leads died on missing:lp_locked_pct.
+- Verdict: BL-20 kept. Honeypot/tax silence is the bigger wall; revisit BL-22 or WATCH max_h on BL-21 data.
+- WATCH max_h stays 3 h (Pete, 2026-10-25, DECISIONS).
+
+## BL-21
+- Unknown LP lock allowed (Pete, option A, 2026-10-25; DECISIONS). core/verify.py: LP = "lp_locked_pct".
+  hard_skip() leaves lp_locked_pct out of the missing-data gate: None (missing, or listed in goplus_pending) is
+  "unknown" and the lead goes on through every other rule in the same order. missing:<field> reports the first gap
+  in REQUIRED order with lp_locked_pct skipped over; goplus_not_ready still fires when other GoPlus fields are
+  pending (the WATCH row's pending= list may still name lp_locked_pct). The LP rule stays in its place (after
+  liquidity, before dev_pct) and fires only on a known number: lp_locked_pct < min_lp_locked_pct (90) -> "lp_locked".
+- lp_unknown(facts): True when every REQUIRED field but lp_locked_pct is present, lp_locked_pct is None, and the
+  check is not fetch_error, goplus_partial or goplus=skipped (i.e. it got past the missing-data gate).
+  core/leads.py Leads.record() then appends "lp_unknown" to the VERIFY row detail, on PASS and SKIP alike.
+- Watchlist release: goplus_ready_at is added when no pending field other than lp_locked_pct is left, so a watched
+  lead waiting only on LP leaves with its real outcome (PASS -> desk.buy() in the tick, or a final SKIP), never WATCH
+  or goplus_timeout. dex_skip(), WATCH max_h (3 h) and core/config.py unchanged.
+- Tests: tests/test_verify.py LpUnknownTest (7) + 2 in tests/test_leads.py. Old tests that asserted
+  missing:lp_locked_pct now assert the new rule (BRETT fixture ends too_old; two stand-ins use top10_pct).
+- Live smoke 2026-10-28 23:21 UTC (scratch folder, nothing under data/): one full tick, 27 requests in 9.7 s
+  (DexScreener 22, GoPlus 4, GeckoTerminal 1). 21 leads, 20 checked, 1 deferred (over MAX_CHECKS), dex_only 16
+  (14 liquidity, 2 missing:liq_usd), 4 GoPlus checks -> 4 WATCH goplus_not_ready (all still pending honeypot + taxes),
+  0 lp_unknown, 0 PASS, 0 buys.
+
 ## Open items (detail)
 - Open items:
   - BL-7 done only after 24h of green runs, no overlap, one TICK row per run. The TICK rows show the real run rate for Gate A (90%).
@@ -115,11 +144,13 @@ Moved from CLAUDE.md section 11 on 2026-10-23 (BL-2 process cleanup). Wording is
     BL-20: the tick now goes on after the 9 GoPlus calls, so only GoPlus leads are deferred; compare after ~24h.
   - LP lock: GoPlus can't tie lp_holders to our pool unless it lists exactly one pool, so many leads die on
     missing:lp_locked_pct (Uniswap v4 may never have LP holders). Pete decides after 24-48h of BL-7 skip-reason data.
+    -> Decided 2026-10-25 (option A) and built as BL-21: unknown LP lock allowed, logged lp_unknown.
   - Clanker/Zora factory addresses unconfirmed; launchpad is pool-shape only until BL-10 (CLANKER_CREATORS/ZORA_CREATORS empty).
   - top10 is the top 8-10 after exclusions (GoPlus returns only 10 holders); slightly lenient.
   - GoPlus rate limit is detected as any non-OK "code" in the body (fetch_error); the exact rate-limit code is unverified live
     (code 3 is NOT a rate limit, see GoPlus diagnosis above).
   - Week-1 review of the watchlist: if more than about 1/3 of watched leads time out, Pete may raise WATCH max_h to 6.
+    -> Decided 2026-10-25: WATCH max_h stays 3 h (timeouts stuck on honeypot + taxes); see BL-20 review above.
 
 ## Next step (full text before the 2026-10-23 cleanup)
 - Next step: confirm the GoPlus fixes live from tasks.csv after the push: TICK rows show goplus<=9, no fetch_error with
