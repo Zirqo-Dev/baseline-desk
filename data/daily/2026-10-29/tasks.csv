@@ -2615,3 +2615,11 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-10-29T18:48:13Z,desk,VERIFY,PV2T,0x359d4917d2b75dc234fe7fb4c7fd633f45f056bb,SKIP,liquidity,goplus=skipped until=2026-10-30T18:48:13Z
 2026-10-29T18:48:13Z,desk,VERIFY,VCTX,0xb20000000000000000000029e03458919455dc59,SKIP,liquidity,goplus=skipped until=2026-10-30T18:48:13Z
 2026-10-29T18:48:13Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=19 rechecks=12 new=5 checked=15 passed=0 bought=0 held=0 deferred=2 dex_only=6 goplus=9 requests=30 secs=19.3 bl_positions=0 bl_due=0 bl_eligible=3 bl_bought=0 report=none bl_error=none
+2026-10-29T18:53:13Z,desk,VERIFY,EDEL,0xfb31f85a8367210b2e4ed2360d2da9dc2d2ccc95,WATCH,goplus_not_ready,first_seen=2026-10-29T18:13:14Z checks=3 pending=honeypot
+2026-10-29T18:53:13Z,desk,VERIFY,NAFF,0x8f6ed1b168135dd7eaa59e24d935a56ea3f1aa16,WATCH,goplus_not_ready,"first_seen=2026-10-29T18:33:12Z checks=2 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct"
+2026-10-29T18:53:13Z,desk,VERIFY,SPONKS,0x351bc5633a13c9d00d0eef02561ba528518c52ea,SKIP,liquidity,goplus=skipped until=2026-10-30T18:53:13Z
+2026-10-29T18:53:13Z,desk,VERIFY,TADT0H,0x984cd6410091f46fc0b42363ac456f7c18a9b7f6,SKIP,missing:liq_usd,goplus=skipped until=2026-10-30T18:53:13Z
+2026-10-29T18:53:13Z,desk,VERIFY,PRNTNBD,0x3337dabb067977e814ea4930d3ddb067a6d64cc0,WATCH,goplus_not_ready,"first_seen=2026-10-29T18:53:13Z checks=1 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct"
+2026-10-29T18:53:13Z,desk,VERIFY,SHIBANA,0xb6c113e1257c5a21387b28752aec75a876b57cf6,SKIP,liquidity,goplus=skipped until=2026-10-30T18:53:13Z
+2026-10-29T18:53:13Z,baseline,EXECUTE,NAFF,0x8f6ed1b168135dd7eaa59e24d935a56ea3f1aa16,BUY,,"usd=5.39 fill=0.00014175 seed=202610291853 eligible=2 pick=0 pool=8f6ed1,fb31f8 desk=WATCH launchpad=other"
+2026-10-29T18:53:13Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=19 rechecks=2 new=4 checked=6 passed=0 bought=0 held=0 deferred=0 dex_only=3 goplus=3 requests=13 secs=5.6 bl_positions=0 bl_due=1 bl_eligible=2 bl_bought=1 report=none bl_error=none
