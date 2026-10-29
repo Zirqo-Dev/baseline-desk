@@ -328,12 +328,16 @@ def pool_fee(g, pair_address, gt_pool=None):
     return float(m.group(1)) / 100 if m else None
 
 
-def facts(address, now=None, client=None, goplus_ok=None):
+def facts(address, now=None, client=None, goplus_ok=None, dex=None):
     """The standard facts dict for one token. 2 requests, 3 when the age needs GeckoTerminal.
 
     DexScreener first (BL-20): if dex_skip() decides on what is already in hand, no GoPlus call
     (1-2 requests) and "goplus_skipped": True. Otherwise, when goplus_ok() says the GoPlus budget
     is used, returns None: the caller defers the lead.
+
+    `dex` (BL-8): a dict filled with the DexScreener side before any GoPlus step, also when the
+    lead is deferred: symbol, price, liq_usd, age_min, sells_1h, pair, fetch_errors and launchpad
+    from pool shape only (no GoPlus creator). The return value is the same with or without it.
     """
     c = client or Client()
     now = now or datetime.now(timezone.utc)
@@ -352,6 +356,11 @@ def facts(address, now=None, client=None, goplus_ok=None):
             created = ((gt_pool or {}).get("data") or {}).get("attributes", {}).get("pool_created_at")
             out["age_min"] = _iso_min(created, now)
 
+    if dex is not None:
+        dex.update({k: v for k, v in out.items() if v is not None},
+                   pair=pair_address, fetch_errors=list(errors))
+        if pair:
+            dex["launchpad"] = launchpad({}, pair, side, pool_fee({}, pair_address, gt_pool))
     if dex_skip(dict(out, fetch_errors=errors)):
         out.update(pair=pair_address, goplus_skipped=True, fetch_errors=errors)
         return {k: v for k, v in out.items() if v is not None}

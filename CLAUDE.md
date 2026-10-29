@@ -37,17 +37,19 @@ VERIFY   core/leads.py             24h skip memory + GoPlus watchlist ("leads" i
 VERIFY   prompts/x_read.py         optional Grok X-read (GROK_ENABLED, GROK_DAILY_CAP)   -> GO or SKIP
 EXECUTE  core/desk.py              limits -> size off balance -> paper fill minus friction
 EXIT     core/exits.py             liquidity pull, hard stop, ladder, trail, time stop
-REPORT   core/report.py            desk vs random baseline -> data/report.json
-TICK     core/tick.py              one run: roll day, exits, scan -> verify -> buy, one TICK heartbeat row
+BASELINE core/baseline.py          random shadow book "baseline": 1 random eligible lead every 12 ticks, same rules (BL-8)
+REPORT   core/report.py            desk vs random baseline -> data/report.json, in the tick on the UTC day roll
+TICK     core/tick.py              one run: roll day (+report), exits (desk, baseline), scan -> verify -> buy, baseline buy,
+                                   one TICK heartbeat row
 
 Folders:
 - core/: config.py, book.py, desk.py, verify.py, leads.py, exits.py, friction.py, tick.py, baseline.py, report.py
 - adapters/: base.py (EVM, chain 8453). Adapter pattern kept so other chains could plug in later (parked).
 - prompts/: x_read.py
-- data/: state.json, report.json, daily/YYYY-MM-DD/ (tasks.csv, trades.csv, baseline_trades.csv)
+- data/: state.json, report.json, daily/YYYY-MM-DD/ (tasks.csv, trades.csv; both books in the same files, column "book")
 - site/: GitHub Pages dashboard; reads data/report.json at page load
 - docs/: DECISIONS.md, LEARNINGS.md
-- .github/workflows/: tick.yml, report.yml, pages.yml
+- .github/workflows/: tick.yml (pages.yml comes with the BL-13 site build; no report.yml, BL-8)
 
 Standard facts dict (every field required; missing = skip):
 symbol, price, liq_usd, age_min, sells_1h, mint_open, freeze_or_blacklist, honeypot,
@@ -66,7 +68,7 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
 ## 7. Running
 - tick.yml every 5 min at :03, :08 ... :58 UTC: exits first, then scan. One concurrency group, never overlapping.
   Triggered by cron-job.org (POST workflow_dispatch), no GitHub schedule. Never run both; to go back, turn cron-job.org off first.
-- report.yml daily at 02:07 UTC (BL-8).
+- Report: built inside the tick on the first tick of each UTC day (BL-8); by hand `python -m core.report`. No report.yml.
 - The bot commits data/ to main ("data: tick ..."), only on change, pull --rebase before push.
   Sessions: git pull before working, git pull --rebase before every push, never commit anything under data/.
 - pages.yml deploys site/ only when site/ changes (GitHub Pages soft limit: 10 builds/hour).
@@ -99,21 +101,25 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
 - Phase 1 (core engine). Done: BL-1, BL-2, BL-4, BL-5, BL-6, BL-7 (closed by chat 2026-10-25: 287/288 TICK rows in the
   24h window, 288/288 on Oct 24 and 25, 0 error rows, no overlap), BL-20 (DexScreener first, GoPlus only when needed;
   kept after the chat review 2026-10-28), BL-21 (unknown LP lock allowed, logged lp_unknown).
-  Tests: stdlib unittest, `python -m unittest` (121 pass on 3.13).
+  BL-8 built 2026-10-29 and HELD for Pete's "commit" (random baseline book + data/report.json on the day roll).
+  BL-13 visual mock locked 2026-10-28 (site build still to do).
+  Tests: stdlib unittest, `python -m unittest` (150 pass on 3.13).
 - cron-job.org token "baseline-desk cron" EXPIRES Thu 2027-01-21: renew by early January or the desk stops silently.
 - Technical detail per card, GoPlus diagnosis, BL-20 budget and full open items: docs/NOTES.md.
 - Open items:
   - BL-20 label shift: low-liquidity leads log "liquidity" with goplus=skipped even if GoPlus would flag them (docs/NOTES.md)
-  - Theoretical worst case: ~900 s if every request hangs 15 s (job timeout 600 s); real ticks 17.6 s typical, 39.8 s max. If a tick ever exceeds 120 s, add a time guard. (docs/NOTES.md)
+  - Theoretical worst case: ~1,020 s with BL-8's baseline exits (~900 s before) if every request hangs 15 s (job timeout 600 s); real ticks 17.6 s typical, 39.8 s max. If a tick ever exceeds 120 s, add a time guard. No guard in BL-8 (Pete). (docs/NOTES.md)
+  - BL-8 baseline biases, kept on purpose so Gate B stays strict: pool-shape launchpad can miss the Clanker 1% fee (lower
+    baseline friction), and the baseline can buy tokens GoPlus flagged (desk= tag on its BUY rows measures it) (docs/NOTES.md)
   - Watched leads: 68% ended goplus_timeout in BL-20 data (BL-7: 61%), 405 of 427 still waiting on honeypot + taxes.
     Pete decided WATCH max_h stays 3 h (2026-10-25). Honeypot/tax silence is the bigger wall: revisit BL-22 or max_h on BL-21 data (docs/NOTES.md)
   - LP lock: decided by Pete (option A, 2026-10-25) and built as BL-21: unknown LP lock allowed, logged lp_unknown (docs/NOTES.md)
   - Clanker/Zora factory addresses unconfirmed until BL-10 (docs/NOTES.md)
   - top10 is the top 8-10 after exclusions, slightly lenient (docs/NOTES.md)
   - The exact GoPlus rate-limit code is unverified; code 3 is not one (docs/NOTES.md)
-- Next step: ~24h of BL-21 data (chat counts lp_unknown, PASS, buys, exits), then the BL-13 visual mock,
-  then BL-8 (random baseline book, report built in the tick on day roll, no report.yml).
-- Last updated: 2026-10-28.
+- Next step: Pete reviews the held BL-8 diff and says "commit" (to main). Then the BL-21 24h check (chat counts lp_unknown,
+  PASS, buys, exits), then BL-23, then the BL-13 site build (reads data/report.json).
+- Last updated: 2026-10-29.
 
 ## 12. Glossary
 - Lead: a token the scanner found. Survivor: a lead that passed every hard skip.

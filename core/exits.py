@@ -53,7 +53,7 @@ def check(book, quote, now):
             book.task(now, "EXIT", pos["symbol"], address, "HOLD", "no_quote")
             continue
         note = "quote=fallback" if q.get("source") == "fallback" else ""
-        book.mark(address, price)
+        book.mark(address, price, liq)
         pct = (price / pos["entry_fill"] - 1) * 100
         out = decide(pos, price, liq, now)
         if out is None:

@@ -136,6 +136,93 @@ Moved from CLAUDE.md section 11 on 2026-10-23 (BL-2 process cleanup). Wording is
   (14 liquidity, 2 missing:liq_usd), 4 GoPlus checks -> 4 WATCH goplus_not_ready (all still pending honeypot + taxes),
   0 lp_unknown, 0 PASS, 0 buys.
 
+## BL-8
+- Random baseline shadow book (Pete's 7 picks 2026-10-29, DECISIONS). core/baseline.py: book "baseline" in state.json
+  beside "desk", run by the same core/book.py, desk.buy(), desk.sell() and exits.check(), so START_BALANCE, sizing,
+  friction, the 6 exit rules, quote logic, day roll and loss halt are the desk's; only the pick differs. Its EXECUTE,
+  EXIT and trade rows go in the same tasks.csv / trades.csv with book=baseline. Extra state key "ticks_since_buy".
+- Tick order (core/tick.py): load desk, baseline, leads, report state -> on the UTC day roll keep each book's closing
+  value, then roll both books -> if a report is due, core/report.py writes data/report.json (own try) -> held sets
+  for both books (before exits) -> baseline counter +1 -> desk exits -> baseline exits -> unless PAUSED or desk
+  loss_halt: desk scan/verify/buy exactly as before, collecting seen (each facts() lead's DexScreener side) and
+  verdicts (the desk's outcome) -> if due, one baseline pick -> save -> running peak / max drawdown -> TICK row.
+- Eligible (baseline.eligible): leads in this tick's todo that got a facts() call, checked or deferred by the GoPlus
+  cap, whose dex dict passes dex_skip() and has sells_1h > 0, minus tokens the baseline held at the tick start.
+  adapters/base.py facts(..., dex=None) fills dex right after the DexScreener (+GeckoTerminal age) step, before
+  dex_skip() and the GoPlus cap: symbol, price, liq_usd, age_min, sells_1h, pair, fetch_errors, and launchpad =
+  launchpad({}, ...) (pool shape only: ZORA quote -> zora; v4 + 1% fee from the GeckoTerminal pool name, only fetched
+  when DexScreener has no pairCreatedAt -> clanker; else other). Return value unchanged (test FactsDexTest).
+  Not eligible because never fetched this tick: leads past MAX_CHECKS, under a 24h skip, not due on the watchlist,
+  or held by the desk. So the universe is mostly first-seen leads.
+- Cadence: "ticks_since_buy" +1 every tick (also paused or halted), due at >= 12, reset to 0 only on a BUY.
+  First baseline buy on the 12th tick after deploy. Due + scan ran: one EXECUTE row, BUY or SKIP (no_eligible with
+  detail eligible=0; max_open / loss_halt / size with the pick detail). Due + no scan (PAUSED, desk loss_halt): no row.
+  MAX_OPEN counts each book's own positions; the baseline runs after the desk, with its own cash.
+- Pick and replay: seed = int(tick time as YYYYMMDDHHMM); pool = eligible addresses sorted; pick =
+  random.Random(seed).randrange(len(pool)). BUY detail: usd= fill= seed= eligible= pick= pool=<6-hex prefixes>
+  desk=<PASS | WATCH | deferred | SKIP or RETRY reason> launchpad=<pool shape>. Replay: rebuild the sorted pool from
+  the prefixes, take pool[randrange] with that seed, compare with the row's address.
+- Known biases, both flatter the baseline (Gate B stricter for the desk, kept on purpose, Pete): (1) pool-shape
+  launchpad usually misses the Clanker 1% fee, DexScreener pairs carry no fee; (2) the baseline can buy tokens GoPlus
+  flagged (honeypot, taxes) or has not read yet; the desk= tag measures it.
+- core/report.py: state key "report" = since (first BL-8 day; Gate B closes count from it), due (closed day still to
+  report), equity {book: [{day, value_usd, cash_usd, open}]} taken at the roll before exits (last-price marks),
+  peak and max_dd_pct per book updated at the end of every tick. Report values come from that day's closing entry;
+  closes / win / exits / slip from all trades.csv files, SELLs from since to the report day. Close = a SELL with any
+  rule but ladder_1/ladder_2; win/loss % per position = sum of its SELL pnl_usd / BUY usd; stop_slip_pct = mean
+  (fill / (1 - friction_pct/100) / intended - 1) x 100 over hard_stop and trail SELLs. Top level: as_of, day,
+  start_balance, desk_lead_usd, gate_b, summary, then desk and baseline. The tick logs "REPORT <summary>".
+  By hand: python -m core.report [root] = day today so far at current marks, reads state, writes <root>/data/report.json
+  (in a session never commit it).
+- Baseline failure isolation (Pete, review 2026-10-29): the baseline exits, the baseline pick/buy (with its eligible
+  count) and the baseline save + drawdown step each run in their own try (core/tick.py bl_try). An error logs one
+  row book=baseline action=ERROR reason=error:<type> (stage EXIT, EXECUTE or BOOK), TICK detail bl_error=<type>
+  (bl_error=none otherwise; the first error if several); the desk's exits, verify, buy and saves still run; the
+  baseline buy is skipped for the rest of the tick after a baseline exit error (stays due; a failed buy also stays
+  due); the run raises after the TICK row (red). Tests: a baseline exit error and a baseline buy error each leave desk
+  rows, desk and leads state, and the TICK desk keys (requests included) identical to a run without the baseline.
+  Not isolated: loading the baseline book from state.json, its day roll and counter, and the report snapshot at the
+  roll (simple dict code before exits); a broken "baseline" state key still crashes the tick as any state error does.
+- Liquidation value (Pete, review 2026-10-29, CLAUDE.md section 6): report.liq_value(book) = cash + each open
+  position x friction.sell_fill(last_price, last_liq_usd (else entry_liq_usd), launchpad), the fill a real exit
+  would get now. Used for value_usd, net_pnl_usd/pct, multiple, equity_daily (snapshot at the roll), desk_lead_usd
+  and max_dd_pct (tracked every tick; the report also counts the drop to the value it shows), both books alike.
+  Book.value() (last price, no friction) still drives the loss halt, unchanged. exits.check() now passes the
+  quote's liquidity to Book.mark(), which keeps it as "last_liq_usd" on the position (desk positions too: a new
+  state key, no row or verdict change). A just-bought position has no last_liq_usd yet and uses its entry liquidity.
+- Report failure: own try inside the tick; TICK detail report=error:<type>; exits, scan and buys still run; "due"
+  stays set and the next tick retries; after the TICK row the run raises (red). report=ok on the tick that wrote it,
+  report=none otherwise.
+- TICK detail: desk keys unchanged and first (positions ... dex_only goplus requests secs), then bl_positions bl_due
+  bl_eligible bl_bought report bl_error. requests includes the baseline exit quotes.
+- Request budget, worst case per tick, added by BL-8: baseline exits 4 positions x 1 DexScreener pairs request
+  (x 2 on fallback) = 4-8; selection 0; GoPlus 0; GeckoTerminal 0. DexScreener pairs 28 -> 36 per tick against
+  300/min (paced 0.2 s, about +1-3 s); profiles/boosts 2 (60/min) and GeckoTerminal up to 21 (30/min) unchanged;
+  GoPlus 9 unchanged. Theoretical hang bound (every request takes the full 15 s): 60 -> 68 requests = ~1,020 s
+  (was ~900 s; job timeout 600 s). Open item kept, no time guard in BL-8 (Pete).
+- Tests: tests/test_baseline.py (23): eligibility (sells_1h 0, goplus=skipped, fetch_error, held excluded; deferred
+  and WATCH/SKIP-by-GoPlus included), real facts() dex dict (same return value, deferred keeps DexScreener facts with
+  no GoPlus call, pool-shape launchpad), cadence (12th and 24th tick, retry on no_eligible, paused), separate
+  MAX_OPEN both ways, replay from the seed, baseline exits book=baseline, report fields on a day roll, report failure
+  + retry, by-hand all zeros, book_stats (ladder not a close, per-position win/loss, slip, since/upto window),
+  desk unchanged (same ticks with and without the baseline: desk rows, desk and leads state, desk TICK keys).
+  Old tests: the fake facts() takes dex; the heartbeat test checks the desk keys then the new keys. 144 pass.
+  Review fixes (+6): baseline exit error and buy error isolation (DeskUnchangedTest), LiquidationValueTest (4:
+  sell friction off the last quote, last liquidity and launchpad, equals a real exit's cash, report fields). 150 pass.
+- Live smoke 2026-10-29 (scratch folder, nothing under data/):
+  - Tick on a copy of the live state (c29b1ec), baseline due: 6 requests in 2.0 s, all HTTP 200 (DexScreener 5,
+    GeckoTerminal 1). 18 seen, 15 under a 24h skip, 3 new, all dex_only -> 0 eligible -> baseline SKIP no_eligible,
+    stays due.
+  - A second run seconds later got GeckoTerminal 429 (shared IP throttle, section 8): 0 leads.
+  - Tick on a fresh state a minute later, baseline due: 27 requests in 8.3 s, all HTTP 200 (DexScreener 21,
+    GoPlus 4, GeckoTerminal 2). 19 leads, 19 checked, dex_only 15 (13 liquidity, 1 missing:price, 1 missing:symbol),
+    4 WATCH goplus_not_ready, 0 PASS. 4 passed the DexScreener gate, 2 with sells_1h > 0 -> eligible 2.
+    Baseline BUY CYBER 0xfd27f8...: seed 202610290253, pick 1 of 2 (replayed: randrange(2) = 1), desk=WATCH,
+    launchpad=other, 5.00 USD at 5.206e-05, fill 5.4663e-05, friction 5% (liquidity 51.5k < 100k, no pool fee).
+  - python -m core.report by hand: desk 50.00 (all zeros), baseline 49.76 (1 open, -0.48%, max_dd 0.48%),
+    desk_lead_usd +0.24. After the liquidation-value fix, same state: baseline 49.52 (CYBER 4.76 -> 4.52 after its
+    5% sell friction; -0.95%, multiple 0.9905, max_dd 0.95%), desk_lead_usd +0.48. One baseline exit quote (python -m adapters.base quote): 1 request, 0.43 s, source pool.
+
 ## Open items (detail)
 - Open items:
   - BL-7 done only after 24h of green runs, no overlap, one TICK row per run. The TICK rows show the real run rate for Gate A (90%).

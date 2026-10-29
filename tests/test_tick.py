@@ -136,12 +136,15 @@ class TickTest(unittest.TestCase):
             client.calls += [("x", "scan")] * 3
             return [{"address": a, "symbol": "", "source": "t", "pool": ""} for a in self.found]
 
-        def facts(address, now=None, client=None, goplus_ok=None):
+        def facts(address, now=None, client=None, goplus_ok=None, dex=None):
             # like the real facts(): DexScreener first, GoPlus only when the gate can't decide (BL-20)
             self.order.append(address)
             client.calls.append(("x", address))
             f = self.facts.get(address, dict(good(0), honeypot=True))  # unknown lead: needs GoPlus, then skip
-            dex = dict(f, fetch_errors=[e for e in f.get("fetch_errors", []) if e != "goplus"])
+            dex = dex if dex is not None else {}
+            dex.update({k: f[k] for k in verify.DEX_FIELDS + ["pair", "launchpad"] if f.get(k) is not None},
+                       fetch_errors=[e for e in f.get("fetch_errors", []) if e != "goplus"])
+            dex = dict(f, **dex)
             if verify.dex_skip(dex):
                 return dict(dex, goplus_skipped=True)
             if goplus_ok is not None and not goplus_ok():
@@ -172,10 +175,13 @@ class TickTest(unittest.TestCase):
         hb = self.heartbeats()
         self.assertEqual(len(hb), 2)
         self.assertEqual((hb[0]["action"], hb[0]["reason"]), ("HEARTBEAT", ""))
-        self.assertEqual(detail(hb[0]), {"positions": "0", "seen": "1", "rechecks": "0", "new": "1",
-                                         "checked": "1", "passed": "0", "bought": "0", "held": "0",
-                                         "deferred": "0", "dex_only": "0", "goplus": "1", "requests": "5",
-                                         "secs": "0.0"})
+        desk_keys = {"positions": "0", "seen": "1", "rechecks": "0", "new": "1",
+                     "checked": "1", "passed": "0", "bought": "0", "held": "0",
+                     "deferred": "0", "dex_only": "0", "goplus": "1", "requests": "5", "secs": "0.0"}
+        # BL-8: the desk keys unchanged and first, the baseline keys appended after them
+        self.assertEqual(list(detail(hb[0]))[:len(desk_keys)], list(desk_keys))
+        self.assertEqual(detail(hb[0]), {**desk_keys, "bl_positions": "0", "bl_due": "0", "bl_eligible": "1",
+                                         "bl_bought": "0", "report": "none", "bl_error": "none"})
         self.assertEqual(detail(hb[1])["checked"], "0")  # the 24h skip holds: no re-check, no row
 
     def test_pass_buys_and_saves_pair(self):

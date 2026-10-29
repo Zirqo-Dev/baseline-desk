@@ -88,10 +88,13 @@ class Book:
         """Cash + open positions at last price."""
         return self.cash + sum(p["qty"] * p["last_price"] for p in self.positions.values())
 
-    def mark(self, address, price):
+    def mark(self, address, price, liq_usd=None):
+        """Last quote. liq_usd (BL-8) is kept so the report can price a sale at the friction a real exit would pay."""
         p = self.positions[address]
         p["last_price"] = price
         p["peak_price"] = max(p["peak_price"], price)
+        if liq_usd is not None:
+            p["last_liq_usd"] = liq_usd
 
     # ---- daily loss halt ----
     def roll_day(self, now):

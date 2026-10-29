@@ -26,8 +26,11 @@ def entry_block(book, address, now):
     return ""
 
 
-def buy(book, address, facts, now):
-    """Paper buy at facts["price"] plus friction. Logs one EXECUTE task row. Returns the position or None."""
+def buy(book, address, facts, now, note=""):
+    """Paper buy at facts["price"] plus friction. Logs one EXECUTE task row. Returns the position or None.
+
+    `note` is appended to the EXECUTE row detail (the baseline logs its seed and pick there, BL-8).
+    """
     if config.PAPER is not True:
         raise RuntimeError("Baseline is paper only")
     sym = facts["symbol"]
@@ -36,7 +39,7 @@ def buy(book, address, facts, now):
     if not reason:
         usd, reason = size(book.cash, facts["liq_usd"])
     if reason:
-        book.task(now, "EXECUTE", sym, address, "SKIP", reason)
+        book.task(now, "EXECUTE", sym, address, "SKIP", reason, note)
         book.save()
         return None
 
@@ -56,7 +59,8 @@ def buy(book, address, facts, now):
                      "usd": round(usd, 6), "intended_price": facts["price"], "fill_price": fill,
                      "friction_pct": pct, "liq_usd": facts["liq_usd"],
                      "launchpad": facts["launchpad"], "reason": "entry", "pnl_usd": ""})
-    book.task(now, "EXECUTE", sym, address, "BUY", "", f"usd={usd:.2f} fill={fill:.10g}")
+    book.task(now, "EXECUTE", sym, address, "BUY", "",
+              " ".join(filter(None, [f"usd={usd:.2f} fill={fill:.10g}", note])))
     book.save()
     return pos
 
