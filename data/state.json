@@ -5,7 +5,7 @@
     "day_start_value": 50.0,
     "halted_day": "",
     "positions": {},
-    "ticks_since_buy": 10
+    "ticks_since_buy": 11
   },
   "desk": {
     "cash": 50.0,
@@ -388,6 +388,12 @@
         "reason": "liquidity",
         "symbol": "Kek",
         "until": "2026-10-30T08:48:12Z"
+      },
+      "0x0d9c423458daefd9ad4b1834ed7c2d2a70fb17c5": {
+        "at": "2026-10-29T21:58:12Z",
+        "reason": "liquidity",
+        "symbol": "OMENIO",
+        "until": "2026-10-30T21:58:12Z"
       },
       "0x0dc953aa0bd16b1ad1ee42fdad92b4361f3bbb07": {
         "at": "2026-10-29T18:33:12Z",
@@ -3281,6 +3287,12 @@
         "symbol": "COINPILL",
         "until": "2026-10-30T20:18:12Z"
       },
+      "0x82e902fc7a416c4f43b7faf0bbb1d54efe768661": {
+        "at": "2026-10-29T21:58:12Z",
+        "reason": "goplus_timeout",
+        "symbol": "MORE",
+        "until": "2026-10-30T21:58:12Z"
+      },
       "0x82e9ed1588e81da75573948d35b2580b9cad847a": {
         "at": "2026-10-29T20:08:13Z",
         "reason": "mint_open",
@@ -4036,6 +4048,12 @@
         "reason": "liquidity",
         "symbol": "TORCH",
         "until": "2026-10-30T17:03:16Z"
+      },
+      "0x9d0eba51dc8eb643f2a84378f1419f3503e51a0e": {
+        "at": "2026-10-29T21:58:12Z",
+        "reason": "mint_open",
+        "symbol": "SP ",
+        "until": "2026-10-30T21:58:12Z"
       },
       "0x9e3619b9a25c80786a98bdcb5c4327a7e9af5919": {
         "at": "2026-10-29T17:23:11Z",
@@ -7286,21 +7304,21 @@
     },
     "watch": {
       "0x06f0290e36adb7e5775e736e7359c65f803990da": {
-        "checks": 4,
+        "checks": 5,
         "first_seen": "2026-10-29T20:38:12Z",
-        "last_check": "2026-10-29T21:38:13Z",
+        "last_check": "2026-10-29T21:58:12Z",
         "symbol": "UTFD"
       },
       "0x0967711082b82368f692d0ecc42a0886b1298667": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-10-29T21:43:11Z",
-        "last_check": "2026-10-29T21:43:11Z",
+        "last_check": "2026-10-29T21:58:12Z",
         "symbol": "HEXN"
       },
       "0x168e98a17f059c0b76964412d61e1d26ff63c5ea": {
-        "checks": 9,
+        "checks": 10,
         "first_seen": "2026-10-29T19:18:13Z",
-        "last_check": "2026-10-29T21:38:13Z",
+        "last_check": "2026-10-29T21:58:12Z",
         "symbol": "QUIP"
       },
       "0x40ce19931774dc29683aacbc5d1e45bc960edb01": {
@@ -7321,23 +7339,11 @@
         "last_check": "2026-10-29T21:48:12Z",
         "symbol": "RIPPLEEFFECT"
       },
-      "0x82e902fc7a416c4f43b7faf0bbb1d54efe768661": {
-        "checks": 11,
-        "first_seen": "2026-10-29T18:43:11Z",
-        "last_check": "2026-10-29T21:38:13Z",
-        "symbol": "MORE"
-      },
       "0x842f61e3ec53c01fb774318c5f11b27f2fbe1e57": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-10-29T21:38:13Z",
-        "last_check": "2026-10-29T21:38:13Z",
+        "last_check": "2026-10-29T21:58:12Z",
         "symbol": "UTFD"
-      },
-      "0x9d0eba51dc8eb643f2a84378f1419f3503e51a0e": {
-        "checks": 5,
-        "first_seen": "2026-10-29T20:28:14Z",
-        "last_check": "2026-10-29T21:38:13Z",
-        "symbol": "SP "
       },
       "0xa3e33ae32eef9d6c5ecbf89c35e0b1ab5ee05bc0": {
         "checks": 6,
@@ -7346,15 +7352,15 @@
         "symbol": "AFDO"
       },
       "0xb7c10146ba1b618956a38605ab6496523d450871": {
-        "checks": 2,
+        "checks": 3,
         "first_seen": "2026-10-29T21:18:12Z",
-        "last_check": "2026-10-29T21:38:13Z",
+        "last_check": "2026-10-29T21:58:12Z",
         "symbol": "ESHARE"
       },
       "0xba7b20a0f28cdcca36991a1112a7183a0f1f7908": {
-        "checks": 5,
+        "checks": 6,
         "first_seen": "2026-10-29T20:23:11Z",
-        "last_check": "2026-10-29T21:38:13Z",
+        "last_check": "2026-10-29T21:58:12Z",
         "symbol": "UFDT"
       },
       "0xc62be3ae1b6ca46f6bc4bd3399f8b48618d71c05": {
@@ -7364,9 +7370,9 @@
         "symbol": "ADOF"
       },
       "0xf89479f25d5ec60c170e950199ef1bae325a69f2": {
-        "checks": 5,
+        "checks": 6,
         "first_seen": "2026-10-29T20:28:14Z",
-        "last_check": "2026-10-29T21:38:13Z",
+        "last_check": "2026-10-29T21:58:12Z",
         "symbol": "OIL"
       }
     }
