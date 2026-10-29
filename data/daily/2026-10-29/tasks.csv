@@ -2855,3 +2855,14 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-10-29T20:58:12Z,desk,VERIFY,HEXN,0x02043225edf7e2b4938c0eff6f8302574a96c7d0,SKIP,liquidity,goplus=skipped until=2026-10-30T20:58:12Z
 2026-10-29T20:58:12Z,desk,VERIFY,REBATE,0x14434deeee70fc99c167b063e09c23834d01116c,SKIP,liquidity,goplus=skipped until=2026-10-30T20:58:12Z
 2026-10-29T20:58:12Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=3 new=4 checked=7 passed=0 bought=0 held=0 deferred=0 dex_only=4 goplus=3 requests=13 secs=6.5 bl_positions=0 bl_due=0 bl_eligible=0 bl_bought=0 report=none bl_error=none
+2026-10-29T21:03:13Z,desk,VERIFY,DTCC,0x728bf64b22a6678ef9e1d8a2ec2b7585456641c2,WATCH,goplus_not_ready,"first_seen=2026-10-29T18:13:14Z checks=10 pending=honeypot,buy_tax_pct,sell_tax_pct,lp_locked_pct"
+2026-10-29T21:03:13Z,desk,VERIFY,EDEL,0xfb31f85a8367210b2e4ed2360d2da9dc2d2ccc95,WATCH,goplus_not_ready,first_seen=2026-10-29T18:13:14Z checks=10 pending=honeypot
+2026-10-29T21:03:13Z,desk,VERIFY,NAFF,0x8f6ed1b168135dd7eaa59e24d935a56ea3f1aa16,WATCH,goplus_not_ready,"first_seen=2026-10-29T18:33:12Z checks=9 pending=honeypot,buy_tax_pct,sell_tax_pct,lp_locked_pct"
+2026-10-29T21:03:13Z,desk,VERIFY,MORE,0x82e902fc7a416c4f43b7faf0bbb1d54efe768661,WATCH,goplus_not_ready,"first_seen=2026-10-29T18:43:11Z checks=9 pending=mint_open,freeze_or_blacklist,honeypot,buy_tax_pct,sell_tax_pct,lp_locked_pct,risk_flags"
+2026-10-29T21:03:13Z,desk,VERIFY,QUIP,0x168e98a17f059c0b76964412d61e1d26ff63c5ea,WATCH,goplus_not_ready,"first_seen=2026-10-29T19:18:13Z checks=7 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct"
+2026-10-29T21:03:13Z,desk,VERIFY,SP ,0x9d0eba51dc8eb643f2a84378f1419f3503e51a0e,WATCH,goplus_not_ready,first_seen=2026-10-29T20:28:14Z checks=3 pending=top10_pct
+2026-10-29T21:03:13Z,desk,VERIFY,OIL,0xf89479f25d5ec60c170e950199ef1bae325a69f2,WATCH,goplus_not_ready,"first_seen=2026-10-29T20:28:14Z checks=3 pending=honeypot,buy_tax_pct,sell_tax_pct,dev_pct,top10_pct,lp_locked_pct"
+2026-10-29T21:03:13Z,desk,VERIFY,cbBTC,0xb200000000000000000000828fc0662c9e587801,SKIP,liquidity,goplus=skipped until=2026-10-30T21:03:13Z
+2026-10-29T21:03:13Z,desk,VERIFY,FLEG,0x62db4a5dcbfcfbd15a3f3cb553b543a0a5036c07,SKIP,liquidity,goplus=skipped until=2026-10-30T21:03:13Z
+2026-10-29T21:03:13Z,baseline,EXECUTE,EDEL,0xfb31f85a8367210b2e4ed2360d2da9dc2d2ccc95,BUY,,"usd=5.29 fill=0.0328261 seed=202610292103 eligible=2 pick=1 pool=8f6ed1,fb31f8 desk=WATCH launchpad=other"
+2026-10-29T21:03:13Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=7 new=2 checked=9 passed=0 bought=0 held=0 deferred=0 dex_only=2 goplus=7 requests=19 secs=13.9 bl_positions=0 bl_due=1 bl_eligible=2 bl_bought=1 report=none bl_error=none
