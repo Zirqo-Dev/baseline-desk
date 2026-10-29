@@ -23,7 +23,7 @@ from core import desk
 from core.verify import dex_skip
 
 NAME = "baseline"
-CADENCE = 12  # ticks between baseline buys (Pete, BL-8)
+CADENCE = 12  # ticks between baseline buys (the owner, BL-8)
 
 
 def tick_count(book):

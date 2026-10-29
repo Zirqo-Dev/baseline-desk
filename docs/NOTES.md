@@ -66,12 +66,12 @@ Moved from CLAUDE.md section 11 on 2026-10-23 (BL-2 process cleanup). Wording is
   - All others: never fail in a tick's first 10 checks (0 of 369 rows), fail at check 11+ (most of them) -> GoPlus
     budget is about 10 calls per tick at 2 s pacing. The code they get is NOT logged and was not reproduced live
     (would need 11+ calls). 120 addresses, 195 rows; 104 later got a clean check, 14 lost to fetch_error_x3, 2 retrying.
-  - Both fixes BUILT 2026-10-23 (Pete chose them, DECISIONS): code 3 -> "goplus_partial" final 24h skip, other codes
+  - Both fixes BUILT 2026-10-23 (the owner chose them, DECISIONS): code 3 -> "goplus_partial" final 24h skip, other codes
     logged as goplus_code=<n>; GOPLUS_MAX_PER_TICK = 9. Live smoke (4 requests): WIZARD 0xb2000000... -> goplus_partial,
     BRETT -> missing:lp_locked_pct (known LP-lock issue), all HTTP 200.
   - Reported, not built: facts() calls GoPlus even when DexScreener alone already makes the lead a final skip.
     tasks.csv to 19:13 UTC: at least 154 of 757 checks (20%: 134 liquidity, 20 missing:liq_usd) wasted a GoPlus call,
-    about 2 of the 9 per tick. Pete decides in chat whether that becomes a new card.
+    about 2 of the 9 per tick. The owner decides in chat whether that becomes a new card.
     -> Built as BL-20 (2026-10-26), see below.
 
 ## BL-20
@@ -88,7 +88,7 @@ Moved from CLAUDE.md section 11 on 2026-10-23 (BL-2 process cleanup). Wording is
   state untouched, so the same queue order next tick; a deferred NEW lead returns only if the scan lists it again,
   as before). A deferred lead still spent its DexScreener request (and GeckoTerminal if needed).
   TICK row: ... deferred dex_only goplus requests secs. dex_only = checks settled without GoPlus (part of checked).
-- Label shift (accepted by Pete 2026-10-25, test tests/test_verify.py DexFirstTest): only labels move, nothing moves to
+- Label shift (accepted by the owner 2026-10-25, test tests/test_verify.py DexFirstTest): only labels move, nothing moves to
   WATCH or PASS. Low liquidity + honeypot / mint_open / freeze / risk_flag / goplus_partial / nobody_can_sell /
   missing:<GoPlus field> -> "liquidity". Found while building: a token with no DexScreener pair whose GoPlus answer is
   code 3 was "goplus_partial", now "missing:symbol" (both final 24h). A low-liquidity (or DexScreener-gap) lead whose
@@ -114,10 +114,10 @@ Moved from CLAUDE.md section 11 on 2026-10-23 (BL-2 process cleanup). Wording is
 - 405 of 427 timeouts still had honeypot + taxes pending, and none had only lp_locked_pct pending.
 - 39 leads died on missing:lp_locked_pct.
 - Verdict: BL-20 kept. Honeypot/tax silence is the bigger wall; revisit BL-22 or WATCH max_h on BL-21 data.
-- WATCH max_h stays 3 h (Pete, 2026-10-25, DECISIONS).
+- WATCH max_h stays 3 h (the owner, 2026-10-25, DECISIONS).
 
 ## BL-21
-- Unknown LP lock allowed (Pete, option A, 2026-10-25; DECISIONS). core/verify.py: LP = "lp_locked_pct".
+- Unknown LP lock allowed (the owner, option A, 2026-10-25; DECISIONS). core/verify.py: LP = "lp_locked_pct".
   hard_skip() leaves lp_locked_pct out of the missing-data gate: None (missing, or listed in goplus_pending) is
   "unknown" and the lead goes on through every other rule in the same order. missing:<field> reports the first gap
   in REQUIRED order with lp_locked_pct skipped over; goplus_not_ready still fires when other GoPlus fields are
@@ -137,7 +137,7 @@ Moved from CLAUDE.md section 11 on 2026-10-23 (BL-2 process cleanup). Wording is
   0 lp_unknown, 0 PASS, 0 buys.
 
 ## BL-8
-- Random baseline shadow book (Pete's 7 picks 2026-10-29, DECISIONS). core/baseline.py: book "baseline" in state.json
+- Random baseline shadow book (the owner's 7 picks 2026-10-29, DECISIONS). core/baseline.py: book "baseline" in state.json
   beside "desk", run by the same core/book.py, desk.buy(), desk.sell() and exits.check(), so START_BALANCE, sizing,
   friction, the 6 exit rules, quote logic, day roll and loss halt are the desk's; only the pick differs. Its EXECUTE,
   EXIT and trade rows go in the same tasks.csv / trades.csv with book=baseline. Extra state key "ticks_since_buy".
@@ -162,7 +162,7 @@ Moved from CLAUDE.md section 11 on 2026-10-23 (BL-2 process cleanup). Wording is
   random.Random(seed).randrange(len(pool)). BUY detail: usd= fill= seed= eligible= pick= pool=<6-hex prefixes>
   desk=<PASS | WATCH | deferred | SKIP or RETRY reason> launchpad=<pool shape>. Replay: rebuild the sorted pool from
   the prefixes, take pool[randrange] with that seed, compare with the row's address.
-- Known biases, both flatter the baseline (Gate B stricter for the desk, kept on purpose, Pete): (1) pool-shape
+- Known biases, both flatter the baseline (Gate B stricter for the desk, kept on purpose, the owner): (1) pool-shape
   launchpad usually misses the Clanker 1% fee, DexScreener pairs carry no fee; (2) the baseline can buy tokens GoPlus
   flagged (honeypot, taxes) or has not read yet; the desk= tag measures it.
 - core/report.py: state key "report" = since (first BL-8 day; Gate B closes count from it), due (closed day still to
@@ -174,7 +174,7 @@ Moved from CLAUDE.md section 11 on 2026-10-23 (BL-2 process cleanup). Wording is
   start_balance, desk_lead_usd, gate_b, summary, then desk and baseline. The tick logs "REPORT <summary>".
   By hand: python -m core.report [root] = day today so far at current marks, reads state, writes <root>/data/report.json
   (in a session never commit it).
-- Baseline failure isolation (Pete, review 2026-10-29): the baseline exits, the baseline pick/buy (with its eligible
+- Baseline failure isolation (the owner, review 2026-10-29): the baseline exits, the baseline pick/buy (with its eligible
   count) and the baseline save + drawdown step each run in their own try (core/tick.py bl_try). An error logs one
   row book=baseline action=ERROR reason=error:<type> (stage EXIT, EXECUTE or BOOK), TICK detail bl_error=<type>
   (bl_error=none otherwise; the first error if several); the desk's exits, verify, buy and saves still run; the
@@ -183,7 +183,7 @@ Moved from CLAUDE.md section 11 on 2026-10-23 (BL-2 process cleanup). Wording is
   rows, desk and leads state, and the TICK desk keys (requests included) identical to a run without the baseline.
   Not isolated: loading the baseline book from state.json, its day roll and counter, and the report snapshot at the
   roll (simple dict code before exits); a broken "baseline" state key still crashes the tick as any state error does.
-- Liquidation value (Pete, review 2026-10-29, CLAUDE.md section 6): report.liq_value(book) = cash + each open
+- Liquidation value (the owner, review 2026-10-29, CLAUDE.md section 6): report.liq_value(book) = cash + each open
   position x friction.sell_fill(last_price, last_liq_usd (else entry_liq_usd), launchpad), the fill a real exit
   would get now. Used for value_usd, net_pnl_usd/pct, multiple, equity_daily (snapshot at the roll), desk_lead_usd
   and max_dd_pct (tracked every tick; the report also counts the drop to the value it shows), both books alike.
@@ -199,7 +199,7 @@ Moved from CLAUDE.md section 11 on 2026-10-23 (BL-2 process cleanup). Wording is
   (x 2 on fallback) = 4-8; selection 0; GoPlus 0; GeckoTerminal 0. DexScreener pairs 28 -> 36 per tick against
   300/min (paced 0.2 s, about +1-3 s); profiles/boosts 2 (60/min) and GeckoTerminal up to 21 (30/min) unchanged;
   GoPlus 9 unchanged. Theoretical hang bound (every request takes the full 15 s): 60 -> 68 requests = ~1,020 s
-  (was ~900 s; job timeout 600 s). Open item kept, no time guard in BL-8 (Pete).
+  (was ~900 s; job timeout 600 s). Open item kept, no time guard in BL-8 (the owner).
 - Tests: tests/test_baseline.py (23): eligibility (sells_1h 0, goplus=skipped, fetch_error, held excluded; deferred
   and WATCH/SKIP-by-GoPlus included), real facts() dex dict (same return value, deferred keeps DexScreener facts with
   no GoPlus call, pool-shape launchpad), cadence (12th and 24th tick, retry on no_eligible, paused), separate
@@ -230,18 +230,18 @@ Moved from CLAUDE.md section 11 on 2026-10-23 (BL-2 process cleanup). Wording is
     scan finds them again. Watch whether watched leads still get their 15-min re-checks on time.
     BL-20: the tick now goes on after the 9 GoPlus calls, so only GoPlus leads are deferred; compare after ~24h.
   - LP lock: GoPlus can't tie lp_holders to our pool unless it lists exactly one pool, so many leads die on
-    missing:lp_locked_pct (Uniswap v4 may never have LP holders). Pete decides after 24-48h of BL-7 skip-reason data.
+    missing:lp_locked_pct (Uniswap v4 may never have LP holders). The owner decides after 24-48h of BL-7 skip-reason data.
     -> Decided 2026-10-25 (option A) and built as BL-21: unknown LP lock allowed, logged lp_unknown.
   - Clanker/Zora factory addresses unconfirmed; launchpad is pool-shape only until BL-10 (CLANKER_CREATORS/ZORA_CREATORS empty).
   - top10 is the top 8-10 after exclusions (GoPlus returns only 10 holders); slightly lenient.
   - GoPlus rate limit is detected as any non-OK "code" in the body (fetch_error); the exact rate-limit code is unverified live
     (code 3 is NOT a rate limit, see GoPlus diagnosis above).
-  - Week-1 review of the watchlist: if more than about 1/3 of watched leads time out, Pete may raise WATCH max_h to 6.
+  - Week-1 review of the watchlist: if more than about 1/3 of watched leads time out, the owner may raise WATCH max_h to 6.
     -> Decided 2026-10-25: WATCH max_h stays 3 h (timeouts stuck on honeypot + taxes); see BL-20 review above.
 
 ## Next step (full text before the 2026-10-23 cleanup)
 - Next step: confirm the GoPlus fixes live from tasks.csv after the push: TICK rows show goplus<=9, no fetch_error with
   hosts=goplus at check 10+, 0xb2000000... leads get one SKIP goplus_partial, and any goplus_code=<n> seen is the real
-  rate-limit code (write it in section 11). Pete decides on the "GoPlus wasted on DexScreener-only skips" card.
+  rate-limit code (write it in section 11). The owner decides on the "GoPlus wasted on DexScreener-only skips" card.
   After 2026-10-24 15:28 UTC count TICK rows since 15:28 (expect 288) and runs in the Actions tab; if green with one
   TICK row per run, mark BL-7 done, then BL-8 (report.py + report.yml).

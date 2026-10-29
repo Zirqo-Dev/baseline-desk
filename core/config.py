@@ -1,4 +1,4 @@
-"""Baseline settings. Pete owns this file: thresholds change only when Pete asks."""
+"""Baseline settings. The owner owns this file: thresholds change only when the owner asks."""
 
 # Switches
 PAPER = True              # paper only, always (CLAUDE.md non-negotiable 1)

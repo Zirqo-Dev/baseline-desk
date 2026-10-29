@@ -71,7 +71,7 @@ class ExitsTest(unittest.TestCase):
         self.assertIsNone(self.pos())
         self.assertEqual(self.rows("trades")[-1]["reason"], "time_stop")
 
-    # ---- Pete's three details ----
+    # ---- The owner's three details ----
     def test_rungs_sell_33pct_of_original_not_remainder(self):
         self.run_at(E * 1.41)
         self.run_at(E * 2.01)

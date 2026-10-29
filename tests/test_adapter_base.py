@@ -209,7 +209,7 @@ class DexFirstTest(unittest.TestCase):
         self.assertEqual(hard_skip(base.facts(FRESH, NOW, c, goplus_ok=lambda: False)), "liquidity")
 
     def test_low_liquidity_honeypot_now_logs_liquidity(self):
-        # accepted label shift (Pete, 2026-10-25): GoPlus would say honeypot, but it is never asked
+        # accepted label shift (the owner, 2026-10-25): GoPlus would say honeypot, but it is never asked
         gp = load("goplus_fresh")
         gp["result"][FRESH].update(is_honeypot="1", cannot_sell_all="1")
         c = FakeClient({"token-pairs": load("dexscreener_fresh"), "gopluslabs": gp})

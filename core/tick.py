@@ -32,7 +32,7 @@ from core import baseline, config, desk, exits, report
 from core.book import ROOT, TASK_FIELDS, Book, _append, day, ts, utcnow
 from core.leads import Leads
 
-MAX_CHECKS = 20  # facts() calls per tick (Pete, BL-7 4b)
+MAX_CHECKS = 20  # facts() calls per tick (the owner, BL-7 4b)
 COUNTS = ["positions", "seen", "rechecks", "new", "checked", "passed", "bought", "held", "deferred", "dex_only"]
 BL_COUNTS = ["bl_positions", "bl_due", "bl_eligible", "bl_bought"]  # BL-8, after the desk keys
 
