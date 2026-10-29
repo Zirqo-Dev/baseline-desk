@@ -405,3 +405,13 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-10-29T04:03:12Z,desk,VERIFY,FODF,0xb200000000000000000000b521ca111d5e0b82c1,SKIP,liquidity,goplus=skipped until=2026-10-30T04:03:12Z
 2026-10-29T04:03:12Z,baseline,EXECUTE,NAFF,0x348c681acb7bc76f0ba7a7247dbfdf46ed327ba9,BUY,,"usd=5.00 fill=0.23898 seed=202610290403 eligible=2 pick=0 pool=348c68,8d0f1a desk=WATCH launchpad=other"
 2026-10-29T04:03:12Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=5 new=3 checked=8 passed=0 bought=0 held=0 deferred=0 dex_only=2 goplus=6 requests=17 secs=11.8 bl_positions=0 bl_due=1 bl_eligible=2 bl_bought=1 report=none bl_error=none
+2026-10-29T04:08:12Z,baseline,EXIT,NAFF,0x348c681acb7bc76f0ba7a7247dbfdf46ed327ba9,HOLD,,pct=-4.76
+2026-10-29T04:08:12Z,desk,VERIFY,FOFD,0x8a9b51c0034104fa97995054417f1f658bc87b88,WATCH,goplus_not_ready,"first_seen=2026-10-29T03:53:11Z checks=2 pending=mint_open,freeze_or_blacklist,honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct,risk_flags"
+2026-10-29T04:08:12Z,desk,VERIFY,MPLX,0xc805bfc6657cedcd7f4cc6adc30d7575a98ad736,WATCH,goplus_not_ready,"first_seen=2026-10-29T03:53:11Z checks=2 pending=mint_open,freeze_or_blacklist,honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct,risk_flags"
+2026-10-29T04:08:12Z,desk,VERIFY,WOSE,0xb77bca66a1b84ce63a292fbc67f19e59af773b26,SKIP,missing:liq_usd,goplus=skipped until=2026-10-30T04:08:12Z
+2026-10-29T04:08:12Z,desk,VERIFY,LIQUIDBGT,0xcef3ef05663e1ef77cfa91fd7a9d71567b90ea07,SKIP,liquidity,goplus=skipped until=2026-10-30T04:08:12Z
+2026-10-29T04:08:12Z,desk,VERIFY,FDOF,0x08ee2cd86328ae01749fd3320b158ef6ad10a3b5,SKIP,liquidity,goplus=skipped until=2026-10-30T04:08:12Z
+2026-10-29T04:08:12Z,desk,VERIFY,Bubble,0x6054f41fedf3d7a429af0cba5797d98ae139cd94,SKIP,liquidity,goplus=skipped until=2026-10-30T04:08:12Z
+2026-10-29T04:08:12Z,desk,VERIFY,CROSSRIVER,0x9c86395b7c087b5da1afbe9f8adadf114d71d251,SKIP,missing:liq_usd,goplus=skipped until=2026-10-30T04:08:12Z
+2026-10-29T04:08:12Z,desk,VERIFY,JAPRO,0x4c90c3801332b5830c0157cd15a4825feb35cfd2,SKIP,missing:liq_usd,goplus=skipped until=2026-10-30T04:08:12Z
+2026-10-29T04:08:12Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=2 new=6 checked=8 passed=0 bought=0 held=0 deferred=0 dex_only=6 goplus=2 requests=14 secs=4.8 bl_positions=1 bl_due=0 bl_eligible=1 bl_bought=0 report=none bl_error=none
