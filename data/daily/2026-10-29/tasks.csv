@@ -1293,3 +1293,18 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-10-29T10:48:11Z,desk,VERIFY,CHUBBY,0xf11cdc5a2d52a46eb0daba620cf04c2d643116da,SKIP,liquidity,goplus=skipped until=2026-10-30T10:48:11Z
 2026-10-29T10:48:11Z,desk,VERIFY,Wizard,0x9bd0022b41b066935ca6e94d14a4ef403e4ee2db,SKIP,liquidity,goplus=skipped until=2026-10-30T10:48:11Z
 2026-10-29T10:48:11Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=0 new=3 checked=3 passed=0 bought=0 held=0 deferred=0 dex_only=3 goplus=0 requests=6 secs=1.9 bl_positions=0 bl_due=0 bl_eligible=0 bl_bought=0 report=none bl_error=none
+2026-10-29T10:53:15Z,desk,VERIFY,CMO,0x64ad85432095a621b64ebdcac4887df5acf94707,SKIP,goplus_timeout,first_seen=2026-10-29T07:53:11Z checks=11 until=2026-10-30T10:53:15Z
+2026-10-29T10:53:15Z,desk,VERIFY,Kek,0xa5d431202677f72db188351228a8363e8643b836,WATCH,goplus_not_ready,"first_seen=2026-10-29T08:53:13Z checks=8 pending=mint_open,freeze_or_blacklist,honeypot,risk_flags"
+2026-10-29T10:53:15Z,desk,VERIFY,NAFF,0x071b1940e2d9bb1f0cc4ccd82a89a73b3ff82020,WATCH,goplus_not_ready,"first_seen=2026-10-29T09:13:12Z checks=7 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct"
+2026-10-29T10:53:15Z,desk,VERIFY,ADTF,0x2be3da5b0eb2769b44b7001bfd239ca1cab5f591,WATCH,goplus_not_ready,"first_seen=2026-10-29T09:13:12Z checks=7 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct"
+2026-10-29T10:53:15Z,desk,VERIFY,USWF,0x31fa9e0fe5fd6651810fb5e4855d1ab0d17e5a47,WATCH,goplus_not_ready,"first_seen=2026-10-29T09:13:12Z checks=7 pending=honeypot,buy_tax_pct,sell_tax_pct,lp_locked_pct"
+2026-10-29T10:53:15Z,desk,VERIFY,UDTF,0x3fcf5db8e04104cde5c589be5ef0e904c35a54a1,WATCH,goplus_not_ready,"first_seen=2026-10-29T09:13:12Z checks=7 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct"
+2026-10-29T10:53:15Z,desk,VERIFY,FPES,0x15f86485ac1ea487e4ebd4c0423e7d39c53cd576,WATCH,goplus_not_ready,"first_seen=2026-10-29T09:18:17Z checks=7 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct"
+2026-10-29T10:53:15Z,desk,VERIFY,FTR,0x26fd164cfcf1c101b83b7575b8f5c51d6de74fd3,WATCH,goplus_not_ready,"first_seen=2026-10-29T09:18:17Z checks=7 pending=mint_open,freeze_or_blacklist,honeypot,buy_tax_pct,sell_tax_pct,lp_locked_pct,risk_flags"
+2026-10-29T10:53:15Z,desk,VERIFY,ADOF,0xb2000000000000000000004adbd1041694bc497d,SKIP,liquidity,goplus=skipped until=2026-10-30T10:53:15Z
+2026-10-29T10:53:15Z,desk,VERIFY,ADOF,0xb2000000000000000000005f8ac05b1c03e01334,SKIP,liquidity,goplus=skipped until=2026-10-30T10:53:15Z
+2026-10-29T10:53:15Z,desk,VERIFY,DRB,0xd6941bc4a250dc0b6c93b2a66aefa5af343f8b82,SKIP,liquidity,goplus=skipped until=2026-10-30T10:53:15Z
+2026-10-29T10:53:15Z,desk,VERIFY,CLANKER,0x68cc09fc071594b3a57cac48c59c18f35c532df5,SKIP,liquidity,goplus=skipped until=2026-10-30T10:53:15Z
+2026-10-29T10:53:15Z,desk,VERIFY,PEARL,0x968e63586e74237a701987847b0cc8d3ac9f8cd9,SKIP,liquidity,goplus=skipped until=2026-10-30T10:53:15Z
+2026-10-29T10:53:15Z,baseline,EXECUTE,NAFF,0x071b1940e2d9bb1f0cc4ccd82a89a73b3ff82020,BUY,,"usd=5.70 fill=0.241395 seed=202610291053 eligible=7 pick=0 pool=071b19,15f864,26fd16,2be3da,31fa9e,3fcf5d,a5d431 desk=WATCH launchpad=other"
+2026-10-29T10:53:15Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=8 new=5 checked=13 passed=0 bought=0 held=0 deferred=0 dex_only=5 goplus=8 requests=24 secs=17.0 bl_positions=0 bl_due=1 bl_eligible=7 bl_bought=1 report=none bl_error=none
