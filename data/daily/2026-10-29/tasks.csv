@@ -2887,3 +2887,12 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-10-29T21:18:12Z,desk,VERIFY,MARLOWE,0xb20000000000000000000078da23e1438db51626,SKIP,liquidity,goplus=skipped until=2026-10-30T21:18:12Z
 2026-10-29T21:18:12Z,desk,VERIFY,SEEDLY,0x039f4fe9d58c4d5e70e2ebbebce47ee62dd59b18,SKIP,liquidity,goplus=skipped until=2026-10-30T21:18:12Z
 2026-10-29T21:18:12Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=3 new=4 checked=7 passed=0 bought=0 held=0 deferred=0 dex_only=3 goplus=4 requests=15 secs=8.3 bl_positions=1 bl_due=0 bl_eligible=1 bl_bought=0 report=none bl_error=none
+2026-10-29T21:23:12Z,baseline,EXIT,EDEL,0xfb31f85a8367210b2e4ed2360d2da9dc2d2ccc95,HOLD,,pct=-2.43
+2026-10-29T21:23:12Z,desk,VERIFY,DTCC,0x728bf64b22a6678ef9e1d8a2ec2b7585456641c2,SKIP,goplus_timeout,first_seen=2026-10-29T18:13:14Z checks=11 until=2026-10-30T21:23:12Z
+2026-10-29T21:23:12Z,desk,VERIFY,EDEL,0xfb31f85a8367210b2e4ed2360d2da9dc2d2ccc95,SKIP,goplus_timeout,first_seen=2026-10-29T18:13:14Z checks=11 until=2026-10-30T21:23:12Z
+2026-10-29T21:23:12Z,desk,VERIFY,NAFF,0x8f6ed1b168135dd7eaa59e24d935a56ea3f1aa16,WATCH,goplus_not_ready,"first_seen=2026-10-29T18:33:12Z checks=10 pending=honeypot,buy_tax_pct,sell_tax_pct,lp_locked_pct"
+2026-10-29T21:23:12Z,desk,VERIFY,MORE,0x82e902fc7a416c4f43b7faf0bbb1d54efe768661,WATCH,goplus_not_ready,"first_seen=2026-10-29T18:43:11Z checks=10 pending=mint_open,freeze_or_blacklist,honeypot,buy_tax_pct,sell_tax_pct,lp_locked_pct,risk_flags"
+2026-10-29T21:23:12Z,desk,VERIFY,QUIP,0x168e98a17f059c0b76964412d61e1d26ff63c5ea,WATCH,goplus_not_ready,"first_seen=2026-10-29T19:18:13Z checks=8 pending=honeypot,buy_tax_pct,sell_tax_pct,lp_locked_pct"
+2026-10-29T21:23:12Z,desk,VERIFY,SP ,0x9d0eba51dc8eb643f2a84378f1419f3503e51a0e,WATCH,goplus_not_ready,first_seen=2026-10-29T20:28:14Z checks=4 pending=top10_pct
+2026-10-29T21:23:12Z,desk,VERIFY,OIL,0xf89479f25d5ec60c170e950199ef1bae325a69f2,WATCH,goplus_not_ready,"first_seen=2026-10-29T20:28:14Z checks=4 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct"
+2026-10-29T21:23:12Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=7 new=0 checked=7 passed=0 bought=0 held=0 deferred=0 dex_only=0 goplus=7 requests=18 secs=13.8 bl_positions=1 bl_due=0 bl_eligible=1 bl_bought=0 report=none bl_error=none
