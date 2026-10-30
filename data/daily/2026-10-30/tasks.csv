@@ -3058,3 +3058,10 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-10-30T23:43:13Z,desk,VERIFY,ADOF,0x8e97af5c3270fa13303eae91f319b255f4943fca,WATCH,goplus_not_ready,first_seen=2026-10-30T22:58:12Z checks=4 pending=honeypot b1=5 s1=0 b24=19 s24=3 liq=865673 dex=uniswap:v4 qliq=5720
 2026-10-30T23:43:13Z,desk,VERIFY,BSTONK,0x0f61edbfe6cd86024c0f210c0695b08df55fdfc9,WATCH,goplus_not_ready,"first_seen=2026-10-30T23:13:12Z checks=3 pending=honeypot,buy_tax_pct,sell_tax_pct b1=7 s1=5 b24=337 s24=227 liq=79791 dex=uniswap:v4 qliq=38870"
 2026-10-30T23:43:13Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=22 rechecks=9 new=0 checked=9 passed=0 bought=0 held=0 deferred=0 dex_only=1 goplus=8 requests=23 secs=16.6 bl_positions=2 bl_due=0 bl_eligible=1 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=5 labels_done=5 labels_calls=1
+2026-10-30T23:48:13Z,baseline,EXIT,U.S OIL EXCHANGE,0x722792048c078946f63365b96d1aa2f48ca95adc,HOLD,,pct=10.95
+2026-10-30T23:48:13Z,desk,VERIFY,UARG,0x8a55d4e2ef07bd4d68e9f1854d939afc1361272f,WATCH,goplus_not_ready,"first_seen=2026-10-30T23:48:13Z checks=1 pending=mint_open,freeze_or_blacklist,honeypot,buy_tax_pct,sell_tax_pct,dev_pct,top10_pct,lp_locked_pct,risk_flags b1=6 s1=0 b24=6 s24=0 liq=145561 dex=uniswap:v4 qliq=42"
+2026-10-30T23:48:13Z,desk,VERIFY,CCZZ,0xb2000000000000000000006b8c25470e3b5e0a71,SKIP,liquidity,goplus=skipped until=2026-10-31T23:48:13Z
+2026-10-30T23:48:13Z,desk,VERIFY,Basesheep,0xf7685d1166b128475ac2baf71e903fda45771c04,SKIP,liquidity,goplus=skipped until=2026-10-31T23:48:13Z
+2026-10-30T23:48:13Z,desk,VERIFY,XCHAT,0x0e69b05a8d1a8ee9214b61a224d226396f25b526,SKIP,liquidity,goplus=skipped until=2026-10-31T23:48:13Z
+2026-10-30T23:48:13Z,desk,VERIFY,PUKI,0x1e8626ad9c705fe8d05e82315c29050cc1f31783,SKIP,liquidity,goplus=skipped until=2026-10-31T23:48:13Z
+2026-10-30T23:48:13Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=22 rechecks=0 new=5 checked=5 passed=0 bought=0 held=0 deferred=0 dex_only=4 goplus=1 requests=10 secs=2.9 bl_positions=1 bl_due=0 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=none labels_due=0 labels_done=0 labels_calls=0
