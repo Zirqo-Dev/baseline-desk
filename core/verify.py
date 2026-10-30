@@ -22,6 +22,9 @@ HARD_FLAGS = ["hidden_owner", "can_take_back_ownership", "owner_change_balance",
 # A known lock under min_lp_locked_pct still skips. DECISIONS 2026-10-25, BL-21.
 LP = "lp_locked_pct"
 
+# BL-25: DexScreener trade facts logged at the end of VERIFY and baseline BUY rows (adapters/base.py trade_facts()).
+TRADE_KEYS = ["b1", "s1", "b24", "s24", "liq", "dex"]
+
 
 def dex_skip(facts):
     """BL-20 gate, before any GoPlus call: the skip DexScreener alone decides, or "" when GoPlus is needed.
@@ -107,3 +110,14 @@ def lp_unknown(facts):
     if facts.get("goplus_skipped") or facts.get("fetch_errors") or facts.get("goplus_partial"):
         return False
     return facts.get(LP) is None and all(facts.get(k) is not None for k in REQUIRED if k != LP)
+
+
+def trade_detail(facts):
+    """BL-25: the trade keys for a row's detail, "na" where missing; [] for a gate-killed check (goplus_skipped).
+
+    Logging only, never read by a rule. Never raises.
+    """
+    if not isinstance(facts, dict) or facts.get("goplus_skipped"):
+        return []
+    t = facts.get("trade") if isinstance(facts.get("trade"), dict) else {}
+    return [f"{k}={t.get(k, 'na')}" for k in TRADE_KEYS]

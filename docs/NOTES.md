@@ -447,6 +447,76 @@ Moved from CLAUDE.md section 11 on 2026-10-23 (BL-2 process cleanup). Wording is
   (1,229 tokens); card build 0.05 s. tokens_24h.json is overwritten once a day, so git grows ~230 KB per day from it;
   BL-16's archive should cover it.
 
+## BL-25
+- Logging only (the owner, 2026-10-30, DECISIONS): DexScreener trade facts at the END of the row detail, existing keys and
+  their order unchanged. No rule reads them; verdicts, reasons, row counts, state, requests and TICK keys are unchanged.
+- Keys, in this order: b1 s1 b24 s24 liq dex.
+  - b1 / s1, b24 / s24 = buys / sells in the h1 / h24 window, summed over every Base pair (chainId "base") that holds our
+    token. Side logic (same as total_sells_1h): our token is baseToken -> b = txns.<w>.buys, s = txns.<w>.sells; our token
+    is quoteToken -> the mirror, b = txns.<w>.sells, s = txns.<w>.buys. So s1 equals the sells_1h the rules already use
+    (unit test with a quote-side pair; live smoke 34 of 34 leads equal).
+  - liq = liquidity.usd of the chosen pair (pick_pair: the deepest Base pair), rounded to whole USD.
+  - dex = the chosen pair's dexId plus its first vN label (uniswap:v4, uniswap:v3, uniswap:v2, aerodrome, aerodrome:v2);
+    other labels (CL, DLMM) are dropped, characters outside [A-Za-z0-9_.-] become "_" so it stays one detail token.
+    Asked as "pool"; named "dex" because the baseline BUY row already has pool= (BL-8 eligible-pool prefixes, used by the
+    replay), and a second pool= would break key=value parsing. A Zora coin shows its pool's dex (e.g. uniswap:v4), not the
+    launchpad; launchpad= stays on BUY rows as before.
+  - "na" when DexScreener didn't give the value (no Base pair with the field, odd shape, no liquidity, no dexId), never 0;
+    a real 0 stays 0. Any error while building the keys gives all "na" and never stops the check.
+- Code: adapters/base.py trade_facts(pairs, pair, address), called in facts() on the pairs the token-pairs request already
+  returned (no request added), kept as facts["trade"] and dex["trade"]. core/verify.py TRADE_KEYS + trade_detail(facts):
+  the "k=v" list, [] for a check with goplus_skipped. core/leads.py appends it at the very end (after until= on SKIP rows).
+  core/desk.py buy(..., buy_note="") appends buy_note on the BUY row only; core/baseline.py passes the pick's keys there.
+  The BL-8 note was not reused: desk.buy() also writes it on its SKIP rows (max_open, loss_halt, size).
+- Which rows get the keys:
+
+| row | keys |
+|---|---|
+| desk VERIFY WATCH, PASS | yes |
+| desk VERIFY SKIP after GoPlus (honeypot, mint_open, top10_pct, too_old, goplus_timeout, goplus_partial ...) | yes |
+| desk VERIFY RETRY fetch_error and SKIP fetch_error_x3, GoPlus side (got past dex_skip) | yes (the owner) |
+| desk VERIFY gate kills (goplus=skipped: liquidity, DexScreener fetch_error, missing:<DexScreener field>) | no, unchanged |
+| baseline EXECUTE BUY | yes, after launchpad= |
+| baseline EXECUTE SKIP (no_eligible, max_open, loss_halt, size), desk EXECUTE, EXIT, TICK | no, unchanged |
+
+- Tests: tests/test_trade.py (10): sums across 2 pairs with the quote-side mirror, non-Base and other-token pairs ignored,
+  s1 == total_sells_1h and == facts()["sells_1h"] on the real facts() (quote-side pair included, still 2 requests); "na"
+  for missing fields and odd shapes (txns a list, window None, strings, inf) without raising, a real 0 stays 0; dex labels
+  for v2 / v3 / v4 / aerodrome / aerodrome:v2 / Zora / zora:v4 / odd names; row selection (WATCH, PASS, SKIP, GoPlus RETRY,
+  fetch_error_x3 after until=; gate rows unchanged; baseline BUY only, its BL-8 pool= kept); desk unchanged: the BL-8
+  DeskUnchangedTest ticks with the keys on and off give the same rows once the 6 trailing keys are stripped, the same
+  state (desk, baseline, leads, report) and the same TICK keys, requests included (secs excluded). Old tests: the BL-21
+  exact-detail assertion now ends with the keys ("na", no trade facts in that fixture); the fake facts() in
+  tests/test_tick.py passes "trade" into dex like the real one. 179 pass on 3.13 (169 before).
+- Live smoke 2026-10-30 (scratch copies, nothing under data/):
+  - Tick 1, 04:27:48 UTC, lead memory cleared: 20 leads, 20 checked, 19 gate kills (liquidity, no keys), 1 WATCH with keys,
+    baseline due, eligible 0. 25 requests in 5.9 s, all HTTP 200: scan 3 (DexScreener 2, GeckoTerminal 1), DexScreener
+    token-pairs 20, GeckoTerminal age 1, GoPlus 1. Same per-lead count as before BL-25 (1 DexScreener + GoPlus when needed
+    + GeckoTerminal only without pairCreatedAt). s1 == sells_1h on 20 of 20.
+  - Tick 2, 04:28:25 UTC, 7 BL-24 candidates put on the watchlist as due: 11 checked, 9 WATCH rows with keys, 3 deferred
+    (GoPlus cap 9), baseline BUY CDXR with keys. 27 requests in 19.5 s, all HTTP 200 (DexScreener 16, GeckoTerminal 2,
+    GoPlus 9). s1 == sells_1h on 14 of 14.
+  - An earlier run on a copy of the live state checked 3 (1 WATCH with keys, 2 gate kills without): 7 requests, 2.5 s.
+  - Examples:
+
+    WATCH ONDO 0xe354f5ea... pending=top10_pct b1=35 s1=0 b24=35 s24=0 liq=81287 dex=uniswap:v2
+    WATCH AODF 0x12b92258... pending=honeypot,buy_tax_pct,sell_tax_pct,lp_locked_pct b1=0 s1=0 b24=4 s24=0 liq=129641 dex=uniswap:v4
+    WATCH I O F 0x079ba9bd... pending=honeypot,buy_tax_pct,sell_tax_pct,lp_locked_pct b1=120 s1=78 b24=541 s24=370 liq=271782 dex=uniswap:v4
+    WATCH SI 0xfe800187... pending=mint_open,freeze_or_blacklist,honeypot,risk_flags b1=88 s1=84 b24=288 s24=235 liq=159942 dex=uniswap:v3
+    BUY (baseline) CDXR 0x40aaf754... ... desk=WATCH launchpad=other b1=8 s1=4 b24=2215 s24=2079 liq=1175326 dex=uniswap:v4
+
+- Size: the keys add 47 to 55 bytes per row (mean 50.7 over the 12 smoke rows with keys). Rows that would carry them on
+  2026-10-29: 1,630 (1,611 desk VERIFY rows without goplus=skipped: 1,468 WATCH + 143 SKIP, plus 19 baseline BUY). So about
+  1,630 x 50.7 = ~83 KB (81 KiB) more per day, +14% on that day's tasks.csv (584,217 B). Include it in BL-16's archive plan.
+- What the replay will do (after about a week of rows): for desk tokens past the gate, set s1 / s24 / b24 at their checks
+  against what happened later (GoPlus honeypot / tax answers when they come, DexScreener liquidity pulls, the baseline's
+  fills and exits on its BUY rows with keys), to choose a real-sells rule (for example a minimum s24, or s24 / b24) and see
+  how many of the honeypot-pattern tokens (BL-24: 72 of 98 alive with 0 sells in 24 h) it would catch. Only then does the
+  owner decide on a rule; BL-25 changes no threshold.
+- Caveats: DexScreener counts are trades, not distinct wallets, and a honeypot can show sells from whitelisted wallets, so a
+  real-sells rule is a filter, not proof. h24 on a pool younger than 24 h is its whole life. Only Base pairs DexScreener
+  lists for the token are summed.
+
 ## Open items (detail)
 - Open items:
   - BL-7 done only after 24h of green runs, no overlap, one TICK row per run. The TICK rows show the real run rate for Gate A (90%).

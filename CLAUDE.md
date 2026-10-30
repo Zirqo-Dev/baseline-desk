@@ -99,6 +99,7 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
 - Every work commit carries its own knowledge in the same diff: CLAUDE.md section 11 "Next step" updated, any decision appended to docs/DECISIONS.md, and one docs/CHANGELOG.md line per session (date | card | what changed | next step; no hash). Technical detail goes in docs/NOTES.md, not section 11.
 - Never touch Notion and never print a Notion block. Claude in chat clones the pushed repo, verifies each commit and updates Notion itself. So everything worth keeping (findings, caveats, open items) must be written in section 11, docs/NOTES.md, CHANGELOG or DECISIONS, not only said in chat.
 - If a session stops mid-story with nothing to commit, commit only a section 11 "Next step" update (and a DECISIONS line if something was decided). Never commit unfinished code.
+- Write section 11, CHANGELOG and NOTES as they will read after the owner's commit: never 'held' or 'waiting for commit' wording.
 
 ## 11. Current state
 - Phase 1 (core engine). Done: BL-1, BL-2, BL-4, BL-5, BL-6, BL-7 (closed by chat 2026-10-25: 287/288 TICK rows in the
@@ -118,7 +119,11 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
   (ceiling; chat's naive 147/219 reproduced, 10 passed before the window), about 104 after the age rule and today's GoPlus
   mint/freeze/top10/LP values, 0 proven wrong because GoPlus still has no honeypot/tax answer for any of them (0 of 133).
   72 of the 98 alive estimate tokens show 0 sells in 24 h. Baseline bought 19 candidates: 18 time_stop, -7.15 USD (docs/NOTES.md "BL-24 rule replay").
-  Tests: stdlib unittest, `python -m unittest` (169 pass on 3.13).
+  BL-25 live (logging only, 2026-10-30): desk VERIFY rows past dex_skip() (WATCH, PASS, non-gate SKIP, GoPlus-side RETRY and
+  fetch_error_x3) and baseline BUY rows end with b1 s1 b24 s24 liq dex (DexScreener buys/sells 1 h and 24 h over every Base
+  pair, quote side mirrored, s1 = sells_1h; chosen pair liquidity; dexId:vN), "na" when missing; gate-killed rows unchanged;
+  no new request, no rule reads them; ~83 KB/day (docs/NOTES.md "BL-25").
+  Tests: stdlib unittest, `python -m unittest` (179 pass on 3.13).
 - cron-job.org token "baseline-desk cron" EXPIRES Thu 2027-01-21: renew by early January or the desk stops silently.
 - Technical detail per card, GoPlus diagnosis, BL-20 budget and full open items: docs/NOTES.md.
 - Open items:
@@ -133,10 +138,10 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
   - Clanker/Zora factory addresses unconfirmed until BL-10 (docs/NOTES.md)
   - top10 is the top 8-10 after exclusions, slightly lenient (docs/NOTES.md)
   - The exact GoPlus rate-limit code is unverified; code 3 is not one; BL-24 saw code 4029 4 times in 137 calls at 2 s, very likely it (docs/NOTES.md)
-  - tokens_24h.json adds ~230 KB of git history per day (overwritten daily); include it in BL-16's archive plan (docs/NOTES.md)
-- Next step: the owner reviews BL-24 (held docs diff) and says "commit"; the owner decides what to do with the BL-24 result
-  (no rule change made). Chat checks BL-23's first live cards after the 00:03 UTC Oct 31 roll; then the BL-13 site build
-  (reads data/report.json and data/tokens_24h.json).
+  - tokens_24h.json adds ~230 KB of git history per day (overwritten daily) and BL-25 ~83 KB/day to tasks.csv; include both in BL-16's archive plan (docs/NOTES.md)
+- Next step: the BL-23 live check after the 00:03 UTC Oct 31 roll (report.json "machine" and data/tokens_24h.json, machine=ok);
+  then the BL-13 site build (reads data/report.json and data/tokens_24h.json); then about a week of BL-25 rows before a
+  real-sells replay (docs/NOTES.md "BL-25"). The BL-24 result stays with the owner (no rule change made).
 - Last updated: 2026-10-30.
 
 ## 12. Glossary

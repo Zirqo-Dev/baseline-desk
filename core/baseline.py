@@ -16,11 +16,12 @@ row and the buy stays due. No scan this tick (PAUSED, desk loss halt) = no row, 
 
 Replay: seed = the tick time as YYYYMMDDHHMM; pick = random.Random(seed).randrange(eligible) over the
 eligible addresses sorted. The EXECUTE detail logs seed, eligible, pick and the 6-hex prefixes of the pool.
+BL-25: a BUY row ends with the DexScreener trade keys b1 s1 b24 s24 liq dex of the pick (SKIP rows unchanged).
 """
 import random
 
 from core import desk
-from core.verify import dex_skip
+from core.verify import dex_skip, trade_detail
 
 NAME = "baseline"
 CADENCE = 12  # ticks between baseline buys (the owner, BL-8)
@@ -60,7 +61,7 @@ def buy(book, seen, verdicts, held, now):
     f = seen[address]
     note = (f"seed={s} eligible={len(pool)} pick={i} pool={','.join(a[2:8] for a in pool)} "
             f"desk={verdicts.get(address, '')} launchpad={f['launchpad']}")
-    pos = desk.buy(book, address, f, now, note=note)
+    pos = desk.buy(book, address, f, now, note=note, buy_note=" ".join(trade_detail(f)))  # BL-25, BUY row only
     if pos:
         book.s["ticks_since_buy"] = 0
         book.save()

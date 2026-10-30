@@ -22,8 +22,9 @@ Field mapping (DECISIONS 2026-10-23, BL-6):
   top10_pct            GoPlus holders, without the traded pool (v4: PoolManager) and burn addresses
   launchpad            GoPlus creator_address vs known factories, else pool shape, else "other"
   risk_flags           GoPlus flags set to "1" (see core/verify.py HARD_FLAGS for the skip list)
-Extra keys: "pair" (traded pair address), "goplus_pending" (GoPlus fields not filled yet) and
-"fetch_errors" (buckets whose request failed: 429, 5xx, timeout, bad answer -> hard_skip "fetch_error").
+Extra keys: "pair" (traded pair address), "goplus_pending" (GoPlus fields not filled yet),
+"fetch_errors" (buckets whose request failed: 429, 5xx, timeout, bad answer -> hard_skip "fetch_error") and
+"trade" (BL-25, logging only: b1 s1 b24 s24 liq dex from trade_facts(); no rule reads it).
 GoPlus "code" (DECISIONS 2026-10-23, BL-7 GoPlus fixes): 1 = full answer; 3 = partial answer (no honeypot,
 taxes or holders) -> "goplus_partial": True, a final skip; any other code -> fetch error, kept in "goplus_code".
 DexScreener first (DECISIONS 2026-10-26, BL-20): when core/verify.py dex_skip() already decides a skip from the
@@ -42,7 +43,7 @@ import urllib.error
 import urllib.request
 from datetime import datetime, timezone
 
-from core.verify import HARD_FLAGS, REQUIRED, dex_skip, hard_skip
+from core.verify import HARD_FLAGS, REQUIRED, TRADE_KEYS, dex_skip, hard_skip
 
 CHAIN_ID = "8453"
 DS = "https://api.dexscreener.com"
@@ -214,6 +215,46 @@ def total_sells_1h(pairs, address):
     return total
 
 
+def trade_facts(pairs, pair, address):
+    """BL-25, logging only: b1 s1 b24 s24 liq dex for the VERIFY and baseline BUY rows.
+
+    Buys/sells per window (h1, h24) summed over every Base pair with our token: as baseToken b = buys and
+    s = sells, as quoteToken the mirror (b = sells, s = buys), the side logic of total_sells_1h, so s1 equals
+    sells_1h. liq = the chosen pair's liquidity.usd rounded; dex = its dexId plus its version label (uniswap:v4;
+    not "pool": the baseline BUY row already has pool=, BL-8).
+    A value DexScreener didn't give, or an odd shape, is "na", never 0. Never raises.
+    """
+    out = dict.fromkeys(TRADE_KEYS, "na")
+    try:
+        for p in pairs or []:
+            if not isinstance(p, dict) or p.get("chainId") != "base":
+                continue
+            txns = _dict(p.get("txns"))
+            for side, b, s in (("baseToken", "buys", "sells"), ("quoteToken", "sells", "buys")):
+                if _lower(_dict(p.get(side)).get("address")) != address:
+                    continue
+                for w, kb, ks in (("h1", "b1", "s1"), ("h24", "b24", "s24")):
+                    for key, field in ((kb, b), (ks, s)):
+                        x = _num(_dict(txns.get(w)).get(field))
+                        if x is not None:
+                            out[key] = (0 if out[key] == "na" else out[key]) + int(x)
+        pair = _dict(pair)
+        liq = _num(_dict(pair.get("liquidity")).get("usd"))
+        if liq is not None:
+            out["liq"] = round(liq)
+        if isinstance(pair.get("dexId"), str) and pair["dexId"]:
+            labels = pair.get("labels") if isinstance(pair.get("labels"), list) else []
+            version = next((x for x in labels if isinstance(x, str) and re.fullmatch(r"v\d+", x)), "")
+            out["dex"] = re.sub(r"[^\w.-]", "_", pair["dexId"]) + (f":{version}" if version else "")  # one detail token
+    except Exception:  # logging must never break a check
+        return dict.fromkeys(TRADE_KEYS, "na")
+    return out
+
+
+def _dict(x):
+    return x if isinstance(x, dict) else {}
+
+
 def dex_facts(pair, side, now):
     """symbol, price, liq_usd, age_min (None if no pairCreatedAt) from the traded DexScreener pair."""
     f = {"symbol": (pair.get(side) or {}).get("symbol") or None,
@@ -356,13 +397,14 @@ def facts(address, now=None, client=None, goplus_ok=None, dex=None):
             created = ((gt_pool or {}).get("data") or {}).get("attributes", {}).get("pool_created_at")
             out["age_min"] = _iso_min(created, now)
 
+    trade = trade_facts(pairs, pair, address)  # BL-25: from the pairs already fetched, no request
     if dex is not None:
         dex.update({k: v for k, v in out.items() if v is not None},
-                   pair=pair_address, fetch_errors=list(errors))
+                   pair=pair_address, fetch_errors=list(errors), trade=trade)
         if pair:
             dex["launchpad"] = launchpad({}, pair, side, pool_fee({}, pair_address, gt_pool))
     if dex_skip(dict(out, fetch_errors=errors)):
-        out.update(pair=pair_address, goplus_skipped=True, fetch_errors=errors)
+        out.update(pair=pair_address, goplus_skipped=True, fetch_errors=errors, trade=trade)
         return {k: v for k, v in out.items() if v is not None}
     if goplus_ok is not None and not goplus_ok():
         return None
@@ -382,6 +424,7 @@ def facts(address, now=None, client=None, goplus_ok=None, dex=None):
     out["pair"] = pair_address
     out["goplus_pending"] = pending
     out["fetch_errors"] = errors
+    out["trade"] = trade
     return {k: v for k, v in out.items() if v is not None}
 
 

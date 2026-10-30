@@ -26,10 +26,11 @@ def entry_block(book, address, now):
     return ""
 
 
-def buy(book, address, facts, now, note=""):
+def buy(book, address, facts, now, note="", buy_note=""):
     """Paper buy at facts["price"] plus friction. Logs one EXECUTE task row. Returns the position or None.
 
     `note` is appended to the EXECUTE row detail (the baseline logs its seed and pick there, BL-8).
+    `buy_note` is appended after it on a BUY row only (the baseline's BL-25 trade keys); SKIP rows never carry it.
     """
     if config.PAPER is not True:
         raise RuntimeError("Baseline is paper only")
@@ -60,7 +61,7 @@ def buy(book, address, facts, now, note=""):
                      "friction_pct": pct, "liq_usd": facts["liq_usd"],
                      "launchpad": facts["launchpad"], "reason": "entry", "pnl_usd": ""})
     book.task(now, "EXECUTE", sym, address, "BUY", "",
-              " ".join(filter(None, [f"usd={usd:.2f} fill={fill:.10g}", note])))
+              " ".join(filter(None, [f"usd={usd:.2f} fill={fill:.10g}", note, buy_note])))
     book.save()
     return pos
 

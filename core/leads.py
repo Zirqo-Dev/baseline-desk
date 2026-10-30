@@ -8,6 +8,9 @@ FETCH_TRIES in a row, then a final "fetch_error_x3". A GoPlus answer code other 
 as goplus_code=<n> in the row detail. A check settled without GoPlus (BL-20 DexScreener-first gate)
 adds goplus=skipped to its row. A lead that got past the missing-data gate with no LP-lock number adds
 lp_unknown (BL-21); a watched lead waiting only on lp_locked_pct leaves the watchlist with its real outcome.
+BL-25: every row of a check that got past dex_skip() (WATCH, PASS, SKIP, GoPlus-side RETRY and fetch_error_x3)
+ends with the DexScreener trade keys b1 s1 b24 s24 liq dex (core/verify.py trade_detail()); gate-killed rows
+(goplus=skipped) are unchanged. Logging only.
 Every check logs one VERIFY task row. Wiring into the tick is BL-7.
 """
 from datetime import datetime, timedelta, timezone
@@ -15,7 +18,7 @@ from pathlib import Path
 
 from core import config
 from core.book import ROOT, TASK_FIELDS, _append, day, load_state, save_key, ts
-from core.verify import LP, hard_skip, lp_unknown
+from core.verify import LP, hard_skip, lp_unknown, trade_detail
 
 SKIP_H = 24
 FETCH_TRIES = 3
@@ -74,7 +77,7 @@ class Leads:
                 if not detail:
                     detail = [f"first_seen={w['first_seen']}", "checks=1"]
                 detail.append("pending=" + ",".join(facts.get("goplus_pending") or []))
-                self._row(now, sym, address, "WATCH", reason, detail)
+                self._row(now, sym, address, "WATCH", reason, detail + trade_detail(facts))
                 return reason
 
         pending = [k for k in facts.get("goplus_pending") or [] if k != LP]  # BL-21: LP lock may stay unknown
@@ -87,9 +90,9 @@ class Leads:
         if reason:
             until = now + timedelta(hours=SKIP_H)
             self.s["skips"][address] = {"symbol": sym, "reason": reason, "at": ts(now), "until": ts(until)}
-            self._row(now, sym, address, "SKIP", reason, detail + [f"until={ts(until)}"])
+            self._row(now, sym, address, "SKIP", reason, detail + [f"until={ts(until)}"] + trade_detail(facts))
         else:
-            self._row(now, sym, address, "PASS", "", detail)
+            self._row(now, sym, address, "PASS", "", detail + trade_detail(facts))
         return reason
 
     def _fetch_error(self, address, sym, facts, now):
@@ -105,12 +108,12 @@ class Leads:
             detail.insert(0, f"first_seen={w['first_seen']}")
         if tries < FETCH_TRIES:
             self.s["retry"][address] = {"tries": tries, "last": ts(now)}
-            self._row(now, sym, address, "RETRY", "fetch_error", detail)
+            self._row(now, sym, address, "RETRY", "fetch_error", detail + trade_detail(facts))
             return "fetch_error"
         self.s["watch"].pop(address, None)
         until = now + timedelta(hours=SKIP_H)
         self.s["skips"][address] = {"symbol": sym, "reason": "fetch_error_x3", "at": ts(now), "until": ts(until)}
-        self._row(now, sym, address, "SKIP", "fetch_error_x3", detail + [f"until={ts(until)}"])
+        self._row(now, sym, address, "SKIP", "fetch_error_x3", detail + [f"until={ts(until)}"] + trade_detail(facts))
         return "fetch_error_x3"
 
     def _row(self, now, symbol, address, action, reason, detail):
