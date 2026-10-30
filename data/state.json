@@ -1,26 +1,10 @@
 {
   "baseline": {
-    "cash": 37.44266715983101,
+    "cash": 42.15140502390868,
     "day": "2026-10-30",
     "day_start_value": 51.959512203001,
     "halted_day": "",
     "positions": {
-      "0x4f2488db97e4dc764c2fccbf03e088e48de40402": {
-        "cost_usd": 5,
-        "entry_fill": 0.00010506,
-        "entry_intended": 0.000102,
-        "entry_liq_usd": 10322080.42,
-        "entry_ts": "2026-10-30T14:38:13Z",
-        "ladder_done": [],
-        "last_liq_usd": 10322082.62,
-        "last_price": 0.000102,
-        "launchpad": "other",
-        "orig_qty": 47591.85227489054,
-        "pair": "0xaa41f85e50a5b53889f01546d6c751ea9b7336a1",
-        "peak_price": 0.000102,
-        "qty": 47591.85227489054,
-        "symbol": "Paper"
-      },
       "0x6ee53668542bb4d020b51e805da2c5f32c3f55b9": {
         "cost_usd": 1.7,
         "entry_fill": 0.00220008,
@@ -31,17 +15,17 @@
           0,
           1
         ],
-        "last_liq_usd": 211554.11,
-        "last_price": 0.006193,
+        "last_liq_usd": 211849.78,
+        "last_price": 0.00621,
         "launchpad": "other",
         "orig_qty": 2272.6446311043233,
         "pair": "0x2bd909df87b65eaa9241236cbe72474e7d9ca707",
-        "peak_price": 0.006193,
+        "peak_price": 0.00621,
         "qty": 772.6991745754699,
         "symbol": "TRMX"
       }
     },
-    "ticks_since_buy": 8
+    "ticks_since_buy": 9
   },
   "desk": {
     "cash": 47.60776857887221,
@@ -49,6 +33,22 @@
     "day_start_value": 50.0,
     "halted_day": "",
     "positions": {}
+  },
+  "labels": {
+    "pending": {
+      "0x154a67f26283b8887c165839c8cfe858e0f419cb": {
+        "done": [],
+        "first_price": 9.364e-05,
+        "first_seen": "2026-10-30T15:23:13Z",
+        "symbol": "AODF"
+      },
+      "0x6b57d3a47c0ad65c14ba3b7f2a54122fe72f07bd": {
+        "done": [],
+        "first_price": 4.69,
+        "first_seen": "2026-10-30T15:23:13Z",
+        "symbol": "UNI"
+      }
+    }
   },
   "leads": {
     "retry": {},
@@ -3773,6 +3773,12 @@
         "symbol": "ENCIO",
         "until": "2026-10-30T19:28:13Z"
       },
+      "0xb20000000000000000000015d0dfb0701d1ed6fe": {
+        "at": "2026-10-30T15:23:13Z",
+        "reason": "liquidity",
+        "symbol": "Wuse",
+        "until": "2026-10-31T15:23:13Z"
+      },
       "0xb2000000000000000000001622ec12ff3575e9c6": {
         "at": "2026-10-30T06:58:11Z",
         "reason": "liquidity",
@@ -6355,6 +6361,12 @@
         "last_check": "2026-10-30T15:13:13Z",
         "symbol": "U.S GOLD "
       },
+      "0x154a67f26283b8887c165839c8cfe858e0f419cb": {
+        "checks": 1,
+        "first_seen": "2026-10-30T15:23:13Z",
+        "last_check": "2026-10-30T15:23:13Z",
+        "symbol": "AODF"
+      },
       "0x1d6313cc032c54bc1bb7e650d26de95be0356031": {
         "checks": 2,
         "first_seen": "2026-10-30T14:48:13Z",
@@ -6420,6 +6432,12 @@
         "first_seen": "2026-10-30T12:18:13Z",
         "last_check": "2026-10-30T15:13:13Z",
         "symbol": "UOFD"
+      },
+      "0x6b57d3a47c0ad65c14ba3b7f2a54122fe72f07bd": {
+        "checks": 1,
+        "first_seen": "2026-10-30T15:23:13Z",
+        "last_check": "2026-10-30T15:23:13Z",
+        "symbol": "UNI"
       },
       "0x74ccbe53f77b08632ce0cb91d3a545bf6b8e0979": {
         "checks": 9,
