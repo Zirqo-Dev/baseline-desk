@@ -22,7 +22,7 @@
         "symbol": "U.S OIL EXCHANGE"
       }
     },
-    "ticks_since_buy": 11
+    "ticks_since_buy": 12
   },
   "desk": {
     "cash": 47.60776857887221,
@@ -1057,12 +1057,6 @@
         "symbol": "VIRTUAL",
         "until": "2026-10-31T13:13:11Z"
       },
-      "0x0c0d885a2c62d69d60e1d68dccd07f3dad93e801": {
-        "at": "2026-10-29T21:48:12Z",
-        "reason": "liquidity",
-        "symbol": "JEREMY",
-        "until": "2026-10-30T21:48:12Z"
-      },
       "0x0c3d7027ef362f45fad43200639e726d8ef23128": {
         "at": "2026-10-30T00:03:13Z",
         "reason": "liquidity",
@@ -1662,12 +1656,6 @@
         "reason": "liquidity",
         "symbol": "TUSK",
         "until": "2026-10-31T20:48:14Z"
-      },
-      "0x28696403633de1acdac10d60a8eea63e47011725": {
-        "at": "2026-10-29T21:48:12Z",
-        "reason": "liquidity",
-        "symbol": "NAFF",
-        "until": "2026-10-30T21:48:12Z"
       },
       "0x28a971e784f8b2c27530e8242accc9d2ce121fbf": {
         "at": "2026-10-30T00:08:16Z",
@@ -2418,6 +2406,12 @@
         "reason": "liquidity",
         "symbol": "Binance SAFU BTC Fund",
         "until": "2026-10-30T23:58:13Z"
+      },
+      "0x52fda2d27f7b56bf6fa46f015529b2791d926d57": {
+        "at": "2026-10-30T21:48:17Z",
+        "reason": "liquidity",
+        "symbol": "FYM",
+        "until": "2026-10-31T21:48:17Z"
       },
       "0x538b5044c0a057ffda7d7f465cca22c77751538a": {
         "at": "2026-10-30T02:58:12Z",
@@ -5707,6 +5701,12 @@
         "symbol": "IFO",
         "until": "2026-10-31T19:38:13Z"
       },
+      "0xbe5261379641c925f0d212d5c2e95fea560fd098": {
+        "at": "2026-10-30T21:48:17Z",
+        "reason": "liquidity",
+        "symbol": "WORK",
+        "until": "2026-10-31T21:48:17Z"
+      },
       "0xbeb6ba0d7c2daa8a95172cea1eac2548b586ae28": {
         "at": "2026-10-30T10:58:12Z",
         "reason": "goplus_timeout",
@@ -6373,12 +6373,6 @@
         "symbol": "LIQUIDBGT",
         "until": "2026-10-31T06:48:14Z"
       },
-      "0xdf755aad786fbae0cf750e8cebaba6cf3f197d01": {
-        "at": "2026-10-29T21:48:12Z",
-        "reason": "liquidity",
-        "symbol": "JEREMY",
-        "until": "2026-10-30T21:48:12Z"
-      },
       "0xdfadc4c6c8d336311eb890e6d9458635f6610313": {
         "at": "2026-10-30T14:33:13Z",
         "reason": "goplus_timeout",
@@ -6994,9 +6988,9 @@
     },
     "watch": {
       "0x04341d2e5c4611f0b1398bce31785437729dd2d7": {
-        "checks": 7,
+        "checks": 8,
         "first_seen": "2026-10-30T19:43:12Z",
-        "last_check": "2026-10-30T21:33:13Z",
+        "last_check": "2026-10-30T21:48:17Z",
         "symbol": "LWT"
       },
       "0x0ba6d9d49a1009f4cd8a3065129de886a32c6095": {
@@ -7006,9 +7000,9 @@
         "symbol": "DOFU"
       },
       "0x0d5ffd30d7c753d9a76f32cd5c9864eaf514e274": {
-        "checks": 9,
+        "checks": 10,
         "first_seen": "2026-10-30T19:03:13Z",
-        "last_check": "2026-10-30T21:33:13Z",
+        "last_check": "2026-10-30T21:48:17Z",
         "symbol": "UDOF"
       },
       "0x180b06f5f1ed0c024570d860262fde865deffe98": {
@@ -7018,21 +7012,21 @@
         "symbol": "NAFF"
       },
       "0x222c28ea8ef76c4cdff3c1c015334fcfdc72d90b": {
-        "checks": 8,
+        "checks": 9,
         "first_seen": "2026-10-30T19:13:12Z",
-        "last_check": "2026-10-30T21:28:14Z",
+        "last_check": "2026-10-30T21:48:17Z",
         "symbol": "ADFO"
       },
       "0x28fbe76a5283267b7cac212eaa81794dc5d36ed8": {
-        "checks": 7,
+        "checks": 8,
         "first_seen": "2026-10-30T19:43:12Z",
-        "last_check": "2026-10-30T21:33:13Z",
+        "last_check": "2026-10-30T21:48:17Z",
         "symbol": "U.S EXCHANGE OIL"
       },
       "0x2a0ac3205c615e96aca1cf284ea55e4e7077be71": {
-        "checks": 7,
+        "checks": 8,
         "first_seen": "2026-10-30T19:43:12Z",
-        "last_check": "2026-10-30T21:33:13Z",
+        "last_check": "2026-10-30T21:48:17Z",
         "symbol": "KIEDEX"
       },
       "0x35bbcf1025b3486ceb2194dc6a2286cb2cf6ee62": {
@@ -7048,21 +7042,15 @@
         "symbol": "ONDO"
       },
       "0x4e81ee0c5ad773291984a187b778771c53b1752b": {
-        "checks": 7,
+        "checks": 8,
         "first_seen": "2026-10-30T19:43:12Z",
-        "last_check": "2026-10-30T21:33:13Z",
+        "last_check": "2026-10-30T21:48:17Z",
         "symbol": "UFDO"
       },
-      "0x52fda2d27f7b56bf6fa46f015529b2791d926d57": {
-        "checks": 3,
-        "first_seen": "2026-10-30T20:53:12Z",
-        "last_check": "2026-10-30T21:28:14Z",
-        "symbol": "FYM"
-      },
       "0x722792048c078946f63365b96d1aa2f48ca95adc": {
-        "checks": 8,
+        "checks": 9,
         "first_seen": "2026-10-30T19:13:12Z",
-        "last_check": "2026-10-30T21:28:14Z",
+        "last_check": "2026-10-30T21:48:17Z",
         "symbol": "U.S OIL EXCHANGE"
       },
       "0x7473fab52e0180e16995eec2ca926025f7b6732e": {
@@ -7084,15 +7072,15 @@
         "symbol": "UFOD\ud83d\udd25"
       },
       "0xa3edc351fb6b15d25c9073a822c7fb1752b272cb": {
-        "checks": 7,
+        "checks": 8,
         "first_seen": "2026-10-30T19:43:12Z",
-        "last_check": "2026-10-30T21:33:13Z",
+        "last_check": "2026-10-30T21:48:17Z",
         "symbol": "UDOF"
       },
       "0xaf1701d4deb31f1a58ee8c2636effff6258935a6": {
-        "checks": 8,
+        "checks": 9,
         "first_seen": "2026-10-30T19:23:13Z",
-        "last_check": "2026-10-30T21:33:13Z",
+        "last_check": "2026-10-30T21:48:17Z",
         "symbol": "ETHFLOW"
       },
       "0xd260f7054ccb12a1f5e8fed3d7abecca1ddbc773": {
