@@ -102,7 +102,11 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
 - Phase 1 (core engine). Done: BL-1, BL-2, BL-4, BL-5, BL-6, BL-7 (closed by chat 2026-10-25: 287/288 TICK rows in the
   24h window, 288/288 on Oct 24 and 25, 0 error rows, no overlap), BL-20 (DexScreener first, GoPlus only when needed;
   kept after the chat review 2026-10-28), BL-21 (unknown LP lock allowed, logged lp_unknown).
-  BL-8 built 2026-10-29 and HELD for the owner's "commit" (random baseline book + data/report.json on the day roll).
+  BL-8 shipped in c96192e and is Done (chat, 2026-10-29): random baseline book + data/report.json on the day roll. The first
+  live report.json came at the 00:03 UTC Oct 30 roll (report=ok, 0 bl_error).
+  BL-21 24h check passed (chat): 288/288 ticks, lp_unknown 2, 0 PASS, and 115 of 126 goplus_timeout still waiting on honeypot + taxes.
+  BL-22 step 1 probe (2026-10-30, docs only, held): honeypot.is answered 2 of 24 requests (23 tokens, both Uniswap V3, taxes 0/0/0),
+  the other 22 "pair not found" (HTTP 404); GoPlus had no honeypot answer for all 23 (docs/NOTES.md "BL-22 probe").
   BL-13 visual mock locked 2026-10-28 (site build still to do).
   Tests: stdlib unittest, `python -m unittest` (150 pass on 3.13).
 - cron-job.org token "baseline-desk cron" EXPIRES Thu 2027-01-21: renew by early January or the desk stops silently.
@@ -118,9 +122,9 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
   - Clanker/Zora factory addresses unconfirmed until BL-10 (docs/NOTES.md)
   - top10 is the top 8-10 after exclusions, slightly lenient (docs/NOTES.md)
   - The exact GoPlus rate-limit code is unverified; code 3 is not one (docs/NOTES.md)
-- Next step: the owner reviews the held BL-8 diff and says "commit" (to main). Then the BL-21 24h check (chat counts lp_unknown,
-  PASS, buys, exits), then BL-23, then the BL-13 site build (reads data/report.json).
-- Last updated: 2026-10-29.
+- Next step: the owner reads the BL-22 probe result (docs/NOTES.md "BL-22 probe") and decides whether honeypot.is is worth a
+  step 2 (a 10-token follow-up on pool types, or drop it). Then BL-23, then the BL-13 site build (reads data/report.json).
+- Last updated: 2026-10-30.
 
 ## 12. Glossary
 - Lead: a token the scanner found. Survivor: a lead that passed every hard skip.

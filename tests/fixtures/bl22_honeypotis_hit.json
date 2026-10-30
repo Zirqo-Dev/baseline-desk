@@ -1,0 +1,81 @@
+{
+ "token": {
+  "name": "Edel",
+  "symbol": "EDEL",
+  "decimals": 18,
+  "address": "0xFb31f85A8367210B2e4Ed2360D2dA9Dc2D2Ccc95",
+  "totalHolders": 34261
+ },
+ "withToken": {
+  "name": "Wrapped Ether",
+  "symbol": "WETH",
+  "decimals": 18,
+  "address": "0x4200000000000000000000000000000000000006",
+  "totalHolders": 5091348
+ },
+ "summary": {
+  "risk": "low",
+  "riskLevel": 1,
+  "flags": []
+ },
+ "simulationSuccess": true,
+ "honeypotResult": {
+  "isHoneypot": false
+ },
+ "simulationResult": {
+  "buyTax": 0,
+  "sellTax": 0,
+  "transferTax": 0,
+  "buyGas": "181558",
+  "sellGas": "133391"
+ },
+ "holderAnalysis": {
+  "holders": "371",
+  "successful": "371",
+  "failed": "0",
+  "siphoned": "0",
+  "averageTax": 0,
+  "averageGas": 113592.20485175202,
+  "highestTax": 0,
+  "highTaxWallets": "0",
+  "taxDistribution": [
+   {
+    "tax": 0,
+    "count": 371
+   }
+  ],
+  "snipersFailed": 0,
+  "snipersSuccess": 0
+ },
+ "flags": [],
+ "contractCode": {
+  "openSource": true,
+  "rootOpenSource": true,
+  "isProxy": false,
+  "hasProxyCalls": false
+ },
+ "chain": {
+  "id": "8453",
+  "name": "Base",
+  "shortName": "base",
+  "currency": "ETH"
+ },
+ "router": "0x2626664c2603336E57B271c5C0b26F421741e481",
+ "pair": {
+  "pair": {
+   "name": "Uniswap V3: WETH-EDEL",
+   "address": "0x3E31dE9d23a1c923e3b60b45C0A30d172f01B659",
+   "token0": "0x4200000000000000000000000000000000000006",
+   "token1": "0xFb31f85A8367210B2e4Ed2360D2dA9Dc2D2Ccc95",
+   "type": "UniswapV3"
+  },
+  "chainId": "8453",
+  "reserves0": "695853036633001313",
+  "reserves1": "115428588099020326043966",
+  "liquidity": 3086.6370657752022,
+  "router": "0x2626664c2603336E57B271c5C0b26F421741e481",
+  "createdAtTimestamp": "1762970115",
+  "creationTxHash": "0x01308a8271c9a303cd4cb38f5f881e671c2eef98fb3f7223d11f7035ad5b7d4b"
+ },
+ "pairAddress": "0x3E31dE9d23a1c923e3b60b45C0A30d172f01B659"
+}

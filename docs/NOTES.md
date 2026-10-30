@@ -223,6 +223,74 @@ Moved from CLAUDE.md section 11 on 2026-10-23 (BL-2 process cleanup). Wording is
     desk_lead_usd +0.24. After the liquidation-value fix, same state: baseline 49.52 (CYBER 4.76 -> 4.52 after its
     5% sell friction; -0.95%, multiple 0.9905, max_dd 0.95%), desk_lead_usd +0.48. One baseline exit quote (python -m adapters.base quote): 1 request, 0.43 s, source pool.
 
+## BL-22 probe
+- Step 1, read-only, 2026-10-30 03:32-03:33 UTC (the owner allowed api.honeypot.is for BL-22). Question: can honeypot.is fill
+  honeypot + buy/sell tax where GoPlus stays silent on new Base tokens? Nothing under core/, adapters/, config.py,
+  workflows or data/ was touched; the script ran from the session scratchpad, outside the repo.
+- API as used: GET https://api.honeypot.is/v2/IsHoneypot?address=<token>&chainID=8453, no key, one request at a time,
+  1.2 s apart, 24 requests (limit set at 30). NOT confirmed from their docs: docs.honeypot.is and honeypot.is are outside the
+  session allowlist (the web-fetch agent got ENOTFOUND; no other host or proxy tried). The endpoint is the one named in the
+  task and it answered, and the field names below come from the two saved samples, not from documentation.
+- Fixtures: tests/fixtures/bl22_honeypotis_hit.json (EDEL, 200) and bl22_honeypotis_miss.json (USDL, 404). Not used by any test yet.
+- Response shape (hit): simulationSuccess (bool), honeypotResult.isHoneypot (bool), simulationResult.buyTax / sellTax /
+  transferTax (numbers, percent) + buyGas / sellGas, flags[], summary.risk / riskLevel, contractCode.{openSource,isProxy,...},
+  router (address), pair.pair.{name, address, type e.g. "UniswapV3", token0, token1}, pair.liquidity, pair.createdAtTimestamp,
+  pairAddress, chain.id "8453", token.totalHolders, optional holderAnalysis (only on EDEL). Miss: HTTP 404 and
+  {"code":404,"error":"pair not found"}; no simulation, no taxes, no pool type.
+- Rate limit: every response carries x-ratelimit-limit: 50, x-ratelimit-remaining and x-ratelimit-reset (epoch seconds, moves
+  in 5 s steps). remaining never went below 48 at 1.2 s pacing; no 429 and no retry-after seen. The window is unknown; the
+  limit is per what, unknown. Not stress-tested (30 requests max by rule).
+- Latency: median 266 ms, min 227, max 597 (the first request), 24 requests, all through the session proxy.
+- Result per token (age = minutes since the desk's first VERIFY row at probe time; GoPlus = fields still pending at the
+  token's last WATCH row, i.e. what GoPlus never filled; all 23 had honeypot pending):
+
+| # | set | symbol | address | age min | HTTP | sim / honeypot / buy-sell-transfer | pool, router | ms | GoPlus pending |
+|---|---|---|---|---|---|---|---|---|---|
+| 1 | timeout new | USDL | 0x78e8cf65 | 194 | 404 | no | n/a | 597 | honeypot |
+| 2 | timeout new | USOE | 0x6aa7ae39 | 204 | 404 | no | n/a | 493 | honeypot, taxes, lp |
+| 3 | timeout new | WOTF | 0x3c4ef2aa | 209 | 404 | no | n/a | 286 | honeypot, taxes, lp |
+| 4 | timeout new | DTCC | 0x9f8f6063 | 214 | 404 | no | n/a | 274 | all 7 |
+| 5 | timeout new | FTOF | 0x9daed97d | 214 | 404 | no | n/a | 253 | honeypot, taxes, lp |
+| 6 | timeout new | F O T F | 0x417f3f86 | 219 | 404 | no | n/a | 263 | honeypot, taxes, lp |
+| 7 | timeout new | RALLY | 0x19640000 | 219 | 404 | no | n/a | 235 | honeypot |
+| 8 | timeout new | GTA 6 Coin | 0x08bb8b57 | 219 | 404 | no | n/a | 275 | all 7 |
+| 9 | timeout new | I O F | 0x079ba9bd | 219 | 404 | no | n/a | 242 | honeypot, taxes, lp |
+| 10 | timeout new | NAFF | 0x32ae5ad4 | 224 | 404 | no | n/a | 257 | mint, freeze, honeypot, risk |
+| 11 | timeout new | WWR | 0x09e43249 | 224 | 404 | no | n/a | 280 | all 7 |
+| 12 | timeout new | USOE | 0x732e3ef5 | 229 | 404 | no | n/a | 270 | honeypot, taxes, lp |
+| 13 | timeout new | AODF | 0xdfb87571 | 239 | 404 | no | n/a | 254 | honeypot, taxes, lp |
+| 14 | timeout new | AOP | 0x6d7c2b48 | 259 | 404 | no | n/a | 266 | honeypot, taxes, lp |
+| 15 | timeout old | RIPPLEEFFECT (zora) | 0x6034ecf6 | 364 | 404 | no | n/a | 240 | honeypot, taxes, lp |
+| 16 | timeout old | STRATO | 0x9b67763e | 1919 | 404 | no | n/a | 267 | honeypot, taxes, lp |
+| 17 | timeout old | ADP | 0x83acfed3 | 3184 | 404 | no | n/a | 227 | honeypot, taxes, lp |
+| 18 | timeout old | AOFT | 0x2ba6d2a0 | 4739 | 404 | no | n/a | 262 | honeypot, taxes, top10, lp |
+| 19 | timeout old | TRONG | 0x64a968da | 6140 | 404 | no | n/a | 234 | honeypot, taxes, lp |
+| 20 | timeout old | NOTF | 0x2f747851 | 7790 | 404 | no | n/a | 333 | honeypot, taxes, lp |
+| 21 | baseline buy | KOR | 0x2e397d2f | 700 | 404 | no | n/a | 254 | honeypot, taxes, lp |
+| 22 | baseline buy | AgenC | 0x82e9ed15 | 600 | 200 | yes / false / 0-0-0 | UniswapV3, 0x26266... | 266 | mint, freeze, honeypot, risk (GoPlus finally answered 2.5 h in: SKIP mint_open) |
+| 23 | baseline buy | EDEL | 0xfb31f85a | 560 | 200 | yes / false / 0-0-0 | UniswapV3, 0x26266... | 308 | honeypot (ended goplus_timeout) |
+| 24 | baseline buy | RIPPLEEFFECT | 0x6034ecf6 | 365 | 404 | no | n/a | 281 | same token as #15, probed twice by mistake |
+
+- Hit rate = a successful buy + sell simulation with taxes. Overall 2 of 24 requests (8.3%), 2 of 23 distinct tokens (8.7%).
+  By set: the 20 timeout-set requests (14 newest, 6 older) 0 of 20; the 4 baseline BUYs 2 of 4 (AgenC, EDEL). EDEL also
+  ended goplus_timeout on the desk, so one real goplus_timeout token (1 of 21 distinct timeout tokens) got an answer.
+- Under 3 h old: no sample. A goplus_timeout is by definition 3 h after first sight, so every token probed was at least
+  194 min old (a fresh-token sample would need tokens still on the watchlist, a different pick).
+- By pool type (only hits report one): UniswapV3 2 of 2 hits; v2, v4, Zora and other: 0 hits, but a 404 gives no pool type
+  and the logs do not carry one, so 21 of 22 misses are unlabelled. The one tag we have is RIPPLEEFFECT (launchpad=zora):
+  miss. Reading: honeypot.is probably indexes only the classic router pools (both hits used the Uniswap V3 SwapRouter02);
+  our new tokens are mostly other shapes. NOT shown by this probe, a guess.
+- Against GoPlus: honeypot was unfilled at GoPlus for all 23 tokens at their last WATCH row (AgenC was later answered by
+  GoPlus: SKIP mint_open after 2.5 h); taxes were also pending for most (see the last column). honeypot.is filled honeypot
+  + taxes for 2 of 23. In this sample it would have rescued 1 timeout token (EDEL).
+- Caveats: n = 24, one moment in time, one IP (shared datacenter proxy); the sample is not random (newest timeouts plus
+  older ones, spread by index); pool types of misses unknown; EDEL's pool is from Nov 2025 (an old token, not a fresh
+  launch), AgenC's pool had 1.7 USD reserve value (pair.liquidity, unit unverified), so a "hit" says nothing about tradability;
+  taxes 0/0/0 are simulated at one moment and a late-set tax would not show; no GoPlus call was made in this probe (the
+  GoPlus column is from the logged WATCH rows only); docs unread.
+- Decision for the owner: honeypot.is as a second source only pays if the new-launch pools it misses are Uniswap V4 or
+  Zora. A cheap step 2 would be to log the DexScreener pool/dex label on those leads and re-probe 10 fresh WATCH tokens.
+
 ## Open items (detail)
 - Open items:
   - BL-7 done only after 24h of green runs, no overlap, one TICK row per run. The TICK rows show the real run rate for Gate A (90%).
