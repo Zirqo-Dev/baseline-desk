@@ -12,8 +12,8 @@
         "entry_liq_usd": 268468.79,
         "entry_ts": "2026-10-30T01:08:11Z",
         "ladder_done": [],
-        "last_liq_usd": 268926.68,
-        "last_price": 0.01923,
+        "last_liq_usd": 268305.1,
+        "last_price": 0.01919,
         "launchpad": "other",
         "orig_qty": 261.20972609671537,
         "pair": "0xdccbeb5ac07d488646d7f9a3e5052ca6f7188944797b9bd5e4b461959b48d923",
@@ -22,7 +22,7 @@
         "symbol": "I O F"
       }
     },
-    "ticks_since_buy": 2
+    "ticks_since_buy": 3
   },
   "desk": {
     "cash": 50.0,
@@ -315,12 +315,6 @@
         "reason": "goplus_timeout",
         "symbol": "USPT",
         "until": "2026-10-30T16:58:12Z"
-      },
-      "0x09da6197a07230871bd7a0492b25fe158f882b07": {
-        "at": "2026-10-29T01:23:11Z",
-        "reason": "missing:liq_usd",
-        "symbol": "USD1",
-        "until": "2026-10-30T01:23:11Z"
       },
       "0x09e05723606ed243724b73da96d917595b8c614a": {
         "at": "2026-10-29T08:43:14Z",
@@ -963,12 +957,6 @@
         "reason": "liquidity",
         "symbol": "RYZEN",
         "until": "2026-10-30T15:48:13Z"
-      },
-      "0x23d6d6a3b4f45aff53dba0fb8d1c07d1ff53985c": {
-        "at": "2026-10-29T01:23:11Z",
-        "reason": "goplus_timeout",
-        "symbol": "WOSE",
-        "until": "2026-10-30T01:23:11Z"
       },
       "0x23ea447068f93dbf494707a0ad9f3606707fb223": {
         "at": "2026-10-29T03:38:17Z",
@@ -2890,6 +2878,12 @@
         "symbol": "ADFO",
         "until": "2026-10-30T09:03:12Z"
       },
+      "0x70a3d1abdace2749635acc24bbf3f99b769ab66e": {
+        "at": "2026-10-30T01:23:11Z",
+        "reason": "missing:liq_usd",
+        "symbol": "BNBC",
+        "until": "2026-10-31T01:23:11Z"
+      },
       "0x70aad76b744c1fbe90bb754479cb08ce25e7c77b": {
         "at": "2026-10-29T23:38:13Z",
         "reason": "liquidity",
@@ -4462,6 +4456,12 @@
         "symbol": "UTDF",
         "until": "2026-10-30T08:43:14Z"
       },
+      "0xb2000000000000000000000053fd785109456898": {
+        "at": "2026-10-30T01:23:11Z",
+        "reason": "liquidity",
+        "symbol": "Redified",
+        "until": "2026-10-31T01:23:11Z"
+      },
       "0xb20000000000000000000000c4e98e9c8e782a01": {
         "at": "2026-10-29T05:08:15Z",
         "reason": "liquidity",
@@ -4714,12 +4714,6 @@
         "symbol": "TRENCHORS",
         "until": "2026-10-30T04:18:14Z"
       },
-      "0xb20000000000000000000043430da07ccb0d154c": {
-        "at": "2026-10-29T01:23:11Z",
-        "reason": "liquidity",
-        "symbol": "XRP",
-        "until": "2026-10-30T01:23:11Z"
-      },
       "0xb200000000000000000000454351805c496ddde2": {
         "at": "2026-10-29T20:23:11Z",
         "reason": "liquidity",
@@ -4929,6 +4923,12 @@
         "reason": "liquidity",
         "symbol": "PIZZA",
         "until": "2026-10-30T09:38:12Z"
+      },
+      "0xb2000000000000000000006f1cd607ecc4a35d01": {
+        "at": "2026-10-30T01:23:11Z",
+        "reason": "liquidity",
+        "symbol": "IM",
+        "until": "2026-10-31T01:23:11Z"
       },
       "0xb2000000000000000000006f369841fda5366fa7": {
         "at": "2026-10-29T05:53:11Z",
@@ -6298,12 +6298,6 @@
         "symbol": "REDCAT",
         "until": "2026-10-30T10:38:14Z"
       },
-      "0xd4fb1f0582fe3e2bec90f7ebebe0169a9f67ed9e": {
-        "at": "2026-10-29T01:23:11Z",
-        "reason": "goplus_timeout",
-        "symbol": "UFDT",
-        "until": "2026-10-30T01:23:11Z"
-      },
       "0xd5138c27a750185c7a895066b5fd5739cb2a2b07": {
         "at": "2026-10-29T16:23:11Z",
         "reason": "liquidity",
@@ -7249,15 +7243,15 @@
     },
     "watch": {
       "0x079ba9bda5cd6de0f2f15ce2a9e7c9fd8c695159": {
-        "checks": 5,
+        "checks": 6,
         "first_seen": "2026-10-29T23:53:21Z",
-        "last_check": "2026-10-30T01:08:11Z",
+        "last_check": "2026-10-30T01:23:11Z",
         "symbol": "I O F"
       },
       "0x08bb8b57e06372c71c044bc9d1ac7d543f12e6aa": {
-        "checks": 5,
+        "checks": 6,
         "first_seen": "2026-10-29T23:53:21Z",
-        "last_check": "2026-10-30T01:08:11Z",
+        "last_check": "2026-10-30T01:23:11Z",
         "symbol": "GTA 6 Coin"
       },
       "0x09e43249e3ad8f22b4b407cf9b366c79c00085da": {
@@ -7273,9 +7267,9 @@
         "symbol": "NTDA"
       },
       "0x19640000000ba88d36206beb10d0e86011c8d08c": {
-        "checks": 5,
+        "checks": 6,
         "first_seen": "2026-10-29T23:53:21Z",
-        "last_check": "2026-10-30T01:08:11Z",
+        "last_check": "2026-10-30T01:23:11Z",
         "symbol": "RALLY"
       },
       "0x32ae5ad4db8aba87ee2062ee2fb147fbffb6a079": {
@@ -7285,21 +7279,21 @@
         "symbol": "NAFF"
       },
       "0x3c4ef2aa2c9932bc17ec66a9e8123f6cd9a6a707": {
-        "checks": 4,
+        "checks": 5,
         "first_seen": "2026-10-30T00:03:13Z",
-        "last_check": "2026-10-30T00:58:12Z",
+        "last_check": "2026-10-30T01:23:11Z",
         "symbol": "WOTF"
       },
       "0x417f3f86db38a9803895737f6384f90b91c804c5": {
-        "checks": 5,
+        "checks": 6,
         "first_seen": "2026-10-29T23:53:21Z",
-        "last_check": "2026-10-30T01:08:11Z",
+        "last_check": "2026-10-30T01:23:11Z",
         "symbol": "F O T F"
       },
       "0x6aa7ae398d17085596218c4e5ad8e0136fa9ea99": {
-        "checks": 4,
+        "checks": 5,
         "first_seen": "2026-10-30T00:08:16Z",
-        "last_check": "2026-10-30T01:08:11Z",
+        "last_check": "2026-10-30T01:23:11Z",
         "symbol": "USOE"
       },
       "0x6d7c2b487814552f484d45247e290436ab6c40a0": {
@@ -7315,9 +7309,9 @@
         "symbol": "USOE"
       },
       "0x78e8cf657742e10eac8f64007615aa741fc76414": {
-        "checks": 3,
+        "checks": 4,
         "first_seen": "2026-10-30T00:18:13Z",
-        "last_check": "2026-10-30T00:58:12Z",
+        "last_check": "2026-10-30T01:23:11Z",
         "symbol": "USDL"
       },
       "0x9daed97ddbbb926c0c941561038dede832093dd9": {
@@ -7333,9 +7327,9 @@
         "symbol": "DTCC"
       },
       "0xaccf0a18f660ddb53b6eef7c9f880dce50ab3e9c": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-10-30T01:08:11Z",
-        "last_check": "2026-10-30T01:08:11Z",
+        "last_check": "2026-10-30T01:23:11Z",
         "symbol": "AODF"
       },
       "0xdfb8757161b0072846fe17a1ab0f8fd005f61ec8": {
@@ -7367,7 +7361,7 @@
       ]
     },
     "max_dd_pct": {
-      "baseline": 13.974168804304362,
+      "baseline": 13.978413039343621,
       "desk": 0.0
     },
     "peak": {
