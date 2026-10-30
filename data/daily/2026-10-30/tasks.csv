@@ -415,3 +415,13 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-10-30T03:18:12Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=1 new=4 checked=5 passed=0 bought=0 held=0 deferred=0 dex_only=5 goplus=0 requests=8 secs=2.1 bl_positions=0 bl_due=1 bl_eligible=0 bl_bought=0 report=none bl_error=none
 2026-10-30T03:23:11Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
 2026-10-30T03:23:11Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=0 new=0 checked=0 passed=0 bought=0 held=0 deferred=0 dex_only=0 goplus=0 requests=3 secs=1.2 bl_positions=0 bl_due=1 bl_eligible=0 bl_bought=0 report=none bl_error=none
+2026-10-30T03:28:11Z,desk,VERIFY,USDL,0x78e8cf657742e10eac8f64007615aa741fc76414,SKIP,goplus_timeout,first_seen=2026-10-30T00:18:13Z checks=11 until=2026-10-31T03:28:11Z
+2026-10-30T03:28:11Z,desk,VERIFY,CDXR,0x40aaf75454036bed56f3266ccf18f6b7befd6aca,WATCH,goplus_not_ready,first_seen=2026-10-30T01:43:11Z checks=7 pending=honeypot
+2026-10-30T03:28:11Z,desk,VERIFY,SI,0xfe8001877721d8f8cf070cee3c042b6a01b0e68f,WATCH,goplus_not_ready,"first_seen=2026-10-30T02:03:11Z checks=6 pending=mint_open,freeze_or_blacklist,honeypot,top10_pct,risk_flags"
+2026-10-30T03:28:11Z,desk,VERIFY,MEOR,0x079b1b5a8c5ed7e7bd83f2661fecf8af217bb4a5,WATCH,goplus_not_ready,"first_seen=2026-10-30T03:13:11Z checks=2 pending=mint_open,freeze_or_blacklist,honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct,risk_flags"
+2026-10-30T03:28:11Z,desk,VERIFY,UARG,0x5a96d575e0fd4d8ae92a1e4edffc5aabe4d18ec2,WATCH,goplus_not_ready,"first_seen=2026-10-30T03:13:11Z checks=2 pending=mint_open,freeze_or_blacklist,honeypot,buy_tax_pct,sell_tax_pct,dev_pct,top10_pct,lp_locked_pct,risk_flags"
+2026-10-30T03:28:11Z,desk,VERIFY,ONDO,0xe1044d4ee973353be70a630666e904b0c3bf6860,WATCH,goplus_not_ready,"first_seen=2026-10-30T03:13:11Z checks=2 pending=mint_open,freeze_or_blacklist,honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct,risk_flags"
+2026-10-30T03:28:11Z,desk,VERIFY,AI,0xcd1910e8c18ff36cdae165b9b1e2c445c5a76ba3,SKIP,missing:liq_usd,goplus=skipped until=2026-10-31T03:28:11Z
+2026-10-30T03:28:11Z,desk,VERIFY,jeje,0x7346ac2f3a81d72335207e65ec360622f4ce8e95,SKIP,liquidity,goplus=skipped until=2026-10-31T03:28:11Z
+2026-10-30T03:28:11Z,baseline,EXECUTE,USDL,0x78e8cf657742e10eac8f64007615aa741fc76414,BUY,,"usd=5.10 fill=1.037622 seed=202610300328 eligible=2 pick=0 pool=78e8cf,fe8001 desk=goplus_timeout launchpad=other"
+2026-10-30T03:28:11Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=6 new=2 checked=8 passed=0 bought=0 held=0 deferred=0 dex_only=2 goplus=6 requests=18 secs=12.8 bl_positions=0 bl_due=1 bl_eligible=2 bl_bought=1 report=none bl_error=none
