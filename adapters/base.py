@@ -33,6 +33,9 @@ DexScreener side (and GeckoTerminal age), GoPlus is not called and the facts car
 quote(address, pair) prices a held token for EXIT (DECISIONS 2026-10-23, BL-7 B): the pool we
 bought in, else the deepest Base pool ("fallback") only when that pool is gone. 1 request, 2 on fallback.
 
+token_batch(addresses) (BL-26 outcome labels, logging only): one DexScreener /tokens/v1/base request for up to
+30 addresses. It answers ONE pair per token (the deepest; probe 2026-10-30), not every Base pair.
+
 CLI: python -m adapters.base check <address>   |   python -m adapters.base scan   |   ... quote <address> [pair]
 """
 import json
@@ -459,6 +462,13 @@ def quote(address, pair="", client=None):
     f = dex_facts(found, side, datetime.now(timezone.utc))
     out = {"price": f["price"], "liq_usd": f["liq_usd"], "source": source}
     return {k: v for k, v in out.items() if v is not None}
+
+
+# ---------------------------------------------------------------- LABELS (BL-26)
+def token_batch(addresses, client=None):
+    """Pairs for up to 30 tokens in one request (one pair per token). A list, or FETCH_ERROR / None on failure."""
+    c = client or Client()
+    return c.get("ds_pairs", f"{DS}/tokens/v1/base/{','.join(addresses)}")
 
 
 # ---------------------------------------------------------------- CLI

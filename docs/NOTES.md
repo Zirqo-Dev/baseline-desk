@@ -605,6 +605,68 @@ Moved from CLAUDE.md section 11 on 2026-10-23 (BL-2 process cleanup). Wording is
     header Offline).
 - Not checked from here: the live site (the session's proxy refuses zirqo-dev.github.io) and the first Pages run.
 
+## BL-26
+- Outcome labels, logging only (the owner, 2026-10-30, DECISIONS): what happened to a token +1 h, +6 h and +24 h after its
+  first sight, for every desk check past dex_skip() (WATCH, PASS, non-gate SKIP, GoPlus-side RETRY and fetch_error_x3: the
+  rows BL-25 gives trade keys). Gate kills, baseline rows and trades get none. No rule, config value, verdict or exit reads
+  them. Code: core/labels.py, adapters/base.py token_batch(), hook in core/tick.py. No backfill of past days.
+- Endpoint (probe 2026-10-30, 11 read-only requests, all HTTP 200): DexScreener /tokens/v1/base/<a,b,...> takes up to 30
+  addresses (bucket ds_pairs, 300/min) and answers ONE pair per token, the deepest (30 addresses -> 30 pairs; CDXR has 18
+  Base pairs on /token-pairs/v1 and got 1). The owner chose option A (batched, deepest pair only) over per-token calls (B) or
+  a hybrid (C).
+- outcomes.csv (data/daily/<day>/, the day of the label): ts symbol address first_seen horizon age_min first_price price
+  chg_pct liq pair_b1 pair_s1 pair_b24 pair_s24 dex gone.
+  - pair_b1 pair_s1 pair_b24 pair_s24 are the deepest pair's counts only (BL-25's trade_facts() run on that one pair, quote
+    side mirrored). BL-25's b1 s1 b24 s24 on VERIFY rows are sums over every Base pair. They are equal for single-pair tokens
+    (7 of 8 in the probe) and lower here for multi-pair tokens: do not compare them one-to-one in a replay.
+  - price: pick_pair() on the answer (the deepest Base pair, quote side inverted like facts()), the same rule as first_price,
+    so chg_pct = (price / first_price - 1) x 100 compares the deepest pool each time. If the deepest pool changed since first
+    sight, the row is still logged and dex shows which pool it is. liq and dex = that pair (BL-25 format, e.g. uniswap:v4).
+  - first_price: the facts() price of the check that IS the first sight (first_seen = that check's time); "na" when the
+    check came later (tokens already on the watchlist at deploy, or a token re-added after a failed labels step).
+  - gone=1 (price, chg_pct, liq and pair counts "na") when the answer has no Base pair for the token. "na" for any value
+    DexScreener didn't give, never 0; a real 0 stays 0.
+  - first_seen = the watchlist's first_seen, else the check time. A token seen again after its 24 h skip (a new watch cycle)
+    starts a new set of labels with its new first_seen (the owner); one re-checked while its entry is still pending keeps
+    the old first sight.
+- Timing: due at first_seen + 1 / 6 / 24 h, taken on the first tick at or after it; age_min = the real age (a late label is
+  logged late, never skipped). Oldest due first; at most 2 requests of 30 addresses per tick; every due horizon of a fetched
+  token is written in that pass; the rest wait. A failed request (429, 5xx, timeout, 4xx, odd body) leaves its labels due.
+- State key "labels" = {"pending": {address: {symbol, first_seen, first_price, done}}}; an entry leaves after its +24 h label
+  or at first_seen + 26 h (a +24 h label still missing then is lost). Smoke: ~190 B per entry; about 150 entries at a time,
+  ~28 KB in state.json.
+- Tick: verify_and_buy() notes each check past the gate as a plain dict (no request, no I/O). After the desk and baseline
+  steps and their saves, labels.run() runs in its own try: add sights, prune, take due labels, write rows, save. An error logs
+  labels=error:<type>, leaves due labels for the next tick and ends the run red after the TICK row (as BL-23's machine step);
+  that tick's new sights are lost (a watched token comes back on its next re-check, with first_price "na"). TICK detail ends
+  with labels=ok|none labels_due labels_done labels_calls (existing keys and order unchanged); requests= includes the label
+  calls. tick.yml already runs git add data/, so outcomes.csv is committed with no workflow change.
+- Tests: tests/test_labels.py (20): not before +1 h, late labels with real age and both horizons in one request, each label
+  once then the entry leaves, first_price and chg_pct; 70 due -> 2 calls of 30 oldest first, 10 wait, next tick 1 call;
+  FETCH_ERROR / None / odd body stay due; the real URL; gone (no pair, non-Base pair); "na" vs 0; quote-side pair mirrored
+  equals trade_facts() on that same pair; price from pick_pair (deep pool over a thin one); pruning at 26 h; bounded state;
+  in the tick: only past-gate checks get entries (PASS, safety SKIP, WATCH; not the gate kill), watched first_seen kept,
+  first_price only at first sight, TICK keys at the end, labels error never stops a PASS + BUY and the TICK row, a failed
+  step is retried next tick; desk and baseline unchanged (the BL-8 three-tick run with labels on, off and broken: same desk
+  and baseline rows, same desk, leads and baseline state, same TICK desk and bl_ keys). Old test: the BL-7 heartbeat test
+  now ends with the 4 labels keys. 210 pass on 3.13 (190 before).
+- Live smoke 2026-10-30 (scratch copies of data/, real requests, nothing under data/ changed):
+  - Tick on a copy of the live state: 36 requests in 21.2 s, 10 checked, labels=ok due 8 done 8 in 1 call (tokens on the
+    watchlist had an older first_seen, so their +1 h was due at once: the first live tick will show the same).
+  - Smoke only: pending seeded from the day's 82 past-gate tokens with their real first_seen (no code path does this):
+    next tick 26 requests in 18.9 s, labels due 89, done 86 in 2 calls, 3 waited; the tick after: due 3, done 3, 1 call,
+    8 requests in 2.6 s. 97 rows: 71 x 1h, 26 x 6h, 0 gone. A label request takes about 0.4 s.
+  - After the first_price fix, a fresh copy: 2 new first sights kept their price, 2 watched tokens got "na".
+  - Sample rows:
+
+    ARCHAX,0xb4006d47...,2026-10-30T12:18:13Z,1h,171,9.731e-05,9.731e-05,0.0,96341,0,0,3,0,uniswap:v4,0
+    CDXR,0x40aaf754...,2026-10-30T01:43:11Z,6h,806,na,0.02006,na,1175326,0,0,2,3,uniswap:v4,0
+
+    (ARCHAX's first_price there is from before the fix; it is "na" now for a token already watched.)
+- Size: 142 B per row. About 130 past-gate tokens a day (82 by 15:00 UTC on 2026-10-30) x 3 horizons = ~390 rows, ~55 KB
+  per day of outcomes.csv. Requests: about 1.4 labels due per tick on average, so 0 or 1 label request per tick in normal
+  running, 2 at most.
+
 ## Open items (detail)
 - Open items:
   - BL-7 done only after 24h of green runs, no overlap, one TICK row per run. The TICK rows show the real run rate for Gate A (90%).

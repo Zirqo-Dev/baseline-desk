@@ -41,14 +41,15 @@ EXIT     core/exits.py             liquidity pull, hard stop, ladder, trail, tim
 BASELINE core/baseline.py          random shadow book "baseline": 1 random eligible lead every 12 ticks, same rules (BL-8)
 REPORT   core/report.py            desk vs random baseline -> data/report.json, in the tick on the UTC day roll
 REPORT   core/report.py            machine cards (BL-23, tasks.csv only) -> report.json "machine" + data/tokens_24h.json, own try
+LABELS   core/labels.py            outcome labels (BL-26, logging only): +1/+6/+24 h after first sight -> data/daily/<day>/outcomes.csv
 TICK     core/tick.py              one run: roll day (+report, +machine cards), exits (desk, baseline), scan -> verify -> buy, baseline buy,
-                                   one TICK heartbeat row
+                                   outcome labels (own try), one TICK heartbeat row
 
 Folders:
-- core/: config.py, book.py, desk.py, verify.py, leads.py, exits.py, friction.py, tick.py, baseline.py, report.py
+- core/: config.py, book.py, desk.py, verify.py, leads.py, exits.py, friction.py, tick.py, baseline.py, report.py, labels.py
 - adapters/: base.py (EVM, chain 8453). Adapter pattern kept so other chains could plug in later (parked).
 - prompts/: x_read.py
-- data/: state.json, report.json, tokens_24h.json, daily/YYYY-MM-DD/ (tasks.csv, trades.csv; both books in the same files, column "book")
+- data/: state.json, report.json, tokens_24h.json, daily/YYYY-MM-DD/ (tasks.csv, trades.csv; both books in the same files, column "book"; outcomes.csv, BL-26)
 - site/: GitHub Pages dashboard (BL-13), one self-contained index.html; fetches only data/report.json and data/tokens_24h.json
   from raw.githubusercontent.com at page load (no override); the locked mock is docs/mock/bl13-mock.html (never under site/)
 - docs/: DECISIONS.md, LEARNINGS.md, NOTES.md, CHANGELOG.md, mock/ (bl13-mock.html, reference only)
@@ -129,7 +130,12 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
   fetch_error_x3) and baseline BUY rows end with b1 s1 b24 s24 liq dex (DexScreener buys/sells 1 h and 24 h over every Base
   pair, quote side mirrored, s1 = sells_1h; chosen pair liquidity; dexId:vN), "na" when missing; gate-killed rows unchanged;
   no new request, no rule reads them; ~83 KB/day (docs/NOTES.md "BL-25").
-  Tests: stdlib unittest, `python -m unittest` (190 pass on 3.13).
+  BL-26 live (logging only, 2026-10-30): every desk check past dex_skip() gets +1 h / +6 h / +24 h rows in
+  data/daily/<day>/outcomes.csv (first_seen, first_price, price, chg_pct, liq, pair_b1/pair_s1/pair_b24/pair_s24 = the deepest
+  pair only, NOT BL-25's all-pair sums, dex, gone); batched DexScreener /tokens/v1 (30 per request, max 2 per tick, usually
+  0-1), own try, TICK ends with labels labels_due labels_done labels_calls; state "labels" pruned at +24 h or 26 h (~28 KB);
+  ~55 KB/day; no rule reads them (docs/NOTES.md "BL-26").
+  Tests: stdlib unittest, `python -m unittest` (210 pass on 3.13).
 - cron-job.org token "baseline-desk cron" EXPIRES Thu 2027-01-21: renew by early January or the desk stops silently.
 - Technical detail per card, GoPlus diagnosis, BL-20 budget and full open items: docs/NOTES.md.
 - Open items:
@@ -144,11 +150,11 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
   - Clanker/Zora factory addresses unconfirmed until BL-10 (docs/NOTES.md)
   - top10 is the top 8-10 after exclusions, slightly lenient (docs/NOTES.md)
   - The exact GoPlus rate-limit code is unverified; code 3 is not one; BL-24 saw code 4029 4 times in 137 calls at 2 s, very likely it (docs/NOTES.md)
-  - tokens_24h.json adds ~230 KB of git history per day (overwritten daily) and BL-25 ~83 KB/day to tasks.csv; include both in BL-16's archive plan (docs/NOTES.md)
-- Next step: the owner checks the live site at zirqo-dev.github.io/baseline-desk after the first Pages deploy (Pages
-  source = GitHub Actions); the BL-23 live check after the 00:03 UTC Oct 31 roll (report.json "machine", data/tokens_24h.json,
-  machine=ok), which also fills the site's machine cards and token table; then about a week of BL-25 rows before a real-sells
-  replay (docs/NOTES.md "BL-25"). The BL-24 result stays with the owner (no rule change made).
+  - tokens_24h.json adds ~230 KB of git history per day (overwritten daily), BL-25 ~83 KB/day to tasks.csv and BL-26 outcomes.csv ~55 KB/day; include all three in BL-16's archive plan (docs/NOTES.md)
+- Next step: the first live +1 h labels in data/daily/<day>/outcomes.csv (TICK labels=ok, labels_calls 0-2); the BL-23
+  live check after the 00:03 UTC Oct 31 roll (report.json "machine", tokens_24h.json, machine=ok), which also fills the
+  site; then about a week of labels and BL-25 rows before the real-sells replay around Nov 6 (docs/NOTES.md "BL-25",
+  "BL-26"). The BL-24 result stays with the owner (no rule change made).
 - Last updated: 2026-10-30.
 
 ## 12. Glossary

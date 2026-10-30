@@ -24,14 +24,19 @@ still run, the baseline buy is skipped after a baseline exit error (stays due), 
 Machine cards (BL-23): right after the report, in their own try, core/report.py adds the machine cards
 to report.json and writes data/tokens_24h.json (tasks.csv only, no request). A failure keeps the money
 cards, logs machine=error:<type>, retries next tick (machine_due) and ends the run red after the TICK row.
-TICK detail: the desk keys as before, then bl_positions bl_due bl_eligible bl_bought report machine bl_error.
+Outcome labels (BL-26, logging only, core/labels.py): every desk check past dex_skip() is handed over as a sight;
+after the desk and baseline steps, in their own try, the labels due (+1 h / +6 h / +24 h after first sight) are taken
+with at most labels.MAX_CALLS batched DexScreener requests and written to data/daily/<day>/outcomes.csv. A failure
+logs labels=error:<type>, leaves them due for the next tick and ends the run red after the TICK row.
+TICK detail: the desk keys as before, then bl_positions bl_due bl_eligible bl_bought report machine bl_error,
+then labels labels_due labels_done labels_calls.
 """
 import sys
 import time
 from pathlib import Path
 
 from adapters import base
-from core import baseline, config, desk, exits, report
+from core import baseline, config, desk, exits, labels, report
 from core.book import ROOT, TASK_FIELDS, Book, _append, day, ts, utcnow
 from core.leads import Leads
 
@@ -67,9 +72,10 @@ def verdict(reason):
     return {"": "PASS", "goplus_not_ready": "WATCH"}.get(reason, reason)
 
 
-def verify_and_buy(book, leads, held, client, now, n, seen=None, verdicts=None):
+def verify_and_buy(book, leads, held, client, now, n, seen=None, verdicts=None, sights=None):
     """Scan, check and buy for the desk. seen/verdicts (BL-8) collect each facts() lead's
-    DexScreener side and the desk's outcome for the baseline; they change nothing for the desk."""
+    DexScreener side and the desk's outcome for the baseline; sights (BL-26) collect each check past
+    dex_skip() for the outcome labels. They change nothing for the desk."""
     seen = {} if seen is None else seen
     verdicts = {} if verdicts is None else verdicts
     found = base.scan(client)
@@ -89,7 +95,10 @@ def verify_and_buy(book, leads, held, client, now, n, seen=None, verdicts=None):
         n["checked"] += 1
         if f.get("goplus_skipped"):
             n["dex_only"] += 1
+        first_seen = (leads.s["watch"].get(address) or {}).get("first_seen") or ts(now)
         reason = leads.record(address, f, now)
+        if sights is not None and not f.get("goplus_skipped"):
+            sights.append(labels.sight(address, f, first_seen, now))
         verdicts[address] = verdict(reason)
         if reason == "":
             n["passed"] += 1
@@ -106,6 +115,8 @@ def run(root=ROOT, now=None, client=None, clock=time.monotonic, log=print):
     b = dict.fromkeys(BL_COUNTS, 0)
     b["report"] = b["machine"] = "none"
     reason, crash, report_error, machine_error, bl_errors = "", None, None, None, []
+    lb = {"labels": "none", "labels_due": 0, "labels_done": 0, "labels_calls": 0}
+    labels_error = None
 
     def bl_try(bl, stage, step, after_error=False):
         """One baseline step; an error is logged and kept, never stops the desk (pick 7)."""
@@ -145,13 +156,13 @@ def run(root=ROOT, now=None, client=None, clock=time.monotonic, log=print):
         exits.check(book, lambda a: base.quote(a, book.positions[a].get("pair", ""), client), now)
         bl_try(bl, "EXIT", lambda: exits.check(
             bl, lambda a: base.quote(a, bl.positions[a].get("pair", ""), client), now))
-        seen, verdicts = {}, {}
+        seen, verdicts, sights = {}, {}, []
         if config.PAUSED:
             reason = "paused"
         elif book.halted(now):
             reason = "loss_halt"
         else:
-            verify_and_buy(book, leads, held, client, now, n, seen, verdicts)
+            verify_and_buy(book, leads, held, client, now, n, seen, verdicts, sights)
 
             def bl_buy():
                 b["bl_eligible"] = len(baseline.eligible(seen, bl_held))
@@ -163,6 +174,14 @@ def run(root=ROOT, now=None, client=None, clock=time.monotonic, log=print):
         report.track(rs, [book])
         bl_try(bl, "BOOK", lambda: (bl.save(), report.track(rs, [bl])), after_error=True)
         report.save(root, rs)
+        calls = len(client.calls)
+        try:  # BL-26: last, never in the way of a trade; stays due, retried next tick, run ends red
+            got = labels.run(root, now, sights, client)
+            lb.update(labels="ok" if got["due"] or got["calls"] else "none", labels_due=got["due"],
+                      labels_done=got["done"], labels_calls=got["calls"])
+        except Exception as e:
+            lb.update(labels=f"error:{type(e).__name__}", labels_calls=len(client.calls) - calls)
+            labels_error = e
     except Exception as e:  # the heartbeat row must still be written
         reason, crash = f"error:{type(e).__name__}", e
     n["goplus"] = goplus_calls(client)
@@ -170,6 +189,7 @@ def run(root=ROOT, now=None, client=None, clock=time.monotonic, log=print):
     n["secs"] = round(clock() - start, 1)
     n.update(b)
     n["bl_error"] = type(bl_errors[0]).__name__ if bl_errors else "none"
+    n.update(lb)
     detail = " ".join(f"{k}={v}" for k, v in n.items())
     # written straight to tasks.csv, so it works even when the state file is what broke
     _append(root / config.TASKS.format(day=day(now)), TASK_FIELDS, {
@@ -184,6 +204,8 @@ def run(root=ROOT, now=None, client=None, clock=time.monotonic, log=print):
         raise machine_error
     if bl_errors:
         raise bl_errors[0]
+    if labels_error:
+        raise labels_error
     return n
 
 
