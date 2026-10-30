@@ -1,28 +1,11 @@
 {
   "baseline": {
-    "cash": 41.814967723489985,
+    "cash": 46.53282221460363,
     "day": "2026-10-30",
     "day_start_value": 51.959512203001,
     "halted_day": "",
-    "positions": {
-      "0xdbbbf29bd33734009d46f2c020fe1d31902b4e29": {
-        "cost_usd": 5,
-        "entry_fill": 0.8511920000000001,
-        "entry_intended": 0.8264,
-        "entry_liq_usd": 223153.78,
-        "entry_ts": "2026-10-30T17:38:17Z",
-        "ladder_done": [],
-        "last_liq_usd": 222624.9,
-        "last_price": 0.8271,
-        "launchpad": "other",
-        "orig_qty": 5.87411535822705,
-        "pair": "0x2921a7e6e2346f15b68a3b5f67e00a201e3ea5c2d9f3fadd005efe200b9c7f0d",
-        "peak_price": 0.8302,
-        "qty": 5.87411535822705,
-        "symbol": "I O F"
-      }
-    },
-    "ticks_since_buy": 9
+    "positions": {},
+    "ticks_since_buy": 10
   },
   "desk": {
     "cash": 47.60776857887221,
@@ -1012,6 +995,12 @@
         "reason": "liquidity",
         "symbol": "TRIO",
         "until": "2026-10-31T03:43:11Z"
+      },
+      "0x154a67f26283b8887c165839c8cfe858e0f419cb": {
+        "at": "2026-10-30T18:28:13Z",
+        "reason": "goplus_timeout",
+        "symbol": "AODF",
+        "until": "2026-10-31T18:28:13Z"
       },
       "0x15f92a7647013b47abf9ed8e111b4e3b82c6aea5": {
         "at": "2026-10-30T09:38:12Z",
@@ -2291,6 +2280,12 @@
         "symbol": "SXLIVE",
         "until": "2026-10-31T00:18:13Z"
       },
+      "0x5dafac1dace27d71079cc6eabcc4d1c501cbebd6": {
+        "at": "2026-10-30T18:28:13Z",
+        "reason": "goplus_timeout",
+        "symbol": "U.S GOLD ",
+        "until": "2026-10-31T18:28:13Z"
+      },
       "0x5e072700d5b7bbe97bd0e757f91d1826761cfafd": {
         "at": "2026-10-30T14:33:13Z",
         "reason": "goplus_timeout",
@@ -2644,6 +2639,12 @@
         "reason": "liquidity",
         "symbol": "WTB",
         "until": "2026-10-31T14:08:12Z"
+      },
+      "0x6c53707dd281f6ca0e95eec99a7c239bb9b696bc": {
+        "at": "2026-10-30T18:28:13Z",
+        "reason": "liquidity",
+        "symbol": "Hosico",
+        "until": "2026-10-31T18:28:13Z"
       },
       "0x6c8c751898e5f99976ada0ac2fa3a84a501b16ea": {
         "at": "2026-10-29T20:28:14Z",
@@ -6572,15 +6573,15 @@
         "symbol": "FOI"
       },
       "0x1075bbbae3da079254762241ab37707c72e85ebd": {
-        "checks": 2,
+        "checks": 3,
         "first_seen": "2026-10-30T17:43:11Z",
-        "last_check": "2026-10-30T18:08:12Z",
+        "last_check": "2026-10-30T18:28:13Z",
         "symbol": "UOFD"
       },
       "0x11a0713a3b6169dd1aa36e8083bf85fcc9bf8ffe": {
-        "checks": 10,
+        "checks": 11,
         "first_seen": "2026-10-30T15:38:12Z",
-        "last_check": "2026-10-30T18:13:12Z",
+        "last_check": "2026-10-30T18:28:13Z",
         "symbol": "XTO"
       },
       "0x12a2d079cb5bf31b95f7714f98974650783d9288": {
@@ -6588,12 +6589,6 @@
         "first_seen": "2026-10-30T16:23:12Z",
         "last_check": "2026-10-30T18:18:15Z",
         "symbol": "AO DF"
-      },
-      "0x154a67f26283b8887c165839c8cfe858e0f419cb": {
-        "checks": 10,
-        "first_seen": "2026-10-30T15:23:13Z",
-        "last_check": "2026-10-30T18:13:12Z",
-        "symbol": "AODF"
       },
       "0x1c8393ceb14f025369d34915966528e758d248b2": {
         "checks": 1,
@@ -6631,12 +6626,6 @@
         "last_check": "2026-10-30T18:18:15Z",
         "symbol": "IFO"
       },
-      "0x5dafac1dace27d71079cc6eabcc4d1c501cbebd6": {
-        "checks": 11,
-        "first_seen": "2026-10-30T15:13:13Z",
-        "last_check": "2026-10-30T18:13:12Z",
-        "symbol": "U.S GOLD "
-      },
       "0x5f74e31b2252dadd6040f7f4ab547530b8843a59": {
         "checks": 8,
         "first_seen": "2026-10-30T16:13:13Z",
@@ -6650,9 +6639,9 @@
         "symbol": "USOILS"
       },
       "0x6636ed2ceb94166c89ec112190a1db6b99e53050": {
-        "checks": 2,
+        "checks": 3,
         "first_seen": "2026-10-30T17:43:11Z",
-        "last_check": "2026-10-30T18:08:12Z",
+        "last_check": "2026-10-30T18:28:13Z",
         "symbol": "UOFD"
       },
       "0x74ef3a64e26c2b42e15236bc0fd9ce6c0ab9d782": {
@@ -6662,9 +6651,9 @@
         "symbol": "ADF"
       },
       "0x79472ce405ed157be11ad81081e31f30b4b3bc34": {
-        "checks": 2,
+        "checks": 3,
         "first_seen": "2026-10-30T17:43:11Z",
-        "last_check": "2026-10-30T18:08:12Z",
+        "last_check": "2026-10-30T18:28:13Z",
         "symbol": "UDOF"
       },
       "0x83190636c344cf1220ffcbfc0c1198f7867b3667": {
@@ -6674,9 +6663,9 @@
         "symbol": "JMX"
       },
       "0x832bcced5bd431b31663576490344ea1c0bea295": {
-        "checks": 2,
+        "checks": 3,
         "first_seen": "2026-10-30T17:33:12Z",
-        "last_check": "2026-10-30T18:08:12Z",
+        "last_check": "2026-10-30T18:28:13Z",
         "symbol": "EUR"
       },
       "0x834efcbf002b6effb605ca5f92d86c6a16fbd966": {
@@ -6692,9 +6681,9 @@
         "symbol": "UDSA"
       },
       "0x8588ebf52351cb16bd8c907547ca002de37c5b7f": {
-        "checks": 8,
+        "checks": 9,
         "first_seen": "2026-10-30T15:58:16Z",
-        "last_check": "2026-10-30T18:13:12Z",
+        "last_check": "2026-10-30T18:28:13Z",
         "symbol": "AODF"
       },
       "0x8ce2b13567455a54efcefe3a3745697d7cd497a8": {
@@ -6764,9 +6753,9 @@
         "symbol": "UOFD"
       },
       "0xfedf16d43db8016c5d5122fa65ad5b253be58e9e": {
-        "checks": 9,
+        "checks": 10,
         "first_seen": "2026-10-30T15:38:12Z",
-        "last_check": "2026-10-30T18:13:12Z",
+        "last_check": "2026-10-30T18:28:13Z",
         "symbol": "TDF"
       }
     }
