@@ -623,3 +623,13 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-10-30T06:03:10Z,desk,VERIFY,PREDICT.FUN,0xc47cfc391695b1005ef0fba860e2e3f060013d7c,SKIP,missing:liq_usd,goplus=skipped until=2026-10-31T06:03:10Z
 2026-10-30T06:03:10Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
 2026-10-30T06:03:10Z,desk,TICK,,,HEARTBEAT,,positions=1 seen=20 rechecks=0 new=2 checked=2 passed=0 bought=0 held=0 deferred=0 dex_only=2 goplus=0 requests=7 secs=1.7 bl_positions=1 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none
+2026-10-30T06:08:13Z,desk,EXIT,SI,0xfe8001877721d8f8cf070cee3c042b6a01b0e68f,SELL,ladder_1,pct=47.35 intended=0.004186126 quote=0.004406
+2026-10-30T06:08:13Z,baseline,EXIT,SI,0xfe8001877721d8f8cf070cee3c042b6a01b0e68f,SELL,ladder_1,pct=45.15 intended=0.004249574 quote=0.004406
+2026-10-30T06:08:13Z,desk,VERIFY,MEOR,0x079b1b5a8c5ed7e7bd83f2661fecf8af217bb4a5,WATCH,goplus_not_ready,"first_seen=2026-10-30T03:13:11Z checks=11 pending=honeypot,buy_tax_pct,sell_tax_pct,lp_locked_pct b1=0 s1=0 b24=3 s24=0 liq=90272 dex=uniswap:v4"
+2026-10-30T06:08:13Z,desk,VERIFY,ONDO,0xe1044d4ee973353be70a630666e904b0c3bf6860,WATCH,goplus_not_ready,"first_seen=2026-10-30T03:13:11Z checks=11 pending=honeypot,buy_tax_pct,sell_tax_pct,lp_locked_pct b1=0 s1=0 b24=5 s24=0 liq=109585 dex=uniswap:v4"
+2026-10-30T06:08:13Z,desk,VERIFY,UGAR,0x82ac5b580732c7922b303004b9d1331f9327be49,WATCH,goplus_not_ready,first_seen=2026-10-30T05:48:11Z checks=2 pending=top10_pct b1=23 s1=0 b24=23 s24=0 liq=76588 dex=uniswap:v2
+2026-10-30T06:08:13Z,desk,VERIFY,USD𐤯,0xb200000000000000000000665ebd8a9b17e84ca6,SKIP,liquidity,goplus=skipped until=2026-10-31T06:08:13Z
+2026-10-30T06:08:13Z,desk,VERIFY,BTC,0xb200000000000000000000383f59f5a73e55736f,SKIP,liquidity,goplus=skipped until=2026-10-31T06:08:13Z
+2026-10-30T06:08:13Z,desk,VERIFY,SPACEX,0x11e201a0718dacaf74959ba2c411ab17ad65753c,SKIP,liquidity,goplus=skipped until=2026-10-31T06:08:13Z
+2026-10-30T06:08:13Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
+2026-10-30T06:08:13Z,desk,TICK,,,HEARTBEAT,,positions=1 seen=20 rechecks=3 new=3 checked=6 passed=0 bought=0 held=0 deferred=0 dex_only=3 goplus=3 requests=14 secs=6.4 bl_positions=1 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none
