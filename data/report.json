@@ -1,0 +1,70 @@
+{
+  "as_of": "2026-10-30T00:03:13Z",
+  "day": "2026-10-29",
+  "start_balance": 50.0,
+  "desk_lead_usd": -1.96,
+  "gate_b": {
+    "desk_closes": 0,
+    "target": 100,
+    "kill": 200
+  },
+  "summary": "2026-10-29: desk 50.00 USD (0 closes, 0 open), baseline 51.96 USD (19 closes, 0 open), desk lead -1.96 USD. Gate B: 0/100 desk closes (kill at 200 without beating the baseline).",
+  "desk": {
+    "value_usd": 50.0,
+    "cash_usd": 50.0,
+    "net_pnl_usd": 0.0,
+    "net_pnl_pct": 0.0,
+    "multiple": 1.0,
+    "equity_daily": [
+      {
+        "day": "2026-10-29",
+        "value_usd": 50.0
+      }
+    ],
+    "open": 0,
+    "max_dd_pct": 0.0,
+    "closes": 0,
+    "closes_day": 0,
+    "win_rate": 0.0,
+    "avg_win_pct": 0.0,
+    "avg_loss_pct": 0.0,
+    "stop_slip_pct": 0.0,
+    "exits_by_rule": {
+      "liq_pull": 0,
+      "hard_stop": 0,
+      "ladder_1": 0,
+      "ladder_2": 0,
+      "trail": 0,
+      "time_stop": 0
+    }
+  },
+  "baseline": {
+    "value_usd": 51.96,
+    "cash_usd": 51.96,
+    "net_pnl_usd": 1.96,
+    "net_pnl_pct": 3.92,
+    "multiple": 1.0392,
+    "equity_daily": [
+      {
+        "day": "2026-10-29",
+        "value_usd": 51.96
+      }
+    ],
+    "open": 0,
+    "max_dd_pct": 12.97,
+    "closes": 19,
+    "closes_day": 19,
+    "win_rate": 5.26,
+    "avg_win_pct": 185.02,
+    "avg_loss_pct": -7.54,
+    "stop_slip_pct": -4.04,
+    "exits_by_rule": {
+      "liq_pull": 0,
+      "hard_stop": 0,
+      "ladder_1": 1,
+      "ladder_2": 1,
+      "trail": 1,
+      "time_stop": 18
+    }
+  }
+}

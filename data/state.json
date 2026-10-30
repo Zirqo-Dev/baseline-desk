@@ -1,15 +1,15 @@
 {
   "baseline": {
     "cash": 51.959512203001,
-    "day": "2026-10-29",
-    "day_start_value": 50.0,
+    "day": "2026-10-30",
+    "day_start_value": 51.959512203001,
     "halted_day": "",
     "positions": {},
-    "ticks_since_buy": 10
+    "ticks_since_buy": 11
   },
   "desk": {
     "cash": 50.0,
-    "day": "2026-10-29",
+    "day": "2026-10-30",
     "day_start_value": 50.0,
     "halted_day": "",
     "positions": {}
@@ -293,12 +293,6 @@
         "symbol": "TORCH",
         "until": "2026-10-30T17:03:16Z"
       },
-      "0x09afc6d658ab2d46ea2e6dc5dad226d06c118ffb": {
-        "at": "2026-10-29T00:03:12Z",
-        "reason": "goplus_timeout",
-        "symbol": "VBOTS",
-        "until": "2026-10-30T00:03:12Z"
-      },
       "0x09b9b97814e371d3b62973cab90cfa36700aa46b": {
         "at": "2026-10-29T16:58:12Z",
         "reason": "goplus_timeout",
@@ -376,6 +370,12 @@
         "reason": "liquidity",
         "symbol": "JEREMY",
         "until": "2026-10-30T21:48:12Z"
+      },
+      "0x0c3d7027ef362f45fad43200639e726d8ef23128": {
+        "at": "2026-10-30T00:03:13Z",
+        "reason": "liquidity",
+        "symbol": "ANTHROPIC",
+        "until": "2026-10-31T00:03:13Z"
       },
       "0x0c4af009b91ab845eb8b76eccc6dde71e57009ad": {
         "at": "2026-10-29T12:43:11Z",
@@ -3737,12 +3737,6 @@
         "symbol": "ELOONG",
         "until": "2026-10-30T17:18:14Z"
       },
-      "0x9006ea3a1c0af0b6acf7bb66cc796dd72d8f7a43": {
-        "at": "2026-10-29T00:03:12Z",
-        "reason": "liquidity",
-        "symbol": "openhuman",
-        "until": "2026-10-30T00:03:12Z"
-      },
       "0x900b16f2e025a4d5d9174db9bb0bad9ae4e80912": {
         "at": "2026-10-29T20:53:10Z",
         "reason": "liquidity",
@@ -5369,6 +5363,12 @@
         "symbol": "ROCKETMARKETS",
         "until": "2026-10-30T14:03:12Z"
       },
+      "0xb200000000000000000000cf548ec85b87988a42": {
+        "at": "2026-10-30T00:03:13Z",
+        "reason": "liquidity",
+        "symbol": "ZERODAY",
+        "until": "2026-10-31T00:03:13Z"
+      },
       "0xb200000000000000000000d2a075a51a2b3f1b73": {
         "at": "2026-10-29T05:33:11Z",
         "reason": "liquidity",
@@ -6929,12 +6929,6 @@
         "symbol": "BICS",
         "until": "2026-10-30T11:23:12Z"
       },
-      "0xec4aced4f18c8e82f3912eb85db5ef3b5c98cb61": {
-        "at": "2026-10-29T00:03:12Z",
-        "reason": "liquidity",
-        "symbol": "XCHAT",
-        "until": "2026-10-30T00:03:12Z"
-      },
       "0xec9f9f53c8a9626aa391619175a05f3cab4a0d49": {
         "at": "2026-10-29T12:23:12Z",
         "reason": "liquidity",
@@ -7333,6 +7327,12 @@
         "last_check": "2026-10-29T23:48:14Z",
         "symbol": "NAFF"
       },
+      "0x3c4ef2aa2c9932bc17ec66a9e8123f6cd9a6a707": {
+        "checks": 1,
+        "first_seen": "2026-10-30T00:03:13Z",
+        "last_check": "2026-10-30T00:03:13Z",
+        "symbol": "WOTF"
+      },
       "0x417f3f86db38a9803895737f6384f90b91c804c5": {
         "checks": 1,
         "first_seen": "2026-10-29T23:53:21Z",
@@ -7397,7 +7397,24 @@
   },
   "report": {
     "due": "",
-    "equity": {},
+    "equity": {
+      "baseline": [
+        {
+          "cash_usd": 51.959512,
+          "day": "2026-10-29",
+          "open": 0,
+          "value_usd": 51.959512
+        }
+      ],
+      "desk": [
+        {
+          "cash_usd": 50.0,
+          "day": "2026-10-29",
+          "open": 0,
+          "value_usd": 50.0
+        }
+      ]
+    },
     "max_dd_pct": {
       "baseline": 12.966727216814068,
       "desk": 0.0
