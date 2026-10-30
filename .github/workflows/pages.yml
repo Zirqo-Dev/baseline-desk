@@ -1,0 +1,41 @@
+# BL-13: deploy site/ (the dashboard) to GitHub Pages. CLAUDE.md section 7.
+# Runs only when site/ or this file changes on main, or by hand: bot "data: tick" commits touch
+# data/ only, so they never deploy (Pages soft limit: 10 builds/hour). The page reads data/report.json
+# and data/tokens_24h.json from raw.githubusercontent.com at load time; no data is copied into site/.
+# One-time setting (the owner): Settings -> Pages -> Source = "GitHub Actions".
+name: pages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "site/**"
+      - ".github/workflows/pages.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  deploy:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+      - id: deployment
+        uses: actions/deploy-pages@v4

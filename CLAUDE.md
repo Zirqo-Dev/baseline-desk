@@ -49,9 +49,10 @@ Folders:
 - adapters/: base.py (EVM, chain 8453). Adapter pattern kept so other chains could plug in later (parked).
 - prompts/: x_read.py
 - data/: state.json, report.json, tokens_24h.json, daily/YYYY-MM-DD/ (tasks.csv, trades.csv; both books in the same files, column "book")
-- site/: GitHub Pages dashboard; reads data/report.json at page load
-- docs/: DECISIONS.md, LEARNINGS.md
-- .github/workflows/: tick.yml (pages.yml comes with the BL-13 site build; no report.yml, BL-8)
+- site/: GitHub Pages dashboard (BL-13), one self-contained index.html; fetches only data/report.json and data/tokens_24h.json
+  from raw.githubusercontent.com at page load (no override); the locked mock is docs/mock/bl13-mock.html (never under site/)
+- docs/: DECISIONS.md, LEARNINGS.md, NOTES.md, CHANGELOG.md, mock/ (bl13-mock.html, reference only)
+- .github/workflows/: tick.yml, pages.yml (BL-13: deploys site/ on push to main touching site/** or itself, or by hand; no report.yml, BL-8)
 
 Standard facts dict (every field required; missing = skip):
 symbol, price, liq_usd, age_min, sells_1h, mint_open, freeze_or_blacklist, honeypot,
@@ -111,7 +112,12 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
   BL-22 step 1 probe (2026-10-30, docs only, committed in 335c414): honeypot.is answered 2 of 24 requests (23 tokens, both Uniswap V3, taxes 0/0/0),
   the other 22 "pair not found" (HTTP 404); GoPlus had no honeypot answer for all 23 (docs/NOTES.md "BL-22 probe").
   BL-22 closed (the owner, 2026-10-29): honeypot.is dropped, no step 2; the DexScreener pool/dex label log moves to BL-10.
-  BL-13 visual mock locked 2026-10-28 (site build still to do).
+  BL-13 visual mock locked 2026-10-28; site built 2026-10-30: site/index.html reads report.json + tokens_24h.json from
+  raw.githubusercontent.com (CORS *, cached up to 5 min), real values or honest empty states, no Sample mode; pages.yml
+  deploys only on site/** or workflow changes (docs/NOTES.md "BL-13"). Pages source must be "GitHub Actions" (owner setting).
+  First desk trade (2026-10-30): SI 0xfe8001..., PASS 04:48 UTC at check 11, BUY 5.00 USD, ladder_1 06:08 (+0.71),
+  liq_pull 09:38 (-3.10, liquidity 159k -> 43k, -92% between two ticks), net -2.39 USD (-47.8%); 1 desk close, Gate B 1/100.
+  The baseline held SI too (same exits), so no edge either way. No rule change (docs/NOTES.md "First desk trade").
   BL-23 committed in 3735ebb (2026-10-30 03:55 UTC); first live cards expected at the 00:03 UTC Oct 31 roll: machine cards in report.json["machine"] + data/tokens_24h.json on the
   day roll, tasks.csv only, desk only, running totals in state report.totals, own try (machine=error:<type>, retried, run red).
   2026-10-29 check matches chat (gate 1,069 / safety 143, funnel 1,229 -> 160 -> 0 -> 0); smoke 2.8 s (docs/NOTES.md "BL-23").
@@ -123,7 +129,7 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
   fetch_error_x3) and baseline BUY rows end with b1 s1 b24 s24 liq dex (DexScreener buys/sells 1 h and 24 h over every Base
   pair, quote side mirrored, s1 = sells_1h; chosen pair liquidity; dexId:vN), "na" when missing; gate-killed rows unchanged;
   no new request, no rule reads them; ~83 KB/day (docs/NOTES.md "BL-25").
-  Tests: stdlib unittest, `python -m unittest` (179 pass on 3.13).
+  Tests: stdlib unittest, `python -m unittest` (190 pass on 3.13).
 - cron-job.org token "baseline-desk cron" EXPIRES Thu 2027-01-21: renew by early January or the desk stops silently.
 - Technical detail per card, GoPlus diagnosis, BL-20 budget and full open items: docs/NOTES.md.
 - Open items:
@@ -139,9 +145,10 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
   - top10 is the top 8-10 after exclusions, slightly lenient (docs/NOTES.md)
   - The exact GoPlus rate-limit code is unverified; code 3 is not one; BL-24 saw code 4029 4 times in 137 calls at 2 s, very likely it (docs/NOTES.md)
   - tokens_24h.json adds ~230 KB of git history per day (overwritten daily) and BL-25 ~83 KB/day to tasks.csv; include both in BL-16's archive plan (docs/NOTES.md)
-- Next step: the BL-23 live check after the 00:03 UTC Oct 31 roll (report.json "machine" and data/tokens_24h.json, machine=ok);
-  then the BL-13 site build (reads data/report.json and data/tokens_24h.json); then about a week of BL-25 rows before a
-  real-sells replay (docs/NOTES.md "BL-25"). The BL-24 result stays with the owner (no rule change made).
+- Next step: the owner checks the live site at zirqo-dev.github.io/baseline-desk after the first Pages deploy (Pages
+  source = GitHub Actions); the BL-23 live check after the 00:03 UTC Oct 31 roll (report.json "machine", data/tokens_24h.json,
+  machine=ok), which also fills the site's machine cards and token table; then about a week of BL-25 rows before a real-sells
+  replay (docs/NOTES.md "BL-25"). The BL-24 result stays with the owner (no rule change made).
 - Last updated: 2026-10-30.
 
 ## 12. Glossary

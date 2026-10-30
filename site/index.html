@@ -1,0 +1,745 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Baseline Desk</title>
+<meta name="description" content="Baseline: an educational paper trading desk on Base, desk vs a random baseline.">
+<style>
+/* Layout: phone column of cards in reading order; from 920px a left "money" column and a right "machine" column, with the token table full width under both. */
+:root {
+  --page: #f5f5f7;
+  --card: #ffffff;
+  --ink: #1d1d1f;
+  --ink-2: #6e6e73;
+  --ink-3: #aeaeb2;
+  --line: #e5e5ea;
+  --term: #1c1c1e;
+  --term-ink: #30d158;
+  --term-dim: #8e8e93;
+  --up: #1f9d4b;
+  --up-soft: rgba(52, 199, 89, .14);
+  --down: #d70015;
+  --down-soft: rgba(255, 59, 48, .10);
+  --warn-ink: #b25000;
+  --warn-soft: rgba(255, 149, 0, .14);
+  --blue: #0a84ff;
+  --orange: #ff9500;
+  --purple: #8e5cf7;
+  --violet: #af52de;
+  --shadow: 0 1px 2px rgba(0,0,0,.04), 0 6px 20px rgba(0,0,0,.06);
+  --r: 16px;
+  --sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", "Segoe UI", Roboto, Arial, sans-serif;
+  --display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", "Segoe UI", Roboto, Arial, sans-serif;
+  --mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --page: #000000; --card: #1c1c1e; --ink: #f5f5f7; --ink-2: #a1a1a6; --ink-3: #636366; --line: #38383a;
+    --term: #111113; --up: #30d158; --up-soft: rgba(48,209,88,.16); --down: #ff453a; --down-soft: rgba(255,69,58,.14);
+    --warn-ink: #ffb340; --warn-soft: rgba(255,159,10,.16); --shadow: 0 0 0 1px #2c2c2e; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --page: #000000; --card: #1c1c1e; --ink: #f5f5f7; --ink-2: #a1a1a6; --ink-3: #636366; --line: #38383a;
+  --term: #111113; --up: #30d158; --up-soft: rgba(48,209,88,.16); --down: #ff453a; --down-soft: rgba(255,69,58,.14);
+  --warn-ink: #ffb340; --warn-soft: rgba(255,159,10,.16); --shadow: 0 0 0 1px #2c2c2e; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--page); color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+.wrap {
+  max-width: 430px; margin-inline: auto;
+  padding-block: 16px 32px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: grid; gap: 12px; align-content: start;
+}
+.col { display: grid; gap: 12px; align-content: start; min-width: 0; }
+.wide { min-width: 0; }
+@media (min-width: 920px) {
+  .wrap { max-width: 1080px; grid-template-columns: 1fr 1fr; gap: 16px; padding-block: 32px 48px; }
+  .col { gap: 16px; }
+  .wide, .foot { grid-column: 1 / -1; }
+}
+.card { background: var(--card); border-radius: var(--r); box-shadow: var(--shadow); padding: 16px; min-width: 0; }
+.eyebrow { font-size: 11px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-2); margin: 0; }
+.num { font-variant-numeric: tabular-nums; }
+.up { color: var(--up); }
+.down { color: var(--down); }
+.mute { color: var(--ink-2); }
+.card-h { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; margin-bottom: 6px; flex-wrap: wrap; }
+.card-h h2 { margin: 0; font: 700 17px/1.2 var(--display); letter-spacing: -.01em; }
+.card-h > span { font-size: 12px; color: var(--ink-2); }
+.tag { display: inline-block; font: 600 10px/1 var(--sans); letter-spacing: .06em; padding: 3px 6px; border-radius: 4px; vertical-align: 2px; }
+.tag-real { color: var(--up); background: var(--up-soft); }
+.empty { font-size: 13px; color: var(--ink-2); background: var(--page); border-radius: 12px; padding: 14px; text-align: center; }
+
+
+/* Terminal */
+.term { background: var(--term); border-radius: 14px; box-shadow: 0 10px 30px rgba(0,0,0,.18); overflow: hidden; }
+.term-bar { display: grid; grid-template-columns: 52px 1fr 52px; align-items: center; padding: 10px 12px; border-bottom: 1px solid rgba(255,255,255,.06); }
+.lights { display: flex; gap: 7px; }
+.lights span { width: 11px; height: 11px; border-radius: 50%; }
+.lights span:nth-child(1) { background: #ff5f57; }
+.lights span:nth-child(2) { background: #febc2e; }
+.lights span:nth-child(3) { background: #28c840; }
+.term-title { text-align: center; font: 500 12px/1 var(--sans); color: #98989d; }
+.term-body { margin: 0; padding: 12px 14px 4px; font: 12px/1.65 var(--mono); color: var(--term-ink); white-space: pre-wrap; overflow-wrap: anywhere; }
+.term-body .d { color: var(--term-dim); }
+.term-body .w { color: #e5e5ea; }
+.term-body .y { color: #ffd60a; }
+.term-foot { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 8px 14px 12px; }
+.term-count { font: 11px var(--mono); color: var(--term-dim); }
+.run-pill { display: inline-flex; align-items: center; gap: 6px; font: 600 12px var(--sans); color: #0b3d1a; background: #30d158; padding: 5px 12px; border-radius: 999px; }
+
+/* Header */
+.head { display: grid; gap: 14px; }
+.head-row { display: flex; align-items: center; gap: 12px; }
+.logo { width: 44px; height: 44px; border-radius: 11px; background: #000; display: grid; place-items: center; flex: none; }
+.head-txt { min-width: 0; flex: 1; }
+.head h1 { margin: 0; font: 700 20px/1.15 var(--display); letter-spacing: -.01em; }
+.head-txt p { margin: 2px 0 0; font-size: 13px; color: var(--ink-2); }
+.paper { display: inline-block; margin-left: 6px; font: 600 10px/1 var(--sans); letter-spacing: .06em; color: var(--ink-2); border: 1px solid var(--line); border-radius: 4px; padding: 3px 5px; vertical-align: 2px; }
+.live { text-align: right; flex: none; }
+.live-dot { display: inline-flex; align-items: center; gap: 6px; font: 600 13px var(--sans); color: var(--up); }
+.live-dot::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--up); box-shadow: 0 0 0 3px var(--up-soft); }
+.live small { display: block; margin-top: 3px; font-size: 12px; color: var(--ink-2); }
+@media (prefers-reduced-motion: no-preference) {
+  .live-dot::before { animation: pulse 2s ease-in-out infinite; }
+  @keyframes pulse { 50% { box-shadow: 0 0 0 6px transparent; } }
+}
+
+/* Equity */
+.bal { font: 700 40px/1.05 var(--display); letter-spacing: -.02em; margin: 0; font-variant-numeric: tabular-nums; }
+.pnl { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font: 600 15px var(--sans); font-variant-numeric: tabular-nums; margin-top: 4px; }
+.mult { font: 700 12px var(--sans); padding: 3px 9px; border-radius: 999px; background: var(--page); color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.cap { font-size: 12px; color: var(--ink-2); margin: 6px 0 0; }
+.curve { width: 100%; height: auto; margin-top: 10px; display: block; overflow: visible; }
+.curve-key { display: flex; flex-wrap: wrap; gap: 14px; font-size: 12px; color: var(--ink-2); font-variant-numeric: tabular-nums; margin-top: 4px; }
+.curve-key span::before { content: ""; display: inline-block; width: 14px; height: 0; border-top: 2px solid var(--ink); vertical-align: 3px; margin-right: 6px; }
+.curve-key .k-rand::before { border-top: 2px dashed var(--ink-3); }
+
+/* Desk vs random */
+.vs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 4px; }
+.book { background: var(--page); border-radius: 12px; padding: 12px; display: grid; gap: 8px; align-content: start; min-width: 0; }
+.book-h { display: flex; align-items: center; gap: 6px; font: 600 13px var(--sans); }
+.book-h i { width: 14px; height: 0; border-top: 2px solid var(--ink); }
+.book.rand .book-h i { border-top-style: dashed; border-top-color: var(--ink-3); }
+.book .big { font: 700 22px/1.1 var(--display); font-variant-numeric: tabular-nums; }
+.kv { display: grid; grid-template-columns: 1fr auto; gap: 5px 8px; margin: 0; font-size: 12px; font-variant-numeric: tabular-nums; }
+.kv dt { color: var(--ink-2); }
+.kv dd { margin: 0; text-align: right; font-weight: 600; }
+.lead { font-size: 9px; color: var(--up); vertical-align: 1px; margin-left: 3px; }
+.verdict { margin: 10px 0 0; font-size: 13px; line-height: 1.4; }
+
+/* Gate B */
+.gate-row { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+.gate-num { font: 700 28px/1 var(--display); font-variant-numeric: tabular-nums; }
+.gate-num small { font: 600 15px var(--sans); color: var(--ink-2); }
+.track { position: relative; height: 8px; border-radius: 4px; background: var(--page); margin: 12px 0 6px; }
+.track b { position: absolute; inset: 0 auto 0 0; border-radius: 4px; background: var(--ink); min-width: 4px; }
+.track s { position: absolute; top: -4px; bottom: -4px; width: 2px; background: var(--ink-3); left: 50%; }
+.scale { display: flex; justify-content: space-between; font-size: 11px; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+
+/* Exits */
+.ex { display: grid; gap: 9px; margin-top: 6px; }
+.ex-row { display: grid; grid-template-columns: 74px 1fr 34px; gap: 8px; align-items: center; font-size: 12px; font-variant-numeric: tabular-nums; }
+.ex-row span:first-child { color: var(--ink-2); }
+.ex-row.safe span:first-child { color: var(--down); }
+.ex-bars { display: grid; gap: 3px; }
+.ex-bars i { display: block; height: 6px; border-radius: 3px; background: var(--ink); min-width: 2px; }
+.ex-bars i + i { background: var(--ink-3); }
+.ex-row em { font-style: normal; text-align: right; color: var(--ink-2); line-height: 1.25; }
+
+/* Funnel */
+.stage { display: grid; grid-template-columns: 36px 1fr auto; gap: 12px; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--line); }
+.stage:last-child { border-bottom: 0; padding-bottom: 2px; }
+.ico { width: 36px; height: 36px; border-radius: 10px; display: grid; place-items: center; }
+.ico svg { width: 18px; height: 18px; }
+.i-blue { background: rgba(10,132,255,.12); color: var(--blue); }
+.i-orange { background: rgba(255,149,0,.14); color: var(--orange); }
+.i-purple { background: rgba(142,92,247,.13); color: var(--purple); }
+.i-green { background: var(--up-soft); color: var(--up); }
+.i-violet { background: rgba(175,82,222,.13); color: var(--violet); }
+.st-name { font: 600 15px/1.2 var(--sans); }
+.st-sub { font-size: 12px; color: var(--ink-2); margin-top: 2px; }
+.st-bar { height: 3px; border-radius: 2px; background: var(--line); margin-top: 7px; overflow: hidden; }
+.st-bar i { display: block; height: 100%; border-radius: 2px; min-width: 2px; }
+.st-num { text-align: right; font: 700 17px/1.1 var(--display); font-variant-numeric: tabular-nums; }
+.st-num small { display: block; font: 600 11px var(--sans); margin-top: 3px; }
+.zero { color: var(--down); }
+
+/* Why they died */
+.why { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 4px; }
+.why-col { background: var(--page); border-radius: 12px; padding: 12px; display: grid; gap: 10px; align-content: start; min-width: 0; }
+.why-col h3 { margin: 0; font: 600 12px var(--sans); color: var(--ink-2); }
+.why-row { display: grid; gap: 1px; }
+.why-row .n { font: 700 22px/1.1 var(--display); font-variant-numeric: tabular-nums; }
+.why-row .n.big { color: var(--down); font-size: 28px; }
+.why-row .r { font-size: 12px; color: var(--ink-2); line-height: 1.3; }
+.why-row .r s { text-decoration-color: var(--ink-3); }
+.allowed { font: 600 10px/1 var(--sans); color: var(--up); background: var(--up-soft); padding: 2px 5px; border-radius: 4px; margin-left: 4px; white-space: nowrap; }
+
+/* Kill log */
+.log { list-style: none; margin: 4px 0 0; padding: 0; display: grid; }
+.log li { display: grid; grid-template-columns: 44px 10px 1fr; gap: 10px; align-items: start; padding: 9px 0; border-bottom: 1px solid var(--line); }
+.log li:last-child { border-bottom: 0; padding-bottom: 0; }
+.log time { font: 12px/1.35 var(--mono); color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.dot { width: 8px; height: 8px; border-radius: 50%; margin-top: 5px; }
+.d-blue { background: var(--blue); }
+.d-red { background: var(--down); }
+.d-green { background: var(--up); }
+.log b { font-weight: 600; }
+.log .who { font-size: 13px; line-height: 1.35; min-width: 0; }
+.log .who em { font-style: normal; color: var(--ink-2); }
+
+/* Health */
+.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 4px 0 12px; }
+.stat { background: var(--page); border-radius: 12px; padding: 10px; display: grid; gap: 2px; }
+.stat b { font: 700 19px/1.1 var(--display); font-variant-numeric: tabular-nums; }
+.stat span { font-size: 11px; color: var(--ink-2); line-height: 1.25; }
+.hours { display: flex; align-items: flex-end; gap: 2px; height: 56px; }
+.hours i { flex: 1; border-radius: 2px 2px 0 0; background: var(--up); min-width: 2px; opacity: .85; }
+.hours i.short { background: var(--down); opacity: 1; }
+.hours i.now { background: var(--ink-3); }
+.hours-scale { display: flex; justify-content: space-between; font-size: 11px; color: var(--ink-2); margin-top: 6px; }
+
+/* Token table */
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 4px 0 10px; }
+.chip { font: 600 12px var(--sans); border: 0; background: var(--page); color: var(--ink-2); padding: 6px 11px; border-radius: 999px; cursor: pointer; font-variant-numeric: tabular-nums; }
+.chip[aria-pressed="true"] { background: var(--ink); color: var(--card); }
+.chip:focus-visible, .search:focus-visible, .tbl a:focus-visible, .more:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+.search { width: 100%; font: 14px var(--sans); background: var(--page); color: var(--ink); border: 0; border-radius: 10px; padding: 9px 12px; margin-bottom: 8px; }
+.tblbox { max-height: 440px; overflow: auto; border-radius: 10px; }
+.tbl { width: 100%; border-collapse: collapse; font-size: 13px; font-variant-numeric: tabular-nums; }
+.tbl th { position: sticky; top: 0; background: var(--card); text-align: left; font: 600 11px var(--sans); color: var(--ink-2); letter-spacing: .04em; text-transform: uppercase; padding: 6px 6px 8px; border-bottom: 1px solid var(--line); z-index: 1; }
+.tbl td { padding: 9px 6px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+.tbl a { color: var(--ink); font-weight: 600; text-decoration: none; }
+.tbl a::after { content: " ↗"; font-size: 11px; color: var(--ink-3); }
+.v { display: inline-block; font: 600 11px var(--sans); padding: 2px 7px; border-radius: 999px; }
+.v-SKIP { background: var(--page); color: var(--ink-2); }
+.v-WATCH { background: var(--warn-soft); color: var(--warn-ink); }
+.v-PASS { background: var(--up-soft); color: var(--up); }
+.rsn { color: var(--ink-2); font-size: 12px; overflow-wrap: anywhere; }
+.rsn.safety { color: var(--down); }
+.lp { font: 600 10px var(--sans); color: var(--warn-ink); border: 1px dashed var(--warn-ink); border-radius: 4px; padding: 1px 4px; margin-left: 4px; white-space: nowrap; }
+.t-time { color: var(--ink-2); font: 12px var(--mono); white-space: nowrap; }
+.hide-narrow { display: none; }
+@media (min-width: 520px) { .hide-narrow { display: table-cell; } }
+.tbl-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-top: 8px; font-size: 12px; color: var(--ink-2); }
+.more { font: 600 12px var(--sans); border: 0; background: var(--page); color: var(--ink); padding: 6px 12px; border-radius: 999px; cursor: pointer; }
+.foot { font-size: 11px; color: var(--ink-3); text-align: center; margin: 4px 0 0; line-height: 1.5; }
+/* BL-13 additions to the locked mock (docs/mock/bl13-mock.html): real-data states only, no Live/Sample switch. */
+body { margin: 0; font-size: 14px; }
+[hidden] { display: none !important; }
+.meta { margin: 0; font-size: 12px; color: var(--ink-2); line-height: 1.4; }
+.meta b { font-weight: 600; color: var(--ink); }
+.live { flex: 0 1 auto; max-width: 9.5em; }
+.live small { line-height: 1.35; }
+.live-dot.stale { color: var(--warn-ink); }
+.live-dot.stale::before { background: var(--orange); box-shadow: 0 0 0 3px var(--warn-soft); }
+.live-dot.off { color: var(--down); }
+.live-dot.off::before { background: var(--down); box-shadow: 0 0 0 3px var(--down-soft); animation: none; }
+.run-pill.short { color: #3d2600; background: #ffb340; }
+.v-BUY { background: var(--up-soft); color: var(--up); }
+.v-RETRY { background: var(--warn-soft); color: var(--warn-ink); }
+.why-none { font-size: 12px; color: var(--ink-2); }
+.empty.bad { color: var(--down); background: var(--down-soft); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- LEFT: the money -->
+  <div class="col">
+    <section class="term" aria-label="Last tick">
+      <div class="term-bar">
+        <div class="lights" aria-hidden="true"><span></span><span></span><span></span></div>
+        <div class="term-title">baseline · tick.log</div>
+        <div></div>
+      </div>
+<pre class="term-body" id="term"><span class="d">$</span> <span class="w">python -m core.tick</span>
+<span class="d">loading report.json …</span></pre>
+      <div class="term-foot">
+        <span class="term-count" id="term-count">—</span>
+        <span class="run-pill" id="run-pill" hidden>Running ✓</span>
+      </div>
+    </section>
+
+    <section class="card head" aria-label="Baseline">
+      <div class="head-row">
+        <div class="logo" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+            <path d="M3 20.5h20" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/>
+            <path d="M5 16l4.5-4 3.5 2.5L19.5 7" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="19.5" cy="7" r="2.2" fill="#30d158"/>
+          </svg>
+        </div>
+        <div class="head-txt">
+          <h1>Baseline<span class="paper">PAPER</span></h1>
+          <p>Base memes · desk vs random</p>
+        </div>
+        <div class="live"><span class="live-dot" id="live">Loading</span><small id="snap">daily snapshot</small></div>
+      </div>
+      <p class="meta" id="meta">Real numbers from the desk's log. Loading…</p>
+    </section>
+
+    <section class="card" aria-label="Paper equity">
+      <div class="card-h"><p class="eyebrow">Paper equity · desk</p></div>
+      <div id="equity"></div>
+    </section>
+
+    <section class="card" aria-label="Desk vs random">
+      <div class="card-h"><h2>Desk vs random</h2><span>same size, exits, fees</span></div>
+      <div id="vs"></div>
+    </section>
+
+    <section class="card" aria-label="Gate B">
+      <div class="card-h"><h2>Closes toward Gate B</h2><span>desk only</span></div>
+      <div id="gate"></div>
+    </section>
+
+    <section class="card" aria-label="How trades ended">
+      <div class="card-h"><h2>How trades ended</h2><span>by exit rule</span></div>
+      <div id="exits"></div>
+    </section>
+  </div>
+
+  <!-- RIGHT: the machine (always real) -->
+  <div class="col">
+    <section class="card" aria-label="Kill funnel">
+      <div class="card-h"><h2>Kill funnel</h2><span id="funnel-h"><span class="tag tag-real">REAL</span></span></div>
+      <div id="funnel"></div>
+    </section>
+
+    <section class="card" aria-label="Why they died">
+      <div class="card-h"><h2>Why they died</h2><span id="why-h">final skips</span></div>
+      <div id="why"></div>
+    </section>
+
+    <section class="card" aria-label="Kill log">
+      <div class="card-h"><h2>Kill log</h2><span id="log-h">UTC · latest first</span></div>
+      <div id="log"></div>
+    </section>
+
+    <section class="card" aria-label="Is it running">
+      <div class="card-h"><h2>Is it running?</h2><span>last 48 h</span></div>
+      <div id="running"></div>
+    </section>
+  </div>
+
+  <!-- FULL WIDTH: tokens -->
+  <section class="card wide" aria-label="Tokens, last 24 h">
+    <div class="card-h"><h2>Tokens, last 24 h</h2><span id="tok-h">latest verdict · tap to open on DexScreener</span></div>
+    <div id="tok-empty"></div>
+    <div id="tok-ui" hidden>
+      <div class="chips" id="chips">
+        <button type="button" class="chip" data-f="all" aria-pressed="true">All</button>
+        <button type="button" class="chip" data-f="WATCH" aria-pressed="false">Watching</button>
+        <button type="button" class="chip" data-f="LP" aria-pressed="false">LP unknown</button>
+        <button type="button" class="chip" data-f="SAFETY" aria-pressed="false">Safety kills</button>
+        <button type="button" class="chip" data-f="SKIP" aria-pressed="false">Skipped</button>
+      </div>
+      <input class="search" id="q" type="search" aria-label="Search tokens" placeholder="Search symbol, reason or address" autocomplete="off">
+      <div class="tblbox">
+        <table class="tbl">
+          <thead><tr><th>Token</th><th>Verdict</th><th>Reason</th><th class="hide-narrow">Checks</th><th>UTC</th></tr></thead>
+          <tbody id="rows"></tbody>
+        </table>
+      </div>
+      <div class="tbl-foot"><span id="shown"></span><button type="button" class="more" id="more" hidden>Show more</button></div>
+    </div>
+  </section>
+
+  <p class="foot" id="foot">Paper only · Base chain · every number comes from data/report.json and data/tokens_24h.json; a dash means no number yet</p>
+</div>
+
+<script>
+(() => {
+  /* The only two fetches on this page (BL-13, DECISIONS 2026-10-30). No override of any kind. */
+  const REPORT_URL = 'https://raw.githubusercontent.com/Zirqo-Dev/baseline-desk/main/data/report.json';
+  const TOKENS_URL = 'https://raw.githubusercontent.com/Zirqo-Dev/baseline-desk/main/data/tokens_24h.json';
+  const DEX = 'https://dexscreener.com/base/';
+  /* Exit rules in the mock's order; keys of report.json exits_by_rule (core/report.py RULES). */
+  const RULES = [['time_stop', 'time stop', 0], ['hard_stop', 'hard stop', 1], ['ladder_1', 'ladder 1', 0],
+                 ['trail', 'trail', 0], ['liq_pull', 'liq pull', 1], ['ladder_2', 'ladder 2', 0]];
+  /* Gate kills, as core/report.py GATE_KILLS; every other final skip is a safety kill. */
+  const GATE = new Set(['liquidity', 'fetch_error_x3', 'missing:symbol', 'missing:price', 'missing:liq_usd',
+                        'missing:age_min', 'missing:sells_1h']);
+  const LABEL = {
+    'liquidity': 'Liquidity under the floor', 'fetch_error_x3': 'Fetch failed 3 times',
+    'missing:symbol': 'No symbol on DexScreener', 'missing:price': 'No price on DexScreener',
+    'missing:liq_usd': 'No liquidity number', 'missing:age_min': 'No pool age', 'missing:sells_1h': 'No sells count',
+    'goplus_timeout': 'GoPlus silent until the watch ran out', 'goplus_partial': 'GoPlus answered only in part',
+    'mint_open': 'Mint still open', 'freeze_or_blacklist': 'Freeze or blacklist', 'honeypot': 'Honeypot',
+    'buy_tax_pct': 'Buy tax too high', 'sell_tax_pct': 'Sell tax too high', 'lp_locked': 'LP lock too low',
+    'dev_pct': 'Dev holds too much', 'top10_pct': 'Top-10 holders too high', 'too_old': 'Pool too old',
+    'too_young': 'Pool too young', 'missing:lp_locked_pct': 'No LP-lock number',
+  };
+  const MON = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  const fmt = new Intl.NumberFormat('en');
+  const $ = id => document.getElementById(id);
+
+  /* Data readers: every key the page reads goes through one of these (tests/test_site.py checks them). */
+  let rep = null, tok = null;
+  const dig = (o, path) => path.split('.').reduce((x, k) => (x != null && typeof x === 'object' && k in x) ? x[k] : null, o);
+  const R = path => dig(rep, path);                 // report.json
+  const M = path => dig(rep && rep.machine, path);  // report.json "machine" (BL-23)
+  const TF = (o, k) => dig(o, k);                   // tokens_24h.json top level
+  const B = (o, k) => dig(o, k);                    // one book: report.json desk / baseline
+  const EQ = (o, k) => dig(o, k);                   // an equity_daily entry
+  const HR = (o, k) => dig(o, k);                   // a ticks_per_hour entry
+  const KL = (o, k) => dig(o, k);                   // a kill_log entry
+  const TK = (o, k) => dig(o, k);                   // a tokens_24h.json token
+
+  function h(tag, attrs, ...kids) {
+    const el = document.createElement(tag);
+    for (const [k, v] of Object.entries(attrs || {})) {
+      if (v == null || v === false) continue;
+      if (k === 'class') el.className = v; else if (k === 'style') el.style.cssText = v; else el.setAttribute(k, v);
+    }
+    for (const c of kids.flat(Infinity)) if (c != null && c !== false) el.append(c instanceof Node ? c : String(c));
+    return el;
+  }
+  function s(tag, attrs, ...kids) {
+    const el = document.createElementNS('http://www.w3.org/2000/svg', tag);
+    for (const [k, v] of Object.entries(attrs || {})) el.setAttribute(k, v);
+    for (const c of kids) el.append(c);
+    return el;
+  }
+  const put = (id, ...kids) => $(id).replaceChildren(...kids.flat(Infinity).filter(k => k != null && k !== false));
+  const empty = (text, bad) => h('div', { class: 'empty' + (bad ? ' bad' : '') }, text);
+  const isNum = x => typeof x === 'number' && isFinite(x);
+  const dash = '—';
+  const usd = x => isNum(x) ? (x < 0 ? '−$' : '$') + Math.abs(x).toFixed(2) : dash;
+  const sUsd = x => isNum(x) ? (x < 0 ? '−$' : '+$') + Math.abs(x).toFixed(2) : dash;
+  const pct = (x, d = 1) => isNum(x) ? (x < 0 ? '−' : '') + Math.abs(x).toFixed(d) + '%' : dash;
+  const sPct = (x, d = 1) => isNum(x) ? (x < 0 ? '−' : '+') + Math.abs(x).toFixed(d) + '%' : dash;
+  const n0 = x => isNum(x) ? fmt.format(x) : dash;
+  const sign = x => !isNum(x) || x === 0 ? 'mute' : x > 0 ? 'up' : 'down';
+  const hhmm = t => typeof t === 'string' && t.length >= 16 ? t.slice(11, 16) : dash;
+  const stamp = t => typeof t === 'string' && t.length >= 16 ? t.slice(0, 10) + ' ' + t.slice(11, 16) + ' UTC' : dash;
+  const short = d => typeof d === 'string' && /^\d{4}-\d\d-\d\d/.test(d) ? MON[+d.slice(5, 7) - 1] + ' ' + (+d.slice(8, 10)) : dash;
+  const label = r => LABEL[r] || r;
+
+  async function load(url) {
+    try {
+      const res = await fetch(url, { cache: 'no-cache' });
+      if (!res.ok) return { status: res.status, data: null };
+      try { return { status: res.status, data: await res.json() }; }
+      catch (e) { return { status: res.status, data: null, error: 'not valid JSON' }; }
+    } catch (e) {
+      return { status: 0, data: null, error: 'network error' };
+    }
+  }
+  const why = r => r.error ? r.error + (r.status ? ' (HTTP ' + r.status + ')' : '') : 'HTTP ' + r.status;
+
+  /* ---- header and terminal ---- */
+  function header(r, t) {
+    const live = $('live');
+    if (!rep) {
+      live.className = 'live-dot off'; live.textContent = 'Offline';
+      put('meta', h('span', {}, "Couldn't load report.json: " + why(r) + '. No numbers shown.'));
+      return;
+    }
+    const lt = M('last_tick.ts') || R('as_of');
+    const age = lt ? (Date.now() - Date.parse(lt)) / 3600e3 : Infinity;
+    if (age <= 26) { live.className = 'live-dot'; live.textContent = 'Live'; }
+    else { live.className = 'live-dot stale'; live.textContent = 'Stale'; }
+    live.title = 'last tick in report.json: ' + stamp(lt);
+    const at = R('as_of');
+    $('snap').textContent = 'daily snapshot · as of ' + (typeof at === 'string' && at.length >= 16 ? hhmm(at) + ' UTC, ' + short(at) : dash);
+    put('meta', 'Real numbers from the desk\'s log. Report for ', h('b', {}, R('day') || dash), ', built ',
+        h('b', {}, stamp(R('as_of'))), '. ',
+        rep.machine ? ['Machine cards for ', h('b', {}, M('day') || dash), '.'] : 'No machine cards in report.json yet.',
+        ' Tokens: ', tok ? h('b', {}, (TF(tok, 'day') || dash)) : 'none yet', '.');
+  }
+
+  function terminal() {
+    const lines = [h('span', { class: 'd' }, '$'), ' ', h('span', { class: 'w' }, 'python -m core.tick'), '\n'];
+    if (!rep) {
+      lines.push(h('span', { class: 'd' }, "# couldn't load report.json"));
+    } else if (!rep.machine || !M('last_tick')) {
+      lines.push(h('span', { class: 'd' }, rep.machine ? '# no TICK row on ' + M('day')
+        : '# no machine cards in report.json yet\n# first written at the 00:03 UTC day roll (BL-23)'));
+    } else {
+      const t = hhmm(M('last_tick.ts')) + 'Z', P = M('last_tick.passed');
+      const row = (k, ...v) => [h('span', { class: 'd' }, t), ' ' + k.padEnd(8), ...v, '\n'];
+      lines.push(...row('scan', n0(M('last_tick.seen')) + ' seen · ' + n0(M('last_tick.new')) + ' new'),
+                 ...row('gate', n0(M('last_tick.dex_only')) + ' settled by DexScreener'),
+                 ...row('goplus', n0(M('last_tick.goplus')) + ' calls'),
+                 ...row('verify', n0(M('last_tick.checked')) + ' checked · ',
+                        h('span', { class: P ? 'w' : 'y' }, n0(P) + ' PASS')),
+                 ...row('exec', n0(M('last_tick.bought')) + ' buys'));
+      lines.push(h('span', { class: 'd' }, t), ' done    ' + n0(M('last_tick.requests')) + ' requests · ' +
+                 (isNum(M('last_tick.secs')) ? M('last_tick.secs').toFixed(1) : dash) + ' s');
+    }
+    put('term', lines);
+    if (rep && rep.machine) {
+      $('term-count').textContent = n0(M('runs.ticks')) + ' / ' + n0(M('runs.expected')) + ' ticks · ' + short(M('day'));
+      const pill = $('run-pill'), ok = isNum(M('runs.rate')) && M('runs.rate') >= 90;
+      pill.textContent = ok ? 'Running ✓' : 'Short day ' + pct(M('runs.rate'));
+      pill.className = 'run-pill' + (ok ? '' : ' short');
+      pill.hidden = false;
+    } else {
+      $('term-count').textContent = rep ? 'last tick: no machine cards yet' : 'report.json not loaded';
+    }
+  }
+
+  /* ---- money cards ---- */
+  function curve(desk, base, start) {
+    const pts = b => [start].concat((B(b, 'equity_daily') || []).map(e => EQ(e, 'value_usd')).filter(isNum));
+    const d = pts(desk), r = pts(base), all = d.concat(r);
+    const lo = Math.min(...all), hi = Math.max(...all), n = Math.max(d.length, r.length);
+    const X = i => n > 1 ? 8 + i * 324 / (n - 1) : 332;
+    const Y = v => hi > lo ? 76 - (v - lo) / (hi - lo) * 58 : 48;
+    const path = p => p.map((v, i) => (i ? 'L' : 'M') + X(i).toFixed(1) + ',' + Y(v).toFixed(1)).join(' ');
+    const days = (B(desk, 'equity_daily') || []).map(e => EQ(e, 'day'));
+    /* "$50 start" sits at the right end, above or below the start line, on the side the lines leave free */
+    const at = (p, x) => { const f = n > 1 ? (x - 8) / 324 * (n - 1) : 0, i = Math.min(Math.floor(f), p.length - 1);
+      return i + 1 < p.length ? Y(p[i] + (p[i + 1] - p[i]) * (f - i)) : Y(p[p.length - 1]); };
+    const ys = [d, r].flatMap(p => [270, 290, 311, 332].map(x => at(p, x)));
+    const hits = (top, bot) => ys.filter(y => y >= top - 3 && y <= bot + 3).length;
+    const y0 = Y(start), above = Math.max(10, y0 - 5), below = Math.min(80, y0 + 13);
+    const ly = hits(above - 9, above) <= hits(below - 9, below) ? above : below;
+    const svg = s('svg', { class: 'curve', viewBox: '0 0 340 96', role: 'img',
+      'aria-label': 'Daily close: desk ' + usd(d[d.length - 1]) + ', random ' + usd(r[r.length - 1]) + ', from $' + start + ' start' });
+    svg.append(
+      s('line', { x1: 8, y1: Y(start), x2: 332, y2: Y(start), stroke: 'var(--line)', 'stroke-width': 1, 'stroke-dasharray': '3 3' }),
+      s('text', { x: 332, y: ly, 'font-size': 10, fill: 'var(--ink-3)', 'text-anchor': 'end', 'font-family': 'var(--sans)' }, '$' + start + ' start'),
+      s('path', { d: path(r), fill: 'none', stroke: 'var(--ink-3)', 'stroke-width': 2, 'stroke-dasharray': '4 3', 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }),
+      s('path', { d: path(d), fill: 'none', stroke: 'var(--ink)', 'stroke-width': 2, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }),
+      s('circle', { cx: X(r.length - 1), cy: Y(r[r.length - 1]), r: 3.5, fill: 'var(--ink-3)' }),
+      s('circle', { cx: X(d.length - 1), cy: Y(d[d.length - 1]), r: 3.5, fill: 'var(--ink)' }),
+      s('text', { x: 8, y: 92, 'font-size': 11, fill: 'var(--ink-2)', 'font-family': 'var(--sans)' }, 'start'),
+      s('text', { x: 332, y: 92, 'font-size': 11, fill: 'var(--ink-2)', 'text-anchor': 'end', 'font-family': 'var(--sans)' },
+        days.length ? short(days[days.length - 1]) + ' close' : 'no close yet'));
+    return svg;
+  }
+
+  function money(r) {
+    if (!rep) {
+      const msg = "Couldn't load report.json (" + why(r) + '). No numbers shown.';
+      ['equity', 'vs', 'gate', 'exits'].forEach(id => put(id, empty(msg, true)));
+      return;
+    }
+    const d = R('desk'), b = R('baseline'), start = R('start_balance');
+    const days = (B(d, 'equity_daily') || []).length;
+    put('equity',
+      h('p', { class: 'bal' }, usd(B(d, 'value_usd'))),
+      h('div', { class: 'pnl' },
+        h('span', { class: sign(B(d, 'net_pnl_usd')) }, sUsd(B(d, 'net_pnl_usd')) + ' (' + sPct(B(d, 'net_pnl_pct')) + ')'),
+        h('span', { class: 'mult' }, isNum(B(d, 'multiple')) ? B(d, 'multiple').toFixed(2) + '×' : dash)),
+      h('p', { class: 'cap' }, usd(start) + ' start · ' + n0(days) + (days === 1 ? ' daily close' : ' daily closes') +
+        ' · random book at ' + usd(B(b, 'value_usd')) + ' · ' + n0(B(d, 'open')) + ' open at the ' + short(R('day')) + ' close'),
+      isNum(start) ? curve(d, b, start) : null,
+      h('div', { class: 'curve-key' }, h('span', {}, 'Desk ' + usd(B(d, 'value_usd'))),
+        h('span', { class: 'k-rand' }, 'Random ' + usd(B(b, 'value_usd')))));
+
+    /* Desk vs random: a ▲ marks the better book, only where both have a number */
+    const slip = o => (B(o, 'exits_by_rule.hard_stop') || 0) + (B(o, 'exits_by_rule.trail') || 0) > 0 ? B(o, 'stop_slip_pct') : null;
+    const win = o => B(o, 'closes') > 0 ? B(o, 'win_rate') : null;
+    const rows = [
+      ['Net after fees', o => B(o, 'net_pnl_usd'), usd, (a, c) => a > c, true],
+      ['Closes', o => B(o, 'closes'), n0, null],
+      ['Win rate', win, x => pct(x, 0), (a, c) => a > c],
+      ['Max drawdown', o => B(o, 'max_dd_pct'), x => pct(x, 1), (a, c) => a < c],
+      ['Stop slippage', slip, x => pct(x, 1), (a, c) => a > c],
+    ];
+    const book = (o, other, name, cls) => h('div', { class: 'book' + cls },
+      h('div', { class: 'book-h' }, h('i'), name),
+      h('span', { class: 'big' }, usd(B(o, 'value_usd'))),
+      h('dl', { class: 'kv' }, rows.map(([k, get, f, better, signed]) => {
+        const v = get(o), w = get(other);
+        const lead = better && isNum(v) && isNum(w) && better(v, w) ? h('span', { class: 'lead' }, '▲') : null;
+        return [h('dt', {}, k), h('dd', {}, h('span', { class: !isNum(v) ? 'mute' : signed ? sign(v) : '' }, f(v)), lead)];
+      })));
+    const lead = R('desk_lead_usd');
+    put('vs', h('div', { class: 'vs' }, book(d, b, 'Desk', ''), book(b, d, 'Random', ' rand')),
+      h('p', { class: 'verdict' }, isNum(lead) ? ['Desk is ', h('b', { class: sign(lead) }, usd(Math.abs(lead)) +
+        (lead > 0 ? ' ahead of' : lead < 0 ? ' behind' : ' level with')), ' random',
+        (B(d, 'net_pnl_usd') > 0 ? ' and up overall. ' : ' and not up overall. '),
+        'Gate B wants both: positive ', h('i', {}, 'and'), ' ahead.'] : 'No desk lead in report.json.'));
+
+    /* Gate B */
+    const c = R('gate_b.desk_closes'), tgt = R('gate_b.target'), kill = R('gate_b.kill');
+    put('gate',
+      h('div', { class: 'gate-row' }, h('span', { class: 'gate-num' }, n0(c), ' ', h('small', {}, '/ ' + n0(tgt)))),
+      h('div', { class: 'track' },
+        h('b', { style: 'width:' + (isNum(c) && kill > 0 ? Math.min(100, c / kill * 100) : 0) + '%' }),
+        h('s', { style: 'left:' + (kill > 0 && isNum(tgt) ? tgt / kill * 100 : 50) + '%' })),
+      h('div', { class: 'scale' }, h('span', {}, '0'), h('span', {}, 'Gate B · ' + n0(tgt)), h('span', {}, 'Kill · ' + n0(kill))));
+
+    /* How trades ended: share of each book's SELL rows by rule (ladder sells are partial) */
+    const tot = o => RULES.reduce((a, [k]) => a + (B(o, 'exits_by_rule.' + k) || 0), 0);
+    const td = tot(d), tb = tot(b);
+    if (!td && !tb) { put('exits', empty('No closed trades yet. Six exit rules are armed and waiting.')); return; }
+    const share = (o, t, k) => t ? (B(o, 'exits_by_rule.' + k) || 0) / t * 100 : null;
+    put('exits', h('div', { class: 'ex' },
+      RULES.map(([k, name, safe]) => {
+        const a = share(d, td, k), z = share(b, tb, k);
+        return h('div', { class: 'ex-row' + (safe ? ' safe' : ''), title: k + ': desk ' + n0(B(d, 'exits_by_rule.' + k)) + ', random ' + n0(B(b, 'exits_by_rule.' + k)) },
+          h('span', {}, name),
+          h('span', { class: 'ex-bars' }, h('i', { style: 'width:' + (a || 0) + '%' }), h('i', { style: 'width:' + (z || 0) + '%' })),
+          h('em', {}, pct(a, 0), h('br'), pct(z, 0)));
+      }),
+      h('div', { class: 'curve-key' }, h('span', {}, 'Desk ' + n0(td) + ' sells'), h('span', { class: 'k-rand' }, 'Random ' + n0(tb) + ' sells'))));
+  }
+
+  /* ---- machine cards ---- */
+  const ICON = {
+    blue: '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="8.5" cy="8.5" r="5.5"/><path d="M13 13l4.5 4.5"/></svg>',
+    orange: '<svg viewBox="0 0 20 20" fill="currentColor"><path d="M2.5 3.5h15l-5.8 7v5.3l-3.4 1.7v-7z"/></svg>',
+    purple: '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M10 2.5l6 2.3v4.6c0 3.9-2.6 6.9-6 8.1-3.4-1.2-6-4.2-6-8.1V4.8z"/></svg>',
+    green: '<svg viewBox="0 0 20 20" fill="currentColor"><path d="M11.2 1.8L4 11.2h5l-1.2 7 7.2-9.4h-5z"/></svg>',
+    violet: '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16.5 10a6.5 6.5 0 1 1-1.9-4.6"/><path d="M16.8 2.8v3.4h-3.4"/></svg>',
+  };
+  const ico = c => { const el = h('div', { class: 'ico i-' + c }); el.innerHTML = ICON[c]; return el; };
+
+  function machine(r) {
+    const ids = ['funnel', 'why', 'log', 'running'];
+    if (!rep) { ids.forEach(id => put(id, empty("Couldn't load report.json (" + why(r) + '). No numbers shown.', true))); return; }
+    if (!rep.machine) {
+      ids.forEach(id => put(id, empty('No machine cards in report.json (report for ' + (R('day') || dash) +
+        ') yet. They are first written at the 00:03 UTC day roll (BL-23).')));
+      return;
+    }
+    /* Kill funnel: running totals since the report's first day (token-days) */
+    const scan = M('funnel_since.scan'), from = M('funnel_since.from'), to = M('funnel_since.to');
+    put('funnel-h', h('span', { class: 'tag tag-real' }, 'REAL'), ' ' + short(from) + (from !== to ? ' – ' + short(to) : ''));
+    const st = [['scan', 'Scan', 'New Base pools, profiles, boosts', 'blue', 'tokens'],
+                ['gate', 'Gate', 'Liquidity floor, DexScreener data present', 'orange'],
+                ['safety', 'Safety', 'GoPlus answered, every rule passed', 'purple'],
+                ['buy', 'Buy', 'Paper fill after friction', 'green']];
+    let prev = null;
+    const stages = st.map(([k, name, sub, c, unit]) => {
+      const v = M('funnel_since.' + k);
+      const drop = unit ? h('small', { class: 'mute' }, unit)
+        : h('small', { class: 'down' }, isNum(prev) && prev > 0 && isNum(v) ? (v < prev ? '−' : '') + Math.round((1 - v / prev) * 100) + '%' : dash);
+      prev = v;
+      return h('div', { class: 'stage' }, ico(c),
+        h('div', {}, h('div', { class: 'st-name' }, name), h('div', { class: 'st-sub' }, sub),
+          h('div', { class: 'st-bar' }, h('i', { style: 'width:' + (scan > 0 && isNum(v) ? v / scan * 100 : 0) + '%; background: var(--' + c + ')' }))),
+        h('div', { class: 'st-num num' + (v === 0 ? ' zero' : '') }, n0(v), drop));
+    });
+    stages.push(h('div', { class: 'stage' }, ico('violet'),
+      h('div', {}, h('div', { class: 'st-name' }, 'Exits'), h('div', { class: 'st-sub' }, '6 rules armed: stop, ladder, trail…'),
+        h('div', { class: 'st-bar' }, h('i', { style: 'width:0%' }))),
+      h('div', { class: 'st-num num mute' }, n0(M('funnel.exits_open')), h('small', { class: 'mute' }, 'open at ' + short(M('day')) + ' close'))));
+    put('funnel', stages);
+
+    /* Why they died: the top 3 final skips per stage since the first day */
+    put('why-h', 'final skips ' + short(M('kills_since.from')) + (M('kills_since.from') !== M('kills_since.to') ? ' – ' + short(M('kills_since.to')) : ''));
+    const col = (title, obj) => {
+      const top = Object.entries(obj || {}).filter(([, n]) => isNum(n)).sort((a, z) => z[1] - a[1]).slice(0, 3);
+      return h('div', { class: 'why-col' }, h('h3', {}, title),
+        top.length ? top.map(([k, n], i) => h('div', { class: 'why-row', title: k },
+          h('span', { class: 'n num' + (i ? '' : ' big') }, n0(n)),
+          h('span', { class: 'r' }, k === 'missing:lp_locked_pct' ? [h('s', {}, label(k)), h('span', { class: 'allowed' }, 'ALLOWED NOW')] : label(k))))
+          : h('span', { class: 'why-none' }, 'none'));
+    };
+    put('why', h('div', { class: 'why' }, col('At the gate', M('kills_since.gate')), col('At safety', M('kills_since.safety'))));
+
+    /* Kill log: the last 10 final skips of the report day */
+    put('log-h', 'UTC · latest first · ' + short(M('day')));
+    const kl = M('kill_log') || [];
+    put('log', kl.length ? h('ul', { class: 'log' }, kl.map(k => h('li', {},
+      h('time', {}, hhmm(KL(k, 'ts'))), h('span', { class: 'dot d-red' }),
+      h('span', { class: 'who' }, h('b', {}, KL(k, 'symbol') || '?'), ' ',
+        h('em', {}, KL(k, 'stage') === 'gate' ? 'Gate' : 'Safety'), ' · ' + label(KL(k, 'reason'))))))
+      : empty('No final skips on ' + (M('day') || dash) + '.'));
+
+    /* Is it running? */
+    const rate = M('runs.rate'), hrs = M('ticks_per_hour') || [];
+    const box = h('div', { class: 'hours', role: 'img', 'aria-label': 'Ticks per hour over the 48 hours to the ' + short(M('day')) + ' close' });
+    hrs.forEach(x => {
+      const n = HR(x, 'n');
+      box.append(h('i', { class: isNum(n) && n < 12 ? 'short' : null, title: (HR(x, 'hour') || '') + ':00 UTC · ' + n0(n) + ' ticks',
+        style: 'height:' + Math.max(4, Math.min(12, n || 0) / 12 * 100) + '%' }));
+    });
+    const hl = x => x ? short(HR(x, 'hour')) + ' ' + HR(x, 'hour').slice(11, 13) + 'h' : dash;
+    put('running',
+      h('div', { class: 'stats' },
+        h('div', { class: 'stat' }, h('b', { class: isNum(rate) ? (rate >= 90 ? 'up' : 'down') : '' }, pct(rate, 1)),
+          h('span', {}, 'runs on time ' + short(M('day')) + ' · ' + n0(M('runs.ticks')) + '/' + n0(M('runs.expected')) + ' · Gate A 90%')),
+        h('div', { class: 'stat' }, h('b', {}, isNum(M('tick_secs.median')) ? M('tick_secs.median').toFixed(1) + ' s' : dash), h('span', {}, 'median tick')),
+        h('div', { class: 'stat' }, h('b', {}, isNum(M('tick_secs.max')) ? M('tick_secs.max').toFixed(1) + ' s' : dash), h('span', {}, 'slowest tick · limit 600'))),
+      hrs.length ? box : empty('No hourly counts.'),
+      h('div', { class: 'hours-scale' }, h('span', {}, hl(hrs[0])), h('span', {}, '12 ticks = full hour · red = short'),
+        h('span', {}, hl(hrs[hrs.length - 1]))));
+  }
+
+  /* ---- tokens ---- */
+  function tokens(t) {
+    if (!tok) {
+      put('tok-empty', t.status === 404
+        ? empty('No tokens_24h.json yet (HTTP 404). It is first written at the 00:03 UTC day roll (BL-23).')
+        : empty("Couldn't load tokens_24h.json (" + why(t) + '). No tokens shown.', true));
+      return;
+    }
+    const list = (TF(tok, 'tokens') || []).filter(x => x && typeof x === 'object');
+    put('tok-h', 'latest verdict on ' + short(TF(tok, 'day')) + ' · built ' + stamp(TF(tok, 'as_of')) + ' · tap to open on DexScreener');
+    if (!list.length) { put('tok-empty', empty('No desk VERIFY rows on ' + (TF(tok, 'day') || dash) + '.')); return; }
+    $('tok-ui').hidden = false;
+    const safety = x => TK(x, 'verdict') === 'SKIP' && !GATE.has(TK(x, 'reason'));
+    const counts = { all: list.length, WATCH: list.filter(x => TK(x, 'verdict') === 'WATCH').length,
+      LP: list.filter(x => TK(x, 'lp_unknown') === true).length, SAFETY: list.filter(safety).length,
+      SKIP: list.filter(x => TK(x, 'verdict') === 'SKIP').length };
+    document.querySelectorAll('.chip').forEach(c => { c.textContent += ' ' + fmt.format(counts[c.dataset.f]); });
+    const state = { f: 'all', q: '', limit: 60 };
+    const draw = () => {
+      const q = state.q.trim().toLowerCase();
+      const rows = list.filter(x => {
+        const ok = state.f === 'all' || (state.f === 'LP' ? TK(x, 'lp_unknown') === true : state.f === 'SAFETY' ? safety(x) : TK(x, 'verdict') === state.f);
+        return ok && (!q || [TK(x, 'symbol'), TK(x, 'reason'), TK(x, 'address')].join(' ').toLowerCase().includes(q));
+      });
+      $('rows').replaceChildren(...rows.slice(0, state.limit).map(x => {
+        const a = String(TK(x, 'address') || ''), v = String(TK(x, 'verdict') || '');
+        return h('tr', {},
+          h('td', {}, /^0x[0-9a-fA-F]{40}$/.test(a)
+            ? h('a', { href: DEX + a, target: '_blank', rel: 'noopener noreferrer', title: a }, TK(x, 'symbol') || '?')
+            : (TK(x, 'symbol') || '?')),
+          h('td', {}, h('span', { class: 'v v-' + v.replace(/[^A-Z]/g, '') }, v || dash)),
+          h('td', { class: 'rsn' + (safety(x) ? ' safety' : '') }, TK(x, 'reason') || '',
+            TK(x, 'lp_unknown') === true ? h('span', { class: 'lp' }, 'LP ?') : null),
+          h('td', { class: 'hide-narrow' }, n0(TK(x, 'checks'))),
+          h('td', { class: 't-time' }, hhmm(TK(x, 'last'))));
+      }));
+      $('shown').textContent = fmt.format(Math.min(rows.length, state.limit)) + ' of ' + fmt.format(rows.length) + ' shown';
+      $('more').hidden = rows.length <= state.limit;
+    };
+    $('chips').addEventListener('click', e => {
+      const c = e.target.closest('.chip'); if (!c) return;
+      state.f = c.dataset.f; state.limit = 60;
+      document.querySelectorAll('.chip').forEach(x => x.setAttribute('aria-pressed', String(x === c)));
+      draw();
+    });
+    $('q').addEventListener('input', e => { state.q = e.target.value; state.limit = 60; draw(); });
+    $('more').addEventListener('click', () => { state.limit += 120; draw(); });
+    draw();
+  }
+
+  function foot() {
+    put('foot', 'Paper only · Base chain · report ' + (rep ? (R('day') || dash) + ' built ' + stamp(R('as_of')) : 'not loaded') +
+      ' · tokens ' + (tok ? (TF(tok, 'day') || dash) + ' built ' + stamp(TF(tok, 'as_of')) : 'not loaded') +
+      ' · every number comes from data/report.json and data/tokens_24h.json; a dash means no number yet');
+  }
+
+  /* Each card renders on its own: a broken one never blanks the others. */
+  const safe = (name, fn) => { try { fn(); } catch (e) { console.error(name, e); } };
+  (async () => {
+    const [r, t] = await Promise.all([load(REPORT_URL), load(TOKENS_URL)]);
+    rep = r.data && typeof r.data === 'object' ? r.data : null;
+    tok = t.data && typeof t.data === 'object' ? t.data : null;
+    if (r.data && !rep) r.error = 'not a JSON object';
+    safe('header', () => header(r, t));
+    safe('terminal', terminal);
+    safe('money', () => money(r));
+    safe('machine', () => machine(r));
+    safe('tokens', () => tokens(t));
+    safe('foot', foot);
+  })();
+})();
+</script>
+</body>
+</html>

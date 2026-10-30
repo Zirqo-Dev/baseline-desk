@@ -517,6 +517,94 @@ Moved from CLAUDE.md section 11 on 2026-10-23 (BL-2 process cleanup). Wording is
   real-sells rule is a filter, not proof. h24 on a pool younger than 24 h is its whole life. Only Base pairs DexScreener
   lists for the token are summed.
 
+## First desk trade
+- SI 0xfe8001877721d8f8cf070cee3c042b6a01b0e68f (Uniswap V3 pool, launchpad other), 2026-10-30, from
+  data/daily/2026-10-30/tasks.csv and trades.csv. The first desk PASS and the first desk trade; section 11 said 0 PASS before.
+  No rule or config change (the owner).
+- VERIFY: first seen 02:03:11 UTC, WATCH goplus_not_ready for checks 1 to 10 (pending fields shrank from 9 to mint_open,
+  freeze_or_blacklist, honeypot, risk_flags), PASS at check 11, 04:48:13 UTC, goplus_ready_at=04:48:13 (2 h 45 min after
+  first seen, inside the 3 h watch). BL-25 keys on the PASS row: b1=92 s1=94 b24=317 s24=267 liq=159111 dex=uniswap:v3.
+- EXECUTE: BUY 04:48:13, 5.00 USD, quote 0.002903, fill 0.00299009 (3% friction, liquidity 159,111 USD), qty 1,672.19.
+- EXIT (58 desk EXIT rows, HOLD peak +67.05%):
+
+| ts (UTC) | rule | qty | intended | quote | fill | friction | liq_usd | usd | pnl_usd |
+|---|---|---|---|---|---|---|---|---|---|
+| 06:08:13 | ladder_1 (pct=+47.35) | 551.82 | 0.004186126 | 0.004406 | 0.00427382 | 3% | 196,298 | 2.358392 | +0.708392 |
+| 09:38:12 | liq_pull (pct=-92.16) | 1,120.37 | 0.0002343 | 0.0002343 | 0.000222585 | 5% | 43,476 | 0.249377 | -3.100623 |
+
+- Result: -2.392231 USD on 5.00 (-47.8%) after friction; desk 47.61 USD at liquidation value. One close (ladder_1 is not a
+  close), Gate B 1/100. The last HOLD was +66.22% at 09:33:12; five minutes later the pool had lost about 73% of its
+  liquidity (159k at entry, 196k at the ladder, 43k at the pull) and the price 92%, between two ticks, so the trail (25%)
+  never had a tick to fire on. A 5-minute tick cannot exit a pull faster than this; the logged stop slippage is 0
+  (intended = quote) because liq_pull logs the quote it saw.
+- The baseline held the same token: random BUY 04:33:13 (desk=WATCH, seed 202610300433, pick 1 of 2), 5.07 USD at fill
+  0.00303541, sold in the same two ticks (ladder_1 +0.683073, liq_pull -3.149969). So the first desk trade gave no edge
+  over the baseline either way.
+
+## BL-13
+- site/index.html: one self-contained page (inline CSS and JS, no external script, font or stylesheet), built from the locked
+  mock docs/mock/bl13-mock.html (kept byte-for-byte as the owner sent it, sha256 c9b7db30...8498b1, never under site/). Same
+  CSS tokens, card order, colours, dark mode (prefers-color-scheme and data-theme) and layout: one column to 919 px, from
+  920 px money left, machine right, token table full width. The Live/Sample switch, every SAMPLE number and the mock's
+  baked-in token/hour arrays are gone.
+- Data: at page load it fetches exactly two URLs, https://raw.githubusercontent.com/Zirqo-Dev/baseline-desk/main/data/report.json
+  and .../data/tokens_24h.json (fetch cache no-cache, each in try/catch, every card rendered in its own try). No query
+  parameter, hash or setting changes where data comes from (the owner). Checked 2026-10-30 with curl -I: report.json HTTP 200,
+  access-control-allow-origin: *, cache-control: max-age=300, content-type text/plain (fetch().json() does not care);
+  tokens_24h.json HTTP 404 with access-control-allow-origin: * (not written until the first BL-23 roll). raw.githubusercontent
+  caches up to 5 min, so the page can lag the repo by that much.
+- Field map (every read goes through a reader R / M / B / EQ / HR / KL / TF / TK; tests/test_site.py checks each key):
+
+| card | reads |
+|---|---|
+| terminal (last tick) | machine.last_tick ts seen new checked dex_only goplus passed bought requests secs; machine.runs ticks expected rate, machine.day |
+| header | day, as_of, machine.day, machine.last_tick.ts (Live when within 26 h, else Stale; Offline when report.json failed), tokens day; under the dot "daily snapshot · as of HH:MM UTC, Mon D" from report.json as_of (the site changes only at the daily roll, so no "every 5 min") |
+| paper equity | start_balance, desk value_usd net_pnl_usd net_pnl_pct multiple open equity_daily[day, value_usd], baseline value_usd equity_daily |
+| desk vs random | per book value_usd net_pnl_usd closes win_rate max_dd_pct stop_slip_pct exits_by_rule; desk_lead_usd |
+| Gate B | gate_b desk_closes target kill |
+| how trades ended | per book exits_by_rule (share of that book's SELL rows; ladder sells are partial) |
+| kill funnel | machine.funnel_since from to scan gate safety buy, machine.funnel.exits_open |
+| why they died | machine.kills_since from to gate safety (top 3 reasons each) |
+| kill log | machine.kill_log ts symbol stage reason |
+| is it running | machine.runs, machine.tick_secs median max, machine.ticks_per_hour hour n |
+| tokens | tokens_24h.json day as_of tokens[symbol address verdict reason checks last lp_unknown] |
+
+- Honest empty states, never a made-up number: report.json failed (red "Couldn't load", every card, header Offline); no
+  "machine" key (the 4 machine cards and the terminal say the cards come at the 00:03 UTC roll); tokens_24h.json 404 (says so);
+  0 closes (win rate "—"); no hard_stop/trail sell (stop slippage "—"); no sells in either book ("No closed trades yet").
+  A dash means no number. Report day and as_of, machine day and tokens day are on the page (header and footer).
+- Choices inside the mock's look (no number in a label that config.py owns, so labels never go stale): "Liquidity under the
+  floor" (not $50k), "ladder 1" / "ladder 2" (not +40% / +100%), "GoPlus silent until the watch ran out". The run pill says
+  "Running ✓" when the report day's run rate is at least 90% (Gate A), else "Short day <rate>". A ▲ marks the better book on a
+  row only where both have a number. Safety kills in the token table = SKIP whose reason is not a gate kill (report.GATE_KILLS).
+  Token symbols link to dexscreener.com/base/<address> (only for a 0x + 40 hex address).
+- Deploy: .github/workflows/pages.yml (upload-pages-artifact@v3 path site, deploy-pages@v4; permissions contents read,
+  pages write, id-token write; concurrency group pages, no cancel). Triggers: push to main touching site/** or the workflow
+  file, and workflow_dispatch. Bot "data: tick" commits touch data/ only, so they never deploy. One-time owner setting:
+  Settings -> Pages -> Source = GitHub Actions. tick.yml, core/, adapters/ and data/ unchanged.
+- Tests: tests/test_site.py (11): builds report.json + tokens_24h.json with report.on_roll, run_due and run_machine from
+  fixture rows (both books, ladder and hard_stop sells, a PASS with lp_unknown, a desk BUY) and checks every key path the page
+  reads exists (report, machine, both books, equity_daily, ticks_per_hour, kill_log, tokens, tokens file); the page's exit
+  rules equal report.RULES and its gate set equals report.GATE_KILLS; exactly one fetch() call, called only with the two data
+  URL constants; no other URL in the page but dexscreener.com/base/ and the SVG namespace; no XMLHttpRequest, import(),
+  location, URLSearchParams, storage, sockets, beacons, external script/link/@import/url(); no SAMPLE text or mock sample
+  numbers; the mock lives under docs/mock and site/ holds index.html only. Checked that adding a fetch to another URL, or
+  location.search on a data URL, fails 2 tests. 190 pass on 3.13 (179 before).
+- Local smoke 2026-10-30 (python -m http.server on site/, Playwright page.route serving scratch files for the two raw URLs,
+  Chromium, 390x844 and 1280x900, nothing under data/ changed):
+  - (a) today's real files: report.json for 2026-10-29 without "machine", tokens_24h.json 404. Money cards real (desk 50.00,
+    random 51.96, 19 closes, desk 1.96 behind, Gate B 0/100, exits time stop 86% for random, desk "—"); terminal and the 4
+    machine cards show the "first written at the 00:03 UTC day roll" state; token card shows the 404 state. Requests: the page
+    plus the two data URLs only. Console: the browser's own 404 line only, no script error. No horizontal scroll at 390 px.
+  - (b) scratch report.json + tokens_24h.json from core/report.py on_roll + run_due + run_machine on a copy of data/ in the
+    scratchpad (day 2026-10-30 so far, as if rolled at 2026-10-31 00:03): desk 47.61 (-2.39, -4.8%, 1 close, max_dd 9.8%),
+    random 49.93 (28 closes), desk 2.32 behind; funnel since 2026-10-29 1,760 / 229 / 1 / 1; kills gate liquidity 1,395,
+    safety goplus_timeout 169; 155/288 ticks (a part day, so "Short day 53.8%" and empty later hours); 531 tokens, chips
+    All 531 / Watching 30 / LP unknown 2 / Safety kills 38 / Skipped 500. Requests: the page plus the two data URLs only; no
+    console error. Also checked: dark mode at 1280 px, and both fetches aborted (every card shows the red "Couldn't load" state,
+    header Offline).
+- Not checked from here: the live site (the session's proxy refuses zirqo-dev.github.io) and the first Pages run.
+
 ## Open items (detail)
 - Open items:
   - BL-7 done only after 24h of green runs, no overlap, one TICK row per run. The TICK rows show the real run rate for Gate A (90%).
