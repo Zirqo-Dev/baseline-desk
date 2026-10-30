@@ -713,6 +713,60 @@ Moved from CLAUDE.md section 11 on 2026-10-23 (BL-2 process cleanup). Wording is
 - Size: about 9 bytes per row with the keys (" qliq=" + ~3 digits) x ~1,630 rows a day = ~15 KB/day on tasks.csv, and
   ~4 bytes x ~390 label rows = ~2 KB/day on outcomes.csv.
 
+## BL-29
+- Replay harness for the Nov 6 review, offline and by hand only (the owner, 2026-10-30, DECISIONS): tools/replay.py.
+  Not in tick.yml, not imported by core/ (test), never imports core/tick.py (test), no network (test with a blocked
+  socket), writes nothing (test: no file changes), stdout only. Stdlib; reuses core/friction.py (buy_fill, sell_fill),
+  core/report.py (_kv detail parser, GATE_KILLS) and core/labels.py (HORIZONS). It shows evidence; it never picks a rule.
+- Run: `python -m tools.replay` (every day there is), or `python -m tools.replay --from 2026-10-31 --to 2026-11-06`;
+  `--root DIR` reads another copy of the repo's data/. Days are UTC folder names.
+- Reads: tasks.csv of the window; trades.csv and outcomes.csv of the window plus 2 days after it (a lot bought on the last
+  day can still close, a late sighting can still get its labels). Each outcomes.csv by its own header (16 columns before
+  BL-28, 17 with qliq).
+- Unit (the owner): one sighting = address + first_seen (the row's first_seen=, else its ts, as core/labels.py). A sighting
+  past the gate = a desk VERIFY row without goplus=skipped and not a gate kill (report.GATE_KILLS). It is in the window when
+  its first such row is. A token seen again after its 24 h skip is a second sighting. Header line: number of sightings,
+  how many have a qliq row, number of on-time labels.
+- Buckets: by the sighting's FIRST VERIFY row that carries qliq (BL-28, from 2026-10-30 ~19:58 UTC): qliq na / <1k / 1k-5k /
+  5k-25k / >=25k USD; and that same row's s24 (BL-25, summed over every Base pair): na / 0 / 1-9 / >=10. A sighting with
+  no qliq row is "na" in both (so every sighting before BL-28 is "na").
+- Table 1a / 1b (outcomes by qliq / by s24): per horizon (+1, +6, +24 h) and bucket, from outcomes.csv labels with
+  |age_min - horizon| <= 30 min only (drops late labels, e.g. the deploy-time ones). n = labels (one per sighting and
+  horizon); gone% = labels with gone=1; n_chg = labels with a chg_pct (first_price can be "na"); med_chg% = median chg_pct;
+  <=-50% = share of n_chg with chg_pct <= -50; pair_s1>0% = share of non-gone labels with pair_s1 > 0 (BL-26: the deepest
+  pair only; BL-25 sums and pair_* counts are never in one column). Fewer than 20 labels in a cell: "n too small" and no
+  numbers.
+- Table 2: every desk PASS row of the window: ts, symbol, its qliq and s24, and the on-time chg_pct at +1/+6/+24 h ("gone"
+  when the label says so, "na" when there is no on-time label).
+- Table 3: every desk and baseline lot bought in the window (BUY plus its SELLs, open when no closing SELL is read yet).
+  liq = the logged entry liquidity; qliq = qliq@entry (baseline: its EXECUTE BUY row; desk: the PASS VERIFY row at the same
+  ts). Re-pricing (option A, the owner): the BUY quote (trades.csv intended_price) through friction.buy_fill() at qliq gives
+  a new quantity; each SELL sells the same share of the position at its logged quote (fill / (1 - friction%), as
+  core/report.py) through friction.sell_fill() at the SAME entry qliq (exits log no qliq); new_pnl next to the logged pnl.
+  fric% / new% = logged / re-priced entry friction. Caveats printed in the table header: side_pct() is a step function
+  (thin under 100k USD, plus the Clanker fee), so with qliq almost every trade goes 3% -> 5% and no price impact is
+  modelled; and option A can understate exit friction when the pool thinned after entry.
+- size/qliq% (the owner) = trade USD / qliq@entry x 100: a plain ratio of two logged numbers, not a friction model. Under the
+  table: trades with size above 10% of qliq and above 100% of qliq, and per book the logged P&L and, for the re-priced
+  trades, logged -> re-priced P&L ("n too small" under 20). "na" everywhere qliq was not logged (every trade before BL-28).
+- Self-check on the real trades (2026-10-30): re-pricing each lot with its own logged liquidity per side reproduces the
+  logged P&L of all 38 lots within 5e-7 USD (float rounding). With the entry liquidity carried to the exits (option A's
+  rule, logged liq instead of qliq), 4 lots differ, the ones whose exit liquidity crossed 100k: Kek 9.25 -> 9.03,
+  SI desk -2.39 -> -2.39 (-2.3922 -> -2.3870), SI baseline -2.47 -> -2.46, TRMX 6.36 -> 6.48.
+- Smoke 2026-10-30 ~20:00 UTC (all days, 2026-10-23 .. 2026-10-30): 2,066 sightings, 16 with a qliq row, 71 on-time labels.
+  Only one cell reaches n 20 (1h, "na" bucket, n 53: gone 0%, n_chg 39, median chg 0.0%, <=-50% 0%, pair_s1>0 45.3%);
+  every qliq / s24 bucket is "n too small". Table 2: SI only (before BL-26, no labels). Table 3: 38 lots (desk 1, baseline
+  37), 0 with qliq, so 0 re-priced and the size counts are 0 / 0. BL-28 went live at the 19:58 UTC tick, so the tool is
+  tested here, not the question; the Nov 6 run needs about a week of qliq rows.
+- Tests: tests/test_replay.py (12): bucket edges; the first qliq row decides (an earlier row without qliq and a later one
+  with another qliq are ignored), gate kills and baseline rows out, no-qliq sighting "na"/"na"; a re-sighting is a new unit;
+  the 30-min filter (29 and 91 out, 30/60/90 in, late deploy labels out, "na" age out); 16- and 17-column files read side by
+  side, labels from the day after the window; cells under 20 "n too small"; cell stats with "na" chg, gone and pair_s1;
+  all-"na" cells; re-pricing equals core's buy_fill/sell_fill by hand (Clanker 6%), equals the logged P&L at the logged
+  depth, "na" without qliq; entry qliq from the desk PASS row and the baseline BUY row, size/qliq 12.5 / 25 / na, the two
+  counts and the header text in the CLI output; no network and no file change; no core.tick import, no tools import in core/.
+  231 pass on 3.13 (219 before).
+
 ## Open items (detail)
 - Open items:
   - BL-7 done only after 24h of green runs, no overlap, one TICK row per run. The TICK rows show the real run rate for Gate A (90%).

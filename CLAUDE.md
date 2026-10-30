@@ -47,6 +47,7 @@ TICK     core/tick.py              one run: roll day (+report, +machine cards), 
 
 Folders:
 - core/: config.py, book.py, desk.py, verify.py, leads.py, exits.py, friction.py, tick.py, baseline.py, report.py, labels.py
+- tools/: replay.py (BL-29, offline replay by hand; never imported by core/, never on the tick path)
 - adapters/: base.py (EVM, chain 8453). Adapter pattern kept so other chains could plug in later (parked).
 - prompts/: x_read.py
 - data/: state.json, report.json, tokens_24h.json, daily/YYYY-MM-DD/ (tasks.csv, trades.csv; both books in the same files, column "book"; outcomes.csv, BL-26)
@@ -140,7 +141,11 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
   column qliq from the first file started after BL-28 (a file never mixes column counts). Survey 2026-10-30: of 111 past-gate
   tokens with liq >= 50k, 97 had qliq under 10% of liq and 96 under 5k USD (uniswap:v4 94 of 98): the liquidity floor is
   mostly met on the token's own side. No rule change; ~15 KB/day (docs/NOTES.md "BL-28").
-  Tests: stdlib unittest, `python -m unittest` (219 pass on 3.13).
+  BL-29 (2026-10-30): tools/replay.py, an offline replay harness run by hand (python -m tools.replay --from DAY --to DAY):
+  outcomes by qliq and s24 bucket (labels within 30 min only, "n too small" under 20), desk PASS rows with outcomes, and
+  every trade re-priced with core friction at qliq@entry plus size/qliq. No network, no writes, not on the tick path.
+  Evidence only, never a rule (docs/NOTES.md "BL-29").
+  Tests: stdlib unittest, `python -m unittest` (231 pass on 3.13).
 - cron-job.org token "baseline-desk cron" EXPIRES Thu 2027-01-21: renew by early January or the desk stops silently.
 - Technical detail per card, GoPlus diagnosis, BL-20 budget and full open items: docs/NOTES.md.
 - Open items:
@@ -157,9 +162,9 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
   - The exact GoPlus rate-limit code is unverified; code 3 is not one; BL-24 saw code 4029 4 times in 137 calls at 2 s, very likely it (docs/NOTES.md)
   - tokens_24h.json adds ~230 KB of git history per day (overwritten daily), BL-25 ~83 KB/day (+ BL-28 qliq ~15 KB/day) to tasks.csv and BL-26 outcomes.csv ~55 KB/day; include all three in BL-16's archive plan (docs/NOTES.md)
 - Next step: the BL-23 live check after the 00:03 UTC Oct 31 roll (report.json "machine", tokens_24h.json, machine=ok,
-  which also fills the site) and the first outcomes.csv with the qliq column (2026-10-31); then about a week of qliq with
-  BL-25 rows and BL-26 labels before the real-sells and real-depth replay around Nov 6 (docs/NOTES.md "BL-25", "BL-26",
-  "BL-28"). The BL-24 result stays with the owner (no rule change made).
+  which also fills the site) and the first outcomes.csv with the qliq column (2026-10-31); then run
+  python -m tools.replay --from 2026-10-31 --to 2026-11-06 on about a week of data for the Nov 6 review (docs/NOTES.md
+  "BL-29"). The BL-24 result stays with the owner (no rule change made).
 - Last updated: 2026-10-30.
 
 ## 12. Glossary
