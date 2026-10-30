@@ -21,7 +21,10 @@ a failure is logged as report=error:<type>, retried next tick, and the run ends 
 The baseline exits and the baseline buy each run in their own try too: an error logs one row
 (book=baseline, action ERROR, reason error:<type>) and bl_error=<type>, the desk's exits, verify and buy
 still run, the baseline buy is skipped after a baseline exit error (stays due), and the run ends red.
-TICK detail: the desk keys as before, then bl_positions bl_due bl_eligible bl_bought report bl_error.
+Machine cards (BL-23): right after the report, in their own try, core/report.py adds the machine cards
+to report.json and writes data/tokens_24h.json (tasks.csv only, no request). A failure keeps the money
+cards, logs machine=error:<type>, retries next tick (machine_due) and ends the run red after the TICK row.
+TICK detail: the desk keys as before, then bl_positions bl_due bl_eligible bl_bought report machine bl_error.
 """
 import sys
 import time
@@ -101,8 +104,8 @@ def run(root=ROOT, now=None, client=None, clock=time.monotonic, log=print):
     client = client or base.Client()
     n = dict.fromkeys(COUNTS, 0)
     b = dict.fromkeys(BL_COUNTS, 0)
-    b["report"] = "none"
-    reason, crash, report_error, bl_errors = "", None, None, []
+    b["report"] = b["machine"] = "none"
+    reason, crash, report_error, machine_error, bl_errors = "", None, None, None, []
 
     def bl_try(bl, stage, step, after_error=False):
         """One baseline step; an error is logged and kept, never stops the desk (pick 7)."""
@@ -128,6 +131,13 @@ def run(root=ROOT, now=None, client=None, clock=time.monotonic, log=print):
                 b["report"] = "ok"
             except Exception as e:  # trading goes on; stays due, retried next tick, run ends red
                 b["report"], report_error = f"error:{type(e).__name__}", e
+        if rs["machine_due"] and not rs["due"]:
+            try:
+                m = report.run_machine(root, now, rs, [book, bl])
+                log(f"MACHINE {m['day']}: " + " ".join(f"{k}={m['funnel'][k]}" for k in report.FUNNEL))
+                b["machine"] = "ok"
+            except Exception as e:  # money cards kept; stays due, retried next tick, run ends red
+                b["machine"], machine_error = f"error:{type(e).__name__}", e
         report.save(root, rs)
         held, bl_held = set(book.positions), set(bl.positions)
         n["positions"], b["bl_positions"] = len(held), len(bl_held)
@@ -170,6 +180,8 @@ def run(root=ROOT, now=None, client=None, clock=time.monotonic, log=print):
         raise crash
     if report_error:
         raise report_error
+    if machine_error:
+        raise machine_error
     if bl_errors:
         raise bl_errors[0]
     return n

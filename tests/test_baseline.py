@@ -258,7 +258,7 @@ class BaselineTickTest(unittest.TestCase):
         self.assertEqual(self.hb()["report"], "ok")
         r = json.loads((self.root / report.REPORT).read_text())
         self.assertEqual(set(r), {"as_of", "day", "start_balance", "desk_lead_usd", "gate_b", "desk", "baseline",
-                                  "summary"})
+                                  "summary", "machine"})  # BL-23: machine cards next to the money cards
         self.assertEqual((r["day"], r["start_balance"], r["as_of"]), ("2026-10-23", 50.0, "2026-10-24T01:00:00Z"))
         self.assertEqual(r["gate_b"], {"desk_closes": 1, "target": 100, "kill": 200})
         for name in ("desk", "baseline"):

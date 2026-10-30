@@ -291,6 +291,64 @@ Moved from CLAUDE.md section 11 on 2026-10-23 (BL-2 process cleanup). Wording is
 - Decision for the owner: honeypot.is as a second source only pays if the new-launch pools it misses are Uniswap V4 or
   Zora. A cheap step 2 would be to log the DexScreener pool/dex label on those leads and re-probe 10 fresh WATCH tokens.
 
+## BL-23
+- Machine cards (always real, from data/daily/*/tasks.csv only, no request) for the locked BL-13 mock, written on the
+  UTC day roll right after the BL-8 money report: report.json["machine"] plus data/tokens_24h.json. Code: core/report.py
+  machine(), run_machine(); hook in core/tick.py. By hand, python -m core.report also writes them for today so far
+  (runs.expected = the :03 :08 ... slots already passed, ticks_per_hour ends at the current hour, totals not stored).
+- Definitions (desk book only; the baseline is not in the funnel):
+  - scan = distinct tokens with a desk VERIFY row in the window; gate = scan tokens with no gate kill;
+    safety = distinct tokens with a PASS row; buy = desk EXECUTE BUY rows; exits_open = desk open positions at the roll
+    (the closing equity entry the roll already keeps in state; desk book when there is none, e.g. by hand).
+  - kill = a final desk VERIFY SKIP row (WATCH and RETRY are not kills), keyed by its full reason (missing:liq_usd etc.).
+    gate = the row has goplus=skipped, or its reason is liquidity, fetch_error_x3 or missing:<DexScreener field>
+    (symbol price liq_usd age_min sells_1h). safety = everything else (goplus_timeout, GoPlus fields, honeypot, taxes,
+    lp_locked, too_old / too_young, missing:<GoPlus field>, goplus_partial). too_old/too_young use DexScreener facts but
+    are rules checked after GoPlus, so they count as safety.
+  - kill_log = the last 10 kills of the day, newest first {ts, symbol, stage gate/safety, reason}.
+  - last_tick = ts + seen new checked dex_only goplus passed bought requests secs of the last TICK row of the day.
+  - runs = {ticks, expected 288, rate in %}; tick_secs = median and max of secs=; ticks_per_hour = 48 entries
+    {hour "YYYY-MM-DDTHH", n} for the 48 hours ending at the roll (closed day + the day before), missing hours 0.
+  - tokens_24h.json = {day, as_of, tokens}: per token the latest desk VERIFY or EXECUTE row of the day (never a baseline
+    row): symbol, address, verdict = its action (SKIP WATCH PASS RETRY BUY), reason, checks = its desk VERIFY rows that
+    day, last = its ts, lp_unknown from that row. Newest first, one token per line, overwritten at each roll.
+- Windows: funnel, kills and kill_log cover the closed UTC day. funnel_since and kills_since are running totals since the
+  report's "since" day (BL-8 live, Gate B's start), kept in the state's report key "totals" {through, funnel, kills}.
+  Each closed day is added once (through = last day added; days <= through are never read again), so a retry or a
+  second call never double-counts and the roll no longer re-scans old files (BL-16 will move them out). First run:
+  backfill from "since" with the daily files that exist. A day missed by a failed card run is still added later
+  (every day after through, up to the closed day). funnel_since sums the daily counts: token-days, not distinct tokens.
+- Isolation: run_due() writes the money cards first and marks machine_due; the tick then runs run_machine() in its own
+  try. It builds the cards, adds them to report.json (refused if report.json is for another day), writes tokens_24h.json,
+  and only then stores the totals and clears machine_due. A failure: report.json keeps the money cards (no "machine"
+  key), tokens_24h.json keeps its old day (stale is visible), TICK detail machine=error:<type> right after report=,
+  totals unchanged, retried next tick, the run ends red after the TICK row. If the money report itself fails, the
+  cards wait for it (machine=none). TICK keys: desk keys unchanged and first, then bl_* report machine bl_error.
+- Tests: tests/test_machine.py (19): shapes, gate/safety split, kill_log order, 48 h buckets with 0s, tokens latest desk
+  row (baseline ignored), overwrite, totals backfill / idempotent / run twice / failed write, report day check, tick
+  roll, failure isolation + retry, report failure waits, by hand, desk unchanged (cards on vs skipped vs broken).
+  169 pass on 3.13 (150 before).
+- Check vs chat on a scratch copy of data/daily/2026-10-29 (machine() for the closed day, since = 2026-10-29):
+
+  | 2026-10-29 | chat | BL-23 |
+  |---|---|---|
+  | TICK rows (runs.ticks) | 288 | 288 (rate 100.0%) |
+  | tick_secs median / max | 13.7 / 22.6 | 13.7 / 22.6 |
+  | desk VERIFY tokens (funnel scan) | 1,229 | 1,229 |
+  | SKIP rows (kills gate + safety) | 1,212 | 1,069 + 143 = 1,212 |
+  | SKIP with goplus=skipped | 1,069 | 1,069 (all gate) |
+  | liquidity / goplus_timeout / missing | 986 / 133 / 83 | 986 / 133 / 83 (73 liq_usd, 5 price, 4 symbol, 1 age_min) |
+  | mint_open / top10_pct / too_old | 8 / 1 / 1 | 8 / 1 / 1 (safety) |
+  | PASS (funnel safety) | 0 | 0 |
+  | desk BUY (funnel buy) | 0 | 0 |
+
+  Funnel gate = 160 (1,229 minus 1,069 gate-killed tokens). tokens_24h: 1,229 tokens, 1,212 SKIP + 17 still WATCH at
+  day end, 2 with lp_unknown. No gap with chat.
+- Live smoke (scratch copy, books' day set back to 2026-10-29 to force the roll, one real tick 2026-10-30 03:52 UTC):
+  report=ok machine=ok, 9 requests, 2.8 s; report.json 7,680 B (machine key 5,485 B), tokens_24h.json 233,134 B
+  (1,229 tokens); card build 0.05 s. tokens_24h.json is overwritten once a day, so git grows ~230 KB per day from it;
+  BL-16's archive should cover it.
+
 ## Open items (detail)
 - Open items:
   - BL-7 done only after 24h of green runs, no overlap, one TICK row per run. The TICK rows show the real run rate for Gate A (90%).

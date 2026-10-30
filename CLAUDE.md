@@ -40,14 +40,15 @@ EXECUTE  core/desk.py              limits -> size off balance -> paper fill minu
 EXIT     core/exits.py             liquidity pull, hard stop, ladder, trail, time stop
 BASELINE core/baseline.py          random shadow book "baseline": 1 random eligible lead every 12 ticks, same rules (BL-8)
 REPORT   core/report.py            desk vs random baseline -> data/report.json, in the tick on the UTC day roll
-TICK     core/tick.py              one run: roll day (+report), exits (desk, baseline), scan -> verify -> buy, baseline buy,
+REPORT   core/report.py            machine cards (BL-23, tasks.csv only) -> report.json "machine" + data/tokens_24h.json, own try
+TICK     core/tick.py              one run: roll day (+report, +machine cards), exits (desk, baseline), scan -> verify -> buy, baseline buy,
                                    one TICK heartbeat row
 
 Folders:
 - core/: config.py, book.py, desk.py, verify.py, leads.py, exits.py, friction.py, tick.py, baseline.py, report.py
 - adapters/: base.py (EVM, chain 8453). Adapter pattern kept so other chains could plug in later (parked).
 - prompts/: x_read.py
-- data/: state.json, report.json, daily/YYYY-MM-DD/ (tasks.csv, trades.csv; both books in the same files, column "book")
+- data/: state.json, report.json, tokens_24h.json, daily/YYYY-MM-DD/ (tasks.csv, trades.csv; both books in the same files, column "book")
 - site/: GitHub Pages dashboard; reads data/report.json at page load
 - docs/: DECISIONS.md, LEARNINGS.md
 - .github/workflows/: tick.yml (pages.yml comes with the BL-13 site build; no report.yml, BL-8)
@@ -69,7 +70,8 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
 ## 7. Running
 - tick.yml every 5 min at :03, :08 ... :58 UTC: exits first, then scan. One concurrency group, never overlapping.
   Triggered by cron-job.org (POST workflow_dispatch), no GitHub schedule. Never run both; to go back, turn cron-job.org off first.
-- Report: built inside the tick on the first tick of each UTC day (BL-8); by hand `python -m core.report`. No report.yml.
+- Report: built inside the tick on the first tick of each UTC day (BL-8), then the machine cards and tokens_24h.json in
+  their own try (BL-23); by hand `python -m core.report` (both, today so far). No report.yml.
 - The bot commits data/ to main ("data: tick ..."), only on change, pull --rebase before push.
   Sessions: git pull before working, git pull --rebase before every push, never commit anything under data/.
 - pages.yml deploys site/ only when site/ changes (GitHub Pages soft limit: 10 builds/hour).
@@ -105,10 +107,13 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
   BL-8 shipped in c96192e and is Done (chat, 2026-10-29): random baseline book + data/report.json on the day roll. The first
   live report.json came at the 00:03 UTC Oct 30 roll (report=ok, 0 bl_error).
   BL-21 24h check passed (chat): 288/288 ticks, lp_unknown 2, 0 PASS, and 115 of 126 goplus_timeout still waiting on honeypot + taxes.
-  BL-22 step 1 probe (2026-10-30, docs only, held): honeypot.is answered 2 of 24 requests (23 tokens, both Uniswap V3, taxes 0/0/0),
+  BL-22 step 1 probe (2026-10-30, docs only, committed in 335c414): honeypot.is answered 2 of 24 requests (23 tokens, both Uniswap V3, taxes 0/0/0),
   the other 22 "pair not found" (HTTP 404); GoPlus had no honeypot answer for all 23 (docs/NOTES.md "BL-22 probe").
   BL-13 visual mock locked 2026-10-28 (site build still to do).
-  Tests: stdlib unittest, `python -m unittest` (150 pass on 3.13).
+  BL-23 built 2026-10-30, held for the owner's review: machine cards in report.json["machine"] + data/tokens_24h.json on the
+  day roll, tasks.csv only, desk only, running totals in state report.totals, own try (machine=error:<type>, retried, run red).
+  2026-10-29 check matches chat (gate 1,069 / safety 143, funnel 1,229 -> 160 -> 0 -> 0); smoke 2.8 s (docs/NOTES.md "BL-23").
+  Tests: stdlib unittest, `python -m unittest` (169 pass on 3.13).
 - cron-job.org token "baseline-desk cron" EXPIRES Thu 2027-01-21: renew by early January or the desk stops silently.
 - Technical detail per card, GoPlus diagnosis, BL-20 budget and full open items: docs/NOTES.md.
 - Open items:
@@ -122,8 +127,9 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
   - Clanker/Zora factory addresses unconfirmed until BL-10 (docs/NOTES.md)
   - top10 is the top 8-10 after exclusions, slightly lenient (docs/NOTES.md)
   - The exact GoPlus rate-limit code is unverified; code 3 is not one (docs/NOTES.md)
-- Next step: the owner reads the BL-22 probe result (docs/NOTES.md "BL-22 probe") and decides whether honeypot.is is worth a
-  step 2 (a 10-token follow-up on pool types, or drop it). Then BL-23, then the BL-13 site build (reads data/report.json).
+  - tokens_24h.json adds ~230 KB of git history per day (overwritten daily); include it in BL-16's archive plan (docs/NOTES.md)
+- Next step: the owner reviews BL-23 (held diff) and says "commit"; then the BL-13 site build (reads data/report.json and
+  data/tokens_24h.json). Still open: the owner decides on a BL-22 step 2 (docs/NOTES.md "BL-22 probe") or drops honeypot.is.
 - Last updated: 2026-10-30.
 
 ## 12. Glossary
