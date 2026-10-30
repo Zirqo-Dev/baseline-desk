@@ -699,3 +699,10 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-10-30T06:53:12Z,desk,VERIFY,UODF,0x14fee448f6a24a6b980f4ceb7a63d383df29e070,WATCH,goplus_not_ready,"first_seen=2026-10-30T06:53:12Z checks=1 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct b1=5 s1=0 b24=5 s24=0 liq=179020 dex=uniswap:v4"
 2026-10-30T06:53:12Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
 2026-10-30T06:53:12Z,desk,TICK,,,HEARTBEAT,,positions=1 seen=20 rechecks=0 new=5 checked=5 passed=0 bought=0 held=0 deferred=0 dex_only=4 goplus=1 requests=11 secs=3.0 bl_positions=1 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none
+2026-10-30T06:58:11Z,desk,EXIT,SI,0xfe8001877721d8f8cf070cee3c042b6a01b0e68f,HOLD,,pct=41.40
+2026-10-30T06:58:11Z,baseline,EXIT,SI,0xfe8001877721d8f8cf070cee3c042b6a01b0e68f,HOLD,,pct=39.29
+2026-10-30T06:58:11Z,desk,VERIFY,UDOF,0xb2000000000000000000001622ec12ff3575e9c6,SKIP,liquidity,goplus=skipped until=2026-10-31T06:58:11Z
+2026-10-30T06:58:11Z,desk,VERIFY,AVE,0x64d5f238a6b7cc0cf10395d5c857d298bb478ba3,SKIP,missing:liq_usd,goplus=skipped until=2026-10-31T06:58:11Z
+2026-10-30T06:58:11Z,desk,VERIFY,K-POP,0xea722319a89ec7691603022125a1e20e384ab2f2,SKIP,liquidity,goplus=skipped until=2026-10-31T06:58:11Z
+2026-10-30T06:58:11Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
+2026-10-30T06:58:11Z,desk,TICK,,,HEARTBEAT,,positions=1 seen=20 rechecks=0 new=3 checked=3 passed=0 bought=0 held=0 deferred=0 dex_only=3 goplus=0 requests=8 secs=1.8 bl_positions=1 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none
