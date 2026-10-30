@@ -1362,3 +1362,13 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-10-30T12:28:14Z,desk,VERIFY,VEIL,0x767a739d1a152639e9ea1d8c1bd55fdc5b217d7f,SKIP,liquidity,goplus=skipped until=2026-10-31T12:28:14Z
 2026-10-30T12:28:14Z,baseline,EXECUTE,tGBP,0x27f6c8289550fce67f6b50bed1f519966afe5287,BUY,,"usd=5.00 fill=1.3802 seed=202610301228 eligible=3 pick=0 pool=27f6c8,40fcec,6bd83a desk=WATCH launchpad=other b1=10 s1=9 b24=396 s24=210 liq=173793 dex=aerodrome"
 2026-10-30T12:28:14Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=9 new=8 checked=13 passed=0 bought=0 held=0 deferred=4 dex_only=4 goplus=9 requests=31 secs=19.3 bl_positions=1 bl_due=1 bl_eligible=3 bl_bought=1 report=none machine=none bl_error=none
+2026-10-30T12:33:12Z,baseline,EXIT,tGBP,0x27f6c8289550fce67f6b50bed1f519966afe5287,HOLD,,pct=-2.91
+2026-10-30T12:33:12Z,baseline,EXIT,TRMX,0x6ee53668542bb4d020b51e805da2c5f32c3f55b9,HOLD,,pct=69.86
+2026-10-30T12:33:12Z,desk,VERIFY,,0xb6790224402b725fc043990081b59e1a345c5d06,SKIP,missing:symbol,goplus=skipped until=2026-10-31T12:33:12Z
+2026-10-30T12:33:12Z,desk,VERIFY,WANG,0x2f8c43966b7f366a6f4edd054bc932a0debe2494,SKIP,liquidity,goplus=skipped until=2026-10-31T12:33:12Z
+2026-10-30T12:33:12Z,desk,VERIFY,Textures,0xb2000000000000000000002beb9fb6f13f7fb30f,SKIP,liquidity,goplus=skipped until=2026-10-31T12:33:12Z
+2026-10-30T12:33:12Z,desk,VERIFY,I O F,0x40fceca1819463ac5fcd1c8d22e5da9d1562cb05,WATCH,goplus_not_ready,"first_seen=2026-10-30T12:33:12Z checks=1 pending=honeypot,buy_tax_pct,sell_tax_pct,dev_pct,top10_pct,lp_locked_pct b1=17 s1=11 b24=17 s24=11 liq=29100540 dex=uniswap:v4"
+2026-10-30T12:33:12Z,desk,VERIFY,RIPPLE USD,0xbab4ccb3d43825e4d5ad2c7155d437881f895674,WATCH,goplus_not_ready,"first_seen=2026-10-30T12:33:12Z checks=1 pending=mint_open,freeze_or_blacklist,honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct,risk_flags b1=11 s1=0 b24=11 s24=0 liq=69792 dex=uniswap:v2"
+2026-10-30T12:33:12Z,desk,VERIFY,RIPPLE USD,0x2f6154c58dc4c458c09eb311959466e785aff1c9,WATCH,goplus_not_ready,"first_seen=2026-10-30T12:33:12Z checks=1 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct b1=3 s1=0 b24=3 s24=0 liq=97900 dex=uniswap:v4"
+2026-10-30T12:33:12Z,desk,VERIFY,SLC,0x6bd83abc39391af1e24826e90237c4bd3468b5d2,SKIP,top10_pct,lp_unknown until=2026-10-31T12:33:12Z b1=130 s1=65 b24=879 s24=849 liq=148393 dex=aerodrome
+2026-10-30T12:33:12Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=0 new=7 checked=7 passed=0 bought=0 held=0 deferred=0 dex_only=3 goplus=4 requests=16 secs=8.4 bl_positions=2 bl_due=0 bl_eligible=2 bl_bought=0 report=none machine=none bl_error=none
