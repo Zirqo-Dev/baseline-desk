@@ -12,17 +12,17 @@
         "entry_liq_usd": 160278.84,
         "entry_ts": "2026-10-30T04:33:13Z",
         "ladder_done": [],
-        "last_liq_usd": 165952.29,
-        "last_price": 0.003154,
+        "last_liq_usd": 170355.57,
+        "last_price": 0.003325,
         "launchpad": "other",
         "orig_qty": 1671.4324104401271,
         "pair": "0x19c6572ffd31bfcd51d7d995d80e94d3c88cff58",
-        "peak_price": 0.003154,
+        "peak_price": 0.003325,
         "qty": 1671.4324104401271,
         "symbol": "SI"
       }
     },
-    "ticks_since_buy": 5
+    "ticks_since_buy": 6
   },
   "desk": {
     "cash": 45.0,
@@ -37,12 +37,12 @@
         "entry_liq_usd": 159111.34,
         "entry_ts": "2026-10-30T04:48:13Z",
         "ladder_done": [],
-        "last_liq_usd": 165952.29,
-        "last_price": 0.003154,
+        "last_liq_usd": 170355.57,
+        "last_price": 0.003325,
         "launchpad": "other",
         "orig_qty": 1672.1904691832017,
         "pair": "0x19c6572ffd31bfcd51d7d995d80e94d3c88cff58",
-        "peak_price": 0.003154,
+        "peak_price": 0.003325,
         "qty": 1672.1904691832017,
         "symbol": "SI"
       }
@@ -2949,6 +2949,12 @@
         "symbol": "TEMU",
         "until": "2026-10-30T17:18:14Z"
       },
+      "0x760e333c5946ebb3dde8cf9264fdad3f3252b875": {
+        "at": "2026-10-30T05:03:12Z",
+        "reason": "liquidity",
+        "symbol": "LAPTOP",
+        "until": "2026-10-31T05:03:12Z"
+      },
       "0x762aa0b2564535bfca75b50c5f145cf85d753ba3": {
         "at": "2026-10-29T17:08:14Z",
         "reason": "liquidity",
@@ -3200,6 +3206,12 @@
         "reason": "liquidity",
         "symbol": "BTC",
         "until": "2026-10-31T03:13:11Z"
+      },
+      "0x7e4df0bb936a1037fc6439de65b3c8393a512d23": {
+        "at": "2026-10-30T05:03:12Z",
+        "reason": "missing:liq_usd",
+        "symbol": "UAGR",
+        "until": "2026-10-31T05:03:12Z"
       },
       "0x7e8efea4c6f00801f30227b10fcd2b3bbdb7a9c3": {
         "at": "2026-10-29T20:13:12Z",
@@ -3878,6 +3890,12 @@
         "reason": "liquidity",
         "symbol": "VAULT",
         "until": "2026-10-30T09:43:11Z"
+      },
+      "0x95ef2251ffcbd402c9ee9e406b76456b1d7ef6ea": {
+        "at": "2026-10-30T05:03:12Z",
+        "reason": "liquidity",
+        "symbol": "BOTTOM",
+        "until": "2026-10-31T05:03:12Z"
       },
       "0x962fcb175b8c20d45d98933c2a296b706492ff75": {
         "at": "2026-10-29T11:58:13Z",
@@ -5625,12 +5643,6 @@
         "symbol": "ENA",
         "until": "2026-10-30T23:13:11Z"
       },
-      "0xb8a0c76abc10dd8d899db2bb7d7a262d072b03a2": {
-        "at": "2026-10-29T04:53:18Z",
-        "reason": "liquidity",
-        "symbol": "LIT",
-        "until": "2026-10-30T04:53:18Z"
-      },
       "0xb8bf041e90c560d63f72ed96f06f14242be4efb0": {
         "at": "2026-10-29T08:48:12Z",
         "reason": "liquidity",
@@ -6093,12 +6105,6 @@
         "symbol": "XRPN",
         "until": "2026-10-30T18:38:14Z"
       },
-      "0xcf8ca1af9ba1e5a718ac8df04dae93ef6344b00a": {
-        "at": "2026-10-29T04:53:18Z",
-        "reason": "liquidity",
-        "symbol": "openhuman",
-        "until": "2026-10-30T04:53:18Z"
-      },
       "0xcf95c42b455de980504a77d57eecdb42b803f069": {
         "at": "2026-10-29T21:13:10Z",
         "reason": "liquidity",
@@ -6218,12 +6224,6 @@
         "reason": "liquidity",
         "symbol": "WBTC",
         "until": "2026-10-31T01:43:11Z"
-      },
-      "0xd48658e6dca915dd6d81c69148ab857abc38e510": {
-        "at": "2026-10-29T04:53:18Z",
-        "reason": "liquidity",
-        "symbol": "Bucky",
-        "until": "2026-10-30T04:53:18Z"
       },
       "0xd4d2419dcdbf1632da0ecedf7b513a870add66ea": {
         "at": "2026-10-29T20:43:11Z",
@@ -6656,12 +6656,6 @@
         "reason": "liquidity",
         "symbol": "JCT",
         "until": "2026-10-30T05:28:11Z"
-      },
-      "0xe65536be3113703de22615bb1253afe2be96d926": {
-        "at": "2026-10-29T04:58:13Z",
-        "reason": "liquidity",
-        "symbol": "XCHAT",
-        "until": "2026-10-30T04:58:13Z"
       },
       "0xe66ecc5a814c7cf6065835b6c3eb07e26249c602": {
         "at": "2026-10-30T02:03:11Z",
@@ -7228,7 +7222,7 @@
     },
     "peak": {
       "baseline": 59.698257040488365,
-      "desk": 50.1158660776097
+      "desk": 50.39323231073312
     },
     "since": "2026-10-29"
   }
