@@ -12,6 +12,7 @@
         "entry_liq_usd": 124209.54,
         "entry_ts": "2026-10-30T21:58:12Z",
         "ladder_done": [],
+        "last_liq_usd": 124209.54,
         "last_price": 0.0001254,
         "launchpad": "other",
         "orig_qty": 38711.07601306885,
@@ -37,7 +38,7 @@
         "symbol": "U.S OIL EXCHANGE"
       }
     },
-    "ticks_since_buy": 0
+    "ticks_since_buy": 1
   },
   "desk": {
     "cash": 47.60776857887221,
@@ -250,7 +251,9 @@
         "symbol": "AODF"
       },
       "0x35bbcf1025b3486ceb2194dc6a2286cb2cf6ee62": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 0.0001253,
         "first_seen": "2026-10-30T21:03:11Z",
         "symbol": "ONDO"
@@ -429,7 +432,9 @@
         "symbol": "U.S OIL EXCHANGE"
       },
       "0x7473fab52e0180e16995eec2ca926025f7b6732e": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 9.863e-05,
         "first_seen": "2026-10-30T21:03:11Z",
         "symbol": "UDFO"
@@ -510,7 +515,8 @@
       },
       "0x8588ebf52351cb16bd8c907547ca002de37c5b7f": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 0.0001627,
         "first_seen": "2026-10-30T15:58:16Z",
@@ -527,7 +533,8 @@
       },
       "0x8ce2b13567455a54efcefe3a3745697d7cd497a8": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 9.131e-05,
         "first_seen": "2026-10-30T15:58:16Z",
@@ -552,7 +559,8 @@
       },
       "0x8f64714cec453afb951ff59d977f77b59528f7d6": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 9.44e-05,
         "first_seen": "2026-10-30T15:58:16Z",
@@ -632,7 +640,8 @@
       },
       "0xb20000000000000000000078ee7ce2fe4908108c": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 205.97,
         "first_seen": "2026-10-30T15:58:16Z",
@@ -690,7 +699,8 @@
       },
       "0xc41ac7bffb8c7b52baa67c181d6dfbc38bdeea04": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 48.83,
         "first_seen": "2026-10-30T15:58:16Z",
@@ -706,7 +716,9 @@
         "symbol": "AOTF"
       },
       "0xd260f7054ccb12a1f5e8fed3d7abecca1ddbc773": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 0.0001358,
         "first_seen": "2026-10-30T21:03:11Z",
         "symbol": "VAR"
@@ -1800,12 +1812,6 @@
         "symbol": "joobi",
         "until": "2026-10-31T02:38:12Z"
       },
-      "0x30fdfff2d861371f45211c0ef64787a4850f728b": {
-        "at": "2026-10-29T22:03:11Z",
-        "reason": "liquidity",
-        "symbol": "NAFF",
-        "until": "2026-10-30T22:03:11Z"
-      },
       "0x31011cfa9277b37d52176b44a20efcff20346a02": {
         "at": "2026-10-30T02:23:12Z",
         "reason": "liquidity",
@@ -2195,6 +2201,12 @@
         "reason": "liquidity",
         "symbol": "MASK",
         "until": "2026-10-31T00:18:13Z"
+      },
+      "0x45c344c9d661ffa504e7f461405724fa9990cac4": {
+        "at": "2026-10-30T22:03:12Z",
+        "reason": "missing:liq_usd",
+        "symbol": "Basebird",
+        "until": "2026-10-31T22:03:12Z"
       },
       "0x461032c31a6358c43f1a23b374753a947cdaefd2": {
         "at": "2026-10-30T00:18:13Z",
@@ -4662,6 +4674,12 @@
         "symbol": "BASEBAT",
         "until": "2026-10-31T16:58:13Z"
       },
+      "0xb2000000000000000000003f74be52709321b5c8": {
+        "at": "2026-10-30T22:03:12Z",
+        "reason": "liquidity",
+        "symbol": "BINANCE",
+        "until": "2026-10-31T22:03:12Z"
+      },
       "0xb20000000000000000000040e71f94fcc3ae61ac": {
         "at": "2026-10-30T05:38:11Z",
         "reason": "liquidity",
@@ -5249,6 +5267,12 @@
         "reason": "liquidity",
         "symbol": "PULSEDRIVE",
         "until": "2026-10-31T20:23:12Z"
+      },
+      "0xb200000000000000000000de3563ce7bf2259001": {
+        "at": "2026-10-30T22:03:12Z",
+        "reason": "liquidity",
+        "symbol": "stocks",
+        "until": "2026-10-31T22:03:12Z"
       },
       "0xb200000000000000000000de865f1d654b289ed0": {
         "at": "2026-10-30T17:58:13Z",
@@ -6653,6 +6677,12 @@
         "reason": "liquidity",
         "symbol": "Safu",
         "until": "2026-10-31T01:18:13Z"
+      },
+      "0xef95f199d2f6a6cdb7576d0b78fede0b2b79ce85": {
+        "at": "2026-10-30T22:03:12Z",
+        "reason": "liquidity",
+        "symbol": "OSHI",
+        "until": "2026-10-31T22:03:12Z"
       },
       "0xf00d4740559823b1faf3922d655d7fadac212fe0": {
         "at": "2026-10-30T11:18:12Z",
