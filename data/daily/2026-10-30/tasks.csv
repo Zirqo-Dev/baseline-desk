@@ -878,3 +878,13 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-10-30T08:13:11Z,desk,VERIFY,SITEGLADE,0x63a48bfc589d61c1fb3104281474cf50c1526ba3,SKIP,missing:liq_usd,goplus=skipped until=2026-10-31T08:13:11Z
 2026-10-30T08:13:11Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
 2026-10-30T08:13:11Z,desk,TICK,,,HEARTBEAT,,positions=1 seen=20 rechecks=0 new=1 checked=1 passed=0 bought=0 held=0 deferred=0 dex_only=1 goplus=0 requests=6 secs=1.5 bl_positions=1 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none
+2026-10-30T08:18:11Z,desk,EXIT,SI,0xfe8001877721d8f8cf070cee3c042b6a01b0e68f,HOLD,,pct=48.42
+2026-10-30T08:18:11Z,baseline,EXIT,SI,0xfe8001877721d8f8cf070cee3c042b6a01b0e68f,HOLD,,pct=46.21
+2026-10-30T08:18:11Z,desk,VERIFY,WWRA,0x85293e2c9510a5acecb9ed25f775622530f99927,WATCH,goplus_not_ready,"first_seen=2026-10-30T07:23:12Z checks=4 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct b1=3 s1=0 b24=12 s24=0 liq=98241 dex=uniswap:v4"
+2026-10-30T08:18:11Z,desk,VERIFY,ADOF,0xbeb6ba0d7c2daa8a95172cea1eac2548b586ae28,WATCH,goplus_not_ready,"first_seen=2026-10-30T07:43:11Z checks=3 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct b1=12 s1=0 b24=12 s24=0 liq=97852 dex=uniswap:v4"
+2026-10-30T08:18:11Z,desk,VERIFY,AFOD,0xe2d9d5fcd73c119a07b77e666d44857fefeed9b5,WATCH,goplus_not_ready,"first_seen=2026-10-30T07:43:11Z checks=3 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct b1=13 s1=2 b24=13 s24=2 liq=116609 dex=uniswap:v4"
+2026-10-30T08:18:11Z,desk,VERIFY,UOFD,0xb2000000000000000000006cd6b8f94851c53e5b,SKIP,liquidity,goplus=skipped until=2026-10-31T08:18:11Z
+2026-10-30T08:18:11Z,desk,VERIFY,Basecow,0xaf049cce0765b3a2cab250acb1d44f5d0293bfc7,SKIP,liquidity,goplus=skipped until=2026-10-31T08:18:11Z
+2026-10-30T08:18:11Z,desk,VERIFY,BTC,0xb200000000000000000000dffa4ee03b2e9c011f,SKIP,liquidity,goplus=skipped until=2026-10-31T08:18:11Z
+2026-10-30T08:18:11Z,baseline,EXECUTE,AFOD,0xe2d9d5fcd73c119a07b77e666d44857fefeed9b5,BUY,,usd=5.00 fill=0.000121231 seed=202610300818 eligible=1 pick=0 pool=e2d9d5 desk=WATCH launchpad=other b1=13 s1=2 b24=13 s24=2 liq=116609 dex=uniswap:v4
+2026-10-30T08:18:11Z,desk,TICK,,,HEARTBEAT,,positions=1 seen=20 rechecks=3 new=3 checked=6 passed=0 bought=0 held=0 deferred=0 dex_only=3 goplus=3 requests=14 secs=6.2 bl_positions=1 bl_due=1 bl_eligible=1 bl_bought=1 report=none machine=none bl_error=none
