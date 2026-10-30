@@ -12,6 +12,7 @@
         "entry_liq_usd": 179666.41,
         "entry_ts": "2026-10-30T20:48:14Z",
         "ladder_done": [],
+        "last_liq_usd": 179666.41,
         "last_price": 0.0001814,
         "launchpad": "zora",
         "orig_qty": 26760.57845666392,
@@ -21,7 +22,7 @@
         "symbol": "U.S OIL EXCHANGE"
       }
     },
-    "ticks_since_buy": 0
+    "ticks_since_buy": 1
   },
   "desk": {
     "cash": 47.60776857887221,
@@ -313,6 +314,12 @@
         "first_seen": "2026-10-30T12:53:12Z",
         "symbol": "Paper"
       },
+      "0x52fda2d27f7b56bf6fa46f015529b2791d926d57": {
+        "done": [],
+        "first_price": 5.722e-06,
+        "first_seen": "2026-10-30T20:53:12Z",
+        "symbol": "FYM"
+      },
       "0x58ca3f35961c453ed899a1c3b2877a41d0b83f65": {
         "done": [
           1
@@ -459,7 +466,8 @@
       },
       "0x8c5ae590c45368c6511a8fe0b54fd27671882188": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": "na",
         "first_seen": "2026-10-30T14:53:11Z",
@@ -597,7 +605,8 @@
       },
       "0xb7edd2116f010fd58ba7ee347cf12c0fce076586": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": "na",
         "first_seen": "2026-10-30T14:53:11Z",
@@ -646,7 +655,8 @@
       },
       "0xdbbbf29bd33734009d46f2c020fe1d31902b4e29": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": "na",
         "first_seen": "2026-10-30T14:53:11Z",
@@ -1460,6 +1470,12 @@
         "reason": "mint_open",
         "symbol": "BTC",
         "until": "2026-10-31T16:48:12Z"
+      },
+      "0x212c33ca7dc063412d2d5034e2c699182a1c5dfc": {
+        "at": "2026-10-30T20:53:12Z",
+        "reason": "liquidity",
+        "symbol": "KAIRO",
+        "until": "2026-10-31T20:53:12Z"
       },
       "0x21e082d0aeb7bb9bcab97f996f38c7d1f2f6a4a5": {
         "at": "2026-10-30T14:48:13Z",
@@ -2373,6 +2389,12 @@
         "symbol": "XCHAT",
         "until": "2026-10-31T12:28:14Z"
       },
+      "0x5630f14114c1387ee1c8f60923c6953f1529117b": {
+        "at": "2026-10-30T20:53:12Z",
+        "reason": "liquidity",
+        "symbol": "wtf",
+        "until": "2026-10-31T20:53:12Z"
+      },
       "0x56793999d8a667d45a350aa25eef60ff4755bb1d": {
         "at": "2026-10-30T12:48:14Z",
         "reason": "liquidity",
@@ -3249,6 +3271,12 @@
         "symbol": "callmebaby",
         "until": "2026-10-31T02:48:13Z"
       },
+      "0x7caa4473d331f6cff0a4ec263fde7dbd45fa183a": {
+        "at": "2026-10-30T20:53:12Z",
+        "reason": "liquidity",
+        "symbol": "Wizard",
+        "until": "2026-10-31T20:53:12Z"
+      },
       "0x7dc05229aaedf4e18a2c9572233bcf0f6da54c1d": {
         "at": "2026-10-30T10:43:12Z",
         "reason": "missing:symbol",
@@ -3495,6 +3523,12 @@
         "symbol": "SPACEX",
         "until": "2026-10-31T13:23:11Z"
       },
+      "0x88619d5075c815729be3c7518c3f158e565ed64c": {
+        "at": "2026-10-30T20:53:12Z",
+        "reason": "liquidity",
+        "symbol": "JASON",
+        "until": "2026-10-31T20:53:12Z"
+      },
       "0x887187c869b3a5c327775bb7fb4f5382d017d1ca": {
         "at": "2026-10-30T00:53:11Z",
         "reason": "liquidity",
@@ -3674,12 +3708,6 @@
         "reason": "liquidity",
         "symbol": "LIQUIDBGT",
         "until": "2026-10-31T11:13:12Z"
-      },
-      "0x900b16f2e025a4d5d9174db9bb0bad9ae4e80912": {
-        "at": "2026-10-29T20:53:10Z",
-        "reason": "liquidity",
-        "symbol": "E91",
-        "until": "2026-10-30T20:53:10Z"
       },
       "0x9080751bf9c7fdbcaf22e0c9f76676c57e26664e": {
         "at": "2026-10-29T23:13:11Z",
@@ -6834,9 +6862,9 @@
         "symbol": "FYM"
       },
       "0x0ba6d9d49a1009f4cd8a3065129de886a32c6095": {
-        "checks": 6,
+        "checks": 7,
         "first_seen": "2026-10-30T18:53:11Z",
-        "last_check": "2026-10-30T20:33:13Z",
+        "last_check": "2026-10-30T20:53:12Z",
         "symbol": "DOFU"
       },
       "0x0d5ffd30d7c753d9a76f32cd5c9864eaf514e274": {
@@ -6858,9 +6886,9 @@
         "symbol": "SRX"
       },
       "0x222c28ea8ef76c4cdff3c1c015334fcfdc72d90b": {
-        "checks": 5,
+        "checks": 6,
         "first_seen": "2026-10-30T19:13:12Z",
-        "last_check": "2026-10-30T20:33:13Z",
+        "last_check": "2026-10-30T20:53:12Z",
         "symbol": "ADFO"
       },
       "0x27b5ba66d0f0b22ab4d19a9b2044b1f1b3c2c395": {
@@ -6882,15 +6910,15 @@
         "symbol": "KIEDEX"
       },
       "0x2c02fc9b8b5033dbebcc13d4a1e1435ca78d9d93": {
-        "checks": 8,
+        "checks": 9,
         "first_seen": "2026-10-30T18:13:12Z",
-        "last_check": "2026-10-30T20:33:13Z",
+        "last_check": "2026-10-30T20:53:12Z",
         "symbol": "CELR"
       },
       "0x3cc4215e06bf92590b8b2900a598d9ab4b65191f": {
-        "checks": 8,
+        "checks": 9,
         "first_seen": "2026-10-30T18:13:12Z",
-        "last_check": "2026-10-30T20:33:13Z",
+        "last_check": "2026-10-30T20:53:12Z",
         "symbol": "PARTI"
       },
       "0x44dcad92ca49b26473e2bf2401e45586928630c3": {
@@ -6905,10 +6933,16 @@
         "last_check": "2026-10-30T20:38:14Z",
         "symbol": "UFDO"
       },
+      "0x52fda2d27f7b56bf6fa46f015529b2791d926d57": {
+        "checks": 1,
+        "first_seen": "2026-10-30T20:53:12Z",
+        "last_check": "2026-10-30T20:53:12Z",
+        "symbol": "FYM"
+      },
       "0x722792048c078946f63365b96d1aa2f48ca95adc": {
-        "checks": 5,
+        "checks": 6,
         "first_seen": "2026-10-30T19:13:12Z",
-        "last_check": "2026-10-30T20:33:13Z",
+        "last_check": "2026-10-30T20:53:12Z",
         "symbol": "U.S OIL EXCHANGE"
       },
       "0x8210c0634ab8f273806e4b7866e9db353773c44b": {
@@ -6918,15 +6952,15 @@
         "symbol": "USDf"
       },
       "0x8f2ec0a0f42a46d604d6c01805591137b514a73f": {
-        "checks": 6,
+        "checks": 7,
         "first_seen": "2026-10-30T18:53:11Z",
-        "last_check": "2026-10-30T20:33:13Z",
+        "last_check": "2026-10-30T20:53:12Z",
         "symbol": "UFOD\ud83d\udd25"
       },
       "0x94d80f649824a4841c02a465429f7021c0479601": {
-        "checks": 8,
+        "checks": 9,
         "first_seen": "2026-10-30T18:13:12Z",
-        "last_check": "2026-10-30T20:33:13Z",
+        "last_check": "2026-10-30T20:53:12Z",
         "symbol": "COFT"
       },
       "0xa3edc351fb6b15d25c9073a822c7fb1752b272cb": {
@@ -6948,9 +6982,9 @@
         "symbol": "ETHFLOW"
       },
       "0xb87ee7683cc097faac585ef6b7a12ea07a48daa9": {
-        "checks": 7,
+        "checks": 8,
         "first_seen": "2026-10-30T18:33:11Z",
-        "last_check": "2026-10-30T20:33:13Z",
+        "last_check": "2026-10-30T20:53:12Z",
         "symbol": "TOX"
       }
     }
