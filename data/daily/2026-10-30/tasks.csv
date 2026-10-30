@@ -690,3 +690,12 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-10-30T06:48:14Z,desk,VERIFY,LIQUIDBGT,0xdf7015805bab3d4d659209ecf3b12e18674b9be9,SKIP,liquidity,goplus=skipped until=2026-10-31T06:48:14Z
 2026-10-30T06:48:14Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
 2026-10-30T06:48:14Z,desk,TICK,,,HEARTBEAT,,positions=1 seen=20 rechecks=1 new=4 checked=5 passed=0 bought=0 held=0 deferred=0 dex_only=4 goplus=1 requests=11 secs=2.3 bl_positions=1 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none
+2026-10-30T06:53:12Z,desk,EXIT,SI,0xfe8001877721d8f8cf070cee3c042b6a01b0e68f,HOLD,,pct=42.87
+2026-10-30T06:53:12Z,baseline,EXIT,SI,0xfe8001877721d8f8cf070cee3c042b6a01b0e68f,HOLD,,pct=40.74
+2026-10-30T06:53:12Z,desk,VERIFY,Basefish,0xa2ee65e30024d5b88f786d51a939e9dab8f396e4,SKIP,liquidity,goplus=skipped until=2026-10-31T06:53:12Z
+2026-10-30T06:53:12Z,desk,VERIFY,FUN,0xa167b589fdaac9c8b5cb535b167848cde1bab82c,SKIP,liquidity,goplus=skipped until=2026-10-31T06:53:12Z
+2026-10-30T06:53:12Z,desk,VERIFY,SENSE,0xb93dbffd25e4791330da022e25044511f18d5d02,SKIP,liquidity,goplus=skipped until=2026-10-31T06:53:12Z
+2026-10-30T06:53:12Z,desk,VERIFY,PARTI,0x80bf965c86ec05d529cbb4330830646c2d5b78aa,SKIP,liquidity,goplus=skipped until=2026-10-31T06:53:12Z
+2026-10-30T06:53:12Z,desk,VERIFY,UODF,0x14fee448f6a24a6b980f4ceb7a63d383df29e070,WATCH,goplus_not_ready,"first_seen=2026-10-30T06:53:12Z checks=1 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct b1=5 s1=0 b24=5 s24=0 liq=179020 dex=uniswap:v4"
+2026-10-30T06:53:12Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
+2026-10-30T06:53:12Z,desk,TICK,,,HEARTBEAT,,positions=1 seen=20 rechecks=0 new=5 checked=5 passed=0 bought=0 held=0 deferred=0 dex_only=4 goplus=1 requests=11 secs=3.0 bl_positions=1 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none
