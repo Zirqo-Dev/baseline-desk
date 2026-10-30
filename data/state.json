@@ -22,7 +22,7 @@
         "symbol": "USDL"
       }
     },
-    "ticks_since_buy": 5
+    "ticks_since_buy": 6
   },
   "desk": {
     "cash": 50.0,
@@ -1942,6 +1942,12 @@
         "symbol": "UTFD",
         "until": "2026-10-30T23:48:14Z"
       },
+      "0x4c60fe6266d0d0ed3b7a3c608f78f0ed67371227": {
+        "at": "2026-10-30T03:58:12Z",
+        "reason": "liquidity",
+        "symbol": "House",
+        "until": "2026-10-31T03:58:12Z"
+      },
       "0x4c90c3801332b5830c0157cd15a4825feb35cfd2": {
         "at": "2026-10-29T04:08:12Z",
         "reason": "missing:liq_usd",
@@ -2302,6 +2308,12 @@
         "symbol": "House",
         "until": "2026-10-30T09:08:12Z"
       },
+      "0x5a96d575e0fd4d8ae92a1e4edffc5aabe4d18ec2": {
+        "at": "2026-10-30T03:58:12Z",
+        "reason": "liquidity",
+        "symbol": "UARG",
+        "until": "2026-10-31T03:58:12Z"
+      },
       "0x5b1c3b5c124a633dc9bf77a78e957408c5d52fb0": {
         "at": "2026-10-29T12:38:12Z",
         "reason": "liquidity",
@@ -2433,12 +2445,6 @@
         "reason": "liquidity",
         "symbol": "GAGGLE",
         "until": "2026-10-30T10:58:13Z"
-      },
-      "0x61fbeb739885b0dd9ed07414d3b287a7027f6038": {
-        "at": "2026-10-29T03:58:11Z",
-        "reason": "liquidity",
-        "symbol": "SPACEX",
-        "until": "2026-10-30T03:58:11Z"
       },
       "0x627cecfb7f0f8cedd6e17cd0bb1536de28f40e55": {
         "at": "2026-10-29T11:28:13Z",
@@ -2739,12 +2745,6 @@
         "reason": "missing:liq_usd",
         "symbol": "USPR",
         "until": "2026-10-30T13:53:12Z"
-      },
-      "0x6cec03ab0169c97569bbc040b99c478af64fcf0b": {
-        "at": "2026-10-29T03:58:11Z",
-        "reason": "liquidity",
-        "symbol": "ANTHROPIC",
-        "until": "2026-10-30T03:58:11Z"
       },
       "0x6d36e0b448fabc246135fc3fedd29f81ae066030": {
         "at": "2026-10-29T07:08:13Z",
@@ -5116,12 +5116,6 @@
         "symbol": "BINANCE",
         "until": "2026-10-30T23:18:12Z"
       },
-      "0xb2000000000000000000009a3a5c1c328c25b12b": {
-        "at": "2026-10-29T03:58:11Z",
-        "reason": "liquidity",
-        "symbol": "AI12",
-        "until": "2026-10-30T03:58:11Z"
-      },
       "0xb2000000000000000000009cea082a82328ea61b": {
         "at": "2026-10-29T18:43:11Z",
         "reason": "liquidity",
@@ -7255,27 +7249,21 @@
     },
     "watch": {
       "0x079b1b5a8c5ed7e7bd83f2661fecf8af217bb4a5": {
-        "checks": 3,
+        "checks": 4,
         "first_seen": "2026-10-30T03:13:11Z",
-        "last_check": "2026-10-30T03:43:11Z",
+        "last_check": "2026-10-30T03:58:12Z",
         "symbol": "MEOR"
       },
       "0x40aaf75454036bed56f3266ccf18f6b7befd6aca": {
-        "checks": 8,
+        "checks": 9,
         "first_seen": "2026-10-30T01:43:11Z",
-        "last_check": "2026-10-30T03:43:11Z",
+        "last_check": "2026-10-30T03:58:12Z",
         "symbol": "CDXR"
       },
-      "0x5a96d575e0fd4d8ae92a1e4edffc5aabe4d18ec2": {
-        "checks": 3,
-        "first_seen": "2026-10-30T03:13:11Z",
-        "last_check": "2026-10-30T03:43:11Z",
-        "symbol": "UARG"
-      },
       "0xe1044d4ee973353be70a630666e904b0c3bf6860": {
-        "checks": 3,
+        "checks": 4,
         "first_seen": "2026-10-30T03:13:11Z",
-        "last_check": "2026-10-30T03:43:11Z",
+        "last_check": "2026-10-30T03:58:12Z",
         "symbol": "ONDO"
       },
       "0xe354f5ea4f58728251e3dcc4228a442d046cd002": {
@@ -7285,9 +7273,9 @@
         "symbol": "ONDO"
       },
       "0xfe8001877721d8f8cf070cee3c042b6a01b0e68f": {
-        "checks": 7,
+        "checks": 8,
         "first_seen": "2026-10-30T02:03:11Z",
-        "last_check": "2026-10-30T03:43:11Z",
+        "last_check": "2026-10-30T03:58:12Z",
         "symbol": "SI"
       }
     }
@@ -7312,6 +7300,7 @@
         }
       ]
     },
+    "machine_due": "",
     "max_dd_pct": {
       "baseline": 15.015358929969416,
       "desk": 0.0
