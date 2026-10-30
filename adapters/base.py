@@ -224,7 +224,8 @@ def trade_facts(pairs, pair, address):
     Buys/sells per window (h1, h24) summed over every Base pair with our token: as baseToken b = buys and
     s = sells, as quoteToken the mirror (b = sells, s = buys), the side logic of total_sells_1h, so s1 equals
     sells_1h. liq = the chosen pair's liquidity.usd rounded; dex = its dexId plus its version label (uniswap:v4;
-    not "pool": the baseline BUY row already has pool=, BL-8).
+    not "pool": the baseline BUY row already has pool=, BL-8). qliq (BL-28) = the USD value of the chosen pair's
+    other side (ETH, WETH, USDC...), see quote_liq().
     A value DexScreener didn't give, or an odd shape, is "na", never 0. Never raises.
     """
     out = dict.fromkeys(TRADE_KEYS, "na")
@@ -249,6 +250,7 @@ def trade_facts(pairs, pair, address):
             labels = pair.get("labels") if isinstance(pair.get("labels"), list) else []
             version = next((x for x in labels if isinstance(x, str) and re.fullmatch(r"v\d+", x)), "")
             out["dex"] = re.sub(r"[^\w.-]", "_", pair["dexId"]) + (f":{version}" if version else "")  # one detail token
+        out["qliq"] = quote_liq(pair, address)
     except Exception:  # logging must never break a check
         return dict.fromkeys(TRADE_KEYS, "na")
     return out
@@ -256,6 +258,30 @@ def trade_facts(pairs, pair, address):
 
 def _dict(x):
     return x if isinstance(x, dict) else {}
+
+
+def quote_liq(pair, address):
+    """BL-28, logging only: the USD value of the side of `pair` that is NOT our token, rounded; "na" if unknown.
+
+    Our token as baseToken: liquidity.quote x (priceUsd / priceNative), the quote token's USD price. Our token as
+    quoteToken: liquidity.base x priceUsd (priceUsd is the base token's price). Any input missing or 0 -> "na", never 0;
+    a real side worth under 0.50 USD rounds to 0 and stays 0 (e.g. 21.66 ZORA = 0.13 USD), like BL-25's real 0.
+    """
+    try:
+        pair = _dict(pair)
+        liq, usd, native = _dict(pair.get("liquidity")), _num(pair.get("priceUsd")), _num(pair.get("priceNative"))
+        if _lower(_dict(pair.get("baseToken")).get("address")) == address:
+            amount, price = _num(liq.get("quote")), usd / native if usd and native else None
+        elif _lower(_dict(pair.get("quoteToken")).get("address")) == address:
+            amount, price = _num(liq.get("base")), usd
+        else:
+            return "na"
+        if not amount or not price or amount < 0 or price < 0:
+            return "na"
+        value = amount * price
+        return round(value) if value == value and value != float("inf") else "na"
+    except Exception:  # logging must never break a check
+        return "na"
 
 
 def dex_facts(pair, side, now):

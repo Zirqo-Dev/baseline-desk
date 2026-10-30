@@ -151,7 +151,7 @@ class RowTest(Root):
                 self.tearDown(); self.setUp()
                 r = self.label(pairs)
                 self.assertEqual(r["gone"], "1")
-                self.assertEqual({r[k] for k in labels.FIELDS[7:-1]}, {"na"})
+                self.assertEqual({r[k] for k in labels.FIELDS[7:] if k != "gone"}, {"na"})  # qliq too (BL-28)
                 self.assertEqual(r["first_price"], "1.0")
 
     def test_na_is_not_zero(self):

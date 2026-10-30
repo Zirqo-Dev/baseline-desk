@@ -185,7 +185,7 @@ class LeadsTest(unittest.TestCase):
         self.assertEqual((row["action"], row["reason"]), ("PASS", ""))
         self.assertEqual(row["detail"], "first_seen=2026-10-23T12:00:00Z checks=2 "
                                         "goplus_ready_at=2026-10-23T12:15:00Z lp_unknown "
-                                        "b1=na s1=na b24=na s24=na liq=na dex=na")  # BL-25: no trade facts given
+                                        "b1=na s1=na b24=na s24=na liq=na dex=na qliq=na")  # BL-25: no trade facts given
         self.assertEqual(self.leads.s["watch"], {})
         # same lead shape, but a hard rule fires: a final SKIP, still tagged lp_unknown
         B = "0x00000000000000000000000000000000000000b2"

@@ -15,8 +15,8 @@ from tests.test_tick import T0, addr, detail, good, tick_rows
 from tests.test_verify import GOOD
 
 OTHER = "0x4200000000000000000000000000000000000006"  # WETH
-TRADE = {"b1": 5, "s1": 3, "b24": 40, "s24": 30, "liq": 80000, "dex": "uniswap:v4"}
-KEYS = "b1=5 s1=3 b24=40 s24=30 liq=80000 dex=uniswap:v4"
+TRADE = {"b1": 5, "s1": 3, "b24": 40, "s24": 30, "liq": 80000, "dex": "uniswap:v4", "qliq": 4648}  # qliq: BL-28
+KEYS = "b1=5 s1=3 b24=40 s24=30 liq=80000 dex=uniswap:v4 qliq=4648"
 
 
 def pair(dex_id="uniswap", labels=("v4",), base_tok=FRESH, quote_tok=OTHER, h1=(10, 4), h24=(100, 40), liq=60_000.4,
@@ -29,10 +29,10 @@ def pair(dex_id="uniswap", labels=("v4",), base_tok=FRESH, quote_tok=OTHER, h1=(
 
 
 def strip_trade(row_detail):
-    """The detail without the BL-25 keys; asserts they are the last six tokens, in order."""
-    parts = row_detail.split()
-    if parts[-6:] and [p.split("=")[0] for p in parts[-6:]] == verify.TRADE_KEYS:
-        return " ".join(parts[:-6])
+    """The detail without the trade keys (BL-25, + qliq BL-28); asserts they are the last tokens, in order."""
+    parts, n = row_detail.split(), len(verify.TRADE_KEYS)
+    if parts[-n:] and [p.split("=")[0] for p in parts[-n:]] == verify.TRADE_KEYS:
+        return " ".join(parts[:-n])
     assert not any(p.split("=")[0] in verify.TRADE_KEYS for p in parts), row_detail
     return row_detail
 
@@ -45,7 +45,7 @@ class TradeFactsTest(unittest.TestCase):
                  pair(base_tok=OTHER, quote_tok="0x" + "11" * 20, h1=(999, 999))]  # not our token: ignored
         t = base.trade_facts(pairs, pairs[0], FRESH)
         self.assertEqual(t, {"b1": 10 + 2, "s1": 4 + 7, "b24": 100 + 20, "s24": 40 + 70, "liq": 60000,
-                             "dex": "uniswap:v4"})
+                             "dex": "uniswap:v4", "qliq": "na"})  # no side amounts in these pairs
         self.assertEqual(t["s1"], base.total_sells_1h(pairs, FRESH))  # s1 == sells_1h, quote side included
 
     def test_s1_equals_sells_1h_in_the_real_facts(self):
@@ -57,7 +57,7 @@ class TradeFactsTest(unittest.TestCase):
         f = base.facts(FRESH, now=T0, client=c, dex=d)
         self.assertEqual(f["trade"]["s1"], f["sells_1h"])
         self.assertEqual(f["trade"], {"b1": 136 + 1, "s1": 92 + 9, "b24": 136 + 5, "s24": 92 + 50, "liq": 60000,
-                                      "dex": "uniswap:v4"})
+                                      "dex": "uniswap:v4", "qliq": 4648})  # BL-28: 1.9405 ETH of the fixture pool
         self.assertEqual(d["trade"], f["trade"])
         self.assertEqual(len(c.calls), 2)  # DexScreener + GoPlus, no request added
 
@@ -75,7 +75,7 @@ class TradeFactsTest(unittest.TestCase):
         del p["liquidity"]
         del p["dexId"]
         self.assertEqual(base.trade_facts([p], p, FRESH),
-                         {"b1": 10, "s1": "na", "b24": "na", "s24": "na", "liq": "na", "dex": "na"})
+                         {"b1": 10, "s1": "na", "b24": "na", "s24": "na", "liq": "na", "dex": "na", "qliq": "na"})
         q = pair(h1=(0, 0))
         self.assertEqual(base.trade_facts([q], q, FRESH)["s1"], 0)  # a real 0 stays 0
 

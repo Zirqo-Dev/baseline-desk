@@ -667,6 +667,52 @@ Moved from CLAUDE.md section 11 on 2026-10-23 (BL-2 process cleanup). Wording is
   per day of outcomes.csv. Requests: about 1.4 labels due per tick on average, so 0 or 1 label request per tick in normal
   running, 2 at most.
 
+## BL-28
+- Real depth, logging only (the owner, 2026-10-30, DECISIONS): qliq = the USD value of the chosen pair's OTHER side (ETH,
+  WETH, USDC, ZORA...), the side that is not our token. Why: in the first 76 outcome labels, 44 had liq / price close to
+  0.99e9 (mostly uniswap:v4), what a pool holding ~99% of a 1B supply looks like, so liq (DexScreener liquidity.usd, both
+  sides) can meet the 50k floor on the token's own side. Measured here; no rule, config, verdict or exit reads qliq.
+- Formula (base.quote_liq(), from the pair already fetched, no request): our token as baseToken -> liquidity.quote x
+  (priceUsd / priceNative) (the quote token's USD price); our token as quoteToken -> liquidity.base x priceUsd (priceUsd is
+  the base token's price; "liquidity.base the same way" in the brief would have been the wrong price for that side). Rounded
+  to whole USD. "na" when an input is missing or 0 or the shape is odd (never raises); a real side worth under 0.50 USD
+  rounds to 0 and stays 0 (live: 21.66 ZORA = 0.13 USD), like BL-25's real 0 (Claude Code, flagged to the owner).
+- Same pair as liq: pick_pair() (the deepest Base pair) on VERIFY and baseline BUY rows; the batch answer's one pair on
+  outcome labels (BL-26).
+- Rows: TRADE_KEYS gains qliq after dex, so every row that has BL-25's keys ends with qliq=<n|na> (desk VERIFY rows past
+  dex_skip(): WATCH, PASS, non-gate SKIP, GoPlus-side RETRY and fetch_error_x3; baseline EXECUTE BUY). Gate-killed rows
+  unchanged. outcomes.csv gains a last column qliq (after gone; "na" on gone rows).
+- Header rule (the owner): a file never mixes column counts. labels.header() appends with the columns the day's file already
+  has; outcomes.csv for 2026-10-30 was started with the BL-26 header, so it keeps 16 columns to the end of its UTC day and
+  qliq starts with the next day's file (17 columns). A reader must take the columns from each file's header.
+- Fixtures: asci / ETH (uniswap v4): liq 9,494, qliq 4,648 (1.9405 ETH x 2,395); BRETT / WETH (aerodrome): qliq 344,266
+  (143.7995 WETH x 2,394). In both the quote side is the non-token side.
+- Live check of the formula (raw batch pairs, 2026-10-30): v2 CORTEX / WETH both sides ~1.66 of 3.31 USD (qliq 2);
+  CDXR / USDC v4: liquidity.usd 1,175,326 = 58,583,845 CDXR x 0.02006 (~1,175,192) + 27.22 USDC (qliq 27); ONDO / ZORA v4:
+  4,774 ZORA = 29 USD against 112,838 liquidity.usd.
+- Survey, 2026-10-30 ~20:00 UTC (the day's 140 desk tokens past the gate, read with 5 batch requests, smoke only):
+  139 measured, 1 "na"; qliq < 10% of liq: 105 (median qliq / liq 0.0002). Of the 111 with liq >= 50,000 (the floor),
+  97 have qliq < 10% of liq and 96 have qliq < 5,000 USD. By pool: uniswap:v4 94 of 98 under 10%, uniswap:v3 10 of 12,
+  aerodrome 1 of 6, uniswap:v2 0 of 20. Other side: WETH 99, ZORA 25, USDC 11, ETH 2, USDT 1, VIRTUAL 1.
+  Lowest: USOILS liq 5,018,916 qliq 2; OILS 500,282 / 2; AODF 161,153 / 1. Highest: I O F 223,356 / 205,749 (0.92).
+  So for most v4 tokens past the gate the liquidity floor is met on the token's own side. No rule change (the owner decides
+  after the replay).
+- Tests: tests/test_qliq.py (9): both fixtures, token-as-quote (base x priceUsd), "na" vs 0 (missing, 0, odd inputs, other
+  token; a real 0.13 USD side gives 0), no request added in facts(), qliq after dex on a PASS row and not on a gate kill,
+  the outcomes header rule (old-header file keeps 16 columns, the next UTC day's file has qliq last; gone -> "na"), and the
+  BL-25 three-tick desk/baseline run with qliq vs the six BL-25 keys only (TRADE_KEYS patched): same rows once qliq is
+  stripped, same state and TICK keys (requests included). Old tests: BL-25's exact trade dicts and strip_trade() take the
+  seventh key; the BL-21 exact detail ends with qliq=na; the BL-26 gone test covers qliq. 219 pass on 3.13 (210 before).
+- Live smoke (scratch copy of data/, real requests, nothing under data/ changed): tick 26 requests in 19.0 s (13 checked),
+  then 4 requests in 1.5 s; 9 rows with qliq, 0 gate rows with it, request count per check unchanged. Examples:
+
+    WATCH COTF  liq=2613982 qliq=115 dex=uniswap:v4
+    WATCH CELR  liq=114713  qliq=2   dex=uniswap:v4
+    WATCH TOX   liq=99727   qliq=20  dex=uniswap:v4
+
+- Size: about 9 bytes per row with the keys (" qliq=" + ~3 digits) x ~1,630 rows a day = ~15 KB/day on tasks.csv, and
+  ~4 bytes x ~390 label rows = ~2 KB/day on outcomes.csv.
+
 ## Open items (detail)
 - Open items:
   - BL-7 done only after 24h of green runs, no overlap, one TICK row per run. The TICK rows show the real run rate for Gate A (90%).

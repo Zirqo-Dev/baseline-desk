@@ -20,7 +20,11 @@ At most MAX_CALLS requests per tick, oldest due first; the rest wait. A failed r
 State key "labels" = {"pending": {address: {symbol, first_seen, first_price, done: [hours]}}}. An entry leaves after
 its +24 h label or at first_seen + KEEP_H, whichever comes first, so state.json stays bounded.
 Rows: data/daily/<day>/outcomes.csv (FIELDS). In the tick it runs after the desk and baseline steps in its own try.
+BL-28: last column qliq, the USD value of the deepest pair's other side (ETH, WETH, USDC...; base.quote_liq()), "na" when
+unknown. A file is never mixed: rows go out with the header the day's file already has, so a file started before BL-28
+keeps the old columns to the end of its UTC day and qliq starts with the next day's file.
 """
+import csv
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
@@ -34,7 +38,7 @@ BATCH = 30             # addresses per DexScreener request
 MAX_CALLS = 2          # label requests per tick
 OUTCOMES = "data/daily/{day}/outcomes.csv"
 FIELDS = ["ts", "symbol", "address", "first_seen", "horizon", "age_min", "first_price", "price", "chg_pct", "liq",
-          "pair_b1", "pair_s1", "pair_b24", "pair_s24", "dex", "gone"]
+          "pair_b1", "pair_s1", "pair_b24", "pair_s24", "dex", "gone", "qliq"]  # qliq: BL-28
 NA = "na"
 
 
@@ -90,6 +94,14 @@ def due(s, now):
 
 
 # ---- one label ----
+def header(path):
+    """The columns of an existing outcomes.csv (a file never mixes column counts, BL-28), else FIELDS."""
+    if not path.exists() or path.stat().st_size == 0:
+        return FIELDS
+    with path.open(newline="") as fh:
+        return next(csv.reader(fh), None) or FIELDS
+
+
 def row(now, address, p, h, pairs):
     """One outcomes.csv row from the batch answer's pairs for this token ([] = gone)."""
     out = {"ts": ts(now), "symbol": p["symbol"], "address": address, "first_seen": p["first_seen"],
@@ -97,13 +109,13 @@ def row(now, address, p, h, pairs):
            "first_price": p["first_price"]}
     pair, side = base.pick_pair(pairs, address)
     if not pair:
-        return dict(out, **dict.fromkeys(FIELDS[7:-1], NA), gone=1)
+        return dict(out, **dict.fromkeys((k for k in FIELDS[7:] if k != "gone"), NA), gone=1)
     price = _num(base.dex_facts(pair, side, now).get("price"))
     t = base.trade_facts([pair], pair, address)  # this one pair, quote side mirrored
     first = _num(p["first_price"])
     chg = round((price / first - 1) * 100, 2) if price is not None and first else NA
     return dict(out, price=price if price is not None else NA, chg_pct=chg, liq=t["liq"],
-                pair_b1=t["b1"], pair_s1=t["s1"], pair_b24=t["b24"], pair_s24=t["s24"], dex=t["dex"], gone=0)
+                pair_b1=t["b1"], pair_s1=t["s1"], pair_b24=t["b24"], pair_s24=t["s24"], dex=t["dex"], gone=0, qliq=t["qliq"])
 
 
 def run(root, now, sights, client):
@@ -127,7 +139,8 @@ def run(root, now, sights, client):
                 base._lower(base._dict(x.get("quoteToken")).get("address")))]
             for _, a2, h in todo:
                 if a2 == a:
-                    _append(root / OUTCOMES.format(day=day(now)), FIELDS, row(now, a, p, h, pairs))
+                    path = root / OUTCOMES.format(day=day(now))
+                    _append(path, header(path), row(now, a, p, h, pairs))
                     p["done"].append(h)
                     n["done"] += 1
     prune(s, now)

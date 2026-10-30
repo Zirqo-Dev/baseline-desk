@@ -23,7 +23,7 @@ HARD_FLAGS = ["hidden_owner", "can_take_back_ownership", "owner_change_balance",
 LP = "lp_locked_pct"
 
 # BL-25: DexScreener trade facts logged at the end of VERIFY and baseline BUY rows (adapters/base.py trade_facts()).
-TRADE_KEYS = ["b1", "s1", "b24", "s24", "liq", "dex"]
+TRADE_KEYS = ["b1", "s1", "b24", "s24", "liq", "dex", "qliq"]  # qliq: BL-28
 
 
 def dex_skip(facts):

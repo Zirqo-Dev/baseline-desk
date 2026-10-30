@@ -135,7 +135,12 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
   pair only, NOT BL-25's all-pair sums, dex, gone); batched DexScreener /tokens/v1 (30 per request, max 2 per tick, usually
   0-1), own try, TICK ends with labels labels_due labels_done labels_calls; state "labels" pruned at +24 h or 26 h (~28 KB);
   ~55 KB/day; no rule reads them (docs/NOTES.md "BL-26").
-  Tests: stdlib unittest, `python -m unittest` (210 pass on 3.13).
+  BL-28 live (logging only, 2026-10-30): every row with BL-25's keys ends with qliq (USD value of the chosen pair's non-token
+  side: ETH, WETH, USDC, ZORA...; "na" when an input is missing, a real near-empty side is 0), and outcomes.csv has a last
+  column qliq from the first file started after BL-28 (a file never mixes column counts). Survey 2026-10-30: of 111 past-gate
+  tokens with liq >= 50k, 97 had qliq under 10% of liq and 96 under 5k USD (uniswap:v4 94 of 98): the liquidity floor is
+  mostly met on the token's own side. No rule change; ~15 KB/day (docs/NOTES.md "BL-28").
+  Tests: stdlib unittest, `python -m unittest` (219 pass on 3.13).
 - cron-job.org token "baseline-desk cron" EXPIRES Thu 2027-01-21: renew by early January or the desk stops silently.
 - Technical detail per card, GoPlus diagnosis, BL-20 budget and full open items: docs/NOTES.md.
 - Open items:
@@ -150,11 +155,11 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
   - Clanker/Zora factory addresses unconfirmed until BL-10 (docs/NOTES.md)
   - top10 is the top 8-10 after exclusions, slightly lenient (docs/NOTES.md)
   - The exact GoPlus rate-limit code is unverified; code 3 is not one; BL-24 saw code 4029 4 times in 137 calls at 2 s, very likely it (docs/NOTES.md)
-  - tokens_24h.json adds ~230 KB of git history per day (overwritten daily), BL-25 ~83 KB/day to tasks.csv and BL-26 outcomes.csv ~55 KB/day; include all three in BL-16's archive plan (docs/NOTES.md)
-- Next step: the first live +1 h labels in data/daily/<day>/outcomes.csv (TICK labels=ok, labels_calls 0-2); the BL-23
-  live check after the 00:03 UTC Oct 31 roll (report.json "machine", tokens_24h.json, machine=ok), which also fills the
-  site; then about a week of labels and BL-25 rows before the real-sells replay around Nov 6 (docs/NOTES.md "BL-25",
-  "BL-26"). The BL-24 result stays with the owner (no rule change made).
+  - tokens_24h.json adds ~230 KB of git history per day (overwritten daily), BL-25 ~83 KB/day (+ BL-28 qliq ~15 KB/day) to tasks.csv and BL-26 outcomes.csv ~55 KB/day; include all three in BL-16's archive plan (docs/NOTES.md)
+- Next step: the BL-23 live check after the 00:03 UTC Oct 31 roll (report.json "machine", tokens_24h.json, machine=ok,
+  which also fills the site) and the first outcomes.csv with the qliq column (2026-10-31); then about a week of qliq with
+  BL-25 rows and BL-26 labels before the real-sells and real-depth replay around Nov 6 (docs/NOTES.md "BL-25", "BL-26",
+  "BL-28"). The BL-24 result stays with the owner (no rule change made).
 - Last updated: 2026-10-30.
 
 ## 12. Glossary
