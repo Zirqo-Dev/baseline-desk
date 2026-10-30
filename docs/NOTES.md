@@ -290,6 +290,104 @@ Moved from CLAUDE.md section 11 on 2026-10-23 (BL-2 process cleanup). Wording is
   GoPlus column is from the logged WATCH rows only); docs unread.
 - Decision for the owner: honeypot.is as a second source only pays if the new-launch pools it misses are Uniswap V4 or
   Zora. A cheap step 2 would be to log the DexScreener pool/dex label on those leads and re-probe 10 fresh WATCH tokens.
+- Closed 2026-10-29 (the owner, DECISIONS): honeypot.is dropped after this step 1, no step 2; logging the DexScreener
+  pool/dex label moves to BL-10.
+
+## BL-24 rule replay
+- Read-only, docs only, 2026-10-30. Question: if an unknown honeypot + buy/sell tax were allowed (as BL-21 allows an unknown
+  LP lock), how many desk tokens would have passed, when, and what happened to them? Scripts ran from the session scratchpad
+  with data/ read-only; nothing under core/, adapters/, config.py, workflows, tests or data/ changed.
+- Window: 2026-10-28T23:25Z (BL-21 live) to 2026-10-30T04:03:10Z (last TICK row at the pull, ea124c7). desk VERIFY rows only.
+- Naive count (chat): 147 of 219 watched desk tokens had a WATCH row whose pending list was a subset of {honeypot,
+  buy_tax_pct, sell_tax_pct, lp_locked_pct}. Reproduced exactly for the 2026-10-30T03:53:11Z end; also 147/219 at 04:03:10Z.
+  136 had all 4 pending, 10 honeypot only, 1 honeypot + buy_tax_pct.
+- Variant A: the pass time is the first desk check where every rule is met except fields pending among those 4. A check that
+  logged WATCH with such a pending list got past hard_skip()'s missing-data gate with nothing else missing. But hard_skip()
+  stops there (goplus_not_ready), so no later rule ran and the row logs no values. Rule order mapping (core/verify.py):
+
+| # | rule | input at the pass time | treated as |
+|---|---|---|---|
+| 1 | fetch_error / goplus_partial | WATCH row = neither | proven pass |
+| 2 | missing data gate | pending subset of the 4 fields, nothing else missing | proven pass |
+| 3 | honeypot | pending | allowed unknown (the variant) |
+| 4 | mint_open, freeze_or_blacklist, hard risk_flags | known to GoPlus then, value not logged | GoPlus value now (step 3b), as a proxy |
+| 5 | nobody_can_sell (sells_1h == 0) | known, not logged | unknown, assumed pass |
+| 6 | liquidity >= 50k | a WATCH row proves it (a low pool logs "liquidity" instead) | proven pass |
+| 7 | lp_locked (known lock < 90) | pending at the pass (BL-21: unknown is allowed) | pass; GoPlus now proxy where it reports a lock |
+| 8 | dev_pct, top10_pct | known then, not logged | GoPlus value now, as a proxy |
+| 9 | too_young / too_old | age_min not logged | back-computed: pass time minus DexScreener pairCreatedAt (step 3); unknown when no pairCreatedAt |
+| 10 | buy_tax / sell_tax | pending | allowed unknown (the variant) |
+
+  Not modelled: EXECUTE limits (MAX_OPEN 4, cash), so a pass is not a buy; the desk could not have held most of these at once.
+- Naive 147 vs Variant A ceiling 137, every difference: 10 tokens had their first qualifying WATCH row before the window
+  (2026-10-28 22:38 to 23:23 UTC, before BL-21 went live), so their pass time is outside it. No other difference: no
+  candidate had a SKIP or PASS row before its pass row (no 24h re-sightings), and a lead pending only lp_locked_pct never
+  logs WATCH since BL-21. The naive count is the ceiling at the missing-data gate; rules 4, 5, 8, 9 are what it skips.
+- Why the wait: the first pending list held top10_pct for 139 of 147 (mint_open or dev_pct for 79); top10 is
+  usually the last of the other fields GoPlus fills, so the 4-field state starts about 100 min after first sight.
+
+| Variant A pass | ceiling (137) | estimate (104) |
+|---|---|---|
+| 2026-10-28 (from 23:25) | 2 | 1 |
+| 2026-10-29 | 122 | 96 |
+| 2026-10-30 (to 04:03) | 13 | 7 |
+| minutes first_seen -> pass, p25 / median / p75 | 95 / 105 / 115 | 95 / 105 / 115 |
+
+  Ceiling range: min 0 (8 tokens qualified at their first check), max 170 min. First pass 2026-10-28T23:38:14Z, last
+  2026-10-30T03:03:11Z.
+- Later answers in the logs: none of the 147 ever got honeypot + taxes from GoPlus (0 goplus_ready_at). 131 of the 137 ended
+  goplus_timeout, 5 SKIP liquidity while still watched (pool pulled 15 to 75 min after the pass time: 3 USDF, NAFF, SUZ),
+  1 still WATCH at the end (CDXR). So the logs prove no candidate wrong on honeypot or tax: there is no answer to judge by.
+- Step 3, DexScreener now (2026-10-30 04:05 UTC): batched GET /tokens/v1/base/<up to 30>, 150 addresses (147 candidates +
+  3 baseline Oct 29 picks not among them), 5 requests, 1 s apart, all HTTP 200, no retry. Best-liquidity Base pair per
+  token (adapters.base pick_pair). Dead = no pair or liq_usd < 50,000 (SKIP_IF min_liquidity_usd); alive = the rest.
+  128 of 137 trade on Uniswap v4 pools, 3 Aerodrome, 1 v2, 1 v3, 4 no pair.
+- Age (rule 9) from pairCreatedAt: 125 ok (median 1.9 h at the pass), 5 too_old (pools 57 to 351 days old: EDEL 351 d,
+  SR 206 d, RALLY 144 d, CDXR 126 d, ESHARE 57 d), 1 too_young (SUZ 7.8 min), 6 unknown (4 no pair, USDL and Anthropic with
+  no pairCreatedAt; assumed pass). The pair the desk used then may not be today's best pair, so the age is a proxy.
+- Step 3b, GoPlus now (2026-10-30 04:05:58 to 04:10:30 UTC): one token_security call per in-window candidate through the
+  adapter's own Client, GOPLUS url and goplus_facts() (imported, unchanged), 2 s apart, 137 calls in 272 s. 133 code 1,
+  4 code 4029 (calls 82, 86, 90, 91; never 3 in a row, so the run went on; not retried). 4029 is very likely GoPlus's
+  rate-limit code (see Open items).
+  - Honeypot + taxes answered now: 0 of 133. 124 still answer is_honeypot "0" with cannot_sell_all, buy_tax and sell_tax
+    empty (so the adapter keeps honeypot pending); 9 have taxes (0/0, one 0/2%) but still no cannot_sell_all. So the asked
+    breakdown (honeypot yes/no, taxes vs SKIP_IF) is empty: GoPlus never answers these fields for these tokens, hours to a
+    day later.
+  - Fields known at the pass time, value now vs SKIP_IF (first kill in hard_skip() order): mint_open 13, freeze_or_blacklist
+    11, top10_pct > 35 6, lp_locked known < 90 2 (HEXN, TRUMPKIN), risk flag 0, dev_pct 0; clean 101. Known now: mint, freeze,
+    dev, flags 133 of 133, top10 132, LP lock 2. top10 median 1.0% (max 100), dev median 1.0% (max 67).
+    These fields were already filled at the pass time, so Variant A would most likely have skipped these 32 at the pass
+    (same value), not bought them. They lower the estimate; they are not "passed early and proven wrong".
+- Three numbers:
+
+| | tokens | how |
+|---|---|---|
+| Variant A ceiling | 137 | first 4-field WATCH row inside the window |
+| estimate after age + GoPlus now | 104 | minus 6 age (5 too_old, 1 too_young), minus 27 more killed now on mint/freeze/top10/LP (32 kills, 5 also too_old) |
+| proven wrong (honeypot or tax over SKIP_IF, from the logs or now) | 0 | no candidate has any honeypot/tax answer to judge by |
+
+  The 104 still carry unknown honeypot, taxes and sells_1h at the pass time, and 3 have no GoPlus answer now (4029).
+- Outcome buckets now (DexScreener):
+
+| set | n | alive | of which 0 sells in 24 h | dead: no pair | dead: liq < 50k |
+|---|---|---|---|---|---|
+| Variant A ceiling | 137 | 117 | 72 | 4 | 16 (median 7.8 USD, max 3,520) |
+| estimate | 104 | 98 | 72 | 0 | 6 |
+| baseline Oct 29 picks | 19 | 12 | 0 | 0 | 7 |
+
+  Alive median priceChange h24: ceiling -0.35%, estimate -0.07%. 72 of the 98 alive estimate tokens show buys but 0 sells
+  in the last 24 h with 75k to 240k USD liquidity, mostly copycat fund/ticker names (DTCC, ADOF, USOE, AODF...): that is
+  the pattern of a token nobody can sell, which is exactly what a honeypot check would answer. Under Variant A only the
+  sells_1h rule stands in the way, and its value at the pass time is not logged.
+- Baseline: it bought 19 of the 137 candidates in the window (23 baseline buys), 12 of them before the Variant A pass time
+  (top10 etc. still pending). 18 closed, all time_stop, -7.15 USD on 96.28 USD of tickets (about -7.4%, about the round-trip
+  friction); USDL still open. Of the 104 estimate tokens it bought 5 (DOSA, ADFO, KOR, NTDA, AOP), all time_stop,
+  -1.75 USD on 26.52 USD. Its 4 non-candidate buys made +8.18 USD (Kek +9.25). The candidates did not move in 45 min.
+- Caveats: VERIFY rows log no price, so there is no P&L for candidates (only the baseline's real paper fills). "Alive now" is
+  not "sellable": a honeypot can show sells from whitelisted wallets, and 0 sells in 24 h is a warning sign, not proof.
+  GoPlus values now may differ from values at the pass time (taxes can change, honeypot status can flip, holders move).
+  Age uses today's best pair. The sample is about 1.2 days (28.6 h), one market, many copycat launches from a few
+  deployers. No GoPlus or DexScreener call was retried (4029 x4 left unanswered).
 
 ## BL-23
 - Machine cards (always real, from data/daily/*/tasks.csv only, no request) for the locked BL-13 mock, written on the
@@ -361,7 +459,8 @@ Moved from CLAUDE.md section 11 on 2026-10-23 (BL-2 process cleanup). Wording is
   - Clanker/Zora factory addresses unconfirmed; launchpad is pool-shape only until BL-10 (CLANKER_CREATORS/ZORA_CREATORS empty).
   - top10 is the top 8-10 after exclusions (GoPlus returns only 10 holders); slightly lenient.
   - GoPlus rate limit is detected as any non-OK "code" in the body (fetch_error); the exact rate-limit code is unverified live
-    (code 3 is NOT a rate limit, see GoPlus diagnosis above).
+    (code 3 is NOT a rate limit, see GoPlus diagnosis above). BL-24: code 4029 came back 4 times in 137 calls at 2 s pacing
+    (calls 82, 86, 90, 91), very likely the rate limit; not confirmed from GoPlus docs. The adapter already treats it as fetch_error.
   - Week-1 review of the watchlist: if more than about 1/3 of watched leads time out, the owner may raise WATCH max_h to 6.
     -> Decided 2026-10-25: WATCH max_h stays 3 h (timeouts stuck on honeypot + taxes); see BL-20 review above.
 

@@ -109,10 +109,15 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
   BL-21 24h check passed (chat): 288/288 ticks, lp_unknown 2, 0 PASS, and 115 of 126 goplus_timeout still waiting on honeypot + taxes.
   BL-22 step 1 probe (2026-10-30, docs only, committed in 335c414): honeypot.is answered 2 of 24 requests (23 tokens, both Uniswap V3, taxes 0/0/0),
   the other 22 "pair not found" (HTTP 404); GoPlus had no honeypot answer for all 23 (docs/NOTES.md "BL-22 probe").
+  BL-22 closed (the owner, 2026-10-29): honeypot.is dropped, no step 2; the DexScreener pool/dex label log moves to BL-10.
   BL-13 visual mock locked 2026-10-28 (site build still to do).
-  BL-23 built 2026-10-30, held for the owner's review: machine cards in report.json["machine"] + data/tokens_24h.json on the
+  BL-23 committed in 3735ebb (2026-10-30 03:55 UTC); first live cards expected at the 00:03 UTC Oct 31 roll: machine cards in report.json["machine"] + data/tokens_24h.json on the
   day roll, tasks.csv only, desk only, running totals in state report.totals, own try (machine=error:<type>, retried, run red).
   2026-10-29 check matches chat (gate 1,069 / safety 143, funnel 1,229 -> 160 -> 0 -> 0); smoke 2.8 s (docs/NOTES.md "BL-23").
+  BL-24 rule replay (2026-10-30, docs only): allowing unknown honeypot + taxes would have passed 137 desk tokens in 28.6 h
+  (ceiling; chat's naive 147/219 reproduced, 10 passed before the window), about 104 after the age rule and today's GoPlus
+  mint/freeze/top10/LP values, 0 proven wrong because GoPlus still has no honeypot/tax answer for any of them (0 of 133).
+  72 of the 98 alive estimate tokens show 0 sells in 24 h. Baseline bought 19 candidates: 18 time_stop, -7.15 USD (docs/NOTES.md "BL-24 rule replay").
   Tests: stdlib unittest, `python -m unittest` (169 pass on 3.13).
 - cron-job.org token "baseline-desk cron" EXPIRES Thu 2027-01-21: renew by early January or the desk stops silently.
 - Technical detail per card, GoPlus diagnosis, BL-20 budget and full open items: docs/NOTES.md.
@@ -122,14 +127,16 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
   - BL-8 baseline biases, kept on purpose so Gate B stays strict: pool-shape launchpad can miss the Clanker 1% fee (lower
     baseline friction), and the baseline can buy tokens GoPlus flagged (desk= tag on its BUY rows measures it) (docs/NOTES.md)
   - Watched leads: 68% ended goplus_timeout in BL-20 data (BL-7: 61%), 405 of 427 still waiting on honeypot + taxes.
-    The owner decided WATCH max_h stays 3 h (2026-10-25). Honeypot/tax silence is the bigger wall: revisit BL-22 or max_h on BL-21 data (docs/NOTES.md)
+    The owner decided WATCH max_h stays 3 h (2026-10-25). Honeypot/tax silence is the bigger wall; BL-22 closed, and BL-24 shows
+    GoPlus still silent on honeypot/taxes for 133 of 133 candidates hours to a day later, so a longer max_h alone would not have passed these (docs/NOTES.md)
   - LP lock: decided by the owner (option A, 2026-10-25) and built as BL-21: unknown LP lock allowed, logged lp_unknown (docs/NOTES.md)
   - Clanker/Zora factory addresses unconfirmed until BL-10 (docs/NOTES.md)
   - top10 is the top 8-10 after exclusions, slightly lenient (docs/NOTES.md)
-  - The exact GoPlus rate-limit code is unverified; code 3 is not one (docs/NOTES.md)
+  - The exact GoPlus rate-limit code is unverified; code 3 is not one; BL-24 saw code 4029 4 times in 137 calls at 2 s, very likely it (docs/NOTES.md)
   - tokens_24h.json adds ~230 KB of git history per day (overwritten daily); include it in BL-16's archive plan (docs/NOTES.md)
-- Next step: the owner reviews BL-23 (held diff) and says "commit"; then the BL-13 site build (reads data/report.json and
-  data/tokens_24h.json). Still open: the owner decides on a BL-22 step 2 (docs/NOTES.md "BL-22 probe") or drops honeypot.is.
+- Next step: the owner reviews BL-24 (held docs diff) and says "commit"; the owner decides what to do with the BL-24 result
+  (no rule change made). Chat checks BL-23's first live cards after the 00:03 UTC Oct 31 roll; then the BL-13 site build
+  (reads data/report.json and data/tokens_24h.json).
 - Last updated: 2026-10-30.
 
 ## 12. Glossary
