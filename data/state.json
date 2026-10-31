@@ -1,10 +1,25 @@
 {
   "baseline": {
-    "cash": 38.66686210928797,
+    "cash": 33.66686210928797,
     "day": "2026-10-31",
     "day_start_value": 45.863122727597954,
     "halted_day": "",
     "positions": {
+      "0x5cda0e1ca4ce2af96315f7f8963c85399c172204": {
+        "cost_usd": 5,
+        "entry_fill": 152.502,
+        "entry_intended": 145.24,
+        "entry_liq_usd": 83234.04,
+        "entry_ts": "2026-10-31T04:18:13Z",
+        "ladder_done": [],
+        "last_price": 145.24,
+        "launchpad": "other",
+        "orig_qty": 0.03278645525960315,
+        "pair": "0x089262b9d991d7bc4a55b7cff0b7f26bde407985",
+        "peak_price": 145.24,
+        "qty": 0.03278645525960315,
+        "symbol": "wtCOIN"
+      },
       "0x722792048c078946f63365b96d1aa2f48ca95adc": {
         "cost_usd": 5,
         "entry_fill": 0.000186842,
@@ -22,7 +37,7 @@
         "symbol": "U.S OIL EXCHANGE"
       }
     },
-    "ticks_since_buy": 12
+    "ticks_since_buy": 0
   },
   "desk": {
     "cash": 47.60776857887221,
@@ -341,7 +356,8 @@
       },
       "0x373177b312c66a585d35462c20c512a30fc15773": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 5.154e-06,
         "first_seen": "2026-10-30T22:13:12Z",
@@ -1022,7 +1038,9 @@
         "symbol": "I O F"
       },
       "0xdc0f7a8db6e1b7b7071385ed1329d2f28055ae7f": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 7.459e-05,
         "first_seen": "2026-10-31T03:18:13Z",
         "symbol": "KDX"
@@ -1154,12 +1172,6 @@
         "reason": "goplus_timeout",
         "symbol": "WARW",
         "until": "2026-10-31T10:38:12Z"
-      },
-      "0x01bcb7561d1a5f0e51df9b4c08f64e9d7313b536": {
-        "at": "2026-10-30T04:13:13Z",
-        "reason": "liquidity",
-        "symbol": "Sahur",
-        "until": "2026-10-31T04:13:13Z"
       },
       "0x01c1fdd9b6b2139d8107870f7b7964ab00c32dfe": {
         "at": "2026-10-30T05:48:11Z",
@@ -1664,6 +1676,12 @@
         "reason": "liquidity",
         "symbol": "SAFU",
         "until": "2026-10-31T16:18:13Z"
+      },
+      "0x18647bacd2e1bc31b9550dd7b519d1c2ee0ee87d": {
+        "at": "2026-10-31T04:18:13Z",
+        "reason": "liquidity",
+        "symbol": "CHUBBY",
+        "until": "2026-11-01T04:18:13Z"
       },
       "0x1a0784dcd4ff256345617582bd0b341272a842ab": {
         "at": "2026-10-30T07:53:11Z",
@@ -4125,12 +4143,6 @@
         "symbol": "ANTHROPIC",
         "until": "2026-11-01T03:48:14Z"
       },
-      "0x982e673489b48c22488ec7fb21daf4967738bd11": {
-        "at": "2026-10-30T04:13:13Z",
-        "reason": "liquidity",
-        "symbol": "STONKCAT",
-        "until": "2026-10-31T04:13:13Z"
-      },
       "0x98edb4f1666266bbdeb24b252a094bd788a5bfc2": {
         "at": "2026-10-30T07:28:13Z",
         "reason": "liquidity",
@@ -5228,6 +5240,12 @@
         "reason": "liquidity",
         "symbol": "Wuse",
         "until": "2026-10-31T14:18:13Z"
+      },
+      "0xb200000000000000000000c12f4a6e364326646f": {
+        "at": "2026-10-31T04:18:13Z",
+        "reason": "liquidity",
+        "symbol": "Commonplace",
+        "until": "2026-11-01T04:18:13Z"
       },
       "0xb200000000000000000000c54dfaf396940dd25d": {
         "at": "2026-10-30T16:23:12Z",
@@ -7044,15 +7062,15 @@
     },
     "watch": {
       "0x5cda0e1ca4ce2af96315f7f8963c85399c172204": {
-        "checks": 5,
+        "checks": 6,
         "first_seen": "2026-10-31T02:58:11Z",
-        "last_check": "2026-10-31T04:03:12Z",
+        "last_check": "2026-10-31T04:18:13Z",
         "symbol": "wtCOIN"
       },
       "0x9f1f83777bc9ab68bcac098c3ad0c474937b02ee": {
-        "checks": 8,
+        "checks": 9,
         "first_seen": "2026-10-31T02:03:12Z",
-        "last_check": "2026-10-31T04:03:12Z",
+        "last_check": "2026-10-31T04:18:13Z",
         "symbol": "USDP"
       },
       "0xa3184515b58b2f12714bd023baf251209df8bcab": {
@@ -7068,9 +7086,9 @@
         "symbol": "XRP BLACKROCK"
       },
       "0xb7eba008a576bdae11f09e28b089cb55bfcd7d5e": {
-        "checks": 5,
+        "checks": 6,
         "first_seen": "2026-10-31T02:53:12Z",
-        "last_check": "2026-10-31T04:03:12Z",
+        "last_check": "2026-10-31T04:18:13Z",
         "symbol": "AOTF"
       },
       "0xc8f555a2e304dfe0db1562ccb5563ad89c10e56f": {
@@ -7121,7 +7139,7 @@
     },
     "machine_due": "",
     "max_dd_pct": {
-      "baseline": 24.85043632992728,
+      "baseline": 25.50460930567401,
       "desk": 9.811123120222184
     },
     "peak": {
