@@ -306,3 +306,12 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-10-31T02:13:12Z,desk,VERIFY,BIHACK,0xb200000000000000000000b1af618882937af991,SKIP,liquidity,goplus=skipped until=2026-11-01T02:13:12Z
 2026-10-31T02:13:12Z,baseline,EXECUTE,BSTONK,0x0f61edbfe6cd86024c0f210c0695b08df55fdfc9,BUY,,usd=5.00 fill=0.00087171 seed=202610310213 eligible=1 pick=0 pool=0f61ed desk=goplus_timeout launchpad=other b1=7 s1=4 b24=336 s24=222 liq=78822 dex=uniswap:v4 qliq=38364
 2026-10-31T02:13:12Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=22 rechecks=6 new=1 checked=7 passed=0 bought=0 held=0 deferred=0 dex_only=1 goplus=6 requests=17 secs=12.3 bl_positions=1 bl_due=1 bl_eligible=1 bl_bought=1 report=none machine=none bl_error=none labels=none labels_due=0 labels_done=0 labels_calls=0
+2026-10-31T02:18:21Z,baseline,EXIT,BSTONK,0x0f61edbfe6cd86024c0f210c0695b08df55fdfc9,HOLD,,pct=-4.76
+2026-10-31T02:18:21Z,baseline,EXIT,U.S OIL EXCHANGE,0x722792048c078946f63365b96d1aa2f48ca95adc,HOLD,,pct=29.25
+2026-10-31T02:18:21Z,desk,VERIFY,USDP,0x9f1f83777bc9ab68bcac098c3ad0c474937b02ee,WATCH,goplus_not_ready,"first_seen=2026-10-31T02:03:12Z checks=2 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct b1=4 s1=0 b24=4 s24=0 liq=98352 dex=uniswap:v4 qliq=30"
+2026-10-31T02:18:21Z,desk,VERIFY,LIQUIDBGT,0x46512b4e802ad0c2bc157ee9519c714f5ce115d8,SKIP,liquidity,goplus=skipped until=2026-11-01T02:18:21Z
+2026-10-31T02:18:21Z,desk,VERIFY,BIHACK,0x545b52794051587770423258c4320de51ecc547b,SKIP,liquidity,goplus=skipped until=2026-11-01T02:18:21Z
+2026-10-31T02:18:21Z,desk,VERIFY,USDP,0xb06a6a246dda56839e604bb916434a56e80618a5,WATCH,goplus_not_ready,"first_seen=2026-10-31T02:18:21Z checks=1 pending=mint_open,freeze_or_blacklist,honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct,risk_flags b1=4 s1=0 b24=4 s24=0 liq=68396 dex=uniswap:v2 qliq=34198"
+2026-10-31T02:18:21Z,desk,VERIFY,basemaxxing,0x023d45a113665839e1e93082951f4c71b5e9958f,SKIP,liquidity,goplus=skipped until=2026-11-01T02:18:21Z
+2026-10-31T02:18:21Z,desk,VERIFY,BIHACK,0xefb335e31a83a95ce3a02489400aa28b2eafdba3,SKIP,missing:liq_usd,goplus=skipped until=2026-11-01T02:18:21Z
+2026-10-31T02:18:21Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=22 rechecks=1 new=5 checked=6 passed=0 bought=0 held=0 deferred=0 dex_only=4 goplus=2 requests=13 secs=4.1 bl_positions=2 bl_due=0 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=none labels_due=0 labels_done=0 labels_calls=0
