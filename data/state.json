@@ -1,10 +1,25 @@
 {
   "baseline": {
-    "cash": 39.59908154006196,
+    "cash": 34.59908154006196,
     "day": "2026-10-31",
     "day_start_value": 45.863122727597954,
     "halted_day": "",
     "positions": {
+      "0x0f61edbfe6cd86024c0f210c0695b08df55fdfc9": {
+        "cost_usd": 5,
+        "entry_fill": 0.00087171,
+        "entry_intended": 0.0008302,
+        "entry_liq_usd": 78822.3,
+        "entry_ts": "2026-10-31T02:13:12Z",
+        "ladder_done": [],
+        "last_price": 0.0008302,
+        "launchpad": "other",
+        "orig_qty": 5735.852519760012,
+        "pair": "0xc9786476d2492eb8ddb2ebf8b4b69e227e1f31397c790d877541ab0ed5cf5ee2",
+        "peak_price": 0.0008302,
+        "qty": 5735.852519760012,
+        "symbol": "BSTONK"
+      },
       "0x722792048c078946f63365b96d1aa2f48ca95adc": {
         "cost_usd": 5,
         "entry_fill": 0.000186842,
@@ -22,7 +37,7 @@
         "symbol": "U.S OIL EXCHANGE"
       }
     },
-    "ticks_since_buy": 12
+    "ticks_since_buy": 0
   },
   "desk": {
     "cash": 47.60776857887221,
@@ -1378,6 +1393,12 @@
         "reason": "liquidity",
         "symbol": "CVE",
         "until": "2026-10-31T13:18:14Z"
+      },
+      "0x0f61edbfe6cd86024c0f210c0695b08df55fdfc9": {
+        "at": "2026-10-31T02:13:12Z",
+        "reason": "goplus_timeout",
+        "symbol": "BSTONK",
+        "until": "2026-11-01T02:13:12Z"
       },
       "0x0f7ddfe50876872db07419653f1a6c9d441ffd78": {
         "at": "2026-10-30T15:53:14Z",
@@ -5231,6 +5252,12 @@
         "symbol": "USOE",
         "until": "2026-11-01T01:23:11Z"
       },
+      "0xb200000000000000000000b1af618882937af991": {
+        "at": "2026-10-31T02:13:12Z",
+        "reason": "liquidity",
+        "symbol": "BIHACK",
+        "until": "2026-11-01T02:13:12Z"
+      },
       "0xb200000000000000000000ba920f51ff73fc00bb": {
         "at": "2026-10-31T01:53:13Z",
         "reason": "liquidity",
@@ -6593,12 +6620,6 @@
         "symbol": "K-POP",
         "until": "2026-10-31T06:58:11Z"
       },
-      "0xeaa7b5642e9cd8e06c074e7b410a9e27ddcad1c9": {
-        "at": "2026-10-30T02:13:11Z",
-        "reason": "missing:liq_usd",
-        "symbol": "TRISEER",
-        "until": "2026-10-31T02:13:11Z"
-      },
       "0xeaaebf3e0233e340b53d3d0395cb6cd8b0ef726f": {
         "at": "2026-10-30T16:53:12Z",
         "reason": "liquidity",
@@ -7027,16 +7048,10 @@
       }
     },
     "watch": {
-      "0x0f61edbfe6cd86024c0f210c0695b08df55fdfc9": {
-        "checks": 11,
-        "first_seen": "2026-10-30T23:13:12Z",
-        "last_check": "2026-10-31T01:58:12Z",
-        "symbol": "BSTONK"
-      },
       "0x21e861c3262a39199305c25687c629b7a7b50fc8": {
-        "checks": 8,
+        "checks": 9,
         "first_seen": "2026-10-30T23:58:10Z",
-        "last_check": "2026-10-31T01:58:12Z",
+        "last_check": "2026-10-31T02:13:12Z",
         "symbol": "ADOF"
       },
       "0x240a7cdbe192219291d94d9f6a0f4c92acdedbeb": {
@@ -7064,21 +7079,21 @@
         "symbol": "XRP"
       },
       "0x5080138ac163401300961048942f3d05a4701189": {
-        "checks": 8,
+        "checks": 9,
         "first_seen": "2026-10-30T23:58:10Z",
-        "last_check": "2026-10-31T01:58:12Z",
+        "last_check": "2026-10-31T02:13:12Z",
         "symbol": "USFD"
       },
       "0x891de541f1aa92458121704c7b2e41952443eed0": {
-        "checks": 8,
+        "checks": 9,
         "first_seen": "2026-10-30T23:58:10Z",
-        "last_check": "2026-10-31T01:58:12Z",
+        "last_check": "2026-10-31T02:13:12Z",
         "symbol": "DASO"
       },
       "0x8a55d4e2ef07bd4d68e9f1854d939afc1361272f": {
-        "checks": 8,
+        "checks": 9,
         "first_seen": "2026-10-30T23:48:13Z",
-        "last_check": "2026-10-31T01:58:12Z",
+        "last_check": "2026-10-31T02:13:12Z",
         "symbol": "UARG"
       },
       "0x9f1f83777bc9ab68bcac098c3ad0c474937b02ee": {
@@ -7106,9 +7121,9 @@
         "symbol": "USOE"
       },
       "0xdd506a657f42f452f646c265b01c956fdaa3be2b": {
-        "checks": 9,
+        "checks": 10,
         "first_seen": "2026-10-30T23:33:14Z",
-        "last_check": "2026-10-31T01:58:12Z",
+        "last_check": "2026-10-31T02:13:12Z",
         "symbol": "NOTF"
       },
       "0xe6c5058b59f76250d93175131ec27e5226651377": {
