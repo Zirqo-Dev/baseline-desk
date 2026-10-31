@@ -2776,3 +2776,14 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-10-31T20:53:11Z,desk,VERIFY,WOTF,0xaf9235e82098264492c079a9b980f6762661798c,SKIP,liquidity,goplus=skipped until=2026-11-01T20:53:11Z
 2026-10-31T20:53:11Z,desk,VERIFY,ANSEM,0x3a1579bb2704bc866bd538f54f6d0ab978114b4a,SKIP,liquidity,goplus=skipped until=2026-11-01T20:53:11Z
 2026-10-31T20:53:11Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=22 rechecks=9 new=10 checked=19 passed=0 bought=0 held=0 deferred=0 dex_only=10 goplus=9 requests=33 secs=19.8 bl_positions=1 bl_due=0 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=2 labels_done=2 labels_calls=1
+2026-10-31T20:58:12Z,baseline,EXIT,U.S OIL EXCHANGE,0x722792048c078946f63365b96d1aa2f48ca95adc,HOLD,,pct=51.79
+2026-10-31T20:58:12Z,desk,VERIFY,AOD,0x069d155cb0ba32aff8b224bc3ed50038aaba6156,WATCH,goplus_not_ready,"first_seen=2026-10-31T20:23:11Z checks=3 pending=honeypot,buy_tax_pct,sell_tax_pct,dev_pct,top10_pct,lp_locked_pct b1=6 s1=0 b24=6 s24=0 liq=98702 dex=uniswap:v4 qliq=0"
+2026-10-31T20:58:12Z,desk,VERIFY,STX,0x679a62f81d342092d5ca1a00007382ef5f37ba26,WATCH,goplus_not_ready,first_seen=2026-10-31T20:23:11Z checks=3 pending=top10_pct b1=40 s1=1 b24=40 s24=1 liq=82291 dex=uniswap:v2 qliq=41151
+2026-10-31T20:58:12Z,desk,VERIFY,DOA,0xf3490684c02390506c77507a98221aab22a70ea8,WATCH,goplus_not_ready,"first_seen=2026-10-31T20:23:11Z checks=3 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct b1=6 s1=0 b24=6 s24=0 liq=113474 dex=uniswap:v4 qliq=4"
+2026-10-31T20:58:12Z,desk,VERIFY,BRONTI,0xee4af8bd6c0c36bcef54699493d89e05a34eacf3,SKIP,liquidity,goplus=skipped until=2026-11-01T20:58:12Z
+2026-10-31T20:58:12Z,desk,VERIFY,BASEHOME,0xfad4aa23118c4716545951ede1a737158f8d6b07,SKIP,liquidity,goplus=skipped until=2026-11-01T20:58:12Z
+2026-10-31T20:58:12Z,desk,VERIFY,HELL,0xb82d4d16653e16b80d5cf29578ffd424ea6b846c,SKIP,liquidity,goplus=skipped until=2026-11-01T20:58:12Z
+2026-10-31T20:58:12Z,desk,VERIFY,AKE,0x8310421d24f540832f337f77b74a0e582c965d9b,SKIP,liquidity,goplus=skipped until=2026-11-01T20:58:12Z
+2026-10-31T20:58:12Z,desk,VERIFY,ETH,0x1db42f5a3de99f0d4fab05f8e3ee5baf7aa6cf70,SKIP,liquidity,goplus=skipped until=2026-11-01T20:58:12Z
+2026-10-31T20:58:12Z,baseline,EXECUTE,STX,0x679a62f81d342092d5ca1a00007382ef5f37ba26,BUY,,usd=5.00 fill=5.9115e-06 seed=202610312058 eligible=1 pick=0 pool=679a62 desk=WATCH launchpad=other b1=40 s1=1 b24=40 s24=1 liq=82291 dex=uniswap:v2 qliq=41151
+2026-10-31T20:58:12Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=22 rechecks=3 new=5 checked=8 passed=0 bought=0 held=0 deferred=0 dex_only=5 goplus=3 requests=16 secs=6.8 bl_positions=1 bl_due=1 bl_eligible=1 bl_bought=1 report=none machine=none bl_error=none labels=ok labels_due=1 labels_done=1 labels_calls=1
