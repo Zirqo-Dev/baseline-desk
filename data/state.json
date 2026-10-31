@@ -30,17 +30,17 @@
         "entry_liq_usd": 236674.98,
         "entry_ts": "2026-10-31T19:58:13Z",
         "ladder_done": [],
-        "last_liq_usd": 238400.13,
-        "last_price": 0.02921,
+        "last_liq_usd": 238942.4,
+        "last_price": 0.0293,
         "launchpad": "other",
         "orig_qty": 167.7390785085983,
         "pair": "0xa5e0da329ee5aa03f09228e534953496334080f5",
-        "peak_price": 0.02921,
+        "peak_price": 0.0293,
         "qty": 167.7390785085983,
         "symbol": "LMTS"
       }
     },
-    "ticks_since_buy": 6
+    "ticks_since_buy": 7
   },
   "desk": {
     "cash": 47.60776857887221,
@@ -672,7 +672,9 @@
         "symbol": "PUMPE"
       },
       "0x692094344f526807fd8dbd6edc533bf79a4b91bd": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 0.0001963,
         "first_seen": "2026-10-31T19:28:14Z",
         "symbol": "MORPHO"
@@ -4167,6 +4169,12 @@
         "symbol": "ClankerV5",
         "until": "2026-11-01T12:33:12Z"
       },
+      "0x82c042f9e7a173c9406eb561eb7d7699485d2cf5": {
+        "at": "2026-10-31T20:33:11Z",
+        "reason": "liquidity",
+        "symbol": "RCAT",
+        "until": "2026-11-01T20:33:11Z"
+      },
       "0x82c425626d5b375a49577c7d4cab91cff2184ad8": {
         "at": "2026-10-31T16:13:10Z",
         "reason": "missing:liq_usd",
@@ -4724,6 +4732,12 @@
         "reason": "liquidity",
         "symbol": "SUPERGEMMA",
         "until": "2026-11-01T01:28:11Z"
+      },
+      "0x9eadbe35f3ee3bf3e28180070c429298a1b02f93": {
+        "at": "2026-10-31T20:33:11Z",
+        "reason": "goplus_timeout",
+        "symbol": "LMTS",
+        "until": "2026-11-01T20:33:11Z"
       },
       "0x9f1f83777bc9ab68bcac098c3ad0c474937b02ee": {
         "at": "2026-10-31T05:18:13Z",
@@ -6477,6 +6491,12 @@
         "symbol": "LUMI",
         "until": "2026-11-01T06:08:12Z"
       },
+      "0xc90007177b1879b0e5699a6616b61ed919bd5b5f": {
+        "at": "2026-10-31T20:33:11Z",
+        "reason": "goplus_timeout",
+        "symbol": "USDF",
+        "until": "2026-11-01T20:33:11Z"
+      },
       "0xc977246a85e57587e3e5d82a60d9c8a9f16c0d01": {
         "at": "2026-10-31T19:48:12Z",
         "reason": "missing:liq_usd",
@@ -7620,9 +7640,9 @@
         "symbol": "AOD"
       },
       "0x11c9b3c373566abfdd6eadd1780ff60a99afcd72": {
-        "checks": 8,
+        "checks": 9,
         "first_seen": "2026-10-31T18:03:12Z",
-        "last_check": "2026-10-31T20:13:15Z",
+        "last_check": "2026-10-31T20:33:11Z",
         "symbol": "AKTN"
       },
       "0x2b5fdc7c20b42e8ccd9fc66e270407210fb8879f": {
@@ -7632,9 +7652,9 @@
         "symbol": "RAFLUX"
       },
       "0x31f81d535bba694015ae837c534fc1c65f981af4": {
-        "checks": 8,
+        "checks": 9,
         "first_seen": "2026-10-31T18:03:12Z",
-        "last_check": "2026-10-31T20:13:15Z",
+        "last_check": "2026-10-31T20:33:11Z",
         "symbol": "BOD"
       },
       "0x5158b91e7e8342719b0ff11822be26a02c2be1a5": {
@@ -7668,9 +7688,9 @@
         "symbol": "AOD"
       },
       "0x7aaf060d152c043b1991df1f9565dfb7349a6fd8": {
-        "checks": 8,
+        "checks": 9,
         "first_seen": "2026-10-31T17:58:13Z",
-        "last_check": "2026-10-31T20:13:15Z",
+        "last_check": "2026-10-31T20:33:11Z",
         "symbol": "VETN"
       },
       "0x7c7473900e2c20f8621699dabdc4f9a38065a0ff": {
@@ -7685,12 +7705,6 @@
         "last_check": "2026-10-31T20:18:13Z",
         "symbol": "ADO"
       },
-      "0x9eadbe35f3ee3bf3e28180070c429298a1b02f93": {
-        "checks": 11,
-        "first_seen": "2026-10-31T17:18:12Z",
-        "last_check": "2026-10-31T20:13:15Z",
-        "symbol": "LMTS"
-      },
       "0xb754eae0d9ed693fd261aa0625d07c075ee0e90f": {
         "checks": 8,
         "first_seen": "2026-10-31T18:13:12Z",
@@ -7702,12 +7716,6 @@
         "first_seen": "2026-10-31T18:28:12Z",
         "last_check": "2026-10-31T20:18:13Z",
         "symbol": "WXRP"
-      },
-      "0xc90007177b1879b0e5699a6616b61ed919bd5b5f": {
-        "checks": 11,
-        "first_seen": "2026-10-31T17:18:12Z",
-        "last_check": "2026-10-31T20:13:15Z",
-        "symbol": "USDF"
       },
       "0xf3490684c02390506c77507a98221aab22a70ea8": {
         "checks": 1,
