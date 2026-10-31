@@ -734,3 +734,13 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-10-31T06:38:14Z,desk,VERIFY,BASEBAT,0x4775c408d84eb2014a181fe5638e42b7f443fba3,SKIP,missing:liq_usd,goplus=skipped until=2026-11-01T06:38:14Z
 2026-10-31T06:38:14Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
 2026-10-31T06:38:14Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=21 rechecks=1 new=1 checked=2 passed=0 bought=0 held=0 deferred=0 dex_only=1 goplus=1 requests=7 secs=1.9 bl_positions=1 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=none labels_due=0 labels_done=0 labels_calls=0
+2026-10-31T06:43:12Z,baseline,EXIT,U.S OIL EXCHANGE,0x722792048c078946f63365b96d1aa2f48ca95adc,HOLD,,pct=29.74
+2026-10-31T06:43:12Z,desk,VERIFY,XRP BLACKROCK,0xa35655a0a356496e693e95d03194e6797ed7ce85,SKIP,goplus_timeout,first_seen=2026-10-31T03:33:12Z checks=12 until=2026-11-01T06:43:12Z b1=0 s1=0 b24=8 s24=2 liq=108481 dex=uniswap:v4 qliq=35
+2026-10-31T06:43:12Z,desk,VERIFY,SAFU,0xd48624c79f29816fb680e671a7ed57ea9ea4f85b,WATCH,goplus_not_ready,"first_seen=2026-10-31T05:38:16Z checks=5 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct b1=0 s1=0 b24=4 s24=0 liq=109906 dex=uniswap:v4 qliq=31"
+2026-10-31T06:43:12Z,desk,VERIFY,LOIRD,0x1e16690f43369c05220fa34ef5db589d3afcede7,WATCH,goplus_not_ready,"first_seen=2026-10-31T05:43:10Z checks=5 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct b1=1 s1=0 b24=2 s24=0 liq=88655 dex=uniswap:v4 qliq=29"
+2026-10-31T06:43:12Z,desk,VERIFY,UPDS,0x4e38e10b8a8290be4d98584358d0f2dc0e11b337,WATCH,goplus_not_ready,"first_seen=2026-10-31T06:08:12Z checks=3 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct b1=3 s1=0 b24=3 s24=0 liq=89467 dex=uniswap:v4 qliq=21"
+2026-10-31T06:43:12Z,desk,VERIFY,Uranus,0x34c2644682171c5932dc84180cc542f7dfb11e53,SKIP,liquidity,goplus=skipped until=2026-11-01T06:43:12Z
+2026-10-31T06:43:12Z,desk,VERIFY,Commonplace,0xb20000000000000000000033c936e1a027eb05a6,SKIP,liquidity,goplus=skipped until=2026-11-01T06:43:12Z
+2026-10-31T06:43:12Z,desk,VERIFY,.AI,0xd86d8e2d53a33a17de1703638e46b51fe0ebdb9f,SKIP,liquidity,goplus=skipped until=2026-11-01T06:43:12Z
+2026-10-31T06:43:12Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
+2026-10-31T06:43:12Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=21 rechecks=4 new=3 checked=7 passed=0 bought=0 held=0 deferred=0 dex_only=3 goplus=4 requests=16 secs=8.6 bl_positions=1 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=2 labels_done=2 labels_calls=1
