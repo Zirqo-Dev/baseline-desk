@@ -12,8 +12,8 @@
         "entry_liq_usd": 29258087.0,
         "entry_ts": "2026-10-31T10:43:12Z",
         "ladder_done": [],
-        "last_liq_usd": 29232541.35,
-        "last_price": 0.01948,
+        "last_liq_usd": 29239295.59,
+        "last_price": 0.01949,
         "launchpad": "other",
         "orig_qty": 248.94199651481202,
         "pair": "0x2f2e5d57208cc915e7b973d74d901a47f4a04838eba4f7b3d12129990bd0c0fe",
@@ -38,7 +38,7 @@
         "symbol": "U.S OIL EXCHANGE"
       }
     },
-    "ticks_since_buy": 3
+    "ticks_since_buy": 4
   },
   "desk": {
     "cash": 47.60776857887221,
@@ -788,6 +788,12 @@
         "first_seen": "2026-10-30T17:43:11Z",
         "symbol": "UDOF"
       },
+      "0x7a53bfa46a9daad96283e895b78050dad3325e5e": {
+        "done": [],
+        "first_price": 0.001354,
+        "first_seen": "2026-10-31T11:03:12Z",
+        "symbol": "GTA6"
+      },
       "0x8210c0634ab8f273806e4b7866e9db353773c44b": {
         "done": [
           1,
@@ -1016,6 +1022,12 @@
         "first_price": 9.821e-05,
         "first_seen": "2026-10-30T16:53:12Z",
         "symbol": "DOFA"
+      },
+      "0xa923b47b5bb445dc7f60744634313ea2c3e56dfa": {
+        "done": [],
+        "first_price": 9.629e-05,
+        "first_seen": "2026-10-31T11:03:12Z",
+        "symbol": "UDSA"
       },
       "0xaacf8ce47fefd70683d531d409787a664f9cdea7": {
         "done": [
@@ -1293,7 +1305,9 @@
         "symbol": "SAFU"
       },
       "0xd77a99ea09584b773c9e435b3c05003a56fd1849": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 0.01,
         "first_seen": "2026-10-31T09:58:16Z",
         "symbol": "Alsa"
@@ -5397,6 +5411,12 @@
         "symbol": "CZD",
         "until": "2026-11-01T02:58:11Z"
       },
+      "0xb200000000000000000000b55efdc3b72b80225f": {
+        "at": "2026-10-31T11:03:12Z",
+        "reason": "liquidity",
+        "symbol": "USAD",
+        "until": "2026-11-01T11:03:12Z"
+      },
       "0xb200000000000000000000ba920f51ff73fc00bb": {
         "at": "2026-10-31T01:53:13Z",
         "reason": "liquidity",
@@ -5588,6 +5608,12 @@
         "reason": "liquidity",
         "symbol": "USOE",
         "until": "2026-11-01T02:43:11Z"
+      },
+      "0xb200000000000000000000e0ec59a341289e96f0": {
+        "at": "2026-10-31T11:03:12Z",
+        "reason": "liquidity",
+        "symbol": "DM",
+        "until": "2026-11-01T11:03:12Z"
       },
       "0xb200000000000000000000e202718f796584e681": {
         "at": "2026-10-31T03:33:12Z",
@@ -6182,12 +6208,6 @@
         "reason": "liquidity",
         "symbol": "EQTY",
         "until": "2026-11-01T09:38:13Z"
-      },
-      "0xc76c7b0dc178fb3e8fece1b6aedda107c079efdc": {
-        "at": "2026-10-30T11:03:11Z",
-        "reason": "liquidity",
-        "symbol": "WORTH",
-        "until": "2026-10-31T11:03:11Z"
       },
       "0xc88a97ec68fe184b07415031b16dfd52218196ea": {
         "at": "2026-10-31T02:38:12Z",
@@ -7266,16 +7286,28 @@
         "symbol": "ADOF"
       },
       "0x6c32f0ee0ddcc458881228f73581d10569cc05cf": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-10-31T10:43:12Z",
-        "last_check": "2026-10-31T10:43:12Z",
+        "last_check": "2026-10-31T11:03:12Z",
         "symbol": "LYXE"
       },
-      "0x83f272148a9b360d6df581fd261193fc5f180ada": {
+      "0x7a53bfa46a9daad96283e895b78050dad3325e5e": {
         "checks": 1,
+        "first_seen": "2026-10-31T11:03:12Z",
+        "last_check": "2026-10-31T11:03:12Z",
+        "symbol": "GTA6"
+      },
+      "0x83f272148a9b360d6df581fd261193fc5f180ada": {
+        "checks": 2,
         "first_seen": "2026-10-31T10:38:12Z",
-        "last_check": "2026-10-31T10:38:12Z",
+        "last_check": "2026-10-31T11:03:12Z",
         "symbol": "USDA"
+      },
+      "0xa923b47b5bb445dc7f60744634313ea2c3e56dfa": {
+        "checks": 1,
+        "first_seen": "2026-10-31T11:03:12Z",
+        "last_check": "2026-10-31T11:03:12Z",
+        "symbol": "UDSA"
       },
       "0xc4bafb1b069e3bbb0a16fec137eacaa431fee8cb": {
         "checks": 9,
@@ -7290,9 +7322,9 @@
         "symbol": "CMO"
       },
       "0xc66137ae3d889e03f8f5df23c7e3e1035edb81ab": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-10-31T10:38:12Z",
-        "last_check": "2026-10-31T10:38:12Z",
+        "last_check": "2026-10-31T11:03:12Z",
         "symbol": "US IOL EXCHANGE "
       },
       "0xd77a99ea09584b773c9e435b3c05003a56fd1849": {
