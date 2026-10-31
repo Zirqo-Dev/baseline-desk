@@ -1665,3 +1665,22 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-10-31T14:13:12Z,desk,VERIFY,LIQUIDBGT,0x99954ca9b34f7b4d98f6f5f0e4557d23f72d5a67,SKIP,liquidity,goplus=skipped until=2026-11-01T14:13:12Z
 2026-10-31T14:13:12Z,desk,VERIFY,PELON,0x1a219677f39cca7fc7926f13da50b29fb132bd32,SKIP,liquidity,goplus=skipped until=2026-11-01T14:13:12Z
 2026-10-31T14:13:12Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=21 rechecks=0 new=8 checked=8 passed=0 bought=0 held=0 deferred=0 dex_only=6 goplus=2 requests=17 secs=4.8 bl_positions=3 bl_due=0 bl_eligible=1 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=1 labels_done=1 labels_calls=1
+2026-10-31T14:18:14Z,baseline,EXIT,UMIA,0x56ab53b77f07da3af732150e8aec4783eb5bba7d,HOLD,,pct=-2.91
+2026-10-31T14:18:14Z,baseline,EXIT,U.S OIL EXCHANGE,0x722792048c078946f63365b96d1aa2f48ca95adc,HOLD,,pct=39.85
+2026-10-31T14:18:14Z,baseline,EXIT,Alsa,0xd77a99ea09584b773c9e435b3c05003a56fd1849,HOLD,,pct=102.43
+2026-10-31T14:18:14Z,desk,VERIFY,UDSA,0xa923b47b5bb445dc7f60744634313ea2c3e56dfa,SKIP,goplus_timeout,first_seen=2026-10-31T11:03:12Z checks=12 until=2026-11-01T14:18:14Z b1=0 s1=0 b24=12 s24=0 liq=95358 dex=uniswap:v4 qliq=11
+2026-10-31T14:18:14Z,desk,VERIFY,USOILS,0x0175c654934e4dfd68177ccc0a395c573d2906b1,WATCH,goplus_not_ready,"first_seen=2026-10-31T12:23:14Z checks=7 pending=honeypot,buy_tax_pct,sell_tax_pct,lp_locked_pct b1=0 s1=0 b24=2 s24=0 liq=494555 dex=uniswap:v4 qliq=2"
+2026-10-31T14:18:14Z,desk,VERIFY,I O F,0x34678eacb05a7545f0c15d92178bbda7a2772dc4,SKIP,liquidity,first_seen=2026-10-31T12:38:13Z checks=6 goplus=skipped until=2026-11-01T14:18:14Z
+2026-10-31T14:18:14Z,desk,VERIFY,LSK,0x770fc75937314102847c730ea5b8777cdeec686a,SKIP,mint_open,first_seen=2026-10-31T12:38:13Z checks=6 goplus_ready_at=2026-10-31T14:18:14Z until=2026-11-01T14:18:14Z b1=0 s1=0 b24=6 s24=2 liq=2721334 dex=uniswap:v3 qliq=0
+2026-10-31T14:18:14Z,desk,VERIFY,AOFT,0xe43a7376e2115972f88453f4c7291deb80ed8ce4,WATCH,goplus_not_ready,"first_seen=2026-10-31T13:03:11Z checks=5 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct b1=0 s1=0 b24=9 s24=0 liq=91016 dex=uniswap:v4 qliq=12"
+2026-10-31T14:18:14Z,desk,VERIFY,ATOF,0x49d3d0577f9d00d1142d1d728bb6e972c9cd7dbe,WATCH,goplus_not_ready,"first_seen=2026-10-31T13:18:13Z checks=4 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct b1=0 s1=0 b24=9 s24=0 liq=112722 dex=uniswap:v4 qliq=18"
+2026-10-31T14:18:14Z,desk,VERIFY,UGO,0xeddbaf2e56a432f3cd05e73e41e42b20eb7f3916,WATCH,goplus_not_ready,"first_seen=2026-10-31T13:23:11Z checks=4 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct b1=0 s1=0 b24=3 s24=0 liq=88292 dex=uniswap:v4 qliq=28"
+2026-10-31T14:18:14Z,desk,VERIFY,AFNF,0x35e115c692db852d9e336b33b27640e4fd73c807,WATCH,goplus_not_ready,"first_seen=2026-10-31T13:58:13Z checks=2 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct b1=8 s1=0 b24=8 s24=0 liq=112859 dex=uniswap:v4 qliq=17"
+2026-10-31T14:18:14Z,desk,VERIFY,NFAF,0xc97c9b676585f4f3a146925f066d93a1b03728de,WATCH,goplus_not_ready,"first_seen=2026-10-31T13:58:13Z checks=2 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct b1=9 s1=0 b24=9 s24=0 liq=122077 dex=uniswap:v4 qliq=17"
+2026-10-31T14:18:14Z,desk,VERIFY,NAFF,0xd3a075deaa8e7f0570aa0b54aa24c976da704e94,WATCH,goplus_not_ready,"first_seen=2026-10-31T13:58:13Z checks=2 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct b1=8 s1=2 b24=8 s24=2 liq=108505 dex=uniswap:v4 qliq=18"
+2026-10-31T14:18:14Z,desk,VERIFY,XCHAT,0x70814fcfc9bbf96119514f9f01ea816274d829f7,SKIP,liquidity,goplus=skipped until=2026-11-01T14:18:14Z
+2026-10-31T14:18:14Z,desk,VERIFY,GATO,0x8a469d0522e61d61dffb2030daeac2b5856eae73,SKIP,liquidity,goplus=skipped until=2026-11-01T14:18:14Z
+2026-10-31T14:18:14Z,desk,VERIFY,LIQUIDBGT,0x6cef96b94c411b6ab6740d5a0eb70cc2c6a18d6d,SKIP,liquidity,goplus=skipped until=2026-11-01T14:18:14Z
+2026-10-31T14:18:14Z,desk,VERIFY,Commonplace,0xb200000000000000000000bc95cab04ff451ad79,SKIP,liquidity,goplus=skipped until=2026-11-01T14:18:14Z
+2026-10-31T14:18:14Z,desk,VERIFY,Basewolf,0xe8d1d3027cbe3b5946d8f5706b3bf4c67d6d9d2d,SKIP,liquidity,goplus=skipped until=2026-11-01T14:18:14Z
+2026-10-31T14:18:14Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=21 rechecks=12 new=6 checked=15 passed=0 bought=0 held=0 deferred=3 dex_only=6 goplus=9 requests=34 secs=19.9 bl_positions=3 bl_due=0 bl_eligible=4 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=7 labels_done=7 labels_calls=1
