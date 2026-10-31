@@ -2662,3 +2662,14 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-10-31T20:08:12Z,desk,VERIFY,NARUZO,0x67083af05732db9e562bdcf840ae2d21ef65fd15,SKIP,liquidity,goplus=skipped until=2026-11-01T20:08:12Z
 2026-10-31T20:08:12Z,desk,VERIFY,OWB,0xef5997c2cf2f6c138196f8a6203afc335206b3c1,SKIP,mint_open,lp_unknown until=2026-11-01T20:08:12Z b1=25 s1=19 b24=197 s24=201 liq=57107 dex=aerodrome qliq=28553
 2026-10-31T20:08:12Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=21 rechecks=1 new=3 checked=4 passed=0 bought=0 held=0 deferred=0 dex_only=2 goplus=2 requests=11 secs=3.8 bl_positions=2 bl_due=0 bl_eligible=1 bl_bought=0 report=none machine=none bl_error=none labels=none labels_due=0 labels_done=0 labels_calls=0
+2026-10-31T20:13:15Z,baseline,EXIT,U.S OIL EXCHANGE,0x722792048c078946f63365b96d1aa2f48ca95adc,HOLD,,pct=51.79
+2026-10-31T20:13:15Z,baseline,EXIT,LMTS,0x9eadbe35f3ee3bf3e28180070c429298a1b02f93,HOLD,,pct=-2.01
+2026-10-31T20:13:15Z,desk,VERIFY,LMTS,0x9eadbe35f3ee3bf3e28180070c429298a1b02f93,WATCH,goplus_not_ready,first_seen=2026-10-31T17:18:12Z checks=11 pending=honeypot b1=187 s1=225 b24=2614 s24=2839 liq=238400 dex=aerodrome qliq=53649
+2026-10-31T20:13:15Z,desk,VERIFY,USDF,0xc90007177b1879b0e5699a6616b61ed919bd5b5f,WATCH,goplus_not_ready,"first_seen=2026-10-31T17:18:12Z checks=11 pending=honeypot,buy_tax_pct,sell_tax_pct,lp_locked_pct b1=0 s1=0 b24=1 s24=0 liq=78727 dex=uniswap:v4 qliq=0"
+2026-10-31T20:13:15Z,desk,VERIFY,VETN,0x7aaf060d152c043b1991df1f9565dfb7349a6fd8,WATCH,goplus_not_ready,"first_seen=2026-10-31T17:58:13Z checks=8 pending=honeypot,buy_tax_pct,sell_tax_pct,lp_locked_pct b1=0 s1=0 b24=15 s24=0 liq=166688 dex=uniswap:v4 qliq=11"
+2026-10-31T20:13:15Z,desk,VERIFY,AKTN,0x11c9b3c373566abfdd6eadd1780ff60a99afcd72,WATCH,goplus_not_ready,"first_seen=2026-10-31T18:03:12Z checks=8 pending=honeypot,buy_tax_pct,sell_tax_pct,lp_locked_pct b1=0 s1=0 b24=15 s24=0 liq=121493 dex=uniswap:v4 qliq=11"
+2026-10-31T20:13:15Z,desk,VERIFY,BOD,0x31f81d535bba694015ae837c534fc1c65f981af4,WATCH,goplus_not_ready,"first_seen=2026-10-31T18:03:12Z checks=8 pending=honeypot,buy_tax_pct,sell_tax_pct,lp_locked_pct b1=0 s1=0 b24=1 s24=8 liq=114626 dex=uniswap:v4 qliq=0"
+2026-10-31T20:13:15Z,desk,VERIFY,.AI,0xccc327a89d771b1585e5e7f17ad7317b7b3823d7,SKIP,liquidity,goplus=skipped until=2026-11-01T20:13:15Z
+2026-10-31T20:13:15Z,desk,VERIFY,BTC,0xb200000000000000000000267641da9e654684ab,SKIP,liquidity,goplus=skipped until=2026-11-01T20:13:15Z
+2026-10-31T20:13:15Z,desk,VERIFY,Butterfly Dreams,0xfc18cb2ad6fedf4eb85e7104b1305441dcc1595f,SKIP,missing:price,goplus=skipped until=2026-11-01T20:13:15Z
+2026-10-31T20:13:15Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=21 rechecks=5 new=3 checked=8 passed=0 bought=0 held=0 deferred=0 dex_only=3 goplus=5 requests=20 secs=11.7 bl_positions=2 bl_due=0 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=5 labels_done=5 labels_calls=1
