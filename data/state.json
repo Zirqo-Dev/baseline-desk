@@ -38,7 +38,7 @@
         "symbol": "U.S OIL EXCHANGE"
       }
     },
-    "ticks_since_buy": 3
+    "ticks_since_buy": 4
   },
   "desk": {
     "cash": 47.60776857887221,
@@ -418,7 +418,9 @@
         "symbol": "UDFO"
       },
       "0x38326242fe704adab302bd3a2b8af2a961864225": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 4.403e-06,
         "first_seen": "2026-10-31T07:53:13Z",
         "symbol": "UFSD"
@@ -884,7 +886,9 @@
         "symbol": "COFT"
       },
       "0x94f87518b8d70284b0d20cbc7e036de0588c85dd": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 0.0001567,
         "first_seen": "2026-10-31T07:53:13Z",
         "symbol": "US OIL EXCHANGE"
@@ -1049,7 +1053,8 @@
       },
       "0xb7eba008a576bdae11f09e28b089cb55bfcd7d5e": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 0.0001002,
         "first_seen": "2026-10-31T02:53:12Z",
@@ -2197,12 +2202,6 @@
         "symbol": "COTF",
         "until": "2026-10-31T21:23:13Z"
       },
-      "0x27bb08a085fba19b9a9a1619b8c83e474625c731": {
-        "at": "2026-10-30T08:53:12Z",
-        "reason": "liquidity",
-        "symbol": "SPACEX",
-        "until": "2026-10-31T08:53:12Z"
-      },
       "0x27e66088f318d9f104203727d3c9d8074923c62d": {
         "at": "2026-10-30T10:18:15Z",
         "reason": "goplus_timeout",
@@ -2953,17 +2952,17 @@
         "symbol": "AODF",
         "until": "2026-10-31T14:38:13Z"
       },
-      "0x51a1a377ac3767aaec2790794adee6019ed55767": {
-        "at": "2026-10-30T08:53:12Z",
-        "reason": "liquidity",
-        "symbol": "RSGP",
-        "until": "2026-10-31T08:53:12Z"
-      },
       "0x52659b14221af949962ccc4e413a95b49baaa219": {
         "at": "2026-10-31T04:38:13Z",
         "reason": "missing:liq_usd",
         "symbol": "Launchpad",
         "until": "2026-11-01T04:38:13Z"
+      },
+      "0x52912583827677af2d9256bbd94253ac56475433": {
+        "at": "2026-10-31T08:53:21Z",
+        "reason": "liquidity",
+        "symbol": "APYUSD",
+        "until": "2026-11-01T08:53:21Z"
       },
       "0x52b69cd0bd39e2ed50cea258cb3358fd8cea16a8": {
         "at": "2026-10-30T10:03:11Z",
@@ -3919,12 +3918,6 @@
         "symbol": "WITH",
         "until": "2026-10-31T15:53:14Z"
       },
-      "0x85f872ba4d7cad68a918ca85d331c6232bbe0587": {
-        "at": "2026-10-30T08:53:12Z",
-        "reason": "liquidity",
-        "symbol": "TEBOT",
-        "until": "2026-10-31T08:53:12Z"
-      },
       "0x86576d5f891a730252a61e2d63e6277ec6f55557": {
         "at": "2026-10-30T12:23:12Z",
         "reason": "liquidity",
@@ -4194,6 +4187,12 @@
         "reason": "goplus_timeout",
         "symbol": "COFT",
         "until": "2026-10-31T21:23:13Z"
+      },
+      "0x954197e7a39f642df0c65006c19d83dbd9a6624f": {
+        "at": "2026-10-31T08:53:21Z",
+        "reason": "liquidity",
+        "symbol": "LC",
+        "until": "2026-11-01T08:53:21Z"
       },
       "0x9589fc60c487eff3b20b9a2753bedeaae707d92b": {
         "at": "2026-10-30T18:48:16Z",
@@ -5809,6 +5808,12 @@
         "symbol": "Uranus",
         "until": "2026-10-31T15:28:14Z"
       },
+      "0xb954e518210638b87703a528577541e1821848df": {
+        "at": "2026-10-31T08:53:21Z",
+        "reason": "liquidity",
+        "symbol": "CVC",
+        "until": "2026-11-01T08:53:21Z"
+      },
       "0xb9cb3975b4b21269b2576a510ef7ecf290e7f49f": {
         "at": "2026-10-30T19:58:14Z",
         "reason": "liquidity",
@@ -6414,12 +6419,6 @@
         "reason": "liquidity",
         "symbol": "XUVXY",
         "until": "2026-10-31T16:53:12Z"
-      },
-      "0xdac21cbdbe1e23445ec425f0813f28df15ac0b07": {
-        "at": "2026-10-30T08:53:12Z",
-        "reason": "liquidity",
-        "symbol": "USDA",
-        "until": "2026-10-31T08:53:12Z"
       },
       "0xdb4d26cf1f4ff8effb40360933f83c5fccb9cbc9": {
         "at": "2026-10-31T06:03:13Z",
@@ -7174,9 +7173,9 @@
         "symbol": "U.S BINANCE"
       },
       "0x1896b20aeb37d2f0c3ac275fdab0435413dbd943": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-10-31T08:38:13Z",
-        "last_check": "2026-10-31T08:38:13Z",
+        "last_check": "2026-10-31T08:53:21Z",
         "symbol": "U.S BINANCE"
       },
       "0x30fb35505d5eb6a3dd93d718248578bd4886d3b2": {
