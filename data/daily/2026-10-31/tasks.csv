@@ -1794,3 +1794,12 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-10-31T14:58:12Z,desk,VERIFY,SURPLUS,0x64d71b8aa48857b84db4f4cbcf446b15362aa646,SKIP,liquidity,goplus=skipped until=2026-11-01T14:58:12Z
 2026-10-31T14:58:12Z,desk,VERIFY,WET,0x46af41e9565af3f2701fd1f2dc9429831603a391,SKIP,liquidity,goplus=skipped until=2026-11-01T14:58:12Z
 2026-10-31T14:58:12Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=22 rechecks=13 new=5 checked=14 passed=0 bought=0 held=0 deferred=4 dex_only=5 goplus=9 requests=35 secs=19.8 bl_positions=3 bl_due=0 bl_eligible=4 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=5 labels_done=5 labels_calls=1
+2026-10-31T15:03:13Z,baseline,EXIT,U.S OIL EXCHANGE,0x722792048c078946f63365b96d1aa2f48ca95adc,HOLD,,pct=39.85
+2026-10-31T15:03:13Z,baseline,EXIT,XRC,0xa6ab62e605f8d56b80afd50a28fd78e5c6f4d904,HOLD,,pct=-2.91
+2026-10-31T15:03:13Z,baseline,EXIT,Alsa,0xd77a99ea09584b773c9e435b3c05003a56fd1849,HOLD,,pct=108.56
+2026-10-31T15:03:13Z,desk,VERIFY,USDR🔥,0x75211e2c61e467cf2f13acdc2953d5cea8378825,WATCH,goplus_not_ready,"first_seen=2026-10-31T14:23:11Z checks=3 pending=honeypot,buy_tax_pct,sell_tax_pct,dev_pct,top10_pct,lp_locked_pct b1=15 s1=10 b24=15 s24=10 liq=2374831 dex=uniswap:v4 qliq=122"
+2026-10-31T15:03:13Z,desk,VERIFY,cbETH,0x2ae3f1ec7f1f5012cfeab0185bfc7aa3cf0dec22,WATCH,goplus_not_ready,"first_seen=2026-10-31T14:43:11Z checks=2 pending=mint_open,freeze_or_blacklist,honeypot,risk_flags b1=326 s1=254 b24=9297 s24=8097 liq=1374825 dex=aero qliq=505390"
+2026-10-31T15:03:13Z,desk,VERIFY,PUMP,0x75f3a880f74eef1d10a0fd9d2b3379fe465e846d,WATCH,goplus_not_ready,"first_seen=2026-10-31T14:43:11Z checks=2 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct b1=5 s1=0 b24=5 s24=0 liq=98485 dex=uniswap:v4 qliq=3"
+2026-10-31T15:03:13Z,desk,VERIFY,AFNF,0xeee5ed21b1253b14c0276235566867409b83efc4,WATCH,goplus_not_ready,"first_seen=2026-10-31T14:43:11Z checks=2 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct b1=5 s1=0 b24=5 s24=0 liq=88157 dex=uniswap:v4 qliq=0"
+2026-10-31T15:03:13Z,desk,VERIFY,AFFN,0xc13157926040950efd89d1c389ea0de0276283bb,SKIP,missing:liq_usd,goplus=skipped until=2026-11-01T15:03:13Z
+2026-10-31T15:03:13Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=22 rechecks=4 new=1 checked=5 passed=0 bought=0 held=0 deferred=0 dex_only=1 goplus=4 requests=17 secs=8.4 bl_positions=3 bl_due=0 bl_eligible=2 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=7 labels_done=7 labels_calls=1
