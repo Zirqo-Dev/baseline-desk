@@ -38,7 +38,7 @@
         "symbol": "U.S OIL EXCHANGE"
       }
     },
-    "ticks_since_buy": 3
+    "ticks_since_buy": 4
   },
   "desk": {
     "cash": 47.60776857887221,
@@ -733,6 +733,12 @@
         "first_seen": "2026-10-30T15:58:16Z",
         "symbol": "CNK"
       },
+      "0x8d1a9353339f8123385f1652959be867649ded5b": {
+        "done": [],
+        "first_price": 6.534e-06,
+        "first_seen": "2026-10-31T04:38:13Z",
+        "symbol": "XRP BLACKROCK"
+      },
       "0x8e97af5c3270fa13303eae91f319b255f4943fca": {
         "done": [
           1
@@ -809,7 +815,9 @@
         "symbol": "Commonplace"
       },
       "0xa35655a0a356496e693e95d03194e6797ed7ce85": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 0.0001133,
         "first_seen": "2026-10-31T03:33:12Z",
         "symbol": "XRP BLACKROCK"
@@ -2080,6 +2088,12 @@
         "symbol": "TUSK",
         "until": "2026-10-31T20:48:14Z"
       },
+      "0x288eef045df7bb273df9cb09fda12a4ea63d183b": {
+        "at": "2026-10-31T04:38:13Z",
+        "reason": "liquidity",
+        "symbol": "1KTO100M",
+        "until": "2026-11-01T04:38:13Z"
+      },
       "0x28fbe76a5283267b7cac212eaa81794dc5d36ed8": {
         "at": "2026-10-30T22:48:14Z",
         "reason": "goplus_timeout",
@@ -2781,6 +2795,12 @@
         "reason": "liquidity",
         "symbol": "RSGP",
         "until": "2026-10-31T08:53:12Z"
+      },
+      "0x52659b14221af949962ccc4e413a95b49baaa219": {
+        "at": "2026-10-31T04:38:13Z",
+        "reason": "missing:liq_usd",
+        "symbol": "Launchpad",
+        "until": "2026-11-01T04:38:13Z"
       },
       "0x52ac88bdb73477c407c026ebd9f891b3bac7bb07": {
         "at": "2026-10-30T08:03:16Z",
@@ -3838,12 +3858,6 @@
         "symbol": "GITLY",
         "until": "2026-11-01T01:38:12Z"
       },
-      "0x87c6017f45c3e0a9396ac1070921d8548ef21b82": {
-        "at": "2026-10-30T04:38:12Z",
-        "reason": "liquidity",
-        "symbol": "SPACEX",
-        "until": "2026-10-31T04:38:12Z"
-      },
       "0x881db6dcebff43a71fe5558e178e39345c3baf1c": {
         "at": "2026-10-30T13:23:11Z",
         "reason": "liquidity",
@@ -4017,12 +4031,6 @@
         "reason": "liquidity",
         "symbol": "SPACEX",
         "until": "2026-10-31T07:38:12Z"
-      },
-      "0x91223ff4633922c8e48e706e434bb3f30e1af3b6": {
-        "at": "2026-10-30T04:38:12Z",
-        "reason": "missing:liq_usd",
-        "symbol": "bull",
-        "until": "2026-10-31T04:38:12Z"
       },
       "0x913245432dc98f4633f5fa17a37981fb79572b07": {
         "at": "2026-10-30T05:48:11Z",
@@ -5056,12 +5064,6 @@
         "symbol": "SAFU",
         "until": "2026-10-31T22:13:12Z"
       },
-      "0xb20000000000000000000084f807dc07f2f84651": {
-        "at": "2026-10-30T04:38:12Z",
-        "reason": "liquidity",
-        "symbol": "CRIME",
-        "until": "2026-10-31T04:38:12Z"
-      },
       "0xb200000000000000000000869c9b48d6b1fd76c8": {
         "at": "2026-10-30T14:48:13Z",
         "reason": "liquidity",
@@ -5115,12 +5117,6 @@
         "reason": "liquidity",
         "symbol": "DPRK",
         "until": "2026-10-31T05:53:10Z"
-      },
-      "0xb200000000000000000000989db128dbb1909fe3": {
-        "at": "2026-10-30T04:38:12Z",
-        "reason": "liquidity",
-        "symbol": "UGAR",
-        "until": "2026-10-31T04:38:12Z"
       },
       "0xb2000000000000000000009937eb0355b118bf80": {
         "at": "2026-10-31T03:28:13Z",
@@ -5463,6 +5459,12 @@
         "reason": "liquidity",
         "symbol": "PURPS",
         "until": "2026-10-31T13:18:14Z"
+      },
+      "0xb200000000000000000000f1af21cf4c0801eb41": {
+        "at": "2026-10-31T04:38:13Z",
+        "reason": "liquidity",
+        "symbol": "Foxii",
+        "until": "2026-11-01T04:38:13Z"
       },
       "0xb200000000000000000000f235bf74f2580d422d": {
         "at": "2026-10-30T20:28:12Z",
@@ -7081,15 +7083,21 @@
     },
     "watch": {
       "0x5cda0e1ca4ce2af96315f7f8963c85399c172204": {
-        "checks": 6,
+        "checks": 7,
         "first_seen": "2026-10-31T02:58:11Z",
-        "last_check": "2026-10-31T04:18:13Z",
+        "last_check": "2026-10-31T04:38:13Z",
         "symbol": "wtCOIN"
       },
+      "0x8d1a9353339f8123385f1652959be867649ded5b": {
+        "checks": 1,
+        "first_seen": "2026-10-31T04:38:13Z",
+        "last_check": "2026-10-31T04:38:13Z",
+        "symbol": "XRP BLACKROCK"
+      },
       "0x9f1f83777bc9ab68bcac098c3ad0c474937b02ee": {
-        "checks": 9,
+        "checks": 10,
         "first_seen": "2026-10-31T02:03:12Z",
-        "last_check": "2026-10-31T04:18:13Z",
+        "last_check": "2026-10-31T04:38:13Z",
         "symbol": "USDP"
       },
       "0xa3184515b58b2f12714bd023baf251209df8bcab": {
@@ -7099,15 +7107,15 @@
         "symbol": "Commonplace"
       },
       "0xa35655a0a356496e693e95d03194e6797ed7ce85": {
-        "checks": 4,
+        "checks": 5,
         "first_seen": "2026-10-31T03:33:12Z",
-        "last_check": "2026-10-31T04:23:11Z",
+        "last_check": "2026-10-31T04:38:13Z",
         "symbol": "XRP BLACKROCK"
       },
       "0xb7eba008a576bdae11f09e28b089cb55bfcd7d5e": {
-        "checks": 6,
+        "checks": 7,
         "first_seen": "2026-10-31T02:53:12Z",
-        "last_check": "2026-10-31T04:18:13Z",
+        "last_check": "2026-10-31T04:38:13Z",
         "symbol": "AOTF"
       },
       "0xc8f555a2e304dfe0db1562ccb5563ad89c10e56f": {
