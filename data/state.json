@@ -38,7 +38,7 @@
         "symbol": "U.S OIL EXCHANGE"
       }
     },
-    "ticks_since_buy": 1
+    "ticks_since_buy": 2
   },
   "desk": {
     "cash": 47.60776857887221,
@@ -849,7 +849,9 @@
         "symbol": "ETHFLOW"
       },
       "0xb06a6a246dda56839e604bb916434a56e80618a5": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 7.094e-06,
         "first_seen": "2026-10-31T02:18:21Z",
         "symbol": "USDP"
@@ -1919,6 +1921,12 @@
         "reason": "liquidity",
         "symbol": "KOLLB",
         "until": "2026-10-31T15:18:12Z"
+      },
+      "0x240a7cdbe192219291d94d9f6a0f4c92acdedbeb": {
+        "at": "2026-10-31T03:23:11Z",
+        "reason": "goplus_timeout",
+        "symbol": "TOR",
+        "until": "2026-11-01T03:23:11Z"
       },
       "0x24b30c308e931135ae4741d41426aaecf3bed1a7": {
         "at": "2026-10-31T00:33:12Z",
@@ -3707,6 +3715,12 @@
         "reason": "liquidity",
         "symbol": "CTO",
         "until": "2026-10-31T10:08:12Z"
+      },
+      "0x85d4fc549e05dabf4f7f8771eeff5934acdb8be9": {
+        "at": "2026-10-31T03:23:11Z",
+        "reason": "liquidity",
+        "symbol": "CHUBBY",
+        "until": "2026-11-01T03:23:11Z"
       },
       "0x85d837d146b9250d7a82e604f58b4dade51274ba": {
         "at": "2026-10-30T15:53:14Z",
@@ -6426,6 +6440,12 @@
         "symbol": "GOOGLC",
         "until": "2026-10-31T07:58:12Z"
       },
+      "0xe6c5058b59f76250d93175131ec27e5226651377": {
+        "at": "2026-10-31T03:23:11Z",
+        "reason": "goplus_timeout",
+        "symbol": "USDA1",
+        "until": "2026-11-01T03:23:11Z"
+      },
       "0xe8561f2947cae6a29cc2c2ef22bf485cc557fb07": {
         "at": "2026-10-30T19:13:12Z",
         "reason": "liquidity",
@@ -6926,12 +6946,6 @@
       }
     },
     "watch": {
-      "0x240a7cdbe192219291d94d9f6a0f4c92acdedbeb": {
-        "checks": 10,
-        "first_seen": "2026-10-31T00:08:13Z",
-        "last_check": "2026-10-31T03:08:11Z",
-        "symbol": "TOR"
-      },
       "0x24d727228dbacb6cd25c91dcb53ddbfef2fb9ec0": {
         "checks": 10,
         "first_seen": "2026-10-31T00:23:10Z",
@@ -6957,9 +6971,9 @@
         "symbol": "wtCOIN"
       },
       "0x96978707be469a52632cae65f78fa3c99e09dad5": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-10-31T03:03:14Z",
-        "last_check": "2026-10-31T03:03:14Z",
+        "last_check": "2026-10-31T03:23:11Z",
         "symbol": "USOE"
       },
       "0x9f1f83777bc9ab68bcac098c3ad0c474937b02ee": {
@@ -6981,9 +6995,9 @@
         "symbol": "AOTF"
       },
       "0xc8f555a2e304dfe0db1562ccb5563ad89c10e56f": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-10-31T03:03:14Z",
-        "last_check": "2026-10-31T03:03:14Z",
+        "last_check": "2026-10-31T03:23:11Z",
         "symbol": "LUMI"
       },
       "0xdc0f7a8db6e1b7b7071385ed1329d2f28055ae7f": {
@@ -6991,12 +7005,6 @@
         "first_seen": "2026-10-31T03:18:13Z",
         "last_check": "2026-10-31T03:18:13Z",
         "symbol": "KDX"
-      },
-      "0xe6c5058b59f76250d93175131ec27e5226651377": {
-        "checks": 10,
-        "first_seen": "2026-10-31T00:13:12Z",
-        "last_check": "2026-10-31T03:08:11Z",
-        "symbol": "USDA1"
       }
     }
   },
