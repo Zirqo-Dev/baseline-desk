@@ -12,7 +12,8 @@
         "entry_liq_usd": 29258087.0,
         "entry_ts": "2026-10-31T10:43:12Z",
         "ladder_done": [],
-        "last_price": 0.0195,
+        "last_liq_usd": 29250317.19,
+        "last_price": 0.01949,
         "launchpad": "other",
         "orig_qty": 248.94199651481202,
         "pair": "0x2f2e5d57208cc915e7b973d74d901a47f4a04838eba4f7b3d12129990bd0c0fe",
@@ -37,7 +38,7 @@
         "symbol": "U.S OIL EXCHANGE"
       }
     },
-    "ticks_since_buy": 0
+    "ticks_since_buy": 1
   },
   "desk": {
     "cash": 47.60776857887221,
@@ -235,6 +236,12 @@
         "first_price": 4.616e-06,
         "first_seen": "2026-10-31T08:38:13Z",
         "symbol": "U.S BINANCE"
+      },
+      "0x18df457daec7c96e4e43d948acf6428081678f2a": {
+        "done": [],
+        "first_price": 0.0001621,
+        "first_seen": "2026-10-31T10:48:13Z",
+        "symbol": "U.S OIL EXCHANGE (USOE)"
       },
       "0x1c034e3de9b77b60bb94457360f6d6129e33db4c": {
         "done": [
@@ -1373,6 +1380,12 @@
         "first_price": "na",
         "first_seen": "2026-10-30T14:18:13Z",
         "symbol": "UFDT"
+      },
+      "0xf1ee9fbc70cb6241cbc2c9bca3916734e7d265be": {
+        "done": [],
+        "first_price": 9.836e-05,
+        "first_seen": "2026-10-31T10:48:13Z",
+        "symbol": "USAD"
       },
       "0xf5cd9ed7ed7e617cb935d58d374353c2cadb6d6f": {
         "done": [
@@ -3046,6 +3059,12 @@
         "reason": "missing:liq_usd",
         "symbol": "Recall",
         "until": "2026-10-31T20:43:11Z"
+      },
+      "0x5041944486c78d31be8aeb7c12c4813044ed44f2": {
+        "at": "2026-10-31T10:48:13Z",
+        "reason": "liquidity",
+        "symbol": "Sahur",
+        "until": "2026-11-01T10:48:13Z"
       },
       "0x50704ac1fcfb335538bf67069aa4967b69472ec9": {
         "at": "2026-10-30T13:43:15Z",
@@ -6875,6 +6894,12 @@
         "symbol": "Slock",
         "until": "2026-10-31T11:18:12Z"
       },
+      "0xf0710ab23baf5fa546dd382b706529464c37e164": {
+        "at": "2026-10-31T10:48:13Z",
+        "reason": "missing:liq_usd",
+        "symbol": "USAD",
+        "until": "2026-11-01T10:48:13Z"
+      },
       "0xf08e200a253d67804294a9d4c057692366ae742d": {
         "at": "2026-10-30T17:18:13Z",
         "reason": "goplus_timeout",
@@ -7238,9 +7263,9 @@
     },
     "watch": {
       "0x0527b091cb91167638683c5bf3e20134ad2f622f": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-10-31T10:33:11Z",
-        "last_check": "2026-10-31T10:33:11Z",
+        "last_check": "2026-10-31T10:48:13Z",
         "symbol": "NAFF"
       },
       "0x12e1c77d56c7985d962346e8262e53262956836b": {
@@ -7255,10 +7280,16 @@
         "last_check": "2026-10-31T10:43:12Z",
         "symbol": "I O F"
       },
-      "0x56ab53b77f07da3af732150e8aec4783eb5bba7d": {
+      "0x18df457daec7c96e4e43d948acf6428081678f2a": {
         "checks": 1,
+        "first_seen": "2026-10-31T10:48:13Z",
+        "last_check": "2026-10-31T10:48:13Z",
+        "symbol": "U.S OIL EXCHANGE (USOE)"
+      },
+      "0x56ab53b77f07da3af732150e8aec4783eb5bba7d": {
+        "checks": 2,
         "first_seen": "2026-10-31T10:33:11Z",
-        "last_check": "2026-10-31T10:33:11Z",
+        "last_check": "2026-10-31T10:48:13Z",
         "symbol": "UMIA"
       },
       "0x5bb2ca3a2c16c5d792f29090862bcc0deb512271": {
@@ -7298,9 +7329,9 @@
         "symbol": "ADOF"
       },
       "0xc62697ed88cb322157cde16e103c25ac6d004d6f": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-10-31T10:33:11Z",
-        "last_check": "2026-10-31T10:33:11Z",
+        "last_check": "2026-10-31T10:48:13Z",
         "symbol": "CMO"
       },
       "0xc66137ae3d889e03f8f5df23c7e3e1035edb81ab": {
@@ -7326,6 +7357,12 @@
         "first_seen": "2026-10-31T10:23:11Z",
         "last_check": "2026-10-31T10:38:12Z",
         "symbol": "ADOF"
+      },
+      "0xf1ee9fbc70cb6241cbc2c9bca3916734e7d265be": {
+        "checks": 1,
+        "first_seen": "2026-10-31T10:48:13Z",
+        "last_check": "2026-10-31T10:48:13Z",
+        "symbol": "USAD"
       }
     }
   },
@@ -7363,7 +7400,7 @@
     },
     "machine_due": "",
     "max_dd_pct": {
-      "baseline": 27.51705915883948,
+      "baseline": 27.521104063139713,
       "desk": 9.811123120222184
     },
     "peak": {
