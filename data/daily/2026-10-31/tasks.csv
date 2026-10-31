@@ -533,3 +533,10 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-10-31T04:18:13Z,desk,VERIFY,CHUBBY,0x18647bacd2e1bc31b9550dd7b519d1c2ee0ee87d,SKIP,liquidity,goplus=skipped until=2026-11-01T04:18:13Z
 2026-10-31T04:18:13Z,baseline,EXECUTE,wtCOIN,0x5cda0e1ca4ce2af96315f7f8963c85399c172204,BUY,,usd=5.00 fill=152.502 seed=202610310418 eligible=1 pick=0 pool=5cda0e desk=WATCH launchpad=other b1=7 s1=9 b24=674 s24=903 liq=83234 dex=aero qliq=15109
 2026-10-31T04:18:13Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=22 rechecks=3 new=2 checked=5 passed=0 bought=0 held=0 deferred=0 dex_only=2 goplus=3 requests=14 secs=6.1 bl_positions=1 bl_due=1 bl_eligible=1 bl_bought=1 report=none machine=none bl_error=none labels=ok labels_due=2 labels_done=2 labels_calls=1
+2026-10-31T04:23:11Z,baseline,EXIT,wtCOIN,0x5cda0e1ca4ce2af96315f7f8963c85399c172204,HOLD,,pct=-4.76
+2026-10-31T04:23:11Z,baseline,EXIT,U.S OIL EXCHANGE,0x722792048c078946f63365b96d1aa2f48ca95adc,HOLD,,pct=29.52
+2026-10-31T04:23:11Z,desk,VERIFY,XRP BLACKROCK,0xa35655a0a356496e693e95d03194e6797ed7ce85,WATCH,goplus_not_ready,"first_seen=2026-10-31T03:33:12Z checks=4 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct b1=5 s1=0 b24=5 s24=0 liq=113416 dex=uniswap:v4 qliq=35"
+2026-10-31T04:23:11Z,desk,VERIFY,RugProof,0xeb221be8b2a15263601ed65876603558ce00cad4,SKIP,missing:liq_usd,goplus=skipped until=2026-11-01T04:23:11Z
+2026-10-31T04:23:11Z,desk,VERIFY,BNB,0xff83a39a502ed46ef099306523bf96b4a764ab07,SKIP,liquidity,goplus=skipped until=2026-11-01T04:23:11Z
+2026-10-31T04:23:11Z,desk,VERIFY,gBTC,0xdf1c0447e02d1d00b6cb2e2d35743a0c15a0eb07,SKIP,liquidity,goplus=skipped until=2026-11-01T04:23:11Z
+2026-10-31T04:23:11Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=22 rechecks=1 new=3 checked=4 passed=0 bought=0 held=0 deferred=0 dex_only=3 goplus=1 requests=10 secs=2.3 bl_positions=2 bl_due=0 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=none labels_due=0 labels_done=0 labels_calls=0
