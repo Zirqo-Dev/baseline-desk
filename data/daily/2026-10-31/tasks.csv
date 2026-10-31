@@ -706,3 +706,7 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-10-31T06:18:12Z,desk,VERIFY,UFSD,0x00251f9a15fe7c877b9ba7e631811d56994dac85,WATCH,goplus_not_ready,"first_seen=2026-10-31T06:18:12Z checks=1 pending=mint_open,freeze_or_blacklist,honeypot,buy_tax_pct,sell_tax_pct,dev_pct,top10_pct,lp_locked_pct,risk_flags b1=3 s1=0 b24=3 s24=0 liq=89157 dex=uniswap:v4 qliq=0"
 2026-10-31T06:18:12Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
 2026-10-31T06:18:12Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=21 rechecks=0 new=3 checked=3 passed=0 bought=0 held=0 deferred=0 dex_only=2 goplus=1 requests=9 secs=2.1 bl_positions=1 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=3 labels_done=3 labels_calls=1
+2026-10-31T06:23:11Z,baseline,EXIT,U.S OIL EXCHANGE,0x722792048c078946f63365b96d1aa2f48ca95adc,HOLD,,pct=29.74
+2026-10-31T06:23:11Z,desk,VERIFY,AFTO,0x11fb0e4d7fd8f77fd62806b991d0da7ff9127860,SKIP,missing:liq_usd,goplus=skipped until=2026-11-01T06:23:11Z
+2026-10-31T06:23:11Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
+2026-10-31T06:23:11Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=21 rechecks=0 new=1 checked=1 passed=0 bought=0 held=0 deferred=0 dex_only=1 goplus=0 requests=6 secs=1.8 bl_positions=1 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=3 labels_done=3 labels_calls=1
