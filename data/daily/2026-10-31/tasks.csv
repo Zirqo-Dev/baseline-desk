@@ -724,3 +724,8 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-10-31T06:28:11Z,desk,VERIFY,DIMI,0xea6634b0cfb17a2f7cc55bd60dc5c8e9da184ba3,SKIP,liquidity,goplus=skipped until=2026-11-01T06:28:11Z
 2026-10-31T06:28:11Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
 2026-10-31T06:28:11Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=21 rechecks=6 new=5 checked=11 passed=0 bought=0 held=0 deferred=0 dex_only=6 goplus=5 requests=20 secs=10.5 bl_positions=1 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=none labels_due=0 labels_done=0 labels_calls=0
+2026-10-31T06:33:11Z,baseline,EXIT,U.S OIL EXCHANGE,0x722792048c078946f63365b96d1aa2f48ca95adc,HOLD,,pct=29.74
+2026-10-31T06:33:11Z,desk,VERIFY,Believe,0xdbb810d37fbadf7c15503186f8d78eef833762bd,SKIP,missing:liq_usd,goplus=skipped until=2026-11-01T06:33:11Z
+2026-10-31T06:33:11Z,desk,VERIFY,LOIRD,0xb4a92e8a1622518d13f5cad208773931b7281631,WATCH,goplus_not_ready,"first_seen=2026-10-31T06:33:11Z checks=1 pending=mint_open,freeze_or_blacklist,honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct,risk_flags b1=6 s1=0 b24=6 s24=0 liq=69035 dex=uniswap:v2 qliq=34526"
+2026-10-31T06:33:11Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
+2026-10-31T06:33:11Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=21 rechecks=0 new=2 checked=2 passed=0 bought=0 held=0 deferred=0 dex_only=1 goplus=1 requests=7 secs=2.2 bl_positions=1 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=none labels_due=0 labels_done=0 labels_calls=0
