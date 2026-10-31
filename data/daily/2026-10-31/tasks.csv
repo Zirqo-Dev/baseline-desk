@@ -2575,3 +2575,20 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-10-31T19:33:11Z,desk,VERIFY,BASEWEEN,0x4577b913444f714abdf5796790f0041da203db07,SKIP,liquidity,goplus=skipped until=2026-11-01T19:33:11Z
 2026-10-31T19:33:11Z,desk,VERIFY,WAYBILL,0xb20000000000000000000089c1de6bd3abfeb4bf,SKIP,missing:liq_usd,goplus=skipped until=2026-11-01T19:33:11Z
 2026-10-31T19:33:11Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=22 rechecks=0 new=5 checked=5 passed=0 bought=0 held=0 deferred=0 dex_only=5 goplus=0 requests=11 secs=2.6 bl_positions=2 bl_due=0 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=3 labels_done=3 labels_calls=1
+2026-10-31T19:38:13Z,baseline,EXIT,U.S OIL EXCHANGE,0x722792048c078946f63365b96d1aa2f48ca95adc,HOLD,,pct=52.05
+2026-10-31T19:38:13Z,baseline,EXIT,Commonplace,0x863eca7447b25babb734642ee9271f84b99a40db,HOLD,,pct=-17.28
+2026-10-31T19:38:13Z,desk,VERIFY,AOTF,0x5c773afaa7c380b72284db9f261758c713916d5f,SKIP,goplus_timeout,first_seen=2026-10-31T16:23:11Z checks=12 until=2026-11-01T19:38:13Z b1=0 s1=0 b24=16 s24=0 liq=120146 dex=uniswap:v4 qliq=3
+2026-10-31T19:38:13Z,desk,VERIFY,ADFO,0xc672480626dd2e2ad6594f60705713209d074c1a,SKIP,goplus_timeout,first_seen=2026-10-31T16:23:11Z checks=12 until=2026-11-01T19:38:13Z b1=0 s1=0 b24=16 s24=0 liq=210073 dex=uniswap:v4 qliq=3
+2026-10-31T19:38:13Z,desk,VERIFY,ADP,0x0ff08c2fdb882a14be5ea58f2022b3e722b3a3cb,WATCH,goplus_not_ready,"first_seen=2026-10-31T16:43:10Z checks=10 pending=honeypot,buy_tax_pct,sell_tax_pct,lp_locked_pct b1=0 s1=0 b24=2 s24=0 liq=121488 dex=uniswap:v4 qliq=29"
+2026-10-31T19:38:13Z,desk,VERIFY,Commonplace,0x863eca7447b25babb734642ee9271f84b99a40db,WATCH,goplus_not_ready,"first_seen=2026-10-31T16:43:10Z checks=10 pending=mint_open,freeze_or_blacklist,honeypot,risk_flags b1=37 s1=100 b24=754 s24=714 liq=102490 dex=uniswap:v4 qliq=39965"
+2026-10-31T19:38:13Z,desk,VERIFY,AODF,0x898af362a010c46840c155e86277662ea58a52ac,WATCH,goplus_not_ready,"first_seen=2026-10-31T16:43:10Z checks=10 pending=honeypot,buy_tax_pct,sell_tax_pct,lp_locked_pct b1=0 s1=0 b24=16 s24=0 liq=68930 dex=uniswap:v4 qliq=3"
+2026-10-31T19:38:13Z,desk,VERIFY,NFAF,0xf8ba743ecc7b2a3f75dd25e82fdeb8fbe8f6c8c7,WATCH,goplus_not_ready,"first_seen=2026-10-31T16:43:10Z checks=10 pending=honeypot,buy_tax_pct,sell_tax_pct,lp_locked_pct b1=0 s1=0 b24=16 s24=0 liq=77687 dex=uniswap:v4 qliq=2"
+2026-10-31T19:38:13Z,desk,VERIFY,LMTS,0x9eadbe35f3ee3bf3e28180070c429298a1b02f93,WATCH,goplus_not_ready,first_seen=2026-10-31T17:18:12Z checks=9 pending=honeypot b1=189 s1=204 b24=2573 s24=2772 liq=236675 dex=aerodrome qliq=53648
+2026-10-31T19:38:13Z,desk,VERIFY,USDF,0xc90007177b1879b0e5699a6616b61ed919bd5b5f,WATCH,goplus_not_ready,"first_seen=2026-10-31T17:18:12Z checks=9 pending=honeypot,buy_tax_pct,sell_tax_pct,lp_locked_pct b1=0 s1=0 b24=1 s24=0 liq=78727 dex=uniswap:v4 qliq=0"
+2026-10-31T19:38:13Z,desk,VERIFY,VETN,0x7aaf060d152c043b1991df1f9565dfb7349a6fd8,WATCH,goplus_not_ready,"first_seen=2026-10-31T17:58:13Z checks=6 pending=honeypot,buy_tax_pct,sell_tax_pct,lp_locked_pct b1=0 s1=0 b24=15 s24=0 liq=166688 dex=uniswap:v4 qliq=11"
+2026-10-31T19:38:13Z,desk,VERIFY,SPH,0xff6428503c2bb933f6fbd17770e7266a071cc25b,SKIP,liquidity,goplus=skipped until=2026-11-01T19:38:13Z
+2026-10-31T19:38:13Z,desk,VERIFY,LAPTOP,0x9b5f2b2208fc4eedce460d8ab44d978ede09eea1,SKIP,liquidity,goplus=skipped until=2026-11-01T19:38:13Z
+2026-10-31T19:38:13Z,desk,VERIFY,PRAY,0xb200000000000000000000c2038efd457e5a8fa6,SKIP,liquidity,goplus=skipped until=2026-11-01T19:38:13Z
+2026-10-31T19:38:13Z,desk,VERIFY,BALL,0x6620fa7e9a14d5bfdc6f1190b061ca13fd79eb73,SKIP,liquidity,goplus=skipped until=2026-11-01T19:38:13Z
+2026-10-31T19:38:13Z,desk,VERIFY,BTC,0xa9a4ff5c1e57bfb0e28860dfc9b0034317861072,SKIP,liquidity,goplus=skipped until=2026-11-01T19:38:13Z
+2026-10-31T19:38:13Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=22 rechecks=13 new=10 checked=14 passed=0 bought=0 held=0 deferred=9 dex_only=5 goplus=9 requests=35 secs=19.9 bl_positions=2 bl_due=0 bl_eligible=1 bl_bought=0 report=none machine=none bl_error=none labels=none labels_due=0 labels_done=0 labels_calls=0
