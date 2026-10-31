@@ -1042,3 +1042,13 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-10-31T09:43:11Z,desk,VERIFY,WIRE,0xdcdf5e8215606c965664c341cf8ca45891181257,SKIP,missing:liq_usd,goplus=skipped until=2026-11-01T09:43:11Z
 2026-10-31T09:43:11Z,desk,VERIFY,WIRE,0xfdeaa3db7e8c8117b792bca9088aba0c41a3dcfb,SKIP,missing:liq_usd,goplus=skipped until=2026-11-01T09:43:11Z
 2026-10-31T09:43:11Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=0 new=2 checked=2 passed=0 bought=0 held=0 deferred=0 dex_only=2 goplus=0 requests=7 secs=1.9 bl_positions=2 bl_due=0 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=none labels_due=0 labels_done=0 labels_calls=0
+2026-10-31T09:48:12Z,baseline,EXIT,U.S OIL EXCHANGE,0x722792048c078946f63365b96d1aa2f48ca95adc,HOLD,,pct=35.68
+2026-10-31T09:48:12Z,baseline,EXIT,ADOF,0xc4bafb1b069e3bbb0a16fec137eacaa431fee8cb,HOLD,,pct=-2.91
+2026-10-31T09:48:12Z,desk,VERIFY,US OIL EXCHANGE,0x94f87518b8d70284b0d20cbc7e036de0588c85dd,WATCH,goplus_not_ready,"first_seen=2026-10-31T07:53:13Z checks=7 pending=honeypot,buy_tax_pct,sell_tax_pct,lp_locked_pct b1=0 s1=0 b24=5 s24=0 liq=155198 dex=uniswap:v4 qliq=0"
+2026-10-31T09:48:12Z,desk,VERIFY,OIL FEDERAL TRUST FUND,0xddc2c308f29bf9d040a753916d6b88c06e096e06,WATCH,goplus_not_ready,"first_seen=2026-10-31T08:08:12Z checks=6 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct b1=0 s1=0 b24=5 s24=0 liq=166295 dex=uniswap:v4 qliq=28"
+2026-10-31T09:48:12Z,desk,VERIFY,U.S BINANCE,0x12e1c77d56c7985d962346e8262e53262956836b,WATCH,goplus_not_ready,"first_seen=2026-10-31T08:13:10Z checks=6 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct b1=0 s1=0 b24=4 s24=0 liq=94298 dex=uniswap:v4 qliq=11"
+2026-10-31T09:48:12Z,desk,VERIFY,ADOF,0x611d092e018c137c38a6f0374e07010c1dbafc19,WATCH,goplus_not_ready,"first_seen=2026-10-31T09:13:12Z checks=3 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct b1=14 s1=4 b24=14 s24=4 liq=234940 dex=uniswap:v4 qliq=66"
+2026-10-31T09:48:12Z,desk,VERIFY,ADOF,0xadd22e010f5b6b02e9d0fcdea9efca85f0c9f270,SKIP,liquidity,first_seen=2026-10-31T09:13:12Z checks=3 goplus=skipped until=2026-11-01T09:48:12Z
+2026-10-31T09:48:12Z,desk,VERIFY,SPACEX,0x7c881e4271fe9c3ec3f32d746816fb2d1d220470,SKIP,liquidity,goplus=skipped until=2026-11-01T09:48:12Z
+2026-10-31T09:48:12Z,desk,VERIFY,Hosico,0xbec2de543d1089fb19b5592e1f1d8d0f351e3252,SKIP,liquidity,goplus=skipped until=2026-11-01T09:48:12Z
+2026-10-31T09:48:12Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=5 new=2 checked=7 passed=0 bought=0 held=0 deferred=0 dex_only=3 goplus=4 requests=17 secs=8.4 bl_positions=2 bl_due=0 bl_eligible=1 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=2 labels_done=2 labels_calls=1
