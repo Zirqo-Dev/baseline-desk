@@ -1515,3 +1515,10 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-10-31T13:18:13Z,desk,VERIFY,PUMPE,0xe0bfc2729b51868eb6fc8828bc78ff2f2d1eb707,WATCH,goplus_not_ready,"first_seen=2026-10-31T13:18:13Z checks=1 pending=honeypot,buy_tax_pct,sell_tax_pct,dev_pct,top10_pct,lp_locked_pct b1=10 s1=0 b24=10 s24=0 liq=70389 dex=uniswap:v2 qliq=35193"
 2026-10-31T13:18:13Z,desk,VERIFY,ATOF,0x49d3d0577f9d00d1142d1d728bb6e972c9cd7dbe,WATCH,goplus_not_ready,"first_seen=2026-10-31T13:18:13Z checks=1 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct b1=9 s1=0 b24=9 s24=0 liq=112722 dex=uniswap:v4 qliq=18"
 2026-10-31T13:18:13Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=21 rechecks=5 new=3 checked=8 passed=0 bought=0 held=0 deferred=0 dex_only=2 goplus=6 requests=20 secs=12.1 bl_positions=3 bl_due=0 bl_eligible=2 bl_bought=0 report=none machine=none bl_error=none labels=none labels_due=0 labels_done=0 labels_calls=0
+2026-10-31T13:23:11Z,baseline,EXIT,MT,0x1d1b972bdbefa56364211f254ac3ca54975c75d1,HOLD,,pct=-4.85
+2026-10-31T13:23:11Z,baseline,EXIT,U.S OIL EXCHANGE,0x722792048c078946f63365b96d1aa2f48ca95adc,HOLD,,pct=37.39
+2026-10-31T13:23:11Z,baseline,EXIT,Alsa,0xd77a99ea09584b773c9e435b3c05003a56fd1849,HOLD,,pct=85.89
+2026-10-31T13:23:11Z,desk,VERIFY,SKELLABRATE,0x0692b7f467fd9f80f52584505a7d05dafd4c5cf5,SKIP,missing:liq_usd,goplus=skipped until=2026-11-01T13:23:11Z
+2026-10-31T13:23:11Z,desk,VERIFY,,0x468da55053a65e098f53c19f940e4c7a50777f22,SKIP,missing:symbol,goplus=skipped until=2026-11-01T13:23:11Z
+2026-10-31T13:23:11Z,desk,VERIFY,UGO,0xeddbaf2e56a432f3cd05e73e41e42b20eb7f3916,WATCH,goplus_not_ready,"first_seen=2026-10-31T13:23:11Z checks=1 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct b1=3 s1=0 b24=3 s24=0 liq=88292 dex=uniswap:v4 qliq=28"
+2026-10-31T13:23:11Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=21 rechecks=0 new=3 checked=3 passed=0 bought=0 held=0 deferred=0 dex_only=2 goplus=1 requests=11 secs=3.3 bl_positions=3 bl_due=0 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=3 labels_done=3 labels_calls=1
