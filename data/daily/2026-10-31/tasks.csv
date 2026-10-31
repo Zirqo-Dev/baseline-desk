@@ -1037,3 +1037,8 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-10-31T09:38:13Z,desk,VERIFY,SPCX,0x46cb8b946557fb6efa8536de3c83415359f3bd2e,SKIP,liquidity,goplus=skipped until=2026-11-01T09:38:13Z
 2026-10-31T09:38:13Z,baseline,EXECUTE,ADOF,0xc4bafb1b069e3bbb0a16fec137eacaa431fee8cb,BUY,,"usd=5.00 fill=0.000211665 seed=202610310938 eligible=2 pick=1 pool=5bb2ca,c4bafb desk=WATCH launchpad=other b1=10 s1=4 b24=14 s24=4 liq=203537 dex=uniswap:v4 qliq=55"
 2026-10-31T09:38:13Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=2 new=3 checked=5 passed=0 bought=0 held=0 deferred=0 dex_only=3 goplus=2 requests=12 secs=4.5 bl_positions=1 bl_due=1 bl_eligible=2 bl_bought=1 report=none machine=none bl_error=none labels=ok labels_due=1 labels_done=1 labels_calls=1
+2026-10-31T09:43:11Z,baseline,EXIT,U.S OIL EXCHANGE,0x722792048c078946f63365b96d1aa2f48ca95adc,HOLD,,pct=35.68
+2026-10-31T09:43:11Z,baseline,EXIT,ADOF,0xc4bafb1b069e3bbb0a16fec137eacaa431fee8cb,HOLD,,pct=-2.91
+2026-10-31T09:43:11Z,desk,VERIFY,WIRE,0xdcdf5e8215606c965664c341cf8ca45891181257,SKIP,missing:liq_usd,goplus=skipped until=2026-11-01T09:43:11Z
+2026-10-31T09:43:11Z,desk,VERIFY,WIRE,0xfdeaa3db7e8c8117b792bca9088aba0c41a3dcfb,SKIP,missing:liq_usd,goplus=skipped until=2026-11-01T09:43:11Z
+2026-10-31T09:43:11Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=0 new=2 checked=2 passed=0 bought=0 held=0 deferred=0 dex_only=2 goplus=0 requests=7 secs=1.9 bl_positions=2 bl_due=0 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=none labels_due=0 labels_done=0 labels_calls=0
