@@ -38,7 +38,7 @@
         "symbol": "U.S OIL EXCHANGE"
       }
     },
-    "ticks_since_buy": 4
+    "ticks_since_buy": 5
   },
   "desk": {
     "cash": 47.60776857887221,
@@ -216,6 +216,12 @@
         "first_price": "na",
         "first_seen": "2026-10-30T14:48:13Z",
         "symbol": "AODF"
+      },
+      "0x1e16690f43369c05220fa34ef5db589d3afcede7": {
+        "done": [],
+        "first_price": 8.957e-05,
+        "first_seen": "2026-10-31T05:43:10Z",
+        "symbol": "LOIRD"
       },
       "0x20ea3ac3b9033e53c0bdb6e9922e83f9d73c4ca4": {
         "done": [
@@ -3427,12 +3433,6 @@
         "symbol": "COMET",
         "until": "2026-11-01T04:08:11Z"
       },
-      "0x7189e63d9e5740ad082ca8a0680c64a0cc5996ea": {
-        "at": "2026-10-30T05:43:10Z",
-        "reason": "liquidity",
-        "symbol": "CZ9MARE",
-        "until": "2026-10-31T05:43:10Z"
-      },
       "0x722792048c078946f63365b96d1aa2f48ca95adc": {
         "at": "2026-10-30T22:28:15Z",
         "reason": "goplus_timeout",
@@ -4068,12 +4068,6 @@
         "reason": "liquidity",
         "symbol": "O",
         "until": "2026-10-31T05:48:11Z"
-      },
-      "0x913583ee88b9c4f364df3312047547214a08d794": {
-        "at": "2026-10-30T05:43:10Z",
-        "reason": "missing:liq_usd",
-        "symbol": "GAGGLE",
-        "until": "2026-10-31T05:43:10Z"
       },
       "0x9147dde88846dae2b9961295f77885eef25f5a37": {
         "at": "2026-10-30T21:13:11Z",
@@ -6241,6 +6235,12 @@
         "symbol": "SAFU",
         "until": "2026-10-31T13:28:13Z"
       },
+      "0xd1c71be4496ddab0d34b28f71322fe6ccf487ba3": {
+        "at": "2026-10-31T05:43:10Z",
+        "reason": "missing:liq_usd",
+        "symbol": "Commonplace",
+        "until": "2026-11-01T05:43:10Z"
+      },
       "0xd1e51148a1aa775b5394c9622ffbbfaacc430061": {
         "at": "2026-10-31T02:03:12Z",
         "reason": "liquidity",
@@ -7089,6 +7089,12 @@
       }
     },
     "watch": {
+      "0x1e16690f43369c05220fa34ef5db589d3afcede7": {
+        "checks": 1,
+        "first_seen": "2026-10-31T05:43:10Z",
+        "last_check": "2026-10-31T05:43:10Z",
+        "symbol": "LOIRD"
+      },
       "0x5cda0e1ca4ce2af96315f7f8963c85399c172204": {
         "checks": 10,
         "first_seen": "2026-10-31T02:58:11Z",
