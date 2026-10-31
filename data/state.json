@@ -1,26 +1,10 @@
 {
   "baseline": {
-    "cash": 31.94827694074823,
+    "cash": 31.948278137492068,
     "day": "2026-10-31",
     "day_start_value": 45.863122727597954,
     "halted_day": "",
     "positions": {
-      "0x1717506ba50b45c936437a97c6bdd3f014ddfb1a": {
-        "cost_usd": 5,
-        "entry_fill": 0.020085000000000002,
-        "entry_intended": 0.0195,
-        "entry_liq_usd": 29258087.0,
-        "entry_ts": "2026-10-31T10:43:12Z",
-        "ladder_done": [],
-        "last_liq_usd": 29239295.59,
-        "last_price": 0.01949,
-        "launchpad": "other",
-        "orig_qty": 248.94199651481202,
-        "pair": "0x2f2e5d57208cc915e7b973d74d901a47f4a04838eba4f7b3d12129990bd0c0fe",
-        "peak_price": 0.0195,
-        "qty": 248.94199651481202,
-        "symbol": "I O F"
-      },
       "0x722792048c078946f63365b96d1aa2f48ca95adc": {
         "cost_usd": 5,
         "entry_fill": 0.000186842,
@@ -38,7 +22,7 @@
         "symbol": "U.S OIL EXCHANGE"
       }
     },
-    "ticks_since_buy": 4
+    "ticks_since_buy": 5
   },
   "desk": {
     "cash": 47.60776857887221,
@@ -358,6 +342,12 @@
         "first_price": 0.0001523,
         "first_seen": "2026-10-30T19:43:12Z",
         "symbol": "KIEDEX"
+      },
+      "0x2a73e0eea0d69aab5410b8eeedef3130a582cbc1": {
+        "done": [],
+        "first_price": 0.01942,
+        "first_seen": "2026-10-31T11:08:12Z",
+        "symbol": "I O F"
       },
       "0x2c02fc9b8b5033dbebcc13d4a1e1435ca78d9d93": {
         "done": [
@@ -1355,6 +1345,12 @@
         "first_price": "na",
         "first_seen": "2026-10-30T14:18:13Z",
         "symbol": "SOGNI"
+      },
+      "0xe159fea72d846e16e80f06c942ee2ba0143295f2": {
+        "done": [],
+        "first_price": 4.057e-06,
+        "first_seen": "2026-10-31T11:08:12Z",
+        "symbol": "UDSA"
       },
       "0xe2cb57c803158931648d19223c08e94ea25c0fc5": {
         "done": [],
@@ -3617,6 +3613,12 @@
         "symbol": "TRMX",
         "until": "2026-10-31T13:58:13Z"
       },
+      "0x6f574e446bac220152624ec666b778c98a51471e": {
+        "at": "2026-10-31T11:08:12Z",
+        "reason": "liquidity",
+        "symbol": "1KTO100M",
+        "until": "2026-11-01T11:08:12Z"
+      },
       "0x6f7279f51a712183f975f89a824ae28206c0d91d": {
         "at": "2026-10-30T11:33:12Z",
         "reason": "liquidity",
@@ -4102,6 +4104,12 @@
         "reason": "goplus_timeout",
         "symbol": "DASO",
         "until": "2026-11-01T03:08:11Z"
+      },
+      "0x893130c4fb3df1af6fb2b52bedca76e09c30f353": {
+        "at": "2026-10-31T11:08:12Z",
+        "reason": "liquidity",
+        "symbol": "gork",
+        "until": "2026-11-01T11:08:12Z"
       },
       "0x8936945963574cb4ccb38112082c8a2404dcbcb3": {
         "at": "2026-10-30T19:23:13Z",
@@ -5332,6 +5340,12 @@
         "reason": "liquidity",
         "symbol": "NFAIL",
         "until": "2026-11-01T09:33:12Z"
+      },
+      "0xb200000000000000000000a36b6bbabdd4841f90": {
+        "at": "2026-10-31T11:08:12Z",
+        "reason": "liquidity",
+        "symbol": "DM",
+        "until": "2026-11-01T11:08:12Z"
       },
       "0xb200000000000000000000a5df5aed0212d27c53": {
         "at": "2026-10-30T20:38:14Z",
@@ -7244,9 +7258,9 @@
     },
     "watch": {
       "0x0527b091cb91167638683c5bf3e20134ad2f622f": {
-        "checks": 2,
+        "checks": 3,
         "first_seen": "2026-10-31T10:33:11Z",
-        "last_check": "2026-10-31T10:48:13Z",
+        "last_check": "2026-10-31T11:08:12Z",
         "symbol": "NAFF"
       },
       "0x12e1c77d56c7985d962346e8262e53262956836b": {
@@ -7262,15 +7276,21 @@
         "symbol": "I O F"
       },
       "0x18df457daec7c96e4e43d948acf6428081678f2a": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-10-31T10:48:13Z",
-        "last_check": "2026-10-31T10:48:13Z",
+        "last_check": "2026-10-31T11:08:12Z",
         "symbol": "U.S OIL EXCHANGE (USOE)"
       },
+      "0x2a73e0eea0d69aab5410b8eeedef3130a582cbc1": {
+        "checks": 1,
+        "first_seen": "2026-10-31T11:08:12Z",
+        "last_check": "2026-10-31T11:08:12Z",
+        "symbol": "I O F"
+      },
       "0x56ab53b77f07da3af732150e8aec4783eb5bba7d": {
-        "checks": 2,
+        "checks": 3,
         "first_seen": "2026-10-31T10:33:11Z",
-        "last_check": "2026-10-31T10:48:13Z",
+        "last_check": "2026-10-31T11:08:12Z",
         "symbol": "UMIA"
       },
       "0x5bb2ca3a2c16c5d792f29090862bcc0deb512271": {
@@ -7316,9 +7336,9 @@
         "symbol": "ADOF"
       },
       "0xc62697ed88cb322157cde16e103c25ac6d004d6f": {
-        "checks": 2,
+        "checks": 3,
         "first_seen": "2026-10-31T10:33:11Z",
-        "last_check": "2026-10-31T10:48:13Z",
+        "last_check": "2026-10-31T11:08:12Z",
         "symbol": "CMO"
       },
       "0xc66137ae3d889e03f8f5df23c7e3e1035edb81ab": {
@@ -7339,6 +7359,12 @@
         "last_check": "2026-10-31T10:58:13Z",
         "symbol": "OIL FEDERAL TRUST FUND"
       },
+      "0xe159fea72d846e16e80f06c942ee2ba0143295f2": {
+        "checks": 1,
+        "first_seen": "2026-10-31T11:08:12Z",
+        "last_check": "2026-10-31T11:08:12Z",
+        "symbol": "UDSA"
+      },
       "0xe2cb57c803158931648d19223c08e94ea25c0fc5": {
         "checks": 3,
         "first_seen": "2026-10-31T10:23:11Z",
@@ -7346,9 +7372,9 @@
         "symbol": "ADOF"
       },
       "0xf1ee9fbc70cb6241cbc2c9bca3916734e7d265be": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-10-31T10:48:13Z",
-        "last_check": "2026-10-31T10:48:13Z",
+        "last_check": "2026-10-31T11:08:12Z",
         "symbol": "USAD"
       }
     }
@@ -7387,7 +7413,7 @@
     },
     "machine_due": "",
     "max_dd_pct": {
-      "baseline": 27.525148967439943,
+      "baseline": 35.40462053963538,
       "desk": 9.811123120222184
     },
     "peak": {
