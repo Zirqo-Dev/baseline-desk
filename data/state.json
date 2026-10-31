@@ -22,7 +22,7 @@
         "symbol": "U.S OIL EXCHANGE"
       }
     },
-    "ticks_since_buy": 10
+    "ticks_since_buy": 11
   },
   "desk": {
     "cash": 47.60776857887221,
@@ -1324,6 +1324,12 @@
   "leads": {
     "retry": {},
     "skips": {
+      "0x00251f9a15fe7c877b9ba7e631811d56994dac85": {
+        "at": "2026-10-31T09:28:12Z",
+        "reason": "goplus_timeout",
+        "symbol": "UFSD",
+        "until": "2026-11-01T09:28:12Z"
+      },
       "0x00309d634d11541b857f927be91ad2f0bd78894c": {
         "at": "2026-10-30T16:18:13Z",
         "reason": "liquidity",
@@ -5116,12 +5122,6 @@
         "symbol": "\u4e00\u4e2a\u4f18\u79c0\u7684\u524d\u4efb\u5c31\u50cf\u6b7b\u4e86\u4e00\u6837",
         "until": "2026-10-31T14:48:13Z"
       },
-      "0xb2000000000000000000007fd717667edaa72fab": {
-        "at": "2026-10-30T09:23:14Z",
-        "reason": "liquidity",
-        "symbol": "OTTONOMY",
-        "until": "2026-10-31T09:23:14Z"
-      },
       "0xb2000000000000000000008065a113ae6b7e6702": {
         "at": "2026-10-30T20:13:12Z",
         "reason": "liquidity",
@@ -5457,6 +5457,12 @@
         "reason": "liquidity",
         "symbol": "ClickItinc",
         "until": "2026-10-31T23:08:13Z"
+      },
+      "0xb200000000000000000000d6553300c009df905f": {
+        "at": "2026-10-31T09:28:12Z",
+        "reason": "liquidity",
+        "symbol": "BTC",
+        "until": "2026-11-01T09:28:12Z"
       },
       "0xb200000000000000000000d82a4b25f870612c75": {
         "at": "2026-10-31T00:48:23Z",
@@ -7176,16 +7182,10 @@
       }
     },
     "watch": {
-      "0x00251f9a15fe7c877b9ba7e631811d56994dac85": {
-        "checks": 10,
-        "first_seen": "2026-10-31T06:18:12Z",
-        "last_check": "2026-10-31T09:08:12Z",
-        "symbol": "UFSD"
-      },
       "0x12e1c77d56c7985d962346e8262e53262956836b": {
-        "checks": 4,
+        "checks": 5,
         "first_seen": "2026-10-31T08:13:10Z",
-        "last_check": "2026-10-31T09:08:12Z",
+        "last_check": "2026-10-31T09:28:12Z",
         "symbol": "U.S BINANCE"
       },
       "0x5bb2ca3a2c16c5d792f29090862bcc0deb512271": {
@@ -7195,21 +7195,21 @@
         "symbol": "ADFO"
       },
       "0x611d092e018c137c38a6f0374e07010c1dbafc19": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-10-31T09:13:12Z",
-        "last_check": "2026-10-31T09:13:12Z",
+        "last_check": "2026-10-31T09:28:12Z",
         "symbol": "ADOF"
       },
       "0x94f87518b8d70284b0d20cbc7e036de0588c85dd": {
-        "checks": 5,
+        "checks": 6,
         "first_seen": "2026-10-31T07:53:13Z",
-        "last_check": "2026-10-31T09:08:12Z",
+        "last_check": "2026-10-31T09:28:12Z",
         "symbol": "US OIL EXCHANGE"
       },
       "0xadd22e010f5b6b02e9d0fcdea9efca85f0c9f270": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-10-31T09:13:12Z",
-        "last_check": "2026-10-31T09:13:12Z",
+        "last_check": "2026-10-31T09:28:12Z",
         "symbol": "ADOF"
       },
       "0xc4bafb1b069e3bbb0a16fec137eacaa431fee8cb": {
@@ -7219,9 +7219,9 @@
         "symbol": "ADOF"
       },
       "0xddc2c308f29bf9d040a753916d6b88c06e096e06": {
-        "checks": 4,
+        "checks": 5,
         "first_seen": "2026-10-31T08:08:12Z",
-        "last_check": "2026-10-31T09:08:12Z",
+        "last_check": "2026-10-31T09:28:12Z",
         "symbol": "OIL FEDERAL TRUST FUND"
       }
     }
