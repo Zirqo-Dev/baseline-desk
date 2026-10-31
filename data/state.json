@@ -1,10 +1,25 @@
 {
   "baseline": {
-    "cash": 26.948278137492068,
+    "cash": 21.948278137492068,
     "day": "2026-10-31",
     "day_start_value": 45.863122727597954,
     "halted_day": "",
     "positions": {
+      "0x1d1b972bdbefa56364211f254ac3ca54975c75d1": {
+        "cost_usd": 5,
+        "entry_fill": 9.54765e-05,
+        "entry_intended": 9.093e-05,
+        "entry_liq_usd": 90020.59,
+        "entry_ts": "2026-10-31T12:48:13Z",
+        "ladder_done": [],
+        "last_price": 9.093e-05,
+        "launchpad": "zora",
+        "orig_qty": 52368.90753221997,
+        "pair": "0x53e5fcdbf7795bd5e9526fe1c11af3b84cc8bd35adcd4da17b5aa7a193d43cca",
+        "peak_price": 9.093e-05,
+        "qty": 52368.90753221997,
+        "symbol": "MT"
+      },
       "0x722792048c078946f63365b96d1aa2f48ca95adc": {
         "cost_usd": 5,
         "entry_fill": 0.000186842,
@@ -28,17 +43,17 @@
         "entry_liq_usd": 109548.85,
         "entry_ts": "2026-10-31T11:48:13Z",
         "ladder_done": [],
-        "last_liq_usd": 131189.98,
-        "last_price": 0.04768,
+        "last_liq_usd": 131416.1,
+        "last_price": 0.04784,
         "launchpad": "other",
         "orig_qty": 145.90829371923158,
         "pair": "0xf22af36cae5b63416dd42292599fa673efb0f343",
-        "peak_price": 0.04768,
+        "peak_price": 0.04784,
         "qty": 145.90829371923158,
         "symbol": "Alsa"
       }
     },
-    "ticks_since_buy": 11
+    "ticks_since_buy": 0
   },
   "desk": {
     "cash": 47.60776857887221,
@@ -1773,6 +1788,12 @@
         "symbol": "VIRTUAL",
         "until": "2026-10-31T13:13:11Z"
       },
+      "0x0b5844f293cfecf4c311fef8e9ae919d03e01b46": {
+        "at": "2026-10-31T12:48:13Z",
+        "reason": "liquidity",
+        "symbol": "I O F",
+        "until": "2026-11-01T12:48:13Z"
+      },
       "0x0b80b53956070d1853b911764cf1470d1476fde1": {
         "at": "2026-10-31T00:58:13Z",
         "reason": "liquidity",
@@ -1880,12 +1901,6 @@
         "reason": "liquidity",
         "symbol": "BTC",
         "until": "2026-11-01T07:18:16Z"
-      },
-      "0x101c8eca4a70347f470d5ff7e5cb4ce62db9c7d8": {
-        "at": "2026-10-30T12:43:14Z",
-        "reason": "liquidity",
-        "symbol": "SPCX",
-        "until": "2026-10-31T12:43:14Z"
       },
       "0x102abda97feb69e7fb8ed91a28162c52b707d886": {
         "at": "2026-10-31T10:38:12Z",
@@ -2714,12 +2729,6 @@
         "reason": "liquidity",
         "symbol": "SPACEX",
         "until": "2026-11-01T02:08:14Z"
-      },
-      "0x36be1d329444aef5d28df3662ec5b4f965cd93e9": {
-        "at": "2026-10-30T12:43:14Z",
-        "reason": "liquidity",
-        "symbol": "wXCH",
-        "until": "2026-10-31T12:43:14Z"
       },
       "0x36c837038c59e9cfbc3000a8b51052a4d7261b07": {
         "at": "2026-10-31T03:58:12Z",
@@ -3933,6 +3942,12 @@
         "symbol": "ANTHROPIC",
         "until": "2026-11-01T12:38:13Z"
       },
+      "0x7a53bfa46a9daad96283e895b78050dad3325e5e": {
+        "at": "2026-10-31T12:48:13Z",
+        "reason": "mint_open",
+        "symbol": "GTA6",
+        "until": "2026-11-01T12:48:13Z"
+      },
       "0x7a8b15166080887d21052a205ffad7b0786b9884": {
         "at": "2026-10-30T21:18:12Z",
         "reason": "liquidity",
@@ -4034,12 +4049,6 @@
         "reason": "goplus_timeout",
         "symbol": "LYX",
         "until": "2026-10-31T14:33:13Z"
-      },
-      "0x80ab7957c5ebf1c2cf8d46f078716038b7d769bc": {
-        "at": "2026-10-30T12:43:14Z",
-        "reason": "liquidity",
-        "symbol": "BALL",
-        "until": "2026-10-31T12:43:14Z"
       },
       "0x818c05a214a7da787daf7c416fdc44491fa1099f": {
         "at": "2026-10-31T01:23:11Z",
@@ -7523,28 +7532,22 @@
         "last_check": "2026-10-31T12:43:10Z",
         "symbol": "NAFF"
       },
-      "0x0b5844f293cfecf4c311fef8e9ae919d03e01b46": {
-        "checks": 3,
-        "first_seen": "2026-10-31T11:53:12Z",
-        "last_check": "2026-10-31T12:28:12Z",
-        "symbol": "I O F"
-      },
       "0x18df457daec7c96e4e43d948acf6428081678f2a": {
-        "checks": 6,
+        "checks": 7,
         "first_seen": "2026-10-31T10:48:13Z",
-        "last_check": "2026-10-31T12:28:12Z",
+        "last_check": "2026-10-31T12:48:13Z",
         "symbol": "U.S OIL EXCHANGE (USOE)"
       },
       "0x1d1b972bdbefa56364211f254ac3ca54975c75d1": {
-        "checks": 2,
+        "checks": 3,
         "first_seen": "2026-10-31T12:13:11Z",
-        "last_check": "2026-10-31T12:28:12Z",
+        "last_check": "2026-10-31T12:48:13Z",
         "symbol": "MT"
       },
       "0x2a73e0eea0d69aab5410b8eeedef3130a582cbc1": {
-        "checks": 5,
+        "checks": 6,
         "first_seen": "2026-10-31T11:08:12Z",
-        "last_check": "2026-10-31T12:28:12Z",
+        "last_check": "2026-10-31T12:48:13Z",
         "symbol": "I O F"
       },
       "0x34678eacb05a7545f0c15d92178bbda7a2772dc4": {
@@ -7577,12 +7580,6 @@
         "last_check": "2026-10-31T12:38:13Z",
         "symbol": "LSK"
       },
-      "0x7a53bfa46a9daad96283e895b78050dad3325e5e": {
-        "checks": 6,
-        "first_seen": "2026-10-31T11:03:12Z",
-        "last_check": "2026-10-31T12:28:12Z",
-        "symbol": "GTA6"
-      },
       "0x83f272148a9b360d6df581fd261193fc5f180ada": {
         "checks": 8,
         "first_seen": "2026-10-31T10:38:12Z",
@@ -7590,9 +7587,9 @@
         "symbol": "USDA"
       },
       "0xa923b47b5bb445dc7f60744634313ea2c3e56dfa": {
-        "checks": 6,
+        "checks": 7,
         "first_seen": "2026-10-31T11:03:12Z",
-        "last_check": "2026-10-31T12:28:12Z",
+        "last_check": "2026-10-31T12:48:13Z",
         "symbol": "UDSA"
       },
       "0xb46db2091a6a53c3197191e4b44a92ca771bafd8": {
@@ -7620,21 +7617,21 @@
         "symbol": "Alsa"
       },
       "0xe35442d3596d60e010dbbb1b56f1c09ccb5bbeec": {
-        "checks": 4,
+        "checks": 5,
         "first_seen": "2026-10-31T11:38:12Z",
-        "last_check": "2026-10-31T12:28:12Z",
+        "last_check": "2026-10-31T12:48:13Z",
         "symbol": "ADOF"
       },
       "0xf1ee9fbc70cb6241cbc2c9bca3916734e7d265be": {
-        "checks": 6,
+        "checks": 7,
         "first_seen": "2026-10-31T10:48:13Z",
-        "last_check": "2026-10-31T12:28:12Z",
+        "last_check": "2026-10-31T12:48:13Z",
         "symbol": "USAD"
       },
       "0xfb19cc6cfeac0ac1c4e7d169b2f0df96a345805f": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-10-31T12:33:12Z",
-        "last_check": "2026-10-31T12:33:12Z",
+        "last_check": "2026-10-31T12:48:13Z",
         "symbol": "ANFF"
       }
     }
