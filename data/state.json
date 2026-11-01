@@ -1,11 +1,27 @@
 {
   "baseline": {
-    "cash": 30.192891117182874,
+    "cash": 25.192891117182874,
     "day": "2026-11-01",
     "day_start_value": 27.621755991347687,
     "halted_day": "",
-    "positions": {},
-    "ticks_since_buy": 11
+    "positions": {
+      "0x3122c6d8f90edb1577df57fcbe4e0a1917818e45": {
+        "cost_usd": 5,
+        "entry_fill": 9.8532e-05,
+        "entry_intended": 9.384e-05,
+        "entry_liq_usd": 92899.29,
+        "entry_ts": "2026-11-01T11:28:12Z",
+        "ladder_done": [],
+        "last_price": 9.384e-05,
+        "launchpad": "other",
+        "orig_qty": 50744.93565542159,
+        "pair": "0xe9a8b726b20bc9cce427d23b6e4014f2d3a2d522dda96b339bb25a158548bbe1",
+        "peak_price": 9.384e-05,
+        "qty": 50744.93565542159,
+        "symbol": "FFDO"
+      }
+    },
+    "ticks_since_buy": 0
   },
   "desk": {
     "cash": 47.60776857887221,
@@ -886,7 +902,8 @@
       },
       "0x85fe1d47a867c7bdb9c1bbc25d66ff877311a3ed": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 3.975e-06,
         "first_seen": "2026-11-01T05:23:14Z",
@@ -4749,12 +4766,6 @@
         "symbol": "XTO",
         "until": "2026-11-01T22:03:11Z"
       },
-      "0x5d100df9802bdd24679e82716ff918682313ae70": {
-        "at": "2026-10-31T11:23:11Z",
-        "reason": "liquidity",
-        "symbol": "TROLL",
-        "until": "2026-11-01T11:23:11Z"
-      },
       "0x5d20069ec46f37a2be53835dfa8dd8ce40ecfba3": {
         "at": "2026-11-01T07:53:11Z",
         "reason": "liquidity",
@@ -5600,6 +5611,12 @@
         "reason": "liquidity",
         "symbol": "LIQUIDBGT",
         "until": "2026-11-02T03:53:11Z"
+      },
+      "0x7768ec01a867a17fb51d76914bde26d4ad1a4a3a": {
+        "at": "2026-11-01T11:28:12Z",
+        "reason": "liquidity",
+        "symbol": "GROK",
+        "until": "2026-11-02T11:28:12Z"
       },
       "0x7771b423acffa649f1472beef32ad78e920db077": {
         "at": "2026-10-31T22:23:10Z",
@@ -7976,6 +7993,12 @@
         "reason": "liquidity",
         "symbol": "LIT",
         "until": "2026-11-01T23:23:12Z"
+      },
+      "0xb2000000000000000000008cdb699c9647be57ea": {
+        "at": "2026-11-01T11:28:12Z",
+        "reason": "liquidity",
+        "symbol": "ATLAS",
+        "until": "2026-11-02T11:28:12Z"
       },
       "0xb2000000000000000000008f31a8d352f4056737": {
         "at": "2026-10-31T14:43:11Z",
@@ -11028,9 +11051,9 @@
         "symbol": "NAFF"
       },
       "0x3122c6d8f90edb1577df57fcbe4e0a1917818e45": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-01T11:13:12Z",
-        "last_check": "2026-11-01T11:13:12Z",
+        "last_check": "2026-11-01T11:28:12Z",
         "symbol": "FFDO"
       },
       "0x3932c8fe80d4215899b6d16190e51a521525083a": {
