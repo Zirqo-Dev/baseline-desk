@@ -842,6 +842,80 @@ Moved from CLAUDE.md section 11 on 2026-10-23 (BL-2 process cleanup). Wording is
     state). Refresh with a fake clock: live.json 1 fetch at load, still 1 at 4 min, 2 at 5 min, still 2 after 16 min
     hidden (badge redrawn to Stale 21 min meanwhile), 3 right after turning visible; report.json and tokens_24h.json 1 each.
 
+## BL-3
+- Alerts channel, display only: core/alerts.py sends Telegram Bot API sendMessage (stdlib urllib, POST, 10 s timeout) to
+  the owner's phone. No rule, verdict, exit, report or live.json reads or changes anything in it.
+- Secrets: env TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID (repo secrets). tick.yml passes them to the Tick step only;
+  alert-test.yml to its send step only. Either missing or empty (an unset secret arrives as ""): alerts=off, no request,
+  nothing queued, state untouched.
+- Public logs, hard rule: the token, the chat id, the request URL and Telegram's reply (it names the owner) are never
+  printed, logged, written to data/ or raised. deliver() catches every exception inside itself and returns only "ok",
+  "error:NotOk" (a reply without ok:true) or "error:<ExceptionTypeName>"; the exception object never leaves it and
+  str(exception) is never used (urllib's HTTPError/URLError carry the URL, so the token; JSONDecodeError quotes the reply).
+  The reply is read only for its "ok" field. No bot username anywhere in the repo.
+- Messages, plain text (no parse_mode, so w_COIN or [BSTONK] can never break a send), link previews off. Fake values:
+  - BUY:   "Baseline desk BUY SI / $5.00 at 0.00299009 / liq $159,111 · real depth $4,321 / https://dexscreener.com/base/0x..."
+  - SELL:  "Baseline desk SELL SI · ladder_1 / price +47.35% · pnl +$0.71 / desk cash after $47.61"
+  - daily: "Baseline daily · 2026-10-31 / desk $47.61 · random $27.62 · desk lead +$19.99 / Gate B 1/100 desk closes /
+            closes that day: desk 0 · random 22 / runs 288/288 · ERROR rows 0" (the 2026-10-31 report.json:
+            baseline closes 61 since BL-8, closes_day 22)
+  - error: "Baseline run RED · 2026-11-01 18:28 UTC / labels error:URLError" (one line per failed step; a crash reads
+            "crash error:JSONDecodeError")
+  - TEST:  "TEST · Baseline desk BUY TEST_COIN / $5.00 at 0.00123456 / liq $123,456 · real depth $4,321 / https://dexscreener.com/base/0x000..."
+  ("/" marks a line break.)
+- Sources, this tick only, no data request (a test shows the same request count with alerts on or off):
+  - BUY: desk trades.csv BUY rows at this tick's ts (usd, fill_price, liq_usd); qliq from the same tick's desk VERIFY PASS
+    row (BL-28 qliq=), "na" when not there.
+  - SELL: desk trades.csv SELL rows at this tick's ts (reason, pnl_usd of that sale) and the EXIT SELL row's pct= (the
+    price move vs the entry fill). Desk cash after each sale = the saved desk cash + this tick's buys - the proceeds of
+    the later sales this tick (exact, since buys come after exits); "na" when the state can't be read.
+  - daily: the report dict run_due() just wrote (only when report=ok, so never after a failed report): desk/baseline
+    value_usd, desk_lead_usd, gate_b (running desk closes), "closes that day" = closes_day of both books (never closes); runs = desk TICK rows of the closed day / 288; ERROR rows
+    of the closed day (both books), from that day's tasks.csv.
+  - error: the steps that end the run red: crash, report, machine, baseline (first baseline error), labels, live, each
+    with its exception type name. At most one per hour (state last_error = when the last one was queued). On a crash
+    with an unreadable state.json the throttle comes from the TICK rows instead (a red TICK row with alerts_sent>0 in the
+    last 60 min, today and yesterday), so a broken state can't send one alert every 5 min; the broken file is never
+    written by alerts.
+  - Baseline (random book) trades never send anything.
+- Order and queue: new alerts this tick = error, then SELLs, then BUYs, then daily, appended to state "alerts".queue
+  ({kind, at, text}); more than 20 waiting drops the oldest; one older than 60 min is dropped; up to 3 sends per tick,
+  oldest first, stopping at the first failure (at most one 10 s timeout per tick; the rest wait). State is written only
+  when the queue or last_error changed, so a tick that sends everything it built leaves state.json untouched. Texts in
+  the queue carry only desk numbers (symbol, address, prices), nothing secret.
+- Quiet hours 22:00 to 07:00 America/Toronto (zoneinfo, DST-safe), decided at send time: disable_notification=true;
+  never dropped or delayed for quiet hours.
+- In the tick: after live.json (and its live=), before the TICK row, also on a crashed tick (live=none there), in its own
+  try. TICK detail ends with alerts=ok|off|none|error:<type> alerts_sent=<n>: off = no secrets, none = nothing to send,
+  ok = at least one sent and none failed, error = a send (or the state write) failed. An exception out of alerts.run()
+  logs alerts=error:<type> alerts_sent=0. Alerts never raise out of the tick and never make the run red; the red steps
+  still re-raise as before. secs (counted before live) does not include the sends (up to 3 x 10 s worst case).
+- alert-test.yml: workflow_dispatch only, main only, permissions contents: read, checkout with persist-credentials:
+  false, timeout 2 min; runs python -m core.alerts --test, which sends one TEST message shaped like a desk BUY (quiet
+  hours apply), writes nothing, commits nothing and prints only ok, off or error:<type>; exit 0 on ok, 1 on off or
+  error, so a missing secret shows red. No set -x, env dump or debug output in tick.yml or alert-test.yml (test).
+- tests/__init__.py pops both env names, so the suite can never send a real message whatever the shell exports.
+- Tests: tests/test_alerts.py (32): the four formats and the TEST text; closes that day = closes_day for both books
+  (a report with different closes and closes_day per book); plain text with w_COIN*[BSTONK]_`x` sent
+  verbatim, no parse_mode, POST, 10 s, link previews off; quiet hours on both sides of the 2026-11-01 and 2026-03-08 DST
+  changes (same UTC time, other answer) and disable_notification; no secrets (missing or empty, either one) = no request,
+  alerts=off, no state key; BUY and SELL alerts from real tick rows (qliq, cash after); baseline trades send nothing;
+  daily after the day-roll report (runs 1/288) and none after a failed report (error alert instead); one error alert
+  per hour naming the step; crash alert with a broken state (once per hour via TICK rows, no live.json, state file
+  untouched) and with a readable one; a failing send (URLError) keeps every TICK key but alerts, every row, the state,
+  live.json, report.json and trades.csv equal to alerts off, and no run red; alerts.run raising -> alerts=error, run
+  green; retry next tick and the 1 h drop; max 3 sends and 20 waiting; stop at the first failure; same request count.
+  Leak test with a fake token, chat id, owner name, handle and bot username in every Telegram answer (ok, HTTPError,
+  URLError, timeout, ok:false, garbage): none in stdout (log=print), stderr, any file under data/ (tasks.csv,
+  trades.csv, state.json, live.json, outcomes), or the formatted traceback of the run's raised error; the --test path's
+  stdout and stderr hold only ok/off/error:<type>, and it changes no file in the repo. Workflows: alert-test.yml is
+  dispatch-only, contents: read, no write anywhere, no commit or push; the secrets appear only in the Tick step and the
+  send step; no debug output. Updated: the TICK key lists in test_tick / test_labels (alerts last). 282 pass on 3.13.
+  A mutation check (str(e) in the result, printing the reply, parse_mode, no quiet hours, 4 sends) fails the suite each time.
+- Smoke 2026-11-01 (scratch copy of the repo and data/, secrets unset, nothing under data/ changed): one real tick
+  alerts=off alerts_sent=0, live=ok, 33 requests, 20.6 s, no "alerts" key in state; python -m core.alerts --test printed
+  "off", exit 1.
+
 ## Open items (detail)
 - Open items:
   - BL-7 done only after 24h of green runs, no overlap, one TICK row per run. The TICK rows show the real run rate for Gate A (90%).

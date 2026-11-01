@@ -1,0 +1,30 @@
+# BL-3: send one TEST message (shaped like a desk BUY) to the owner's Telegram, by hand only.
+# Writes nothing, commits nothing; prints only ok, off or error:<type> (Actions logs are public).
+# Needs the repo secrets TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID; red when either is missing (off) or the send fails.
+name: alert-test
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  alert-test:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Send test alert
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python -m core.alerts --test

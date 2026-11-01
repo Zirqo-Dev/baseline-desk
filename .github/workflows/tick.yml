@@ -31,7 +31,11 @@ jobs:
         with:
           python-version: "3.13"
 
+      # BL-3: the Telegram secrets reach this step only; core/alerts.py never prints them (public logs).
       - name: Tick
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: python -m core.tick
 
       # Runs even when the tick crashed, so the TICK row and any fills land; the run stays red.

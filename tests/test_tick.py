@@ -183,9 +183,10 @@ class TickTest(unittest.TestCase):
         self.assertEqual(detail(hb[0]), {**desk_keys, "bl_positions": "0", "bl_due": "0", "bl_eligible": "1",
                                          "bl_bought": "0", "report": "none", "machine": "none", "bl_error": "none",
                                          "labels": "none", "labels_due": "0", "labels_done": "0", "labels_calls": "0",
-                                         "live": "ok"})
-        self.assertEqual(list(detail(hb[0]))[-6:],
-                         ["bl_error", "labels", "labels_due", "labels_done", "labels_calls", "live"])  # BL-27: live last
+                                         "live": "ok", "alerts": "off", "alerts_sent": "0"})
+        self.assertEqual(list(detail(hb[0]))[-8:],
+                         ["bl_error", "labels", "labels_due", "labels_done", "labels_calls", "live",
+                          "alerts", "alerts_sent"])  # BL-27 live, then BL-3 alerts last
         self.assertEqual(detail(hb[1])["checked"], "0")  # the 24h skip holds: no re-check, no row
 
     def test_pass_buys_and_saves_pair(self):

@@ -259,7 +259,7 @@ class TickLabelsTest(unittest.TestCase):
         self.assertEqual([h["labels"] for h in hb], ["none", "ok"])
         self.assertEqual({k: hb[1][k] for k in ("labels_due", "labels_done", "labels_calls")},
                          {"labels_due": "1", "labels_done": "1", "labels_calls": "1"})
-        self.assertEqual(list(hb[1])[-5:-1], ["labels", "labels_due", "labels_done", "labels_calls"])  # then live (BL-27)
+        self.assertEqual(list(hb[1])[-7:-3], ["labels", "labels_due", "labels_done", "labels_calls"])  # then live, alerts
         self.assertEqual(n["requests"], int(hb[1]["requests"]))  # the label request is counted
         self.assertEqual([r["horizon"] for r in self.outcomes()], ["1h"])
 

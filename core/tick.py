@@ -32,15 +32,19 @@ Live view (BL-27, display only, core/live.py): just before the TICK row, in its 
 from the state this tick saved and today's tasks.csv (open positions of both books, the last tick, today's ticks), no
 request. A failure logs live=error:<type>, is retried next tick and ends the run red after the TICK row. A crashed
 tick writes no live.json (live=none), so the site's age badge goes stale.
+Alerts (BL-3, display only, core/alerts.py): last, after live.json and also on a crashed tick, in its own try:
+Telegram messages for this tick's desk BUY and SELL rows, the daily summary after a successful day-roll report and one
+error alert per hour for a red run (the failed steps). Never makes the run red, never changes a result; the token,
+chat id, URL and Telegram's reply are never logged. TICK detail ends with alerts=ok|off|none|error:<type> alerts_sent=<n>.
 TICK detail: the desk keys as before, then bl_positions bl_due bl_eligible bl_bought report machine bl_error,
-then labels labels_due labels_done labels_calls, then live.
+then labels labels_due labels_done labels_calls, then live, then alerts alerts_sent.
 """
 import sys
 import time
 from pathlib import Path
 
 from adapters import base
-from core import baseline, config, desk, exits, labels, live, report
+from core import alerts, baseline, config, desk, exits, labels, live, report
 from core.book import ROOT, TASK_FIELDS, Book, _append, day, ts, utcnow
 from core.leads import Leads
 
@@ -110,6 +114,13 @@ def verify_and_buy(book, leads, held, client, now, n, seen=None, verdicts=None, 
                 n["bought"] += 1
 
 
+def red_steps(crash, report_error, machine_error, bl_errors, labels_error, live_error):
+    """BL-3: the failed steps of a red run, [(step, error type name)], for the error alert."""
+    steps = [("crash", crash), ("report", report_error), ("machine", machine_error),
+             ("baseline", bl_errors[0] if bl_errors else None), ("labels", labels_error), ("live", live_error)]
+    return [(step, type(e).__name__) for step, e in steps if e is not None]
+
+
 def run(root=ROOT, now=None, client=None, clock=time.monotonic, log=print):
     """One tick. Returns the heartbeat counts; re-raises a crash after logging the TICK row."""
     root, now = Path(root), now or utcnow()
@@ -122,6 +133,7 @@ def run(root=ROOT, now=None, client=None, clock=time.monotonic, log=print):
     lb = {"labels": "none", "labels_due": 0, "labels_done": 0, "labels_calls": 0}
     labels_error = live_error = None
     exits_sold = 0  # BL-27: desk EXIT SELL rows this tick, for live.json only
+    report_out = None  # BL-3: the day-roll report, for the daily summary alert only
 
     def bl_try(bl, stage, step, after_error=False):
         """One baseline step; an error is logged and kept, never stops the desk (pick 7)."""
@@ -143,7 +155,8 @@ def run(root=ROOT, now=None, client=None, clock=time.monotonic, log=print):
         bl.roll_day(now)
         if rs["due"]:
             try:
-                log("REPORT " + report.run_due(root, now, rs, [book, bl])["summary"])
+                report_out = report.run_due(root, now, rs, [book, bl])
+                log("REPORT " + report_out["summary"])
                 b["report"] = "ok"
             except Exception as e:  # trading goes on; stays due, retried next tick, run ends red
                 b["report"], report_error = f"error:{type(e).__name__}", e
@@ -202,6 +215,12 @@ def run(root=ROOT, now=None, client=None, clock=time.monotonic, log=print):
             n["live"] = "ok"
         except Exception as e:
             n["live"], live_error = f"error:{type(e).__name__}", e
+    try:  # BL-3: last, display only, also on a crash; never makes the run red, logs only ok/off/none/error:<type>
+        n["alerts"], n["alerts_sent"] = alerts.run(
+            root, now, red_steps(crash, report_error, machine_error, bl_errors, labels_error, live_error),
+            report_out if b["report"] == "ok" else None)
+    except Exception as e:
+        n["alerts"], n["alerts_sent"] = f"error:{type(e).__name__}", 0
     detail = " ".join(f"{k}={v}" for k, v in n.items())
     # written straight to tasks.csv, so it works even when the state file is what broke
     _append(root / config.TASKS.format(day=day(now)), TASK_FIELDS, {

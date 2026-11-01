@@ -43,11 +43,13 @@ REPORT   core/report.py            desk vs random baseline -> data/report.json, 
 REPORT   core/report.py            machine cards (BL-23, tasks.csv only) -> report.json "machine" + data/tokens_24h.json, own try
 LABELS   core/labels.py            outcome labels (BL-26, logging only): +1/+6/+24 h after first sight -> data/daily/<day>/outcomes.csv
 LIVE     core/live.py              live view (BL-27, display only): open positions of both books + last tick -> data/live.json, every tick
+ALERTS   core/alerts.py            Telegram alerts (BL-3, display only): desk BUY/SELL, daily summary, red-run error -> the owner's phone
 TICK     core/tick.py              one run: roll day (+report, +machine cards), exits (desk, baseline), scan -> verify -> buy, baseline buy,
-                                   outcome labels (own try), live.json (own try, not on a crash), one TICK heartbeat row
+                                   outcome labels (own try), live.json (own try, not on a crash), alerts (own try, also on a crash),
+                                   one TICK heartbeat row
 
 Folders:
-- core/: config.py, book.py, desk.py, verify.py, leads.py, exits.py, friction.py, tick.py, baseline.py, report.py, labels.py, live.py
+- core/: config.py, book.py, desk.py, verify.py, leads.py, exits.py, friction.py, tick.py, baseline.py, report.py, labels.py, live.py, alerts.py
 - tools/: replay.py (BL-29, offline replay by hand; never imported by core/, never on the tick path)
 - adapters/: base.py (EVM, chain 8453). Adapter pattern kept so other chains could plug in later (parked).
 - prompts/: x_read.py
@@ -56,7 +58,8 @@ Folders:
   (at page load) and data/live.json (BL-27: at load, then every 5 min while the tab is visible) from raw.githubusercontent.com
   (no override); the locked mock is docs/mock/bl13-mock.html (never under site/)
 - docs/: DECISIONS.md, LEARNINGS.md, NOTES.md, CHANGELOG.md, mock/ (bl13-mock.html, reference only)
-- .github/workflows/: tick.yml, pages.yml (BL-13: deploys site/ on push to main touching site/** or itself, or by hand; no report.yml, BL-8)
+- .github/workflows/: tick.yml, pages.yml (BL-13: deploys site/ on push to main touching site/** or itself, or by hand; no report.yml, BL-8),
+  alert-test.yml (BL-3: by hand only, read-only, sends one TEST message, commits nothing)
 
 Standard facts dict (every field required; missing = skip):
 symbol, price, liq_usd, age_min, sells_1h, mint_open, freeze_or_blacklist, honeypot,
@@ -80,6 +83,9 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
 - The bot commits data/ to main ("data: tick ..."), only on change, pull --rebase before push.
   Sessions: git pull before working, git pull --rebase before every push, never commit anything under data/.
 - pages.yml deploys site/ only when site/ changes (GitHub Pages soft limit: 10 builds/hour).
+- Alerts (BL-3): repo secrets TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID reach only tick.yml's Tick step and alert-test.yml's
+  send step. Actions logs are public: never print, log, commit or raise the token, chat id, request URL or Telegram's reply;
+  only alerts=ok|off|none|error:<type> and a count. No set -x, env dump or debug output in either workflow.
 - Pause: set PAUSED = True in core/config.py, or disable tick.yml in the Actions tab.
 
 ## 8. Limits to respect
@@ -157,7 +163,18 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
   TICK row, retried next tick); a crashed tick writes none (live=none). New positions keep entry_qliq (display only).
   The site: header first, Live badge from live.json (Stale over 15 min, ages redrawn every minute), terminal from live.json,
   new "Open now" card, "N days logged"; only live.json is re-fetched, every 5 min while visible (docs/NOTES.md "BL-27").
-  Tests: stdlib unittest, `python -m unittest` (250 pass on 3.13).
+  BL-3 live (display only, 2026-11-01): core/alerts.py sends Telegram messages to the owner (stdlib urllib, sendMessage, plain
+  text, no parse_mode, link previews off, 10 s timeout) from env TELEGRAM_BOT_TOKEN + TELEGRAM_CHAT_ID (either missing:
+  alerts=off, no request, nothing queued). Desk only, from this tick's own rows, no data request: every desk BUY (symbol, $
+  size, fill, liq, real depth qliq, DexScreener link), every desk SELL (rule, price %, pnl, desk cash after), the daily
+  summary after a successful day-roll report (desk, random, desk lead, Gate B n/100, closes that day, runs x/288, ERROR rows),
+  and one error alert per hour for a red run naming the failed steps (crash, report, machine, baseline, labels, live).
+  Quiet hours 22:00-07:00 America/Toronto send silently, never dropped. Last in the tick, own try, also on a crash; never
+  makes the run red; TICK ends with alerts=ok|off|none|error:<type> alerts_sent=<n>. Unsent alerts wait in state "alerts"
+  (max 20, max 3 sends per tick, stop at the first failure, dropped after 1 h). alert-test.yml (by hand) runs
+  python -m core.alerts --test: one TEST message shaped like a desk BUY, writes nothing, prints ok/off/error:<type>
+  (docs/NOTES.md "BL-3").
+  Tests: stdlib unittest, `python -m unittest` (282 pass on 3.13).
 - cron-job.org token "baseline-desk cron" EXPIRES Thu 2027-01-21: renew by early January or the desk stops silently.
 - Technical detail per card, GoPlus diagnosis, BL-20 budget and full open items: docs/NOTES.md.
 - Open items:
@@ -173,7 +190,9 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
   - top10 is the top 8-10 after exclusions, slightly lenient (docs/NOTES.md)
   - The exact GoPlus rate-limit code is unverified; code 3 is not one; BL-24 saw code 4029 4 times in 137 calls at 2 s, very likely it (docs/NOTES.md)
   - tokens_24h.json adds ~230 KB of git history per day (overwritten daily), BL-25 ~83 KB/day (+ BL-28 qliq ~15 KB/day) to tasks.csv and BL-26 outcomes.csv ~55 KB/day, BL-27 live.json ~1 KB per tick (rewritten every tick, ~290 KB/day of git history); include all four in BL-16's archive plan (docs/NOTES.md)
-- Next step: the Nov 6 review: python -m tools.replay --from 2026-10-31 --to 2026-11-06 on about a week of data
+- Next step: the owner adds the repo secrets TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID and runs alert-test.yml by hand
+  (expect "ok" and a TEST message on the phone; "off" = a secret is missing), then checks that the next TICK rows log
+  alerts=none|ok. Then the Nov 6 review: python -m tools.replay --from 2026-10-31 --to 2026-11-06 on about a week of data
   (docs/NOTES.md "BL-29"). The BL-24 result stays with the owner (no rule change made).
 - Last updated: 2026-11-01.
 
