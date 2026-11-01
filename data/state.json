@@ -5,7 +5,7 @@
     "day_start_value": 27.621755991347687,
     "halted_day": "",
     "positions": {},
-    "ticks_since_buy": 31
+    "ticks_since_buy": 32
   },
   "desk": {
     "cash": 47.60776857887221,
@@ -354,6 +354,12 @@
         "first_seen": "2026-10-31T12:53:11Z",
         "symbol": "ARB"
       },
+      "0x2cfde96f49a75aff6010c1fa048ec7c27f1730e9": {
+        "done": [],
+        "first_price": 8.175e-05,
+        "first_seen": "2026-11-01T04:03:14Z",
+        "symbol": "METAL BLOCKCHAIN"
+      },
       "0x30e1fd8113e97e536e17cd1e2180c4a0b4bf9979": {
         "done": [
           1,
@@ -504,7 +510,8 @@
       },
       "0x4aaf4347dec9d798cd55f847949cf7e97447ca2a": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 0.0001189,
         "first_seen": "2026-10-31T21:58:13Z",
@@ -740,7 +747,8 @@
       },
       "0x767b066b49b83ecb8b1e2beef306297d905cf7b1": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 0.0001315,
         "first_seen": "2026-10-31T22:03:11Z",
@@ -905,7 +913,9 @@
         "symbol": "DOA"
       },
       "0xa2054e62c10285299ccaa5fb9c3a62c8dd4d11a8": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 5.618e-06,
         "first_seen": "2026-11-01T02:58:13Z",
         "symbol": "USRC"
@@ -1087,7 +1097,8 @@
       },
       "0xbd329076f42cba07f0c54d29019c10d208d1a99d": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 0.0001213,
         "first_seen": "2026-10-31T21:58:13Z",
@@ -1184,7 +1195,8 @@
       },
       "0xcc865b9e2a86e9e75ac7575614fd6830995c3a91": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 0.0001213,
         "first_seen": "2026-10-31T21:58:13Z",
@@ -4957,6 +4969,12 @@
         "symbol": "XCHAT",
         "until": "2026-11-01T21:38:13Z"
       },
+      "0x745d6da03ac5c6db9220d5a56376ea0102c3c293": {
+        "at": "2026-11-01T04:03:14Z",
+        "reason": "liquidity",
+        "symbol": "NUBI",
+        "until": "2026-11-02T04:03:14Z"
+      },
       "0x74e942e5d4caa3af81747ac67eb6445a6c76fee1": {
         "at": "2026-10-31T12:53:11Z",
         "reason": "liquidity",
@@ -6858,12 +6876,6 @@
         "reason": "liquidity",
         "symbol": "PRAY",
         "until": "2026-11-01T18:28:12Z"
-      },
-      "0xb2000000000000000000005f835c9ef516ba35c1": {
-        "at": "2026-10-31T04:03:12Z",
-        "reason": "liquidity",
-        "symbol": "ATLAS",
-        "until": "2026-11-01T04:03:12Z"
       },
       "0xb2000000000000000000005fdaa3099fb63f7621": {
         "at": "2026-10-31T12:03:12Z",
@@ -9730,10 +9742,16 @@
     },
     "watch": {
       "0x1be928bdb17753916b1d86dc76089c2968d2e9e4": {
-        "checks": 2,
+        "checks": 3,
         "first_seen": "2026-11-01T03:33:12Z",
-        "last_check": "2026-11-01T03:48:12Z",
+        "last_check": "2026-11-01T04:03:14Z",
         "symbol": "WBTC"
+      },
+      "0x2cfde96f49a75aff6010c1fa048ec7c27f1730e9": {
+        "checks": 1,
+        "first_seen": "2026-11-01T04:03:14Z",
+        "last_check": "2026-11-01T04:03:14Z",
+        "symbol": "METAL BLOCKCHAIN"
       },
       "0x44b19ec1eff40178a8ab9cd500a5d290b9fdb82e": {
         "checks": 8,
@@ -9742,21 +9760,21 @@
         "symbol": "UODF"
       },
       "0xb59728dc5f14afa0295bc0ee031a3f0d00f82fd8": {
-        "checks": 8,
+        "checks": 9,
         "first_seen": "2026-11-01T01:43:11Z",
-        "last_check": "2026-11-01T03:48:12Z",
+        "last_check": "2026-11-01T04:03:14Z",
         "symbol": "UODF"
       },
       "0xbd9fb0e11420876f36beac447b7c2afcc68f840d": {
-        "checks": 7,
+        "checks": 8,
         "first_seen": "2026-11-01T02:03:11Z",
-        "last_check": "2026-11-01T03:48:12Z",
+        "last_check": "2026-11-01T04:03:14Z",
         "symbol": "UOFD"
       },
       "0xeb5fec14d27ab94fe1381543f540a7d7e5bdc9d8": {
-        "checks": 4,
+        "checks": 5,
         "first_seen": "2026-11-01T02:53:12Z",
-        "last_check": "2026-11-01T03:48:12Z",
+        "last_check": "2026-11-01T04:03:14Z",
         "symbol": "USRC"
       }
     }
