@@ -1837,3 +1837,9 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-01T13:23:13Z,desk,VERIFY,NAFF,0x01d1317bd9713d3511f588a422c57e104a0bf88c,WATCH,goplus_not_ready,"first_seen=2026-11-01T13:23:13Z checks=1 pending=mint_open,freeze_or_blacklist,honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct,risk_flags b1=5 s1=0 b24=5 s24=0 liq=69461 dex=uniswap:v2 qliq=34736"
 2026-11-01T13:23:13Z,desk,VERIFY,BatCat,0xb2000000000000000000007fde32e1f91478ea64,SKIP,liquidity,goplus=skipped until=2026-11-02T13:23:13Z
 2026-11-01T13:23:13Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=19 rechecks=5 new=2 checked=7 passed=0 bought=0 held=0 deferred=0 dex_only=1 goplus=6 requests=17 secs=11.9 bl_positions=0 bl_due=0 bl_eligible=1 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=4 labels_done=4 labels_calls=1 live=ok
+2026-11-01T13:28:13Z,desk,VERIFY,GOIF,0x677767694afc74dd8144dd29213e0e7c9f5b56a0,WATCH,goplus_not_ready,"first_seen=2026-11-01T13:13:11Z checks=2 pending=mint_open,freeze_or_blacklist,honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct,risk_flags b1=16 s1=0 b24=16 s24=0 liq=76356 dex=uniswap:v4 qliq=2"
+2026-11-01T13:28:13Z,desk,VERIFY,SHRP,0x8599ff00c89cad1f8094a41bc0a8ebd7fb349ba3,SKIP,liquidity,goplus=skipped until=2026-11-02T13:28:13Z
+2026-11-01T13:28:13Z,desk,VERIFY,XMarket,0xd8e3d59d51ad05741f4ceff7a81d34b0447e05d8,SKIP,liquidity,goplus=skipped until=2026-11-02T13:28:13Z
+2026-11-01T13:28:13Z,desk,VERIFY,E91,0xf3bb59a4c317047f2e9b515d2e87f1729141e25a,SKIP,liquidity,goplus=skipped until=2026-11-02T13:28:13Z
+2026-11-01T13:28:13Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
+2026-11-01T13:28:13Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=19 rechecks=1 new=3 checked=4 passed=0 bought=0 held=0 deferred=0 dex_only=3 goplus=1 requests=9 secs=2.2 bl_positions=0 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=1 labels_done=1 labels_calls=1 live=ok
