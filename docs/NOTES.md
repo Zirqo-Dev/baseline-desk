@@ -767,6 +767,81 @@ Moved from CLAUDE.md section 11 on 2026-10-23 (BL-2 process cleanup). Wording is
   counts and the header text in the CLI output; no network and no file change; no core.tick import, no tools import in core/.
   231 pass on 3.13 (219 before).
 
+## BL-27
+- Live view, display only (the owner's approved mock, reviewed in chat; no mock file in the repo). core/live.py writes
+  data/live.json at the end of every tick; site/index.html reads it. No rule, verdict, exit or config reads live.json,
+  and it makes no request (it imports no adapter; test).
+- Shape (about 1 KB, json indent 1; 985 B on the live smoke with one open position):
+  - as_of = tick time (UTC ISO).
+  - last_tick = ts + seen new checked dex_only goplus passed bought requests secs, the TICK row's own values, plus
+    exits = desk EXIT SELL rows this tick (exits.check() now returns its SELL count; the TICK row is unchanged but for live=).
+  - today = day, ticks (desk TICK rows in today's tasks.csv + 1 for this tick's row, written right after live.json),
+    expected (report.slots(now): the :03 :08 ... slots passed, the formula python -m core.report already used),
+    errors (rows with action ERROR today). An off-schedule run (e.g. a smoke) can push ticks one above expected.
+  - exit = hard_stop_pct time_stop_min time_stop_min_pct trail_pct from config.EXIT, so the site's chips never go stale.
+  - books.desk / books.baseline = cash_usd, value_usd (report.liq_value, the report.json basis), open = positions oldest
+    first: symbol, address, entry_ts, age_min (floored, never negative), cost_usd (the remaining qty's cost: desk.sell()
+    already lowers cost_usd on a ladder sale), value_usd (remaining qty x friction.sell_fill(last price, last liquidity
+    else entry liquidity, launchpad), as liq_value), value_pct (value vs cost), price_pct (last price vs entry fill, the
+    EXIT row's pct=), liq_usd (last, rounded), qliq (entry_qliq, null when not known), ladders_done (names "ladder_1",
+    "ladder_2", from the state's 0-based indexes), time_stop_at (entry_ts + time_stop_min, always written).
+  - USD values rounded to 4 decimals, % to 2.
+- Source: the books are re-read from data/state.json after this tick's saves (what the next tick will see), not the
+  in-memory objects; the counts come from the tick's heartbeat dict.
+- qliq choice (the owner): desk.buy() stores "entry_qliq" on a new position, from facts["trade"]["qliq"] (the BL-28 value
+  already logged on that tick's VERIFY / baseline BUY row), only when it is a number; "na" or missing -> null. Both books
+  (both buy through desk.buy()). Positions bought before BL-27 have no key -> null. Display only: a test runs the same
+  ticks with entry_qliq real and forced to None and gets identical verdict rows, row details, trades.csv and state
+  (entry_qliq aside).
+- In the tick: after the labels step and after requests/secs are counted, just before the TICK row, live.run() in its
+  own try. TICK detail ends with live=ok | error:<type> | none. A failure keeps every desk and baseline result, the next
+  tick rewrites the file anyway (retry), and the run ends red after the TICK row (raised after labels). A crashed tick
+  (reason error:<type>) writes no live.json and logs live=none (the owner): the old file stays and the site's age badge
+  turns Stale, which is the truth. Writes are atomic (tmp + replace).
+- Site (BL-13 page, the owner's order and look):
+  - Left column, phone order: Baseline PAPER header card, tick-log terminal, Paper equity, Desk vs random, Open now,
+    Gate B, How trades ended. Right column and token table unchanged.
+  - Third fetch: LIVE_URL = raw.githubusercontent.com/.../main/data/live.json, same rules (fetch cache no-cache, no
+    override, no query or hash switch). report.json and tokens_24h.json load once. live.json is fetched again every 5 min
+    while document.visibilityState is visible (checked by a 1-minute timer), not while hidden, and once when the tab turns
+    visible again. A failed re-fetch keeps the last good live.json (its age then shows Stale); a good one replaces it.
+  - Header: with live.json, Live when as_of is 15 min old or less, else orange Stale; small line "tick HH:MM UTC · N min
+    ago". Without it (404 or failed), the BL-13 daily-snapshot badge, unchanged. The ages are recomputed every minute, so a
+    tab left open never shows a false Live.
+  - Terminal: from live.json last_tick (title "baseline · tick.log · live", an "exits N desk sells" line first, footer
+    "today X / Y ticks · Z errors", pill "Running ✓" or orange "No tick for N min" over 15 min); else report.json
+    machine.last_tick as before.
+  - Open now: header "Open now" + "live · tick HH:MM UTC"; groups Desk (solid mark) and Random (dashed) with "$value now ·
+    $cash cash · n open"; per position the symbol (DexScreener link), value_pct big and coloured, "in HH:MM UTC · N min ·
+    liq $X · real $Y", "$cost → $value · price ±x%", chips "ladder N sold" (green), then "time stop HH:MM UTC unless +10%"
+    while no ladder has sold or "trail −25% from peak" once one has (core/exits.py switches from the time stop to the trail),
+    "stop −25%", and orange "ticket N% of real depth" when cost/qliq > 5% ("no real depth ($0)" when qliq is 0). Numbers in
+    chips come from live.json "exit". Empty states as approved; footnote on the liquidation basis; 404 -> "No live.json yet
+    (HTTP 404)…", failed fetch -> red state.
+  - Equity caption "N daily closes" -> "N days logged". The foot line names data/live.json and its tick time.
+- Repo growth: live.json is rewritten every tick and the bot commits it each tick: ~1 KB per tick, ~290 KB/day of git
+  history before compression. Added to the BL-16 open item.
+- Tests: tests/test_live.py (16): shape and key order, values equal report.liq_value (and cash + positions = value),
+  Clanker friction value, price_pct equals the EXIT row's pct=, last liquidity, ladder partial cost basis and
+  "ladder_1", time_stop_at, age never negative, qliq known / "na" / pre-BL-27 null, today counts (TICK + 1, slots,
+  ERROR rows), empty books and the file on disk, no adapter import; in the tick: written every tick with the TICK
+  row's counts and exits = 1 on a hard stop, error keeps the PASS + BUY + TICK rows and the position, live=error then
+  ok next tick, crash writes no file (live=none, old file kept), same requests with live on or off; desk and baseline
+  rows, trades and state equal with live on vs broken; entry_qliq changes no decision. tests/test_site.py (+3): every
+  live.json key the page reads (L, LB, LP readers) exists in a file built by core/live.py; exactly three data URLs, one
+  fetch(), four load( (function + 3), only live.json re-fetched, one setInterval, visibility check. Updated: the TICK
+  key lists in test_tick / test_labels (live last). 250 pass on 3.13 (231 before).
+- Smoke 2026-11-01 (scratch copy of data/, nothing under data/ changed):
+  - One real tick 12:40 UTC: live=ok, 10 requests, 3.0 s; live.json 985 B: desk 47.6078 cash, nothing open; baseline
+    NAFF (bought 12:28, before BL-27, so qliq null) cost 5.00 -> value 4.7017 (-5.97%), price -3.06%, liq 30.0M,
+    time_stop_at 13:13:13Z; today 153 ticks / 152 slots (the smoke tick is extra), 0 errors.
+  - Browser (Chromium, Playwright routes for the three raw URLs, real report.json and tokens_24h.json, scratch live.json
+    built by core/live.py with a ladder_1 position and a thin-qliq position): 390 and 1280 px, no horizontal scroll, no
+    script error; requests = the page + the three data URLs. States: fresh (Live, "Running ✓"), 40 min old (Stale,
+    "No tick for 40 min"), live.json 404 (BL-13 badge and terminal, honest 404 state in Open now), aborted fetch (red
+    state). Refresh with a fake clock: live.json 1 fetch at load, still 1 at 4 min, 2 at 5 min, still 2 after 16 min
+    hidden (badge redrawn to Stale 21 min meanwhile), 3 right after turning visible; report.json and tokens_24h.json 1 each.
+
 ## Open items (detail)
 - Open items:
   - BL-7 done only after 24h of green runs, no overlap, one TICK row per run. The TICK rows show the real run rate for Gate A (90%).

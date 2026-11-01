@@ -216,6 +216,12 @@ TICKS_PER_DAY = 288  # tick.yml every 5 min
 KILL_LOG = 10
 
 
+def slots(now):
+    """The :03 :08 ... tick slots of now's UTC day already passed (by hand and BL-27's live.json)."""
+    m = now.hour * 60 + now.minute
+    return (m - 3) // 5 + 1 if m >= 3 else 0
+
+
 def tasks(root, d):
     p = Path(root) / config.TASKS.format(day=d)
     if not p.exists():
@@ -318,8 +324,7 @@ def machine(root, now, d, s, open_n, closed=True):
         end, expected = start + timedelta(days=1), TICKS_PER_DAY
     else:  # by hand: the hours so far, the :03 :08 ... slots already passed
         end = now.replace(minute=0, second=0, microsecond=0) + timedelta(hours=1)
-        m = int((now - start).total_seconds() // 60)
-        expected = (m - 3) // 5 + 1 if m >= 3 else 0
+        expected = slots(now)
     last = None
     if ticks:
         kv = _kv(ticks[-1]["detail"])

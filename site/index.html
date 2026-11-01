@@ -245,6 +245,27 @@ body { margin: 0; font-size: 14px; }
 .v-RETRY { background: var(--warn-soft); color: var(--warn-ink); }
 .why-none { font-size: 12px; color: var(--ink-2); }
 .empty.bad { color: var(--down); background: var(--down-soft); }
+/* BL-27: Open now (live.json) */
+.grp { display: grid; gap: 8px; margin-top: 10px; }
+.grp + .grp { margin-top: 14px; }
+.grp-h { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+.grp-h .book-h { margin: 0; }
+.grp-h > span { font-size: 12px; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.grp.rand .book-h i { border-top-style: dashed; border-top-color: var(--ink-3); }
+.pos { background: var(--page); border-radius: 12px; padding: 12px; display: grid; gap: 6px; min-width: 0; }
+.pos-top { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+.pos-top a, .pos-top b { color: var(--ink); font: 600 15px var(--sans); text-decoration: none; overflow-wrap: anywhere; }
+.pos-top a::after { content: " ↗"; font-size: 11px; color: var(--ink-3); }
+.pos-top a:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+.pos-pct { font: 700 22px/1 var(--display); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.pos-sub { font-size: 12px; color: var(--ink-2); font-variant-numeric: tabular-nums; line-height: 1.35; }
+.pos-cv { font-size: 13px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.pos-cv span { font-weight: 400; color: var(--ink-2); }
+.pchips { display: flex; flex-wrap: wrap; gap: 5px; }
+.pc { font: 600 11px/1 var(--sans); padding: 4px 7px; border-radius: 999px; background: var(--card); color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.pc-up { background: var(--up-soft); color: var(--up); }
+.pc-warn { background: var(--warn-soft); color: var(--warn-ink); }
+.grp .empty { text-align: left; background: var(--page); }
 </style>
 </head>
 <body>
@@ -252,20 +273,6 @@ body { margin: 0; font-size: 14px; }
 
   <!-- LEFT: the money -->
   <div class="col">
-    <section class="term" aria-label="Last tick">
-      <div class="term-bar">
-        <div class="lights" aria-hidden="true"><span></span><span></span><span></span></div>
-        <div class="term-title">baseline · tick.log</div>
-        <div></div>
-      </div>
-<pre class="term-body" id="term"><span class="d">$</span> <span class="w">python -m core.tick</span>
-<span class="d">loading report.json …</span></pre>
-      <div class="term-foot">
-        <span class="term-count" id="term-count">—</span>
-        <span class="run-pill" id="run-pill" hidden>Running ✓</span>
-      </div>
-    </section>
-
     <section class="card head" aria-label="Baseline">
       <div class="head-row">
         <div class="logo" aria-hidden="true">
@@ -284,6 +291,20 @@ body { margin: 0; font-size: 14px; }
       <p class="meta" id="meta">Real numbers from the desk's log. Loading…</p>
     </section>
 
+    <section class="term" aria-label="Last tick">
+      <div class="term-bar">
+        <div class="lights" aria-hidden="true"><span></span><span></span><span></span></div>
+        <div class="term-title" id="term-title">baseline · tick.log</div>
+        <div></div>
+      </div>
+<pre class="term-body" id="term"><span class="d">$</span> <span class="w">python -m core.tick</span>
+<span class="d">loading report.json …</span></pre>
+      <div class="term-foot">
+        <span class="term-count" id="term-count">—</span>
+        <span class="run-pill" id="run-pill" hidden>Running ✓</span>
+      </div>
+    </section>
+
     <section class="card" aria-label="Paper equity">
       <div class="card-h"><p class="eyebrow">Paper equity · desk</p></div>
       <div id="equity"></div>
@@ -292,6 +313,11 @@ body { margin: 0; font-size: 14px; }
     <section class="card" aria-label="Desk vs random">
       <div class="card-h"><h2>Desk vs random</h2><span>same size, exits, fees</span></div>
       <div id="vs"></div>
+    </section>
+
+    <section class="card" aria-label="Open now">
+      <div class="card-h"><h2>Open now</h2><span id="open-h">live</span></div>
+      <div id="open"></div>
     </section>
 
     <section class="card" aria-label="Gate B">
@@ -351,14 +377,18 @@ body { margin: 0; font-size: 14px; }
     </div>
   </section>
 
-  <p class="foot" id="foot">Paper only · Base chain · every number comes from data/report.json and data/tokens_24h.json; a dash means no number yet</p>
+  <p class="foot" id="foot">Paper only · Base chain · every number comes from data/report.json, data/tokens_24h.json and data/live.json; a dash means no number yet</p>
 </div>
 
 <script>
 (() => {
-  /* The only two fetches on this page (BL-13, DECISIONS 2026-10-30). No override of any kind. */
+  /* The only three fetches on this page (BL-13, BL-27; DECISIONS 2026-10-30, 2026-11-01). No override of any kind.
+     report.json and tokens_24h.json load once; live.json is fetched again every 5 min while the tab is visible. */
   const REPORT_URL = 'https://raw.githubusercontent.com/Zirqo-Dev/baseline-desk/main/data/report.json';
   const TOKENS_URL = 'https://raw.githubusercontent.com/Zirqo-Dev/baseline-desk/main/data/tokens_24h.json';
+  const LIVE_URL = 'https://raw.githubusercontent.com/Zirqo-Dev/baseline-desk/main/data/live.json';
+  const STALE_MIN = 15;      // live.json older than this: Stale badge, "No tick for N min" pill
+  const REFETCH_MS = 300e3;  // live.json only, while the tab is visible
   const DEX = 'https://dexscreener.com/base/';
   /* Exit rules in the mock's order; keys of report.json exits_by_rule (core/report.py RULES). */
   const RULES = [['time_stop', 'time stop', 0], ['hard_stop', 'hard stop', 1], ['ladder_1', 'ladder 1', 0],
@@ -381,7 +411,7 @@ body { margin: 0; font-size: 14px; }
   const $ = id => document.getElementById(id);
 
   /* Data readers: every key the page reads goes through one of these (tests/test_site.py checks them). */
-  let rep = null, tok = null;
+  let rep = null, tok = null, lv = null, repRes = null, lvRes = null;
   const dig = (o, path) => path.split('.').reduce((x, k) => (x != null && typeof x === 'object' && k in x) ? x[k] : null, o);
   const R = path => dig(rep, path);                 // report.json
   const M = path => dig(rep && rep.machine, path);  // report.json "machine" (BL-23)
@@ -391,6 +421,9 @@ body { margin: 0; font-size: 14px; }
   const HR = (o, k) => dig(o, k);                   // a ticks_per_hour entry
   const KL = (o, k) => dig(o, k);                   // a kill_log entry
   const TK = (o, k) => dig(o, k);                   // a tokens_24h.json token
+  const L = path => dig(lv, path);                  // live.json (BL-27)
+  const LB = (o, k) => dig(o, k);                   // one live.json book: books.desk / books.baseline
+  const LP = (o, k) => dig(o, k);                   // one open position in live.json
 
   function h(tag, attrs, ...kids) {
     const el = document.createElement(tag);
@@ -421,6 +454,10 @@ body { margin: 0; font-size: 14px; }
   const stamp = t => typeof t === 'string' && t.length >= 16 ? t.slice(0, 10) + ' ' + t.slice(11, 16) + ' UTC' : dash;
   const short = d => typeof d === 'string' && /^\d{4}-\d\d-\d\d/.test(d) ? MON[+d.slice(5, 7) - 1] + ' ' + (+d.slice(8, 10)) : dash;
   const label = r => LABEL[r] || r;
+  const kusd = x => !isNum(x) ? dash : x >= 1e6 ? '$' + (x / 1e6).toFixed(1) + 'M' : x >= 1e4 ? '$' + Math.round(x / 1e3) + 'k'
+    : x >= 1e3 ? '$' + (x / 1e3).toFixed(1) + 'k' : '$' + Math.round(x);
+  const ageMin = t => typeof t === 'string' && isFinite(Date.parse(t)) ? Math.max(0, Math.floor((Date.now() - Date.parse(t)) / 60e3)) : null;
+  const liveTick = () => lv && L('last_tick') && typeof L('last_tick') === 'object';
 
   async function load(url) {
     try {
@@ -435,13 +472,17 @@ body { margin: 0; font-size: 14px; }
   const why = r => r.error ? r.error + (r.status ? ' (HTTP ' + r.status + ')' : '') : 'HTTP ' + r.status;
 
   /* ---- header and terminal ---- */
-  function header(r, t) {
+  /* Badge: from live.json as_of when it loaded (BL-27), recomputed every minute; else the daily snapshot (BL-13). */
+  function badge() {
     const live = $('live');
-    if (!rep) {
-      live.className = 'live-dot off'; live.textContent = 'Offline';
-      put('meta', h('span', {}, "Couldn't load report.json: " + why(r) + '. No numbers shown.'));
+    if (lv && typeof L('as_of') === 'string') {
+      const a = ageMin(L('as_of')), ok = a != null && a <= STALE_MIN;
+      live.className = 'live-dot' + (ok ? '' : ' stale'); live.textContent = ok ? 'Live' : 'Stale';
+      live.title = 'last tick in live.json: ' + stamp(L('as_of'));
+      $('snap').textContent = 'tick ' + hhmm(L('as_of')) + ' UTC · ' + (a == null ? dash : a + ' min ago');
       return;
     }
+    if (!rep) { live.className = 'live-dot off'; live.textContent = 'Offline'; return; }
     const lt = M('last_tick.ts') || R('as_of');
     const age = lt ? (Date.now() - Date.parse(lt)) / 3600e3 : Infinity;
     if (age <= 26) { live.className = 'live-dot'; live.textContent = 'Live'; }
@@ -449,15 +490,38 @@ body { margin: 0; font-size: 14px; }
     live.title = 'last tick in report.json: ' + stamp(lt);
     const at = R('as_of');
     $('snap').textContent = 'daily snapshot · as of ' + (typeof at === 'string' && at.length >= 16 ? hhmm(at) + ' UTC, ' + short(at) : dash);
+  }
+
+  function header(r) {
+    badge();
+    if (!rep) {
+      put('meta', h('span', {}, "Couldn't load report.json: " + why(r) + '. No numbers shown.'),
+        lv ? ' Open positions and the last tick from live.json, tick ' + stamp(L('as_of')) + '.' : null);
+      return;
+    }
     put('meta', 'Real numbers from the desk\'s log. Report for ', h('b', {}, R('day') || dash), ', built ',
         h('b', {}, stamp(R('as_of'))), '. ',
         rep.machine ? ['Machine cards for ', h('b', {}, M('day') || dash), '.'] : 'No machine cards in report.json yet.',
-        ' Tokens: ', tok ? h('b', {}, (TF(tok, 'day') || dash)) : 'none yet', '.');
+        ' Tokens: ', tok ? h('b', {}, (TF(tok, 'day') || dash)) : 'none yet', '.',
+        lv ? [' Open positions and the last tick: live.json, tick ', h('b', {}, stamp(L('as_of'))), '.'] : null);
   }
 
   function terminal() {
     const lines = [h('span', { class: 'd' }, '$'), ' ', h('span', { class: 'w' }, 'python -m core.tick'), '\n'];
-    if (!rep) {
+    $('term-title').textContent = liveTick() ? 'baseline · tick.log · live' : 'baseline · tick.log';
+    if (liveTick()) {  /* BL-27: this tick's counts from live.json */
+      const t = hhmm(L('last_tick.ts')) + 'Z', P = L('last_tick.passed');
+      const row = (k, ...v) => [h('span', { class: 'd' }, t), ' ' + k.padEnd(8), ...v, '\n'];
+      lines.push(...row('exits', n0(L('last_tick.exits')) + ' desk sells'),
+                 ...row('scan', n0(L('last_tick.seen')) + ' seen · ' + n0(L('last_tick.new')) + ' new'),
+                 ...row('gate', n0(L('last_tick.dex_only')) + ' settled by DexScreener'),
+                 ...row('goplus', n0(L('last_tick.goplus')) + ' calls'),
+                 ...row('verify', n0(L('last_tick.checked')) + ' checked · ',
+                        h('span', { class: P ? 'w' : 'y' }, n0(P) + ' PASS')),
+                 ...row('exec', n0(L('last_tick.bought')) + ' buys'));
+      lines.push(h('span', { class: 'd' }, t), ' done    ' + n0(L('last_tick.requests')) + ' requests · ' +
+                 (isNum(L('last_tick.secs')) ? L('last_tick.secs').toFixed(1) : dash) + ' s');
+    } else if (!rep) {
       lines.push(h('span', { class: 'd' }, "# couldn't load report.json"));
     } else if (!rep.machine || !M('last_tick')) {
       lines.push(h('span', { class: 'd' }, rep.machine ? '# no TICK row on ' + M('day')
@@ -475,14 +539,27 @@ body { margin: 0; font-size: 14px; }
                  (isNum(M('last_tick.secs')) ? M('last_tick.secs').toFixed(1) : dash) + ' s');
     }
     put('term', lines);
-    if (rep && rep.machine) {
+    termFoot();
+  }
+
+  function termFoot() {
+    const pill = $('run-pill');
+    if (liveTick()) {
+      const e = L('today.errors'), a = ageMin(L('as_of')), ok = a != null && a <= STALE_MIN;
+      $('term-count').textContent = 'today ' + n0(L('today.ticks')) + ' / ' + n0(L('today.expected')) + ' ticks · ' +
+        n0(e) + (e === 1 ? ' error' : ' errors');
+      pill.textContent = ok ? 'Running ✓' : 'No tick for ' + (a == null ? dash : a) + ' min';
+      pill.className = 'run-pill' + (ok ? '' : ' short');
+      pill.hidden = false;
+    } else if (rep && rep.machine) {
       $('term-count').textContent = n0(M('runs.ticks')) + ' / ' + n0(M('runs.expected')) + ' ticks · ' + short(M('day'));
-      const pill = $('run-pill'), ok = isNum(M('runs.rate')) && M('runs.rate') >= 90;
+      const ok = isNum(M('runs.rate')) && M('runs.rate') >= 90;
       pill.textContent = ok ? 'Running ✓' : 'Short day ' + pct(M('runs.rate'));
       pill.className = 'run-pill' + (ok ? '' : ' short');
       pill.hidden = false;
     } else {
       $('term-count').textContent = rep ? 'last tick: no machine cards yet' : 'report.json not loaded';
+      pill.hidden = true;
     }
   }
 
@@ -530,7 +607,7 @@ body { margin: 0; font-size: 14px; }
       h('div', { class: 'pnl' },
         h('span', { class: sign(B(d, 'net_pnl_usd')) }, sUsd(B(d, 'net_pnl_usd')) + ' (' + sPct(B(d, 'net_pnl_pct')) + ')'),
         h('span', { class: 'mult' }, isNum(B(d, 'multiple')) ? B(d, 'multiple').toFixed(2) + '×' : dash)),
-      h('p', { class: 'cap' }, usd(start) + ' start · ' + n0(days) + (days === 1 ? ' daily close' : ' daily closes') +
+      h('p', { class: 'cap' }, usd(start) + ' start · ' + n0(days) + (days === 1 ? ' day logged' : ' days logged') +
         ' · random book at ' + usd(B(b, 'value_usd')) + ' · ' + n0(B(d, 'open')) + ' open at the ' + short(R('day')) + ' close'),
       isNum(start) ? curve(d, b, start) : null,
       h('div', { class: 'curve-key' }, h('span', {}, 'Desk ' + usd(B(d, 'value_usd'))),
@@ -584,6 +661,52 @@ body { margin: 0; font-size: 14px; }
           h('em', {}, pct(a, 0), h('br'), pct(z, 0)));
       }),
       h('div', { class: 'curve-key' }, h('span', {}, 'Desk ' + n0(td) + ' sells'), h('span', { class: 'k-rand' }, 'Random ' + n0(tb) + ' sells'))));
+  }
+
+  /* ---- Open now (BL-27): live.json, both books ---- */
+  function position(x) {
+    const a = String(LP(x, 'address') || ''), vp = LP(x, 'value_pct'), cost = LP(x, 'cost_usd'), q = LP(x, 'qliq');
+    const ladders = (Array.isArray(LP(x, 'ladders_done')) ? LP(x, 'ladders_done') : []).map(String);
+    const chips = ladders.map(l => h('span', { class: 'pc pc-up' }, l.replace('_', ' ') + ' sold'));
+    /* core/exits.py: the time stop only while no ladder rung has sold; after one, the trail from the peak */
+    chips.push(ladders.length ? h('span', { class: 'pc' }, 'trail −' + pct(L('exit.trail_pct'), 0) + ' from peak')
+      : h('span', { class: 'pc' }, 'time stop ' + hhmm(LP(x, 'time_stop_at')) + ' UTC unless ' + sPct(L('exit.time_stop_min_pct'), 0)));
+    chips.push(h('span', { class: 'pc' }, 'stop ' + pct(L('exit.hard_stop_pct'), 0)));
+    if (isNum(q) && isNum(cost) && cost > 0 && (q <= 0 || cost / q > 0.05)) {
+      chips.push(h('span', { class: 'pc pc-warn' }, q > 0 ? 'ticket ' + Math.round(cost / q * 100) + '% of real depth' : 'no real depth ($0)'));
+    }
+    return h('div', { class: 'pos' },
+      h('div', { class: 'pos-top' },
+        /^0x[0-9a-fA-F]{40}$/.test(a) ? h('a', { href: DEX + a, target: '_blank', rel: 'noopener noreferrer', title: a }, LP(x, 'symbol') || '?')
+          : h('b', {}, LP(x, 'symbol') || '?'),
+        h('span', { class: 'pos-pct ' + sign(vp) }, sPct(vp, 1))),
+      h('div', { class: 'pos-sub' }, 'in ' + hhmm(LP(x, 'entry_ts')) + ' UTC · ' + n0(LP(x, 'age_min')) + ' min · liq ' +
+        kusd(LP(x, 'liq_usd')) + ' · real ' + kusd(q)),
+      h('div', { class: 'pos-cv' }, usd(cost) + ' → ' + usd(LP(x, 'value_usd')), h('span', {}, ' · price ' + sPct(LP(x, 'price_pct'), 1))),
+      h('div', { class: 'pchips' }, chips));
+  }
+
+  function openNow() {
+    if (!lv) {
+      put('open-h', 'live');
+      put('open', lvRes && lvRes.status === 404
+        ? empty('No live.json yet (HTTP 404). Every tick writes it from BL-27 on; until then open positions are only in the daily snapshot.')
+        : empty("Couldn't load live.json (" + (lvRes ? why(lvRes) : 'not fetched') + '). No open positions shown.', true));
+      return;
+    }
+    put('open-h', 'live · tick ' + hhmm(L('as_of')) + ' UTC');
+    const grp = (b, name, cls, none) => {
+      const list = (Array.isArray(LB(b, 'open')) ? LB(b, 'open') : []).filter(x => x && typeof x === 'object');
+      return h('div', { class: 'grp' + cls },
+        h('div', { class: 'grp-h' }, h('div', { class: 'book-h' }, h('i'), name),
+          h('span', {}, usd(LB(b, 'value_usd')) + ' now · ' + usd(LB(b, 'cash_usd')) + ' cash · ' + n0(list.length) + ' open')),
+        list.length ? list.map(position) : empty(none));
+    };
+    put('open',
+      grp(L('books.desk'), 'Desk', '', 'Nothing open. The desk buys only after a PASS.'),
+      grp(L('books.baseline'), 'Random', ' rand', 'Nothing open. The random book buys every 12 ticks when something is eligible.'),
+      h('p', { class: 'cap' }, '% and value are what the position would fetch if sold at this tick after exit friction, like report.json; ' +
+        '"price" is the price move alone, before friction; exits run on the 5-min tick.'));
   }
 
   /* ---- machine cards ---- */
@@ -722,22 +845,48 @@ body { margin: 0; font-size: 14px; }
   function foot() {
     put('foot', 'Paper only · Base chain · report ' + (rep ? (R('day') || dash) + ' built ' + stamp(R('as_of')) : 'not loaded') +
       ' · tokens ' + (tok ? (TF(tok, 'day') || dash) + ' built ' + stamp(TF(tok, 'as_of')) : 'not loaded') +
-      ' · every number comes from data/report.json and data/tokens_24h.json; a dash means no number yet');
+      ' · live ' + (lv ? 'tick ' + stamp(L('as_of')) : 'not loaded') +
+      ' · every number comes from data/report.json, data/tokens_24h.json and data/live.json; a dash means no number yet');
   }
 
   /* Each card renders on its own: a broken one never blanks the others. */
   const safe = (name, fn) => { try { fn(); } catch (e) { console.error(name, e); } };
+  /* live.json: a good file replaces the last one; a failed re-fetch keeps the last good one (its age then shows Stale). */
+  const fetchLive = () => load(LIVE_URL);
+  function setLive(l) {
+    const d = l.data && typeof l.data === 'object' ? l.data : null;
+    if (l.data && !d) l.error = 'not a JSON object';
+    if (d) lv = d;
+    if (d || !lv) lvRes = l;
+  }
+  const renderLive = () => { safe('header', () => header(repRes)); safe('terminal', terminal); safe('open', openNow); safe('foot', foot); };
+  let lastLive = 0, busy = false;
+  async function refreshLive() {
+    if (busy) return;
+    busy = true; lastLive = Date.now();
+    try { setLive(await fetchLive()); renderLive(); } finally { busy = false; }
+  }
   (async () => {
-    const [r, t] = await Promise.all([load(REPORT_URL), load(TOKENS_URL)]);
+    const [r, t, l] = await Promise.all([load(REPORT_URL), load(TOKENS_URL), fetchLive()]);
     rep = r.data && typeof r.data === 'object' ? r.data : null;
     tok = t.data && typeof t.data === 'object' ? t.data : null;
     if (r.data && !rep) r.error = 'not a JSON object';
-    safe('header', () => header(r, t));
+    repRes = r; lastLive = Date.now(); setLive(l);
+    safe('header', () => header(r));
     safe('terminal', terminal);
     safe('money', () => money(r));
+    safe('open', openNow);
     safe('machine', () => machine(r));
     safe('tokens', () => tokens(t));
     safe('foot', foot);
+    /* Every minute: ages again, so an open tab never shows a false Live; live.json again every 5 min, only while visible. */
+    setInterval(() => {
+      safe('badge', badge); safe('term-foot', termFoot);
+      if (document.visibilityState === 'visible' && Date.now() - lastLive >= REFETCH_MS) refreshLive();
+    }, 60e3);
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'visible') { safe('badge', badge); safe('term-foot', termFoot); refreshLive(); }
+    });
   })();
 })();
 </script>

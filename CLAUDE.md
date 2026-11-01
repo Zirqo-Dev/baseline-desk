@@ -42,17 +42,19 @@ BASELINE core/baseline.py          random shadow book "baseline": 1 random eligi
 REPORT   core/report.py            desk vs random baseline -> data/report.json, in the tick on the UTC day roll
 REPORT   core/report.py            machine cards (BL-23, tasks.csv only) -> report.json "machine" + data/tokens_24h.json, own try
 LABELS   core/labels.py            outcome labels (BL-26, logging only): +1/+6/+24 h after first sight -> data/daily/<day>/outcomes.csv
+LIVE     core/live.py              live view (BL-27, display only): open positions of both books + last tick -> data/live.json, every tick
 TICK     core/tick.py              one run: roll day (+report, +machine cards), exits (desk, baseline), scan -> verify -> buy, baseline buy,
-                                   outcome labels (own try), one TICK heartbeat row
+                                   outcome labels (own try), live.json (own try, not on a crash), one TICK heartbeat row
 
 Folders:
-- core/: config.py, book.py, desk.py, verify.py, leads.py, exits.py, friction.py, tick.py, baseline.py, report.py, labels.py
+- core/: config.py, book.py, desk.py, verify.py, leads.py, exits.py, friction.py, tick.py, baseline.py, report.py, labels.py, live.py
 - tools/: replay.py (BL-29, offline replay by hand; never imported by core/, never on the tick path)
 - adapters/: base.py (EVM, chain 8453). Adapter pattern kept so other chains could plug in later (parked).
 - prompts/: x_read.py
-- data/: state.json, report.json, tokens_24h.json, daily/YYYY-MM-DD/ (tasks.csv, trades.csv; both books in the same files, column "book"; outcomes.csv, BL-26)
+- data/: state.json, report.json, tokens_24h.json, live.json (BL-27), daily/YYYY-MM-DD/ (tasks.csv, trades.csv; both books in the same files, column "book"; outcomes.csv, BL-26)
 - site/: GitHub Pages dashboard (BL-13), one self-contained index.html; fetches only data/report.json and data/tokens_24h.json
-  from raw.githubusercontent.com at page load (no override); the locked mock is docs/mock/bl13-mock.html (never under site/)
+  (at page load) and data/live.json (BL-27: at load, then every 5 min while the tab is visible) from raw.githubusercontent.com
+  (no override); the locked mock is docs/mock/bl13-mock.html (never under site/)
 - docs/: DECISIONS.md, LEARNINGS.md, NOTES.md, CHANGELOG.md, mock/ (bl13-mock.html, reference only)
 - .github/workflows/: tick.yml, pages.yml (BL-13: deploys site/ on push to main touching site/** or itself, or by hand; no report.yml, BL-8)
 
@@ -145,7 +147,17 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
   outcomes by qliq and s24 bucket (labels within 30 min only, "n too small" under 20), desk PASS rows with outcomes, and
   every trade re-priced with core friction at qliq@entry plus size/qliq. No network, no writes, not on the tick path.
   Evidence only, never a rule (docs/NOTES.md "BL-29").
-  Tests: stdlib unittest, `python -m unittest` (231 pass on 3.13).
+  BL-23 live check passed: the Oct 31 and Nov 1 rolls logged report=ok machine=ok (288/288 ticks on Oct 31, 0 ERROR rows
+  Oct 31 and Nov 1), so the site's machine cards are filled; outcomes.csv has the qliq column from 2026-10-31.
+  Oct 31 close: desk 47.61 USD (1 close), baseline 27.62 USD (61 closes), desk lead +19.99 USD; Gate B 1/100.
+  BL-27 live (display only, 2026-11-01): every tick rewrites data/live.json (~1 KB: as_of, last_tick incl. exits = desk EXIT
+  SELL rows, today ticks/expected/errors, the exit numbers from config, both books' cash, liquidation value and open
+  positions with cost, value and value_pct as report.liq_value, price_pct, liq, qliq at entry, ladders_done, time_stop_at),
+  from the saved state and today's tasks.csv, no request; own try (TICK ends with live=ok|error:<type>, run red after the
+  TICK row, retried next tick); a crashed tick writes none (live=none). New positions keep entry_qliq (display only).
+  The site: header first, Live badge from live.json (Stale over 15 min, ages redrawn every minute), terminal from live.json,
+  new "Open now" card, "N days logged"; only live.json is re-fetched, every 5 min while visible (docs/NOTES.md "BL-27").
+  Tests: stdlib unittest, `python -m unittest` (250 pass on 3.13).
 - cron-job.org token "baseline-desk cron" EXPIRES Thu 2027-01-21: renew by early January or the desk stops silently.
 - Technical detail per card, GoPlus diagnosis, BL-20 budget and full open items: docs/NOTES.md.
 - Open items:
@@ -160,12 +172,10 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
   - Clanker/Zora factory addresses unconfirmed until BL-10 (docs/NOTES.md)
   - top10 is the top 8-10 after exclusions, slightly lenient (docs/NOTES.md)
   - The exact GoPlus rate-limit code is unverified; code 3 is not one; BL-24 saw code 4029 4 times in 137 calls at 2 s, very likely it (docs/NOTES.md)
-  - tokens_24h.json adds ~230 KB of git history per day (overwritten daily), BL-25 ~83 KB/day (+ BL-28 qliq ~15 KB/day) to tasks.csv and BL-26 outcomes.csv ~55 KB/day; include all three in BL-16's archive plan (docs/NOTES.md)
-- Next step: the BL-23 live check after the 00:03 UTC Oct 31 roll (report.json "machine", tokens_24h.json, machine=ok,
-  which also fills the site) and the first outcomes.csv with the qliq column (2026-10-31); then run
-  python -m tools.replay --from 2026-10-31 --to 2026-11-06 on about a week of data for the Nov 6 review (docs/NOTES.md
-  "BL-29"). The BL-24 result stays with the owner (no rule change made).
-- Last updated: 2026-10-30.
+  - tokens_24h.json adds ~230 KB of git history per day (overwritten daily), BL-25 ~83 KB/day (+ BL-28 qliq ~15 KB/day) to tasks.csv and BL-26 outcomes.csv ~55 KB/day, BL-27 live.json ~1 KB per tick (rewritten every tick, ~290 KB/day of git history); include all four in BL-16's archive plan (docs/NOTES.md)
+- Next step: the Nov 6 review: python -m tools.replay --from 2026-10-31 --to 2026-11-06 on about a week of data
+  (docs/NOTES.md "BL-29"). The BL-24 result stays with the owner (no rule change made).
+- Last updated: 2026-11-01.
 
 ## 12. Glossary
 - Lead: a token the scanner found. Survivor: a lead that passed every hard skip.

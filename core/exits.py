@@ -44,7 +44,9 @@ def check(book, quote, now):
     quote(address) -> {"price": float, "liq_usd": float, "source": "pool" | "fallback"} or None.
     A missing number means HOLD (reason "no_quote"); the position is checked again next run.
     A fallback quote (our pool is gone) adds "quote=fallback" to the EXIT row and the trade row.
+    Returns the number of SELL rows logged (BL-27's live.json last_tick.exits; nothing reads it for a decision).
     """
+    sold = 0
     for address in list(book.positions):
         pos = book.positions[address]
         q = quote(address) or {}
@@ -65,4 +67,6 @@ def check(book, quote, now):
         desk.sell(book, address, price, qty, rule, liq, now, intended=intended, note=note)
         book.task(now, "EXIT", pos["symbol"], address, "SELL", rule,
                   " ".join(filter(None, [f"pct={pct:.2f} intended={intended:.10g} quote={price:.10g}", note])))
+        sold += 1
     book.save()
+    return sold

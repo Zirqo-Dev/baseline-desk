@@ -28,15 +28,19 @@ Outcome labels (BL-26, logging only, core/labels.py): every desk check past dex_
 after the desk and baseline steps, in their own try, the labels due (+1 h / +6 h / +24 h after first sight) are taken
 with at most labels.MAX_CALLS batched DexScreener requests and written to data/daily/<day>/outcomes.csv. A failure
 logs labels=error:<type>, leaves them due for the next tick and ends the run red after the TICK row.
+Live view (BL-27, display only, core/live.py): just before the TICK row, in its own try, data/live.json is rewritten
+from the state this tick saved and today's tasks.csv (open positions of both books, the last tick, today's ticks), no
+request. A failure logs live=error:<type>, is retried next tick and ends the run red after the TICK row. A crashed
+tick writes no live.json (live=none), so the site's age badge goes stale.
 TICK detail: the desk keys as before, then bl_positions bl_due bl_eligible bl_bought report machine bl_error,
-then labels labels_due labels_done labels_calls.
+then labels labels_due labels_done labels_calls, then live.
 """
 import sys
 import time
 from pathlib import Path
 
 from adapters import base
-from core import baseline, config, desk, exits, labels, report
+from core import baseline, config, desk, exits, labels, live, report
 from core.book import ROOT, TASK_FIELDS, Book, _append, day, ts, utcnow
 from core.leads import Leads
 
@@ -116,7 +120,8 @@ def run(root=ROOT, now=None, client=None, clock=time.monotonic, log=print):
     b["report"] = b["machine"] = "none"
     reason, crash, report_error, machine_error, bl_errors = "", None, None, None, []
     lb = {"labels": "none", "labels_due": 0, "labels_done": 0, "labels_calls": 0}
-    labels_error = None
+    labels_error = live_error = None
+    exits_sold = 0  # BL-27: desk EXIT SELL rows this tick, for live.json only
 
     def bl_try(bl, stage, step, after_error=False):
         """One baseline step; an error is logged and kept, never stops the desk (pick 7)."""
@@ -153,7 +158,7 @@ def run(root=ROOT, now=None, client=None, clock=time.monotonic, log=print):
         held, bl_held = set(book.positions), set(bl.positions)
         n["positions"], b["bl_positions"] = len(held), len(bl_held)
         b["bl_due"] = int(baseline.tick_count(bl))
-        exits.check(book, lambda a: base.quote(a, book.positions[a].get("pair", ""), client), now)
+        exits_sold = exits.check(book, lambda a: base.quote(a, book.positions[a].get("pair", ""), client), now)
         bl_try(bl, "EXIT", lambda: exits.check(
             bl, lambda a: base.quote(a, bl.positions[a].get("pair", ""), client), now))
         seen, verdicts, sights = {}, {}, []
@@ -190,6 +195,13 @@ def run(root=ROOT, now=None, client=None, clock=time.monotonic, log=print):
     n.update(b)
     n["bl_error"] = type(bl_errors[0]).__name__ if bl_errors else "none"
     n.update(lb)
+    n["live"] = "none"
+    if not crash:  # BL-27: last, never in the way of a trade; rewritten every tick, run ends red on a failure
+        try:
+            live.run(root, now, n, exits_sold)
+            n["live"] = "ok"
+        except Exception as e:
+            n["live"], live_error = f"error:{type(e).__name__}", e
     detail = " ".join(f"{k}={v}" for k, v in n.items())
     # written straight to tasks.csv, so it works even when the state file is what broke
     _append(root / config.TASKS.format(day=day(now)), TASK_FIELDS, {
@@ -206,6 +218,8 @@ def run(root=ROOT, now=None, client=None, clock=time.monotonic, log=print):
         raise bl_errors[0]
     if labels_error:
         raise labels_error
+    if live_error:
+        raise live_error
     return n
 
 

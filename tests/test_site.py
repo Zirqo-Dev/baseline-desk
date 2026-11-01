@@ -1,18 +1,21 @@
-"""Offline tests for BL-13: site/index.html reads only keys core/report.py writes, and fetches only the two data URLs."""
+"""Offline tests for BL-13 and BL-27: site/index.html reads only keys core/report.py and core/live.py write, and
+fetches only the three data URLs."""
 import json
 import re
 import tempfile
 import unittest
+from datetime import timedelta
 from pathlib import Path
 
-from core import config, report
+from core import baseline, config, desk, exits, live, report
 from core.book import TRADE_FIELDS, Book, _append
 from tests.test_machine import D, ROLL, Files, row, skip, tick_row
-from tests.test_tick import addr
+from tests.test_live import N, traded
+from tests.test_tick import T0, addr, good
 
 PAGE = Path(__file__).resolve().parent.parent / "site" / "index.html"
 RAW = "https://raw.githubusercontent.com/Zirqo-Dev/baseline-desk/main/data/"
-URLS = {"REPORT_URL": RAW + "report.json", "TOKENS_URL": RAW + "tokens_24h.json"}
+URLS = {"REPORT_URL": RAW + "report.json", "TOKENS_URL": RAW + "tokens_24h.json", "LIVE_URL": RAW + "live.json"}
 
 
 def trade(t, book, side, a, usd, reason, pnl="", intended="1.0", fill="0.97", fric="3.0"):
@@ -26,8 +29,8 @@ def script():
 
 
 def reads(helper):
-    """Every key path the page passes to a reader: R('a.b') / M('a.b') or B(x, 'k')."""
-    pat = rf"\b{helper}\('([^']+)'\)" if helper in ("R", "M") else rf"\b{helper}\(\w+, '([^']+)'\)"
+    """Every key path the page passes to a reader: R('a.b') / M('a.b') / L('a.b') or B(x, 'k')."""
+    pat = rf"\b{helper}\('([^']+)'\)" if helper in ("R", "M", "L") else rf"\b{helper}\(\w+, '([^']+)'\)"
     return set(re.findall(pat, script()))
 
 
@@ -104,17 +107,62 @@ class PageKeysTest(Files):
         self.assertEqual(set(re.findall(r"'([^']+)'", js)), report.GATE_KILLS)
 
 
-class PageFetchTest(unittest.TestCase):
-    """The page fetches only the two raw.githubusercontent.com data URLs; nothing can change where from."""
+class LiveKeysTest(unittest.TestCase):
+    """Build live.json with core/live.py (both books, a ladder sale, qliq known and unknown); check every key the page reads."""
 
-    def test_two_data_urls_only(self):
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        root = Path(self.tmp.name)
+        d = Book("desk", root)
+        desk.buy(d, addr(1), dict(traded(1), price=1.0, liq_usd=150_000), T0)
+        desk.buy(d, addr(2), dict(good(2), price=1.0, liq_usd=150_000), T0)
+        exits.check(d, lambda a: {"price": 1.5, "liq_usd": 150_000, "source": "pool"} if a == addr(1) else None,
+                    T0 + timedelta(minutes=5))
+        bl = Book(baseline.NAME, root)
+        desk.buy(bl, addr(3), dict(traded(3), price=1.0, liq_usd=150_000), T0)
+        self.live = live.build(root, T0 + timedelta(minutes=10), N, 1)
+
+    def tearDown(self):
+        self.tmp.cleanup()
+
+    def test_live_keys(self):
+        keys = reads("L")
+        self.assertTrue({"as_of", "last_tick.exits", "today.errors", "exit.trail_pct", "books.desk", "books.baseline"} <= keys)
+        self.assertEqual(sorted(k for k in keys if not has(self.live, k)), [])
+
+    def test_book_and_position_keys(self):
+        books = [self.live["books"]["desk"], self.live["books"]["baseline"]]
+        pos = [p for b in books for p in b["open"]]
+        self.assertEqual(len(pos), 3)
+        self.assertEqual(pos[0]["ladders_done"], ["ladder_1"])
+        for helper, items in [("LB", books), ("LP", pos)]:
+            keys = reads(helper)
+            self.assertTrue(keys, helper)
+            for x in items:
+                self.assertEqual(sorted(k for k in keys if not has(x, k)), [], helper)
+        self.assertEqual(reads("LP"), set(live.position(addr(1), Book("desk", Path(self.tmp.name)).positions[addr(1)], T0)))
+
+
+class PageFetchTest(unittest.TestCase):
+    """The page fetches only the three raw.githubusercontent.com data URLs; nothing can change where from."""
+
+    def test_three_data_urls_only(self):
         js = script()
         consts = dict(re.findall(r"const (\w+_URL) = '([^']+)';", js))
         self.assertEqual(consts, URLS)
         self.assertEqual(len(re.findall(r"\bfetch\(", js)), 1)
         self.assertRegex(js, r"await fetch\(url, ")
         self.assertEqual(set(re.findall(r"\bload\((\w+)\)", js)), set(URLS) | {"url"})  # url: the definition
-        self.assertEqual(sorted(re.findall(r"\bload\(", js)), ["load("] * 3)  # the function + two calls
+        self.assertEqual(sorted(re.findall(r"\bload\(", js)), ["load("] * 4)  # the function + one call per URL
+        self.assertEqual(len(re.findall(r"\bfetchLive\(\)", js)), 2)  # live.json: at load and in refreshLive()
+
+    def test_only_live_json_is_refetched(self):
+        js = script()
+        refresh = re.search(r"async function refreshLive\(\) \{(.*?)\n  \}", js, re.S).group(1)
+        self.assertIn("fetchLive()", refresh)
+        self.assertNotIn("load(", refresh)
+        self.assertEqual(len(re.findall(r"\bsetInterval\(", js)), 1)
+        self.assertIn("document.visibilityState === 'visible'", js)
 
     def test_no_other_url_or_override(self):
         page = PAGE.read_text(encoding="utf-8")
@@ -128,7 +176,7 @@ class PageFetchTest(unittest.TestCase):
 
     def test_no_sample_numbers(self):
         page = PAGE.read_text(encoding="utf-8")
-        for bad in ["SAMPLE", "s-only", "m-sample", "47.62", "38.95"]:
+        for bad in ["SAMPLE", "s-only", "m-sample", "47.62", "38.95", "NAFF", "0x23643e"]:
             self.assertNotIn(bad, page, bad)
 
     def test_mock_kept_outside_site(self):

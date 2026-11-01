@@ -26,6 +26,13 @@ def entry_block(book, address, now):
     return ""
 
 
+def entry_qliq(facts):
+    """BL-27, display only: the real depth (BL-28 qliq) already logged on this tick's row, or None. Never raises."""
+    t = facts.get("trade") if isinstance(facts, dict) else None
+    q = t.get("qliq") if isinstance(t, dict) else None
+    return q if isinstance(q, (int, float)) and not isinstance(q, bool) else None
+
+
 def buy(book, address, facts, now, note="", buy_note=""):
     """Paper buy at facts["price"] plus friction. Logs one EXECUTE task row. Returns the position or None.
 
@@ -54,6 +61,7 @@ def buy(book, address, facts, now, note="", buy_note=""):
         "launchpad": facts["launchpad"], "pair": facts.get("pair", ""),
         "last_price": facts["price"], "peak_price": facts["price"],
         "ladder_done": [],
+        "entry_qliq": entry_qliq(facts),  # BL-27: shown by live.json only; no rule reads it
     }
     book.positions[address] = pos
     book.trade(now, {"side": "BUY", "symbol": sym, "address": address, "qty": qty,
