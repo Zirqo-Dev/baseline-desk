@@ -13,6 +13,7 @@
         "entry_qliq": 417851,
         "entry_ts": "2026-11-01T15:38:12Z",
         "ladder_done": [],
+        "last_liq_usd": 1016701.99,
         "last_price": 0.0001018,
         "launchpad": "other",
         "orig_qty": 47685.35296698266,
@@ -22,7 +23,7 @@
         "symbol": "TOSHI"
       }
     },
-    "ticks_since_buy": 0
+    "ticks_since_buy": 1
   },
   "desk": {
     "cash": 47.60776857887221,
@@ -122,15 +123,6 @@
         "first_price": 6.797e-05,
         "first_seen": "2026-11-01T14:18:13Z",
         "symbol": "USDP"
-      },
-      "0x094ee43c5fab05c5f4bdac55c322b5518dffb590": {
-        "done": [
-          1,
-          6
-        ],
-        "first_price": 4.657e-06,
-        "first_seen": "2026-10-31T15:43:11Z",
-        "symbol": "APO"
       },
       "0x0c781970837a293710fbd0fde6de68512db54df2": {
         "done": [
@@ -460,6 +452,12 @@
         "first_seen": "2026-11-01T09:23:11Z",
         "symbol": "IOF"
       },
+      "0x3b4ba415e83ef4fdd48288f630b0733229803e99": {
+        "done": [],
+        "first_price": 9.679e-05,
+        "first_seen": "2026-11-01T15:43:11Z",
+        "symbol": "UFTD"
+      },
       "0x3c7869d06c22f4a732b9ceef8d8fda0ec1050e53": {
         "done": [
           1,
@@ -485,6 +483,12 @@
         "first_price": 8.683e-05,
         "first_seen": "2026-11-01T10:58:13Z",
         "symbol": "FDOF"
+      },
+      "0x444444b28de2b48e2d464c02e7fe978aae773304": {
+        "done": [],
+        "first_price": 0.000231,
+        "first_seen": "2026-11-01T15:43:11Z",
+        "symbol": "VOIF "
       },
       "0x4491ffda8e37b84d3447aff62d18325ff0d39343": {
         "done": [
@@ -1078,6 +1082,12 @@
         "first_seen": "2026-10-31T22:23:10Z",
         "symbol": "CTM"
       },
+      "0xac1bd2486aaf3b5c0fc3fd868558b082a531b2b4": {
+        "done": [],
+        "first_price": 0.0001018,
+        "first_seen": "2026-11-01T15:43:11Z",
+        "symbol": "TOSHI"
+      },
       "0xac81a0181da90ad56701c0085d0fb146a1a9ebba": {
         "done": [
           1
@@ -1093,7 +1103,9 @@
         "symbol": "SNOOZLE"
       },
       "0xb13c0ec2f4948f40e181f9569adce18adc6f4c6e": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 4.958e-06,
         "first_seen": "2026-11-01T14:38:13Z",
         "symbol": "UDOF"
@@ -1494,6 +1506,12 @@
         "first_price": 0.0001225,
         "first_seen": "2026-10-31T18:33:11Z",
         "symbol": "WAYBILL"
+      },
+      "0xfd6446c7151a5211b1922a6fb0a9eec4721a61b0": {
+        "done": [],
+        "first_price": 8.748e-05,
+        "first_seen": "2026-11-01T15:43:11Z",
+        "symbol": "USPD"
       },
       "0xfd752be2812ca44334cd0e39415d147d529e824c": {
         "done": [
@@ -7524,6 +7542,12 @@
         "symbol": "CALLED",
         "until": "2026-11-02T05:23:14Z"
       },
+      "0xb2000000000000000000003b5c33b4d2f40f8da1": {
+        "at": "2026-11-01T15:43:11Z",
+        "reason": "liquidity",
+        "symbol": "UPVEMBER",
+        "until": "2026-11-02T15:43:11Z"
+      },
       "0xb2000000000000000000003bf46b243683347497": {
         "at": "2026-11-01T00:58:13Z",
         "reason": "liquidity",
@@ -7763,6 +7787,12 @@
         "reason": "liquidity",
         "symbol": "STEEM",
         "until": "2026-11-02T13:03:12Z"
+      },
+      "0xb2000000000000000000006b92ed1674ec5fd202": {
+        "at": "2026-11-01T15:43:11Z",
+        "reason": "liquidity",
+        "symbol": "WEDGIE",
+        "until": "2026-11-02T15:43:11Z"
       },
       "0xb2000000000000000000006c397e12f2dcd447f8": {
         "at": "2026-11-01T02:33:11Z",
@@ -8297,6 +8327,12 @@
         "reason": "liquidity",
         "symbol": "CAPE",
         "until": "2026-11-02T00:03:11Z"
+      },
+      "0xb2f0da336ecf314c45ab35cdcb8e922236085ba3": {
+        "at": "2026-11-01T15:43:11Z",
+        "reason": "missing:liq_usd",
+        "symbol": "LPM3",
+        "until": "2026-11-02T15:43:11Z"
       },
       "0xb2fc237f286720eb3e9c37508ecc98d7cc77e010": {
         "at": "2026-11-01T04:33:12Z",
@@ -10868,6 +10904,18 @@
         "last_check": "2026-11-01T15:28:13Z",
         "symbol": "BLUE"
       },
+      "0x3b4ba415e83ef4fdd48288f630b0733229803e99": {
+        "checks": 1,
+        "first_seen": "2026-11-01T15:43:11Z",
+        "last_check": "2026-11-01T15:43:11Z",
+        "symbol": "UFTD"
+      },
+      "0x444444b28de2b48e2d464c02e7fe978aae773304": {
+        "checks": 1,
+        "first_seen": "2026-11-01T15:43:11Z",
+        "last_check": "2026-11-01T15:43:11Z",
+        "symbol": "VOIF "
+      },
       "0x47a7c29e0cdb6933326b4e328b70849d1dfe992c": {
         "checks": 6,
         "first_seen": "2026-11-01T14:08:12Z",
@@ -10899,9 +10947,9 @@
         "symbol": "AODF"
       },
       "0x85a28fed4dfc0933bf46df38a417a2a1102b7bfa": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-01T15:23:11Z",
-        "last_check": "2026-11-01T15:23:11Z",
+        "last_check": "2026-11-01T15:43:11Z",
         "symbol": "UESO"
       },
       "0x87bddda5467911dc947f4fab77f799279a3b783c": {
@@ -10934,10 +10982,16 @@
         "last_check": "2026-11-01T15:28:13Z",
         "symbol": "GOIF"
       },
-      "0xb1109d41a03279e5deae92705da1ea8bf68e812b": {
+      "0xac1bd2486aaf3b5c0fc3fd868558b082a531b2b4": {
         "checks": 1,
+        "first_seen": "2026-11-01T15:43:11Z",
+        "last_check": "2026-11-01T15:43:11Z",
+        "symbol": "TOSHI"
+      },
+      "0xb1109d41a03279e5deae92705da1ea8bf68e812b": {
+        "checks": 2,
         "first_seen": "2026-11-01T15:23:11Z",
-        "last_check": "2026-11-01T15:23:11Z",
+        "last_check": "2026-11-01T15:43:11Z",
         "symbol": "SNOOZLE"
       },
       "0xc470cb3cc19fb18787e6341a5a1fa5d6e06ba6be": {
@@ -10963,6 +11017,12 @@
         "first_seen": "2026-11-01T14:13:11Z",
         "last_check": "2026-11-01T15:33:13Z",
         "symbol": "OFDF"
+      },
+      "0xfd6446c7151a5211b1922a6fb0a9eec4721a61b0": {
+        "checks": 1,
+        "first_seen": "2026-11-01T15:43:11Z",
+        "last_check": "2026-11-01T15:43:11Z",
+        "symbol": "USPD"
       }
     }
   },
