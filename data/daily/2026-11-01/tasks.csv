@@ -521,3 +521,15 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-01T02:53:12Z,desk,VERIFY,LEVERHEDGE,0xda30f9ebea829d4f0ccdcff4e9dbe796132c9d8e,SKIP,liquidity,goplus=skipped until=2026-11-02T02:53:12Z
 2026-11-01T02:53:12Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
 2026-11-01T02:53:12Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=21 rechecks=6 new=10 checked=16 passed=0 bought=0 held=0 deferred=0 dex_only=10 goplus=6 requests=26 secs=12.0 bl_positions=0 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=1 labels_done=1 labels_calls=1
+2026-11-01T02:58:13Z,desk,VERIFY,ADOF,0xbc3699c288a60a85887fa5304b10b36601eeed32,SKIP,goplus_timeout,first_seen=2026-10-31T23:53:11Z checks=10 until=2026-11-02T02:58:13Z b1=0 s1=0 b24=16 s24=0 liq=117914 dex=uniswap:v4 qliq=2
+2026-11-01T02:58:13Z,desk,VERIFY,UODF,0x44b19ec1eff40178a8ab9cd500a5d290b9fdb82e,WATCH,goplus_not_ready,"first_seen=2026-11-01T01:48:12Z checks=5 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct b1=0 s1=0 b24=13 s24=0 liq=81600 dex=uniswap:v4 qliq=20"
+2026-11-01T02:58:13Z,desk,VERIFY,HOLDR,0xb9737efa7b1e8e0fe5133087324c14de4826702a,SKIP,liquidity,goplus=skipped until=2026-11-02T02:58:13Z
+2026-11-01T02:58:13Z,desk,VERIFY,uni,0xae395d176502050cd21b8a5510a2e21a2544c941,SKIP,liquidity,goplus=skipped until=2026-11-02T02:58:13Z
+2026-11-01T02:58:13Z,desk,VERIFY,KEYLESS,0xdbf9bb2d94a8eec9facd565264d60854d9b47ca8,SKIP,liquidity,goplus=skipped until=2026-11-02T02:58:13Z
+2026-11-01T02:58:13Z,desk,VERIFY,POIDHSEN,0xb20000000000000000000097af3cd7ac34c2e45f,SKIP,liquidity,goplus=skipped until=2026-11-02T02:58:13Z
+2026-11-01T02:58:13Z,desk,VERIFY,Satoshi,0xed85859d6022380bd3af7306f570fc7f51a0befa,SKIP,liquidity,goplus=skipped until=2026-11-02T02:58:13Z
+2026-11-01T02:58:13Z,desk,VERIFY,USRC,0xa2054e62c10285299ccaa5fb9c3a62c8dd4d11a8,WATCH,goplus_not_ready,first_seen=2026-11-01T02:58:13Z checks=1 pending=top10_pct b1=6 s1=0 b24=6 s24=0 liq=69873 dex=uniswap:v2 qliq=34935
+2026-11-01T02:58:13Z,desk,VERIFY,AOP,0x36fa47f31076e90bb45c35ae8de1911bd783ab87,SKIP,liquidity,goplus=skipped until=2026-11-02T02:58:13Z
+2026-11-01T02:58:13Z,desk,VERIFY,RIP POPE,0x36c0d595e296bfd3cc06244bb8672e5913394ae5,SKIP,liquidity,goplus=skipped until=2026-11-02T02:58:13Z
+2026-11-01T02:58:13Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
+2026-11-01T02:58:13Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=21 rechecks=2 new=8 checked=10 passed=0 bought=0 held=0 deferred=0 dex_only=7 goplus=3 requests=17 secs=6.2 bl_positions=0 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=1 labels_done=1 labels_calls=1
