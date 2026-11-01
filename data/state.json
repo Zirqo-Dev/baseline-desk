@@ -1,11 +1,28 @@
 {
   "baseline": {
-    "cash": 20.555206849776788,
+    "cash": 15.555206849776788,
     "day": "2026-11-01",
     "day_start_value": 27.621755991347687,
     "halted_day": "",
-    "positions": {},
-    "ticks_since_buy": 13
+    "positions": {
+      "0x5ab3d4c385b400f3abb49e80de2faf6a88a7b691": {
+        "cost_usd": 5,
+        "entry_fill": 0.039758,
+        "entry_intended": 0.0386,
+        "entry_liq_usd": 564482.31,
+        "entry_qliq": 196568,
+        "entry_ts": "2026-11-01T18:48:13Z",
+        "ladder_done": [],
+        "last_price": 0.0386,
+        "launchpad": "other",
+        "orig_qty": 125.76085316162785,
+        "pair": "0x7af45dfaf2fdea139b2295f37ffea2e16e6fd8ba",
+        "peak_price": 0.0386,
+        "qty": 125.76085316162785,
+        "symbol": "FLOCK"
+      }
+    },
+    "ticks_since_buy": 0
   },
   "desk": {
     "cash": 47.60776857887221,
@@ -3498,6 +3515,12 @@
         "symbol": "StayDown",
         "until": "2026-11-01T23:23:12Z"
       },
+      "0x3b4ba415e83ef4fdd48288f630b0733229803e99": {
+        "at": "2026-11-01T18:48:13Z",
+        "reason": "goplus_timeout",
+        "symbol": "UFTD",
+        "until": "2026-11-02T18:48:13Z"
+      },
       "0x3c11ae3c5cad96f553c0668229a47e53989923d9": {
         "at": "2026-10-31T22:38:14Z",
         "reason": "liquidity",
@@ -3791,6 +3814,12 @@
         "reason": "liquidity",
         "symbol": "ANTHROPIC",
         "until": "2026-11-02T04:58:14Z"
+      },
+      "0x444444b28de2b48e2d464c02e7fe978aae773304": {
+        "at": "2026-11-01T18:48:13Z",
+        "reason": "goplus_timeout",
+        "symbol": "VOIF ",
+        "until": "2026-11-02T18:48:13Z"
       },
       "0x4464a24c1865ad68d2b247c1e5b322b04d44bed6": {
         "at": "2026-11-01T04:58:14Z",
@@ -6528,12 +6557,6 @@
         "symbol": "WBTC",
         "until": "2026-11-02T08:43:11Z"
       },
-      "0x9794db460d8f4d6beee5e58a33c6c4684665fee1": {
-        "at": "2026-10-31T18:43:22Z",
-        "reason": "liquidity",
-        "symbol": "FEELWEEN",
-        "until": "2026-11-01T18:43:22Z"
-      },
       "0x97c0038f2504b8f9a64516c8b61ef732f214f3c4": {
         "at": "2026-11-01T05:53:18Z",
         "reason": "liquidity",
@@ -6948,12 +6971,6 @@
         "symbol": "LUSD",
         "until": "2026-11-02T11:53:11Z"
       },
-      "0xa77ec6496c57dff85ce5c25823e739aa01543ba3": {
-        "at": "2026-10-31T18:43:22Z",
-        "reason": "missing:liq_usd",
-        "symbol": "\ud83d\udc00",
-        "until": "2026-11-01T18:43:22Z"
-      },
       "0xa7f961953761c79b5a5106bf64a4d3e4ab8026f4": {
         "at": "2026-11-01T04:48:13Z",
         "reason": "liquidity",
@@ -7067,6 +7084,12 @@
         "reason": "liquidity",
         "symbol": "WALV",
         "until": "2026-11-02T03:43:12Z"
+      },
+      "0xac1bd2486aaf3b5c0fc3fd868558b082a531b2b4": {
+        "at": "2026-11-01T18:48:13Z",
+        "reason": "goplus_timeout",
+        "symbol": "TOSHI",
+        "until": "2026-11-02T18:48:13Z"
       },
       "0xac2ee7afb8d6de1338925c044870ececc0c5fd49": {
         "at": "2026-11-01T01:18:12Z",
@@ -7265,12 +7288,6 @@
         "reason": "liquidity",
         "symbol": "UDOF",
         "until": "2026-11-02T15:18:13Z"
-      },
-      "0xb16b48f8d4e314337a6d93cb7b25a9f0243985f7": {
-        "at": "2026-10-31T18:43:22Z",
-        "reason": "liquidity",
-        "symbol": "NUTS",
-        "until": "2026-11-01T18:43:22Z"
       },
       "0xb18a5a06aeb888254f52ca60cf77d269212ebfe2": {
         "at": "2026-11-01T05:48:15Z",
@@ -7511,6 +7528,12 @@
         "reason": "liquidity",
         "symbol": "p(doom)",
         "until": "2026-11-02T02:08:13Z"
+      },
+      "0xb2000000000000000000003ae96bd7accf47925d": {
+        "at": "2026-11-01T18:48:13Z",
+        "reason": "missing:liq_usd",
+        "symbol": "DRS",
+        "until": "2026-11-02T18:48:13Z"
       },
       "0xb2000000000000000000003b0e7b16feef9ae57b": {
         "at": "2026-11-01T05:23:14Z",
@@ -8988,12 +9011,6 @@
         "symbol": "gork",
         "until": "2026-11-02T17:33:11Z"
       },
-      "0xc7bc59dbe42af37efa9cc8f6fa4262ce9d324549": {
-        "at": "2026-10-31T18:43:22Z",
-        "reason": "missing:liq_usd",
-        "symbol": "PITCH",
-        "until": "2026-11-01T18:43:22Z"
-      },
       "0xc7d36a553e0058eaec32ef87a61df8fd50f5bc05": {
         "at": "2026-10-31T22:33:16Z",
         "reason": "liquidity",
@@ -9395,6 +9412,12 @@
         "reason": "liquidity",
         "symbol": "DAWG",
         "until": "2026-11-02T01:33:11Z"
+      },
+      "0xd22e54573fa6af2f3a1c07d5929f647595479db3": {
+        "at": "2026-11-01T18:48:13Z",
+        "reason": "missing:liq_usd",
+        "symbol": "USOT",
+        "until": "2026-11-02T18:48:13Z"
       },
       "0xd2353353f2a950d7f237bc125e6bed30b3a5a293": {
         "at": "2026-11-01T18:13:10Z",
@@ -10728,6 +10751,12 @@
         "symbol": "POKEMON",
         "until": "2026-11-02T01:08:12Z"
       },
+      "0xfd6446c7151a5211b1922a6fb0a9eec4721a61b0": {
+        "at": "2026-11-01T18:48:13Z",
+        "reason": "goplus_timeout",
+        "symbol": "USPD",
+        "until": "2026-11-02T18:48:13Z"
+      },
       "0xfd752be2812ca44334cd0e39415d147d529e824c": {
         "at": "2026-11-01T09:53:12Z",
         "reason": "liquidity",
@@ -10809,9 +10838,9 @@
     },
     "watch": {
       "0x1dad4df0f16bbe6a96d6d328cedce637a2a795eb": {
-        "checks": 6,
+        "checks": 7,
         "first_seen": "2026-11-01T17:03:12Z",
-        "last_check": "2026-11-01T18:33:13Z",
+        "last_check": "2026-11-01T18:48:13Z",
         "symbol": "IOF"
       },
       "0x1e38ee6676ba055987ece54accc3a59fb23b7cbf": {
@@ -10825,18 +10854,6 @@
         "first_seen": "2026-11-01T17:23:12Z",
         "last_check": "2026-11-01T18:38:13Z",
         "symbol": "OEN"
-      },
-      "0x3b4ba415e83ef4fdd48288f630b0733229803e99": {
-        "checks": 10,
-        "first_seen": "2026-11-01T15:43:11Z",
-        "last_check": "2026-11-01T18:33:13Z",
-        "symbol": "UFTD"
-      },
-      "0x444444b28de2b48e2d464c02e7fe978aae773304": {
-        "checks": 10,
-        "first_seen": "2026-11-01T15:43:11Z",
-        "last_check": "2026-11-01T18:33:13Z",
-        "symbol": "VOIF "
       },
       "0x5ab3d4c385b400f3abb49e80de2faf6a88a7b691": {
         "checks": 3,
@@ -10875,27 +10892,21 @@
         "symbol": "GOS"
       },
       "0x90d06a0e573a35c08c9ed39fd9c07c8aee8eb24c": {
-        "checks": 7,
+        "checks": 8,
         "first_seen": "2026-11-01T16:43:10Z",
-        "last_check": "2026-11-01T18:33:13Z",
+        "last_check": "2026-11-01T18:48:13Z",
         "symbol": "KIM"
       },
       "0xa6db647e304e37424ea5e56423cffaaf5a90b9ff": {
-        "checks": 4,
+        "checks": 5,
         "first_seen": "2026-11-01T17:33:11Z",
-        "last_check": "2026-11-01T18:28:14Z",
+        "last_check": "2026-11-01T18:48:13Z",
         "symbol": "AODF"
       },
-      "0xac1bd2486aaf3b5c0fc3fd868558b082a531b2b4": {
-        "checks": 10,
-        "first_seen": "2026-11-01T15:43:11Z",
-        "last_check": "2026-11-01T18:33:13Z",
-        "symbol": "TOSHI"
-      },
       "0xb9ed30f51bac0d53e480c071c652c014d4fc09fb": {
-        "checks": 8,
+        "checks": 9,
         "first_seen": "2026-11-01T16:13:11Z",
-        "last_check": "2026-11-01T18:33:13Z",
+        "last_check": "2026-11-01T18:48:13Z",
         "symbol": "GDER"
       },
       "0xc30722c0b5d902b6b7028b5f8ba2db3bd029e31c": {
@@ -10905,9 +10916,9 @@
         "symbol": "XYPER"
       },
       "0xf4c69d6ae3a799f4e11f3c6a47e3e7d86cc0ab9f": {
-        "checks": 4,
+        "checks": 5,
         "first_seen": "2026-11-01T17:23:12Z",
-        "last_check": "2026-11-01T18:28:14Z",
+        "last_check": "2026-11-01T18:48:13Z",
         "symbol": "AODF"
       },
       "0xf929dbc38ca00ea4435ed6db5488ff6f6caf1c9b": {
@@ -10921,12 +10932,6 @@
         "first_seen": "2026-11-01T18:28:14Z",
         "last_check": "2026-11-01T18:28:14Z",
         "symbol": "ADFT"
-      },
-      "0xfd6446c7151a5211b1922a6fb0a9eec4721a61b0": {
-        "checks": 10,
-        "first_seen": "2026-11-01T15:43:11Z",
-        "last_check": "2026-11-01T18:33:13Z",
-        "symbol": "USPD"
       }
     }
   },
@@ -10976,7 +10981,7 @@
     },
     "machine_due": "",
     "max_dd_pct": {
-      "baseline": 65.58373518984014,
+      "baseline": 66.05605302662168,
       "desk": 9.811123120222184
     },
     "peak": {
