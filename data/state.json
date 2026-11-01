@@ -5,7 +5,7 @@
     "day_start_value": 27.621755991347687,
     "halted_day": "",
     "positions": {},
-    "ticks_since_buy": 7
+    "ticks_since_buy": 8
   },
   "desk": {
     "cash": 47.60776857887221,
@@ -803,7 +803,9 @@
         "symbol": "ADP"
       },
       "0x78c5ee7d274d0404d32a415fed9b1bb95f76aad2": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 4.377e-06,
         "first_seen": "2026-11-01T12:03:13Z",
         "symbol": "FFOD"
@@ -985,6 +987,12 @@
         "first_price": 0.0001335,
         "first_seen": "2026-10-31T15:13:11Z",
         "symbol": "XOT"
+      },
+      "0xa4871d46e91f980da13c514dd4e1b6626b314e9b": {
+        "done": [],
+        "first_price": 6.764e-05,
+        "first_seen": "2026-11-01T13:08:13Z",
+        "symbol": "GOIF"
       },
       "0xa4e1fef113bbdb3626392af3774050da6992ece5": {
         "done": [
@@ -2476,6 +2484,12 @@
         "reason": "liquidity",
         "symbol": "GTA",
         "until": "2026-11-02T02:23:15Z"
+      },
+      "0x1b941cbabb2922d0c6b9947b87340647884a07ea": {
+        "at": "2026-11-01T13:08:13Z",
+        "reason": "liquidity",
+        "symbol": "IRS",
+        "until": "2026-11-02T13:08:13Z"
       },
       "0x1b94ef5159c27fd771726f5ae1cbfff788204e50": {
         "at": "2026-10-31T14:38:16Z",
@@ -6389,12 +6403,6 @@
         "symbol": "XRAD",
         "until": "2026-11-01T23:48:13Z"
       },
-      "0x9224e878e84cc0812262ecdb61d0b049bf0d2688": {
-        "at": "2026-10-31T13:08:13Z",
-        "reason": "liquidity",
-        "symbol": "WORK",
-        "until": "2026-11-01T13:08:13Z"
-      },
       "0x925f2fefe0550b184b2b3551cca229012e8c3ffb": {
         "at": "2026-11-01T02:38:12Z",
         "reason": "liquidity",
@@ -7541,12 +7549,6 @@
         "symbol": "PUMPE",
         "until": "2026-11-01T13:28:13Z"
       },
-      "0xb20000000000000000000037c30810618bd9e976": {
-        "at": "2026-10-31T13:08:13Z",
-        "reason": "liquidity",
-        "symbol": "PEPE",
-        "until": "2026-11-01T13:08:13Z"
-      },
       "0xb200000000000000000000388f932a2f84d35356": {
         "at": "2026-11-01T04:08:13Z",
         "reason": "liquidity",
@@ -8122,12 +8124,6 @@
         "reason": "liquidity",
         "symbol": "OPENCLAW",
         "until": "2026-11-02T05:08:13Z"
-      },
-      "0xb200000000000000000000af2e33b7758bfa0f0b": {
-        "at": "2026-10-31T13:08:13Z",
-        "reason": "liquidity",
-        "symbol": "PUMPE",
-        "until": "2026-11-01T13:08:13Z"
       },
       "0xb200000000000000000000b0117438e351480854": {
         "at": "2026-11-01T00:23:12Z",
@@ -9442,6 +9438,12 @@
         "reason": "liquidity",
         "symbol": "KOTP",
         "until": "2026-11-02T07:03:12Z"
+      },
+      "0xd1e926627a3e8ef9ad40bf3c96da228bd107a310": {
+        "at": "2026-11-01T13:08:13Z",
+        "reason": "liquidity",
+        "symbol": "Believe",
+        "until": "2026-11-02T13:08:13Z"
       },
       "0xd1eca58d762e47b6207e2a56b9dc5ab415ad527c": {
         "at": "2026-11-01T01:53:11Z",
@@ -10799,12 +10801,6 @@
         "symbol": "SP",
         "until": "2026-11-01T20:43:11Z"
       },
-      "0xfb19cc6cfeac0ac1c4e7d169b2f0df96a345805f": {
-        "at": "2026-10-31T13:08:13Z",
-        "reason": "liquidity",
-        "symbol": "ANFF",
-        "until": "2026-11-01T13:08:13Z"
-      },
       "0xfb2d9f04a4270a98840b05f71b7c9d4f357f2baa": {
         "at": "2026-11-01T05:18:16Z",
         "reason": "liquidity",
@@ -10934,9 +10930,9 @@
         "symbol": "IOF"
       },
       "0x1514ec83efdad461af6cd81d936b66ed2c2a8f13": {
-        "checks": 8,
+        "checks": 9,
         "first_seen": "2026-11-01T10:48:13Z",
-        "last_check": "2026-11-01T12:53:12Z",
+        "last_check": "2026-11-01T13:08:13Z",
         "symbol": "UFDS"
       },
       "0x3122c6d8f90edb1577df57fcbe4e0a1917818e45": {
@@ -10946,9 +10942,9 @@
         "symbol": "FFDO"
       },
       "0x3f893872758fe3bfe1d567483e662f3391d5d6c9": {
-        "checks": 7,
+        "checks": 8,
         "first_seen": "2026-11-01T10:58:13Z",
-        "last_check": "2026-11-01T12:53:12Z",
+        "last_check": "2026-11-01T13:08:13Z",
         "symbol": "FDOF"
       },
       "0x5a574c793b412a64d5a34adda9dc00daa26747d4": {
@@ -10970,15 +10966,21 @@
         "symbol": "U.S DIVIDEND PROGRAM"
       },
       "0x7614c5e12de2342b494a6b341086f71ce1bef85b": {
-        "checks": 8,
+        "checks": 9,
         "first_seen": "2026-11-01T10:38:12Z",
-        "last_check": "2026-11-01T12:53:12Z",
+        "last_check": "2026-11-01T13:08:13Z",
         "symbol": "ADIN"
       },
+      "0xa4871d46e91f980da13c514dd4e1b6626b314e9b": {
+        "checks": 1,
+        "first_seen": "2026-11-01T13:08:13Z",
+        "last_check": "2026-11-01T13:08:13Z",
+        "symbol": "GOIF"
+      },
       "0xac81a0181da90ad56701c0085d0fb146a1a9ebba": {
-        "checks": 8,
+        "checks": 9,
         "first_seen": "2026-11-01T10:38:12Z",
-        "last_check": "2026-11-01T12:53:12Z",
+        "last_check": "2026-11-01T13:08:13Z",
         "symbol": "UFSD"
       },
       "0xc063b998c697367f7d7b58f489f8629e3d8df3ba": {
