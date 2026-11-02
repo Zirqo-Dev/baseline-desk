@@ -1,11 +1,28 @@
 {
   "baseline": {
-    "cash": 12.632758425143912,
+    "cash": 7.632758425143912,
     "day": "2026-11-02",
     "day_start_value": 15.26150611453632,
     "halted_day": "",
-    "positions": {},
-    "ticks_since_buy": 12
+    "positions": {
+      "0x526728dbc96689597f85ae4cd716d4f7fccbae9d": {
+        "cost_usd": 5,
+        "entry_fill": 0.8935250000000001,
+        "entry_intended": 0.8675,
+        "entry_liq_usd": 2013713.73,
+        "entry_qliq": 1162509,
+        "entry_ts": "2026-11-02T09:33:12Z",
+        "ladder_done": [],
+        "last_price": 0.8675,
+        "launchpad": "other",
+        "orig_qty": 5.595814330880501,
+        "pair": "0x883e9c376f4119f9c475b3e80af4002f00f6964a",
+        "peak_price": 0.8675,
+        "qty": 5.595814330880501,
+        "symbol": "msUSD"
+      }
+    },
+    "ticks_since_buy": 0
   },
   "desk": {
     "cash": 47.60776857887221,
@@ -1255,7 +1272,8 @@
       },
       "0x9b658bd0389fd935ebf2a3bf0df05c8f56e8b499": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 0.0001088,
         "first_seen": "2026-11-02T03:33:11Z",
@@ -1488,7 +1506,8 @@
       },
       "0xbce5173eea199d81e324960f3bb532a86cfe1ed7": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 8.907e-05,
         "first_seen": "2026-11-02T03:33:11Z",
@@ -3256,6 +3275,12 @@
         "symbol": "CHUBBY",
         "until": "2026-11-03T03:08:20Z"
       },
+      "0x391bf49b40269c355fdc1ec8df298da8cce68966": {
+        "at": "2026-11-02T09:33:12Z",
+        "reason": "goplus_timeout",
+        "symbol": "FOTF",
+        "until": "2026-11-03T09:33:12Z"
+      },
       "0x3932c8fe80d4215899b6d16190e51a521525083a": {
         "at": "2026-11-01T11:58:14Z",
         "reason": "liquidity",
@@ -3297,6 +3322,12 @@
         "reason": "liquidity",
         "symbol": "uni",
         "until": "2026-11-02T12:53:12Z"
+      },
+      "0x3a67f5500cb8ace93c5dae3d9294ad4c8fff3585": {
+        "at": "2026-11-02T09:33:12Z",
+        "reason": "goplus_timeout",
+        "symbol": "STEALTH",
+        "until": "2026-11-03T09:33:12Z"
       },
       "0x3a6977b84710d40cc3e2dadc648e332b2161a39d": {
         "at": "2026-11-01T14:48:13Z",
@@ -3496,6 +3527,12 @@
         "symbol": ".AI",
         "until": "2026-11-03T04:03:13Z"
       },
+      "0x4521f0ddd8d26e50a7e6ebc69e01878efb146f0a": {
+        "at": "2026-11-02T09:33:12Z",
+        "reason": "goplus_timeout",
+        "symbol": "SONAFI",
+        "until": "2026-11-03T09:33:12Z"
+      },
       "0x4542c1544cd025c92630897bdaccaab1d596626c": {
         "at": "2026-11-01T20:18:14Z",
         "reason": "liquidity",
@@ -3561,12 +3598,6 @@
         "reason": "goplus_timeout",
         "symbol": "DFOF",
         "until": "2026-11-02T17:08:14Z"
-      },
-      "0x47d90feb921efa7679083a28db249d54dddda131": {
-        "at": "2026-11-01T09:33:11Z",
-        "reason": "liquidity",
-        "symbol": "DEXTERM",
-        "until": "2026-11-02T09:33:11Z"
       },
       "0x47e79d7b46a7e1faafa593cf0f27454dfc3735b8": {
         "at": "2026-11-02T07:08:21Z",
@@ -3813,6 +3844,12 @@
         "reason": "liquidity",
         "symbol": "BaseHub",
         "until": "2026-11-02T09:38:11Z"
+      },
+      "0x526728dbc96689597f85ae4cd716d4f7fccbae9d": {
+        "at": "2026-11-02T09:33:12Z",
+        "reason": "goplus_timeout",
+        "symbol": "msUSD",
+        "until": "2026-11-03T09:33:12Z"
       },
       "0x5299f3a2496ade83711c4c75982b35212d9a3754": {
         "at": "2026-11-01T18:08:12Z",
@@ -4269,6 +4306,12 @@
         "reason": "liquidity",
         "symbol": "LIQUIDBGT",
         "until": "2026-11-02T16:08:13Z"
+      },
+      "0x63dc423df1584973c8e7781bedf5d13dd15af2f8": {
+        "at": "2026-11-02T09:33:12Z",
+        "reason": "goplus_timeout",
+        "symbol": "XAR",
+        "until": "2026-11-03T09:33:12Z"
       },
       "0x63e2adc535f30c6abc5fd6186af2f5f8c390e784": {
         "at": "2026-11-02T00:13:12Z",
@@ -5001,6 +5044,12 @@
         "reason": "liquidity",
         "symbol": "Bubble",
         "until": "2026-11-02T12:08:15Z"
+      },
+      "0x80397aa2c0137cab8d3724443f54a6a75c21ec4c": {
+        "at": "2026-11-02T09:33:12Z",
+        "reason": "goplus_timeout",
+        "symbol": "Pox",
+        "until": "2026-11-03T09:33:12Z"
       },
       "0x804a4bbbf398b607a25af95e52d11f430031c8a7": {
         "at": "2026-11-01T14:58:13Z",
@@ -7024,6 +7073,12 @@
         "symbol": "NIPZ",
         "until": "2026-11-03T06:58:23Z"
       },
+      "0xb200000000000000000000ec9f0f9d5bd57faca2": {
+        "at": "2026-11-02T09:33:12Z",
+        "reason": "liquidity",
+        "symbol": "OFFR",
+        "until": "2026-11-03T09:33:12Z"
+      },
       "0xb200000000000000000000ece14e99da16cf8054": {
         "at": "2026-11-02T09:03:14Z",
         "reason": "liquidity",
@@ -8965,15 +9020,15 @@
         "symbol": "OIL TRUST FUND FEDERAL"
       },
       "0x2d2181a5e295f8dfe361a733b8f40afcd1c79b32": {
-        "checks": 9,
+        "checks": 10,
         "first_seen": "2026-11-02T06:38:11Z",
-        "last_check": "2026-11-02T09:13:15Z",
+        "last_check": "2026-11-02T09:33:12Z",
         "symbol": "EAGLE"
       },
       "0x2f3c84d8924db2b5137c8008afdabcd20bac19c7": {
-        "checks": 9,
+        "checks": 10,
         "first_seen": "2026-11-02T06:38:11Z",
-        "last_check": "2026-11-02T09:13:15Z",
+        "last_check": "2026-11-02T09:33:12Z",
         "symbol": "FOFT"
       },
       "0x301f157fcacc34652fd780464b5dda5e8f257ff6": {
@@ -8982,35 +9037,11 @@
         "last_check": "2026-11-02T09:23:12Z",
         "symbol": "UFTD"
       },
-      "0x391bf49b40269c355fdc1ec8df298da8cce68966": {
-        "checks": 10,
-        "first_seen": "2026-11-02T06:33:11Z",
-        "last_check": "2026-11-02T09:13:15Z",
-        "symbol": "FOTF"
-      },
-      "0x3a67f5500cb8ace93c5dae3d9294ad4c8fff3585": {
-        "checks": 10,
-        "first_seen": "2026-11-02T06:33:11Z",
-        "last_check": "2026-11-02T09:13:15Z",
-        "symbol": "STEALTH"
-      },
       "0x4154550f4db74dc38d1fe98e1f3f28ed6dad627d": {
         "checks": 2,
         "first_seen": "2026-11-02T09:08:12Z",
         "last_check": "2026-11-02T09:23:12Z",
         "symbol": "jEUR"
-      },
-      "0x4521f0ddd8d26e50a7e6ebc69e01878efb146f0a": {
-        "checks": 10,
-        "first_seen": "2026-11-02T06:33:11Z",
-        "last_check": "2026-11-02T09:13:15Z",
-        "symbol": "SONAFI"
-      },
-      "0x526728dbc96689597f85ae4cd716d4f7fccbae9d": {
-        "checks": 10,
-        "first_seen": "2026-11-02T06:33:11Z",
-        "last_check": "2026-11-02T09:13:15Z",
-        "symbol": "msUSD"
       },
       "0x56e7de492c60f6bd9942e2ae304d3dd63bb54d6b": {
         "checks": 1,
@@ -9023,12 +9054,6 @@
         "first_seen": "2026-11-02T08:53:11Z",
         "last_check": "2026-11-02T09:23:12Z",
         "symbol": "UDFT"
-      },
-      "0x63dc423df1584973c8e7781bedf5d13dd15af2f8": {
-        "checks": 10,
-        "first_seen": "2026-11-02T06:33:11Z",
-        "last_check": "2026-11-02T09:13:15Z",
-        "symbol": "XAR"
       },
       "0x68150dc056969a6c12b6811f5fc5cffd30d5f215": {
         "checks": 6,
@@ -9043,9 +9068,9 @@
         "symbol": "UTDF"
       },
       "0x6c1df4c1e62e69784a38a6c2f4904889880f8c70": {
-        "checks": 8,
+        "checks": 9,
         "first_seen": "2026-11-02T07:13:12Z",
-        "last_check": "2026-11-02T09:13:15Z",
+        "last_check": "2026-11-02T09:33:12Z",
         "symbol": "FOTF"
       },
       "0x73b950d1f46a65c4a128c749c44e4c2ead1cd8e9": {
@@ -9053,12 +9078,6 @@
         "first_seen": "2026-11-02T07:13:12Z",
         "last_check": "2026-11-02T09:18:15Z",
         "symbol": "OFTF"
-      },
-      "0x80397aa2c0137cab8d3724443f54a6a75c21ec4c": {
-        "checks": 9,
-        "first_seen": "2026-11-02T06:33:11Z",
-        "last_check": "2026-11-02T09:13:15Z",
-        "symbol": "Pox"
       },
       "0x9104ecd721cb17e497b8206682b59407318b6fc9": {
         "checks": 3,
@@ -9162,7 +9181,7 @@
     },
     "machine_due": "",
     "max_dd_pct": {
-      "baseline": 78.84895675333934,
+      "baseline": 79.32687334430656,
       "desk": 9.811123120222184
     },
     "peak": {
