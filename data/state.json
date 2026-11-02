@@ -13,7 +13,8 @@
         "entry_qliq": 1162509,
         "entry_ts": "2026-11-02T09:33:12Z",
         "ladder_done": [],
-        "last_price": 0.8675,
+        "last_liq_usd": 2011085.36,
+        "last_price": 0.8666,
         "launchpad": "other",
         "orig_qty": 5.595814330880501,
         "pair": "0x883e9c376f4119f9c475b3e80af4002f00f6964a",
@@ -22,7 +23,7 @@
         "symbol": "msUSD"
       }
     },
-    "ticks_since_buy": 0
+    "ticks_since_buy": 1
   },
   "desk": {
     "cash": 47.60776857887221,
@@ -252,15 +253,6 @@
         "first_seen": "2026-11-02T02:48:13Z",
         "symbol": "AOFT\u2600\ufe0f"
       },
-      "0x190ae7d000dbd9ac918a9c8fb9727f5ec083f1f1": {
-        "done": [
-          1,
-          6
-        ],
-        "first_price": 0.0197,
-        "first_seen": "2026-11-01T09:38:11Z",
-        "symbol": "NAFF"
-      },
       "0x199a53edfaa149e1644a641282aa3d58ff73e9a9": {
         "done": [
           1,
@@ -436,15 +428,6 @@
         "first_price": 9.264e-05,
         "first_seen": "2026-11-01T21:13:11Z",
         "symbol": "AOFT"
-      },
-      "0x2c6a426d835beebbab8cc3046b74a35f4628b350": {
-        "done": [
-          1,
-          6
-        ],
-        "first_price": 6.695e-05,
-        "first_seen": "2026-11-01T09:38:11Z",
-        "symbol": "NAFF"
       },
       "0x2ca08a3d21a8afb17462dbaad67fc8a5d81b82c1": {
         "done": [
@@ -1472,7 +1455,9 @@
         "symbol": "UDFO"
       },
       "0xb90284f52f26792cd34e8369b684e88ee43af590": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 0.0001527,
         "first_seen": "2026-11-02T08:38:14Z",
         "symbol": "FEDERAL FUND OIL TRUST"
@@ -2441,12 +2426,6 @@
         "symbol": "XCHAT",
         "until": "2026-11-03T01:58:12Z"
       },
-      "0x18797849e2c8ed7958b0bdc6b491c16085b64679": {
-        "at": "2026-11-01T09:38:11Z",
-        "reason": "liquidity",
-        "symbol": "NODF",
-        "until": "2026-11-02T09:38:11Z"
-      },
       "0x189a53475284c528e14a8a33f00330d422636984": {
         "at": "2026-11-01T21:28:14Z",
         "reason": "liquidity",
@@ -2692,12 +2671,6 @@
         "reason": "liquidity",
         "symbol": "ANTHROPIC",
         "until": "2026-11-02T11:08:16Z"
-      },
-      "0x22fb3307c16e4f1a839402a02800c3313c2b10cf": {
-        "at": "2026-11-01T09:38:11Z",
-        "reason": "liquidity",
-        "symbol": "uLONG",
-        "until": "2026-11-02T09:38:11Z"
       },
       "0x2335db63b3905763870f5ce10580a2a5ffa59222": {
         "at": "2026-11-01T13:48:12Z",
@@ -3838,12 +3811,6 @@
         "reason": "liquidity",
         "symbol": "MORSE",
         "until": "2026-11-02T17:28:12Z"
-      },
-      "0x524aec699528dd2dc52135beaf20723c08fceb03": {
-        "at": "2026-11-01T09:38:11Z",
-        "reason": "liquidity",
-        "symbol": "BaseHub",
-        "until": "2026-11-02T09:38:11Z"
       },
       "0x526728dbc96689597f85ae4cd716d4f7fccbae9d": {
         "at": "2026-11-02T09:33:12Z",
@@ -5483,6 +5450,12 @@
         "symbol": "HMYT",
         "until": "2026-11-03T04:43:12Z"
       },
+      "0x9106dbf9da2e0f717bb2607826a52e6dad85271f": {
+        "at": "2026-11-02T09:38:24Z",
+        "reason": "liquidity",
+        "symbol": "UTDF",
+        "until": "2026-11-03T09:38:24Z"
+      },
       "0x912ddc18b913873a9173de03d41ba1cdfd0ad186": {
         "at": "2026-11-02T06:53:13Z",
         "reason": "liquidity",
@@ -5788,6 +5761,12 @@
         "reason": "liquidity",
         "symbol": ".AI",
         "until": "2026-11-03T09:08:12Z"
+      },
+      "0xa0fc7bb0df38543cc3d04cc7d718a8503e292f91": {
+        "at": "2026-11-02T09:38:24Z",
+        "reason": "liquidity",
+        "symbol": "LUCE",
+        "until": "2026-11-03T09:38:24Z"
       },
       "0xa11875c233377ca4a6ea689a21322beceb8c0808": {
         "at": "2026-11-02T06:43:10Z",
@@ -7090,6 +7069,12 @@
         "reason": "liquidity",
         "symbol": "LABBOT",
         "until": "2026-11-02T10:43:13Z"
+      },
+      "0xb200000000000000000000eef73b172b3e75f901": {
+        "at": "2026-11-02T09:38:24Z",
+        "reason": "missing:liq_usd",
+        "symbol": "Denim",
+        "until": "2026-11-03T09:38:24Z"
       },
       "0xb200000000000000000000eef8d1bf7940d62da4": {
         "at": "2026-11-01T18:33:13Z",
@@ -9014,9 +8999,9 @@
         "symbol": "ADOF"
       },
       "0x288c718bed4548720f1b953ef2618cf48849122c": {
-        "checks": 3,
+        "checks": 4,
         "first_seen": "2026-11-02T08:53:11Z",
-        "last_check": "2026-11-02T09:23:12Z",
+        "last_check": "2026-11-02T09:38:24Z",
         "symbol": "OIL TRUST FUND FEDERAL"
       },
       "0x2d2181a5e295f8dfe361a733b8f40afcd1c79b32": {
@@ -9032,9 +9017,9 @@
         "symbol": "FOFT"
       },
       "0x301f157fcacc34652fd780464b5dda5e8f257ff6": {
-        "checks": 3,
+        "checks": 4,
         "first_seen": "2026-11-02T08:53:11Z",
-        "last_check": "2026-11-02T09:23:12Z",
+        "last_check": "2026-11-02T09:38:24Z",
         "symbol": "UFTD"
       },
       "0x4154550f4db74dc38d1fe98e1f3f28ed6dad627d": {
@@ -9050,21 +9035,21 @@
         "symbol": "NTOF"
       },
       "0x586d28fd893034d0429c08e18da01e4807e55b71": {
-        "checks": 3,
+        "checks": 4,
         "first_seen": "2026-11-02T08:53:11Z",
-        "last_check": "2026-11-02T09:23:12Z",
+        "last_check": "2026-11-02T09:38:24Z",
         "symbol": "UDFT"
       },
       "0x68150dc056969a6c12b6811f5fc5cffd30d5f215": {
-        "checks": 6,
+        "checks": 7,
         "first_seen": "2026-11-02T07:53:11Z",
-        "last_check": "2026-11-02T09:18:15Z",
+        "last_check": "2026-11-02T09:38:24Z",
         "symbol": "ADP\ud83c\uddfa\ud83c\uddf8"
       },
       "0x68c44394413117035b07dd7adfba1a15540895e7": {
-        "checks": 3,
+        "checks": 4,
         "first_seen": "2026-11-02T08:53:11Z",
-        "last_check": "2026-11-02T09:23:12Z",
+        "last_check": "2026-11-02T09:38:24Z",
         "symbol": "UTDF"
       },
       "0x6c1df4c1e62e69784a38a6c2f4904889880f8c70": {
@@ -9074,22 +9059,16 @@
         "symbol": "FOTF"
       },
       "0x73b950d1f46a65c4a128c749c44e4c2ead1cd8e9": {
-        "checks": 8,
+        "checks": 9,
         "first_seen": "2026-11-02T07:13:12Z",
-        "last_check": "2026-11-02T09:18:15Z",
+        "last_check": "2026-11-02T09:38:24Z",
         "symbol": "OFTF"
       },
       "0x9104ecd721cb17e497b8206682b59407318b6fc9": {
-        "checks": 3,
+        "checks": 4,
         "first_seen": "2026-11-02T08:53:11Z",
-        "last_check": "2026-11-02T09:23:12Z",
+        "last_check": "2026-11-02T09:38:24Z",
         "symbol": "ADFO"
-      },
-      "0x9106dbf9da2e0f717bb2607826a52e6dad85271f": {
-        "checks": 2,
-        "first_seen": "2026-11-02T09:03:14Z",
-        "last_check": "2026-11-02T09:18:15Z",
-        "symbol": "UTDF"
       },
       "0xac0df1f9c530790aba39837ad063df5a56699919": {
         "checks": 2,
@@ -9098,9 +9077,9 @@
         "symbol": "UTFD"
       },
       "0xb90284f52f26792cd34e8369b684e88ee43af590": {
-        "checks": 3,
+        "checks": 4,
         "first_seen": "2026-11-02T08:38:14Z",
-        "last_check": "2026-11-02T09:18:15Z",
+        "last_check": "2026-11-02T09:38:24Z",
         "symbol": "FEDERAL FUND OIL TRUST"
       },
       "0xd59fd120191641369f7c3c0fb451c01a87146ff0": {
@@ -9116,9 +9095,9 @@
         "symbol": "NFOT"
       },
       "0xf2c53391c54467ac4d50650c96df89c32f358e47": {
-        "checks": 6,
+        "checks": 7,
         "first_seen": "2026-11-02T07:53:11Z",
-        "last_check": "2026-11-02T09:18:15Z",
+        "last_check": "2026-11-02T09:38:24Z",
         "symbol": "APD"
       }
     }
@@ -9181,7 +9160,7 @@
     },
     "machine_due": "",
     "max_dd_pct": {
-      "baseline": 79.32687334430656,
+      "baseline": 79.33505640718484,
       "desk": 9.811123120222184
     },
     "peak": {
