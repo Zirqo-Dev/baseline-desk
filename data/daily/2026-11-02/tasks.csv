@@ -24,3 +24,12 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-02T00:08:13Z,desk,VERIFY,ANTHROPIC,0x47898e0730a84d5d017fc4af9ec14451ef0bca32,SKIP,liquidity,goplus=skipped until=2026-11-03T00:08:13Z
 2026-11-02T00:08:13Z,desk,VERIFY,ATOF,0xb2000000000000000000003c9335606ee54dc5d7,SKIP,liquidity,goplus=skipped until=2026-11-03T00:08:13Z
 2026-11-02T00:08:13Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=19 rechecks=8 new=4 checked=12 passed=0 bought=0 held=0 deferred=0 dex_only=4 goplus=8 requests=24 secs=17.1 bl_positions=1 bl_due=0 bl_eligible=3 bl_bought=0 report=none machine=none bl_error=none labels=none labels_due=0 labels_done=0 labels_calls=0 live=ok alerts=none alerts_sent=0
+2026-11-02T00:13:12Z,baseline,EXIT,ATOF,0x9b5755e76db54398266c6ebbc8dd41c982e767ef,HOLD,,pct=-2.91
+2026-11-02T00:13:12Z,desk,VERIFY,,0x63e2adc535f30c6abc5fd6186af2f5f8c390e784,SKIP,missing:symbol,goplus=skipped until=2026-11-03T00:13:12Z
+2026-11-02T00:13:12Z,desk,VERIFY,PEPKING,0x8f991c23e9e8faf868d22a37c623760208f4b632,SKIP,liquidity,goplus=skipped until=2026-11-03T00:13:12Z
+2026-11-02T00:13:12Z,desk,VERIFY,AXON,0x0c57a9bdd8eafad26ee4befcedc4a17f3aa508b7,SKIP,missing:liq_usd,goplus=skipped until=2026-11-03T00:13:12Z
+2026-11-02T00:13:12Z,desk,VERIFY,XCHAT,0xd2754a7986b6ca5e5000d1a60bcaee312fcd4f79,SKIP,liquidity,goplus=skipped until=2026-11-03T00:13:12Z
+2026-11-02T00:13:12Z,desk,VERIFY,USA RESERVE ,0xb5631af217e178f177cf96e2f42c61bdbfb0fedc,WATCH,goplus_not_ready,"first_seen=2026-11-02T00:13:12Z checks=1 pending=mint_open,freeze_or_blacklist,honeypot,buy_tax_pct,sell_tax_pct,dev_pct,top10_pct,lp_locked_pct,risk_flags b1=4 s1=0 b24=4 s24=0 liq=89890 dex=uniswap:v4 qliq=29"
+2026-11-02T00:13:12Z,desk,VERIFY,UODF,0x4dd3e6c0b2242fac6368fd902a0ecc58de44504c,WATCH,goplus_not_ready,"first_seen=2026-11-02T00:13:12Z checks=1 pending=honeypot,buy_tax_pct,sell_tax_pct,dev_pct,top10_pct,lp_locked_pct b1=5 s1=0 b24=5 s24=0 liq=69289 dex=uniswap:v2 qliq=34644"
+2026-11-02T00:13:12Z,desk,VERIFY,CHUBBY,0x8005e9fc6220755700cc7eadcaf267fc08c72652,SKIP,liquidity,goplus=skipped until=2026-11-03T00:13:12Z
+2026-11-02T00:13:12Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=0 new=7 checked=7 passed=0 bought=0 held=0 deferred=0 dex_only=5 goplus=2 requests=14 secs=4.8 bl_positions=1 bl_due=0 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=3 labels_done=3 labels_calls=1 live=ok alerts=none alerts_sent=0
