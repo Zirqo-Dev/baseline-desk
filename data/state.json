@@ -13,17 +13,17 @@
         "entry_qliq": 8808,
         "entry_ts": "2026-11-02T01:08:14Z",
         "ladder_done": [],
-        "last_liq_usd": 29698156.94,
-        "last_price": 0.01979,
+        "last_liq_usd": 29739867.2,
+        "last_price": 0.01982,
         "launchpad": "other",
         "orig_qty": 246.03998641859275,
         "pair": "0x7bcd2b5203890f27ecd29cf2c1dca3b9c84682e5772f38413cf017b38b90a7ed",
-        "peak_price": 0.01979,
+        "peak_price": 0.01982,
         "qty": 246.03998641859275,
         "symbol": "ADP"
       }
     },
-    "ticks_since_buy": 2
+    "ticks_since_buy": 3
   },
   "desk": {
     "cash": 47.60776857887221,
@@ -764,6 +764,12 @@
         "first_seen": "2026-11-01T18:28:14Z",
         "symbol": "CATO"
       },
+      "0x657e5767eb9eedc8f2bce4e7fa0bc4ebb75389f5": {
+        "done": [],
+        "first_price": 5.943e-05,
+        "first_seen": "2026-11-02T01:23:11Z",
+        "symbol": "USRD"
+      },
       "0x677767694afc74dd8144dd29213e0e7c9f5b56a0": {
         "done": [
           1,
@@ -775,7 +781,8 @@
       },
       "0x683b9537aae97574657d0dafaf095c5207a56459": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 3.775e-06,
         "first_seen": "2026-11-01T19:23:11Z",
@@ -1169,7 +1176,9 @@
         "symbol": "AI"
       },
       "0xb20000000000000000000014d2b42049a5d15d71": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 0.00102,
         "first_seen": "2026-11-02T00:23:11Z",
         "symbol": "BRICSOIL"
@@ -4361,6 +4370,12 @@
         "symbol": "CALLED",
         "until": "2026-11-02T05:08:13Z"
       },
+      "0x56775ae1fb93157c58ebe9eb5703acab2fc22d8b": {
+        "at": "2026-11-02T01:23:11Z",
+        "reason": "liquidity",
+        "symbol": "GITLAB",
+        "until": "2026-11-03T01:23:11Z"
+      },
       "0x56c226c886fdf49c80c313d1abdd7ec99bc15f6a": {
         "at": "2026-11-01T01:28:14Z",
         "reason": "liquidity",
@@ -4372,6 +4387,12 @@
         "reason": "liquidity",
         "symbol": "ASHTEST",
         "until": "2026-11-02T19:38:12Z"
+      },
+      "0x5736cebdbf1b7ec09de56bad56be511598247ba3": {
+        "at": "2026-11-02T01:23:11Z",
+        "reason": "liquidity",
+        "symbol": "AGENT",
+        "until": "2026-11-03T01:23:11Z"
       },
       "0x574152ea8de717a0e616d0a9a070cb3476423b07": {
         "at": "2026-11-01T18:43:11Z",
@@ -6652,6 +6673,12 @@
         "reason": "missing:liq_usd",
         "symbol": "XRAD",
         "until": "2026-11-02T03:13:11Z"
+      },
+      "0xa5ff6dfa271b96de76074e0f52310237496634be": {
+        "at": "2026-11-02T01:23:11Z",
+        "reason": "liquidity",
+        "symbol": ".AI",
+        "until": "2026-11-03T01:23:11Z"
       },
       "0xa6c3b9dce1457dd6a7be450300154eb7c47d0434": {
         "at": "2026-11-01T08:48:14Z",
@@ -9653,6 +9680,12 @@
         "symbol": "RICO",
         "until": "2026-11-02T21:03:11Z"
       },
+      "0xe8abec666f066abf2e3624c81aec387da8e7b4ff": {
+        "at": "2026-11-02T01:23:11Z",
+        "reason": "liquidity",
+        "symbol": "SPACEX",
+        "until": "2026-11-03T01:23:11Z"
+      },
       "0xe8c27988350b3f532b8e1f6f3b86e63b5eaf6be2": {
         "at": "2026-11-01T19:13:12Z",
         "reason": "liquidity",
@@ -10346,9 +10379,9 @@
         "symbol": "RHEA"
       },
       "0x2eb59445e01f9e2cc8fe2bc0d4487211d4fbdac6": {
-        "checks": 4,
+        "checks": 5,
         "first_seen": "2026-11-01T23:58:14Z",
-        "last_check": "2026-11-02T01:03:12Z",
+        "last_check": "2026-11-02T01:23:11Z",
         "symbol": "FFDO"
       },
       "0x3066b5c75b013b62038eeaa8d9663f43f7705af2": {
@@ -10358,9 +10391,9 @@
         "symbol": "STO"
       },
       "0x3fe64ed55324fb6833059fb8561c3f9c51d4fb96": {
-        "checks": 3,
+        "checks": 4,
         "first_seen": "2026-11-02T00:18:12Z",
-        "last_check": "2026-11-02T01:03:12Z",
+        "last_check": "2026-11-02T01:23:11Z",
         "symbol": "AFOD"
       },
       "0x5ecdf2268a3b09318321a014b33844ddde61659f": {
@@ -10370,10 +10403,16 @@
         "symbol": "HNT"
       },
       "0x5fd8575ad059a86a899c378db914a049ae6ffbed": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-02T01:03:12Z",
-        "last_check": "2026-11-02T01:03:12Z",
+        "last_check": "2026-11-02T01:23:11Z",
         "symbol": "OIL FEDERAL FUND TRUST"
+      },
+      "0x657e5767eb9eedc8f2bce4e7fa0bc4ebb75389f5": {
+        "checks": 1,
+        "first_seen": "2026-11-02T01:23:11Z",
+        "last_check": "2026-11-02T01:23:11Z",
+        "symbol": "USRD"
       },
       "0x84bcb910331c5c41cc12cc6f428fb6ab88707fa3": {
         "checks": 9,
@@ -10388,15 +10427,15 @@
         "symbol": "XDP"
       },
       "0x9b5755e76db54398266c6ebbc8dd41c982e767ef": {
-        "checks": 6,
+        "checks": 7,
         "first_seen": "2026-11-01T23:28:13Z",
-        "last_check": "2026-11-02T01:03:12Z",
+        "last_check": "2026-11-02T01:23:11Z",
         "symbol": "ATOF"
       },
       "0xb4d9ffae1160dfc991d3891782ea1f7a5c0246ea": {
-        "checks": 5,
+        "checks": 6,
         "first_seen": "2026-11-01T23:48:13Z",
-        "last_check": "2026-11-02T01:03:12Z",
+        "last_check": "2026-11-02T01:23:11Z",
         "symbol": "gd"
       },
       "0xb5631af217e178f177cf96e2f42c61bdbfb0fedc": {
@@ -10406,9 +10445,9 @@
         "symbol": "USA RESERVE "
       },
       "0xc21b4a7a7f4264298e6a9cd75faaf2b02257ca6b": {
-        "checks": 4,
+        "checks": 5,
         "first_seen": "2026-11-01T23:58:14Z",
-        "last_check": "2026-11-02T01:03:12Z",
+        "last_check": "2026-11-02T01:23:11Z",
         "symbol": "FDOF"
       },
       "0xd9d2aa95eea254d079b9956beacd5b6c1bbc85ae": {
