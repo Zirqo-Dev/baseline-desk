@@ -13,11 +13,12 @@
         "entry_qliq": 2357691,
         "entry_ts": "2026-11-02T13:48:14Z",
         "ladder_done": [],
-        "last_price": 0.1229,
+        "last_liq_usd": 2427736.56,
+        "last_price": 0.123,
         "launchpad": "other",
         "orig_qty": 39.4985267049539,
         "pair": "0xc19d91d99afc0332e5013a569c9721cd9ecb51a14c851f7a189a140950a627fa",
-        "peak_price": 0.1229,
+        "peak_price": 0.123,
         "qty": 39.4985267049539,
         "symbol": "AXIS"
       },
@@ -32,8 +33,8 @@
           0,
           1
         ],
-        "last_liq_usd": 155719.37,
-        "last_price": 0.06714,
+        "last_liq_usd": 155707.67,
+        "last_price": 0.06713,
         "launchpad": "other",
         "orig_qty": 153.57067168740383,
         "pair": "0xc83f77f5f58e9563253df1a3c4f87669d88f99e5",
@@ -42,7 +43,7 @@
         "symbol": "Noah"
       }
     },
-    "ticks_since_buy": 0
+    "ticks_since_buy": 1
   },
   "desk": {
     "cash": 47.60776857887221,
@@ -672,7 +673,9 @@
         "symbol": "AOFT"
       },
       "0x3f5bf3edac59d650d8fdf9657a71f2f904a3a4ee": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 0.6182,
         "first_seen": "2026-11-02T12:53:13Z",
         "symbol": "AERO"
@@ -945,7 +948,8 @@
       },
       "0x6188b18817f620a048959c805ef825c39d95642f": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 4.63e-06,
         "first_seen": "2026-11-02T07:53:11Z",
@@ -997,7 +1001,8 @@
       },
       "0x68150dc056969a6c12b6811f5fc5cffd30d5f215": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 0.0001723,
         "first_seen": "2026-11-02T07:53:11Z",
@@ -1783,7 +1788,8 @@
       },
       "0xf2c53391c54467ac4d50650c96df89c32f358e47": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 9.873e-05,
         "first_seen": "2026-11-02T07:53:11Z",
@@ -3302,6 +3308,12 @@
         "reason": "liquidity",
         "symbol": "CHUBBY",
         "until": "2026-11-03T03:08:20Z"
+      },
+      "0x38f2065bd3a6b3eb669153b647dd20f73f8152a9": {
+        "at": "2026-11-02T13:53:13Z",
+        "reason": "goplus_timeout",
+        "symbol": "VETOTRUMP",
+        "until": "2026-11-03T13:53:13Z"
       },
       "0x391bf49b40269c355fdc1ec8df298da8cce68966": {
         "at": "2026-11-02T09:33:12Z",
@@ -4904,12 +4916,6 @@
         "reason": "missing:symbol",
         "symbol": "",
         "until": "2026-11-02T19:38:12Z"
-      },
-      "0x7890b1ceb4ce54b904cc72802218eab25c197d6d": {
-        "at": "2026-11-01T13:53:11Z",
-        "reason": "liquidity",
-        "symbol": "Waldo",
-        "until": "2026-11-02T13:53:11Z"
       },
       "0x7899df2688f5f931492e7808cd9db86ede1d6b07": {
         "at": "2026-11-02T11:48:24Z",
@@ -8934,9 +8940,9 @@
     },
     "watch": {
       "0x007721c1a257bcf2e4a1fed00502c0e26003a591": {
-        "checks": 7,
+        "checks": 8,
         "first_seen": "2026-11-02T12:03:13Z",
-        "last_check": "2026-11-02T13:38:13Z",
+        "last_check": "2026-11-02T13:53:13Z",
         "symbol": "WW3"
       },
       "0x2ccb7233066512eebce72cf4e403700f1f57081c": {
@@ -8957,16 +8963,10 @@
         "last_check": "2026-11-02T13:48:14Z",
         "symbol": "AMERICAN OIL TRUST FUND"
       },
-      "0x38f2065bd3a6b3eb669153b647dd20f73f8152a9": {
-        "checks": 11,
-        "first_seen": "2026-11-02T10:48:30Z",
-        "last_check": "2026-11-02T13:38:13Z",
-        "symbol": "VETOTRUMP"
-      },
       "0x3c4108b55facaeb4301ce38e4b2e964250d81902": {
-        "checks": 7,
+        "checks": 8,
         "first_seen": "2026-11-02T11:58:24Z",
-        "last_check": "2026-11-02T13:38:13Z",
+        "last_check": "2026-11-02T13:53:13Z",
         "symbol": "USDF"
       },
       "0x5be75e3b0aff5d1a042a5363ae36acb1d6d755ea": {
@@ -8982,9 +8982,9 @@
         "symbol": "HYPE"
       },
       "0x7b11e00a88262beb505f9d221a0f979b35fec10f": {
-        "checks": 7,
+        "checks": 8,
         "first_seen": "2026-11-02T12:03:13Z",
-        "last_check": "2026-11-02T13:38:13Z",
+        "last_check": "2026-11-02T13:53:13Z",
         "symbol": "WWIII"
       },
       "0x8bbad190af23a1624c8c76a086b6942f2ea35ac8": {
@@ -8994,15 +8994,15 @@
         "symbol": "PUNDIX"
       },
       "0xa0eb7121f16b64d0e64512fe4c7dd1097b30f0e0": {
-        "checks": 10,
+        "checks": 11,
         "first_seen": "2026-11-02T11:08:13Z",
-        "last_check": "2026-11-02T13:38:13Z",
+        "last_check": "2026-11-02T13:53:13Z",
         "symbol": "Noah"
       },
       "0xb0b0264e6e3426c31c35ee14171ebfec0a1d3d4b": {
-        "checks": 7,
+        "checks": 8,
         "first_seen": "2026-11-02T11:58:24Z",
-        "last_check": "2026-11-02T13:38:13Z",
+        "last_check": "2026-11-02T13:53:13Z",
         "symbol": "APD"
       },
       "0xb2f3b37d40ff9718a6f6b33ec1bad22072e831a8": {
