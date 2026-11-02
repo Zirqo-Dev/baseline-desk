@@ -916,6 +916,15 @@ Moved from CLAUDE.md section 11 on 2026-10-23 (BL-2 process cleanup). Wording is
   alerts=off alerts_sent=0, live=ok, 33 requests, 20.6 s, no "alerts" key in state; python -m core.alerts --test printed
   "off", exit 1.
 
+## External review 2026-11-02
+- Desk: 1 PASS and 1 trade since Oct 23 (SI, -2.39 USD); the funnel is dominated by WATCH goplus_not_ready and SKIP liquidity; Gate B is unreachable as built.
+- The random book is not a fair yardstick: it buys stables, wrapped assets and same-symbol clones at new addresses, has no age filter in eligible(), and sits near the MIN_TICKET cash floor. Gate B comparisons are on hold until R3.
+- Outcome labels undercount deaths: many +1 h labels show qliq < 100 USD with gone=0 and a price still above -50% (likely a leftover dust pair). No depth rule from these labels until R2.
+- Fills on fiction: paper tickets are above 10% (some above 100%) of real depth; friction is a 3/5% step with no price impact (R4).
+- Kill-test: the launch desk enters after deployers and snipers on a 5-min clock, so it is exit liquidity. Parked as a money candidate, kept logging.
+- Proposed direction: survivor momentum on real depth, backtest first; no 45-min time stop in the new strategy.
+- Execution risks for later: a DEX stop is not a resting order (SI fell -92% within one tick); public Actions logs mean no key on Actions; a dead-man rule and a flatten-only kill switch are needed.
+
 ## Open items (detail)
 - Open items:
   - BL-7 done only after 24h of green runs, no overlap, one TICK row per run. The TICK rows show the real run rate for Gate A (90%).
