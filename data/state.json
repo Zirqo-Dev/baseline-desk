@@ -13,6 +13,7 @@
         "entry_qliq": 3,
         "entry_ts": "2026-11-02T18:58:13Z",
         "ladder_done": [],
+        "last_liq_usd": 517235.29,
         "last_price": 0.0006085,
         "launchpad": "other",
         "orig_qty": 7977.5989022823915,
@@ -22,7 +23,7 @@
         "symbol": "UnityCodedZora"
       }
     },
-    "ticks_since_buy": 0
+    "ticks_since_buy": 1
   },
   "desk": {
     "cash": 47.60776857887221,
@@ -1212,17 +1213,10 @@
         "first_seen": "2026-11-02T15:23:12Z",
         "symbol": "MCOURT"
       },
-      "0x8b59d79826088024351f77a3cbed8264cd71f927": {
-        "done": [
-          1,
-          6
-        ],
-        "first_price": 0.0001033,
-        "first_seen": "2026-11-01T19:03:12Z",
-        "symbol": "U.S OIL FUND"
-      },
       "0x8b741a740d668e32663168ca3a50f54d5c7ca462": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 9.957e-05,
         "first_seen": "2026-11-02T18:03:12Z",
         "symbol": "WRWA"
@@ -1759,7 +1753,9 @@
         "symbol": "XTX"
       },
       "0xde4df1e4fd6abd6c5846029d62ef7e69ef9662af": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 0.0002156,
         "first_seen": "2026-11-02T18:03:12Z",
         "symbol": "UDFT"
@@ -2370,12 +2366,6 @@
         "reason": "liquidity",
         "symbol": "CHUBBY",
         "until": "2026-11-03T00:38:13Z"
-      },
-      "0x17d2852d373e6312fd42cce21ce176d640993d31": {
-        "at": "2026-11-01T19:03:12Z",
-        "reason": "liquidity",
-        "symbol": ".AI",
-        "until": "2026-11-02T19:03:12Z"
       },
       "0x1844c376602acd86b15ee972521b85b402dbace6": {
         "at": "2026-11-02T05:48:13Z",
@@ -5617,6 +5607,12 @@
         "symbol": "CLXN",
         "until": "2026-11-03T09:08:12Z"
       },
+      "0xa1ada8627bee3d3298f243debbfc734fb088cd08": {
+        "at": "2026-11-02T19:03:12Z",
+        "reason": "missing:liq_usd",
+        "symbol": "SNDYNGT",
+        "until": "2026-11-03T19:03:12Z"
+      },
       "0xa1edf6082892112ac2c3d5975c8a187f49b44efe": {
         "at": "2026-11-02T09:03:14Z",
         "reason": "goplus_timeout",
@@ -6564,6 +6560,12 @@
         "reason": "liquidity",
         "symbol": "BTC",
         "until": "2026-11-02T20:43:12Z"
+      },
+      "0xb20000000000000000000090104281a7af678801": {
+        "at": "2026-11-02T19:03:12Z",
+        "reason": "liquidity",
+        "symbol": "TEA",
+        "until": "2026-11-03T19:03:12Z"
       },
       "0xb20000000000000000000091adfe21a4ed834d2a": {
         "at": "2026-11-02T18:43:14Z",
@@ -8257,12 +8259,6 @@
         "symbol": "AAIT",
         "until": "2026-11-03T17:33:14Z"
       },
-      "0xeaa249bbc540186f909b7735d9b3068b5f240ba3": {
-        "at": "2026-11-01T19:03:12Z",
-        "reason": "missing:liq_usd",
-        "symbol": "SLOP",
-        "until": "2026-11-02T19:03:12Z"
-      },
       "0xeac30c0a57a5e4e2181069cd6450270b5d8897cb": {
         "at": "2026-11-02T16:13:14Z",
         "reason": "liquidity",
@@ -8800,9 +8796,9 @@
         "symbol": "UGOR"
       },
       "0x2ca3148775d596ae5c6246d7d73df1aef35728ec": {
-        "checks": 2,
+        "checks": 3,
         "first_seen": "2026-11-02T18:23:20Z",
-        "last_check": "2026-11-02T18:43:14Z",
+        "last_check": "2026-11-02T19:03:12Z",
         "symbol": "UESO"
       },
       "0x301086fa197a9524a6b7bd45949b3695ab0afda0": {
@@ -8812,9 +8808,9 @@
         "symbol": "TOKENUSDC"
       },
       "0x37db15722918565e47d5d02d9f93d46c8282d7cc": {
-        "checks": 4,
+        "checks": 5,
         "first_seen": "2026-11-02T17:43:13Z",
-        "last_check": "2026-11-02T18:43:14Z",
+        "last_check": "2026-11-02T19:03:12Z",
         "symbol": "AIN"
       },
       "0x40ff09a2158621d69105e27fbf7fab4b7ba2b807": {
@@ -8836,15 +8832,15 @@
         "symbol": "ARCHAX"
       },
       "0x546b970bb75f6f11a5b6eb36200480f0f26e752e": {
-        "checks": 4,
+        "checks": 5,
         "first_seen": "2026-11-02T17:38:13Z",
-        "last_check": "2026-11-02T18:43:14Z",
+        "last_check": "2026-11-02T19:03:12Z",
         "symbol": "XDC"
       },
       "0x5dc75a346292707c80fd86d5e89976b231f7c89f": {
-        "checks": 4,
+        "checks": 5,
         "first_seen": "2026-11-02T17:43:13Z",
-        "last_check": "2026-11-02T18:43:14Z",
+        "last_check": "2026-11-02T19:03:12Z",
         "symbol": "PAD"
       },
       "0x5f4e82926890f61b0e1d59dcff60e28d97380532": {
@@ -8878,9 +8874,9 @@
         "symbol": "msETH"
       },
       "0x7cc5e89b84d65f6fb6dc1133abd641deed03d0cb": {
-        "checks": 4,
+        "checks": 5,
         "first_seen": "2026-11-02T17:38:13Z",
-        "last_check": "2026-11-02T18:43:14Z",
+        "last_check": "2026-11-02T19:03:12Z",
         "symbol": "NAORIS"
       },
       "0x828487c5c58ee703cf09070b03d9c24bbaef1bdd": {
@@ -8890,15 +8886,15 @@
         "symbol": "ARCHAX "
       },
       "0x86e92a3d3e2cda477153a676b23e93810981888e": {
-        "checks": 4,
+        "checks": 5,
         "first_seen": "2026-11-02T17:38:13Z",
-        "last_check": "2026-11-02T18:43:14Z",
+        "last_check": "2026-11-02T19:03:12Z",
         "symbol": "RAWW"
       },
       "0x8b741a740d668e32663168ca3a50f54d5c7ca462": {
-        "checks": 3,
+        "checks": 4,
         "first_seen": "2026-11-02T18:03:12Z",
-        "last_check": "2026-11-02T18:43:14Z",
+        "last_check": "2026-11-02T19:03:12Z",
         "symbol": "WRWA"
       },
       "0x93bc36a34aca59713da1bd2be0b3e5cc01927436": {
@@ -8962,15 +8958,15 @@
         "symbol": "NTDA"
       },
       "0xde4df1e4fd6abd6c5846029d62ef7e69ef9662af": {
-        "checks": 3,
+        "checks": 4,
         "first_seen": "2026-11-02T18:03:12Z",
-        "last_check": "2026-11-02T18:43:14Z",
+        "last_check": "2026-11-02T19:03:12Z",
         "symbol": "UDFT"
       },
       "0xff1fddc0b10582a701a2c4775bb6614856e2506f": {
-        "checks": 4,
+        "checks": 5,
         "first_seen": "2026-11-02T17:38:13Z",
-        "last_check": "2026-11-02T18:43:14Z",
+        "last_check": "2026-11-02T19:03:12Z",
         "symbol": "WWAR"
       }
     }
