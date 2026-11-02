@@ -13,16 +13,17 @@
         "entry_qliq": 5,
         "entry_ts": "2026-11-02T04:28:13Z",
         "ladder_done": [],
-        "last_price": 8.901e-05,
+        "last_liq_usd": 94696.49,
+        "last_price": 9.565e-05,
         "launchpad": "other",
         "orig_qty": 53498.5368150181,
         "pair": "0x866850ad098d343229d41df92ee1fc8da69c16f70701f0f0cd0f7a6f861109d3",
-        "peak_price": 8.901e-05,
+        "peak_price": 9.565e-05,
         "qty": 53498.5368150181,
         "symbol": "FFOT"
       }
     },
-    "ticks_since_buy": 0
+    "ticks_since_buy": 1
   },
   "desk": {
     "cash": 47.60776857887221,
@@ -713,6 +714,12 @@
         "first_seen": "2026-11-02T00:13:12Z",
         "symbol": "UODF"
       },
+      "0x4e71507de7319a68b4a123b5cfd796821a600135": {
+        "done": [],
+        "first_price": 0.0002134,
+        "first_seen": "2026-11-02T04:33:13Z",
+        "symbol": "AOFT"
+      },
       "0x521ddfa4a4c0995c6064bde21c38e1f5302b7ab3": {
         "done": [
           1,
@@ -1169,7 +1176,9 @@
         "symbol": "ATOF"
       },
       "0x9b658bd0389fd935ebf2a3bf0df05c8f56e8b499": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 0.0001088,
         "first_seen": "2026-11-02T03:33:11Z",
         "symbol": "ADTF"
@@ -1411,10 +1420,18 @@
         "symbol": "NAFF"
       },
       "0xbce5173eea199d81e324960f3bb532a86cfe1ed7": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 8.907e-05,
         "first_seen": "2026-11-02T03:33:11Z",
         "symbol": "USDF"
+      },
+      "0xbd0f3b0ab82a4ba463ba231f1f9be823c5d44283": {
+        "done": [],
+        "first_price": 9.565e-05,
+        "first_seen": "2026-11-02T04:33:13Z",
+        "symbol": "FFOT"
       },
       "0xbd6929dbccd91aeec1d198925fef271a17116d53": {
         "done": [
@@ -1964,12 +1981,6 @@
         "reason": "liquidity",
         "symbol": "WTINST",
         "until": "2026-11-02T22:23:11Z"
-      },
-      "0x0a645794a3e3e4fe84e63adab0a98ff147598a2c": {
-        "at": "2026-11-01T04:33:12Z",
-        "reason": "liquidity",
-        "symbol": "Hugo",
-        "until": "2026-11-02T04:33:12Z"
       },
       "0x0a8a0058a964edb01d77f66ac2dcee297949cbce": {
         "at": "2026-11-02T04:18:12Z",
@@ -5589,12 +5600,6 @@
         "symbol": "GLITCH",
         "until": "2026-11-02T05:23:14Z"
       },
-      "0x8d577fde520a772dcfc61646e94f499035e9fd28": {
-        "at": "2026-11-01T04:33:12Z",
-        "reason": "liquidity",
-        "symbol": "RICO",
-        "until": "2026-11-02T04:33:12Z"
-      },
       "0x8de0099e8725a793a53741356521e51f99bc889d": {
         "at": "2026-11-02T03:58:13Z",
         "reason": "liquidity",
@@ -5685,6 +5690,12 @@
         "symbol": "openhuman",
         "until": "2026-11-02T22:43:12Z"
       },
+      "0x90828f864ca3d6c17abac6448ce7451169a8154c": {
+        "at": "2026-11-02T04:33:13Z",
+        "reason": "liquidity",
+        "symbol": ".AI",
+        "until": "2026-11-03T04:33:13Z"
+      },
       "0x9096814e2a02708e1dd9c8556dd7defac342ab07": {
         "at": "2026-11-02T02:13:13Z",
         "reason": "liquidity",
@@ -5768,6 +5779,12 @@
         "reason": "goplus_timeout",
         "symbol": "FDT",
         "until": "2026-11-02T11:18:14Z"
+      },
+      "0x95c7e2d53f4b615a50d4468dfd5aff850dc17f0c": {
+        "at": "2026-11-02T04:33:13Z",
+        "reason": "liquidity",
+        "symbol": "PIDX",
+        "until": "2026-11-03T04:33:13Z"
       },
       "0x960ea242425613259bc31cf88fdb280fb98ac95e": {
         "at": "2026-11-01T10:48:13Z",
@@ -5858,12 +5875,6 @@
         "reason": "liquidity",
         "symbol": "XRAD",
         "until": "2026-11-02T13:03:12Z"
-      },
-      "0x97db3614d10ef3b4a95f5cb4fd2395b362b04eb3": {
-        "at": "2026-11-01T04:33:12Z",
-        "reason": "liquidity",
-        "symbol": "MINED",
-        "until": "2026-11-02T04:33:12Z"
       },
       "0x97f91045b9c8f22bffc191d6fc194dfbc281ab07": {
         "at": "2026-11-01T08:43:11Z",
@@ -6183,12 +6194,6 @@
         "symbol": "AIDEN",
         "until": "2026-11-02T08:43:11Z"
       },
-      "0xa584ae728f3d5c9d33a581d3f182a817a5eed7ec": {
-        "at": "2026-11-01T04:33:12Z",
-        "reason": "liquidity",
-        "symbol": "SPCX",
-        "until": "2026-11-02T04:33:12Z"
-      },
       "0xa58eab3a3aad6c24f731b9592b66097e5ad3ba79": {
         "at": "2026-11-01T09:13:11Z",
         "reason": "liquidity",
@@ -6368,12 +6373,6 @@
         "reason": "goplus_timeout",
         "symbol": "TOSHI",
         "until": "2026-11-02T18:48:13Z"
-      },
-      "0xac56fd4f6615007b811ed6986c92da87f8ef20bf": {
-        "at": "2026-11-01T04:33:12Z",
-        "reason": "liquidity",
-        "symbol": "PEDO",
-        "until": "2026-11-02T04:33:12Z"
       },
       "0xac5d0e566517f58f48aebd85742993bceb0e0cb3": {
         "at": "2026-11-01T20:13:11Z",
@@ -6788,6 +6787,12 @@
         "reason": "liquidity",
         "symbol": "STM",
         "until": "2026-11-02T18:23:11Z"
+      },
+      "0xb200000000000000000000440d757b2de217a9cf": {
+        "at": "2026-11-02T04:33:13Z",
+        "reason": "liquidity",
+        "symbol": "OFFR",
+        "until": "2026-11-03T04:33:13Z"
       },
       "0xb2000000000000000000004816eee830439a1e29": {
         "at": "2026-11-01T20:08:14Z",
@@ -7467,12 +7472,6 @@
         "symbol": "LPM3",
         "until": "2026-11-02T15:43:11Z"
       },
-      "0xb2fc237f286720eb3e9c37508ecc98d7cc77e010": {
-        "at": "2026-11-01T04:33:12Z",
-        "reason": "missing:liq_usd",
-        "symbol": "SI276",
-        "until": "2026-11-02T04:33:12Z"
-      },
       "0xb35dc95c728f5c5745b857080f0643f04258e889": {
         "at": "2026-11-01T18:08:12Z",
         "reason": "liquidity",
@@ -7634,12 +7633,6 @@
         "reason": "goplus_timeout",
         "symbol": "AOP",
         "until": "2026-11-02T23:23:11Z"
-      },
-      "0xb96abb78697c41898b7b88b716dd66e31ff096c5": {
-        "at": "2026-11-01T04:33:12Z",
-        "reason": "liquidity",
-        "symbol": "SCF",
-        "until": "2026-11-02T04:33:12Z"
       },
       "0xb98314a6d80e032cb5bfc2b4a19c4ce93b203758": {
         "at": "2026-11-01T21:13:11Z",
@@ -7977,12 +7970,6 @@
         "symbol": "genius",
         "until": "2026-11-02T15:18:13Z"
       },
-      "0xc349211362c80a6b15152b56f7e40e6085cb8c65": {
-        "at": "2026-11-01T04:33:12Z",
-        "reason": "liquidity",
-        "symbol": "DAWG",
-        "until": "2026-11-02T04:33:12Z"
-      },
       "0xc3683d0a7262ba937a666f2026a8a726b67aab07": {
         "at": "2026-11-01T06:58:14Z",
         "reason": "liquidity",
@@ -8090,12 +8077,6 @@
         "reason": "liquidity",
         "symbol": "OMNITST",
         "until": "2026-11-02T18:13:10Z"
-      },
-      "0xc6d2cb0757d965c0c4cc0bac3107c23268ed8eee": {
-        "at": "2026-11-01T04:33:12Z",
-        "reason": "liquidity",
-        "symbol": "BAILOUT",
-        "until": "2026-11-02T04:33:12Z"
       },
       "0xc765648898884a7788365bdea874901b682709e5": {
         "at": "2026-11-01T05:48:15Z",
@@ -8210,12 +8191,6 @@
         "reason": "liquidity",
         "symbol": "CURE",
         "until": "2026-11-02T17:13:12Z"
-      },
-      "0xcb1568349c3e497023617e368d49a08d6a94f8a3": {
-        "at": "2026-11-01T04:33:12Z",
-        "reason": "liquidity",
-        "symbol": "lineage",
-        "until": "2026-11-02T04:33:12Z"
       },
       "0xcb2d1708c40323c2e7076282f972be084a599f5d": {
         "at": "2026-11-02T01:43:12Z",
@@ -9588,15 +9563,15 @@
     },
     "watch": {
       "0x052e7b971d8ae113d1432cd636df7f001798b3dd": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-02T04:13:13Z",
-        "last_check": "2026-11-02T04:13:13Z",
+        "last_check": "2026-11-02T04:33:13Z",
         "symbol": "URSP"
       },
       "0x05a94f472dc2327cc21eb846a567745b13be33f8": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-02T04:18:12Z",
-        "last_check": "2026-11-02T04:18:12Z",
+        "last_check": "2026-11-02T04:33:13Z",
         "symbol": "UPRS"
       },
       "0x0aed5595d9bae1935949fe93f1e8a130a128cbed": {
@@ -9647,22 +9622,28 @@
         "last_check": "2026-11-02T04:23:18Z",
         "symbol": "ATOF"
       },
+      "0x4e71507de7319a68b4a123b5cfd796821a600135": {
+        "checks": 1,
+        "first_seen": "2026-11-02T04:33:13Z",
+        "last_check": "2026-11-02T04:33:13Z",
+        "symbol": "AOFT"
+      },
       "0x52a0bf3b96e434d22089512ae44a6f1294946430": {
-        "checks": 2,
+        "checks": 3,
         "first_seen": "2026-11-02T03:58:13Z",
-        "last_check": "2026-11-02T04:13:13Z",
+        "last_check": "2026-11-02T04:33:13Z",
         "symbol": "AFOD"
       },
       "0x588f9ac352f1b82af762181b7c159a924ee92d76": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-02T04:13:13Z",
-        "last_check": "2026-11-02T04:13:13Z",
+        "last_check": "2026-11-02T04:33:13Z",
         "symbol": "USDP"
       },
       "0x5fa877b0832cd854eedcae563ceb2ff99010600f": {
-        "checks": 2,
+        "checks": 3,
         "first_seen": "2026-11-02T03:58:13Z",
-        "last_check": "2026-11-02T04:13:13Z",
+        "last_check": "2026-11-02T04:33:13Z",
         "symbol": "FUND OIL FEDERAL TRUST"
       },
       "0x6ade5a5e85d43c51fc51adb8bc3048df2b5f0cbd": {
@@ -9702,9 +9683,9 @@
         "symbol": "IOF"
       },
       "0xad803afdecb5a02f9fe647ee97ac65af6468550f": {
-        "checks": 2,
+        "checks": 3,
         "first_seen": "2026-11-02T03:58:13Z",
-        "last_check": "2026-11-02T04:13:13Z",
+        "last_check": "2026-11-02T04:33:13Z",
         "symbol": "TFD"
       },
       "0xbce5173eea199d81e324960f3bb532a86cfe1ed7": {
@@ -9713,6 +9694,12 @@
         "last_check": "2026-11-02T04:28:13Z",
         "symbol": "USDF"
       },
+      "0xbd0f3b0ab82a4ba463ba231f1f9be823c5d44283": {
+        "checks": 1,
+        "first_seen": "2026-11-02T04:33:13Z",
+        "last_check": "2026-11-02T04:33:13Z",
+        "symbol": "FFOT"
+      },
       "0xdc929069377bc10a3a574e3544b49054541ca498": {
         "checks": 5,
         "first_seen": "2026-11-02T03:18:15Z",
@@ -9720,9 +9707,9 @@
         "symbol": "IFO"
       },
       "0xe9797321e2e29724aa19d8c038572bb40affb9cf": {
-        "checks": 2,
+        "checks": 3,
         "first_seen": "2026-11-02T03:58:13Z",
-        "last_check": "2026-11-02T04:13:13Z",
+        "last_check": "2026-11-02T04:33:13Z",
         "symbol": "USDF"
       },
       "0xf464b4f3851011ff0509f4ff5a1049676eacf7d0": {
