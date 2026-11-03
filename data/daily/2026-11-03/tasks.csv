@@ -1839,3 +1839,15 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-03T12:38:14Z,desk,VERIFY,HRS,0x036209b7dbb0742f586f2e6ff061bdfe5c156db2,SKIP,liquidity,goplus=skipped until=2026-11-04T12:38:14Z
 2026-11-03T12:38:14Z,baseline,EXECUTE,RAWW,0x052cbf482960a7a81f6fb445f1e9245891d81d7f,SKIP,loss_halt,"seed=202611031238 eligible=6 pick=0 pool=052cbf,0ce64e,1e7a3f,3cc9cd,40d99e,b20000 desk=WATCH launchpad=other"
 2026-11-03T12:38:14Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=18 rechecks=9 new=9 checked=14 passed=0 bought=0 held=0 deferred=4 dex_only=5 goplus=9 requests=30 secs=19.2 bl_positions=0 bl_due=1 bl_eligible=6 bl_bought=0 report=none machine=none bl_error=none labels=none labels_due=0 labels_done=0 labels_calls=0 live=ok alerts=none alerts_sent=0
+2026-11-03T12:43:12Z,desk,VERIFY,Believe,0xb88b7ce0c0b028d192318dcd70a5092731371c5d,SKIP,liquidity,goplus=skipped until=2026-11-04T12:43:12Z
+2026-11-03T12:43:12Z,desk,VERIFY,WAWR,0xd698f3f4825242dcae6fa7ede42b473ef8a419c5,SKIP,missing:liq_usd,goplus=skipped until=2026-11-04T12:43:12Z
+2026-11-03T12:43:12Z,desk,VERIFY,HLX,0xb20000000000000000000001e0af32651f87ba7c,SKIP,missing:liq_usd,goplus=skipped until=2026-11-04T12:43:12Z
+2026-11-03T12:43:12Z,desk,VERIFY,NEX AI,0x71060854a6007a19b4e3de8bd5351f66cac5b566,SKIP,liquidity,goplus=skipped until=2026-11-04T12:43:12Z
+2026-11-03T12:43:12Z,desk,VERIFY,AGNTREADY,0xd756d54c2819b9bdd111fe762229c05ec11afba3,SKIP,liquidity,goplus=skipped until=2026-11-04T12:43:12Z
+2026-11-03T12:43:12Z,desk,VERIFY,SPCX,0xec4161b7030aa8d19d3beb83cafb3b33e3b92bae,SKIP,liquidity,goplus=skipped until=2026-11-04T12:43:12Z
+2026-11-03T12:43:12Z,desk,VERIFY,EXCHANGE OIL U.S,0xa0965f0476fa044f541b07156f98371b7bbdb7a2,WATCH,goplus_not_ready,"first_seen=2026-11-03T12:43:12Z checks=1 pending=honeypot,buy_tax_pct,sell_tax_pct,dev_pct,top10_pct,lp_locked_pct b1=7 s1=0 b24=7 s24=0 liq=169936 dex=uniswap:v4 qliq=27"
+2026-11-03T12:43:12Z,desk,VERIFY,NFFA,0x51c077055a19ab66845e34028136762435f45f53,WATCH,goplus_not_ready,"first_seen=2026-11-03T12:43:12Z checks=1 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct b1=3 s1=0 b24=3 s24=0 liq=72394 dex=uniswap:v4 qliq=0"
+2026-11-03T12:43:12Z,desk,VERIFY,AFTO,0x347cbf94d86c8dc29662d50bd36860ba314b6e28,WATCH,goplus_not_ready,"first_seen=2026-11-03T12:43:12Z checks=1 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct b1=10 s1=0 b24=10 s24=0 liq=72790 dex=uniswap:v2 qliq=36404"
+2026-11-03T12:43:12Z,desk,VERIFY,worth,0xb200000000000000000000585fd80c20af698f01,SKIP,goplus_partial,until=2026-11-04T12:43:12Z b1=79 s1=48 b24=1057 s24=788 liq=87807 dex=uniswap:v4 qliq=41365
+2026-11-03T12:43:12Z,baseline,EXECUTE,worth,0xb200000000000000000000585fd80c20af698f01,SKIP,loss_halt,seed=202611031243 eligible=1 pick=0 pool=b20000 desk=goplus_partial launchpad=other
+2026-11-03T12:43:12Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=0 new=10 checked=10 passed=0 bought=0 held=0 deferred=0 dex_only=6 goplus=4 requests=17 secs=8.8 bl_positions=0 bl_due=1 bl_eligible=1 bl_bought=0 report=none machine=none bl_error=none labels=none labels_due=0 labels_done=0 labels_calls=0 live=ok alerts=none alerts_sent=0
