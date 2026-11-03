@@ -5,7 +5,7 @@
     "day_start_value": 13.35250342185956,
     "halted_day": "2026-11-03",
     "positions": {},
-    "ticks_since_buy": 73
+    "ticks_since_buy": 74
   },
   "desk": {
     "cash": 47.60776857887221,
@@ -160,7 +160,9 @@
         "symbol": "NDOF"
       },
       "0x19123514af693f1847cbc99899f902c8ff574598": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 0.9992,
         "first_seen": "2026-11-03T05:03:14Z",
         "symbol": "TOKENUSDC"
@@ -1713,7 +1715,9 @@
         "symbol": "XTEN"
       },
       "0xdc7547455a6e62e4b4542e98da6b11e1b5441f48": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 0.9991,
         "first_seen": "2026-11-03T05:03:14Z",
         "symbol": "TOKENUSDC"
@@ -1789,7 +1793,9 @@
         "symbol": "FOTF"
       },
       "0xe5ac70b27d6c3e9497ab0a079e474eb402ce7efb": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 0.9993,
         "first_seen": "2026-11-03T05:03:14Z",
         "symbol": "TOKENUSDC"
@@ -3501,6 +3507,12 @@
         "symbol": "HORSE",
         "until": "2026-11-03T18:13:13Z"
       },
+      "0x44a76e47cda4cf95cd4ae3bc44da3265d5da13f6": {
+        "at": "2026-11-03T06:08:13Z",
+        "reason": "liquidity",
+        "symbol": "TOKENUSDC",
+        "until": "2026-11-04T06:08:13Z"
+      },
       "0x4521f0ddd8d26e50a7e6ebc69e01878efb146f0a": {
         "at": "2026-11-02T09:33:12Z",
         "reason": "goplus_timeout",
@@ -4407,12 +4419,6 @@
         "symbol": "Uranus",
         "until": "2026-11-03T21:43:18Z"
       },
-      "0x725a1fe8eede51478cb67d4d1369ba4a67ec7149": {
-        "at": "2026-11-02T06:08:13Z",
-        "reason": "liquidity",
-        "symbol": "LC",
-        "until": "2026-11-03T06:08:13Z"
-      },
       "0x727e6f530d446a452b1c0768a3ee0d34bf9ccfc9": {
         "at": "2026-11-02T17:48:14Z",
         "reason": "goplus_timeout",
@@ -4647,6 +4653,12 @@
         "symbol": "BUUN",
         "until": "2026-11-03T19:53:13Z"
       },
+      "0x7ade9a7097e3e083b5b06a3e73b18e5145debf2a": {
+        "at": "2026-11-03T06:08:13Z",
+        "reason": "missing:liq_usd",
+        "symbol": "HKMA",
+        "until": "2026-11-04T06:08:13Z"
+      },
       "0x7b011e6232b8e432bf981f55b196b9ccba6d31f9": {
         "at": "2026-11-03T05:28:13Z",
         "reason": "liquidity",
@@ -4796,12 +4808,6 @@
         "reason": "liquidity",
         "symbol": "ME",
         "until": "2026-11-03T08:38:14Z"
-      },
-      "0x839aed139f6364b16cc519fc3c2aa6030e067beb": {
-        "at": "2026-11-02T06:08:13Z",
-        "reason": "liquidity",
-        "symbol": "PUSSY",
-        "until": "2026-11-03T06:08:13Z"
       },
       "0x839e6466d3dd4bd5d4ab58ba7c4d8e7d97ff35dd": {
         "at": "2026-11-02T17:18:13Z",
@@ -5006,12 +5012,6 @@
         "reason": "liquidity",
         "symbol": "1KTO100M",
         "until": "2026-11-03T08:23:12Z"
-      },
-      "0x8ea35cf0c576d47d1120a9a6deeed0646a5dfb96": {
-        "at": "2026-11-02T06:08:13Z",
-        "reason": "liquidity",
-        "symbol": "GWEI",
-        "until": "2026-11-03T06:08:13Z"
       },
       "0x8f99f25586a54151f6e08386f2d716243cf0120e": {
         "at": "2026-11-02T18:03:12Z",
@@ -6513,6 +6513,12 @@
         "symbol": "DRB",
         "until": "2026-11-03T22:33:11Z"
       },
+      "0xb200000000000000000000a23b9520b1af94b4fb": {
+        "at": "2026-11-03T06:08:13Z",
+        "reason": "liquidity",
+        "symbol": "COMMON",
+        "until": "2026-11-04T06:08:13Z"
+      },
       "0xb200000000000000000000a53aef9e0c854c6601": {
         "at": "2026-11-02T12:53:13Z",
         "reason": "liquidity",
@@ -7851,12 +7857,6 @@
         "symbol": "BTC",
         "until": "2026-11-03T16:13:14Z"
       },
-      "0xdf6b3fdde39fe8638ae9e1f5ac95935d9ccaa8af": {
-        "at": "2026-11-02T06:08:13Z",
-        "reason": "liquidity",
-        "symbol": "LIQUIDBGT",
-        "until": "2026-11-03T06:08:13Z"
-      },
       "0xdfacd3ae9402350866a514373561dd5e1209a516": {
         "at": "2026-11-02T10:13:12Z",
         "reason": "liquidity",
@@ -8592,15 +8592,15 @@
         "symbol": "ADOF"
       },
       "0x1425c9f7b026f0d96fbed105bb7ff95f5526fb0c": {
-        "checks": 4,
+        "checks": 5,
         "first_seen": "2026-11-03T04:53:12Z",
-        "last_check": "2026-11-03T05:48:15Z",
+        "last_check": "2026-11-03T06:08:13Z",
         "symbol": "TOKENUSDC"
       },
       "0x19123514af693f1847cbc99899f902c8ff574598": {
-        "checks": 4,
+        "checks": 5,
         "first_seen": "2026-11-03T05:03:14Z",
-        "last_check": "2026-11-03T05:48:15Z",
+        "last_check": "2026-11-03T06:08:13Z",
         "symbol": "TOKENUSDC"
       },
       "0x248ee3f7955f1aa9ea77b1212ec39acb0dcba386": {
@@ -8633,16 +8633,10 @@
         "last_check": "2026-11-03T05:58:15Z",
         "symbol": "TOKENUSDC"
       },
-      "0x44a76e47cda4cf95cd4ae3bc44da3265d5da13f6": {
-        "checks": 3,
-        "first_seen": "2026-11-03T05:13:12Z",
-        "last_check": "2026-11-03T05:48:15Z",
-        "symbol": "TOKENUSDC"
-      },
       "0x454971778bf65a9612c9f874005154646bb1f970": {
-        "checks": 3,
+        "checks": 4,
         "first_seen": "2026-11-03T05:18:14Z",
-        "last_check": "2026-11-03T05:48:15Z",
+        "last_check": "2026-11-03T06:08:13Z",
         "symbol": "TOKENUSDC"
       },
       "0x66cf852f6d5220830523b87bb81c70033a54da43": {
@@ -8652,9 +8646,9 @@
         "symbol": "TOKENUSDC"
       },
       "0x7aaa93f097533aa987193660b17423524e0d6db8": {
-        "checks": 5,
+        "checks": 6,
         "first_seen": "2026-11-03T04:43:11Z",
-        "last_check": "2026-11-03T05:48:15Z",
+        "last_check": "2026-11-03T06:08:13Z",
         "symbol": "TOKENUSDC"
       },
       "0x8c9a7e4d41b8e58465810e8c107465aad4bffc08": {
@@ -8664,9 +8658,9 @@
         "symbol": "RCHKD"
       },
       "0xa42b5d9607b38137244673ecd8a71d43dce98e2f": {
-        "checks": 2,
+        "checks": 3,
         "first_seen": "2026-11-03T05:23:22Z",
-        "last_check": "2026-11-03T05:53:12Z",
+        "last_check": "2026-11-03T06:08:13Z",
         "symbol": "HKDA"
       },
       "0xa97e968ff64624e05ec4e033952ab4ab4dea3ba1": {
@@ -8688,15 +8682,15 @@
         "symbol": "FODF"
       },
       "0xbf9c8fb63fbe176bcfb3cc70382b2a30009e0141": {
-        "checks": 3,
+        "checks": 4,
         "first_seen": "2026-11-03T05:08:15Z",
-        "last_check": "2026-11-03T05:48:15Z",
+        "last_check": "2026-11-03T06:08:13Z",
         "symbol": "TOKENUSDC"
       },
       "0xd0ff13fd30ebe3c3e6ed21256fd8784eecca309c": {
-        "checks": 5,
+        "checks": 6,
         "first_seen": "2026-11-03T04:38:13Z",
-        "last_check": "2026-11-03T05:48:15Z",
+        "last_check": "2026-11-03T06:08:13Z",
         "symbol": "TOKENUSDC"
       },
       "0xd1de76f3aced4690d466f8979c15c3de15191085": {
@@ -8706,15 +8700,15 @@
         "symbol": "OIL U.S EXGHANGE"
       },
       "0xdc7547455a6e62e4b4542e98da6b11e1b5441f48": {
-        "checks": 4,
+        "checks": 5,
         "first_seen": "2026-11-03T05:03:14Z",
-        "last_check": "2026-11-03T05:48:15Z",
+        "last_check": "2026-11-03T06:08:13Z",
         "symbol": "TOKENUSDC"
       },
       "0xe5ac70b27d6c3e9497ab0a079e474eb402ce7efb": {
-        "checks": 4,
+        "checks": 5,
         "first_seen": "2026-11-03T05:03:14Z",
-        "last_check": "2026-11-03T05:48:15Z",
+        "last_check": "2026-11-03T06:08:13Z",
         "symbol": "TOKENUSDC"
       },
       "0xf34437d674bda393f31a980342a9a91e9f6c32d5": {
