@@ -285,3 +285,12 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-03T01:58:11Z,desk,VERIFY,BGLE,0xb200000000000000000000e4058fea6e854535cc,SKIP,liquidity,goplus=skipped until=2026-11-04T01:58:11Z
 2026-11-03T01:58:11Z,baseline,EXECUTE,ADP,0x3f856381bb093277b12d1aaf92dc35b261cb25ae,SKIP,loss_halt,"seed=202611030158 eligible=2 pick=1 pool=19c5b5,3f8563 desk=WATCH launchpad=other"
 2026-11-03T01:58:11Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=9 new=3 checked=12 passed=0 bought=0 held=0 deferred=0 dex_only=3 goplus=9 requests=25 secs=18.2 bl_positions=0 bl_due=1 bl_eligible=2 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=1 labels_done=1 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-03T02:03:12Z,desk,VERIFY,gork,0x07466dcc011bee351539306108ad78abcec47f87,SKIP,liquidity,goplus=skipped until=2026-11-04T02:03:12Z
+2026-11-03T02:03:12Z,desk,VERIFY,LNRE,0xbecb02bdd18541cf95e22ed678d9e016c2b9430f,SKIP,missing:liq_usd,goplus=skipped until=2026-11-04T02:03:12Z
+2026-11-03T02:03:12Z,desk,VERIFY,LIQUIDBGT,0xa488f4161ee915b6533964a51acd35f474906e4d,SKIP,liquidity,goplus=skipped until=2026-11-04T02:03:12Z
+2026-11-03T02:03:12Z,desk,VERIFY,EXCHANGE U.S OIL,0x20b04156421f4ef96f70e460238f6ddd38a6d9a4,SKIP,missing:liq_usd,goplus=skipped until=2026-11-04T02:03:12Z
+2026-11-03T02:03:12Z,desk,VERIFY,MUS,0x178d88d7dba88e5258a5c2e26b86e5f84eec8cd8,SKIP,liquidity,goplus=skipped until=2026-11-04T02:03:12Z
+2026-11-03T02:03:12Z,desk,VERIFY,ZAPS,0xf67947b28d5293bc6a300b29f6e96b304fa4dc15,WATCH,goplus_not_ready,"first_seen=2026-11-03T02:03:12Z checks=1 pending=mint_open,freeze_or_blacklist,honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct,risk_flags b1=1 s1=0 b24=1 s24=0 liq=100035 dex=uniswap:v4 qliq=1"
+2026-11-03T02:03:12Z,desk,VERIFY,OFFR,0xee9069e8f520652e59674fad2120f6dea2671ba3,SKIP,liquidity,goplus=skipped until=2026-11-04T02:03:12Z
+2026-11-03T02:03:12Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
+2026-11-03T02:03:12Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=21 rechecks=0 new=7 checked=7 passed=0 bought=0 held=0 deferred=0 dex_only=6 goplus=1 requests=11 secs=2.6 bl_positions=0 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=none labels_due=0 labels_done=0 labels_calls=0 live=ok alerts=none alerts_sent=0
