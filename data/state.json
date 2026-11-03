@@ -5,7 +5,7 @@
     "day_start_value": 13.35250342185956,
     "halted_day": "2026-11-03",
     "positions": {},
-    "ticks_since_buy": 126
+    "ticks_since_buy": 127
   },
   "desk": {
     "cash": 47.60776857887221,
@@ -189,7 +189,9 @@
         "symbol": "ADTF"
       },
       "0x16a99e932475eac105a2e01c91d3bec674bf1eef": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 0.01959,
         "first_seen": "2026-11-03T09:28:15Z",
         "symbol": "NAFF"
@@ -441,7 +443,9 @@
         "symbol": "NAFF"
       },
       "0x2afb31c90de00e54f07ba1c866a194365045b285": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 8.1e-05,
         "first_seen": "2026-11-03T09:28:15Z",
         "symbol": "NETWORK"
@@ -858,7 +862,8 @@
       },
       "0x57f9d60d36263c850b8121de2474e8693f346fa9": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 6.196e-06,
         "first_seen": "2026-11-03T04:33:13Z",
@@ -3029,6 +3034,12 @@
         "reason": "liquidity",
         "symbol": "BTCVTI",
         "until": "2026-11-04T01:03:14Z"
+      },
+      "0x2bb13668be4ee385b1e63e96dd1051ea93c12b07": {
+        "at": "2026-11-03T10:33:13Z",
+        "reason": "missing:liq_usd",
+        "symbol": "U",
+        "until": "2026-11-04T10:33:13Z"
       },
       "0x2bb9a088d8c0869538efea932b231ce2e4acc808": {
         "at": "2026-11-03T02:18:12Z",
@@ -6846,6 +6857,12 @@
         "symbol": "MCOURT",
         "until": "2026-11-03T17:13:12Z"
       },
+      "0xb200000000000000000000f31fdfcc22dc18fd6d": {
+        "at": "2026-11-03T10:33:13Z",
+        "reason": "liquidity",
+        "symbol": "DENIM",
+        "until": "2026-11-04T10:33:13Z"
+      },
       "0xb200000000000000000000f439aae1733c73eab4": {
         "at": "2026-11-02T20:53:20Z",
         "reason": "liquidity",
@@ -8583,9 +8600,9 @@
         "symbol": "SPHERE"
       },
       "0x1339464029ab8a43a474c5141429665dbc807f05": {
-        "checks": 3,
+        "checks": 4,
         "first_seen": "2026-11-03T09:38:14Z",
-        "last_check": "2026-11-03T10:13:12Z",
+        "last_check": "2026-11-03T10:33:13Z",
         "symbol": "ADOF"
       },
       "0x134ac4b091b09e07dad4f20da85abb7cfec687c3": {
@@ -8595,9 +8612,9 @@
         "symbol": "cbHYPE"
       },
       "0x16a99e932475eac105a2e01c91d3bec674bf1eef": {
-        "checks": 3,
+        "checks": 4,
         "first_seen": "2026-11-03T09:28:15Z",
-        "last_check": "2026-11-03T10:08:13Z",
+        "last_check": "2026-11-03T10:33:13Z",
         "symbol": "NAFF"
       },
       "0x1a7f00281b1aa6321321b63a7940991667730932": {
@@ -8625,27 +8642,27 @@
         "symbol": "XTO"
       },
       "0x2afb31c90de00e54f07ba1c866a194365045b285": {
-        "checks": 3,
+        "checks": 4,
         "first_seen": "2026-11-03T09:28:15Z",
-        "last_check": "2026-11-03T10:08:13Z",
+        "last_check": "2026-11-03T10:33:13Z",
         "symbol": "NETWORK"
       },
       "0x2c99ac60614dcf7dd5d1b064eb019f59a61a94d8": {
-        "checks": 4,
+        "checks": 5,
         "first_seen": "2026-11-03T09:23:12Z",
-        "last_check": "2026-11-03T10:13:12Z",
+        "last_check": "2026-11-03T10:33:13Z",
         "symbol": "ADP"
       },
       "0x344e1a2aa32b59ace43c4f9b1f18e81b3cf45731": {
-        "checks": 4,
+        "checks": 5,
         "first_seen": "2026-11-03T09:23:12Z",
-        "last_check": "2026-11-03T10:13:12Z",
+        "last_check": "2026-11-03T10:33:13Z",
         "symbol": "NOTF"
       },
       "0x3e36b603ce94cfd72d9a0251e0d8c61c10c4b6d2": {
-        "checks": 3,
+        "checks": 4,
         "first_seen": "2026-11-03T09:43:12Z",
-        "last_check": "2026-11-03T10:13:12Z",
+        "last_check": "2026-11-03T10:33:13Z",
         "symbol": "SARP"
       },
       "0x4977b0a939bb27cc05ea72f224ea2cf79282b204": {
@@ -8703,9 +8720,9 @@
         "symbol": "NEAR"
       },
       "0xa9de7f6e3a386ef630ca8b9b6c6b95f8f5845b29": {
-        "checks": 2,
+        "checks": 3,
         "first_seen": "2026-11-03T09:43:12Z",
-        "last_check": "2026-11-03T10:08:13Z",
+        "last_check": "2026-11-03T10:33:13Z",
         "symbol": "SAPR"
       },
       "0xb20ecdc70520655b3abc99333e17de4fd101f221": {
@@ -8745,9 +8762,9 @@
         "symbol": "NOTF"
       },
       "0xcf8bf738c30ae0b96ca4283ac041d693f2b99b40": {
-        "checks": 2,
+        "checks": 3,
         "first_seen": "2026-11-03T09:43:12Z",
-        "last_check": "2026-11-03T10:08:13Z",
+        "last_check": "2026-11-03T10:33:13Z",
         "symbol": "QUBIC"
       },
       "0xd0c91077ed9254d80f472842a59e6113b6752e99": {
