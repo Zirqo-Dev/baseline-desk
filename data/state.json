@@ -5,7 +5,7 @@
     "day_start_value": 13.35250342185956,
     "halted_day": "2026-11-03",
     "positions": {},
-    "ticks_since_buy": 258
+    "ticks_since_buy": 259
   },
   "desk": {
     "cash": 47.60776857887221,
@@ -311,7 +311,9 @@
         "symbol": "ADTF"
       },
       "0x1a6b20f3774a811c2283b2a686cfd6dbd701c235": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 3.851e-06,
         "first_seen": "2026-11-03T20:33:20Z",
         "symbol": "TOFF"
@@ -940,7 +942,9 @@
         "symbol": "AFTO"
       },
       "0x537dfb78a68252d0d0eb265c06cfec03070dc6fe": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 9.933e-05,
         "first_seen": "2026-11-03T20:33:20Z",
         "symbol": "XOT\u26a1\ufe0f"
@@ -1913,7 +1917,9 @@
         "symbol": "UTDF"
       },
       "0xe31bc2f5940ee6f7c45d71bc508ea4888d263146": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 0.0002158,
         "first_seen": "2026-11-03T20:33:20Z",
         "symbol": "SARP"
@@ -3436,12 +3442,6 @@
         "symbol": "ADP",
         "until": "2026-11-04T11:28:14Z"
       },
-      "0x2ca3148775d596ae5c6246d7d73df1aef35728ec": {
-        "at": "2026-11-02T21:33:15Z",
-        "reason": "goplus_timeout",
-        "symbol": "UESO",
-        "until": "2026-11-03T21:33:15Z"
-      },
       "0x2cb53ddfec5eb80eb99799f7af098287d271750d": {
         "at": "2026-11-03T12:13:13Z",
         "reason": "liquidity",
@@ -3591,12 +3591,6 @@
         "reason": "liquidity",
         "symbol": "MOVEMBER",
         "until": "2026-11-04T17:08:15Z"
-      },
-      "0x331108aef17ce332822d9e76ec8e3527f5b78894": {
-        "at": "2026-11-02T21:33:15Z",
-        "reason": "liquidity",
-        "symbol": "Believe",
-        "until": "2026-11-03T21:33:15Z"
       },
       "0x3326dff921227ccc8e8c474d6fa9fcc9b9defba3": {
         "at": "2026-11-03T16:38:16Z",
@@ -4378,6 +4372,12 @@
         "symbol": "Reboot",
         "until": "2026-11-04T19:23:14Z"
       },
+      "0x51f4ec9275aa84a04516715010c57c83f65eb7bd": {
+        "at": "2026-11-03T21:33:29Z",
+        "reason": "goplus_timeout",
+        "symbol": "AFTO",
+        "until": "2026-11-04T21:33:29Z"
+      },
       "0x52804feffd7818f1eb545eb33b7a227742827c70": {
         "at": "2026-11-03T07:08:14Z",
         "reason": "liquidity",
@@ -4930,6 +4930,12 @@
         "symbol": "BASE",
         "until": "2026-11-04T18:48:28Z"
       },
+      "0x6bdf9ff766bd9c74255613b0b628725cf437a342": {
+        "at": "2026-11-03T21:33:29Z",
+        "reason": "goplus_timeout",
+        "symbol": "FTFO",
+        "until": "2026-11-04T21:33:29Z"
+      },
       "0x6bee8167d06838d4720ae29707d5a8324c0502f5": {
         "at": "2026-11-03T17:48:15Z",
         "reason": "liquidity",
@@ -5169,12 +5175,6 @@
         "reason": "goplus_timeout",
         "symbol": "NOTF",
         "until": "2026-11-04T12:28:15Z"
-      },
-      "0x7307c9de173ace440ffb45addddb45d4c92e83cd": {
-        "at": "2026-11-02T21:33:15Z",
-        "reason": "liquidity",
-        "symbol": "CRANE",
-        "until": "2026-11-03T21:33:15Z"
       },
       "0x7323359d0a7abd61dcb696092c47e5ee62ac97a1": {
         "at": "2026-11-03T02:58:14Z",
@@ -9649,9 +9649,9 @@
         "symbol": "UPSR"
       },
       "0x3af5ef2362eff0fe9b3744cb850848d7ed696e0a": {
-        "checks": 4,
+        "checks": 5,
         "first_seen": "2026-11-03T20:08:21Z",
-        "last_check": "2026-11-03T21:13:19Z",
+        "last_check": "2026-11-03T21:33:29Z",
         "symbol": "USPR"
       },
       "0x4b6d7e2e831bc3e47c478470b4edbb0fc72d89e2": {
@@ -9665,12 +9665,6 @@
         "first_seen": "2026-11-03T21:03:15Z",
         "last_check": "2026-11-03T21:18:21Z",
         "symbol": "WWAR"
-      },
-      "0x51f4ec9275aa84a04516715010c57c83f65eb7bd": {
-        "checks": 10,
-        "first_seen": "2026-11-03T18:18:17Z",
-        "last_check": "2026-11-03T21:13:19Z",
-        "symbol": "AFTO"
       },
       "0x537dfb78a68252d0d0eb265c06cfec03070dc6fe": {
         "checks": 3,
@@ -9690,28 +9684,22 @@
         "last_check": "2026-11-03T21:18:21Z",
         "symbol": "UTDF"
       },
-      "0x6bdf9ff766bd9c74255613b0b628725cf437a342": {
-        "checks": 10,
-        "first_seen": "2026-11-03T18:18:17Z",
-        "last_check": "2026-11-03T21:13:19Z",
-        "symbol": "FTFO"
-      },
       "0x740e966a277dd4465a39ae1c085843a4b6ed863a": {
-        "checks": 8,
+        "checks": 9,
         "first_seen": "2026-11-03T18:58:14Z",
-        "last_check": "2026-11-03T21:13:19Z",
+        "last_check": "2026-11-03T21:33:29Z",
         "symbol": "TOR"
       },
       "0x77c5d0edb3d16a6878da78ba4bbf8d2a87964d36": {
-        "checks": 4,
+        "checks": 5,
         "first_seen": "2026-11-03T20:08:21Z",
-        "last_check": "2026-11-03T21:13:19Z",
+        "last_check": "2026-11-03T21:33:29Z",
         "symbol": "DOAF"
       },
       "0x7a1056f7ffcf3cdba4aaed6cb90a7750b9cd9c37": {
-        "checks": 4,
+        "checks": 5,
         "first_seen": "2026-11-03T20:08:21Z",
-        "last_check": "2026-11-03T21:13:19Z",
+        "last_check": "2026-11-03T21:33:29Z",
         "symbol": "UTFD"
       },
       "0x7db209901e581852b66417a2f5f1f75c63b22850": {
@@ -9721,9 +9709,9 @@
         "symbol": "UFDT"
       },
       "0x7dc70230484e3f89090f30fd854983d0762f2c72": {
-        "checks": 4,
+        "checks": 5,
         "first_seen": "2026-11-03T20:08:21Z",
-        "last_check": "2026-11-03T21:13:19Z",
+        "last_check": "2026-11-03T21:33:29Z",
         "symbol": "NAFF"
       },
       "0x7fda0a5253d988929c165c156fc7d72b6e0d2c2c": {
@@ -9739,9 +9727,9 @@
         "symbol": "SARP"
       },
       "0x91d740f50d3635a5a425ae408eebada36db7d1ef": {
-        "checks": 5,
+        "checks": 6,
         "first_seen": "2026-11-03T19:53:23Z",
-        "last_check": "2026-11-03T21:13:19Z",
+        "last_check": "2026-11-03T21:33:29Z",
         "symbol": "USPR"
       },
       "0x9961d3ea446f25cb00ceeeddaa4af6aff8e0ad7a": {
@@ -9781,9 +9769,9 @@
         "symbol": "PRAS"
       },
       "0xf4821e1700ece1771436be6555aeaa1f763e0aef": {
-        "checks": 5,
+        "checks": 6,
         "first_seen": "2026-11-03T19:53:23Z",
-        "last_check": "2026-11-03T21:18:21Z",
+        "last_check": "2026-11-03T21:33:29Z",
         "symbol": "UTDF"
       }
     }
