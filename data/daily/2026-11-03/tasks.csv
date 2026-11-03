@@ -567,3 +567,7 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-03T04:13:12Z,desk,VERIFY,CLAUDE,0xb200000000000000000000e86f57a0b3e0301ebf,SKIP,liquidity,goplus=skipped until=2026-11-04T04:13:12Z
 2026-11-03T04:13:12Z,baseline,EXECUTE,NOTF,0x2bd9c5d08de1ea765adb17e016cc9433eb8c3a30,SKIP,loss_halt,"seed=202611030413 eligible=3 pick=1 pool=004b14,2bd9c5,c97287 desk=WATCH launchpad=other"
 2026-11-03T04:13:12Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=5 new=3 checked=8 passed=0 bought=0 held=0 deferred=0 dex_only=3 goplus=5 requests=17 secs=10.4 bl_positions=0 bl_due=1 bl_eligible=3 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=5 labels_done=5 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-03T04:18:15Z,desk,VERIFY,TOKENUSDC,0x7470c99a72e895c211b846a7b1b581931fe82ef7,SKIP,missing:liq_usd,goplus=skipped until=2026-11-04T04:18:15Z
+2026-11-03T04:18:15Z,desk,VERIFY,TOKENUSDC,0x3a936a87eaf87a706b7095993dabf287c693f956,WATCH,goplus_not_ready,"first_seen=2026-11-03T04:18:15Z checks=1 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct b1=4 s1=0 b24=4 s24=0 liq=998679 dex=uniswap:v4 qliq=0"
+2026-11-03T04:18:15Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
+2026-11-03T04:18:15Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=0 new=2 checked=2 passed=0 bought=0 held=0 deferred=0 dex_only=1 goplus=1 requests=7 secs=1.9 bl_positions=0 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=3 labels_done=3 labels_calls=1 live=ok alerts=none alerts_sent=0
