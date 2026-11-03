@@ -5,7 +5,7 @@
     "day_start_value": 13.35250342185956,
     "halted_day": "2026-11-03",
     "positions": {},
-    "ticks_since_buy": 201
+    "ticks_since_buy": 202
   },
   "desk": {
     "cash": 47.60776857887221,
@@ -1055,15 +1055,6 @@
         "first_seen": "2026-11-02T21:23:12Z",
         "symbol": "FODF"
       },
-      "0x6c86e83edc5760e29b990b57be9f4662dbf84117": {
-        "done": [
-          1,
-          6
-        ],
-        "first_price": 0.0001533,
-        "first_seen": "2026-11-02T16:43:15Z",
-        "symbol": "KNTQ"
-      },
       "0x6d3237d19389b3cb5a2be1f7fdac25b0e96c531f": {
         "done": [
           1,
@@ -1310,7 +1301,9 @@
         "symbol": "ATOF"
       },
       "0x8fd6f31bc5b010eac78d27cf17669e5f6fe3c3ca": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 5.174e-06,
         "first_seen": "2026-11-03T15:48:15Z",
         "symbol": "WWAR"
@@ -1366,7 +1359,9 @@
         "symbol": "AOTF"
       },
       "0x94fe2443553cac98e9a4be911b9c2cf559415b0a": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 0.0001133,
         "first_seen": "2026-11-03T15:48:15Z",
         "symbol": "NOTF"
@@ -2301,6 +2296,12 @@
         "reason": "liquidity",
         "symbol": "AAVE",
         "until": "2026-11-04T08:48:18Z"
+      },
+      "0x06593ebc370f49755b83655dd56639c1dfb67240": {
+        "at": "2026-11-03T16:48:15Z",
+        "reason": "liquidity",
+        "symbol": "HASHORA",
+        "until": "2026-11-04T16:48:15Z"
       },
       "0x06992b01e33a91ceb6f88954001fc168467bd6bd": {
         "at": "2026-11-03T07:48:13Z",
@@ -5104,12 +5105,6 @@
         "symbol": "FER",
         "until": "2026-11-03T20:38:14Z"
       },
-      "0x75e2091abe89fa75a666aa50f877c43420784b07": {
-        "at": "2026-11-02T16:43:15Z",
-        "reason": "liquidity",
-        "symbol": "USDK",
-        "until": "2026-11-03T16:43:15Z"
-      },
       "0x75f449c292ffcafa91f5732b31aa1b6914325d4e": {
         "at": "2026-11-02T18:58:13Z",
         "reason": "missing:liq_usd",
@@ -5253,6 +5248,12 @@
         "reason": "liquidity",
         "symbol": "ANTHROPIC",
         "until": "2026-11-04T03:08:13Z"
+      },
+      "0x7c4aba7433accfd81b4a00796bb1658d94d07964": {
+        "at": "2026-11-03T16:48:15Z",
+        "reason": "liquidity",
+        "symbol": "House",
+        "until": "2026-11-04T16:48:15Z"
       },
       "0x7ca5affd3d08502272c7d61866e58aadc312db85": {
         "at": "2026-11-03T04:38:13Z",
@@ -6639,6 +6640,12 @@
         "reason": "liquidity",
         "symbol": "BI",
         "until": "2026-11-03T20:13:12Z"
+      },
+      "0xb20000000000000000000015bebf6a5bb2ff9c56": {
+        "at": "2026-11-03T16:48:15Z",
+        "reason": "liquidity",
+        "symbol": "ELECTRIC",
+        "until": "2026-11-04T16:48:15Z"
       },
       "0xb200000000000000000000187d9e00e17dcd8c80": {
         "at": "2026-11-02T21:23:12Z",
@@ -9256,12 +9263,6 @@
         "symbol": "CHUBBY",
         "until": "2026-11-04T04:08:13Z"
       },
-      "0xfcfdfa14c9ca3d9146a390bbbcd9fce3218041f2": {
-        "at": "2026-11-02T16:43:15Z",
-        "reason": "missing:price",
-        "symbol": "ORBIT",
-        "until": "2026-11-03T16:43:15Z"
-      },
       "0xfd43679168599f1425c6abcf696181b32c176920": {
         "at": "2026-11-03T06:53:12Z",
         "reason": "liquidity",
@@ -9367,9 +9368,9 @@
         "symbol": "WWAR"
       },
       "0x19ee6424b32bdcd73ca6ca2e2d6b661ea626a17e": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-03T16:33:13Z",
-        "last_check": "2026-11-03T16:33:13Z",
+        "last_check": "2026-11-03T16:48:15Z",
         "symbol": "ADTF"
       },
       "0x229421e99b62796d40b94295d1179c0c57e1d366": {
@@ -9391,9 +9392,9 @@
         "symbol": "FODF "
       },
       "0x389320d1f8eced9d454ece9406acf72158250426": {
-        "checks": 2,
+        "checks": 3,
         "first_seen": "2026-11-03T16:13:12Z",
-        "last_check": "2026-11-03T16:28:16Z",
+        "last_check": "2026-11-03T16:48:15Z",
         "symbol": "UDTF"
       },
       "0x3991ac01f0df1bd8321a0d125a3156e478f2a22a": {
@@ -9403,9 +9404,9 @@
         "symbol": "AOP"
       },
       "0x3c3de9ee606f601894ef10a8a6e9f381c47f5122": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-03T16:33:13Z",
-        "last_check": "2026-11-03T16:33:13Z",
+        "last_check": "2026-11-03T16:48:15Z",
         "symbol": "TAKEWIZARD"
       },
       "0x7081c2e8e31fb9ea7c6de4893076b6c530ccfba3": {
@@ -9427,27 +9428,27 @@
         "symbol": "UTDF"
       },
       "0x8f566863aead717ab3f100825b08f8a76f94e3a6": {
-        "checks": 8,
+        "checks": 9,
         "first_seen": "2026-11-03T13:53:13Z",
-        "last_check": "2026-11-03T16:28:16Z",
+        "last_check": "2026-11-03T16:48:15Z",
         "symbol": "ATOF"
       },
       "0x925860372ecf22d7485691d0656a70b447c058c9": {
-        "checks": 2,
+        "checks": 3,
         "first_seen": "2026-11-03T16:13:12Z",
-        "last_check": "2026-11-03T16:28:16Z",
+        "last_check": "2026-11-03T16:48:15Z",
         "symbol": "RUSP"
       },
       "0x94fe2443553cac98e9a4be911b9c2cf559415b0a": {
-        "checks": 3,
+        "checks": 4,
         "first_seen": "2026-11-03T15:48:15Z",
-        "last_check": "2026-11-03T16:28:16Z",
+        "last_check": "2026-11-03T16:48:15Z",
         "symbol": "NOTF"
       },
       "0x98622942bb408da5b61faf609ca09f594cd04b24": {
-        "checks": 2,
+        "checks": 3,
         "first_seen": "2026-11-03T16:13:12Z",
-        "last_check": "2026-11-03T16:33:13Z",
+        "last_check": "2026-11-03T16:48:15Z",
         "symbol": "OUSE"
       },
       "0xa457880b4d7fe5ee4f4f550be3f4db5db4e664d5": {
@@ -9463,15 +9464,15 @@
         "symbol": "TFD"
       },
       "0xc5827a1443e36780d59f549078822c1d2ae54450": {
-        "checks": 2,
+        "checks": 3,
         "first_seen": "2026-11-03T16:13:12Z",
-        "last_check": "2026-11-03T16:33:13Z",
+        "last_check": "2026-11-03T16:48:15Z",
         "symbol": "UTDF"
       },
       "0xdcbb1addb2369c5537d97bab588fd9be5e897b8c": {
-        "checks": 8,
+        "checks": 9,
         "first_seen": "2026-11-03T13:53:13Z",
-        "last_check": "2026-11-03T16:28:16Z",
+        "last_check": "2026-11-03T16:48:15Z",
         "symbol": "ASSET WORLD WAR RESERVE"
       },
       "0xe141dc8356e3b333f669535bbf6a603b04162910": {
