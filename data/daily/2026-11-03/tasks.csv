@@ -453,3 +453,10 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-03T03:18:14Z,desk,VERIFY,NOTF,0x2bd9c5d08de1ea765adb17e016cc9433eb8c3a30,WATCH,goplus_not_ready,"first_seen=2026-11-03T02:48:12Z checks=3 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct b1=83 s1=54 b24=83 s24=54 liq=29387037 dex=uniswap:v4 qliq=138747"
 2026-11-03T03:18:14Z,baseline,EXECUTE,ADP,0x004b1459a70e4c0238687613a9c8d2bd551dc028,SKIP,loss_halt,"seed=202611030318 eligible=3 pick=0 pool=004b14,1b80a6,2bd9c5 desk=WATCH launchpad=other"
 2026-11-03T03:18:14Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=3 new=0 checked=3 passed=0 bought=0 held=0 deferred=0 dex_only=0 goplus=3 requests=9 secs=5.6 bl_positions=0 bl_due=1 bl_eligible=3 bl_bought=0 report=none machine=none bl_error=none labels=none labels_due=0 labels_done=0 labels_calls=0 live=ok alerts=none alerts_sent=0
+2026-11-03T03:23:11Z,desk,VERIFY,LAPTOP,0xfb9c115cf0070d6699e6d9a1b863638d47c79163,SKIP,liquidity,goplus=skipped until=2026-11-04T03:23:11Z
+2026-11-03T03:23:11Z,desk,VERIFY,GCOC,0x18a10b40b67e4663df6515d032bd965162fb294c,SKIP,liquidity,goplus=skipped until=2026-11-04T03:23:11Z
+2026-11-03T03:23:11Z,desk,VERIFY,SPACEX,0x748c86ca9cb1a30f03e4b91c18d80f5b9b137a82,SKIP,liquidity,goplus=skipped until=2026-11-04T03:23:11Z
+2026-11-03T03:23:11Z,desk,VERIFY,BTG,0x9b5ceef96c28f83cbb62ead2d1a18b6e1f4d2b07,SKIP,liquidity,goplus=skipped until=2026-11-04T03:23:11Z
+2026-11-03T03:23:11Z,desk,VERIFY,WAR,0xb200000000000000000000c19fb05ef186c6777d,SKIP,liquidity,goplus=skipped until=2026-11-04T03:23:11Z
+2026-11-03T03:23:11Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
+2026-11-03T03:23:11Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=0 new=5 checked=5 passed=0 bought=0 held=0 deferred=0 dex_only=5 goplus=0 requests=9 secs=2.3 bl_positions=0 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=8 labels_done=8 labels_calls=1 live=ok alerts=none alerts_sent=0
