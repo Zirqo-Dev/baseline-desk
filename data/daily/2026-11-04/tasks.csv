@@ -3490,3 +3490,10 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-04T23:53:12Z,desk,VERIFY,CHUBBY,0xbbc508fca5f91ab260d618dbeaf78ef7c4dfc289,SKIP,liquidity,goplus=skipped until=2026-11-05T23:53:12Z
 2026-11-04T23:53:12Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
 2026-11-04T23:53:12Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=21 rechecks=0 new=6 checked=6 passed=0 bought=0 held=0 deferred=0 dex_only=4 goplus=2 requests=11 secs=4.3 bl_positions=0 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=none labels_due=0 labels_done=0 labels_calls=0 live=ok alerts=none alerts_sent=0
+2026-11-04T23:58:13Z,desk,VERIFY,UTDF,0x030ad8202c1f56783b6d428bd7f315865e3a7032,WATCH,goplus_not_ready,"first_seen=2026-11-04T23:38:13Z checks=2 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct b1=69 s1=46 b24=69 s24=46 liq=31491451 dex=uniswap:v4 qliq=2797"
+2026-11-04T23:58:13Z,desk,VERIFY,USOE,0x1ec7ea3aa68abe236b3ef895aad183db5a5d6252,WATCH,goplus_not_ready,"first_seen=2026-11-04T23:38:13Z checks=2 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct b1=56 s1=37 b24=56 s24=37 liq=31606008 dex=uniswap:v4 qliq=149326"
+2026-11-04T23:58:13Z,desk,VERIFY,ANT,0xd2c5838b888c4cce38b4d5a14ef51eb758717953,SKIP,liquidity,goplus=skipped until=2026-11-05T23:58:13Z
+2026-11-04T23:58:13Z,desk,VERIFY,Reboot,0xb2000000000000000000002460f734fee93e3e64,SKIP,liquidity,goplus=skipped until=2026-11-05T23:58:13Z
+2026-11-04T23:58:13Z,desk,VERIFY,schnoz,0x1a1fdeeb28d8b3a95c02230f3378454d90c0f3a1,SKIP,liquidity,goplus=skipped until=2026-11-05T23:58:13Z
+2026-11-04T23:58:13Z,baseline,EXECUTE,UTDF,0x030ad8202c1f56783b6d428bd7f315865e3a7032,SKIP,loss_halt,"seed=202611042358 eligible=2 pick=0 pool=030ad8,1ec7ea desk=WATCH launchpad=other"
+2026-11-04T23:58:13Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=2 new=3 checked=5 passed=0 bought=0 held=0 deferred=0 dex_only=3 goplus=2 requests=10 secs=4.0 bl_positions=0 bl_due=1 bl_eligible=2 bl_bought=0 report=none machine=none bl_error=none labels=none labels_due=0 labels_done=0 labels_calls=0 live=ok alerts=none alerts_sent=0
