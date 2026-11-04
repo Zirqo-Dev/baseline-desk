@@ -1,29 +1,11 @@
 {
   "baseline": {
-    "cash": 3.1878066085903427,
+    "cash": 3.1878819181120317,
     "day": "2026-11-04",
     "day_start_value": 8.498209955342258,
     "halted_day": "",
-    "positions": {
-      "0x28b0e914dca128c7ccb6343c4d064caab06ec00d": {
-        "cost_usd": 5,
-        "entry_fill": 0.0202086,
-        "entry_intended": 0.01962,
-        "entry_liq_usd": 29436708.87,
-        "entry_qliq": 8368,
-        "entry_ts": "2026-11-04T01:04:19Z",
-        "ladder_done": [],
-        "last_liq_usd": 29462314.63,
-        "last_price": 0.01964,
-        "launchpad": "other",
-        "orig_qty": 247.41941549637284,
-        "pair": "0x7fc6932de688c5172e2f8f6355b7dc8b50c149cc9b7f8beaaa940db3542a02fd",
-        "peak_price": 0.01964,
-        "qty": 247.41941549637284,
-        "symbol": "NAFF"
-      }
-    },
-    "ticks_since_buy": 5
+    "positions": {},
+    "ticks_since_buy": 6
   },
   "desk": {
     "cash": 47.60776857887221,
@@ -1326,7 +1308,9 @@
         "symbol": "U.S RELIEF PROGRAM "
       },
       "0x940181a94a35a4569e4529a3cdfb74e38fd98631": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 0.6296,
         "first_seen": "2026-11-04T00:33:16Z",
         "symbol": "AERO"
@@ -3366,12 +3350,6 @@
         "symbol": "REBOOT",
         "until": "2026-11-04T20:48:18Z"
       },
-      "0x2af0911ad5953a5d54b788755291334f63dc2430": {
-        "at": "2026-11-03T01:28:16Z",
-        "reason": "liquidity",
-        "symbol": "ANTHROPIC",
-        "until": "2026-11-04T01:28:16Z"
-      },
       "0x2afb31c90de00e54f07ba1c866a194365045b285": {
         "at": "2026-11-03T12:33:18Z",
         "reason": "goplus_timeout",
@@ -3588,6 +3566,12 @@
         "symbol": "Reboot",
         "until": "2026-11-04T19:18:24Z"
       },
+      "0x31674ba1cff10ea9bef8db41ab1d531f070ab079": {
+        "at": "2026-11-04T01:34:45Z",
+        "reason": "liquidity",
+        "symbol": ".AI",
+        "until": "2026-11-05T01:34:45Z"
+      },
       "0x3235668647d5988cc95efd95512b20ea26ba658b": {
         "at": "2026-11-03T23:13:13Z",
         "reason": "goplus_timeout",
@@ -3647,12 +3631,6 @@
         "reason": "missing:liq_usd",
         "symbol": "MEGA MILLIONS",
         "until": "2026-11-04T14:28:15Z"
-      },
-      "0x334dbefdedc6ff68d5a883e5ea27a37a137d5ba3": {
-        "at": "2026-11-03T01:28:16Z",
-        "reason": "liquidity",
-        "symbol": "Commonplace",
-        "until": "2026-11-04T01:28:16Z"
       },
       "0x335292ab3cea5f7d4a378c6b39832a3b0c95d469": {
         "at": "2026-11-03T10:38:17Z",
@@ -4014,12 +3992,6 @@
         "symbol": "ALN",
         "until": "2026-11-04T08:13:13Z"
       },
-      "0x403bf0216c776c386f18321f61cca67c4210c45b": {
-        "at": "2026-11-03T01:28:16Z",
-        "reason": "liquidity",
-        "symbol": "LAPTOP",
-        "until": "2026-11-04T01:28:16Z"
-      },
       "0x40809153788a4314e52fd1c05cd47a47738fbb00": {
         "at": "2026-11-03T22:48:15Z",
         "reason": "liquidity",
@@ -4127,12 +4099,6 @@
         "reason": "liquidity",
         "symbol": "SOLA",
         "until": "2026-11-04T21:08:16Z"
-      },
-      "0x44660a280a87037abe12d3d42758370e3bac46ea": {
-        "at": "2026-11-03T01:33:13Z",
-        "reason": "liquidity",
-        "symbol": "THEIA",
-        "until": "2026-11-04T01:33:13Z"
       },
       "0x446b63e4bc914bb5e5c5961606c371c6bab8fcdd": {
         "at": "2026-11-03T20:58:16Z",
@@ -4247,12 +4213,6 @@
         "reason": "liquidity",
         "symbol": "ANTHROPIC",
         "until": "2026-11-05T01:13:14Z"
-      },
-      "0x48dda72e85ebdb3f8ef8562cab5216b52e718e29": {
-        "at": "2026-11-03T01:28:16Z",
-        "reason": "liquidity",
-        "symbol": "WZRD",
-        "until": "2026-11-04T01:28:16Z"
       },
       "0x4922aa33a13b947c4667a7853b1ad2f37b96cb76": {
         "at": "2026-11-03T22:53:13Z",
@@ -4391,12 +4351,6 @@
         "reason": "missing:liq_usd",
         "symbol": "WATIOED",
         "until": "2026-11-04T09:48:14Z"
-      },
-      "0x4e6bfa19ef5a3606a4a4004216fb7b26fc12b9d3": {
-        "at": "2026-11-03T01:33:13Z",
-        "reason": "liquidity",
-        "symbol": "House",
-        "until": "2026-11-04T01:33:13Z"
       },
       "0x4e99148e6a05fbd44a9d0cac22bb60724f64b20c": {
         "at": "2026-11-03T15:48:15Z",
@@ -4715,12 +4669,6 @@
         "reason": "missing:liq_usd",
         "symbol": "EGO",
         "until": "2026-11-04T15:28:16Z"
-      },
-      "0x59930a8eec87e7697b959648a7b3b4256139f97c": {
-        "at": "2026-11-03T01:28:16Z",
-        "reason": "liquidity",
-        "symbol": "titcoin",
-        "until": "2026-11-04T01:28:16Z"
       },
       "0x599aee6bc93ee55fbb685d7b7825a8276cbe71c3": {
         "at": "2026-11-03T07:53:16Z",
@@ -5772,12 +5720,6 @@
         "symbol": "DRB",
         "until": "2026-11-04T13:53:13Z"
       },
-      "0x7f2f00e54dcaa8b248bdfd75da2ae859d4d8ff3e": {
-        "at": "2026-11-03T01:33:13Z",
-        "reason": "goplus_timeout",
-        "symbol": "TAOT",
-        "until": "2026-11-04T01:33:13Z"
-      },
       "0x7fda0a5253d988929c165c156fc7d72b6e0d2c2c": {
         "at": "2026-11-04T00:18:19Z",
         "reason": "goplus_timeout",
@@ -6317,12 +6259,6 @@
         "reason": "goplus_timeout",
         "symbol": "U.S RELIEF PROGRAM ",
         "until": "2026-11-04T16:28:16Z"
-      },
-      "0x93454f79f4818f912f5891b9d9aa6613ba9bbba3": {
-        "at": "2026-11-03T01:28:16Z",
-        "reason": "liquidity",
-        "symbol": "DOGLENON",
-        "until": "2026-11-04T01:28:16Z"
       },
       "0x9387d12d58d48d9a4066d3f2a91b2bbf502db3e5": {
         "at": "2026-11-03T04:53:12Z",
@@ -7199,12 +7135,6 @@
         "reason": "liquidity",
         "symbol": "Spiko",
         "until": "2026-11-04T11:53:12Z"
-      },
-      "0xb2000000000000000000002fab3f70b50d9e54ce": {
-        "at": "2026-11-03T01:28:16Z",
-        "reason": "liquidity",
-        "symbol": "jenna",
-        "until": "2026-11-04T01:28:16Z"
       },
       "0xb200000000000000000000304f11d59e05811832": {
         "at": "2026-11-03T17:18:16Z",
@@ -8328,12 +8258,6 @@
         "symbol": "CARDS",
         "until": "2026-11-04T23:28:13Z"
       },
-      "0xbcc7b21cc7530d0755270c9e5e9d16489a441550": {
-        "at": "2026-11-03T01:33:13Z",
-        "reason": "goplus_timeout",
-        "symbol": "WWAR",
-        "until": "2026-11-04T01:33:13Z"
-      },
       "0xbd016330b786ce67e5871112aad71a07e3771b07": {
         "at": "2026-11-03T19:48:15Z",
         "reason": "missing:liq_usd",
@@ -8586,11 +8510,11 @@
         "symbol": "USPR",
         "until": "2026-11-04T18:48:28Z"
       },
-      "0xc82c82514644776e3b24b64a59fcb0bafc6b06fc": {
-        "at": "2026-11-03T01:33:13Z",
-        "reason": "goplus_timeout",
-        "symbol": "WWAR",
-        "until": "2026-11-04T01:33:13Z"
+      "0xc8a9e11e00e6dc918fb95a4f1b27ea2aeb17f7e9": {
+        "at": "2026-11-04T01:34:45Z",
+        "reason": "missing:liq_usd",
+        "symbol": "BXT2",
+        "until": "2026-11-05T01:34:45Z"
       },
       "0xc8f06ccc547d47850e808d2736e1c53c8136a09c": {
         "at": "2026-11-03T09:58:12Z",
@@ -8910,12 +8834,6 @@
         "symbol": "REBOOT",
         "until": "2026-11-04T21:43:16Z"
       },
-      "0xd41e022e81b957549e9cdabaea7f30a56e00292e": {
-        "at": "2026-11-03T01:28:16Z",
-        "reason": "liquidity",
-        "symbol": "CHART",
-        "until": "2026-11-04T01:28:16Z"
-      },
       "0xd451937349bbbbe12849328f9e63d4339a77513f": {
         "at": "2026-11-03T13:53:13Z",
         "reason": "missing:liq_usd",
@@ -9101,12 +9019,6 @@
         "reason": "liquidity",
         "symbol": "LAPTOP",
         "until": "2026-11-04T05:38:13Z"
-      },
-      "0xda1c0500950dc1582b202edd00c7d5cbebce616e": {
-        "at": "2026-11-03T01:28:16Z",
-        "reason": "liquidity",
-        "symbol": "TASK",
-        "until": "2026-11-04T01:28:16Z"
       },
       "0xdb108ecabe90079ce9e8c1fa6705d629badea139": {
         "at": "2026-11-04T00:58:14Z",
@@ -9329,6 +9241,12 @@
         "reason": "liquidity",
         "symbol": "Basehorse",
         "until": "2026-11-04T05:33:14Z"
+      },
+      "0xe21c7cb7e05defdacaec837216e326b5fe968eb8": {
+        "at": "2026-11-04T01:34:45Z",
+        "reason": "liquidity",
+        "symbol": "COMET",
+        "until": "2026-11-05T01:34:45Z"
       },
       "0xe224df5e35fde9a4622fede2e9985e1d44d6863c": {
         "at": "2026-11-03T11:28:14Z",
@@ -10178,12 +10096,6 @@
         "last_check": "2026-11-04T01:23:20Z",
         "symbol": "Claker"
       },
-      "0xc8a9e11e00e6dc918fb95a4f1b27ea2aeb17f7e9": {
-        "checks": 1,
-        "first_seen": "2026-11-04T01:18:15Z",
-        "last_check": "2026-11-04T01:18:15Z",
-        "symbol": "BXT2"
-      },
       "0xf176ad3d822e7ecce1e6449f3d5a75be94e6c839": {
         "checks": 6,
         "first_seen": "2026-11-03T23:48:14Z",
@@ -10280,7 +10192,7 @@
     },
     "machine_due": "",
     "max_dd_pct": {
-      "baseline": 86.7926719775604,
+      "baseline": 94.66000838860344,
       "desk": 9.811123120222184
     },
     "peak": {
