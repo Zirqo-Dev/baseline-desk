@@ -5,7 +5,7 @@
     "day_start_value": 8.498209955342258,
     "halted_day": "2026-11-04",
     "positions": {},
-    "ticks_since_buy": 12
+    "ticks_since_buy": 13
   },
   "desk": {
     "cash": 47.60776857887221,
@@ -584,6 +584,12 @@
         "first_price": 0.01963,
         "first_seen": "2026-11-03T11:23:13Z",
         "symbol": "AOP"
+      },
+      "0x2d30056f5cf821825bb3b9fb4dc555dbef670d67": {
+        "done": [],
+        "first_price": 9.137e-05,
+        "first_seen": "2026-11-04T02:08:14Z",
+        "symbol": "UPRS"
       },
       "0x2d89251c64418265888d69e0d9b6d10650affa7d": {
         "done": [
@@ -1245,10 +1251,18 @@
         "symbol": "Conway"
       },
       "0x87e061cc391ebbfa3f80e648cfa2205028ceb3a6": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 1.256e-06,
         "first_seen": "2026-11-04T01:04:19Z",
         "symbol": "Claker"
+      },
+      "0x883c57e49906aafee4b9c0ce59e3696f70f6c3f7": {
+        "done": [],
+        "first_price": 0.0001736,
+        "first_seen": "2026-11-04T02:08:14Z",
+        "symbol": "CARDS"
       },
       "0x8a19c8808e173268ca5de898034921d48e903642": {
         "done": [
@@ -1454,7 +1468,9 @@
         "symbol": "OIL US EXCHANGE"
       },
       "0x9e265bfb0cb142a1977c200753250ce7e4dea3ae": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 6.461e-06,
         "first_seen": "2026-11-04T01:04:19Z",
         "symbol": "Claker"
@@ -1759,6 +1775,12 @@
         "first_seen": "2026-11-03T12:28:15Z",
         "symbol": "UTDF"
       },
+      "0xca87d6b7c246987e5ba30545def37c77a55428ea": {
+        "done": [],
+        "first_price": 0.0001799,
+        "first_seen": "2026-11-04T02:08:14Z",
+        "symbol": "Usoil Exchange"
+      },
       "0xce7de9e1119e71ff0f1f8d6d368b841870afaa03": {
         "done": [
           1,
@@ -2008,15 +2030,6 @@
         "first_price": 0.0001133,
         "first_seen": "2026-11-03T19:53:23Z",
         "symbol": "UTDF"
-      },
-      "0xf67947b28d5293bc6a300b29f6e96b304fa4dc15": {
-        "done": [
-          1,
-          6
-        ],
-        "first_price": 0.0001,
-        "first_seen": "2026-11-03T02:03:12Z",
-        "symbol": "ZAPS"
       },
       "0xf6d6e9d89c2d70994ffedd2ee06b10c5611985c4": {
         "done": [
@@ -2299,12 +2312,6 @@
         "reason": "liquidity",
         "symbol": "USPR",
         "until": "2026-11-04T07:08:14Z"
-      },
-      "0x07466dcc011bee351539306108ad78abcec47f87": {
-        "at": "2026-11-03T02:03:12Z",
-        "reason": "liquidity",
-        "symbol": "gork",
-        "until": "2026-11-04T02:03:12Z"
       },
       "0x077e4f8429c71f9db25087fd38ce23626808de95": {
         "at": "2026-11-03T17:33:14Z",
@@ -2768,12 +2775,6 @@
         "symbol": "Reboot.fun",
         "until": "2026-11-04T22:23:14Z"
       },
-      "0x178d88d7dba88e5258a5c2e26b86e5f84eec8cd8": {
-        "at": "2026-11-03T02:03:12Z",
-        "reason": "liquidity",
-        "symbol": "MUS",
-        "until": "2026-11-04T02:03:12Z"
-      },
       "0x18698ed498e01d99b1b835acf5fc6549804c9e87": {
         "at": "2026-11-03T19:53:23Z",
         "reason": "liquidity",
@@ -3085,12 +3086,6 @@
         "reason": "liquidity",
         "symbol": "ADOF",
         "until": "2026-11-04T09:33:14Z"
-      },
-      "0x20b04156421f4ef96f70e460238f6ddd38a6d9a4": {
-        "at": "2026-11-03T02:03:12Z",
-        "reason": "missing:liq_usd",
-        "symbol": "EXCHANGE U.S OIL",
-        "until": "2026-11-04T02:03:12Z"
       },
       "0x20d114497e3d59af6599c53cc96ab0a631e1eaa5": {
         "at": "2026-11-03T20:53:21Z",
@@ -4741,6 +4736,12 @@
         "reason": "liquidity",
         "symbol": "SANTACOIN",
         "until": "2026-11-04T21:48:15Z"
+      },
+      "0x570dfa11cf971f9d00fc806d73a8be545a3abb18": {
+        "at": "2026-11-04T02:08:14Z",
+        "reason": "goplus_timeout",
+        "symbol": "TDF",
+        "until": "2026-11-05T02:08:14Z"
       },
       "0x57276748c354ebb723ca73670de01f399c22c489": {
         "at": "2026-11-03T21:08:16Z",
@@ -6614,12 +6615,6 @@
         "symbol": "TEN",
         "until": "2026-11-04T13:58:13Z"
       },
-      "0x98aed00dd080dd7aa5ed3e40b4f9f8741a78813c": {
-        "at": "2026-11-03T02:08:13Z",
-        "reason": "liquidity",
-        "symbol": "OFFR",
-        "until": "2026-11-04T02:08:13Z"
-      },
       "0x98f7e7a51c11ca319585fa549199eb484678714b": {
         "at": "2026-11-03T14:53:13Z",
         "reason": "liquidity",
@@ -6919,12 +6914,6 @@
         "reason": "goplus_timeout",
         "symbol": "ADTF",
         "until": "2026-11-04T19:33:30Z"
-      },
-      "0xa488f4161ee915b6533964a51acd35f474906e4d": {
-        "at": "2026-11-03T02:03:12Z",
-        "reason": "liquidity",
-        "symbol": "LIQUIDBGT",
-        "until": "2026-11-04T02:03:12Z"
       },
       "0xa4a9e4cf441b312a24856c787aa239c261125d59": {
         "at": "2026-11-04T02:03:11Z",
@@ -7910,11 +7899,11 @@
         "symbol": "HODL",
         "until": "2026-11-04T11:28:14Z"
       },
-      "0xb200000000000000000000bc810e95fb5261d392": {
-        "at": "2026-11-03T02:08:13Z",
+      "0xb200000000000000000000bc3557a4c168762e4d": {
+        "at": "2026-11-04T02:08:14Z",
         "reason": "liquidity",
-        "symbol": "BGLE",
-        "until": "2026-11-04T02:08:13Z"
+        "symbol": "REBOOT",
+        "until": "2026-11-05T02:08:14Z"
       },
       "0xb200000000000000000000bca3f5518d6ef8bcc8": {
         "at": "2026-11-03T22:58:13Z",
@@ -8552,12 +8541,6 @@
         "symbol": "HexWraithAI",
         "until": "2026-11-05T01:08:15Z"
       },
-      "0xbecb02bdd18541cf95e22ed678d9e016c2b9430f": {
-        "at": "2026-11-03T02:03:12Z",
-        "reason": "missing:liq_usd",
-        "symbol": "LNRE",
-        "until": "2026-11-04T02:03:12Z"
-      },
       "0xbef84991ad5a794f1b498479ee7b1dba3e9d8cf2": {
         "at": "2026-11-03T18:03:20Z",
         "reason": "liquidity",
@@ -8587,6 +8570,12 @@
         "reason": "liquidity",
         "symbol": "USPR",
         "until": "2026-11-04T08:53:14Z"
+      },
+      "0xc07d86d42f5ea39e1759ecd35f1db24d72a5c18b": {
+        "at": "2026-11-04T02:08:14Z",
+        "reason": "liquidity",
+        "symbol": "Launchpad",
+        "until": "2026-11-05T02:08:14Z"
       },
       "0xc0969e4ea8659ccba425661bfba735bb71dbb4f2": {
         "at": "2026-11-03T07:28:15Z",
@@ -9914,12 +9903,6 @@
         "symbol": "UniBase",
         "until": "2026-11-04T09:03:12Z"
       },
-      "0xee9069e8f520652e59674fad2120f6dea2671ba3": {
-        "at": "2026-11-03T02:03:12Z",
-        "reason": "liquidity",
-        "symbol": "OFFR",
-        "until": "2026-11-04T02:03:12Z"
-      },
       "0xeedaa242604371780b5a5324674066fc93483fe7": {
         "at": "2026-11-03T12:13:13Z",
         "reason": "liquidity",
@@ -10367,9 +10350,9 @@
         "symbol": "ADP"
       },
       "0x20969fdab25b1aeb2d050200619a3053dac46d7e": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-04T01:48:14Z",
-        "last_check": "2026-11-04T01:48:14Z",
+        "last_check": "2026-11-04T02:08:14Z",
         "symbol": "FLUID"
       },
       "0x261198dd87d00a08bc9ce0b51b9a77a2e15b90ac": {
@@ -10378,17 +10361,17 @@
         "last_check": "2026-11-04T02:03:11Z",
         "symbol": "UTDF"
       },
+      "0x2d30056f5cf821825bb3b9fb4dc555dbef670d67": {
+        "checks": 1,
+        "first_seen": "2026-11-04T02:08:14Z",
+        "last_check": "2026-11-04T02:08:14Z",
+        "symbol": "UPRS"
+      },
       "0x3d3380776e4ffca1c910619b581509b16de64797": {
         "checks": 2,
         "first_seen": "2026-11-04T01:43:12Z",
         "last_check": "2026-11-04T02:03:11Z",
         "symbol": "ADOF"
-      },
-      "0x570dfa11cf971f9d00fc806d73a8be545a3abb18": {
-        "checks": 10,
-        "first_seen": "2026-11-03T22:53:13Z",
-        "last_check": "2026-11-04T01:48:14Z",
-        "symbol": "TDF"
       },
       "0x7d5840becf46174fd78b9dc69bfa13a5cbb2ce0a": {
         "checks": 2,
@@ -10402,11 +10385,23 @@
         "last_check": "2026-11-04T01:58:13Z",
         "symbol": "Claker"
       },
+      "0x883c57e49906aafee4b9c0ce59e3696f70f6c3f7": {
+        "checks": 1,
+        "first_seen": "2026-11-04T02:08:14Z",
+        "last_check": "2026-11-04T02:08:14Z",
+        "symbol": "CARDS"
+      },
       "0xafff39eba60cfb0181fdf8c6a2fc1dcf8ba1220c": {
         "checks": 1,
         "first_seen": "2026-11-04T02:03:11Z",
         "last_check": "2026-11-04T02:03:11Z",
         "symbol": "Q"
+      },
+      "0xca87d6b7c246987e5ba30545def37c77a55428ea": {
+        "checks": 1,
+        "first_seen": "2026-11-04T02:08:14Z",
+        "last_check": "2026-11-04T02:08:14Z",
+        "symbol": "Usoil Exchange"
       },
       "0xd508d650026955cd1c79222416924f26e105d1d3": {
         "checks": 2,
