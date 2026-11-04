@@ -478,3 +478,10 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-04T03:38:15Z,desk,VERIFY,WATER,0x08ddea253e903c5590c5a01ddcba4b4d9acd9d06,SKIP,liquidity,goplus=skipped until=2026-11-05T03:38:15Z
 2026-11-04T03:38:15Z,baseline,EXECUTE,CHEWY,0xe1ea7991432d1b7a1cb478fe433587a9dca51e2e,SKIP,loss_halt,"seed=202611040338 eligible=3 pick=2 pool=3d3380,5c6a0a,e1ea79 desk=deferred launchpad=other"
 2026-11-04T03:38:15Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=11 new=4 checked=14 passed=0 bought=0 held=0 deferred=1 dex_only=5 goplus=9 requests=28 secs=18.9 bl_positions=0 bl_due=1 bl_eligible=3 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=1 labels_done=1 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-04T03:43:13Z,desk,VERIFY,CHEWY,0xe1ea7991432d1b7a1cb478fe433587a9dca51e2e,WATCH,goplus_not_ready,first_seen=2026-11-04T03:23:12Z checks=2 pending=honeypot b1=11 s1=5 b24=264 s24=156 liq=50574 dex=uniswap:v4 qliq=25327
+2026-11-04T03:43:13Z,desk,VERIFY,PEPKING,0x39f2d3292ce0408ead459aea9a03ad7cbedbf314,SKIP,liquidity,goplus=skipped until=2026-11-05T03:43:13Z
+2026-11-04T03:43:13Z,desk,VERIFY,QFE,0x29f2da0d3bed0cf32a98b495e8b6aa63f02e885e,SKIP,missing:liq_usd,goplus=skipped until=2026-11-05T03:43:13Z
+2026-11-04T03:43:13Z,desk,VERIFY,MAMESUKE,0xb20000000000000000000050e1b2b67ed6a46503,SKIP,liquidity,goplus=skipped until=2026-11-05T03:43:13Z
+2026-11-04T03:43:13Z,desk,VERIFY,NAME,0xf57a0c8472b6e3d489c589ab1f35827eafa48ae4,SKIP,liquidity,goplus=skipped until=2026-11-05T03:43:13Z
+2026-11-04T03:43:13Z,baseline,EXECUTE,CHEWY,0xe1ea7991432d1b7a1cb478fe433587a9dca51e2e,SKIP,loss_halt,seed=202611040343 eligible=1 pick=0 pool=e1ea79 desk=WATCH launchpad=other
+2026-11-04T03:43:13Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=1 new=4 checked=5 passed=0 bought=0 held=0 deferred=0 dex_only=4 goplus=1 requests=9 secs=2.2 bl_positions=0 bl_due=1 bl_eligible=1 bl_bought=0 report=none machine=none bl_error=none labels=none labels_due=0 labels_done=0 labels_calls=0 live=ok alerts=none alerts_sent=0
