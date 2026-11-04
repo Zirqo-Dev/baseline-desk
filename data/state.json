@@ -5,7 +5,7 @@
     "day_start_value": 8.498209955342258,
     "halted_day": "2026-11-04",
     "positions": {},
-    "ticks_since_buy": 108
+    "ticks_since_buy": 109
   },
   "desk": {
     "cash": 47.60776857887221,
@@ -68,6 +68,12 @@
         "first_price": 8.934e-05,
         "first_seen": "2026-11-03T11:53:12Z",
         "symbol": "RAWW"
+      },
+      "0x080baaf49bdb8b73690a20e15123487977c075a9": {
+        "done": [],
+        "first_price": 0.02011,
+        "first_seen": "2026-11-04T10:13:14Z",
+        "symbol": "ADP"
       },
       "0x08dbbc2a02cd9dda479c4997926391ffa0a3ca12": {
         "done": [
@@ -280,6 +286,12 @@
         "first_seen": "2026-11-03T16:33:13Z",
         "symbol": "ADTF"
       },
+      "0x1a3b84e54d813028e686049d2da139d689b27645": {
+        "done": [],
+        "first_price": 0.02011,
+        "first_seen": "2026-11-04T10:13:14Z",
+        "symbol": "NOTF"
+      },
       "0x1a6b20f3774a811c2283b2a686cfd6dbd701c235": {
         "done": [
           1,
@@ -296,6 +308,18 @@
         "first_price": 0.01987,
         "first_seen": "2026-11-04T05:58:13Z",
         "symbol": "AOP"
+      },
+      "0x1c6ad772567cfc557a8b45628c36dbd7e8b74bb7": {
+        "done": [],
+        "first_price": 0.02011,
+        "first_seen": "2026-11-04T10:13:14Z",
+        "symbol": "ADOF"
+      },
+      "0x1cc5370209d9ae103a3e8dd0d8ad003242c630b0": {
+        "done": [],
+        "first_price": 0.02011,
+        "first_seen": "2026-11-04T10:13:14Z",
+        "symbol": "UTDF"
       },
       "0x1dd3a0f46584c5a1c15f3d5a0082cb85148311d5": {
         "done": [
@@ -6122,6 +6146,12 @@
         "symbol": "Bucky",
         "until": "2026-11-05T04:18:13Z"
       },
+      "0x89e89c80ee931688c846de0d1c1f9211a6267749": {
+        "at": "2026-11-04T10:13:14Z",
+        "reason": "liquidity",
+        "symbol": "APU",
+        "until": "2026-11-05T10:13:14Z"
+      },
       "0x8a39157b518780eef5624357c1e387a5b81cc24f": {
         "at": "2026-11-03T10:23:12Z",
         "reason": "liquidity",
@@ -10246,11 +10276,35 @@
       }
     },
     "watch": {
+      "0x080baaf49bdb8b73690a20e15123487977c075a9": {
+        "checks": 1,
+        "first_seen": "2026-11-04T10:13:14Z",
+        "last_check": "2026-11-04T10:13:14Z",
+        "symbol": "ADP"
+      },
       "0x0a04200e009c6386e000a29c8cd33474902f0038": {
         "checks": 6,
         "first_seen": "2026-11-04T08:18:13Z",
         "last_check": "2026-11-04T09:58:15Z",
         "symbol": "NADF"
+      },
+      "0x1a3b84e54d813028e686049d2da139d689b27645": {
+        "checks": 1,
+        "first_seen": "2026-11-04T10:13:14Z",
+        "last_check": "2026-11-04T10:13:14Z",
+        "symbol": "NOTF"
+      },
+      "0x1c6ad772567cfc557a8b45628c36dbd7e8b74bb7": {
+        "checks": 1,
+        "first_seen": "2026-11-04T10:13:14Z",
+        "last_check": "2026-11-04T10:13:14Z",
+        "symbol": "ADOF"
+      },
+      "0x1cc5370209d9ae103a3e8dd0d8ad003242c630b0": {
+        "checks": 1,
+        "first_seen": "2026-11-04T10:13:14Z",
+        "last_check": "2026-11-04T10:13:14Z",
+        "symbol": "UTDF"
       },
       "0x1eee210ffa1168347f1e5d50f238f8587caebc17": {
         "checks": 1,
