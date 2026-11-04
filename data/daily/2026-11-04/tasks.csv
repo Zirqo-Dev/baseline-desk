@@ -821,3 +821,7 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-04T05:58:13Z,desk,VERIFY,NAFF,0x15f9e7570a134eda41bb7f11de9cb39b25501b08,WATCH,goplus_not_ready,"first_seen=2026-11-04T05:58:13Z checks=1 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct b1=15 s1=9 b24=15 s24=9 liq=29805491 dex=uniswap:v4 qliq=1208"
 2026-11-04T05:58:13Z,baseline,EXECUTE,CHEWY,0xe1ea7991432d1b7a1cb478fe433587a9dca51e2e,SKIP,loss_halt,"seed=202611040558 eligible=4 pick=3 pool=15f9e7,1aa7e0,1f77be,e1ea79 desk=WATCH launchpad=other"
 2026-11-04T05:58:13Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=4 new=6 checked=10 passed=0 bought=0 held=0 deferred=0 dex_only=3 goplus=7 requests=20 secs=13.5 bl_positions=0 bl_due=1 bl_eligible=4 bl_bought=0 report=none machine=none bl_error=none labels=none labels_due=0 labels_done=0 labels_calls=0 live=ok alerts=none alerts_sent=0
+2026-11-04T06:03:12Z,desk,VERIFY,CHUBBY,0x1cf15a84c9911cb64027eaf6d88872cfe624c556,SKIP,liquidity,goplus=skipped until=2026-11-05T06:03:12Z
+2026-11-04T06:03:12Z,desk,VERIFY,CHUBBY,0xa01ef546295b07fa8a725bdf2d137a547e6a3aa7,SKIP,liquidity,goplus=skipped until=2026-11-05T06:03:12Z
+2026-11-04T06:03:12Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
+2026-11-04T06:03:12Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=0 new=2 checked=2 passed=0 bought=0 held=0 deferred=0 dex_only=2 goplus=0 requests=6 secs=1.8 bl_positions=0 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=3 labels_done=3 labels_calls=1 live=ok alerts=none alerts_sent=0
