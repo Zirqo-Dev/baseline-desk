@@ -5,7 +5,7 @@
     "day_start_value": 3.1878819181120317,
     "halted_day": "",
     "positions": {},
-    "ticks_since_buy": 381
+    "ticks_since_buy": 382
   },
   "desk": {
     "cash": 47.60776857887221,
@@ -42,6 +42,12 @@
         "first_price": 0.02004,
         "first_seen": "2026-11-04T12:18:15Z",
         "symbol": "XMR"
+      },
+      "0x05016266b3629a767875c64c04ebeb817cf81e9d": {
+        "done": [],
+        "first_price": 1.549e-05,
+        "first_seen": "2026-11-05T09:33:13Z",
+        "symbol": "REBOOT"
       },
       "0x06db872ffbe7acf7ef18f2cc31ced15152f62966": {
         "done": [
@@ -655,7 +661,9 @@
         "symbol": "ADTF"
       },
       "0x2b96150ba4b1ad49c28c0efe8df8bd73cba13a34": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 0.02098,
         "first_seen": "2026-11-05T08:33:13Z",
         "symbol": "XMR"
@@ -853,14 +861,17 @@
       },
       "0x39a52b07c390310b5bd481dbc0b9778161650481": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 4.014e-06,
         "first_seen": "2026-11-05T03:33:12Z",
         "symbol": "\u054d\u054fD\u0422\u202f"
       },
       "0x39b2d311a92ddf9a8060611247a1f7efa6a2c957": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 0.02098,
         "first_seen": "2026-11-05T08:33:13Z",
         "symbol": "USOE"
@@ -1711,7 +1722,8 @@
       },
       "0xb6fb7d747693c8200ca1c8e0c3b4fb0b32c78c9b": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 0.0001192,
         "first_seen": "2026-11-05T03:33:12Z",
@@ -1965,7 +1977,9 @@
         "symbol": "NAFF"
       },
       "0xea2b6b01adb25dd363be16829b1903141e79252e": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 2.319e-05,
         "first_seen": "2026-11-05T08:33:13Z",
         "symbol": "BOOTR"
@@ -4656,6 +4670,12 @@
         "symbol": "AMD",
         "until": "2026-11-05T12:18:15Z"
       },
+      "0x553dc3c32dd30a688d5474cf0d9ed0f35dc09f5b": {
+        "at": "2026-11-05T09:33:13Z",
+        "reason": "liquidity",
+        "symbol": "KAI",
+        "until": "2026-11-06T09:33:13Z"
+      },
       "0x55429ca4d401e0722e53b2f0b9fc6f175a028f5a": {
         "at": "2026-11-04T22:08:15Z",
         "reason": "missing:liq_usd",
@@ -5520,6 +5540,12 @@
         "symbol": "LAPTOP",
         "until": "2026-11-05T13:03:13Z"
       },
+      "0x7f0d2792827627b432044a84f8f45657bad50b07": {
+        "at": "2026-11-05T09:33:13Z",
+        "reason": "liquidity",
+        "symbol": "NEWBOT",
+        "until": "2026-11-06T09:33:13Z"
+      },
       "0x8001584117aa443b392907fc19717a365cda0f01": {
         "at": "2026-11-04T15:53:13Z",
         "reason": "liquidity",
@@ -6071,6 +6097,12 @@
         "reason": "liquidity",
         "symbol": "Launchpad",
         "until": "2026-11-06T08:53:18Z"
+      },
+      "0x9984b642b639b4e9397c0bd0463228f2586e9ba3": {
+        "at": "2026-11-05T09:33:13Z",
+        "reason": "liquidity",
+        "symbol": "zBase",
+        "until": "2026-11-06T09:33:13Z"
       },
       "0x998fe711b5af3a83b56c903fb03202d4cf17e994": {
         "at": "2026-11-04T11:38:14Z",
@@ -6989,6 +7021,12 @@
         "reason": "liquidity",
         "symbol": "TICKER",
         "until": "2026-11-05T11:08:18Z"
+      },
+      "0xb20000000000000000000053859bc45eae24a15f": {
+        "at": "2026-11-05T09:33:13Z",
+        "reason": "liquidity",
+        "symbol": "RoboColosseum",
+        "until": "2026-11-06T09:33:13Z"
       },
       "0xb20000000000000000000054507cdcd7da4ff90f": {
         "at": "2026-11-04T12:13:14Z",
@@ -8478,6 +8516,12 @@
         "symbol": "XTR",
         "until": "2026-11-05T10:43:15Z"
       },
+      "0xdd9845a12a78c868909063442a7ea36d824cdd94": {
+        "at": "2026-11-05T09:33:13Z",
+        "reason": "liquidity",
+        "symbol": "SPACEX",
+        "until": "2026-11-06T09:33:13Z"
+      },
       "0xdda991d4a31864c6216547b498f9c9432e9f389a": {
         "at": "2026-11-05T00:08:14Z",
         "reason": "liquidity",
@@ -9206,6 +9250,12 @@
       }
     },
     "watch": {
+      "0x05016266b3629a767875c64c04ebeb817cf81e9d": {
+        "checks": 1,
+        "first_seen": "2026-11-05T09:33:13Z",
+        "last_check": "2026-11-05T09:33:13Z",
+        "symbol": "REBOOT"
+      },
       "0x0dbac5cbb89311f03757ae4c3166db1a09a90979": {
         "checks": 5,
         "first_seen": "2026-11-05T08:23:12Z",
