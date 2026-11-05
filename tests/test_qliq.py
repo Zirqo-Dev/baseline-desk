@@ -65,7 +65,7 @@ class RowsTest(unittest.TestCase):
             leads.record(addr(1), dict(GOOD, trade=dict(test_trade.TRADE)), T0)  # PASS
             leads.record(addr(2), dict(GOOD, liq_usd=1, goplus_skipped=True, trade=dict(test_trade.TRADE)), T0)
             rows = test_trade.tick_rows(Path(d))
-        self.assertTrue(rows[0]["detail"].endswith("dex=uniswap:v4 qliq=4648"))
+        self.assertTrue(rows[0]["detail"].endswith("dex=uniswap:v4 qliq=4648 pair_age=30 token_age=120"))  # ages: BL-30
         self.assertNotIn("qliq", rows[1]["detail"])  # gate kill unchanged
 
 
@@ -89,7 +89,7 @@ class OutcomesHeaderTest(unittest.TestCase):
             return list(csv.reader(fh))
 
     def test_old_header_file_keeps_its_columns_new_day_gets_qliq(self):
-        old = labels.FIELDS[:-1]
+        old = labels.FIELDS[:16]
         path = self.root / "data/daily/2026-10-23/outcomes.csv"
         path.parent.mkdir(parents=True)
         path.write_text(",".join(old) + "\n")  # written before BL-28 today
@@ -98,10 +98,10 @@ class OutcomesHeaderTest(unittest.TestCase):
         rows = self.read("2026-10-23")
         self.assertEqual(rows[0], old)
         self.assertEqual({len(r) for r in rows}, {len(old)})
-        self.label(12 * 60)  # +6 h, 2026-10-24: a new file with qliq last
+        self.label(12 * 60)  # +6 h, 2026-10-24: a new file with qliq (and BL-30's four columns after it)
         new = self.read("2026-10-24")
         self.assertEqual(new[0], labels.FIELDS)
-        self.assertEqual(new[0][-1], "qliq")
+        self.assertEqual(new[0][16], "qliq")
         self.assertEqual(dict(zip(new[0], new[1]))["qliq"], str(round(16.0 * 2.0 / 0.0008)))  # 40,000 USD
         self.assertEqual({len(r) for r in new}, {len(labels.FIELDS)})
 
@@ -131,9 +131,10 @@ class DeskUnchangedTest(unittest.TestCase):
         tagged = [r for r in rows_on if " qliq=" in r["detail"]]
         self.assertTrue(any(r["stage"] == "VERIFY" for r in tagged))
         self.assertTrue(any(r["book"] == "baseline" and r["action"] == "BUY" for r in tagged))
-        self.assertTrue(all(r["detail"].split()[-1].startswith("qliq=") for r in tagged))  # always last, after dex
+        self.assertTrue(all(r["detail"].split()[-3].startswith("qliq=") for r in tagged))  # after dex, before BL-30 ages
         self.assertFalse([r for r in tagged if "goplus=skipped" in r["detail"]])
-        strip = lambda d: " ".join(x for x in d.split() if not x.startswith("qliq="))
+        strip = lambda d: " ".join(x for x in d.split()
+                                   if not x.startswith(("qliq=", "pair_age=", "token_age=")))  # ages: BL-30
         self.assertEqual([dict(r, detail=strip(r["detail"])) for r in rows_on], rows_off)
         self.assertEqual(st_on, st_off)  # desk, baseline, leads, report and labels state
         drop = {"secs"}

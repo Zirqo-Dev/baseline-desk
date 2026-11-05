@@ -24,7 +24,8 @@ Field mapping (DECISIONS 2026-10-23, BL-6):
   risk_flags           GoPlus flags set to "1" (see core/verify.py HARD_FLAGS for the skip list)
 Extra keys: "pair" (traded pair address), "goplus_pending" (GoPlus fields not filled yet),
 "fetch_errors" (buckets whose request failed: 429, 5xx, timeout, bad answer -> hard_skip "fetch_error") and
-"trade" (BL-25, logging only: b1 s1 b24 s24 liq dex from trade_facts(); no rule reads it).
+"trade" (BL-25, logging only: b1 s1 b24 s24 liq dex from trade_facts(); no rule reads it; BL-28 qliq; BL-30 pair_age
+token_age, see ages()).
 GoPlus "code" (DECISIONS 2026-10-23, BL-7 GoPlus fixes): 1 = full answer; 3 = partial answer (no honeypot,
 taxes or holders) -> "goplus_partial": True, a final skip; any other code -> fetch error, kept in "goplus_code".
 DexScreener first (DECISIONS 2026-10-26, BL-20): when core/verify.py dex_skip() already decides a skip from the
@@ -39,6 +40,7 @@ token_batch(addresses) (BL-26 outcome labels, logging only): one DexScreener /to
 CLI: python -m adapters.base check <address>   |   python -m adapters.base scan   |   ... quote <address> [pair]
 """
 import json
+import math
 import re
 import sys
 import time
@@ -260,6 +262,36 @@ def _dict(x):
     return x if isinstance(x, dict) else {}
 
 
+def ages(pairs, address, now, age_min):
+    """BL-30, logging only: {"pair_age", "token_age"} in whole minutes (floored), "na" when unknown. No request.
+
+    pair_age = age_min as facts() built it for the age rule: the chosen pair's DexScreener pairCreatedAt, else its
+    GeckoTerminal pool_created_at. token_age = the oldest creation time over every Base pair with our token in the
+    /token-pairs answer already fetched, the chosen pair included (with its GeckoTerminal time when DexScreener had
+    none), so token_age >= pair_age. Both are pair (pool) creation times, not the token contract's creation.
+    Never raises.
+    """
+    out = {"pair_age": "na", "token_age": "na"}
+    try:
+        known = [age_min] if _num(age_min) is not None else []
+        for p in pairs or []:
+            if not isinstance(p, dict) or p.get("chainId") != "base":
+                continue
+            if address not in (_lower(_dict(p.get("baseToken")).get("address")),
+                               _lower(_dict(p.get("quoteToken")).get("address"))):
+                continue
+            created = _num(p.get("pairCreatedAt"))
+            if created:
+                known.append((now.timestamp() * 1000 - created) / 60000)
+        if _num(age_min) is not None:
+            out["pair_age"] = math.floor(age_min)
+        if known:
+            out["token_age"] = math.floor(max(known))
+    except Exception:  # logging must never break a check
+        return {"pair_age": "na", "token_age": "na"}
+    return out
+
+
 def quote_liq(pair, address):
     """BL-28, logging only: the USD value of the side of `pair` that is NOT our token, rounded; "na" if unknown.
 
@@ -427,6 +459,7 @@ def facts(address, now=None, client=None, goplus_ok=None, dex=None):
             out["age_min"] = _iso_min(created, now)
 
     trade = trade_facts(pairs, pair, address)  # BL-25: from the pairs already fetched, no request
+    trade.update(ages(pairs, address, now, out.get("age_min")))  # BL-30: no request either
     if dex is not None:
         dex.update({k: v for k, v in out.items() if v is not None},
                    pair=pair_address, fetch_errors=list(errors), trade=trade)

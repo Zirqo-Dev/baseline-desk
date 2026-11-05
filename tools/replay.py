@@ -12,7 +12,8 @@ first past-gate row is. It is bucketed by its FIRST VERIFY row that carries qliq
 
 Table 1, outcomes per horizon x bucket, from outcomes.csv labels with |age_min - horizon| <= LABEL_WINDOW_MIN only
 (drops late labels). Labels are read for the window plus FOLLOW_DAYS days after it; each file by its own header
-(16 columns before BL-28, 17 with qliq). Per cell: n labels, gone %, median chg_pct (over the labels that have one,
+(16 columns before BL-28, 17 with qliq, 21 from BL-30). Per cell: n labels, gone %, dead % (of the known flags) and
+the dead "na" count (BL-30), median chg_pct (over the labels that have one,
 n_chg), share with chg_pct <= -50 %, share with pair_s1 > 0 (BL-26: the deepest pair only, never mixed with BL-25 sums).
 Fewer than MIN_N in a cell: "n too small" instead of the numbers.
 Table 2, the desk's PASS rows in the window with their qliq, s24 and outcome labels.
@@ -21,6 +22,15 @@ the logged liquidity (option A: the exits use the entry qliq too; exits log no q
 or the desk PASS row at the same ts. size/qliq = the trade's USD size / qliq@entry, a plain ratio of two logged numbers,
 not a friction model. friction.side_pct() is a step function (thin under 100k USD), so a re-pricing mostly shows 3% -> 5%;
 it does not model price impact. "na" where no qliq was logged (every trade before BL-28).
+Table 0 (BL-30), the death rate per horizon over the same on-time labels of the window's sightings: gone only vs the
+dead flag (core/labels.py dead(), the one place its numbers live). A file from BL-30 on logs dead; for older rows
+(no dead column, never rewritten) it is derived from gone + the label's qliq + the sight qliq = the qliq on the desk
+VERIFY row for that address AT the label's first_seen, never a later re-check (the owner, 2026-11-05). The join only
+matters when the label qliq is known and >= the floor; the table says how many old rows needed it and stayed "na".
+The join also reads the tasks.csv of the day before the window (first sight on the eve of the window), nothing else.
+Old rows are an APPROXIMATION: their dead uses the logged deepest-pair qliq; from BL-30 on, dead is on best_qliq (the
+highest qliq over the token's Base pairs in the batch answer). Each horizon is split by depth at sight: sight qliq < 100
+USD "born thin", >= 100 "died after sight", "na" unknown (the logged sight_qliq, else the join).
 """
 import argparse
 import csv
@@ -46,7 +56,7 @@ def _read(path):
     if not path.exists():
         return []
     with path.open(newline="", encoding="utf-8") as fh:
-        return list(csv.DictReader(fh))  # each file by its own header (16 or 17 outcome columns)
+        return list(csv.DictReader(fh))  # each file by its own header (16, 17 or 21 outcome columns)
 
 
 def days(root, start, end):
@@ -130,16 +140,77 @@ def label_index(outcomes):
     return {(r["address"], r["first_seen"], r["horizon"]): r for r in outcomes if on_time(r)}
 
 
+# ---- dead flag (BL-30) ----
+def sight_qliq_index(tasks):
+    """{(address, ts): qliq} from desk VERIFY rows past the gate that carry qliq: the old-file join, keyed by the row's
+    own ts so a label finds the row AT its first_seen, never a later re-check."""
+    return {(r["address"], r["ts"]): kv["qliq"] for r in tasks if past_gate(r)
+            for kv in [_kv(r["detail"])] if "qliq" in kv}
+
+
+def join_tasks(root, win):
+    """tasks rows of the day before the window, for the join only (a label's first_seen can be up to labels.KEEP_H
+    before its row: a token first seen late on the eve of the window). Not sightings, not in any other table."""
+    return _read(Path(root) / f"data/daily/{_plus(win[0], -1)}/tasks.csv") if win else []
+
+
+def label_dead(row, sq_index):
+    """(dead "1" / "0" / "na", how): the logged dead column when the file has one, else derived for an old row.
+    how: logged | no_join (gone, or label qliq < floor) | qliq_na (label qliq unknown) | joined | join_na."""
+    if "dead" in row:  # a file from BL-30 on (its header has the column)
+        return (row["dead"] or NA), "logged"
+    gone, q = row.get("gone"), row.get("qliq", NA)  # a 16-column file has no qliq: "na"
+    d = labels.dead(gone, q, NA)
+    if d != NA:
+        return str(d), "no_join"
+    if _num(q) is None:
+        return NA, "qliq_na"
+    d = labels.dead(gone, q, sq_index.get((row["address"], row["first_seen"]), NA))
+    return str(d), ("join_na" if d == NA else "joined")
+
+
+DEPTHS = ["all", "<100", ">=100", "na"]  # sight qliq: born thin / died after sight / unknown
+
+
+def sight_depth(row, sq_index):
+    """The label's depth group at sight: the logged sight_qliq (files from BL-30 on), else the join (the desk VERIFY
+    row at first_seen): "<100" born thin (never had real exit depth), ">=100" died after sight, "na" unknown."""
+    q = _num(row.get("sight_qliq"))
+    if q is None:
+        q = _num(sq_index.get((row["address"], row["first_seen"])))
+    return NA if q is None else "<100" if q < labels.DEAD["floor_usd"] else ">=100"
+
+
+def death_table(sights, idx, sq_index):
+    """{horizon: {depth: {n, gone, dead, na}}} and the counts of how each label got its dead flag."""
+    out, how = {}, dict.fromkeys(("logged", "no_join", "qliq_na", "joined", "join_na"), 0)
+    for h in labels.HORIZONS:
+        hz = f"{h}h"
+        rows = [idx[(a, fs, hz)] for (a, fs) in sights if (a, fs, hz) in idx]
+        for r in rows:
+            how[r["_how"]] += 1
+        out[hz] = {}
+        for g in DEPTHS:
+            mine = [r for r in rows if g == "all" or sight_depth(r, sq_index) == g]
+            out[hz][g] = {"n": len(mine), "gone": sum(r.get("gone") == "1" for r in mine),
+                          "dead": sum(r["_dead"] == "1" for r in mine), "na": sum(r["_dead"] == NA for r in mine)}
+    return out, how
+
+
 # ---- table 1 ----
 def cell(rows):
-    """n, gone %, median chg_pct (n_chg), share chg <= -50 %, share pair_s1 > 0; None for the stats under MIN_N."""
+    """n, gone %, dead % of the known flags (BL-30) and their "na" count, median chg_pct (n_chg), share chg <= -50 %,
+    share pair_s1 > 0; None for the stats under MIN_N."""
     n = len(rows)
     if n < MIN_N:
         return {"n": n, "small": True}
     gone = [r for r in rows if r.get("gone") == "1"]
+    dead = [r.get("_dead", NA) for r in rows]
+    known = [d for d in dead if d != NA]
     chg = [c for c in (_num(r.get("chg_pct")) for r in rows) if c is not None]
     s1 = [v for v in (_num(r.get("pair_s1")) for r in rows if r.get("gone") != "1") if v is not None]
     return {"n": n, "small": False, "gone": 100 * len(gone) / n, "n_chg": len(chg),
+            "dead": 100 * known.count("1") / len(known) if known else None, "dead_na": len(dead) - len(known),
             "med": statistics.median(chg) if chg else None,
             "le50": 100 * sum(c <= -50 for c in chg) / len(chg) if chg else None,
             "s1": 100 * sum(v > 0 for v in s1) / len(s1) if s1 else None}
@@ -230,6 +301,9 @@ def render(root, start, end):
     win, tasks, trades, outcomes = load(root, start, end)
     sights = sightings(tasks)
     idx = label_index(outcomes)
+    sq = sight_qliq_index(join_tasks(root, win) + tasks)
+    for r in idx.values():  # BL-30
+        r["_dead"], r["_how"] = label_dead(r, sq)
     out = []
     p = out.append
     p(f"Baseline replay (BL-29) | window {win[0] if win else start} .. {win[-1] if win else end} "
@@ -237,11 +311,32 @@ def render(root, start, end):
     p(f"unit: one sighting (address + first_seen) of a desk token past the gate; {len(sights)} sightings, "
       f"{sum(s['tagged'] for s in sights.values())} with a qliq row; {len(idx)} on-time labels; "
       f"cells under {MIN_N}: n too small")
+    p("")
+    p(f"Table 0: death rate per horizon, gone only vs dead (BL-30; dead = gone, or label qliq < "
+      f"max({labels.DEAD['floor_usd']} USD, {labels.DEAD['share']:.0%} of sight qliq); \"na\" = depends on a missing number)")
+    p(f"  {'h':4} {'sight':6} {'n':>5} {'gone':>5} {'gone%':>6} {'dead':>5} {'na':>5} {'dead%known':>10} {'dead%n':>7}")
+    dt, how = death_table(sights, idx, sq)
+    for hz, groups in dt.items():
+        for g, c in groups.items():
+            known = c["n"] - c["na"]
+            p(f"  {hz:4} {g:6} {c['n']:>5} {c['gone']:>5} {_f(100 * c['gone'] / c['n'] if c['n'] else None):>6} "
+              f"{c['dead']:>5} {c['na']:>5} {_f(100 * c['dead'] / known if known else None):>10} "
+              f"{_f(100 * c['dead'] / c['n'] if c['n'] else None):>7}")
+    old = sum(v for k, v in how.items() if k != "logged")
+    p("  sight = qliq at first sight: <100 born thin (never had real exit depth), >=100 died after sight, na unknown")
+    p("  dead%known = dead / (n - na); dead%n = dead / n (\"na\" counted alive: a floor)")
+    p("  APPROXIMATION on old rows (no dead column): dead uses the logged deepest-pair qliq, not best_qliq over every Base"
+      " pair (not logged then); the batch answer holds one pair per token, so the two agree unless the answer changes")
+    p(f"  rows with a logged dead: {how['logged']}; old rows (no dead column, derived): {old} = decided without the "
+      f"join {how['no_join']} (gone, or label qliq < {labels.DEAD['floor_usd']}) + label qliq na {how['qliq_na']} + "
+      f"needed the join {how['joined'] + how['join_na']} (label qliq >= {labels.DEAD['floor_usd']}: sight qliq found "
+      f"{how['joined']}, stayed na {how['join_na']})")
     for by, title, buckets in (("qb", "qliq at first tagged check (USD)", QLIQ_BUCKETS),
                                ("sb", "s24 at first tagged check (BL-25, all Base pairs)", SELLS_BUCKETS)):
         p("")
         p(f"Table 1{'a' if by == 'qb' else 'b'}: outcomes by {title}")
-        p(f"  {'h':4} {'bucket':7} {'n':>5} {'gone%':>6} {'n_chg':>6} {'med_chg%':>9} {'<=-50%':>7} {'pair_s1>0%':>10}")
+        p(f"  {'h':4} {'bucket':7} {'n':>5} {'gone%':>6} {'dead%':>6} {'d_na':>5} {'n_chg':>6} {'med_chg%':>9} "
+          f"{'<=-50%':>7} {'pair_s1>0%':>10}")
         t = outcome_table(sights, idx, by)
         for hz, cells in t.items():
             for b in buckets:
@@ -249,10 +344,11 @@ def render(root, start, end):
                 if c["small"]:
                     p(f"  {hz:4} {b:7} {c['n']:>5}  n too small")
                 else:
-                    p(f"  {hz:4} {b:7} {c['n']:>5} {_f(c['gone']):>6} {c['n_chg']:>6} {_f(c['med']):>9} "
+                    p(f"  {hz:4} {b:7} {c['n']:>5} {_f(c['gone']):>6} {_f(c['dead']):>6} {c['dead_na']:>5} "
+                      f"{c['n_chg']:>6} {_f(c['med']):>9} "
                       f"{_f(c['le50']):>7} {_f(c['s1']):>10}")
     p("")
-    p("Table 2: desk PASS rows with their outcomes (chg_pct of on-time labels; gone = no Base pair)")
+    p("Table 2: desk PASS rows with their outcomes (chg_pct of on-time labels; gone = no Base pair; dead* = dead flag)")
     p(f"  {'ts':20} {'symbol':12} {'qliq':>8} {'s24':>5}  {'+1h':>8} {'+6h':>8} {'+24h':>8}")
     passes = [r for r in tasks if r["book"] == "desk" and r["stage"] == "VERIFY" and r["action"] == "PASS"]
     for r in passes:
@@ -261,7 +357,8 @@ def render(root, start, end):
         cols = []
         for h in labels.HORIZONS:
             lab = idx.get((r["address"], fs, f"{h}h"))
-            cols.append(NA if lab is None else "gone" if lab.get("gone") == "1" else lab.get("chg_pct") or NA)
+            cols.append(NA if lab is None else "gone" if lab.get("gone") == "1"
+                        else (lab.get("chg_pct") or NA) + ("*" if lab.get("_dead") == "1" else ""))
         p(f"  {r['ts']:20} {r['symbol'][:12]:12} {kv.get('qliq', NA):>8} {kv.get('s24', NA):>5}  "
           + " ".join(f"{c:>8}" for c in cols))
     if not passes:

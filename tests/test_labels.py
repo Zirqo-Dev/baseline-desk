@@ -151,7 +151,9 @@ class RowTest(Root):
                 self.tearDown(); self.setUp()
                 r = self.label(pairs)
                 self.assertEqual(r["gone"], "1")
-                self.assertEqual({r[k] for k in labels.FIELDS[7:] if k != "gone"}, {"na"})  # qliq too (BL-28)
+                self.assertEqual({r[k] for k in labels.FIELDS[7:] if k not in ("gone", "dead", "sight_pair", "sight_qliq")},
+                                 {"na"})  # qliq too (BL-28), label_pair too (BL-30)
+                self.assertEqual(r["dead"], "1")  # BL-30: gone is dead
                 self.assertEqual(r["first_price"], "1.0")
 
     def test_na_is_not_zero(self):
@@ -194,7 +196,8 @@ class PruneTest(Root):
                             Batch({addr(i): [pair(addr(i))] for i in range(0, 30 * 60, 60)}))
         p = self.pending()
         self.assertLessEqual(len(p), labels.KEEP_H + 1)
-        self.assertEqual(set(next(iter(p.values()))), {"symbol", "first_seen", "first_price", "done"})
+        self.assertEqual(set(next(iter(p.values()))), {"symbol", "first_seen", "first_price", "done",
+                                                        "sight_pair", "sight_qliq"})  # sight_*: BL-30
         self.assertEqual(set(json.loads((self.root / config.STATE).read_text())), {"labels"})
 
 

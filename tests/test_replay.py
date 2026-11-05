@@ -16,7 +16,8 @@ from core.book import TASK_FIELDS, TRADE_FIELDS
 from tools import replay
 
 D1, D2 = "2026-11-01", "2026-11-02"
-OLD = labels.FIELDS[:-1]  # 16 columns, before BL-28
+OLD = labels.FIELDS[:16]  # 16 columns, before BL-28
+V17 = labels.FIELDS[:17]  # 17 columns, BL-28 to BL-30
 
 
 def a(i):
@@ -108,7 +109,7 @@ class LabelTest(Data):
         self.write(D1, "tasks", TASK_FIELDS, [task(t, "VERIFY", "SKIP", a(1), "mint_open", "until=x " + keys("500")),
                                              task(t, "VERIFY", "SKIP", a(2), "mint_open", "until=x " + keys("500"))])
         self.write(D1, "outcomes", OLD, [label(a(1), t, 1, "60", chg="-60.0")])
-        self.write(D2, "outcomes", labels.FIELDS, [label(a(2), t, 6, "362", chg="5.0", qliq="12")])
+        self.write(D2, "outcomes", V17, [label(a(2), t, 6, "362", chg="5.0", qliq="12")])
         win, tasks, trades, outcomes = replay.load(self.root, D1, D1)
         self.assertEqual(win, [D1])  # labels still read from the next day's 17-column file
         idx = replay.label_index(outcomes)

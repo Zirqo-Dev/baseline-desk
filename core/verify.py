@@ -23,7 +23,9 @@ HARD_FLAGS = ["hidden_owner", "can_take_back_ownership", "owner_change_balance",
 LP = "lp_locked_pct"
 
 # BL-25: DexScreener trade facts logged at the end of VERIFY and baseline BUY rows (adapters/base.py trade_facts()).
-TRADE_KEYS = ["b1", "s1", "b24", "s24", "liq", "dex", "qliq"]  # qliq: BL-28
+# BL-30: pair_age = whole minutes since the chosen pair was created (the age_min the age rule reads); token_age = whole
+# minutes since the oldest Base pair in the same /token-pairs answer was created. Both are pair creation times.
+TRADE_KEYS = ["b1", "s1", "b24", "s24", "liq", "dex", "qliq", "pair_age", "token_age"]  # qliq: BL-28; ages: BL-30
 
 
 def dex_skip(facts):

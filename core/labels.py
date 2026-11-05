@@ -17,12 +17,23 @@ and pair_b1 pair_s1 pair_b24 pair_s24 are that one pair's counts (BL-25's trade_
 mirrored), not BL-25's sums over every Base pair. gone=1 when the answer has no Base pair for the token.
 At most MAX_CALLS requests per tick, oldest due first; the rest wait. A failed request leaves its labels due.
 
-State key "labels" = {"pending": {address: {symbol, first_seen, first_price, done: [hours]}}}. An entry leaves after
-its +24 h label or at first_seen + KEEP_H, whichever comes first, so state.json stays bounded.
+State key "labels" = {"pending": {address: {symbol, first_seen, first_price, done: [hours], sight_pair, sight_qliq}}}
+(sight_*: BL-30). An entry leaves after its +24 h label or at first_seen + KEEP_H, whichever comes first, so
+state.json stays bounded.
 Rows: data/daily/<day>/outcomes.csv (FIELDS). In the tick it runs after the desk and baseline steps in its own try.
 BL-28: last column qliq, the USD value of the deepest pair's other side (ETH, WETH, USDC...; base.quote_liq()), "na" when
 unknown. A file is never mixed: rows go out with the header the day's file already has, so a file started before BL-28
 keeps the old columns to the end of its UTC day and qliq starts with the next day's file.
+BL-30 (the owner, 2026-11-05), logging only, no rule reads it: five more columns after qliq, from the first file
+started after BL-30 (same header rule): sight_pair (the pair facts() chose at first sight), label_pair (the pair the
+other label columns describe), sight_qliq (qliq at first sight), best_qliq (the highest qliq over every Base pair of the
+token in the batch answer, quote_liq() each; qliq stays the deepest pair's, BL-28) and dead (see dead(), on best_qliq;
+its two numbers live in DEAD, nowhere else). The batch answer holds ONE pair per token (probe 2026-11-05: BRETT and DEGEN
+30 Base pairs on /token-pairs/v1, 1 each in the batch), so today best_qliq = qliq unless another token's pair in the same
+answer also holds this token. sight_pair and
+sight_qliq are taken only when the check IS the first sight, like first_price, so never from a later re-check; "na"
+otherwise (and for entries already pending at deploy). Why: the batch answer gives the deepest pair, so a leftover dust
+pair can look alive with gone=0.
 """
 import csv
 from datetime import datetime, timedelta, timezone
@@ -38,8 +49,11 @@ BATCH = 30             # addresses per DexScreener request
 MAX_CALLS = 2          # label requests per tick
 OUTCOMES = "data/daily/{day}/outcomes.csv"
 FIELDS = ["ts", "symbol", "address", "first_seen", "horizon", "age_min", "first_price", "price", "chg_pct", "liq",
-          "pair_b1", "pair_s1", "pair_b24", "pair_s24", "dex", "gone", "qliq"]  # qliq: BL-28
+          "pair_b1", "pair_s1", "pair_b24", "pair_s24", "dex", "gone", "qliq",  # qliq: BL-28
+          "sight_pair", "label_pair", "sight_qliq", "best_qliq", "dead"]  # BL-30
 NA = "na"
+# BL-30 (the owner, 2026-11-05): the dead flag's two numbers, the one place they live (the replay harness imports dead()).
+DEAD = {"floor_usd": 100, "share": 0.10}
 
 
 def _t(s):
@@ -50,12 +64,60 @@ def _num(x):
     return x if isinstance(x, (int, float)) and not isinstance(x, bool) and x == x and abs(x) != float("inf") else None
 
 
+def _q(x):
+    """A qliq as a number, or None when unknown ("na", missing, odd). 0 is a real value (BL-28), never missing."""
+    if isinstance(x, bool):
+        return None
+    try:
+        v = float(x)
+    except (TypeError, ValueError):
+        return None
+    return v if v == v and v >= 0 and v != float("inf") else None
+
+
+def _addr(x):
+    return x.lower() if isinstance(x, str) and x else NA
+
+
+def dead(gone, label_qliq, sight_qliq):
+    """BL-30 dead flag (the owner, 2026-11-05), logging only: 1, 0 or "na".
+
+    1 when gone = 1, or when the label qliq is known and below DEAD floor_usd (whatever the sight qliq; 0 is known).
+    "na" only when the result depends on a missing number: label qliq "na", or label qliq >= floor_usd and sight qliq
+    "na". Else 1 when label qliq < max(floor_usd, share x sight qliq), 0 otherwise (the exact edge is alive).
+    """
+    if str(gone) == "1":
+        return 1
+    q = _q(label_qliq)
+    if q is None:
+        return NA
+    if q < DEAD["floor_usd"]:
+        return 1
+    sq = _q(sight_qliq)
+    if sq is None:
+        return NA
+    return 1 if q < max(DEAD["floor_usd"], DEAD["share"] * sq) else 0
+
+
+def best_qliq(pairs, address):
+    """BL-30 (the owner, 2026-11-05): the best real depth a holder could sell into: the highest quote_liq() over every
+    Base pair of the token in the answer already fetched, "na" when none is known (a real 0 counts). No request."""
+    qs = [q for p in pairs or [] if isinstance(p, dict) and p.get("chainId") == "base"
+          for q in [base.quote_liq(p, address)] if q != NA]
+    return max(qs) if qs else NA
+
+
 def sight(address, facts, first_seen, now=None):
     """A check past the gate, as the tick hands it over (plain data, no request). now: the check time; a check
-    that is not the first sight has no first price."""
-    price = _num(facts.get("price")) if now is None or first_seen == ts(now) else None
+    that is not the first sight has no first price, sight pair or sight qliq (BL-30: never a later re-check)."""
+    first = now is None or first_seen == ts(now)
+    price = _num(facts.get("price")) if first else None
+    trade = facts.get("trade") if isinstance(facts.get("trade"), dict) else {}
+    pair = _addr(facts.get("pair")) if first else NA
+    q = trade.get("qliq", NA) if first else NA
     return {"address": address.lower(), "symbol": facts.get("symbol") or "", "first_seen": first_seen,
-            "first_price": price if price is not None else NA}
+            "first_price": price if price is not None else NA, "sight_pair": pair,
+            "sight_qliq": q if _q(q) is not None else NA}
 
 
 # ---- state ----
@@ -73,7 +135,8 @@ def add(s, sights):
     for x in sights:
         if x["address"] not in s["pending"]:
             s["pending"][x["address"]] = {"symbol": x["symbol"], "first_seen": x["first_seen"],
-                                          "first_price": x["first_price"], "done": []}
+                                          "first_price": x["first_price"], "done": [],
+                                          "sight_pair": x.get("sight_pair", NA), "sight_qliq": x.get("sight_qliq", NA)}
 
 
 def prune(s, now):
@@ -107,15 +170,20 @@ def row(now, address, p, h, pairs):
     out = {"ts": ts(now), "symbol": p["symbol"], "address": address, "first_seen": p["first_seen"],
            "horizon": f"{h}h", "age_min": round((now - _t(p["first_seen"])).total_seconds() / 60),
            "first_price": p["first_price"]}
+    sq = p.get("sight_qliq", NA)  # BL-30; an entry pending since before BL-30 has none
+    out.update(sight_pair=p.get("sight_pair", NA), sight_qliq=sq)
     pair, side = base.pick_pair(pairs, address)
     if not pair:
-        return dict(out, **dict.fromkeys((k for k in FIELDS[7:] if k != "gone"), NA), gone=1)
+        rest = {k: NA for k in FIELDS[7:] if k not in out and k not in ("gone", "dead")}  # label_pair, best_qliq too
+        return dict(out, **rest, gone=1, dead=dead(1, NA, sq))
+    best = best_qliq(pairs, address)
     price = _num(base.dex_facts(pair, side, now).get("price"))
     t = base.trade_facts([pair], pair, address)  # this one pair, quote side mirrored
     first = _num(p["first_price"])
     chg = round((price / first - 1) * 100, 2) if price is not None and first else NA
     return dict(out, price=price if price is not None else NA, chg_pct=chg, liq=t["liq"],
-                pair_b1=t["b1"], pair_s1=t["s1"], pair_b24=t["b24"], pair_s24=t["s24"], dex=t["dex"], gone=0, qliq=t["qliq"])
+                pair_b1=t["b1"], pair_s1=t["s1"], pair_b24=t["b24"], pair_s24=t["s24"], dex=t["dex"], gone=0,
+                qliq=t["qliq"], label_pair=_addr(pair.get("pairAddress")), best_qliq=best, dead=dead(0, best, sq))
 
 
 def run(root, now, sights, client):

@@ -925,6 +925,137 @@ Moved from CLAUDE.md section 11 on 2026-10-23 (BL-2 process cleanup). Wording is
 - Proposed direction: survivor momentum on real depth, backtest first; no 45-min time stop in the new strategy.
 - Execution risks for later: a DEX stop is not a resting order (SI fell -92% within one tick); public Actions logs mean no key on Actions; a dead-man rule and a flatten-only kill switch are needed.
 
+## BL-30
+- R2 label fix, logging only (the owner, 2026-11-05, DECISIONS): no rule, config value, verdict or exit reads dead,
+  sight_pair, label_pair, sight_qliq, best_qliq, pair_age or token_age. Code: core/labels.py (DEAD, dead(), best_qliq(),
+  sight(), row()),
+  adapters/base.py ages(), core/verify.py TRADE_KEYS, tools/replay.py. No existing threshold in core/config.py changed.
+- Why: the +1/+6/+24 h label reads the ONE pair /tokens/v1 answers (the deepest), so after the real depth is pulled a
+  drained or leftover dust pair can answer with gone=0 and a stale price. Chat counted 2,543 of 3,261 live labels with
+  gone=0 and label qliq < 100 USD (recount here 2026-11-05 ~13:20 UTC, every label with a qliq column: 2,536 of 3,346). Seen in
+  the replay: sightings with qliq ~34,000 USD at first sight whose +1 h label is a uniswap:v2 pair with liq 3-4 USD,
+  qliq 2 and chg_pct +30% to +42% (NOTF, ARWW, USOE, USDP, LOIRD...). Old files log no pair address, so whether that v2
+  pair is the sight pool drained or a second pool cannot be told; today /token-pairs/v1 lists ONE Base pair for each of
+  25 such tokens checked (PAD, UKRO, DFUS, USOIL XCHA, BOOTR, TRUMP2028, SI...), so mostly the same pool drained (or the
+  other pool delisted). From 2026-11-06 sight_pair vs label_pair answers it.
+- Dead flag: core/labels.py DEAD = {"floor_usd": 100, "share": 0.10}, the one place the two numbers live (the replay
+  imports dead()). dead(gone, label_qliq, sight_qliq), where label_qliq = best_qliq (the owner, option A, 2026-11-05:
+  a holder can sell into any pair):
+  - 1 when gone = 1; 1 when the label qliq is known and < 100 USD, whatever the sight qliq;
+  - "na" only when the answer depends on a missing number: label qliq "na", or label qliq >= 100 and sight qliq "na";
+  - else 1 when label qliq < max(100, 0.10 x sight qliq), 0 otherwise. The exact edge is alive (200 vs sight 2,000 -> 0;
+    199 -> 1; 100 vs sight 500 -> 0).
+  - qliq 0 is a real value (BL-28: a near-empty side rounds to 0) and gives 1; only "na" (or an odd value) is missing.
+- outcomes.csv: five columns after qliq: sight_pair label_pair sight_qliq best_qliq dead (22 columns). Header rule as
+  BL-28: the 2026-11-05 file keeps 17 columns to the end of its UTC day; the 2026-11-06 file is the first with 22. Old
+  files are never rewritten.
+  - best_qliq = the highest quote_liq() over every Base pair of the token in the same /tokens/v1 batch answer (no new
+    request); "na" when none is known, a real 0 counts. qliq stays the deepest pair's (BL-28 meaning unchanged) and
+    label_pair stays the pair the other label columns describe (price, liq, pair counts, dex, qliq).
+  - PAIR CAP: the batch answer holds ONE pair per token. Probe 2026-11-05 (read-only): 30 label addresses -> 20 pairs,
+    exactly 1 per token found (10 gone); BRETT and DEGEN have 30 Base pairs each on /token-pairs/v1 and 1 each in the
+    batch (BL-26's probe: CDXR 18 vs 1). So today best_qliq = qliq unless another token's pair in the same answer also
+    holds this token, and a real pair behind a token-heavy deepest pair is not seen. Live check of the size of that gap:
+    50 thin labels (label qliq < 100, gone 0: 25 from today's file, 25 that died after sight with sight qliq up to
+    106k) re-read on /token-pairs/v1: all 50 have ONE Base pair, best over all pairs = the logged qliq, 0 reach 100 USD. Seeing every
+    pair would need one /token-pairs/v1 request per label token (a new request: ~1.4 labels due per tick on average,
+    bursts up to 60); not built (no new request, the owner).
+  - sight_pair and sight_qliq = facts()["pair"] (pick_pair, the deepest Base pair at that check) and its qliq, stored in
+    the state entry ONLY when the check IS the first sight (first_seen = now), like first_price; a later re-check never
+    gives them. "na" for entries already pending at deploy (old state shape) and for a token re-added after a failed
+    labels step. label_pair = the pairAddress of the pair the label read; "na" on gone rows (best_qliq "na", dead 1).
+  - State: pending entries gain sight_pair (~68 B for a v4 id) and sight_qliq: ~+80 B per entry, ~+20 KB on state.json
+    at ~250 entries. Rows: ~+125 B per label row x ~390-1,100 rows a day = ~50-140 KB/day more on outcomes.csv.
+- Token age at sight: TRADE_KEYS gains pair_age and token_age after qliq, so every row with BL-25's keys ends with them
+  (desk VERIFY rows past dex_skip() and baseline EXECUTE BUY rows); gate-killed rows unchanged. Whole minutes, floored
+  (14.9 -> 14, so pair_age agrees with the age rule's strict comparisons), "na" when missing. Named apart from
+  outcomes.csv age_min (minutes since first sight).
+  - pair_age = age_min as facts() built it for the age rule: the chosen pair's DexScreener pairCreatedAt, else its
+    GeckoTerminal pool_created_at (the request facts() already makes in that case).
+  - token_age = the oldest creation time over every Base pair with our token in the /token-pairs answer already fetched,
+    the chosen pair included (with its GeckoTerminal time when DexScreener had none), so token_age >= pair_age.
+  - Both are pair (pool) creation times, NOT the token contract's creation: that would need a new request (explorer or
+    RPC). ASSERTED, not verified here: Clanker and Zora create token and pool in the same transaction, so for them the
+    first pool's time is the launch time. For other launches token_age can be later than the contract (a token deployed
+    long before its first pool) and a pair DexScreener does not list is not counted.
+  - Live example (smoke): SNDKc, a goplus_partial SKIP: aero pair liq 1.12M, qliq 197,616, pair_age=20785 (14 days),
+    token_age=87425 (61 days): an older pool exists than the one now deepest.
+  - Size: ~25 B per row x ~1,630 rows a day = ~40 KB/day on tasks.csv.
+- Replay (tools/replay.py): Table 0 = death rate per horizon over the on-time labels of the window's sightings (same
+  scope as Tables 1a/1b): n, gone, gone%, dead, na, dead%known = dead / (n - na), dead%n = dead / n ("na" counted alive:
+  a floor), each horizon split by depth at sight: all / "<100" born thin (sight qliq < 100 USD, never had real exit
+  depth) / ">=100" died after sight / "na" (sight qliq = the logged sight_qliq, else the join below). Tables 1a/1b gain
+  dead% (of the known flags) and d_na; Table 2 marks a dead label with "*".
+  - APPROXIMATION on old rows (flagged in Table 0 too): their dead uses the logged deepest-pair qliq, not best_qliq (not
+    logged then). With the one-pair batch answer the two agree; they would differ only if the answer ever held more.
+  - A file with a dead column: used as logged. An older row (16 or 17 columns): derived with the same dead() from gone,
+    the label qliq (a 16-column file has none: "na") and the sight qliq = the qliq on the desk VERIFY row (past the gate)
+    for that address whose ts IS the label's first_seen, never a later re-check (the owner, rule 5). With rule 1 the
+    join only matters when the label qliq is known and >= 100. The join also reads the tasks.csv of the day before the
+    window (a first sight on the eve of the window); nothing else changes in the window rules.
+  - Under Table 0: rows with a logged dead, and the old rows split into decided without the join (gone, or label qliq
+    < 100), label qliq na, and needed the join (sight qliq found / stayed na).
+- Replay 2026-10-31 .. 2026-11-05 (run 2026-11-05 ~14:30 UTC; all old 17-column files, nothing logged yet, so every
+  dead is the deepest-pair approximation): 1,194 sightings, 3,354 on-time labels, 3,237 of them for window sightings.
+
+  | horizon | sight | n | gone | gone % | dead | na | dead % of known |
+  |---|---|---|---|---|---|---|---|
+  | +1 h | all | 1,169 | 0 | 0.0 | 831 | 1 | 71.1 |
+  | +1 h | <100 born thin | 615 | 0 | 0.0 | 607 | 1 | 98.9 |
+  | +1 h | >=100 died after | 554 | 0 | 0.0 | 224 | 0 | 40.4 |
+  | +6 h | all | 1,126 | 0 | 0.0 | 916 | 2 | 81.5 |
+  | +6 h | <100 born thin | 604 | 0 | 0.0 | 593 | 1 | 98.3 |
+  | +6 h | >=100 died after | 522 | 0 | 0.0 | 323 | 1 | 62.0 |
+  | +24 h | all | 942 | 74 | 7.9 | 820 | 6 | 87.6 |
+  | +24 h | <100 born thin | 531 | 63 | 11.9 | 505 | 3 | 95.6 |
+  | +24 h | >=100 died after | 411 | 11 | 2.7 | 315 | 3 | 77.2 |
+
+  Sight "na": 0 at every horizon (every window sighting has a qliq row). Old rows 3,237 = 2,538 decided without the join
+  + 9 label qliq "na" + 690 needed the join (690 found, 0 stayed "na"; without the eve-of-window day, 8 stayed "na").
+  About half the labelled sightings were born thin: they never had 100 USD of real exit depth, so "dead" there means
+  "never alive", not a death after sight. By first-sight qliq at +1 h: <1k 90.5% dead, 1k-5k 4.8%, 5k-25k 15.0%, >=25k
+  72.2% (median chg +28.0%: the drained-pool case). By s24 at +1 h: 0 sells 89.4%, 1-9 39.4%, >=10 14.0%.
+  Evidence only; no depth or sells rule from it (the Nov 6 review decides what to test next).
+- Cross-check with chat (thin labels = gone 0 and label qliq < 100, every label with a qliq column, by the qliq of the
+  FIRST desk VERIFY row per address since Oct 30): chat 1,675 born thin / 208 at 100-5k / 625 at 5k+; here, same method,
+  1,675 / 208 / 627 (+31 with no qliq row), 2,541 labels: the 2 extra at 5k+ came in after chat's count. Table 0's rule
+  (the row AT first_seen, the owner's rule 5) on the same labels: 1,643 / 207 / 627 and 64 "na": 33 labels whose first
+  sight has no qliq row (first seen before BL-28 went live, 2026-10-30 ~19:58 UTC) move to "na". Table 0's own counts are
+  smaller again because it holds on-time labels of window sightings only, alive ones included.
+- Tests: tests/test_dead.py (31): the numbers in one place; gone (also with every other input missing); under the floor
+  without a sight qliq; qliq 0 real (dead() and a real 0.20 USD side through row()); unknown label qliq, unknown sight
+  qliq above the floor, odd shapes -> "na"; the share and floor edges (also as csv strings); sight(): first sight keeps
+  pair + qliq (a real 0 kept), a re-check gives "na", missing -> "na"; rows: the dust pair (gone 0, price answers, qliq 2
+  -> dead 1, both pairs and the sight qliq logged), the share edge through row(), gone row (best_qliq "na"), unknown
+  label qliq, unknown sight qliq, an entry pending before BL-30; best_qliq: (a) a token-heavy deepest pair (liq 900k,
+  qliq 2) with another pair at 100 USD exactly (sight 500) or 4,000 (sight 34,000) -> dead 0, and 2,000 vs sight 34,000
+  -> dead 1, while qliq, liq and label_pair stay the deepest pair's; (b) every pair under 100 (2, 60, 99) -> dead 1;
+  Base pairs only, "na" when none known, a real 0 counts; today's 17-column file keeps 17 and FIELDS has 22; ages:
+  pair_age = floor(age_min) and token_age = the oldest pair (+90 min), no request added, GeckoTerminal age for both,
+  "na" and never raises, floored; replay on an old 17-column file: the six cases (join dead at 400 vs sight 5,000 where
+  the later re-check's 1,000 would say alive, dust, gone, unknown, real 0, exact edge alive), the join uses the row at
+  first_seen only, the depth split (logged sight_qliq, join fallback, the 100 edge, a real 0, "na"; death_table groups),
+  a logged dead is used as is, 16 columns -> "na" unless gone, the eve-of-window join, Table 0 lines, the approximation
+  note and the counts in the CLI output.
+  Old tests updated for the two new keys and the new columns (BL-25 exact dicts, BL-21 detail, BL-28 header/order and
+  the desk-unchanged run now strips qliq + ages, BL-26 gone row and state keys, BL-29 16/17-column fixtures).
+  313 pass on 3.13 (282 before).
+- Smoke 2026-11-05 (scratch copy of data/, real requests, nothing under data/ changed): tick 28 requests in 19.7 s,
+  13 checked, labels=ok due 5 done 5, live=ok alerts=off; the day's outcomes.csv kept 17 columns; every new row with
+  BL-25's keys ended with pair_age token_age, 0 gate rows with them. Next tick: 1 first sight (SNDKc) stored with
+  sight_pair and sight_qliq. Then, smoke only, one label pass on a copy holding only that entry with the clock moved
+  +61 min (real data fetched at once) gave the 21-column row below (before best_qliq). After best_qliq: a fresh smoke
+  tick (27 requests, 19.2 s, today's file still 17 columns) and the same fake-clock pass on its 2 first sights gave
+  22-column rows, e.g. BOOTR uniswap:v2 qliq 97,457, sight_qliq 96,750, best_qliq 97,457, dead 0 (sight_pair =
+  label_pair). No baseline BUY happened (random book cash 3.19 USD, under MIN_TICKET); its ages are covered by the tests.
+
+    2026-11-05T13:16:29Z,desk,VERIFY,SNDKc,0xb200...a10c5,SKIP,goplus_partial,"until=2026-11-06T13:16:29Z b1=716 s1=862
+      b24=15960 s24=17813 liq=1121736 dex=aero qliq=197616 pair_age=20785 token_age=87425"
+    2026-11-05T14:17:43Z,SNDKc,0xb200...a10c5,2026-11-05T13:16:29Z,1h,61,973.25,973.22,-0.0,1121298,481,580,12541,14259,
+      aero,0,197397,0x2836e062a3fe75943a7f4a552e2365b98e414e75,0x2836e062a3fe75943a7f4a552e2365b98e414e75,197616,0
+    2026-11-05T14:27:41Z,BOOTR,0x1012...42c,2026-11-05T13:25:51Z,1h,62,1.426e-05,1.446e-05,1.4,194909,7,0,7,0,uniswap:v2,
+      0,97457,0xf89fe45c65ba94680106577f19f4c3e1c5dc5b65,0xf89fe45c65ba94680106577f19f4c3e1c5dc5b65,96750,97457,0
+
 ## Open items (detail)
 - Open items:
   - BL-7 done only after 24h of green runs, no overlap, one TICK row per run. The TICK rows show the real run rate for Gate A (90%).
