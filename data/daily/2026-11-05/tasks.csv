@@ -1467,3 +1467,11 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-05T10:03:13Z,desk,VERIFY,zBase,0xb2000000000000000000002bb3d2e24e0eebf3b8,SKIP,liquidity,goplus=skipped until=2026-11-06T10:03:13Z
 2026-11-05T10:03:13Z,baseline,EXECUTE,ADOF,0x24cef90cdc98c2039a23ff95d0029150a5cf03e7,SKIP,size,"seed=202611051003 eligible=3 pick=2 pool=0dbac5,24873f,24cef9 desk=WATCH launchpad=other"
 2026-11-05T10:03:13Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=8 new=7 checked=15 passed=0 bought=0 held=0 deferred=0 dex_only=7 goplus=8 requests=27 secs=17.5 bl_positions=0 bl_due=1 bl_eligible=3 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=6 labels_done=6 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-05T10:08:14Z,desk,VERIFY,REBOOT,0xd78f9b59eb523c4c9b7065f005c814e2b7291df0,WATCH,goplus_not_ready,first_seen=2026-11-05T09:53:14Z checks=2 pending=top10_pct b1=33 s1=0 b24=33 s24=0 liq=218234 dex=uniswap:v2 qliq=109122
+2026-11-05T10:08:14Z,desk,VERIFY,DFUS,0x39f1050ce9dec188949709f6d8fe8cc1a48c40c8,WATCH,goplus_not_ready,"first_seen=2026-11-05T10:08:14Z checks=1 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct b1=3 s1=0 b24=3 s24=0 liq=73402 dex=uniswap:v2 qliq=36705"
+2026-11-05T10:08:14Z,desk,VERIFY,NEWBOT,0xb200000000000000000000f50affce033df8179a,SKIP,liquidity,goplus=skipped until=2026-11-06T10:08:14Z
+2026-11-05T10:08:14Z,desk,VERIFY,Stockmaxxing,0x42535e003faeac83a0131211c98ee2a0b767a701,SKIP,missing:liq_usd,goplus=skipped until=2026-11-06T10:08:14Z
+2026-11-05T10:08:14Z,desk,VERIFY,month,0xb20000000000000000000084d039e0c67ddb2301,SKIP,liquidity,goplus=skipped until=2026-11-06T10:08:14Z
+2026-11-05T10:08:14Z,desk,VERIFY,XCHAT,0xe0275c7cf3072711cbb95f9b0905eee5fccfefc5,SKIP,liquidity,goplus=skipped until=2026-11-06T10:08:14Z
+2026-11-05T10:08:14Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
+2026-11-05T10:08:14Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=1 new=5 checked=6 passed=0 bought=0 held=0 deferred=0 dex_only=4 goplus=2 requests=12 secs=4.3 bl_positions=0 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=5 labels_done=5 labels_calls=1 live=ok alerts=none alerts_sent=0
