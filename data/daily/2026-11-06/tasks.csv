@@ -58,3 +58,8 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-06T00:33:15Z,desk,VERIFY,BOOTR,0xac5113af7df8f897abd56f97184b0c74bc91991b,SKIP,liquidity,goplus=skipped until=2026-11-07T00:33:15Z
 2026-11-06T00:33:15Z,baseline,EXECUTE,OFTF,0x04631ea778e82b632b0d7ddcf6cb1016e803ec61,SKIP,size,"seed=202611060033 eligible=3 pick=0 pool=04631e,1b0183,381c38 desk=WATCH launchpad=other"
 2026-11-06T00:33:15Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=2 new=4 checked=6 passed=0 bought=0 held=0 deferred=0 dex_only=3 goplus=3 requests=13 secs=5.9 bl_positions=0 bl_due=1 bl_eligible=3 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=2 labels_done=2 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-06T00:38:16Z,desk,VERIFY,RESERVEU.S POWER ,0xe9bd887b9eac36eb38dd1d62daab2011389314be,SKIP,liquidity,first_seen=2026-11-06T00:23:13Z checks=2 goplus=skipped until=2026-11-07T00:38:16Z
+2026-11-06T00:38:16Z,desk,VERIFY,REBOOT,0x277a8bcda9eb7f8ced248c1cfd9d88f72ce62de6,WATCH,goplus_not_ready,"first_seen=2026-11-06T00:38:16Z checks=1 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct b1=5 s1=0 b24=5 s24=0 liq=182096 dex=uniswap:v2 qliq=91002 pair_age=3 token_age=3"
+2026-11-06T00:38:16Z,desk,VERIFY,DETECTIVE,0xce6c563428bb9fc4fff1dfcd826e5008c857f466,SKIP,liquidity,goplus=skipped until=2026-11-07T00:38:16Z
+2026-11-06T00:38:16Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
+2026-11-06T00:38:16Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=21 rechecks=1 new=2 checked=3 passed=0 bought=0 held=0 deferred=0 dex_only=2 goplus=1 requests=8 secs=2.2 bl_positions=0 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=1 labels_done=1 labels_calls=1 live=ok alerts=none alerts_sent=0
