@@ -33,9 +33,12 @@ class FakeClient:
 
 
 def fresh_pairs(liq=60_000):
-    """The asci pairs with liquidity over the minimum, so the BL-20 gate lets GoPlus run."""
+    """The asci pairs with liquidity over the minimum, so the BL-20 gate lets GoPlus run.
+    BL-32: half of liq on the ETH side, so qliq = liq / 2 (30,000 at the default: over the 10k real-depth floor)."""
     pairs = load("dexscreener_fresh")
-    pairs[0]["liquidity"]["usd"] = liq
+    p = pairs[0]
+    p["liquidity"]["usd"] = liq
+    p["liquidity"]["quote"] = liq / 2 / (float(p["priceUsd"]) / float(p["priceNative"]))
     return pairs
 
 
@@ -64,8 +67,10 @@ class MappingTest(unittest.TestCase):
         self.assertEqual(len(c.calls), 2)  # pairCreatedAt present: no GeckoTerminal call
         self.assertNotIn("goplus_skipped", f)
         self.assertEqual(hard_skip(f), "goplus_not_ready")
-        # GoPlus-only gap, but under the liquidity minimum: final
-        self.assertEqual(hard_skip(dict(f, liq_usd=9493.9)), "liquidity")
+        self.assertEqual(f["qliq"], 30_000)  # BL-32: top-level qliq from the pair already fetched
+        # GoPlus-only gap, but under the real-depth floor: final (BL-32; total liq no longer decides)
+        self.assertEqual(hard_skip(dict(f, qliq=4648)), "real_depth")
+        self.assertEqual(hard_skip(dict(f, liq_usd=9493.9)), "goplus_not_ready")
 
     def test_older_token_mapping(self):
         c = FakeClient({"token-pairs": load("dexscreener_older"), "gopluslabs": load("goplus_older"),
@@ -145,15 +150,16 @@ class DexFirstTest(unittest.TestCase):
     def gp_calls(self, c):
         return [url for _, url in c.calls if "gopluslabs" in url]
 
-    def test_gate_fires_on_liquidity_no_goplus_call(self):
+    def test_gate_fires_on_real_depth_no_goplus_call(self):
         c = FakeClient({"token-pairs": load("dexscreener_fresh"), "gopluslabs": load("goplus_fresh")})
         f = base.facts(FRESH, NOW, c)
         self.assertEqual(self.gp_calls(c), [])
         self.assertEqual(len(c.calls), 1)
         self.assertTrue(f["goplus_skipped"])
         self.assertEqual(f["liq_usd"], 9493.9)
+        self.assertEqual(f["qliq"], 4648)  # 1.9405 ETH x ~2,395 (BL-28 fixture)
         self.assertEqual(f["pair"], "0xd69e052b412840909dda5717dc3f7e0b5fa1a79dcaa1050717a6a51897707771")
-        self.assertEqual(hard_skip(f), "liquidity")
+        self.assertEqual(hard_skip(f), "real_depth")
 
     def test_gate_fires_on_dexscreener_fetch_error(self):
         c = FakeClient({"gopluslabs": load("goplus_older")})
@@ -188,7 +194,7 @@ class DexFirstTest(unittest.TestCase):
                         "gopluslabs": load("goplus_fresh")})
         f = base.facts(FRESH, NOW, c)
         self.assertEqual([b for b, _ in c.calls], ["ds_pairs", "gt"])  # no GoPlus, no extra request
-        self.assertEqual(hard_skip(f), "liquidity")
+        self.assertEqual(hard_skip(f), "real_depth")
         c = FakeClient({"token-pairs": pairs, "gopluslabs": load("goplus_fresh")})  # GeckoTerminal down
         f = base.facts(FRESH, NOW, c)
         self.assertEqual((hard_skip(f), self.gp_calls(c)), ("fetch_error", []))
@@ -206,15 +212,15 @@ class DexFirstTest(unittest.TestCase):
         self.assertIsNone(base.facts(FRESH, NOW, c, goplus_ok=lambda: False))
         self.assertEqual(self.gp_calls(c), [])
         c = FakeClient({"token-pairs": load("dexscreener_fresh")})
-        self.assertEqual(hard_skip(base.facts(FRESH, NOW, c, goplus_ok=lambda: False)), "liquidity")
+        self.assertEqual(hard_skip(base.facts(FRESH, NOW, c, goplus_ok=lambda: False)), "real_depth")
 
-    def test_low_liquidity_honeypot_now_logs_liquidity(self):
+    def test_thin_honeypot_logs_real_depth(self):
         # accepted label shift (the owner, 2026-10-25): GoPlus would say honeypot, but it is never asked
         gp = load("goplus_fresh")
         gp["result"][FRESH].update(is_honeypot="1", cannot_sell_all="1")
         c = FakeClient({"token-pairs": load("dexscreener_fresh"), "gopluslabs": gp})
         f = base.facts(FRESH, NOW, c)
-        self.assertEqual((hard_skip(f), self.gp_calls(c)), ("liquidity", []))
+        self.assertEqual((hard_skip(f), self.gp_calls(c)), ("real_depth", []))  # BL-32 name of the gate
 
 
 class SymbolAndPairTest(unittest.TestCase):

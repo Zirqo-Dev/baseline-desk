@@ -43,7 +43,8 @@ Path: paper -> backtest -> live small -> grow. Live starts with 100 USD split in
 ## 4. Architecture
 SCAN     adapters/base.py scan()   DexScreener profiles+boosts, GeckoTerminal new_pools -> leads
 VERIFY   core/verify.py hard_skip() standard facts dict from adapters/base.py facts()     -> most leads die here
-VERIFY   core/verify.py universe_skip() the universe both books share (BL-31): dex_skip() incl. asset:<kind>, sells, age
+VERIFY   core/verify.py universe_skip() the universe both books share (BL-31): dex_skip() incl. real_depth (BL-32) and
+                                   asset:<kind>, sells, age; logged() = the logging set for labels and trade keys (BL-32)
 VERIFY   core/leads.py             24h skip memory + GoPlus watchlist ("leads" in data/state.json)
 VERIFY   prompts/x_read.py         optional Grok X-read (GROK_ENABLED, GROK_DAILY_CAP)   -> GO or SKIP
 EXECUTE  core/desk.py              limits -> size off balance -> paper fill minus friction
@@ -75,7 +76,7 @@ Folders:
   alert-test.yml (BL-3: by hand only, read-only, sends one TEST message, commits nothing)
 
 Standard facts dict (every field required; missing = skip):
-symbol, price, liq_usd, age_min, sells_1h, mint_open, freeze_or_blacklist, honeypot,
+symbol, price, liq_usd, age_min, sells_1h, qliq (BL-32), mint_open, freeze_or_blacklist, honeypot,
 buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_flags
 
 ## 5. Base specifics
@@ -85,7 +86,10 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
 - Safety data: GoPlus token_security for chain 8453 (honeypot, buy/sell tax, mintable, owner, LP holders, holders).
 
 ## 6. Friction model (paper must not flatter)
-- 3% per side by default; 5% per side when pool liquidity is under 100k USD; plus the launchpad pool fee.
+- Per side (BL-32, core/friction.py, both books, one function): 3% base + the launchpad pool fee + price impact
+  100 x side USD / qliq (qliq = real depth, USD on the pool's non-token side). Buy: the ticket into the entry qliq.
+  Sell: qty x quote into this tick's exit qliq, else the entry qliq; neither known = 5% (thin_pct) in place of the
+  impact. Sell friction capped at 100%. Total liquidity never prices a fill. trades.csv note: impact_pct= qliq= qliq_src=.
 - Exits are checked every 5-15 min on Actions: log intended vs filled price ("stop slippage").
 
 ## 7. Running
@@ -213,14 +217,32 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
   50). report.json: refills_usd and per_trade {since, n, net_usd, net_per_trade_usd, net_per_trade_pct} per book, net
   fields net of refills, gate_b {since, desk_closes, baseline_closes} from the restart (SI and older closes are
   history only). Book name stays "baseline". Site and Telegram still print plain values: BL-43 (docs/NOTES.md "BL-31").
-  Tests: stdlib unittest, `python -m unittest` (348 pass on 3.13).
+  BL-32 R4 real-depth floor and impact friction (2026-11-06, the owner's Nov 6 decisions a-f): SKIP_IF min_qliq_usd
+  10,000 on qliq (the BL-28 real depth, now a top-level facts field and the last DEX field) in core/verify.py dex_skip(),
+  so universe_skip() gives both books the floor from one change: qliq "na" = missing:qliq, under the floor = real_depth,
+  a final 24 h gate skip with goplus=skipped and no GoPlus call, no new request. It replaces the 50k total floor:
+  min_liquidity_usd is now only the logging floor. Logging set unchanged (the owner, A): verify.logged() keeps the
+  BL-25/28/30 keys and BL-26 labels on every check today's old gate let through (liq >= 50k, no asset), real_depth or
+  not, plus the new universe (qliq >= 10k, liq < 50k). Ticket cap on qliq x 0.01. Friction per side = 3% + launchpad
+  fee + impact 100 x side USD / qliq (section 6); exits use the exit quote's qliq, else entry_qliq, else thin_pct 5%
+  (qliq_src=none); sell friction capped at 100%; report.liq_value and live.json price the same way. Gate B and
+  per_trade restart once at the deploy (report state gate_restart "BL-32", one BOOK RESTART gate_b row, no refill).
+  Exit rules unchanged. Replay Oct 31 - Nov 6: 1,436 tokens past the gate, 662 / 94 / 244 / 436 by qliq <100 / 100-1k /
+  1k-10k / >=10k (97 / 73 / 182 / 114 with sells_1h > 0), chat's count reproduced; the floor cuts 1,000 of 1,436
+  (466 with sells, 352 cut); the twin's 65 trades re-price -42.41 -> -74.53 USD, all of the gap from 15 trades
+  entered at qliq < 500 that the floor now blocks (docs/NOTES.md "BL-32").
+  Tests: stdlib unittest, `python -m unittest` (375 pass on 3.13).
 - cron-job.org token "baseline-desk cron" EXPIRES Thu 2027-01-21: renew by early January or the desk stops silently.
 - Technical detail per card, GoPlus diagnosis, BL-20 budget and full open items: docs/NOTES.md.
 - Open items:
+  - BL-32: EXIT liq_pull still reads total liquidity (liq_usd vs entry_liq_usd), not qliq; left as is (non-negotiable
+    7, exits unchanged); chat to decide whether a real-depth exit rule is a new hypothesis (docs/NOTES.md "BL-32").
+  - BL-43 (BL-32 adds): the site's token table lists gate kills by name and lacks real_depth and missing:qliq, so those
+    rows show under its Safety chip until BL-43 (tests/test_site.py pins the gap); report.json machine cards are right.
   - Nov 6 review done (docs/NOTES.md 'Nov 6 review replay'): dead 68% / 81% / 87% at +1/+6/+24 h vs gone 0% / 0% / 8%; still no depth or sells rule from outcome labels without a tested hypothesis (BL-32 is the tested depth step).
   - BL-43 (chat's card): the site and the Telegram daily summary show plain value_usd, so refills look like a jump; per-trade stats and refills not shown yet (docs/NOTES.md 'BL-31').
   - Stale-checkout tick misses accepted on paper; fix before live, revisit at BL-35; never Re-run jobs on a tick run (DECISIONS 2026-11-06).
-  - BL-20 label shift: low-liquidity leads log "liquidity" with goplus=skipped even if GoPlus would flag them (docs/NOTES.md)
+  - BL-20 label shift: thin leads log "real_depth" (before BL-32 "liquidity") with goplus=skipped even if GoPlus would flag them (docs/NOTES.md)
   - Theoretical worst case: ~1,020 s with BL-8's baseline exits (~900 s before) if every request hangs 15 s (job timeout 600 s); real ticks 17.6 s typical, 39.8 s max. If a tick ever exceeds 120 s, add a time guard. No guard in BL-8 (the owner). (docs/NOTES.md)
   - BL-8 baseline biases, kept on purpose so Gate B stays strict: pool-shape launchpad can miss the Clanker 1% fee (lower
     baseline friction), and the baseline can buy tokens GoPlus flagged (desk= tag on its BUY rows measures it) (docs/NOTES.md)
@@ -232,11 +254,12 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
   - top10 is the top 8-10 after exclusions, slightly lenient (docs/NOTES.md)
   - The exact GoPlus rate-limit code is unverified; code 3 is not one; BL-24 saw code 4029 4 times in 137 calls at 2 s, very likely it (docs/NOTES.md)
   - tokens_24h.json adds ~230 KB of git history per day (overwritten daily), BL-25 ~83 KB/day (+ BL-28 qliq ~15 KB/day) to tasks.csv and BL-26 outcomes.csv ~55 KB/day, BL-27 live.json ~1 KB per tick (rewritten every tick, ~290 KB/day of git history), BL-30 ~40 KB/day on tasks.csv + ~50-140 KB/day on outcomes.csv; include all of them in BL-16's archive plan (docs/NOTES.md)
-- Next step: BL-32 R4 real-depth floors and impact friction, put into core/verify.py universe_skip() so both books get
-  them; first weekly refill Mon 2026-11-09 00:03 UTC (check the two BOOK REFILL rows and report.json per_trade/gate_b).
-  Story order after it (DECISIONS 2026-11-06 a): R6 backtest + candles (BL-33; rivals BL-34, BL-38, BL-39, order picked by
-  the owner), then R5 survivor momentum spec; execution design researched in parallel (no wallet code). BL-38..BL-42 are
-  candidates only (DECISIONS 2026-11-04).
+- Next step: after the BL-32 deploy, check the first tick: one BOOK RESTART gate_b row, report state gate_restart
+  "BL-32", real_depth rows with their trade keys, trades.csv notes impact_pct= qliq= qliq_src=; then the first weekly
+  refill Mon 2026-11-09 00:03 UTC (two BOOK REFILL rows, report.json per_trade/gate_b from the BL-32 restart). Story
+  order (DECISIONS 2026-11-06 a): R6 backtest + candles (BL-33; rivals BL-34, BL-38, BL-39, order picked by the owner),
+  then R5 survivor momentum spec; execution design researched in parallel (no wallet code). BL-38..BL-42 are
+  candidates only (DECISIONS 2026-11-04). BL-43 owns the display of refills, per-trade stats and real_depth.
 - Last updated: 2026-11-06.
 
 ## 12. Glossary

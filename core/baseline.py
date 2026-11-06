@@ -12,7 +12,8 @@ held at the start of the tick. No GoPlus call and no extra request: the DexScree
 dev, top10, taxes, goplus_partial). Ticket, cooldown and same-symbol holding come from core/desk.py (both books).
 Restart (BL-31): once, on the first tick after deploy, the twin's cash is topped up to 50 USD (one BOOK REFILL
 reason=restart row), both books get their first refill_week and report state "per_trade_since" (the start of
-per-trade stats and of the Gate B count, both books) is set. Launchpad (for friction) is pool shape only, so a Clanker pool whose fee
+per-trade stats and of the Gate B count, both books) is set (BL-32: with gate_restart, so a fresh state needs no
+second restart; on the live state, report.gate_restart() moved per_trade_since once at the BL-32 deploy). Launchpad (for friction) is pool shape only, so a Clanker pool whose fee
 is unknown is "other": the baseline can pay less friction than the desk (it is flattered).
 
 Cadence: state "ticks_since_buy" goes up by one every tick and resets to 0 only on a BUY; at CADENCE or
@@ -55,6 +56,7 @@ def restart(root, rs, books, bl, now):
         b.s.setdefault("refill_week", week(now))
         b.save()
     rs["per_trade_since"] = ts(now)
+    rs["gate_restart"] = report.GATE_RESTART  # BL-32: a fresh start already counts from now; no second restart row
     report.save(root, rs)
     return True
 

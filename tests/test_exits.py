@@ -9,7 +9,8 @@ from core.book import Book
 
 T0 = datetime(2026, 10, 23, 12, 0, tzinfo=timezone.utc)
 LIQ = 150_000
-E = 1.03  # filled entry price for a 1.00 quote at 150k liquidity (3% friction)
+QLIQ = 500_000  # BL-32: real depth at entry; the exit quotes below carry none, so sells use it too
+E = 1.0 * (1 + (3.0 + 0.0 + 100.0 * 5.0 / QLIQ) / 100)  # filled entry for a 1.00 quote: 3% + impact 0.001%
 
 
 class ExitsTest(unittest.TestCase):
@@ -17,7 +18,7 @@ class ExitsTest(unittest.TestCase):
         self.tmp = tempfile.TemporaryDirectory()
         self.root = Path(self.tmp.name)
         self.book = Book("desk", root=self.root)
-        desk.buy(self.book, "0xa", {"symbol": "TEST", "price": 1.0, "liq_usd": LIQ,
+        desk.buy(self.book, "0xa", {"symbol": "TEST", "price": 1.0, "liq_usd": LIQ, "qliq": QLIQ,
                                     "launchpad": "uniswap"}, T0)
         self.orig = self.book.positions["0xa"]["orig_qty"]
 
@@ -101,7 +102,9 @@ class ExitsTest(unittest.TestCase):
         self.run_at(E * 0.50)                     # gaps far below the -25% stop
         t = self.rows("trades")[-1]
         self.assertAlmostEqual(float(t["intended_price"]), E * 0.75)
-        self.assertAlmostEqual(float(t["fill_price"]), E * 0.50 * 0.97)
+        imp = 100 * (5 / E) * (E * 0.50) / QLIQ  # BL-32: side USD = qty x quote, into the entry qliq (no exit qliq)
+        self.assertAlmostEqual(float(t["fill_price"]), E * 0.50 * (1 - (3 + imp) / 100))
+        self.assertIn(f"impact_pct={imp:.4f} qliq={QLIQ} qliq_src=entry", t["note"])
 
     def test_no_quote_holds(self):
         exits.check(self.book, lambda a: None, T0 + timedelta(minutes=5))

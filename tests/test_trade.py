@@ -58,7 +58,7 @@ class TradeFactsTest(unittest.TestCase):
         f = base.facts(FRESH, now=T0, client=c, dex=d)
         self.assertEqual(f["trade"]["s1"], f["sells_1h"])
         self.assertEqual(f["trade"], {"b1": 136 + 1, "s1": 92 + 9, "b24": 136 + 5, "s24": 92 + 50, "liq": 60000,
-                                      "dex": "uniswap:v4", "qliq": 4648,  # BL-28: 1.9405 ETH of the fixture pool
+                                      "dex": "uniswap:v4", "qliq": 30000,  # fresh_pairs(): half of 60k on ETH (BL-32)
                                       "pair_age": 66, "token_age": 66})  # BL-30: the fixture pool's pairCreatedAt
         self.assertEqual(d["trade"], f["trade"])
         self.assertEqual(len(c.calls), 2)  # DexScreener + GoPlus, no request added
@@ -145,7 +145,11 @@ class RowsTest(unittest.TestCase):
 
     def test_gate_killed_rows_unchanged(self):
         cases = [(addr(1), {"goplus_skipped": True, "symbol": "X", "price": 1, "liq_usd": 10, "age_min": 30,
-                            "sells_1h": 3, "fetch_errors": []}, "liquidity"),
+                            "sells_1h": 3, "qliq": 5, "fetch_errors": []}, "real_depth"),  # liq < 50k: not logged
+                 (addr(4), {"goplus_skipped": True, "symbol": "X", "price": 1, "liq_usd": 10, "age_min": 30,
+                            "sells_1h": 3, "fetch_errors": []}, "missing:qliq"),
+                 (addr(5), {"goplus_skipped": True, "symbol": "X", "price": 1, "liq_usd": 90_000, "age_min": 30,
+                            "sells_1h": 3, "qliq": 5, "asset": "stable", "fetch_errors": []}, "real_depth"),  # asset
                  (addr(2), {"goplus_skipped": True, "fetch_errors": []}, "missing:symbol"),
                  (addr(3), {"goplus_skipped": True, "fetch_errors": ["ds_pairs"]}, "fetch_error")]
         for a, f, reason in cases:

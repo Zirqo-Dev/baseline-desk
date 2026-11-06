@@ -41,7 +41,8 @@ def decide(pos, price, liq_usd, now):
 def check(book, quote, now):
     """Run the exit rules on every open position.
 
-    quote(address) -> {"price": float, "liq_usd": float, "source": "pool" | "fallback"} or None.
+    quote(address) -> {"price": float, "liq_usd": float, "source": "pool" | "fallback", "qliq"} or None.
+    qliq (BL-32) prices the sell's friction only; no exit rule reads it (liq_pull still reads liq_usd).
     A missing number means HOLD (reason "no_quote"); the position is checked again next run.
     A fallback quote (our pool is gone) adds "quote=fallback" to the EXIT row and the trade row.
     Returns the number of SELL rows logged (BL-27's live.json last_tick.exits; nothing reads it for a decision).
@@ -55,7 +56,7 @@ def check(book, quote, now):
             book.task(now, "EXIT", pos["symbol"], address, "HOLD", "no_quote")
             continue
         note = "quote=fallback" if q.get("source") == "fallback" else ""
-        book.mark(address, price, liq)
+        book.mark(address, price, liq, q.get("qliq"))
         pct = (price / pos["entry_fill"] - 1) * 100
         out = decide(pos, price, liq, now)
         if out is None:
@@ -64,7 +65,7 @@ def check(book, quote, now):
         rule, qty, intended = out
         if rule.startswith("ladder_"):
             pos["ladder_done"].append(int(rule.split("_")[1]) - 1)
-        desk.sell(book, address, price, qty, rule, liq, now, intended=intended, note=note)
+        desk.sell(book, address, price, qty, rule, liq, now, intended=intended, note=note, qliq=q.get("qliq"))
         book.task(now, "EXIT", pos["symbol"], address, "SELL", rule,
                   " ".join(filter(None, [f"pct={pct:.2f} intended={intended:.10g} quote={price:.10g}", note])))
         sold += 1

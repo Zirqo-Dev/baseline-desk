@@ -4,12 +4,17 @@ BL-31: universe_skip() is the universe both books share (the desk and the random
 exclusion) + sells_skip() + age_skip(). The desk applies every one of these rules: dex_skip() before any GoPlus call,
 sells_skip() and age_skip() inside hard_skip() at their old place, so the desk's outcomes and labels are unchanged
 except for the new asset:<kind> gate skip. The twin applies universe_skip() to the DexScreener side only.
+
+BL-32: the real-depth floor (SKIP_IF min_qliq_usd, on qliq = the BL-28 USD value of the chosen pair's non-token side)
+replaces the total-liquidity floor in dex_skip(), so both books get it: qliq missing = missing:qliq, under the floor =
+real_depth (final 24 h gate skip, goplus=skipped). min_liquidity_usd is now only the logging floor: logged() keeps the
+labels and trade keys on every check today's (pre-BL-32) gate let through, real_depth or not (the owner, BL-32).
 """
 import re
 
 from core import config
 
-REQUIRED = ["symbol", "price", "liq_usd", "age_min", "sells_1h", "mint_open",
+REQUIRED = ["symbol", "price", "liq_usd", "age_min", "sells_1h", "qliq", "mint_open",
             "freeze_or_blacklist", "honeypot", "buy_tax_pct", "sell_tax_pct",
             "lp_locked_pct", "dev_pct", "top10_pct", "launchpad", "risk_flags"]
 
@@ -19,7 +24,10 @@ GOPLUS_FIELDS = ["mint_open", "freeze_or_blacklist", "honeypot", "buy_tax_pct", 
 
 # Fields DexScreener gives on its own (GeckoTerminal only for a missing age), in REQUIRED order.
 # launchpad is neither: it also reads the GoPlus creator. BL-20 gate, see dex_skip().
-DEX_FIELDS = ["symbol", "price", "liq_usd", "age_min", "sells_1h"]
+DEX_FIELDS = ["symbol", "price", "liq_usd", "age_min", "sells_1h", "qliq"]  # qliq last (BL-32)
+
+# BL-32: the dex_skip() reasons that come from the real-depth floor alone; logged() keeps logging these checks.
+DEPTH_SKIPS = ("real_depth", "missing:qliq")
 
 # risk_flags that are a hard skip. Log-only flags (external_call, is_open_source=0,
 # honeypot_with_same_creator) stay in the list but never skip.
@@ -78,21 +86,45 @@ def asset_kind(symbol, price, address, base_pairs=0, quote_pairs=0):
 def dex_skip(facts):
     """BL-20 gate, before any GoPlus call: the skip DexScreener alone decides, or "" when GoPlus is needed.
 
-    In order: fetch_error (a request so far failed), missing:<first DEX_FIELDS gap>, liquidity,
+    In order: fetch_error (a request so far failed), missing:<first DEX_FIELDS gap> (qliq last, BL-32),
+    real_depth (BL-32: qliq < min_qliq_usd; it replaced the total-liquidity floor "liquidity"),
     then (BL-31) asset:<kind> from facts["asset"] (adapters/base.py facts() fills it with asset_kind()).
-    Same outcome as hard_skip() on the full facts; only the label can differ (a low-liquidity
-    honeypot logs "liquidity"). DECISIONS 2026-10-26, BL-20.
+    Same outcome as hard_skip() on the full facts; only the label can differ (a thin honeypot logs
+    "real_depth"). DECISIONS 2026-10-26, BL-20.
     """
     if facts.get("fetch_errors"):
         return "fetch_error"
     for k in DEX_FIELDS:
         if facts.get(k) is None:
             return f"missing:{k}"
-    if facts["liq_usd"] < config.SKIP_IF["min_liquidity_usd"]:
-        return "liquidity"
+    if depth_skip(facts):
+        return "real_depth"
     if facts.get("asset"):
         return f"asset:{facts['asset']}"
     return ""
+
+
+def depth_skip(facts):
+    """BL-32: True when the real depth (qliq, a number; 0 is real) is under min_qliq_usd. Both books, via dex_skip()."""
+    return facts["qliq"] < config.SKIP_IF["min_qliq_usd"]
+
+
+def logged(facts):
+    """BL-32, logging only: True when this check gets the BL-25/28/30 trade keys on its VERIFY row and BL-26 labels.
+
+    The logging set is unchanged by the real-depth floor (the owner, BL-32): every check past dex_skip() (as before),
+    plus a check dex_skip() killed only on real depth (real_depth or missing:qliq) that today's old gate let through:
+    total liq_usd >= min_liquidity_usd (the logging floor) and no asset kind. A check new to the universe (qliq over
+    the floor, liq under 50k) is past dex_skip(), so it is logged too. Never read by a trading rule. Never raises."""
+    try:
+        if not isinstance(facts, dict):
+            return False
+        if not facts.get("goplus_skipped"):
+            return True
+        return (dex_skip(facts) in DEPTH_SKIPS and not facts.get("asset")
+                and facts["liq_usd"] >= config.SKIP_IF["min_liquidity_usd"])
+    except Exception:  # logging must never break a check
+        return False
 
 
 def sells_skip(facts):
@@ -112,8 +144,9 @@ def age_skip(facts):
 
 def universe_skip(facts):
     """BL-31: the universe both books share, on the DexScreener side alone (no GoPlus): dex_skip() (fetch_error,
-    missing DexScreener field, liquidity, asset:<kind>), then sells_skip(), then age_skip(). "" = in the universe.
-    The random twin picks only from leads where this is "". BL-32's real-depth floors go here, so both books get them."""
+    missing DexScreener field incl. qliq, real_depth (BL-32), asset:<kind>), then sells_skip(), then age_skip().
+    "" = in the universe. The random twin picks only from leads where this is "" (BL-32: the real-depth floor is in
+    dex_skip(), so both books get it from one place)."""
     return dex_skip(facts) or sells_skip(facts) or age_skip(facts)
 
 
@@ -127,7 +160,7 @@ def hard_skip(facts):
 
     "goplus_not_ready" (not final) when every missing field is one the adapter
     listed in facts["goplus_pending"] (GoPlus has not filled it yet), unless the
-    pool is already under the liquidity minimum.
+    pool's real depth is already under the floor (real_depth, BL-32).
 
     facts["goplus_skipped"] (BL-20): GoPlus was never called because dex_skip() decided; that reason stands.
 
@@ -146,8 +179,8 @@ def hard_skip(facts):
         final = [k for k in missing if k not in pending]
         if final:
             return f"missing:{final[0]}"
-        if facts["liq_usd"] < s["min_liquidity_usd"]:
-            return "liquidity"
+        if depth_skip(facts):
+            return "real_depth"
         return "goplus_not_ready"
     if facts["honeypot"]:
         return "honeypot"
@@ -160,8 +193,8 @@ def hard_skip(facts):
             return f"risk_flag:{flag}"
     if sells_skip(facts):
         return sells_skip(facts)
-    if facts["liq_usd"] < s["min_liquidity_usd"]:
-        return "liquidity"
+    if depth_skip(facts):
+        return "real_depth"
     if facts.get(LP) is not None and facts[LP] < s["min_lp_locked_pct"]:
         return "lp_locked"
     if facts["dev_pct"] > s["max_dev_pct"]:
@@ -185,11 +218,12 @@ def lp_unknown(facts):
 
 
 def trade_detail(facts):
-    """BL-25: the trade keys for a row's detail, "na" where missing; [] for a gate-killed check (goplus_skipped).
+    """BL-25: the trade keys for a row's detail, "na" where missing; [] for a gate-killed check outside the logging
+    set (BL-32 logged(): a real_depth / missing:qliq check that today's old gate let through keeps its keys).
 
     Logging only, never read by a rule. Never raises.
     """
-    if not isinstance(facts, dict) or facts.get("goplus_skipped"):
+    if not isinstance(facts, dict) or not logged(facts):
         return []
     t = facts.get("trade") if isinstance(facts.get("trade"), dict) else {}
     return [f"{k}={t.get(k, 'na')}" for k in TRADE_KEYS]

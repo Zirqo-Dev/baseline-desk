@@ -17,11 +17,17 @@ the dead "na" count (BL-30), median chg_pct (over the labels that have one,
 n_chg), share with chg_pct <= -50 %, share with pair_s1 > 0 (BL-26: the deepest pair only, never mixed with BL-25 sums).
 Fewer than MIN_N in a cell: "n too small" instead of the numbers.
 Table 2, the desk's PASS rows in the window with their qliq, s24 and outcome labels.
-Table 3, every desk and baseline trade bought in the window, re-priced with core/friction.py using qliq@entry instead of
-the logged liquidity (option A: the exits use the entry qliq too; exits log no qliq). Entry qliq: the baseline BUY row,
-or the desk PASS row at the same ts. size/qliq = the trade's USD size / qliq@entry, a plain ratio of two logged numbers,
-not a friction model. friction.side_pct() is a step function (thin under 100k USD), so a re-pricing mostly shows 3% -> 5%;
-it does not model price impact. "na" where no qliq was logged (every trade before BL-28).
+Table 3, every desk and baseline trade bought in the window, re-priced with core/friction.py (BL-32: base + launchpad
+fee + impact 100 x side USD / qliq, imported, never copied). Entry qliq: the BUY row's note qliq= (from BL-32), else
+the baseline BUY row, or the desk PASS row at the same ts. Each SELL uses its own note qliq= when it says
+qliq_src=exit (from BL-32), else the entry qliq (exits logged no qliq before BL-32); side USD = the re-priced qty sold x
+the logged quote. size/qliq = the trade's USD size / qliq@entry, a plain ratio of two logged numbers. "na" where no
+qliq was logged (every trade before BL-28).
+Table 4 (BL-32), read-only: the window's sightings and distinct desk tokens by qliq at first sight (the first VERIFY
+row that carries qliq): <100 / 100-1k / 1k-10k / >=10k / na, how many have sells_1h (s1) > 0 on that row, and how many
+the real-depth floor (SKIP_IF min_qliq_usd) would cut (under it, or na = missing:qliq).
+BL-32: a sighting = a desk VERIFY row in the logging set (core/verify.py logged()): past the gate as before, or a
+real_depth / missing:qliq gate skip that still carries the trade keys (total liq >= the 50k logging floor).
 Table 0 (BL-30), the death rate per horizon over the same on-time labels of the window's sightings: gone only vs the
 dead flag (core/labels.py dead(), the one place its numbers live). A file from BL-30 on logs dead; for older rows
 (no dead column, never rewritten) it is derived from gone + the label's qliq + the sight qliq = the qliq on the desk
@@ -39,14 +45,16 @@ import sys
 from datetime import datetime, timedelta
 from pathlib import Path
 
-from core import friction, labels
+from core import config, friction, labels
 from core.book import ROOT
 from core.report import GATE_KILLS, _kv
+from core.verify import DEPTH_SKIPS
 
 LABEL_WINDOW_MIN = 30
 FOLLOW_DAYS = 2
 MIN_N = 20
 QLIQ_BUCKETS = ["na", "<1k", "1k-5k", "5k-25k", ">=25k"]
+DEPTH_BUCKETS = ["<100", "100-1k", "1k-10k", ">=10k", "na"]  # Table 4 (BL-32)
 SELLS_BUCKETS = ["na", "0", "1-9", ">=10"]
 NA = "na"
 
@@ -95,8 +103,13 @@ def _num(x):
 
 # ---- sightings ----
 def past_gate(r):
-    return (r.get("book") == "desk" and r.get("stage") == "VERIFY" and "goplus=skipped" not in r["detail"].split()
-            and r.get("reason") not in GATE_KILLS)
+    """A desk VERIFY row in the logging set: past the gate (no goplus=skipped, not a gate kill), or (BL-32) a
+    real_depth / missing:qliq skip that kept its trade keys (core/verify.py logged(): liq >= the 50k logging floor)."""
+    if r.get("book") != "desk" or r.get("stage") != "VERIFY":
+        return False
+    if r.get("reason") in DEPTH_SKIPS:
+        return "qliq" in _kv(r["detail"])
+    return "goplus=skipped" not in r["detail"].split() and r.get("reason") not in GATE_KILLS
 
 
 def qliq_bucket(q):
@@ -121,9 +134,10 @@ def sightings(tasks):
             continue
         kv = _kv(r["detail"])
         key = (r["address"], kv.get("first_seen", r["ts"]))
-        s = out.setdefault(key, {"symbol": r["symbol"], "first_ts": r["ts"], "qliq": NA, "s24": NA, "tagged": False})
+        s = out.setdefault(key, {"symbol": r["symbol"], "first_ts": r["ts"], "qliq": NA, "s24": NA, "s1": NA,
+                                 "tagged": False})
         if not s["tagged"] and "qliq" in kv:  # bucketed by the FIRST row that carries qliq
-            s.update(qliq=kv["qliq"], s24=kv.get("s24", NA), tagged=True)
+            s.update(qliq=kv["qliq"], s24=kv.get("s24", NA), s1=kv.get("s1", NA), tagged=True)
     for s in out.values():
         s["qb"], s["sb"] = qliq_bucket(s["qliq"]), (sells_bucket(s["s24"]) if s["tagged"] else NA)
     return out
@@ -242,20 +256,62 @@ def entry_qliq(tasks):
     return out
 
 
+def note_qliq(row, src=None):
+    """The qliq= of a BL-32 trades.csv note, as a number (only when its qliq_src is `src`, if given), else None."""
+    kv = _kv(row.get("note") or "")
+    if src is not None and kv.get("qliq_src") != src:
+        return None
+    return _num(kv.get("qliq"))
+
+
 def reprice(buy, sells, qliq):
-    """Re-priced P&L of one lot with friction from qliq (entry and exits, option A); None without a qliq."""
+    """Re-priced P&L of one lot with core/friction.py (BL-32: base + fee + impact); None without an entry qliq.
+    Entry: the BUY quote (intended_price) for the logged USD at qliq@entry. Each SELL: the same share of the re-priced
+    quantity at its logged quote (fill / (1 - friction%), as core/report.py), into its own exit qliq when the note says
+    qliq_src=exit, else the entry qliq (friction.exit_depth())."""
     q = _num(qliq)
     if q is None:
         return None
     usd, qty = float(buy["usd"]), float(buy["qty"])
-    fill_in, pct_in = friction.buy_fill(float(buy["intended_price"]), q, buy["launchpad"])  # BUY intended = the quote
+    fill_in, pct_in = friction.buy_fill(float(buy["intended_price"]), usd, q, buy["launchpad"])
     new_qty, pnl = usd / fill_in, 0.0
     for s in sells:
         share = float(s["qty"]) / qty
-        quote = float(s["fill_price"]) / (1 - float(s["friction_pct"]) / 100)  # as core/report.py: fill before friction
-        fill_out, _ = friction.sell_fill(quote, q, s["launchpad"])
+        quote = float(s["fill_price"]) / (1 - float(s["friction_pct"]) / 100) if float(s["friction_pct"]) < 100 \
+            else float(s["intended_price"])  # a 100% sale has no quote left in the fill
+        depth, _ = friction.exit_depth(note_qliq(s, "exit"), q)
+        fill_out, _ = friction.sell_fill(quote, share * new_qty, depth, s["launchpad"])
         pnl += share * new_qty * fill_out - share * usd
     return {"pnl": pnl, "pct_in": pct_in}
+
+
+def depth_bucket(q):
+    """Table 4 (BL-32): qliq at first sight: <100 / 100-1k / 1k-10k / >=10k / na."""
+    q = _num(q)
+    if q is None:
+        return NA
+    return "<100" if q < 100 else "100-1k" if q < 1_000 else "1k-10k" if q < 10_000 else ">=10k"
+
+
+def depth_count(sights):
+    """Table 4 (BL-32), read-only: per unit ("sightings", "tokens" = distinct addresses at their first sighting) and
+    bucket: n, how many have s1 > 0 on the first qliq row, and how many min_qliq_usd would cut (under it, or na)."""
+    first = {}
+    for (a, fs), s in sorted(sights.items(), key=lambda kv: (kv[1]["first_ts"], kv[0])):
+        first.setdefault(a, s)
+    floor = config.SKIP_IF["min_qliq_usd"]
+    out = {}
+    for unit, group in (("sightings", list(sights.values())), ("tokens", list(first.values()))):
+        cells = {b: {"n": 0, "sells": 0} for b in DEPTH_BUCKETS}
+        cut = 0
+        for s in group:
+            c = cells[depth_bucket(s["qliq"])]
+            c["n"] += 1
+            c["sells"] += (_num(s.get("s1")) or 0) > 0
+            q = _num(s["qliq"])
+            cut += q is None or q < floor
+        out[unit] = {"cells": cells, "n": len(group), "cut": cut}
+    return out
 
 
 def lots(trades, win):
@@ -280,7 +336,8 @@ def trade_table(tasks, trades, win):
     rows = []
     for lot in lots(trades, win):
         buy, sells, closed = lot["buy"], lot["sells"], lot["closed"]
-        q = eq.get((buy["book"], buy["address"], buy["ts"]), NA)
+        nq = note_qliq(buy)  # BL-32: the BUY note's qliq, else the logged VERIFY / BUY row
+        q = nq if nq is not None else eq.get((buy["book"], buy["address"], buy["ts"]), NA)
         r = reprice(buy, sells, q)
         logged = sum(_num(s["pnl_usd"]) or 0.0 for s in sells)
         size = 100 * float(buy["usd"]) / _num(q) if _num(q) else None
@@ -364,10 +421,10 @@ def render(root, start, end):
     if not passes:
         p("  none")
     p("")
-    p("Table 3: trades re-priced with friction from qliq@entry (entry and exits, option A), next to the logged P&L")
-    p("  friction.side_pct() is a step function (thin under 100k USD): mostly 3% -> 5%, no price impact modelled.")
-    p("  exits use the entry qliq (exits log none): understates exit friction if the pool thinned after entry.")
-    p("  size/qliq = trade USD / qliq@entry: a plain ratio of two logged numbers, not a friction model.")
+    p("Table 3: trades re-priced with core/friction.py (BL-32: base 3% + launchpad fee + impact 100 x side USD / qliq),")
+    p("  next to the logged P&L. Entry at qliq@entry; each exit at its own logged qliq when qliq_src=exit (BL-32 rows),")
+    p("  else the entry qliq (exits logged none before BL-32: understates exit friction if the pool thinned after entry).")
+    p("  size/qliq = trade USD / qliq@entry: a plain ratio of two logged numbers.")
     p(f"  {'buy ts':20} {'book':8} {'symbol':10} {'usd':>6} {'liq':>9} {'qliq':>8} {'size/qliq%':>10} "
       f"{'fric%':>5} {'new%':>5} {'pnl':>7} {'new_pnl':>7}  exits")
     rows = trade_table(tasks, trades, set(win))
@@ -387,6 +444,18 @@ def render(root, start, end):
           f"re-priced {len(priced)}: logged {sum(t['pnl_logged'] for t in priced):+.2f} -> "
           f"{sum(t['pnl_new'] for t in priced):+.2f} USD"
           + (f" (n too small: {len(priced)} < {MIN_N})" if len(priced) < MIN_N else ""))
+    p("")
+    floor = config.SKIP_IF["min_qliq_usd"]
+    p(f"Table 4: qliq at first sight (BL-32, read-only): what the real-depth floor (min_qliq_usd {floor:,}) would cut")
+    p(f"  {'unit':10} {'bucket':7} {'n':>6} {'sells_1h>0':>10}")
+    dc = depth_count(sights)
+    for unit, d in dc.items():
+        for b in DEPTH_BUCKETS:
+            c = d["cells"][b]
+            p(f"  {unit:10} {b:7} {c['n']:>6} {c['sells']:>10}")
+        p(f"  {unit:10} {'all':7} {d['n']:>6} {sum(c['sells'] for c in d['cells'].values()):>10}  "
+          f"cut by the floor (qliq < {floor:,} or na): {d['cut']}")
+    p("  tokens = distinct addresses, each at its first sighting; s1 = sells_1h on that first qliq row")
     return "\n".join(out)
 
 

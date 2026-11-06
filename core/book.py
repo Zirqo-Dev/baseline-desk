@@ -94,13 +94,18 @@ class Book:
         """Cash + open positions at last price."""
         return self.cash + sum(p["qty"] * p["last_price"] for p in self.positions.values())
 
-    def mark(self, address, price, liq_usd=None):
-        """Last quote. liq_usd (BL-8) is kept so the report can price a sale at the friction a real exit would pay."""
+    def mark(self, address, price, liq_usd=None, qliq=None):
+        """Last quote. liq_usd (BL-8) is kept for display and liq_pull; qliq (BL-32) is this mark's real depth, which
+        prices the report's liquidation sale (friction.exit_depth(): this mark's qliq, else entry_qliq)."""
         p = self.positions[address]
         p["last_price"] = price
         p["peak_price"] = max(p["peak_price"], price)
         if liq_usd is not None:
             p["last_liq_usd"] = liq_usd
+        if isinstance(qliq, (int, float)) and not isinstance(qliq, bool):
+            p["last_qliq"] = qliq
+        else:
+            p.pop("last_qliq", None)
 
     # ---- daily loss halt ----
     def roll_day(self, now):

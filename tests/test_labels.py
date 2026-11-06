@@ -223,11 +223,11 @@ class TickLabelsTest(unittest.TestCase):
     def test_past_gate_checks_only(self):
         self.found = [addr(i) for i in range(1, 5)]
         self.facts.update({addr(1): good(1), addr(2): dict(good(2), honeypot=True),
-                           addr(3): dict(good(3), liq_usd=1), addr(4): watched(4)})
+                           addr(3): dict(good(3), liq_usd=1, qliq=1), addr(4): watched(4)})
         with mock.patch.object(base, "token_batch", Batch()):
             self.run_tick(0)
         v = {r["address"]: (r["action"], r["reason"]) for r in tick_rows(self.root) if r["stage"] == "VERIFY"}
-        self.assertEqual(v, {addr(1): ("PASS", ""), addr(2): ("SKIP", "honeypot"), addr(3): ("SKIP", "liquidity"),
+        self.assertEqual(v, {addr(1): ("PASS", ""), addr(2): ("SKIP", "honeypot"), addr(3): ("SKIP", "real_depth"),
                              addr(4): ("WATCH", "goplus_not_ready")})
         pend = labels.load(self.root)["pending"]
         self.assertEqual(set(pend), {addr(1), addr(2), addr(4)})  # PASS, safety SKIP, WATCH; not the gate kill

@@ -23,7 +23,7 @@ import json
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
-from core import config, friction, report
+from core import config, report
 from core.book import Book, day, ts
 
 LIVE = "data/live.json"
@@ -39,7 +39,7 @@ def position(address, p, now):
     """One open position as the site shows it. Values on the same basis as report.liq_value()."""
     last, cost = p["last_price"], p["cost_usd"]
     liq = p.get("last_liq_usd", p["entry_liq_usd"])
-    fill, _ = friction.sell_fill(last, liq, p["launchpad"])
+    fill, _ = report.sell_value(p)  # BL-32: same depth rule as report.liq_value()
     value, entry = p["qty"] * fill, _t(p["entry_ts"])
     qliq = p.get("entry_qliq")
     return {

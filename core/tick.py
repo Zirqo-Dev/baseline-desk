@@ -40,6 +40,9 @@ Random twin (BL-31): right after the day roll, core/baseline.py restart() runs o
 BOOK REFILL reason=restart row, report state per_trade_since = now), then each book whose ISO week changed gets its
 weekly refill (one BOOK REFILL reason=weekly row each, amount logged, never P&L). Both after the closing snapshot
 of the day just closed, so a Monday refill never lands in Sunday's report.
+Gate B restart (BL-32): right after the twin restart, core/report.py gate_restart() runs once (state flag report
+gate_restart = "BL-32"): per_trade_since (gate_b.since and per_trade.since, both books) moves to this tick, one BOOK
+RESTART gate_b row, no refill. Outcome labels (BL-26) take every check in verify.logged() (BL-32: the logging set).
 TICK detail: the desk keys as before, then bl_positions bl_due bl_eligible bl_bought report machine bl_error,
 then labels labels_due labels_done labels_calls, then live, then alerts alerts_sent.
 """
@@ -48,7 +51,7 @@ import time
 from pathlib import Path
 
 from adapters import base
-from core import alerts, baseline, config, desk, exits, labels, live, report
+from core import alerts, baseline, config, desk, exits, labels, live, report, verify
 from core.book import ROOT, TASK_FIELDS, Book, _append, day, ts, utcnow
 from core.leads import Leads
 
@@ -86,8 +89,9 @@ def verdict(reason):
 
 def verify_and_buy(book, leads, held, client, now, n, seen=None, verdicts=None, sights=None):
     """Scan, check and buy for the desk. seen/verdicts (BL-8) collect each facts() lead's
-    DexScreener side and the desk's outcome for the baseline; sights (BL-26) collect each check past
-    dex_skip() for the outcome labels. They change nothing for the desk."""
+    DexScreener side and the desk's outcome for the baseline; sights (BL-26) collect each check in the
+    logging set (BL-32 verify.logged(): past dex_skip(), or killed only on real depth with liq >= the
+    50k logging floor) for the outcome labels. They change nothing for the desk."""
     seen = {} if seen is None else seen
     verdicts = {} if verdicts is None else verdicts
     found = base.scan(client)
@@ -109,7 +113,7 @@ def verify_and_buy(book, leads, held, client, now, n, seen=None, verdicts=None, 
             n["dex_only"] += 1
         first_seen = (leads.s["watch"].get(address) or {}).get("first_seen") or ts(now)
         reason = leads.record(address, f, now)
-        if sights is not None and not f.get("goplus_skipped"):
+        if sights is not None and verify.logged(f):  # BL-32: the logging set, unchanged by the real-depth floor
             sights.append(labels.sight(address, f, first_seen, now))
         verdicts[address] = verdict(reason)
         if reason == "":
@@ -158,6 +162,7 @@ def run(root=ROOT, now=None, client=None, clock=time.monotonic, log=print):
         book.roll_day(now)
         bl.roll_day(now)
         baseline.restart(root, rs, [book, bl], bl, now)  # BL-31: once, the twin restarts at 50 USD
+        report.gate_restart(root, rs, book, now)  # BL-32: once, Gate B / per-trade count from now, no refill
         for b_ in (book, bl):  # BL-31: weekly refill on the first tick of each ISO week (Mon 00:03 UTC)
             if b_.refill_due(now):
                 b_.refill(now, "weekly")

@@ -206,9 +206,9 @@ class TickAlertTest(unittest.TestCase):
         return n, fake
 
     def buy_and_sell(self, fake=None):
-        """Tick 0 buys addr(1) (desk, qliq 4321); tick 5 sells it on the hard stop."""
+        """Tick 0 buys addr(1) (desk, qliq 43210, over the BL-32 floor); tick 5 sells it on the hard stop."""
         self.found = [addr(1)]
-        self.facts[addr(1)] = traded(1, qliq=4321)
+        self.facts[addr(1)] = traded(1, qliq=43210)
         a = self.tick(0, fake)
         self.quotes[addr(1)] = {"price": GOOD["price"] / 2, "liq_usd": GOOD["liq_usd"], "source": "pool"}
         return a, self.tick(5, fake)
@@ -234,8 +234,8 @@ class TickAlertTest(unittest.TestCase):
         (n0, f0), (n1, f1) = self.buy_and_sell()
         self.assertEqual((n0["alerts"], n0["alerts_sent"]), ("ok", 1))
         cash = Book("desk", self.root).cash
-        self.assertEqual(f0.texts[0], alerts.buy_text("T1", addr(1), "5.0", desk_fill(self.root), GOOD["liq_usd"], "4321"))
-        self.assertIn("real depth $4,321", f0.texts[0])
+        self.assertEqual(f0.texts[0], alerts.buy_text("T1", addr(1), "5.0", desk_fill(self.root), GOOD["liq_usd"], "43210"))
+        self.assertIn("real depth $43,210", f0.texts[0])
         self.assertEqual((n1["alerts"], n1["alerts_sent"]), ("ok", 1))
         sell = f1.texts[0].splitlines()
         self.assertEqual(sell[0], "Baseline desk SELL T1 · hard_stop")

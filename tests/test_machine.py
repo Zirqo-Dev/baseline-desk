@@ -216,7 +216,7 @@ class MachineTickTest(unittest.TestCase):
     def test_on_the_roll(self):
         self.found = [addr(1), addr(2)]
         self.facts[addr(1)] = good(1)
-        self.facts[addr(2)] = dict(good(2), liq_usd=1)
+        self.facts[addr(2)] = dict(good(2), liq_usd=1, qliq=1)
         self.run_tick(0)
         self.run_tick(13 * 60)
         hb = detail(self.heartbeats()[-1])
@@ -226,7 +226,7 @@ class MachineTickTest(unittest.TestCase):
         m = self.rep()["machine"]
         self.assertEqual({k: m["funnel"][k] for k in report.FUNNEL + ["exits_open"]},
                          {"scan": 2, "gate": 1, "safety": 1, "buy": 1, "exits_open": 1})
-        self.assertEqual(m["kills"]["gate"], {"liquidity": 1})
+        self.assertEqual(m["kills"]["gate"], {"real_depth": 1})
         self.assertEqual(m["runs"]["ticks"], 1)
         tok = json.loads((self.root / report.TOKENS).read_text())
         self.assertEqual((tok["day"], [t["verdict"] for t in tok["tokens"]]), (D, ["SKIP", "BUY"]))

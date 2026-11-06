@@ -17,13 +17,14 @@ SESSION_LOSS_HALT_PCT = 30  # vs total value at the start of the UTC day
 
 # Hard skips (VERIFY). A missing number is a skip.
 SKIP_IF = {
-    "min_liquidity_usd": 50000,
+    "min_qliq_usd": 10000,      # real depth (BL-28 qliq) floor, both books, gate skip real_depth (the owner, BL-32)
+    "min_liquidity_usd": 50000,  # since BL-32: logging floor for labels and trade facts; no trading rule reads it
     "min_lp_locked_pct": 90,
     "max_dev_pct": 10,
     "max_top10_pct": 35,
     "min_age_min": 15,
     "max_age_h": 48,
-    "max_ticket_share": 0.01,   # ticket <= liq_usd * this
+    "max_ticket_share": 0.01,   # ticket <= qliq * this (BL-32; was liq_usd)
     "max_buy_tax_pct": 10,
     "max_sell_tax_pct": 10,
 }
@@ -44,11 +45,11 @@ EXIT = {
     "liq_drop_pct": 40,
 }
 
-# Friction per side (CLAUDE.md section 6)
+# Friction per side (CLAUDE.md section 6; BL-32): base_pct + launchpad pool fee + price impact 100 x side USD / qliq
 FRICTION = {
     "base_pct": 3.0,
-    "thin_pct": 5.0,              # used when liq_usd < thin_liq_usd
-    "thin_liq_usd": 100000,
+    "thin_pct": 5.0,              # read only by the no-qliq fallback since BL-32 (in place of the impact)
+    "thin_liq_usd": 100000,       # not read since BL-32
     "pool_fee_pct": {"clanker": 1.0},  # launchpad pool fee, added per side
 }
 

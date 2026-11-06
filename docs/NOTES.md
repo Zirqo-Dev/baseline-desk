@@ -1173,6 +1173,120 @@ Moved from CLAUDE.md section 11 on 2026-10-23 (BL-2 process cleanup). Wording is
   The AODF the twin bought (0x2128ac..., price 0.01931, asset_kind "") is not the AODF in the would-have-cut list
   (0x75f514..., first price 2,120.92): the symbol has at least 11 Base addresses; the rule ran on the twin's path.
 
+## BL-32
+- R4 real-depth floor and impact friction (the owner's Nov 6 decisions a-f plus the go-message changes 1-4,
+  DECISIONS). Code: core/config.py (SKIP_IF min_qliq_usd 10,000; min_liquidity_usd kept as the logging floor; FRICTION
+  thin_pct read only by the no-qliq fallback, thin_liq_usd not read), core/verify.py (qliq last in DEX_FIELDS and in
+  REQUIRED, depth_skip(), DEPTH_SKIPS, logged(), trade_detail() on logged()), adapters/base.py (facts() top-level qliq,
+  quote() qliq), core/friction.py (rewritten), core/desk.py (size() on qliq, buy/sell notes, entry_qliq from
+  facts["qliq"]), core/exits.py and core/book.py (qliq to the sell and the mark), core/report.py (sell_value(),
+  gate_restart(), GATE_KILLS + real_depth), core/live.py (report.sell_value()), core/tick.py (sights on logged(),
+  gate_restart() after the twin restart), core/baseline.py (a fresh restart sets gate_restart), tools/replay.py.
+  No site, Telegram or workflow change. No new request. Exit rules unchanged.
+- qliq in the facts: facts() sets facts["qliq"] = base.quote_liq() of the chosen pair (the same number as the logged
+  trade qliq, BL-28; "na" there = the key is absent here, 0 is real). It goes into the twin's dex dict too, so
+  universe_skip() sees the same qliq for both books.
+- The floor, in dex_skip() (so hard_skip() via goplus_skipped, and universe_skip()): fetch_error, missing:<symbol |
+  price | liq_usd | age_min | sells_1h | qliq>, real_depth (qliq < min_qliq_usd; 10,000 passes, 9,999 and 0 skip), then
+  asset:<kind>. real_depth replaces "liquidity" at the same place, so a thin stable logs real_depth, not asset. Final
+  24 h skip, goplus=skipped, no GoPlus call (facts() returns before GoPlus). hard_skip()'s two old liquidity checks (the
+  GoPlus-pending branch and the post-sells check) now read the same floor. The total liquidity (liq_usd) is still a
+  required number (missing:liq_usd), still logged, still read by EXIT liq_pull, never by an entry rule.
+- Logging set unchanged (the owner, go-message 1, option A): core/verify.py logged(f) = True for a check GoPlus was asked
+  about (as before), or a goplus_skipped check whose dex_skip() reason is real_depth or missing:qliq AND liq_usd >=
+  min_liquidity_usd (50k, the logging floor) AND no asset kind: exactly the checks the old gate let through, now
+  stopped only by real depth. Those VERIFY SKIP rows keep the full BL-25/28/30 keys (b1 s1 b24 s24 liq dex qliq
+  pair_age token_age) after goplus=skipped until=..., and the tick hands them to the BL-26 labels (sight_qliq included).
+  Checks new to the universe (qliq >= 10k, liq < 50k) pass dex_skip() and are logged like any check past the gate.
+  logged() is never read by a trading rule and never raises. Test: a fixed tick of 8 leads (pass, real_depth at 80k,
+  missing:qliq at 80k, new universe at 20k/15k, thin at 20k/4k, thin stable at 80k, safety skip, real 0 at 80k): the
+  label set = the old set {pass, real_depth, missing:qliq, safety, real 0} + the new-universe token only; the trade keys
+  sit on exactly those rows; only qliq >= 10k reaches GoPlus or a buy.
+- Ticket (b): desk.size(cash, qliq): TICKET_USD capped by qliq x max_ticket_share (0.01); "size" when the cap is under
+  MIN_TICKET, qliq is unknown or cash is short. 5 USD needs qliq >= 500, so above the floor it never binds.
+- Friction (c, go-message 2 and 3), core/friction.py, the one function both books, report.liq_value() and live.json use:
+  side_pct(usd, qliq, launchpad) = base_pct 3 + pool_fee_pct (Clanker 1) + impact_pct(usd, qliq), impact = 100 x usd /
+  qliq, capped at 100 (qliq 0 = the cap). qliq unknown = thin_pct 5 in place of the impact (never the total
+  liquidity: it is mostly the token's own side and flatters paper, the owner). buy_fill(price, usd, qliq, lp): the
+  ticket into the entry qliq. sell_fill(price, qty, qliq, lp): side USD = qty x quote (gross), whole sell side capped
+  at 100% (fill 0, proceeds 0, never negative). Exit depth (exit_depth()): this tick's quote qliq when base.quote()
+  could compute it from the pair it just read ("exit"; no new request), else the position's entry_qliq ("entry"),
+  else none ("none", thin_pct). The report's liquidation value and live.json use the last mark's qliq (Book.mark stores
+  last_qliq from this tick's quote and drops it when the quote had none), else entry_qliq, else thin_pct, via
+  report.sell_value(). entry_qliq (BL-27, display only until BL-32) is now the qliq that priced the buy.
+- trades.csv note (every BUY and SELL, both books): impact_pct=<4 decimals|na> qliq=<whole USD|na>
+  qliq_src=<entry|exit|none>, after quote=fallback when that is there. friction_pct stays the whole side (base + fee +
+  impact). No new column, so trades.csv keeps its header.
+- Worked numbers: at the floor (qliq 10,000) a 5 USD buy pays 3.05% (impact 0.05%); at qliq 40,000, 3.0125%; the old
+  model charged 5% under 100k total liquidity whatever the real depth. A 5 USD round trip at 10,000 costs about 5.9%,
+  at 10,000,000 about 5.8%.
+- Gate B restart (d, go-message 3): core/report.py gate_restart(root, rs, desk_book, now), called right after the BL-31
+  twin restart on every tick, runs once: when report state gate_restart != "BL-32" it writes one desk tasks.csv row
+  stage=BOOK action=RESTART reason=gate_b detail "card=BL-32 since=<ts> prev_since=<old per_trade_since> books=desk,
+  baseline refill=none", then sets per_trade_since = the tick ts and gate_restart = "BL-32" and saves the report state.
+  gate_b.since and both books' per_trade.since follow per_trade_since. No refill: cash stays; Monday's weekly refill
+  runs as built. The row is written before the state, so a crash between them repeats both (the last row matches the
+  state) rather than moving the count without a row. On an empty state the BL-31 restart already starts the count
+  now and also sets gate_restart, so there is no second row. Old closes stay in "closes" and the old report days.
+- Exits (e): unchanged. OPEN ITEM for chat: EXIT liq_pull reads total liquidity (quote liq_usd <= entry_liq_usd x
+  (1 - liq_drop_pct)), not qliq, so a pool whose real side drains while the token side holds the total up does not
+  fire it (BL-28: total liq is mostly the token's own side). Changing it would be a new exit rule (non-negotiable 7:
+  new positions only, one tested hypothesis).
+- Display (f): no site change. report.GATE_KILLS gains real_depth (missing:qliq comes with DEX_FIELDS), so the machine
+  cards count them as gate kills (they also carry goplus=skipped). The site's token table has its own copy of the list
+  and classifies by reason alone, so until BL-43 real_depth and missing:qliq rows show under its Safety chip;
+  tests/test_site.py pins exactly that gap. live.json values use the new friction; its keys are unchanged.
+- Replay (tools/replay.py): Table 3 re-prices with core/friction.py (imported): entry at the BUY note's qliq (from BL-32)
+  else qliq@entry from the logged rows; each exit at its own note qliq when qliq_src=exit, else the entry qliq. A
+  sighting is now a desk VERIFY row in the logging set (past the gate as before, or a real_depth / missing:qliq row
+  carrying qliq=), so labels and sightings stay aligned after the deploy. New Table 4 (read-only): sightings and
+  distinct tokens by qliq at first sight, with sells_1h (s1) > 0 on that row, and how many the floor would cut.
+- Replay 2026-10-31 .. 2026-11-06 (run 2026-11-06 ~19:00 UTC, data through the 18:48 tick): Tables 0-2 are identical
+  to the pre-BL-32 code (1,453 sightings, 4,188 on-time labels). Table 4:
+
+  | qliq at first sight | tokens | with sells_1h > 0 | chat | chat with sells | sightings | with sells |
+  |---|---|---|---|---|---|---|
+  | < 100 | 662 | 97 | 662 | 97 | 663 | 97 |
+  | 100 - 1k | 94 | 73 | 94 | 73 | 94 | 73 |
+  | 1k - 10k | 244 | 182 | 244 | 182 | 248 | 186 |
+  | >= 10k | 436 | 114 | 436 | 114 | 448 | 126 |
+  | na | 0 | 0 | - | - | 0 | 0 |
+  | all | 1,436 | 466 | 1,436 | 466 | 1,453 | 482 |
+
+  Chat's count is the distinct-token row, reproduced exactly. The 10k floor would cut 1,000 of 1,436 tokens (352 of
+  the 466 with sells); 436 stay, 114 of them with sells in the hour.
+  Table 3: 65 random-book trades (desk 0), logged -42.41 USD, re-priced -74.53 USD (the BL-31 step re-pricing gave
+  -45.87). The gap is the 15 trades that entered at qliq < 500 (5 USD > 1% of the real side): -5.35 -> -39.32 USD
+  (ATOF qliq 1, LOIRD 0, UnityCoded 3 x2, FFOT 5 and 9: near-total losses once impact is priced); the floor now blocks
+  such entries. The 43 trades that entered at qliq >= 10k: -25.23 -> -23.71 USD (impact under 0.05%, and no 5% step).
+- Smoke 2026-11-06 (scratch copy of data/, real requests, nothing under data/ changed): 16 ticks 18:54 - 19:28 UTC
+  (9 back to back, then 7 at 5 min). Tick 1: 18 re-checks, 26 requests in 10.2 s; one row "desk,BOOK,,,RESTART,gate_b,
+  card=BL-32 since=2026-11-06T18:54:32Z prev_since=2026-11-06T17:33:13Z books=desk,baseline refill=none", report state
+  gate_restart "BL-32"; the twin's MONERO closed time_stop with note "impact_pct=0.0109 qliq=44596 qliq_src=exit".
+  VERIFY rows of the first 9 ticks: 41 SKIP real_depth (12 with the full keys, 29 without), 5 WATCH with keys; of the
+  18 re-checked tokens the real desk had logged earlier, the 4 without keys now were drained pools (liq 0-3 USD, read
+  back from DexScreener), which the old gate would also have skipped as liquidity without keys. Example:
+  "VERIFY,NOTF,...,SKIP,real_depth,first_seen=2026-11-06T15:18:14Z checks=11 goplus=skipped until=2026-11-07T18:54:32Z
+  b1=12 s1=0 b24=43 s24=0 liq=67370 dex=uniswap:v4 qliq=2352 pair_age=219 token_age=219". 19:12: the twin picked
+  MONERO again, SKIP reentry_cooldown (BL-31). 19:28: twin BUY XTruth Oil 0x30b045... usd=5.00, qliq 69,202, liq
+  29,001,478, trades.csv friction_pct 3.0072 note "impact_pct=0.0072 qliq=69202 qliq_src=entry" (the old model: 3%).
+  0 desk PASS. labels_calls per tick: real ticks 2026-11-05 max 1 (205 of 285 ticks 1, 80 ticks 0), 2026-11-06 to
+  18:48 max 1 (161 / 55); smoke max 1 (7 of 16 ticks 1); budget max 2 kept. Requests per tick 3-26, max 11.8 s.
+- Tests: tests/test_depth.py (25): config and DEX_FIELDS order; floor edges 9,999 / 10,000 / 0 / na (and 9,999.99,
+  10,000.0) in dex_skip, universe_skip and hard_skip; total liq no longer a rule; order (missing fields first, real_depth
+  before asset, sells and age); the real facts() at the edges with no GoPlus call below the floor, "na" = missing:qliq,
+  no request added; the desk and the twin get the same universe_skip() from the real facts and its dex dict, one config
+  number moves both; real_depth final for 24 h (due again after), a gate kill, a watched lead ends without GoPlus;
+  ticket cap on qliq not liq; friction parts, entry, exit at this tick's qliq, the entry fallback, the no-qliq
+  thin_pct fallback, the 100% cap (proceeds 0), report/live priced the same way, both books one function; the logging
+  set on a fixed tick (old set + new token only, keys on exactly those rows, labels_calls <= 2), labels follow a
+  real_depth skip, logged() never raises; Gate B restart once with its row and no refill, once across a reload, a day
+  roll and a Monday (weekly refills as built, report since moved), old closes history only, fresh state no second row.
+  Old tests updated: GOOD gains qliq 40,000; the 3/5% step and the 50k total floor replaced by real_depth and the new
+  friction (round trips by hand, exits' E, liquidation value, live.json values, alerts at qliq 43,210, replay
+  re-pricing, fresh_pairs() with half the liquidity on the ETH side); BL-27's "entry_qliq changes no decision" becomes
+  "entry qliq moves fills, never a decision". 375 pass on 3.13 (348 before).
+
 ## Open items (detail)
 - Open items:
   - BL-7 done only after 24h of green runs, no overlap, one TICK row per run. The TICK rows show the real run rate for Gate A (90%).

@@ -2,7 +2,7 @@ import unittest
 
 from core.verify import DEX_FIELDS, GOPLUS_FIELDS, REQUIRED, dex_skip, hard_skip, lp_unknown
 
-GOOD = {"symbol": "TEST", "price": 0.001, "liq_usd": 80_000, "age_min": 60, "sells_1h": 40,
+GOOD = {"symbol": "TEST", "price": 0.001, "liq_usd": 80_000, "age_min": 60, "sells_1h": 40, "qliq": 40_000,
         "mint_open": False, "freeze_or_blacklist": False, "honeypot": False,
         "buy_tax_pct": 0, "sell_tax_pct": 0, "lp_locked_pct": 100, "dev_pct": 3,
         "top10_pct": 20, "launchpad": "clanker", "risk_flags": []}
@@ -29,7 +29,7 @@ class VerifyTest(unittest.TestCase):
     def test_thresholds(self):
         cases = {"honeypot": dict(honeypot=True), "mint_open": dict(mint_open=True),
                  "freeze_or_blacklist": dict(freeze_or_blacklist=True),
-                 "liquidity": dict(liq_usd=49_999), "lp_locked": dict(lp_locked_pct=89),
+                 "real_depth": dict(qliq=9_999), "lp_locked": dict(lp_locked_pct=89),
                  "dev_pct": dict(dev_pct=11), "top10_pct": dict(top10_pct=36),
                  "too_young": dict(age_min=14), "too_old": dict(age_min=48 * 60 + 1),
                  "buy_tax": dict(buy_tax_pct=11), "sell_tax": dict(sell_tax_pct=11)}
@@ -57,7 +57,8 @@ class VerifyTest(unittest.TestCase):
         for k in ["mint_open", "honeypot", "top10_pct"]:
             del f[k]
         self.assertEqual(hard_skip(f), "goplus_not_ready")
-        self.assertEqual(hard_skip(dict(f, liq_usd=49_999)), "liquidity")  # final even while waiting
+        self.assertEqual(hard_skip(dict(f, qliq=9_999)), "real_depth")  # final even while waiting (BL-32)
+        self.assertEqual(hard_skip(dict(f, liq_usd=1)), "goplus_not_ready")  # total liq no longer decides
 
     def test_dexscreener_gap_stays_final(self):
         f = dict(GOOD, goplus_pending=["mint_open"])
@@ -94,13 +95,14 @@ class DexFirstTest(unittest.TestCase):
     def test_gate_order(self):
         self.assertEqual(dex_skip(dict(GOOD, fetch_errors=["ds_pairs"], liq_usd=None)), "fetch_error")
         self.assertEqual(dex_skip(dict(GOOD, symbol=None, liq_usd=1)), "missing:symbol")
-        self.assertEqual(dex_skip(dict(GOOD, liq_usd=49_999)), "liquidity")
+        self.assertEqual(dex_skip(dict(GOOD, qliq=9_999)), "real_depth")  # BL-32
+        self.assertEqual(dex_skip(dict(GOOD, liq_usd=49_999)), "")  # the 50k total floor is not a trading rule
         self.assertEqual(dex_skip(GOOD), "")
         self.assertEqual(dex_skip({k: GOOD[k] for k in DEX_FIELDS}), "")  # GoPlus fields not needed
 
     def test_label_shift_only_never_outcome(self):
         """Every lead the gate settles was a skip before BL-20 too (never PASS or WATCH); only the label can move."""
-        low = dict(GOOD, liq_usd=40_000)
+        low = dict(GOOD, qliq=4_000)  # BL-32: thin on real depth
         pending = {k: v for k, v in low.items() if k != "mint_open"}
         cases = {  # today's facts (GoPlus called) -> today's label
             "honeypot": dict(low, honeypot=True),
@@ -111,12 +113,12 @@ class DexFirstTest(unittest.TestCase):
             "nobody_can_sell": dict(low, sells_1h=0),
             "missing:top10_pct": {k: v for k, v in low.items() if k != "top10_pct"},
             "fetch_error": dict(low, fetch_errors=["goplus"]),  # was RETRY, final skip anyway after
-            "liquidity": dict(pending, goplus_pending=["mint_open"]),  # watched lead, pool too thin
+            "real_depth": dict(pending, goplus_pending=["mint_open"]),  # watched lead, pool too thin
         }
         for was, f in cases.items():
             self.assertEqual(hard_skip(f), was)
-            self.assertEqual(hard_skip(gated(f)), "liquidity", was)  # the label after BL-20
-        self.assertEqual(hard_skip(gated(low)), hard_skip(low))  # plain liquidity skip: no change
+            self.assertEqual(hard_skip(gated(f)), "real_depth", was)  # the label after BL-20 (BL-32 name)
+        self.assertEqual(hard_skip(gated(low)), hard_skip(low))  # plain real_depth skip: no change
         # missing DexScreener fields and failed DexScreener requests: same label as today
         no_price = {k: v for k, v in dict(GOOD, honeypot=True).items() if k != "price"}
         self.assertEqual((hard_skip(no_price), hard_skip(gated(no_price))), ("missing:price", "missing:price"))
@@ -124,7 +126,7 @@ class DexFirstTest(unittest.TestCase):
         self.assertEqual((hard_skip(ds_down), hard_skip(gated(ds_down))), ("fetch_error", "fetch_error"))
 
     def test_gate_open_means_goplus_decides_as_before(self):
-        for f in (GOOD, dict(GOOD, honeypot=True), dict(GOOD, top10_pct=50), dict(GOOD, liq_usd=50_000)):
+        for f in (GOOD, dict(GOOD, honeypot=True), dict(GOOD, top10_pct=50), dict(GOOD, qliq=10_000)):
             self.assertEqual(dex_skip(f), "")
         self.assertEqual(hard_skip(dict(GOOD, honeypot=True)), "honeypot")
 
@@ -160,7 +162,7 @@ class LpUnknownTest(unittest.TestCase):
         cases = {"honeypot": dict(honeypot=True), "mint_open": dict(mint_open=True),
                  "freeze_or_blacklist": dict(freeze_or_blacklist=True),
                  "risk_flag:selfdestruct": dict(risk_flags=["selfdestruct"]),
-                 "nobody_can_sell": dict(sells_1h=0), "liquidity": dict(liq_usd=49_999),
+                 "nobody_can_sell": dict(sells_1h=0), "real_depth": dict(qliq=9_999),
                  "dev_pct": dict(dev_pct=11), "top10_pct": dict(top10_pct=36),
                  "too_young": dict(age_min=14), "too_old": dict(age_min=48 * 60 + 1),
                  "buy_tax": dict(buy_tax_pct=11), "sell_tax": dict(sell_tax_pct=11)}

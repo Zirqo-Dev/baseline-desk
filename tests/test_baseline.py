@@ -22,13 +22,13 @@ from tests.test_verify import GOOD
 
 def dex(i, **kw):
     """DexScreener side of a lead that passes dex_skip()."""
-    d = {k: GOOD[k] for k in ["symbol", "price", "liq_usd", "age_min", "sells_1h"]}
+    d = {k: GOOD[k] for k in ["symbol", "price", "liq_usd", "age_min", "sells_1h", "qliq"]}  # qliq: BL-32
     return {**d, "pair": f"0x{i:064x}", "launchpad": "other", "fetch_errors": [], **kw}
 
 
 class EligibleTest(unittest.TestCase):
     def test_rules(self):
-        seen = {addr(1): dex(1), addr(2): dex(2, sells_1h=0), addr(3): dex(3, liq_usd=1),
+        seen = {addr(1): dex(1), addr(2): dex(2, sells_1h=0), addr(3): dex(3, qliq=1),
                 addr(4): dex(4, fetch_errors=["ds_pairs"]), addr(5): {"pair": "", "fetch_errors": []},
                 addr(6): dex(6)}
         self.assertEqual(baseline.eligible(seen, held={addr(6)}), [addr(1)])
@@ -127,7 +127,7 @@ class BaselineTickTest(unittest.TestCase):
         self.due_in(1)
         self.found = [addr(i) for i in range(1, 5)]
         self.facts[addr(1)] = dict(good(1), sells_1h=0)                 # excluded: nobody can sell
-        self.facts[addr(2)] = dict(good(2), liq_usd=1)                  # excluded: goplus=skipped (liquidity)
+        self.facts[addr(2)] = dict(good(2), qliq=1)                     # excluded: goplus=skipped (real_depth)
         self.facts[addr(3)] = dict(good(3), honeypot=True)              # included: desk SKIP honeypot
         self.facts[addr(4)] = dict(good(4), goplus_pending=["honeypot"], honeypot=None)  # included: WATCH
         n = self.run_tick(0)
@@ -171,8 +171,9 @@ class BaselineTickTest(unittest.TestCase):
         self.assertTrue(row["detail"].startswith("usd="))
         with (self.root / "data/daily/2026-10-23/trades.csv").open() as fh:
             trades = [r for r in csv.DictReader(fh) if r["book"] == "baseline"]
-        # 80k liquidity: 5% thin + 1% Clanker fee
-        self.assertEqual([(t["side"], t["launchpad"], t["friction_pct"]) for t in trades], [("BUY", "clanker", "6.0")])
+        # BL-32: 3% + 1% Clanker fee + impact 100 x 5 / 40,000 qliq = 0.0125% (80k total liq no longer steps to 5%)
+        self.assertEqual([(t["side"], t["launchpad"], t["friction_pct"]) for t in trades], [("BUY", "clanker", "4.0125")])
+        self.assertEqual(trades[0]["note"], "impact_pct=0.0125 qliq=40000 qliq_src=entry")
 
     # ---- separate MAX_OPEN ----
     def test_max_open_is_per_book(self):
@@ -364,7 +365,7 @@ class DeskUnchangedTest(unittest.TestCase):
             b.save()
             t.found = [addr(i) for i in range(1, 15)]
             t.facts.update({addr(1): good(1), addr(2): dict(good(2), honeypot=True),
-                            addr(3): dict(good(3), liq_usd=1), addr(4): dict(good(4), sells_1h=0)})
+                            addr(3): dict(good(3), liq_usd=1, qliq=1), addr(4): dict(good(4), sells_1h=0)})
             run(0)
             for i in (1, 2, 3, 5, 6):  # desk and baseline held tokens move
                 t.quotes[addr(i)] = {"price": GOOD["price"] * 1.5, "liq_usd": GOOD["liq_usd"], "source": "pool"}
@@ -436,6 +437,9 @@ class DeskUnchangedTest(unittest.TestCase):
         self.assertGreaterEqual(on[2]["baseline"]["ticks_since_buy"], baseline.CADENCE)
 
 
+QL = 50_000  # BL-32: entry qliq of the liquidation-value tests
+
+
 class LiquidationValueTest(unittest.TestCase):
     """report.json prices open positions as if sold now, at the friction a real exit would pay (CLAUDE.md 6)."""
 
@@ -443,25 +447,40 @@ class LiquidationValueTest(unittest.TestCase):
         self.tmp = tempfile.TemporaryDirectory()
         self.root = Path(self.tmp.name)
         self.book = Book(baseline.NAME, self.root)
-        desk_mod.buy(self.book, "0xa", dict(good(1), price=1.0, liq_usd=150_000, launchpad="other"), T0)
+        desk_mod.buy(self.book, "0xa", dict(good(1), price=1.0, liq_usd=150_000, qliq=QL, launchpad="other"), T0)
 
     def tearDown(self):
         self.tmp.cleanup()
 
+    @staticmethod
+    def keep(qty, price, qliq, fee=0.0):
+        """Share of the quote kept on a sale of qty at price: 1 - (3 + fee + 100 x qty x price / qliq) / 100."""
+        return 1 - (3.0 + fee + 100 * qty * price / qliq) / 100
+
     def test_sold_at_last_quote_minus_sell_friction(self):
-        p = self.book.positions["0xa"]
-        self.assertAlmostEqual(report.liq_value(self.book), self.book.cash + p["qty"] * 1.0 * 0.97)
+        p = self.book.positions["0xa"]  # no mark yet: the entry qliq prices the sale
+        self.assertAlmostEqual(report.liq_value(self.book),
+                               self.book.cash + p["qty"] * 1.0 * self.keep(p["qty"], 1.0, QL))
         self.assertLess(report.liq_value(self.book), self.book.value())
 
-    def test_uses_the_last_quote_liquidity_and_launchpad(self):
-        # the pool thins under 100k: 5% per side, and a Clanker pool adds its 1% fee
-        exits.check(self.book, lambda a: {"price": 1.1, "liq_usd": 95_000, "source": "pool"},
+    def test_uses_the_last_quote_qliq_and_launchpad(self):
+        # BL-32: the last mark's qliq prices the sale (not its total liquidity); a Clanker pool adds its 1% fee
+        exits.check(self.book, lambda a: {"price": 1.1, "liq_usd": 95_000, "source": "pool", "qliq": 2_000},
                     T0 + timedelta(minutes=5))
         p = self.book.positions["0xa"]
-        self.assertEqual(p["last_liq_usd"], 95_000)
-        self.assertAlmostEqual(report.liq_value(self.book), self.book.cash + p["qty"] * 1.1 * 0.95)
+        self.assertEqual((p["last_liq_usd"], p["last_qliq"]), (95_000, 2_000))
+        self.assertAlmostEqual(report.liq_value(self.book),
+                               self.book.cash + p["qty"] * 1.1 * self.keep(p["qty"], 1.1, 2_000))
         p["launchpad"] = "clanker"
-        self.assertAlmostEqual(report.liq_value(self.book), self.book.cash + p["qty"] * 1.1 * 0.94)
+        self.assertAlmostEqual(report.liq_value(self.book),
+                               self.book.cash + p["qty"] * 1.1 * self.keep(p["qty"], 1.1, 2_000, fee=1.0))
+        # a later mark without qliq falls back to the entry qliq, never to an older mark
+        exits.check(self.book, lambda a: {"price": 1.1, "liq_usd": 95_000, "source": "pool"},
+                    T0 + timedelta(minutes=10))
+        self.assertNotIn("last_qliq", p)
+        p["launchpad"] = "other"
+        self.assertAlmostEqual(report.liq_value(self.book),
+                               self.book.cash + p["qty"] * 1.1 * self.keep(p["qty"], 1.1, QL))
 
     def test_same_as_a_real_exit(self):
         expected = report.liq_value(self.book)

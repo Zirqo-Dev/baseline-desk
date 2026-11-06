@@ -137,18 +137,21 @@ class CellTest(unittest.TestCase):
 
 
 class RepriceTest(Data):
-    def buy(self, liq, book="desk", ts="2026-11-01T01:00:00Z", usd=5.0, price=0.01, launchpad="other"):
-        fill, pct = friction.buy_fill(price, liq, launchpad)
+    """BL-32: rows logged by core/friction.py itself (base + fee + impact), so a re-price at the same depth is exact."""
+
+    def buy(self, liq, book="desk", ts="2026-11-01T01:00:00Z", usd=5.0, price=0.01, launchpad="other", qliq=None):
+        q = liq if qliq is None else qliq
+        fill, pct = friction.buy_fill(price, usd, q, launchpad)
         return {"ts": ts, "book": book, "side": "BUY", "symbol": "S", "address": a(1), "qty": str(usd / fill),
                 "usd": str(usd), "intended_price": str(price), "fill_price": str(fill), "friction_pct": str(pct),
                 "liq_usd": str(liq), "launchpad": launchpad, "reason": "entry", "pnl_usd": "", "note": ""}
 
-    def sell(self, buy, share, quote, liq, reason, ts="2026-11-01T02:00:00Z"):
-        fill, pct = friction.sell_fill(quote, liq, buy["launchpad"])
+    def sell(self, buy, share, quote, qliq, reason, ts="2026-11-01T02:00:00Z", note=""):
         qty = float(buy["qty"]) * share
+        fill, pct = friction.sell_fill(quote, qty, qliq, buy["launchpad"])
         return {**buy, "ts": ts, "side": "SELL", "qty": str(qty), "usd": str(qty * fill), "intended_price": str(quote),
-                "fill_price": str(fill), "friction_pct": str(pct), "liq_usd": str(liq), "reason": reason,
-                "pnl_usd": str(qty * fill - share * float(buy["usd"]))}
+                "fill_price": str(fill), "friction_pct": str(pct), "liq_usd": str(qliq), "reason": reason,
+                "pnl_usd": str(qty * fill - share * float(buy["usd"])), "note": note}
 
     def test_matches_core_friction(self):
         b = self.buy(150_000, launchpad="clanker")
@@ -156,13 +159,24 @@ class RepriceTest(Data):
         logged = sum(float(s["pnl_usd"]) for s in sells)
         self.assertAlmostEqual(replay.reprice(b, sells, "150000")["pnl"], logged, places=9)  # same depth: same P&L
         r = replay.reprice(b, sells, "2000")
-        fill_in, pct_in = friction.buy_fill(0.01, 2000, "clanker")
+        fill_in, pct_in = friction.buy_fill(0.01, 5.0, 2000, "clanker")
         qty = 5.0 / fill_in
-        want = sum(sh * qty * friction.sell_fill(q, 2000, "clanker")[0] - sh * 5.0 for sh, q in ((0.33, 0.014), (0.67, 0.009)))
+        want = sum(sh * qty * friction.sell_fill(q, sh * qty, 2000, "clanker")[0] - sh * 5.0
+                   for sh, q in ((0.33, 0.014), (0.67, 0.009)))
         self.assertAlmostEqual(r["pnl"], want, places=9)
-        self.assertEqual(pct_in, 6.0)  # 5% thin + 1% Clanker pool fee
+        self.assertAlmostEqual(pct_in, 3 + 1 + 100 * 5 / 2000)  # BL-32: base + Clanker fee + impact, no 5% step
         self.assertLess(r["pnl"], logged)
         self.assertIsNone(replay.reprice(b, sells, "na"))
+
+    def test_exit_qliq_from_the_note_when_logged(self):
+        """BL-32 rows: a SELL with qliq_src=exit is re-priced at its own qliq; qliq_src=entry keeps the entry qliq."""
+        b = self.buy(150_000, qliq=20_000)
+        exit_ = self.sell(b, 1.0, 0.008, 3_000, "liq_pull", note="impact_pct=x qliq=3000 qliq_src=exit")
+        self.assertAlmostEqual(replay.reprice(b, [exit_], "20000")["pnl"], float(exit_["pnl_usd"]), places=9)
+        entry = self.sell(b, 1.0, 0.008, 20_000, "time_stop", note="impact_pct=x qliq=20000 qliq_src=entry")
+        self.assertAlmostEqual(replay.reprice(b, [entry], "20000")["pnl"], float(entry["pnl_usd"]), places=9)
+        self.assertEqual(replay.note_qliq({"note": "quote=fallback impact_pct=0.1 qliq=12 qliq_src=exit"}, "exit"), 12)
+        self.assertIsNone(replay.note_qliq({"note": "impact_pct=na qliq=na qliq_src=none"}))
 
     def test_trade_table_entry_qliq_size_and_counts(self):
         t1, t2, t3 = "2026-11-01T01:00:00Z", "2026-11-01T03:00:00Z", "2026-11-01T05:00:00Z"
@@ -182,7 +196,7 @@ class RepriceTest(Data):
         out = self.run_cli("--from", D1, "--to", D1)
         self.assertIn("trades: 3, with qliq: 2; size above 10% of qliq: 2; size above 100% of qliq: 0", out)
         self.assertIn("evidence only, no rule change", out)
-        self.assertIn("not a friction model", out)
+        self.assertIn("a plain ratio of two logged numbers", out)
         self.assertIn("n too small", out)
 
 

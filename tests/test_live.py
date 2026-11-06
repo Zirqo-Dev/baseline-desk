@@ -20,7 +20,11 @@ N = {"seen": 7, "new": 3, "checked": 4, "dex_only": 2, "goplus": 2, "passed": 1,
 
 
 def traded(i, qliq=12345):
-    return dict(good(i), trade={"b1": 1, "s1": 1, "b24": 9, "s24": 9, "liq": 60000, "dex": "uniswap:v4", "qliq": qliq})
+    """As the real facts(): the top-level qliq (BL-32) is the logged trade qliq; "na" leaves good()'s in place."""
+    d = dict(good(i), trade={"b1": 1, "s1": 1, "b24": 9, "s24": 9, "liq": 60000, "dex": "uniswap:v4", "qliq": qliq})
+    if isinstance(qliq, (int, float)):
+        d["qliq"] = qliq
+    return d
 
 
 def trades(root):
@@ -48,7 +52,7 @@ class ShapeTest(Root):
         desk.buy(self.desk, addr(2), dict(good(2), price=2.0, liq_usd=80_000), T0 + timedelta(minutes=5))
         self.desk.save()
         bl = Book(baseline.NAME, self.root)
-        desk.buy(bl, addr(3), dict(traded(3, qliq="na"), price=0.5, liq_usd=60_000, launchpad="clanker"), T0)
+        desk.buy(bl, addr(3), dict(traded(3, qliq=20_000), price=0.5, liq_usd=60_000, launchpad="clanker"), T0)
         bl.save()
 
     def build(self, minutes=20):
@@ -81,9 +85,11 @@ class ShapeTest(Root):
             self.assertAlmostEqual(card["value_usd"], report.liq_value(b), places=4)
             self.assertAlmostEqual(card["cash_usd"], b.cash, places=4)
             self.assertAlmostEqual(card["cash_usd"] + sum(p["value_usd"] for p in card["open"]), card["value_usd"], places=3)
-        p = d["books"]["baseline"]["open"][0]  # clanker at 60k: 5% + 1% each side
-        self.assertAlmostEqual(p["value_usd"], 5.0 / 1.06 * 0.94, places=4)
-        self.assertAlmostEqual(p["value_pct"], (0.94 / 1.06 - 1) * 100, places=2)
+        p = d["books"]["baseline"]["open"][0]  # BL-32, clanker at qliq 20k: 3% + 1% + impact each side
+        qty = 5.0 / (0.5 * (1 + (4 + 100 * 5.0 / 20_000) / 100))
+        value = qty * 0.5 * (1 - (4 + 100 * qty * 0.5 / 20_000) / 100)
+        self.assertAlmostEqual(p["value_usd"], value, places=4)
+        self.assertAlmostEqual(p["value_pct"], (value / 5.0 - 1) * 100, places=2)
 
     def test_price_pct_is_the_exit_row_pct_and_liq_is_the_last(self):
         exits.check(self.desk, lambda a: {"price": 1.1, "liq_usd": 140_000, "source": "pool"}, T0 + timedelta(minutes=10))
@@ -100,7 +106,9 @@ class ShapeTest(Root):
         self.assertEqual(p["ladders_done"], ["ladder_1"])
         self.assertAlmostEqual(p["cost_usd"], 5.0 * (1 - 0.33), places=4)  # the remaining qty's cost
         self.assertAlmostEqual(p["cost_usd"], pos["cost_usd"], places=4)
-        self.assertAlmostEqual(p["value_usd"], pos["qty"] * friction.sell_fill(1.5, 150_000, pos["launchpad"])[0], places=4)
+        self.assertAlmostEqual(p["value_usd"],  # BL-32: no qliq on the quote, so the entry qliq prices the sale
+                               pos["qty"] * friction.sell_fill(1.5, pos["qty"], pos["entry_qliq"], pos["launchpad"])[0],
+                               places=4)
         self.assertAlmostEqual(p["value_pct"], (p["value_usd"] / p["cost_usd"] - 1) * 100, places=1)
 
     def test_age_never_negative(self):
@@ -113,8 +121,8 @@ class ShapeTest(Root):
 
     def test_qliq_from_entry_or_null(self):
         d = self.build()
-        self.assertEqual([p["qliq"] for p in d["books"]["desk"]["open"]], [12345, None])  # good(2) has no trade
-        self.assertIsNone(d["books"]["baseline"]["open"][0]["qliq"])  # "na" on the row
+        self.assertEqual([p["qliq"] for p in d["books"]["desk"]["open"]], [12345, 40_000])  # BL-32: the facts' qliq
+        self.assertEqual(d["books"]["baseline"]["open"][0]["qliq"], 20_000)
         b = Book("desk", self.root)
         del b.positions[addr(1)]["entry_qliq"]  # a position bought before BL-27
         b.save()
@@ -232,47 +240,40 @@ class DeskUnchangedTest(unittest.TestCase):
         self.assertEqual(bl(on[1]), bl(broken[1]))
         self.assertEqual(on[2][baseline.NAME], broken[2][baseline.NAME])
 
-    def test_entry_qliq_changes_no_decision(self):
-        def run(root, patches):
+    def test_entry_qliq_moves_fills_never_a_decision(self):
+        """BL-32 (was BL-27's "entry_qliq changes no decision"): the entry qliq now prices the fills (entry, and the
+        exits when the quote has no qliq), but above the floor it never changes a verdict, an exit or a row."""
+        def run(root, mult):
             self.root, self.found, self.facts, self.quotes, self.order = root, [], {}, {}, []
-            for p in patches:
-                p.start()
-            try:
-                b = Book(baseline.NAME, root)
-                b.s["ticks_since_buy"] = baseline.CADENCE - 1
-                b.save()
-                self.found = [addr(i) for i in range(1, 8)]
-                self.facts.update({addr(i): traded(i, qliq=100 * i) for i in range(1, 4)})
-                self.run_tick(0)
-                st = json.loads((root / config.STATE).read_text())
-                bought = sorted((p.get("entry_qliq") for n in report.BOOKS for p in st[n]["positions"].values()), key=str)
-                for i in range(1, 8):  # up, then down: ladder and hard stop for both books
-                    self.quotes[addr(i)] = {"price": good(i)["price"] * 1.5, "liq_usd": good(i)["liq_usd"], "source": "pool"}
-                self.run_tick(5)
-                for i in range(1, 8):
-                    self.quotes[addr(i)] = {"price": good(i)["price"] * 0.5, "liq_usd": good(i)["liq_usd"], "source": "pool"}
-                self.run_tick(10)
-            finally:
-                for p in patches:
-                    p.stop()
-            state = json.loads((root / config.STATE).read_text())
-            for name in report.BOOKS:
-                for p in state[name]["positions"].values():
-                    p.pop("entry_qliq", None)
-            return tick_rows(root), trades(root), {k: state[k] for k in report.BOOKS + ["leads"]}, bought
+            b = Book(baseline.NAME, root)
+            b.s["ticks_since_buy"] = baseline.CADENCE - 1
+            b.save()
+            self.found = [addr(i) for i in range(1, 8)]
+            self.facts.update({addr(i): traded(i, qliq=mult * i) for i in range(1, 4)})
+            self.run_tick(0)
+            st = json.loads((root / config.STATE).read_text())
+            bought = sorted(p.get("entry_qliq") for n in report.BOOKS for p in st[n]["positions"].values())
+            for i in range(1, 8):  # up, then down: ladder and hard stop for both books
+                self.quotes[addr(i)] = {"price": good(i)["price"] * 1.5, "liq_usd": good(i)["liq_usd"], "source": "pool"}
+            self.run_tick(5)
+            for i in range(1, 8):
+                self.quotes[addr(i)] = {"price": good(i)["price"] * 0.5, "liq_usd": good(i)["liq_usd"], "source": "pool"}
+            self.run_tick(10)
+            return tick_rows(root), trades(root), bought
 
         with tempfile.TemporaryDirectory() as a, tempfile.TemporaryDirectory() as b:
-            with_q = run(Path(a), [])
-            without = run(Path(b), [mock.patch.object(desk, "entry_qliq", return_value=None)])
-        self.assertEqual(with_q[3], [100, 200, 200, 300])  # desk bought 1-3, the baseline one of them: qliq stored
-        self.assertEqual(without[3], [None] * 4)
+            thin, deep = run(Path(a), 10_000), run(Path(b), 1_000_000)
+        self.assertEqual(thin[2], [10_000, 20_000, 20_000, 30_000])  # desk bought 1-3, the baseline one of them
+        self.assertEqual(deep[2], [1_000_000, 2_000_000, 2_000_000, 3_000_000])
         verdicts = lambda rows: [(r["book"], r["stage"], r["address"], r["action"], r["reason"])
                                  for r in rows if r["stage"] != "TICK"]
-        self.assertEqual(verdicts(with_q[0]), verdicts(without[0]))
-        self.assertTrue([t for t in with_q[1] if t["side"] == "SELL"])
-        self.assertEqual(with_q[1], without[1])
-        self.assertEqual(with_q[2], without[2])
-        self.assertEqual([r["detail"] for r in with_q[0]], [r["detail"] for r in without[0]])
+        self.assertEqual(verdicts(thin[0]), verdicts(deep[0]))
+        sides = lambda ts_: [(t["book"], t["side"], t["address"], t["reason"]) for t in ts_]
+        self.assertTrue([t for t in thin[1] if t["side"] == "SELL"])
+        self.assertEqual(sides(thin[1]), sides(deep[1]))
+        for t, u in zip(thin[1], deep[1]):  # the thinner pool always pays more friction, on every side
+            self.assertGreater(float(t["friction_pct"]), float(u["friction_pct"]))
+            self.assertIn("qliq_src=entry", t["note"])
 
 
 if __name__ == "__main__":

@@ -26,8 +26,8 @@ def dex(i, **kw):
     return {**d, "pair": f"0x{i:064x}", "launchpad": "other", "fetch_errors": [], "asset": "", **kw}
 
 
-def facts(symbol="TEST", liq=150_000, price=1.0):
-    return {"symbol": symbol, "price": price, "liq_usd": liq, "launchpad": "uniswap"}
+def facts(symbol="TEST", liq=150_000, price=1.0, qliq=150_000):
+    return {"symbol": symbol, "price": price, "liq_usd": liq, "launchpad": "uniswap", "qliq": qliq}
 
 
 class AssetKindTest(unittest.TestCase):
@@ -76,7 +76,9 @@ class UniverseTest(unittest.TestCase):
         self.assertEqual(verify.universe_skip(dex(1)), "")
         self.assertEqual(verify.universe_skip(dex(1, fetch_errors=["ds_pairs"])), "fetch_error")
         self.assertEqual(verify.universe_skip({"fetch_errors": []}), "missing:symbol")
-        self.assertEqual(verify.universe_skip(dex(1, liq_usd=1, asset="stable")), "liquidity")
+        self.assertEqual(verify.universe_skip(dex(1, qliq=1, asset="stable")), "real_depth")  # BL-32, before asset
+        self.assertEqual(verify.universe_skip(dex(1, liq_usd=1, asset="stable")), "asset:stable")  # total liq: no rule
+        self.assertEqual(verify.universe_skip(dex(1, qliq=None, sells_1h=0)), "missing:qliq")
         self.assertEqual(verify.universe_skip(dex(1, asset="stable", sells_1h=0)), "asset:stable")
         self.assertEqual(verify.universe_skip(dex(1, asset="wrapped")), "asset:wrapped")
         self.assertEqual(verify.universe_skip(dex(1, asset="quote")), "asset:quote")
@@ -93,8 +95,10 @@ class UniverseTest(unittest.TestCase):
         self.assertEqual((verify.hard_skip(young), verify.universe_skip(young)), ("", ""))
         with mock.patch.dict(config.SKIP_IF, {"min_age_min": 45}):
             self.assertEqual((verify.hard_skip(young), verify.universe_skip(young)), ("too_young", "too_young"))
-        with mock.patch.dict(config.SKIP_IF, {"min_liquidity_usd": 90_000}):
-            self.assertEqual((verify.hard_skip(young), verify.universe_skip(young)), ("liquidity", "liquidity"))
+        with mock.patch.dict(config.SKIP_IF, {"min_qliq_usd": 90_000}):  # BL-32: the floor moves both books
+            self.assertEqual((verify.hard_skip(young), verify.universe_skip(young)), ("real_depth", "real_depth"))
+        with mock.patch.dict(config.SKIP_IF, {"min_liquidity_usd": 90_000}):  # the logging floor moves neither
+            self.assertEqual((verify.hard_skip(young), verify.universe_skip(young)), ("", ""))
         with mock.patch.object(verify, "sells_skip", return_value="nobody_can_sell"):
             self.assertEqual((verify.hard_skip(young), verify.universe_skip(young)),
                              ("nobody_can_sell", "nobody_can_sell"))

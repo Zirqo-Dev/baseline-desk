@@ -449,8 +449,10 @@ def facts(address, now=None, client=None, goplus_ok=None, dex=None):
     is used, returns None: the caller defers the lead.
 
     `dex` (BL-8): a dict filled with the DexScreener side before any GoPlus step, also when the
-    lead is deferred: symbol, price, liq_usd, age_min, sells_1h, asset, pair, fetch_errors and launchpad
+    lead is deferred: symbol, price, liq_usd, age_min, sells_1h, qliq, asset, pair, fetch_errors and launchpad
     from pool shape only (no GoPlus creator). The return value is the same with or without it.
+    qliq (BL-32) = quote_liq() of the chosen pair (the BL-28 value, a number; missing = absent), read by dex_skip()'s
+    real-depth floor, desk.size()'s ticket cap and core/friction.py's price impact.
     asset (BL-31): core/verify.py asset_kind() ("stable", "wrapped", "quote" or ""), from the pairs already fetched;
     dex_skip() turns a kind into the gate skip asset:<kind>, before any GoPlus call.
     """
@@ -467,6 +469,8 @@ def facts(address, now=None, client=None, goplus_ok=None, dex=None):
         out.update(dex_facts(pair, side, now))
         out["sells_1h"] = total_sells_1h(pairs, address)
         out["asset"] = asset_kind(out.get("symbol"), out.get("price"), address, *side_counts(pairs, address))  # BL-31
+        q = quote_liq(pair, address)  # BL-32: real depth for the floor, the ticket cap and friction; no request
+        out["qliq"] = q if q != "na" else None  # "na" = missing (skip missing:qliq); 0 is real
         if out.get("age_min") is None:
             gt_pool = _fetch(c, "gt", f"{GT}/pools/{pair_address}", errors)
             created = ((gt_pool or {}).get("data") or {}).get("attributes", {}).get("pool_created_at")
@@ -506,7 +510,8 @@ def facts(address, now=None, client=None, goplus_ok=None, dex=None):
 
 # ---------------------------------------------------------------- EXIT quote
 def quote(address, pair="", client=None):
-    """Price and liquidity of a held token: {"price", "liq_usd", "source": "pool" | "fallback"}.
+    """Price and liquidity of a held token: {"price", "liq_usd", "source": "pool" | "fallback", "qliq"}.
+    qliq (BL-32, friction only, never an exit rule) = quote_liq() of the pair read, left out when "na".
 
     Reads the pool we bought in. Only when that pool is gone (no pair in the answer, or a 4xx)
     falls back to the highest-liquidity Base pair. A failed request (429, 5xx, timeout) or a
@@ -533,7 +538,8 @@ def quote(address, pair="", client=None):
     if not found:
         return None
     f = dex_facts(found, side, datetime.now(timezone.utc))
-    out = {"price": f["price"], "liq_usd": f["liq_usd"], "source": source}
+    q = quote_liq(found, address)  # BL-32: the exit's real depth, from the pair just read, no request
+    out = {"price": f["price"], "liq_usd": f["liq_usd"], "source": source, "qliq": q if q != "na" else None}
     return {k: v for k, v in out.items() if v is not None}
 
 

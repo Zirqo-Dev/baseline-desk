@@ -102,9 +102,13 @@ class PageKeysTest(Files):
         page = set(re.findall(r"\['(\w+)', '[^']+', [01]\]", script()))
         self.assertEqual(page, set(report.RULES))
 
+    # BL-32 added these gate kills to core/report.py; the site is not changed in BL-32 (BL-43 owns the display), so
+    # until BL-43 the site's token table counts them under Safety. Remove this set when BL-43 updates the page.
+    SITE_LAGS_BL43 = {"real_depth", "missing:qliq"}
+
     def test_gate_kills_match(self):
         js = re.search(r"const GATE = new Set\(\[(.*?)\]\)", script(), re.S).group(1)
-        self.assertEqual(set(re.findall(r"'([^']+)'", js)), report.GATE_KILLS)
+        self.assertEqual(set(re.findall(r"'([^']+)'", js)), report.GATE_KILLS - self.SITE_LAGS_BL43)
 
 
 class LiveKeysTest(unittest.TestCase):

@@ -1,9 +1,11 @@
 """EXECUTE: limits -> fixed ticket -> paper fill minus friction. Paper only.
 
-BL-31 (both books, they share this code): a fixed TICKET_USD ticket, still capped by liq_usd x max_ticket_share
-(below MIN_TICKET = SKIP size, also when cash is short); every SELL starts a COOLDOWN_H re-entry cooldown in that
+BL-31 (both books, they share this code): a fixed TICKET_USD ticket, still capped by the pool (BL-32: qliq x
+max_ticket_share, was liq_usd; below MIN_TICKET = SKIP size, also when cash is short); every SELL starts a COOLDOWN_H re-entry cooldown in that
 book on the address AND the normalized symbol (EXECUTE SKIP reentry_cooldown); a buy whose normalized symbol
 matches an open position of that book is refused as "holding".
+BL-32: fills use core/friction.py (base + launchpad fee + impact 100 x side USD / qliq); the trades.csv note carries
+impact_pct= qliq= qliq_src= (entry on a BUY; exit, entry or none on a SELL, see friction.exit_depth()).
 """
 from datetime import timedelta
 
@@ -12,12 +14,14 @@ from core.book import ts
 from core.verify import norm_symbol
 
 
-def size(cash, liq_usd):
+def size(cash, qliq):
     """Fixed ticket (BL-31). Returns (usd, "") or (0, "size").
 
-    usd = TICKET_USD capped by the pool (liq_usd x max_ticket_share); "size" when that cap is under MIN_TICKET
-    or cash cannot pay the ticket."""
-    pool_cap = liq_usd * config.SKIP_IF["max_ticket_share"]
+    usd = TICKET_USD capped by the pool (BL-32: qliq x max_ticket_share, the real depth, not liq_usd); "size" when
+    that cap is under MIN_TICKET, qliq is unknown, or cash cannot pay the ticket."""
+    if not isinstance(qliq, (int, float)) or isinstance(qliq, bool):
+        return 0.0, "size"
+    pool_cap = qliq * config.SKIP_IF["max_ticket_share"]
     if pool_cap < config.MIN_TICKET:
         return 0.0, "size"
     usd = min(float(config.TICKET_USD), pool_cap)
@@ -71,9 +75,15 @@ def entry_block(book, address, now, symbol=""):
 
 
 def entry_qliq(facts):
-    """BL-27, display only: the real depth (BL-28 qliq) already logged on this tick's row, or None. Never raises."""
-    t = facts.get("trade") if isinstance(facts, dict) else None
-    q = t.get("qliq") if isinstance(t, dict) else None
+    """The real depth at entry, or None. Never raises. BL-27 stored it for display; since BL-32 it is the qliq that
+    priced the buy (facts["qliq"], the same quote_liq() of the same pair as the logged trade qliq) and the exit's
+    fallback depth (friction.exit_depth()). Falls back to the logged trade qliq for facts without a top-level qliq."""
+    if not isinstance(facts, dict):
+        return None
+    q = facts.get("qliq")
+    if q is None:
+        t = facts.get("trade")
+        q = t.get("qliq") if isinstance(t, dict) else None
     return q if isinstance(q, (int, float)) and not isinstance(q, bool) else None
 
 
@@ -89,13 +99,14 @@ def buy(book, address, facts, now, note="", buy_note=""):
     reason = entry_block(book, address, now, sym)
     usd = 0.0
     if not reason:
-        usd, reason = size(book.cash, facts["liq_usd"])
+        usd, reason = size(book.cash, facts.get("qliq"))
     if reason:
         book.task(now, "EXECUTE", sym, address, "SKIP", reason, note)
         book.save()
         return None
 
-    fill, pct = friction.buy_fill(facts["price"], facts["liq_usd"], facts["launchpad"])
+    qliq = entry_qliq(facts)  # BL-32: the real depth at entry prices the buy
+    fill, pct = friction.buy_fill(facts["price"], usd, qliq, facts["launchpad"])
     qty = usd / fill
     book.s["cash"] -= usd
     pos = {
@@ -105,21 +116,24 @@ def buy(book, address, facts, now, note="", buy_note=""):
         "launchpad": facts["launchpad"], "pair": facts.get("pair", ""),
         "last_price": facts["price"], "peak_price": facts["price"],
         "ladder_done": [],
-        "entry_qliq": entry_qliq(facts),  # BL-27: shown by live.json only; no rule reads it
+        "entry_qliq": qliq,  # BL-27 display; BL-32: the exit friction's fallback depth (no exit rule reads it)
     }
     book.positions[address] = pos
     book.trade(now, {"side": "BUY", "symbol": sym, "address": address, "qty": qty,
                      "usd": round(usd, 6), "intended_price": facts["price"], "fill_price": fill,
                      "friction_pct": pct, "liq_usd": facts["liq_usd"],
-                     "launchpad": facts["launchpad"], "reason": "entry", "pnl_usd": ""})
+                     "launchpad": facts["launchpad"], "reason": "entry", "pnl_usd": "",
+                     "note": friction.note(usd, qliq, "entry")})
     book.task(now, "EXECUTE", sym, address, "BUY", "",
               " ".join(filter(None, [f"usd={usd:.2f} fill={fill:.10g}", note, buy_note])))
     book.save()
     return pos
 
 
-def sell(book, address, quote, qty, reason, liq_usd, now, intended=None, note=""):
+def sell(book, address, quote, qty, reason, liq_usd, now, intended=None, note="", qliq=None):
     """Paper sell of `qty` tokens (None = all that remains) at `quote` minus friction.
+
+    qliq (BL-32) = this tick's quote qliq, or None: friction.exit_depth() then uses the entry qliq, else thin_pct.
 
     `intended` is the price the exit should have fired at (defaults to the quote);
     logging it next to the fill shows stop slippage. `note` goes to the trade row (e.g. "quote=fallback").
@@ -130,7 +144,8 @@ def sell(book, address, quote, qty, reason, liq_usd, now, intended=None, note=""
     p = book.positions[address]
     qty = p["qty"] if qty is None else min(max(qty, 0.0), p["qty"])
     share = qty / p["qty"]
-    fill, pct = friction.sell_fill(quote, liq_usd, p["launchpad"])
+    depth, src = friction.exit_depth(qliq, p.get("entry_qliq"))
+    fill, pct = friction.sell_fill(quote, qty, depth, p["launchpad"])
     proceeds = qty * fill
     cost = p["cost_usd"] * share
     pnl = proceeds - cost
@@ -146,6 +161,6 @@ def sell(book, address, quote, qty, reason, liq_usd, now, intended=None, note=""
                      "intended_price": quote if intended is None else intended,
                      "fill_price": fill, "friction_pct": pct, "liq_usd": liq_usd,
                      "launchpad": p["launchpad"], "reason": reason, "pnl_usd": round(pnl, 6),
-                     "note": note})
+                     "note": " ".join(filter(None, [note, friction.note(qty * quote, depth, src)]))})
     book.save()
     return proceeds

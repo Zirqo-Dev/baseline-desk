@@ -12,8 +12,8 @@ State key "report" in data/state.json:
   max_dd_pct  {book: deepest fall from that peak, in %}, checked at the end of every tick
 
 Values are LIQUIDATION values (CLAUDE.md section 6, paper must not flatter): cash + each open position
-sold at its last quote minus the sell-side friction it would pay (friction.sell_fill on the last quote's
-liquidity and the position's launchpad), the same for both books. value_usd, net_pnl, multiple,
+sold at its last quote minus the sell-side friction it would pay (sell_value(): friction.sell_fill with the
+last mark's qliq, else the entry qliq, BL-32, and the position's launchpad), the same for both books. value_usd, net_pnl, multiple,
 equity_daily, desk_lead_usd and max_dd_pct all use it. The loss halt still uses Book.value() (last price).
 
 From trades.csv: a close is a SELL that ends the position (every rule but ladder_1/ladder_2);
@@ -28,7 +28,7 @@ value - start_balance - refills_usd, net_pnl_pct and multiple are over start_bal
 max_dd_pct track value - refills_usd, desk_lead_usd = desk net_pnl_usd - baseline net_pnl_usd (= the value gap when
 neither book was refilled). value_usd, cash_usd and equity_daily stay plain values. Each book gains refills_usd and
 per_trade = {since, n, net_usd, net_per_trade_usd, net_per_trade_pct}: positions BOUGHT at or after the state key
-"per_trade_since" (the BL-31 restart), closed by the report day, every SELL's pnl_usd (after friction) summed per
+"per_trade_since" (the BL-31 restart, moved once by the BL-32 gate_restart()), closed by the report day, every SELL's pnl_usd (after friction) summed per
 position. gate_b counts desk closes from the same moment: {since, desk_closes, baseline_closes, target, kill};
 older closes stay in "closes" and in the old report days. DECISIONS 2026-11-06, BL-31.
 
@@ -39,7 +39,7 @@ data/tokens_24h.json, built only from data/daily/*/tasks.csv (no request), desk 
                   safety = distinct tokens with a PASS row, buy = desk EXECUTE BUY rows, exits_open = desk open at the roll
   funnel_since    running totals of the daily scan/gate/safety/buy since "since" (token-days, not distinct tokens)
   kills           desk VERIFY SKIP rows of the day by full reason, split "gate" (goplus=skipped, liquidity,
-                  fetch_error_x3, missing:<DexScreener field>) and "safety" (everything else); kills_since = running totals
+                  real_depth (BL-32), fetch_error_x3, missing:<DexScreener field>) and "safety" (everything else); kills_since = running totals
   kill_log        the last 10 kills of the day, newest first
   runs, tick_secs TICK rows of the day vs expected (288 for a closed day), rate in %; median and max secs
   ticks_per_hour  TICK rows per UTC hour for the 48 hours ending at the roll, missing hours as 0
@@ -73,9 +73,35 @@ def liq_value(book):
     """Cash + every open position sold now at its last quote, minus the friction that sale would pay."""
     total = book.cash
     for p in book.positions.values():
-        fill, _ = friction.sell_fill(p["last_price"], p.get("last_liq_usd", p["entry_liq_usd"]), p["launchpad"])
+        fill, _ = sell_value(p)
         total += p["qty"] * fill
     return total
+
+
+def sell_value(p):
+    """(fill, pct) of selling all of position p at its last quote now (BL-32: friction.exit_depth() on the last
+    mark's qliq, else the entry qliq, else thin_pct). report.liq_value() and live.json share it."""
+    depth, _ = friction.exit_depth(p.get("last_qliq"), p.get("entry_qliq"))
+    return friction.sell_fill(p["last_price"], p["qty"], depth, p["launchpad"])
+
+
+GATE_RESTART = "BL-32"  # report state "gate_restart": the last Gate B restart that ran (BL-32)
+
+
+def gate_restart(root, rs, book, now):
+    """BL-32, once (the owner): Gate B and per-trade stats count from this tick, both books. per_trade_since moves to
+    now (gate_b.since and per_trade.since follow), state flag gate_restart = GATE_RESTART, one desk tasks.csv row
+    BOOK RESTART gate_b with the old and new since. No refill: cash stays as it is. Returns True when it ran.
+    The row is written before the state, so a crash in between repeats both (a second row, the state matching the
+    last one) rather than moving the count with no row."""
+    if rs.get("gate_restart") == GATE_RESTART:
+        return False
+    prev = rs.get("per_trade_since", "")
+    book.task(now, "BOOK", "", "", "RESTART", "gate_b",
+              f"card={GATE_RESTART} since={ts(now)} prev_since={prev or 'na'} books=desk,baseline refill=none")
+    rs["per_trade_since"], rs["gate_restart"] = ts(now), GATE_RESTART
+    save(root, rs)
+    return True
 
 
 def _dd(peak, value):
@@ -261,7 +287,7 @@ def run_due(root, now, s, books):
 
 
 # ---- machine cards (BL-23) ----
-GATE_KILLS = {"liquidity", "fetch_error_x3"} | {f"missing:{k}" for k in verify.DEX_FIELDS}
+GATE_KILLS = {"liquidity", "real_depth", "fetch_error_x3"} | {f"missing:{k}" for k in verify.DEX_FIELDS}  # real_depth: BL-32
 FUNNEL = ["scan", "gate", "safety", "buy"]
 LAST_TICK = ["seen", "new", "checked", "dex_only", "goplus", "passed", "bought", "requests", "secs"]
 TICKS_PER_DAY = 288  # tick.yml every 5 min

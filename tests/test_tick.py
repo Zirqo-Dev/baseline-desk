@@ -41,7 +41,7 @@ class QuoteTest(unittest.TestCase):
     def test_own_pool(self):
         c = FakeClient({"latest/dex/pairs": {"schemaVersion": "1.0.0", "pairs": load("dexscreener_fresh")}})
         q = base.quote(FRESH, FRESH_PAIR, c)
-        self.assertEqual(q, {"price": 0.0002443, "liq_usd": 9493.9, "source": "pool"})
+        self.assertEqual(q, {"price": 0.0002443, "liq_usd": 9493.9, "source": "pool", "qliq": 4648})  # qliq: BL-32
         self.assertEqual(len(c.calls), 1)
         self.assertIn(f"/latest/dex/pairs/base/{FRESH_PAIR}", c.calls[0][1])
 
@@ -101,20 +101,22 @@ class FallbackNoteTest(unittest.TestCase):
     def test_hold_on_fallback_says_so(self):
         exits.check(self.book, lambda a: {"price": 1.0, "liq_usd": 150_000, "source": "fallback"},
                     T0 + timedelta(minutes=5))
-        self.assertEqual(self.rows("tasks")[-1]["detail"], "pct=-3.85 quote=fallback")
+        self.assertEqual(self.rows("tasks")[-1]["detail"], "pct=-3.86 quote=fallback")  # BL-32: 3.0125% in
 
     def test_sell_on_fallback_says_so_in_both_rows(self):
         exits.check(self.book, lambda a: {"price": 0.5, "liq_usd": 150_000, "source": "fallback"},
                     T0 + timedelta(minutes=5))
         self.assertTrue(self.rows("tasks")[-1]["detail"].endswith("quote=fallback"))
         sell = self.rows("trades")[-1]
-        self.assertEqual((sell["side"], sell["reason"], sell["note"]), ("SELL", "hard_stop", "quote=fallback"))
+        self.assertEqual((sell["side"], sell["reason"]), ("SELL", "hard_stop"))
+        self.assertTrue(sell["note"].startswith("quote=fallback impact_pct="), sell["note"])  # BL-32 keys after it
 
     def test_own_pool_adds_nothing(self):
         exits.check(self.book, lambda a: {"price": 0.5, "liq_usd": 150_000, "source": "pool"},
                     T0 + timedelta(minutes=5))
         self.assertNotIn("fallback", self.rows("tasks")[-1]["detail"])
-        self.assertEqual(self.rows("trades")[-1]["note"], "")
+        self.assertNotIn("fallback", self.rows("trades")[-1]["note"])
+        self.assertTrue(self.rows("trades")[-1]["note"].startswith("impact_pct="))  # BL-32: only the friction keys
 
 
 class TickTest(unittest.TestCase):
@@ -286,7 +288,7 @@ class TickTest(unittest.TestCase):
     def test_cap_then_continue_dex_only_leads_still_get_their_row(self):
         # BL-20: 10 leads need GoPlus, 5 low-liquidity leads after them settle on DexScreener alone
         self.found = [addr(i) for i in range(1, 16)]
-        self.facts.update({addr(i): dict(good(i), liq_usd=1) for i in range(11, 16)})
+        self.facts.update({addr(i): dict(good(i), qliq=1) for i in range(11, 16)})  # BL-32: thin on real depth
         n = self.run_tick()
         self.assertEqual((n["checked"], n["deferred"], n["dex_only"], n["goplus"]), (14, 1, 5, 9))
         rows = [r for r in tick_rows(self.root) if r["stage"] == "VERIFY"]
@@ -317,7 +319,7 @@ class TickTest(unittest.TestCase):
 
     def test_max_checks_still_bounds_dex_only_checks(self):
         self.found = [addr(i) for i in range(1, 26)]
-        self.facts.update({addr(i): dict(good(i), liq_usd=1) for i in range(1, 26)})
+        self.facts.update({addr(i): dict(good(i), qliq=1) for i in range(1, 26)})
         n = self.run_tick()
         self.assertEqual((n["checked"], n["dex_only"], n["deferred"], n["goplus"]), (tick.MAX_CHECKS, 20, 5, 0))
 
@@ -369,8 +371,9 @@ class TickWithFixturesTest(unittest.TestCase):
             rows = tick_rows(root)
             self.assertEqual(rows[-1]["stage"], "TICK")
             asci = [r for r in rows if r["address"] == FRESH][0]
-            self.assertEqual((asci["action"], asci["reason"]), ("SKIP", "liquidity"))
+            self.assertEqual((asci["action"], asci["reason"]), ("SKIP", "real_depth"))  # BL-32: qliq 4,648
             self.assertIn("goplus=skipped", asci["detail"])
+            self.assertNotIn("qliq=", asci["detail"])  # liq 9,494 < the 50k logging floor: not in the logging set
 
 
 if __name__ == "__main__":

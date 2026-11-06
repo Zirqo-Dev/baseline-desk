@@ -67,29 +67,29 @@ class LeadsTest(unittest.TestCase):
 
     def test_liquidity_drop_while_watched_is_final(self):
         self.leads.record(A, WAIT, T0)
-        self.assertEqual(self.leads.record(A, dict(WAIT, liq_usd=40_000), at(15)), "liquidity")
-        self.assertEqual(self.leads.skipped(A, at(16)), "liquidity")
+        self.assertEqual(self.leads.record(A, dict(WAIT, qliq=4_000), at(15)), "real_depth")  # BL-32
+        self.assertEqual(self.leads.skipped(A, at(16)), "real_depth")
         self.assertNotIn(A.lower(), self.leads.s["watch"])
 
     def test_goplus_skipped_in_detail(self):
-        dex_only = {"symbol": "LOW", "price": 0.001, "liq_usd": 1_000, "age_min": 60, "sells_1h": 4,
+        dex_only = {"symbol": "LOW", "price": 0.001, "liq_usd": 1_000, "age_min": 60, "sells_1h": 4, "qliq": 500,
                     "pair": "0xp", "fetch_errors": [], "goplus_skipped": True}
-        self.assertEqual(self.leads.record(A, dex_only, T0), "liquidity")
+        self.assertEqual(self.leads.record(A, dex_only, T0), "real_depth")
         row = self.rows()[-1]
-        self.assertEqual((row["action"], row["reason"]), ("SKIP", "liquidity"))
+        self.assertEqual((row["action"], row["reason"]), ("SKIP", "real_depth"))
         self.assertTrue(row["detail"].startswith("goplus=skipped until="))
         self.leads.record("0x2", {"fetch_errors": ["ds_pairs"], "goplus_skipped": True}, T0)
         self.assertEqual(self.rows()[-1]["detail"], "try=1 hosts=ds_pairs goplus=skipped")
-        self.leads.record("0x3", dict(GOOD, liq_usd=1_000), T0)  # GoPlus was called: no tag
+        self.leads.record("0x3", dict(GOOD, qliq=1_000), T0)  # GoPlus was called: no tag
         self.assertNotIn("goplus=skipped", self.rows()[-1]["detail"])
 
     def test_watched_lead_liquidity_drop_settled_without_goplus(self):
         self.leads.record(A, WAIT, T0)
         dex_only = {k: WAIT[k] for k in ("symbol", "price", "age_min", "sells_1h")}
-        dex_only.update(liq_usd=40_000, pair="0xp", fetch_errors=[], goplus_skipped=True)
-        self.assertEqual(self.leads.record(A, dex_only, at(15)), "liquidity")
+        dex_only.update(liq_usd=40_000, qliq=4_000, pair="0xp", fetch_errors=[], goplus_skipped=True)
+        self.assertEqual(self.leads.record(A, dex_only, at(15)), "real_depth")
         row = self.rows()[-1]
-        self.assertEqual((row["action"], row["reason"]), ("SKIP", "liquidity"))
+        self.assertEqual((row["action"], row["reason"]), ("SKIP", "real_depth"))
         self.assertIn("first_seen=2026-10-23T12:00:00Z checks=2 goplus=skipped until=", row["detail"])
         self.assertNotIn("goplus_ready_at", row["detail"])  # GoPlus was not asked, so not "ready"
         self.assertNotIn(A.lower(), self.leads.s["watch"])
