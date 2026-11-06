@@ -39,18 +39,20 @@ class DeskTest(unittest.TestCase):
         self.assertEqual(friction.side_pct(150_000, "clanker"), 4.0)
 
     def test_size(self):
-        self.assertEqual(desk.size(50.0, 150_000), (5.0, ""))       # 50*0.10 = 5
-        self.assertEqual(desk.size(30.0, 150_000), (5.0, ""))       # clamped up to MIN_TICKET
-        self.assertEqual(desk.size(5000.0, 1_000_000), (250, ""))   # clamped to MAX_TICKET
-        self.assertEqual(desk.size(5000.0, 60_000), (250, ""))      # pool cap 600
-        self.assertEqual(desk.size(5000.0, 20_000), (200, ""))      # pool cap 200
-        self.assertEqual(desk.size(4.99, 150_000), (0.0, "size"))   # cash < MIN_TICKET
+        # BL-31: a fixed TICKET_USD (5) ticket, whatever the cash; still capped by the pool
+        self.assertEqual(desk.size(50.0, 150_000), (5.0, ""))
+        self.assertEqual(desk.size(30.0, 150_000), (5.0, ""))
+        self.assertEqual(desk.size(5000.0, 1_000_000), (5.0, ""))   # no longer 10% of cash (SIZE_PCT not read)
+        self.assertEqual(desk.size(5.0, 60_000), (5.0, ""))         # exactly one ticket of cash
+        self.assertEqual(desk.size(4.99, 150_000), (0.0, "size"))   # cash < ticket
         self.assertEqual(desk.size(50.0, 400), (0.0, "size"))       # pool cap 4 < MIN_TICKET
+        self.assertEqual(desk.size(50.0, 499), (0.0, "size"))       # pool cap 4.99
+        self.assertEqual(desk.size(50.0, 500), (5.0, ""))           # pool cap 5.00
 
     def test_max_open_and_skip_logged(self):
         for i in range(config.MAX_OPEN):
-            self.assertIsNotNone(desk.buy(self.book, f"0x{i}", facts(150_000), NOW))
-        self.assertIsNone(desk.buy(self.book, "0xz", facts(150_000), NOW))
+            self.assertIsNotNone(desk.buy(self.book, f"0x{i}", facts(150_000, symbol=f"T{i}"), NOW))
+        self.assertIsNone(desk.buy(self.book, "0xz", facts(150_000, symbol="TZ"), NOW))
         with (self.root / "data/daily/2026-10-23/tasks.csv").open() as fh:
             rows = list(csv.DictReader(fh))
         self.assertEqual(rows[-1]["action"], "SKIP")
@@ -59,11 +61,11 @@ class DeskTest(unittest.TestCase):
     def test_loss_halt_until_next_utc_day(self):
         desk.buy(self.book, "0xa", facts(150_000), NOW)            # sets day_start_value = 50
         self.book.s["cash"] = 30.0                                   # value ~35 = -30%
-        self.assertIsNone(desk.buy(self.book, "0xb", facts(150_000), NOW))
+        self.assertIsNone(desk.buy(self.book, "0xb", facts(150_000, symbol="B"), NOW))
         self.book.s["cash"] = 45.0                                   # recovery does not lift it today
-        self.assertIsNone(desk.buy(self.book, "0xb", facts(150_000), NOW))
+        self.assertIsNone(desk.buy(self.book, "0xb", facts(150_000, symbol="B"), NOW))
         tomorrow = NOW + timedelta(days=1)
-        self.assertIsNotNone(desk.buy(self.book, "0xb", facts(150_000), tomorrow))
+        self.assertIsNotNone(desk.buy(self.book, "0xb", facts(150_000, symbol="B"), tomorrow))
         self.assertEqual(Book("desk", root=self.root).s["day"], "2026-10-24")
 
     def test_state_persists_per_book(self):

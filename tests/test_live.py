@@ -180,7 +180,7 @@ class TickLiveTest(unittest.TestCase):
                 self.run_tick(0)
         rows = tick_rows(self.root)
         self.assertEqual([(r["stage"], r["action"]) for r in rows],
-                         [("VERIFY", "PASS"), ("EXECUTE", "BUY"), ("TICK", "HEARTBEAT")])
+                         [("BOOK", "REFILL"), ("VERIFY", "PASS"), ("EXECUTE", "BUY"), ("TICK", "HEARTBEAT")])  # BL-31: the twin's one-off restart row first
         self.assertEqual((detail(rows[-1])["live"], rows[-1]["reason"]), ("error:RuntimeError", ""))
         self.assertIn(addr(1), Book("desk", self.root).positions)
         self.assertFalse((self.root / live.LIVE).exists())

@@ -260,12 +260,17 @@ class BaselineTickTest(unittest.TestCase):
         self.assertEqual(set(r), {"as_of", "day", "start_balance", "desk_lead_usd", "gate_b", "desk", "baseline",
                                   "summary", "machine"})  # BL-23: machine cards next to the money cards
         self.assertEqual((r["day"], r["start_balance"], r["as_of"]), ("2026-10-23", 50.0, "2026-10-24T01:00:00Z"))
-        self.assertEqual(r["gate_b"], {"desk_closes": 1, "target": 100, "kill": 200})
+        self.assertEqual(r["gate_b"], {"since": "2026-10-23T12:00:00Z", "desk_closes": 1, "baseline_closes": 1,
+                                       "target": 100, "kill": 200})  # BL-31: counted from the restart, both books
         for name in ("desk", "baseline"):
             b = r[name]
             self.assertEqual(set(b), {"value_usd", "cash_usd", "net_pnl_usd", "net_pnl_pct", "multiple",
                                       "equity_daily", "closes", "closes_day", "open", "win_rate", "avg_win_pct",
-                                      "avg_loss_pct", "max_dd_pct", "stop_slip_pct", "exits_by_rule"})
+                                      "avg_loss_pct", "max_dd_pct", "stop_slip_pct", "exits_by_rule",
+                                      "refills_usd", "per_trade"})  # BL-31
+            self.assertEqual(b["refills_usd"], 0.0)  # fresh books start at 50: the restart adds 0
+            self.assertEqual(b["per_trade"]["n"], 1)
+            self.assertEqual(b["per_trade"]["net_usd"], round(b["value_usd"] - 50, 2))
             self.assertEqual((b["closes"], b["closes_day"], b["open"], b["win_rate"]), (1, 1, 0, 0.0))
             self.assertEqual(b["exits_by_rule"], {"liq_pull": 0, "hard_stop": 1, "ladder_1": 0, "ladder_2": 0,
                                                   "trail": 0, "time_stop": 0})

@@ -43,18 +43,21 @@ Path: paper -> backtest -> live small -> grow. Live starts with 100 USD split in
 ## 4. Architecture
 SCAN     adapters/base.py scan()   DexScreener profiles+boosts, GeckoTerminal new_pools -> leads
 VERIFY   core/verify.py hard_skip() standard facts dict from adapters/base.py facts()     -> most leads die here
+VERIFY   core/verify.py universe_skip() the universe both books share (BL-31): dex_skip() incl. asset:<kind>, sells, age
 VERIFY   core/leads.py             24h skip memory + GoPlus watchlist ("leads" in data/state.json)
 VERIFY   prompts/x_read.py         optional Grok X-read (GROK_ENABLED, GROK_DAILY_CAP)   -> GO or SKIP
 EXECUTE  core/desk.py              limits -> size off balance -> paper fill minus friction
 EXIT     core/exits.py             liquidity pull, hard stop, ladder, trail, time stop
-BASELINE core/baseline.py          random shadow book "baseline": 1 random eligible lead every 12 ticks, same rules (BL-8)
+BASELINE core/baseline.py          random twin, book "baseline": 1 random lead every 12 ticks from universe_skip() (BL-8, BL-31)
+BOOK     core/book.py              weekly refill to 50 USD cash, both books, BOOK REFILL rows, never P&L (BL-31)
 REPORT   core/report.py            desk vs random baseline -> data/report.json, in the tick on the UTC day roll
 REPORT   core/report.py            machine cards (BL-23, tasks.csv only) -> report.json "machine" + data/tokens_24h.json, own try
 LABELS   core/labels.py            outcome labels (BL-26, logging only): +1/+6/+24 h after first sight -> data/daily/<day>/outcomes.csv;
                                    dead flag + sight/label pair (BL-30, logging only; numbers in labels.DEAD)
 LIVE     core/live.py              live view (BL-27, display only): open positions of both books + last tick -> data/live.json, every tick
 ALERTS   core/alerts.py            Telegram alerts (BL-3, display only): desk BUY/SELL, daily summary, red-run error -> the owner's phone
-TICK     core/tick.py              one run: roll day (+report, +machine cards), exits (desk, baseline), scan -> verify -> buy, baseline buy,
+TICK     core/tick.py              one run: roll day (+report, +machine cards, then twin restart once + weekly refills),
+                                   exits (desk, baseline), scan -> verify -> buy, baseline buy,
                                    outcome labels (own try), live.json (own try, not on a crash), alerts (own try, also on a crash),
                                    one TICK heartbeat row
 
@@ -199,12 +202,24 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
   Replay Oct 31 - Nov 5: dead 71% / 82% / 88% at +1/+6/+24 h vs gone 0% / 0% / 8%; about half the sightings were born
   thin (99% dead at +1 h, never had real exit depth); died after sight 40% / 62% / 77%; 9 of 3,237 labels "na". Chat's
   thin-label cross-check reproduced (1,675 / 208 / 627 vs 625) (docs/NOTES.md "BL-30").
-  Random book: 3.19 USD cash, under MIN_TICKET (5), so it has stopped buying (BL-8 SKIP size rows); Gate B on hold until R3.
-  Tests: stdlib unittest, `python -m unittest` (313 pass on 3.13).
+  BL-31 R3 random twin (2026-11-06, the owner's Nov 6 decisions a-h): the twin picks only leads that pass
+  core/verify.py universe_skip() = the desk's own dex_skip() + sells_skip() + age_skip() (called, not copied; GoPlus
+  rules not shared, no extra call); asset exclusion in both books before any GoPlus call (gate SKIP asset:stable |
+  wrapped | quote, heuristics for the fresh-launch universe only, revisit at BL-34/BL-39); would have cut 82 of 1,419
+  desk tokens past the gate Oct 31 - Nov 6 (53 stable, 29 wrapped, 0 quote countable). Fixed TICKET_USD 5 in both books;
+  24 h re-entry cooldown after any SELL by address and normalized symbol, per book (SKIP reentry_cooldown; BL-19
+  closed) and same-symbol holding. Cash topped up to 50 USD on the first tick of each ISO week (Mon 00:03 UTC, first
+  2026-11-09), one BOOK REFILL row per book; the twin restarted once at deploy (BOOK REFILL reason=restart, 3.19 ->
+  50). report.json: refills_usd and per_trade {since, n, net_usd, net_per_trade_usd, net_per_trade_pct} per book, net
+  fields net of refills, gate_b {since, desk_closes, baseline_closes} from the restart (SI and older closes are
+  history only). Book name stays "baseline". Site and Telegram still print plain values: BL-43 (docs/NOTES.md "BL-31").
+  Tests: stdlib unittest, `python -m unittest` (348 pass on 3.13).
 - cron-job.org token "baseline-desk cron" EXPIRES Thu 2027-01-21: renew by early January or the desk stops silently.
 - Technical detail per card, GoPlus diagnosis, BL-20 budget and full open items: docs/NOTES.md.
 - Open items:
-  - Nov 6 review: python -m tools.replay --from 2026-10-31 --to 2026-11-06 is evidence only; R2 is in (BL-30: Table 0 dead vs gone), still no depth or sells rule from outcome labels without a tested hypothesis (docs/NOTES.md 'External review 2026-11-02', 'BL-30'). Telegram secrets and alert-test.yml were done 2026-11-01.
+  - Nov 6 review done (docs/NOTES.md 'Nov 6 review replay'): dead 68% / 81% / 87% at +1/+6/+24 h vs gone 0% / 0% / 8%; still no depth or sells rule from outcome labels without a tested hypothesis (BL-32 is the tested depth step).
+  - BL-43 (chat's card): the site and the Telegram daily summary show plain value_usd, so refills look like a jump; per-trade stats and refills not shown yet (docs/NOTES.md 'BL-31').
+  - Stale-checkout tick misses accepted on paper; fix before live, revisit at BL-35; never Re-run jobs on a tick run (DECISIONS 2026-11-06).
   - BL-20 label shift: low-liquidity leads log "liquidity" with goplus=skipped even if GoPlus would flag them (docs/NOTES.md)
   - Theoretical worst case: ~1,020 s with BL-8's baseline exits (~900 s before) if every request hangs 15 s (job timeout 600 s); real ticks 17.6 s typical, 39.8 s max. If a tick ever exceeds 120 s, add a time guard. No guard in BL-8 (the owner). (docs/NOTES.md)
   - BL-8 baseline biases, kept on purpose so Gate B stays strict: pool-shape launchpad can miss the Clanker 1% fee (lower
@@ -217,11 +232,12 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
   - top10 is the top 8-10 after exclusions, slightly lenient (docs/NOTES.md)
   - The exact GoPlus rate-limit code is unverified; code 3 is not one; BL-24 saw code 4029 4 times in 137 calls at 2 s, very likely it (docs/NOTES.md)
   - tokens_24h.json adds ~230 KB of git history per day (overwritten daily), BL-25 ~83 KB/day (+ BL-28 qliq ~15 KB/day) to tasks.csv and BL-26 outcomes.csv ~55 KB/day, BL-27 live.json ~1 KB per tick (rewritten every tick, ~290 KB/day of git history), BL-30 ~40 KB/day on tasks.csv + ~50-140 KB/day on outcomes.csv; include all of them in BL-16's archive plan (docs/NOTES.md)
-- Next step: BL-31 R3 random twin + BL-32 R4 real-depth floors and impact friction; the owner picks the twin details at the
-  Nov 6 review first. The random book is at 3.19 USD, under MIN_TICKET, and has stopped buying.
-  Story order after it: R6 backtest + candles (BL-33; rivals BL-34, BL-38, BL-39, order picked by the owner), then R5 survivor
-  momentum spec; execution design researched in parallel (no wallet code). BL-38..BL-42 are candidates only (DECISIONS 2026-11-04).
-- Last updated: 2026-11-05.
+- Next step: BL-32 R4 real-depth floors and impact friction, put into core/verify.py universe_skip() so both books get
+  them; first weekly refill Mon 2026-11-09 00:03 UTC (check the two BOOK REFILL rows and report.json per_trade/gate_b).
+  Story order after it (DECISIONS 2026-11-06 a): R6 backtest + candles (BL-33; rivals BL-34, BL-38, BL-39, order picked by
+  the owner), then R5 survivor momentum spec; execution design researched in parallel (no wallet code). BL-38..BL-42 are
+  candidates only (DECISIONS 2026-11-04).
+- Last updated: 2026-11-06.
 
 ## 12. Glossary
 - Lead: a token the scanner found. Survivor: a lead that passed every hard skip.

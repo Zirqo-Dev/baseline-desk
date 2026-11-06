@@ -48,7 +48,7 @@ import urllib.error
 import urllib.request
 from datetime import datetime, timezone
 
-from core.verify import HARD_FLAGS, REQUIRED, TRADE_KEYS, dex_skip, hard_skip
+from core.verify import HARD_FLAGS, REQUIRED, TRADE_KEYS, asset_kind, dex_skip, hard_skip
 
 CHAIN_ID = "8453"
 DS = "https://api.dexscreener.com"
@@ -218,6 +218,17 @@ def total_sells_1h(pairs, address):
             if _lower((p.get(side) or {}).get("address")) == address and _num(h1.get(key)) is not None:
                 total = (total or 0.0) + _num(h1.get(key))
     return total
+
+
+def side_counts(pairs, address):
+    """BL-31: (Base pairs with our token as baseToken, as quoteToken) in the /token-pairs answer already fetched."""
+    n = {"baseToken": 0, "quoteToken": 0}
+    for p in pairs or []:
+        if isinstance(p, dict) and p.get("chainId") == "base":
+            for s in n:
+                if _lower(_dict(p.get(s)).get("address")) == address:
+                    n[s] += 1
+    return n["baseToken"], n["quoteToken"]
 
 
 def trade_facts(pairs, pair, address):
@@ -438,8 +449,10 @@ def facts(address, now=None, client=None, goplus_ok=None, dex=None):
     is used, returns None: the caller defers the lead.
 
     `dex` (BL-8): a dict filled with the DexScreener side before any GoPlus step, also when the
-    lead is deferred: symbol, price, liq_usd, age_min, sells_1h, pair, fetch_errors and launchpad
+    lead is deferred: symbol, price, liq_usd, age_min, sells_1h, asset, pair, fetch_errors and launchpad
     from pool shape only (no GoPlus creator). The return value is the same with or without it.
+    asset (BL-31): core/verify.py asset_kind() ("stable", "wrapped", "quote" or ""), from the pairs already fetched;
+    dex_skip() turns a kind into the gate skip asset:<kind>, before any GoPlus call.
     """
     c = client or Client()
     now = now or datetime.now(timezone.utc)
@@ -453,6 +466,7 @@ def facts(address, now=None, client=None, goplus_ok=None, dex=None):
         pair_address = _lower(pair.get("pairAddress"))
         out.update(dex_facts(pair, side, now))
         out["sells_1h"] = total_sells_1h(pairs, address)
+        out["asset"] = asset_kind(out.get("symbol"), out.get("price"), address, *side_counts(pairs, address))  # BL-31
         if out.get("age_min") is None:
             gt_pool = _fetch(c, "gt", f"{GT}/pools/{pair_address}", errors)
             created = ((gt_pool or {}).get("data") or {}).get("attributes", {}).get("pool_created_at")

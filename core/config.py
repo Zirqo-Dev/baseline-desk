@@ -6,9 +6,12 @@ PAUSED = False            # True = no new entries and no scans
 
 # Book and sizing
 START_BALANCE = 50.0      # paper USD
-SIZE_PCT = 0.10           # ticket = cash * SIZE_PCT
-MIN_TICKET = 5            # USD
-MAX_TICKET = 250          # USD
+TICKET_USD = 5.0          # fixed ticket in both books, judged per trade (the owner, BL-31)
+REFILL_TO_USD = 50.0      # both books' cash topped up to this at the first tick of each ISO week (Mon 00:03 UTC), BL-31
+COOLDOWN_H = 24           # no re-entry for 24 h after any exit, by address and normalized symbol, per book (BL-31)
+SIZE_PCT = 0.10           # not read since BL-31 (TICKET_USD)
+MIN_TICKET = 5            # USD; below it (cash or pool cap) = SKIP size
+MAX_TICKET = 250          # not read since BL-31 (TICKET_USD)
 MAX_OPEN = 4              # open positions per book
 SESSION_LOSS_HALT_PCT = 30  # vs total value at the start of the UTC day
 

@@ -4,10 +4,15 @@ Same START_BALANCE, sizing, friction, exits, quote logic, day roll and loss halt
 (it runs on core/book.py, core/desk.py and core/exits.py); only entry selection differs.
 Its EXECUTE, EXIT and trade rows carry book=baseline. DECISIONS 2026-10-29, BL-8.
 
-Eligible = this tick's leads that got a facts() call (checked, or deferred by the GoPlus cap) whose
-DexScreener side passes core/verify.py dex_skip() and has sells_1h > 0, minus tokens the baseline held
-at the start of the tick. No GoPlus call and no extra request: the DexScreener facts come from the
-`dex` dict facts() fills. Launchpad (for friction) is pool shape only, so a Clanker pool whose fee
+Eligible (BL-31, the random twin: same universe as the desk) = this tick's leads that got a facts() call
+(checked, or deferred by the GoPlus cap) whose DexScreener side passes core/verify.py universe_skip() (the desk's
+own dex_skip() with the asset exclusion, sells_skip() and age_skip(), called, not copied), minus tokens the baseline
+held at the start of the tick. No GoPlus call and no extra request: the DexScreener facts come from the
+`dex` dict facts() fills. The twin cannot share the GoPlus rules (honeypot, mint, freeze, risk flags, LP lock,
+dev, top10, taxes, goplus_partial). Ticket, cooldown and same-symbol holding come from core/desk.py (both books).
+Restart (BL-31): once, on the first tick after deploy, the twin's cash is topped up to 50 USD (one BOOK REFILL
+reason=restart row), both books get their first refill_week and report state "per_trade_since" (the start of
+per-trade stats and of the Gate B count, both books) is set. Launchpad (for friction) is pool shape only, so a Clanker pool whose fee
 is unknown is "other": the baseline can pay less friction than the desk (it is flattered).
 
 Cadence: state "ticks_since_buy" goes up by one every tick and resets to 0 only on a BUY; at CADENCE or
@@ -20,8 +25,9 @@ BL-25: a BUY row ends with the DexScreener trade keys b1 s1 b24 s24 liq dex of t
 """
 import random
 
-from core import desk
-from core.verify import dex_skip, trade_detail
+from core import desk, report
+from core.book import ts, week
+from core.verify import trade_detail, universe_skip
 
 NAME = "baseline"
 CADENCE = 12  # ticks between baseline buys (the owner, BL-8)
@@ -35,8 +41,22 @@ def tick_count(book):
 
 def eligible(seen, held):
     """Sorted addresses the baseline may pick. seen = {address: DexScreener facts} of this tick's leads."""
-    return sorted(a for a, d in seen.items()
-                  if a not in held and not dex_skip(d) and d["sells_1h"] > 0)
+    return sorted(a for a, d in seen.items() if a not in held and not universe_skip(d))
+
+
+def restart(root, rs, books, bl, now):
+    """BL-31, once: the twin restarts at REFILL_TO_USD; per-trade stats and Gate B count from now, both books.
+    Returns True when it ran. The book is saved before the report state, so a crash between them repeats it
+    harmlessly (amount 0) rather than losing it."""
+    if rs.get("per_trade_since"):
+        return False
+    bl.refill(now, "restart")
+    for b in books:
+        b.s.setdefault("refill_week", week(now))
+        b.save()
+    rs["per_trade_since"] = ts(now)
+    report.save(root, rs)
+    return True
 
 
 def seed(now):

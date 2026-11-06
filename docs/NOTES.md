@@ -1056,6 +1056,123 @@ Moved from CLAUDE.md section 11 on 2026-10-23 (BL-2 process cleanup). Wording is
     2026-11-05T14:27:41Z,BOOTR,0x1012...42c,2026-11-05T13:25:51Z,1h,62,1.426e-05,1.446e-05,1.4,194909,7,0,7,0,uniswap:v2,
       0,97457,0xf89fe45c65ba94680106577f19f4c3e1c5dc5b65,0xf89fe45c65ba94680106577f19f4c3e1c5dc5b65,96750,97457,0
 
+## Nov 6 review replay
+- python -m tools.replay --from 2026-10-31 --to 2026-11-06 (run 2026-11-06 ~17:00 UTC, offline, read-only): 1,436
+  sightings, 4,152 on-time labels. Rows with a logged dead (the 2026-11-06 file, 22 columns): 473; older rows derived
+  (deepest-pair approximation): 3,562 = 2,763 decided without the join + 9 label qliq "na" + 790 needed the join (790 found).
+
+  | horizon | sight | n | gone | gone % | dead | na | dead % of known |
+  |---|---|---|---|---|---|---|---|
+  | +1 h | all | 1,422 | 0 | 0.0 | 971 | 1 | 68.3 |
+  | +1 h | <100 born thin | 653 | 0 | 0.0 | 645 | 1 | 98.9 |
+  | +1 h | >=100 died after | 769 | 0 | 0.0 | 326 | 0 | 42.4 |
+  | +6 h | all | 1,385 | 0 | 0.0 | 1,120 | 2 | 81.0 |
+  | +6 h | <100 born thin | 651 | 0 | 0.0 | 637 | 1 | 98.0 |
+  | +6 h | >=100 died after | 734 | 0 | 0.0 | 483 | 1 | 65.9 |
+  | +24 h | all | 1,228 | 92 | 7.5 | 1,046 | 31 | 87.4 |
+  | +24 h | <100 born thin | 636 | 72 | 11.3 | 607 | 4 | 96.0 |
+  | +24 h | >=100 died after | 592 | 20 | 3.4 | 439 | 27 | 77.7 |
+
+  Sight "na": 0 at every horizon. Table 3: 64 random-book trades, logged -42.41 USD, re-priced at qliq@entry -45.87 USD;
+  desk 0 trades in the window.
+- Chat's check reproduced: in data/daily/2026-11-06/outcomes.csv to 16:38 UTC (rows stamped up to 16:38:59), 212 of 216
+  dead labels with gone 0 and both pairs logged have sight_pair = label_pair: the sight pool itself drained, not a
+  second pool (215 / 211 if the cut is strictly before 16:38:00).
+
+## BL-31
+- R3 random twin (the owner's Nov 6 decisions a-h, DECISIONS). Code: core/verify.py (universe_skip, sells_skip,
+  age_skip, asset_kind, norm_symbol, ASSET, QUOTE_ASSETS), adapters/base.py (side_counts, facts() "asset"),
+  core/desk.py (fixed ticket, cooldown, same-symbol holding), core/book.py (week, refill_due, refill),
+  core/baseline.py (eligible, restart), core/tick.py (restart + weekly refill after the day roll), core/report.py
+  (refills, per_trade, gate_b, net fields), core/config.py (TICKET_USD 5, REFILL_TO_USD 50, COOLDOWN_H 24; SIZE_PCT and
+  MAX_TICKET "not read since BL-31"). No other threshold changed. No site, alert or workflow change. No new request.
+- Same universe: the twin's pool = this tick's leads that got a facts() call (checked, or deferred by the GoPlus cap),
+  minus tokens it held at the tick start, whose DexScreener side passes universe_skip():
+  - shared with the desk (the same functions, called, not copied): dex_skip() = fetch_error, missing:<symbol | price |
+    liq_usd | age_min | sells_1h>, liquidity (min_liquidity_usd 50k), asset:<kind> (new); sells_skip() = sells_1h 0
+    (nobody_can_sell); age_skip() = pool age < min_age_min 15 or > max_age_h 48 (too_young / too_old). hard_skip() calls
+    sells_skip() and age_skip() at their old place, so the desk's labels and outcomes are unchanged except asset:<kind>.
+    BL-32's real-depth floors go into universe_skip(), so both books get them by one change.
+  - not shared (GoPlus, no extra call for the twin): honeypot, mint_open, freeze_or_blacklist, hard risk flags, LP lock,
+    dev_pct, top10_pct, buy/sell tax, goplus_partial, goplus_not_ready. The twin still buys tokens the desk's GoPlus step
+    would kill or has not read (desk= tag on its BUY rows), so the BL-8 bias stays: Gate B stricter for the desk.
+  - inherited from the desk's queue: only leads the desk fetched this tick (24 h skips, watchlist timing, MAX_CHECKS).
+- Asset exclusion, both books, before any GoPlus call (f): adapters/base.py facts() sets "asset" =
+  core/verify.py asset_kind(symbol, price, address, base_pairs, quote_pairs) right after the DexScreener step, from the
+  /token-pairs answer already fetched (also in the twin's dex dict); dex_skip() turns a kind into the gate skip
+  asset:<kind> after liquidity (a low-liquidity stable still logs "liquidity"); final 24 h skip, goplus=skipped, counted
+  as a gate kill on the machine cards. A missing asset key is "" (a classification, not a number).
+  - stable: normalized symbol contains USD, or matches 0-2 letters + EUR/GBP/CHF/JPY/CAD/AUD/SGD + 0-1 letter (tGBP, EURC,
+    XSGD, jEUR; not EUREKA, AUDIO, CADDY), or is DAI/GHO/FRAX.
+  - wrapped: price >= 100 USD (wrapped ETH/BTC and tokenized stocks), or (W|WT|CB|ST|WST|MS|R|WE|EZ|RS|T|L|SUPERO)?(ETH|BTC)B?
+    (cbETH, wstETH, weETH, msETH, cbBTC, WBTC, superOETHb, and clones named that way at any price).
+  - quote: ZORA by address (QUOTE_ASSETS; WETH, ETH and USDC/USDbC/DAI are already dropped at the scan), or the token is the
+    quoteToken in more of its Base pairs than the baseToken (a tie is not).
+  - HEURISTICS: "price >= 100 USD = wrapped" and "symbol contains USD = stable" hold for the fresh-launch universe only
+    (pools 15 min - 48 h old); revisit at BL-34 and BL-39 before any wider or older universe. Known edge: "U.S DIVIDEND
+    PROGRAM" normalizes to USDIVIDENDPROGRAM and counts as stable.
+  - Would-have-cut count, desk leads Oct 31 - Nov 6 (read-only from tasks.csv; price = first_price in outcomes.csv, else
+    the trades.csv BUY price; 4 tokens without a price checked by symbol only): of 8,322 distinct desk VERIFY tokens,
+    1,419 got past the gate; the rule would have cut 82 of them: stable 53 tokens (488 VERIFY rows; TOKENUSDC 16, USDF
+    10, USDP 7, USDA, USDG, USD1, GUSD, RLUSD, msUSD, nUSDb, jEUR...), wrapped 29 (228 rows: 7 by name, WBTC x4,
+    cbETH, weETH, msETH; 22 by price, e.g. TOR 2,419, AODF 2,121, DIEM 1,772, cbZEC, SNDKc, TSLAc, AMZNc, MSTRc, wtCOIN
+    145, UDTF x4 ~180, FOTF, AOTF, ADP ~151, USOE 711, NAFF 303, UODF 224), quote 0 (ZORA never seen; the pair side is not
+    logged, so the quote-side rule cannot be counted from old logs). 255 gate-killed tokens also match by symbol; they keep
+    their earlier gate reason. None of the 82 was a desk PASS. In the random book's 64 trades: msUSD x4, wtCOIN x4,
+    USDF x2, USDR, USDL, tGBP, msETH, cbETH = 16.
+- Fixed ticket (b): desk.size() = TICKET_USD (5) capped by liq_usd x max_ticket_share; SKIP size when that cap is under
+  MIN_TICKET or cash < the ticket. With the 50k liquidity floor the cap is >= 500 USD, so every buy is 5.00 USD.
+- Cooldown (c) and same-symbol holding (g), both books, in desk.buy()/desk.sell() (the twin uses the same code):
+  every SELL (any rule, ladder_1/ladder_2 included) stores state "cooldown" {"a:<address>": until, "s:<SYMBOL>": until}
+  in that book, until = sell ts + COOLDOWN_H; expired keys are pruned on the next SELL. entry_block() order: paused,
+  loss_halt, holding (the address, or an open position with the same normalized symbol), reentry_cooldown, max_open.
+  A symbol with no letter or digit (emoji only) keys on the address only. A twin pick blocked by the cooldown stays due
+  (like max_open) and picks again next tick with a new seed.
+- Refills (b): Book.refill(now, reason): amount = max(0, REFILL_TO_USD - cash) to cash, to day_start_value (so the loss
+  halt never sees it as a gain and still halts at -30% of the refilled start) and to refills_usd; sets refill_week; one
+  tasks.csv row book=<book> stage=BOOK action=REFILL reason=weekly|restart detail "amount= cash_before= cash_after=
+  week=<ISO week>" (amount 0.00 is logged too). Not in trades.csv. Due on the first tick whose ISO week differs from
+  refill_week (the Monday 00:03 UTC roll; a later tick if that one is missed), after report.on_roll() snapshots the day
+  just closed and after both books' roll_day().
+- Restart (b, h): core/baseline.py restart() once, when report state has no per_trade_since: the twin's refill
+  reason=restart, both books get refill_week = this week, per_trade_since = the tick ts; the books are saved before the
+  report state (a crash in between repeats it with amount 0, never loses it). The desk is not refilled at the restart.
+  ticks_since_buy is kept (752 at deploy, so the twin is due at once).
+- Report (b, h): per book refills_usd (at the report day's close; equity entries now keep refills_usd, older entries had
+  none = 0) and per_trade {since, n, net_usd, net_per_trade_usd, net_per_trade_pct}: positions bought at or after
+  per_trade_since, closed by the report day, net = the sum of their SELL pnl_usd (after friction, ladders included).
+  net_pnl_usd = value - 50 - refills_usd; net_pnl_pct and multiple over 50 + refills_usd; peak and max_dd_pct on value -
+  refills_usd (the twin's old 94.7% stays as history); desk_lead_usd = desk net - baseline net (the value gap when
+  neither was refilled). gate_b = {since, desk_closes, baseline_closes, target 100, kill 200} from per_trade; "closes"
+  keeps counting from "since" (2026-10-29) as before. value_usd, cash_usd and equity_daily stay plain values.
+- Display (BL-43, chat's card; nothing changed here): the site and the Telegram daily summary print value_usd, so after a
+  refill the twin shows ~50 USD and the equity chart steps up on refill days; the site's "Closes", win rate and avg
+  win/loss still count from 2026-10-29; desk lead, net P&L and Gate B n/100 are already honest from report.json.
+- Book name stays "baseline" (state key, book column, report key, site and alerts all key on it); docs call it the
+  random twin.
+- Tests: tests/test_twin.py (35): asset kinds (stables seen, wrapped by name and by price with the 100 edge, quote by
+  ZORA and by side majority, launch names kept, never raises, norm_symbol), universe rules and order, the same
+  function as the desk (a config or helper change moves hard_skip() and universe_skip() together), desk labels
+  unchanged, eligible() through universe_skip(), real facts(): asset "" on a launch, stable symbol = gate skip with no
+  GoPlus call, side counts (Base only), the desk row SKIP asset:wrapped goplus=skipped final 24 h; fixed ticket, cooldown
+  by address and normalized symbol and its 24 h edge, a ladder sell starts it, pruning, per book, emoji symbol, holding
+  by symbol per book; refills (week, due, amount, halt, row, amount 0); the tick: restart once (46.81, desk untouched,
+  refill_week), the restarted twin buys 5.00, twin skips an asset and a young pool, Monday refill of both books after
+  Sunday's snapshot (report of Sunday without Monday's refill, net -46.81, desk lead); report: per_trade from the
+  restart only, refills never P&L, gate_b, max_dd net of refills, old equity entries. Old tests updated: fixed ticket
+  sizes, distinct symbols where a test bought "TEST" twice, the restart row first in three tick tests, gate_b and the
+  new book keys. Review adds (+3): a price >= 100 USD lead through the real facts() is never in the twin's pool (99.99 in, 100 and 2,120.92 out); the restart fires once (state flag report per_trade_since) across a reloaded state.json, a day roll and a Monday; each sale refreshes the cooldown (ladder, then a final exit 30 h later: free exactly 24 h after the last sale). 348 pass on 3.13 (313 before).
+- Smoke 2026-11-06 (scratch copy of data/, real requests, nothing under data/ changed): tick 1 (17:21 UTC): 21 requests
+  in 14.8 s, scan answered 0 leads that run, 10 re-checks; one row "baseline,BOOK,,,REFILL,restart,amount=46.81
+  cash_before=3.19 cash_after=50.00 week=2026-W45"; twin due, eligible 0 (every re-check had s1=0), SKIP no_eligible;
+  per_trade_since 2026-11-06T17:21:50Z. Tick 2 (17:22): 20 leads, 27 requests in 10.1 s, 16 dex_only, 4 WATCH, 0 PASS;
+  twin eligible 3, BUY AODF 0x2128ac... usd=5.00 (seed 202611061722, pick 0, qliq 731, pair_age 17). By-hand
+  report on the copy: gate_b {since 2026-11-06T17:21:50Z, desk_closes 0, baseline_closes 0, target 100, kill 200};
+  desk value 47.61, net -2.39, refills 0, per_trade n 0; baseline value 49.71 (1 open), cash 45.00, net -47.10, refills
+  46.81, multiple 0.5135, per_trade n 0; desk_lead_usd +44.71.
+  The AODF the twin bought (0x2128ac..., price 0.01931, asset_kind "") is not the AODF in the would-have-cut list
+  (0x75f514..., first price 2,120.92): the symbol has at least 11 Base addresses; the rule ran on the twin's path.
+
 ## Open items (detail)
 - Open items:
   - BL-7 done only after 24h of green runs, no overlap, one TICK row per run. The TICK rows show the real run rate for Gate A (90%).

@@ -142,7 +142,7 @@ class TickTest(unittest.TestCase):
             client.calls.append(("x", address))
             f = self.facts.get(address, dict(good(0), honeypot=True))  # unknown lead: needs GoPlus, then skip
             dex = dex if dex is not None else {}
-            dex.update({k: f[k] for k in verify.DEX_FIELDS + ["pair", "launchpad", "trade"] if f.get(k) is not None},
+            dex.update({k: f[k] for k in verify.DEX_FIELDS + ["pair", "launchpad", "trade", "asset"] if f.get(k) is not None},
                        fetch_errors=[e for e in f.get("fetch_errors", []) if e != "goplus"])
             dex = dict(f, **dex)
             if verify.dex_skip(dex):
@@ -197,7 +197,7 @@ class TickTest(unittest.TestCase):
         pos = Book("desk", self.root).positions[addr(1)]
         self.assertEqual(pos["pair"], f"0x{1:064x}")
         stages = [(r["stage"], r["action"]) for r in tick_rows(self.root)]
-        self.assertEqual(stages, [("VERIFY", "PASS"), ("EXECUTE", "BUY"), ("TICK", "HEARTBEAT")])
+        self.assertEqual(stages, [("BOOK", "REFILL"), ("VERIFY", "PASS"), ("EXECUTE", "BUY"), ("TICK", "HEARTBEAT")])  # BL-31: the twin's one-off restart row first
 
     def test_exits_first_and_held_not_rechecked(self):
         self.found = [addr(1)]

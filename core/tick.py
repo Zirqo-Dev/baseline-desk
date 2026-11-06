@@ -36,6 +36,10 @@ Alerts (BL-3, display only, core/alerts.py): last, after live.json and also on a
 Telegram messages for this tick's desk BUY and SELL rows, the daily summary after a successful day-roll report and one
 error alert per hour for a red run (the failed steps). Never makes the run red, never changes a result; the token,
 chat id, URL and Telegram's reply are never logged. TICK detail ends with alerts=ok|off|none|error:<type> alerts_sent=<n>.
+Random twin (BL-31): right after the day roll, core/baseline.py restart() runs once (the twin's cash to 50 USD, one
+BOOK REFILL reason=restart row, report state per_trade_since = now), then each book whose ISO week changed gets its
+weekly refill (one BOOK REFILL reason=weekly row each, amount logged, never P&L). Both after the closing snapshot
+of the day just closed, so a Monday refill never lands in Sunday's report.
 TICK detail: the desk keys as before, then bl_positions bl_due bl_eligible bl_bought report machine bl_error,
 then labels labels_due labels_done labels_calls, then live, then alerts alerts_sent.
 """
@@ -153,6 +157,11 @@ def run(root=ROOT, now=None, client=None, clock=time.monotonic, log=print):
             report.on_roll(rs, [book, bl], book.s["day"])
         book.roll_day(now)
         bl.roll_day(now)
+        baseline.restart(root, rs, [book, bl], bl, now)  # BL-31: once, the twin restarts at 50 USD
+        for b_ in (book, bl):  # BL-31: weekly refill on the first tick of each ISO week (Mon 00:03 UTC)
+            if b_.refill_due(now):
+                b_.refill(now, "weekly")
+                b_.save()
         if rs["due"]:
             try:
                 report_out = report.run_due(root, now, rs, [book, bl])

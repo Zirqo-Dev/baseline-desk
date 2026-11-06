@@ -31,6 +31,12 @@ def day(now):
     return now.strftime("%Y-%m-%d")
 
 
+def week(now):
+    """ISO week, e.g. "2026-W46" (BL-31 weekly refill: a new week starts Monday 00:00 UTC)."""
+    y, w, _ = now.isocalendar()
+    return f"{y}-W{w:02d}"
+
+
 def load_state(path):
     """Everything in data/state.json (books by name, plus "leads")."""
     path = Path(path)
@@ -118,6 +124,25 @@ class Book:
                       f"value={self.value():.2f} day_start={self.s['day_start_value']:.2f}")
             return True
         return False
+
+    # ---- weekly refill (BL-31) ----
+    def refill_due(self, now):
+        """True on the first tick of a new ISO week once the book has a refill_week (set at the BL-31 restart)."""
+        w = self.s.get("refill_week")
+        return bool(w) and w != week(now)
+
+    def refill(self, now, reason):
+        """Top cash up to REFILL_TO_USD (amount 0 when already there). Never P&L: the amount goes to refills_usd and
+        to day_start_value (the loss halt never sees it). Logs one BOOK REFILL row. Returns the amount."""
+        before = self.cash
+        amount = max(0.0, float(config.REFILL_TO_USD) - before)
+        self.s["cash"] = before + amount
+        self.s["day_start_value"] = self.s.get("day_start_value", 0.0) + amount
+        self.s["refills_usd"] = self.s.get("refills_usd", 0.0) + amount
+        self.s["refill_week"] = week(now)
+        self.task(now, "BOOK", "", "", "REFILL", reason,
+                  f"amount={amount:.2f} cash_before={before:.2f} cash_after={self.cash:.2f} week={week(now)}")
+        return amount
 
     # ---- logs ----
     def task(self, now, stage, symbol, address, action, reason="", detail=""):

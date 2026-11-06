@@ -1,26 +1,70 @@
-"""EXECUTE: limits -> size off cash -> paper fill minus friction. Paper only."""
+"""EXECUTE: limits -> fixed ticket -> paper fill minus friction. Paper only.
+
+BL-31 (both books, they share this code): a fixed TICKET_USD ticket, still capped by liq_usd x max_ticket_share
+(below MIN_TICKET = SKIP size, also when cash is short); every SELL starts a COOLDOWN_H re-entry cooldown in that
+book on the address AND the normalized symbol (EXECUTE SKIP reentry_cooldown); a buy whose normalized symbol
+matches an open position of that book is refused as "holding".
+"""
+from datetime import timedelta
+
 from core import config, friction
 from core.book import ts
+from core.verify import norm_symbol
 
 
 def size(cash, liq_usd):
-    """Article sizing. Returns (usd, "") or (0, "size")."""
+    """Fixed ticket (BL-31). Returns (usd, "") or (0, "size").
+
+    usd = TICKET_USD capped by the pool (liq_usd x max_ticket_share); "size" when that cap is under MIN_TICKET
+    or cash cannot pay the ticket."""
     pool_cap = liq_usd * config.SKIP_IF["max_ticket_share"]
-    if cash < config.MIN_TICKET or pool_cap < config.MIN_TICKET:
+    if pool_cap < config.MIN_TICKET:
         return 0.0, "size"
-    usd = cash * config.SIZE_PCT
-    usd = min(max(usd, config.MIN_TICKET), config.MAX_TICKET)
-    return min(usd, pool_cap), ""
+    usd = min(float(config.TICKET_USD), pool_cap)
+    if cash < usd or cash < config.MIN_TICKET:
+        return 0.0, "size"
+    return usd, ""
 
 
-def entry_block(book, address, now):
+def _keys(address, symbol):
+    """Cooldown keys: the address, and the normalized symbol when it has one."""
+    s = norm_symbol(symbol)
+    return [f"a:{(address or '').lower()}"] + ([f"s:{s}"] if s else [])
+
+
+def start_cooldown(book, address, symbol, now):
+    """BL-31: after a SELL (any rule), no re-entry in this book for COOLDOWN_H, by address and symbol. Prunes old keys."""
+    cd = {k: u for k, u in (book.s.get("cooldown") or {}).items() if u > ts(now)}
+    until = ts(now + timedelta(hours=config.COOLDOWN_H))
+    for k in _keys(address, symbol):
+        cd[k] = until
+    book.s["cooldown"] = cd
+
+
+def cooling(book, address, symbol, now):
+    """BL-31: True while this book's cooldown holds the address or the normalized symbol."""
+    cd = book.s.get("cooldown") or {}
+    return any(cd.get(k, "") > ts(now) for k in _keys(address, symbol))
+
+
+def holding(book, address, symbol):
+    """The address is open in this book, or (BL-31) an open position has the same normalized symbol."""
+    if address in book.positions:
+        return True
+    s = norm_symbol(symbol)
+    return bool(s) and any(norm_symbol(p.get("symbol")) == s for p in book.positions.values())
+
+
+def entry_block(book, address, now, symbol=""):
     """Reason a new entry is refused, or "" if allowed."""
     if config.PAUSED:
         return "paused"
     if book.halted(now):
         return "loss_halt"
-    if address in book.positions:
+    if holding(book, address, symbol):
         return "holding"
+    if cooling(book, address, symbol, now):
+        return "reentry_cooldown"
     if len(book.positions) >= config.MAX_OPEN:
         return "max_open"
     return ""
@@ -42,7 +86,7 @@ def buy(book, address, facts, now, note="", buy_note=""):
     if config.PAPER is not True:
         raise RuntimeError("Baseline is paper only")
     sym = facts["symbol"]
-    reason = entry_block(book, address, now)
+    reason = entry_block(book, address, now, sym)
     usd = 0.0
     if not reason:
         usd, reason = size(book.cash, facts["liq_usd"])
@@ -96,6 +140,7 @@ def sell(book, address, quote, qty, reason, liq_usd, now, intended=None, note=""
     p["last_price"] = quote
     if share >= 1.0 or p["qty"] <= 0:
         del book.positions[address]
+    start_cooldown(book, address, p["symbol"], now)  # BL-31: any exit, partial or full
     book.trade(now, {"side": "SELL", "symbol": p["symbol"], "address": address, "qty": qty,
                      "usd": round(proceeds, 6),
                      "intended_price": quote if intended is None else intended,

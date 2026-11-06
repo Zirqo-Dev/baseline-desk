@@ -274,7 +274,7 @@ class TickLabelsTest(unittest.TestCase):
                 self.run_tick(0)
         rows = tick_rows(self.root)
         self.assertEqual([(r["stage"], r["action"]) for r in rows],
-                         [("VERIFY", "PASS"), ("EXECUTE", "BUY"), ("TICK", "HEARTBEAT")])
+                         [("BOOK", "REFILL"), ("VERIFY", "PASS"), ("EXECUTE", "BUY"), ("TICK", "HEARTBEAT")])  # BL-31: the twin's one-off restart row first
         self.assertEqual(detail(rows[-1])["labels"], "error:RuntimeError")
         self.assertEqual(rows[-1]["reason"], "")
         self.assertIn(addr(1), Book("desk", self.root).positions)

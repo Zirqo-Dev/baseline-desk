@@ -22,6 +22,16 @@ win/loss % is per position (all its SELL pnl over the BUY cost); stop_slip_pct i
 before friction). The desk side may be all zeros: zeros are shown, never invented numbers.
 DECISIONS 2026-10-29, BL-8.
 
+Refills and per-trade stats (BL-31). Refills (weekly top-up and the twin's restart, core/book.py refill()) are never
+P&L: each book's state keeps refills_usd, each equity entry keeps the refills_usd of that close, and net_pnl_usd =
+value - start_balance - refills_usd, net_pnl_pct and multiple are over start_balance + refills_usd, peak and
+max_dd_pct track value - refills_usd, desk_lead_usd = desk net_pnl_usd - baseline net_pnl_usd (= the value gap when
+neither book was refilled). value_usd, cash_usd and equity_daily stay plain values. Each book gains refills_usd and
+per_trade = {since, n, net_usd, net_per_trade_usd, net_per_trade_pct}: positions BOUGHT at or after the state key
+"per_trade_since" (the BL-31 restart), closed by the report day, every SELL's pnl_usd (after friction) summed per
+position. gate_b counts desk closes from the same moment: {since, desk_closes, baseline_closes, target, kill};
+older closes stay in "closes" and in the old report days. DECISIONS 2026-11-06, BL-31.
+
 Machine cards (BL-23): after the money report, the same roll also writes report.json["machine"] and
 data/tokens_24h.json, built only from data/daily/*/tasks.csv (no request), desk book only:
   last_tick       the last TICK row of the day: ts and its seen new checked dex_only goplus passed bought requests secs
@@ -93,14 +103,19 @@ def on_roll(s, books, closed):
         eq = s["equity"].setdefault(b.name, [])
         if not eq or eq[-1]["day"] != closed:
             eq.append({"day": closed, "value_usd": round(liq_value(b), 6), "cash_usd": round(b.cash, 6),
-                       "open": len(b.positions)})
+                       "open": len(b.positions), "refills_usd": round(refills(b), 6)})
     s["due"] = closed
 
 
+def refills(book):
+    """BL-31: cash added by refills so far (never P&L)."""
+    return float(book.s.get("refills_usd", 0.0))
+
+
 def track(s, books):
-    """End of tick: running peak and max drawdown per book, at liquidation value."""
+    """End of tick: running peak and max drawdown per book, at liquidation value net of refills (BL-31)."""
     for b in books:
-        v = liq_value(b)
+        v = liq_value(b) - refills(b)
         peak = max(s["peak"].get(b.name, float(config.START_BALANCE)), v)
         s["peak"][b.name] = peak
         s["max_dd_pct"][b.name] = max(s["max_dd_pct"].get(b.name, 0.0), _dd(peak, v))
@@ -155,6 +170,34 @@ def book_stats(rows, name, since, upto):
             "stop_slip_pct": round(_mean(slips), 2), "exits_by_rule": by_rule}
 
 
+def per_trade(rows, name, since_ts, upto):
+    """BL-31: closes of positions bought at or after since_ts (a ts), closed by `upto` (a day), net after friction."""
+    lots, pnls, pcts = {}, [], []
+    for r in rows:
+        if r["book"] != name or r["ts"][:10] > upto:
+            continue
+        a = r["address"]
+        if r["side"] == "BUY":
+            lots.pop(a, None)
+            if since_ts and r["ts"] >= since_ts:
+                lots[a] = {"cost": float(r["usd"]), "pnl": 0.0}
+            continue
+        lot = lots.get(a)
+        if not lot:
+            continue
+        lot["pnl"] += float(r["pnl_usd"] or 0)
+        if r["reason"].startswith("ladder_"):
+            continue
+        lots.pop(a)
+        pnls.append(lot["pnl"])
+        if lot["cost"] > 0:
+            pcts.append(lot["pnl"] / lot["cost"] * 100)
+    n = len(pnls)
+    return {"since": since_ts or "", "n": n, "net_usd": round(float(sum(pnls)), 2),
+            "net_per_trade_usd": round(sum(pnls) / n, 4) if n else 0.0,
+            "net_per_trade_pct": round(_mean(pcts), 2)}
+
+
 # ---- report ----
 def build(root, now, report_day, s, books=None):
     """The report dict for report_day. Values from that day's closing entry, else the current liquidation value."""
@@ -167,23 +210,32 @@ def build(root, now, report_day, s, books=None):
         value = close["value_usd"] if close else liq_value(b)
         cash = close["cash_usd"] if close else b.cash
         n_open = close["open"] if close else len(b.positions)
+        refilled = close.get("refills_usd", 0.0) if close else refills(b)  # BL-31: entries before it had none
+        base = start + refilled
+        net = value - refilled
         out[b.name] = {
             "value_usd": round(value, 2), "cash_usd": round(cash, 2),
-            "net_pnl_usd": round(value - start, 2), "net_pnl_pct": round((value / start - 1) * 100, 2),
-            "multiple": round(value / start, 4),
+            "net_pnl_usd": round(value - base, 2), "net_pnl_pct": round((value / base - 1) * 100, 2),
+            "multiple": round(value / base, 4),
             "equity_daily": [{"day": e["day"], "value_usd": round(e["value_usd"], 2)}
                              for e in eq if e["day"] <= report_day],
             "open": n_open,
             "max_dd_pct": round(max(s["max_dd_pct"].get(b.name, 0.0),  # also the value shown, if it is the low
-                                    _dd(max(s["peak"].get(b.name, start), value), value)), 2),
-            **book_stats(rows, b.name, s["since"], report_day)}
+                                    _dd(max(s["peak"].get(b.name, start), net), net)), 2),
+            **book_stats(rows, b.name, s["since"], report_day),
+            "refills_usd": round(refilled, 2),
+            "per_trade": per_trade(rows, b.name, s.get("per_trade_since", ""), report_day)}
     d, bl = out.pop("desk"), out.pop("baseline")
-    out["desk_lead_usd"] = round(d["value_usd"] - bl["value_usd"], 2)
-    out["gate_b"] = {"desk_closes": d["closes"], **GATE_B}
+    out["desk_lead_usd"] = round(d["net_pnl_usd"] - bl["net_pnl_usd"], 2)
+    gb = {"since": s.get("per_trade_since", ""), "desk_closes": d["per_trade"]["n"],
+          "baseline_closes": bl["per_trade"]["n"], **GATE_B}
+    out["gate_b"] = gb
     out["summary"] = (f"{report_day}: desk {d['value_usd']:.2f} USD ({d['closes']} closes, {d['open']} open), "
                       f"baseline {bl['value_usd']:.2f} USD ({bl['closes']} closes, {bl['open']} open), "
-                      f"desk lead {out['desk_lead_usd']:+.2f} USD. Gate B: {d['closes']}/{GATE_B['target']} "
-                      f"desk closes (kill at {GATE_B['kill']} without beating the baseline).")
+                      f"desk lead {out['desk_lead_usd']:+.2f} USD. Gate B: {gb['desk_closes']}/{GATE_B['target']} "
+                      f"desk closes since {gb['since'] or 'the BL-31 restart'} (per trade: desk "
+                      f"{d['per_trade']['net_per_trade_usd']:+.2f}, baseline {bl['per_trade']['net_per_trade_usd']:+.2f} USD; "
+                      f"kill at {GATE_B['kill']} without beating the baseline).")
     out["desk"], out["baseline"] = d, bl  # top-level fields first, then the books
     return out
 
