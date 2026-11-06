@@ -5,7 +5,7 @@
     "day_start_value": 3.1878819181120317,
     "halted_day": "",
     "positions": {},
-    "ticks_since_buy": 576
+    "ticks_since_buy": 577
   },
   "desk": {
     "cash": 47.60776857887221,
@@ -407,6 +407,14 @@
         "sight_qliq": 1220,
         "symbol": "NAFF"
       },
+      "0x15e51ce57c55f44783e531a247d25b2e98a5b3e4": {
+        "done": [],
+        "first_price": 3.561e-06,
+        "first_seen": "2026-11-06T02:08:15Z",
+        "sight_pair": "0x2b5102f1fa07a6f087dbf97d1b50c0d5bbfa3abe",
+        "sight_qliq": 34048,
+        "symbol": "ANDF"
+      },
       "0x15fc2a9d6f05ddf5d2e0f27dd5379fcf45f3ec17": {
         "done": [
           1,
@@ -711,7 +719,8 @@
       },
       "0x26be9e5aea58db01cfef1304e86769ef16141f2b": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 1.073e-05,
         "first_seen": "2026-11-05T20:03:15Z",
@@ -1574,15 +1583,6 @@
         "first_price": 8.892e-05,
         "first_seen": "2026-11-05T07:13:13Z",
         "symbol": "DFUS"
-      },
-      "0x68ff5fdfe98eafc92cfc70550fabcbf64e2eb3d4": {
-        "done": [
-          1,
-          6
-        ],
-        "first_price": 7.689e-07,
-        "first_seen": "2026-11-05T02:03:14Z",
-        "symbol": "CLANKDEXER"
       },
       "0x696f9436b67233384889472cd7cd58a6fb5df4f1": {
         "done": [
@@ -2817,12 +2817,6 @@
         "symbol": "ADOF",
         "until": "2026-11-06T20:58:15Z"
       },
-      "0x0d610cd88c74e4a2c0b8d8ccd44743c30be1e239": {
-        "at": "2026-11-05T02:03:14Z",
-        "reason": "liquidity",
-        "symbol": "PENGU",
-        "until": "2026-11-06T02:03:14Z"
-      },
       "0x0dbac5cbb89311f03757ae4c3166db1a09a90979": {
         "at": "2026-11-05T10:38:14Z",
         "reason": "liquidity",
@@ -2858,6 +2852,12 @@
         "reason": "liquidity",
         "symbol": "DENIM",
         "until": "2026-11-06T21:33:14Z"
+      },
+      "0x0e1a3e436e9b63c9dfe0e885d81664eb62d00ba3": {
+        "at": "2026-11-06T02:08:15Z",
+        "reason": "liquidity",
+        "symbol": "FERROPROTOCOL",
+        "until": "2026-11-07T02:08:15Z"
       },
       "0x0e204d2bfcb875ebc918bbc88d94e50f7ef6e6ea": {
         "at": "2026-11-05T18:03:15Z",
@@ -3542,6 +3542,12 @@
         "reason": "liquidity",
         "symbol": "NEAR",
         "until": "2026-11-06T04:33:12Z"
+      },
+      "0x2146ca4892036ccacf467ec54dee5f789e0e17ab": {
+        "at": "2026-11-06T02:08:15Z",
+        "reason": "liquidity",
+        "symbol": "LIQUIDBGT",
+        "until": "2026-11-07T02:08:15Z"
       },
       "0x216ab2bc8aef2eb4668f917ff8475c004ce3189b": {
         "at": "2026-11-05T15:48:16Z",
@@ -4491,12 +4497,6 @@
         "symbol": "NAFD\u2b50\ufe0f",
         "until": "2026-11-06T15:48:16Z"
       },
-      "0x3d20b46ff51ad8951566a4e3836a933f55d154af": {
-        "at": "2026-11-05T02:08:14Z",
-        "reason": "liquidity",
-        "symbol": "WORK",
-        "until": "2026-11-06T02:08:14Z"
-      },
       "0x3d5f24831efd92412caded9ad4d1202132ec28c4": {
         "at": "2026-11-06T01:28:14Z",
         "reason": "liquidity",
@@ -5252,6 +5252,12 @@
         "reason": "liquidity",
         "symbol": "KAI",
         "until": "2026-11-06T09:33:13Z"
+      },
+      "0x556897c9a126b4b2b7c62c18de942c36d492769f": {
+        "at": "2026-11-06T02:08:15Z",
+        "reason": "liquidity",
+        "symbol": "SPCX",
+        "until": "2026-11-07T02:08:15Z"
       },
       "0x5622baeea3cf8964a4a8f6d1681c9ce420dacccc": {
         "at": "2026-11-05T18:23:13Z",
@@ -6267,12 +6273,6 @@
         "symbol": "PAD",
         "until": "2026-11-06T10:38:14Z"
       },
-      "0x8071e148c256ecade660aa097646947921decc67": {
-        "at": "2026-11-05T02:08:14Z",
-        "reason": "liquidity",
-        "symbol": "DOAS",
-        "until": "2026-11-06T02:08:14Z"
-      },
       "0x807636ca67b0b54dbd8330be27367024a6d2cccc": {
         "at": "2026-11-05T18:28:17Z",
         "reason": "missing:liq_usd",
@@ -7035,6 +7035,12 @@
         "symbol": "CV5",
         "until": "2026-11-06T21:48:14Z"
       },
+      "0xa2e1cab1c3468cbbb5920c191867b14c98c86683": {
+        "at": "2026-11-06T02:08:15Z",
+        "reason": "liquidity",
+        "symbol": "Uranus",
+        "until": "2026-11-07T02:08:15Z"
+      },
       "0xa3106198b0694bbda9ab7da59e88b402b0fcc7f3": {
         "at": "2026-11-05T05:28:15Z",
         "reason": "goplus_timeout",
@@ -7514,12 +7520,6 @@
         "reason": "liquidity",
         "symbol": "NASDAQ",
         "until": "2026-11-06T19:58:15Z"
-      },
-      "0xb2000000000000000000001cccb7050de8fb7bad": {
-        "at": "2026-11-05T02:03:14Z",
-        "reason": "liquidity",
-        "symbol": "GAVELDROP",
-        "until": "2026-11-06T02:03:14Z"
       },
       "0xb2000000000000000000001ceb6e43b091de49ae": {
         "at": "2026-11-05T17:53:13Z",
@@ -10108,6 +10108,12 @@
         "first_seen": "2026-11-06T01:33:13Z",
         "last_check": "2026-11-06T02:03:13Z",
         "symbol": "NAFF"
+      },
+      "0x15e51ce57c55f44783e531a247d25b2e98a5b3e4": {
+        "checks": 1,
+        "first_seen": "2026-11-06T02:08:15Z",
+        "last_check": "2026-11-06T02:08:15Z",
+        "symbol": "ANDF"
       },
       "0x1b018332b13e8545daa13549ce98835b46eb2eb9": {
         "checks": 9,
