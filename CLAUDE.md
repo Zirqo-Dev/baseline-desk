@@ -57,6 +57,9 @@ LABELS   core/labels.py            outcome labels (BL-26, logging only): +1/+6/+
                                    dead flag + sight/label pair (BL-30, logging only; numbers in labels.DEAD)
 LIVE     core/live.py              live view (BL-27, display only): open positions of both books + last tick -> data/live.json, every tick
 ALERTS   core/alerts.py            Telegram alerts (BL-3, display only): desk BUY/SELL, daily summary, red-run error -> the owner's phone
+BACKTEST tools/backtest.py          by hand only (BL-33): a fixed spec + its seeded random twin on 5-min candles, point in time,
+                                   pessimistic fills, core friction; holdout = last third of logged days, sealed by a lock file
+CANDLES  tools/candles.py           by hand only (BL-33, backtest.yml): GeckoTerminal 5-min pool OHLCV, sight -> +7 days
 TICK     core/tick.py              one run: roll day (+report, +machine cards, then twin restart once + weekly refills),
                                    exits (desk, baseline), scan -> verify -> buy, baseline buy,
                                    outcome labels (own try), live.json (own try, not on a crash), alerts (own try, also on a crash),
@@ -64,7 +67,11 @@ TICK     core/tick.py              one run: roll day (+report, +machine cards, t
 
 Folders:
 - core/: config.py, book.py, desk.py, verify.py, leads.py, exits.py, friction.py, tick.py, baseline.py, report.py, labels.py, live.py, alerts.py
-- tools/: replay.py (BL-29, offline replay by hand; never imported by core/, never on the tick path)
+- tools/: replay.py (BL-29, offline replay by hand), backtest.py and candles.py (BL-33); never imported by core/,
+  never on the tick path
+- backtest/: candles/ (<sight-day>.jsonl.gz written once when its 7-day windows closed, <day>.open.jsonl.gz until then,
+  twin-validation.jsonl.gz), results/<run>/ (summary.json, trades.csv), holdout.lock.json (BL-33); never under data/,
+  never read by the tick
 - adapters/: base.py (EVM, chain 8453). Adapter pattern kept so other chains could plug in later (parked).
 - prompts/: x_read.py
 - data/: state.json, report.json, tokens_24h.json, live.json (BL-27), daily/YYYY-MM-DD/ (tasks.csv, trades.csv; both books in the same files, column "book"; outcomes.csv, BL-26)
@@ -73,7 +80,8 @@ Folders:
   (no override); the locked mock is docs/mock/bl13-mock.html (never under site/)
 - docs/: DECISIONS.md, LEARNINGS.md, NOTES.md, CHANGELOG.md, mock/ (bl13-mock.html, reference only)
 - .github/workflows/: tick.yml, pages.yml (BL-13: deploys site/ on push to main touching site/** or itself, or by hand; no report.yml, BL-8),
-  alert-test.yml (BL-3: by hand only, read-only, sends one TEST message, commits nothing)
+  alert-test.yml (BL-3: by hand only, read-only, sends one TEST message, commits nothing),
+  backtest.yml (BL-33: by hand only, fetches candles one day per commit, stages backtest/candles/ only, "backtest:" commits)
 
 Standard facts dict (every field required; missing = skip):
 symbol, price, liq_usd, age_min, sells_1h, qliq (BL-32), mint_open, freeze_or_blacklist, honeypot,
@@ -100,6 +108,8 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
 - The bot commits data/ to main ("data: tick ..."), only on change, pull --rebase before push.
   Sessions: git pull before working, git pull --rebase before every push, never commit anything under data/.
 - pages.yml deploys site/ only when site/ changes (GitHub Pages soft limit: 10 builds/hour).
+- backtest.yml (BL-33) runs only when the owner clicks Run workflow: candles one day per commit, backtest/ only,
+  pull --rebase with retry; it never touches data/ and the tick never reads backtest/.
 - Alerts (BL-3): repo secrets TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID reach only tick.yml's Tick step and alert-test.yml's
   send step. Actions logs are public: never print, log, commit or raise the token, chat id, request URL or Telegram's reply;
   only alerts=ok|off|none|error:<type> and a count. No set -x, env dump or debug output in either workflow.
@@ -231,10 +241,26 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
   1k-10k / >=10k (97 / 73 / 182 / 114 with sells_1h > 0), chat's count reproduced; the floor cuts 1,000 of 1,436
   (466 with sells, 352 cut); the twin's 65 trades re-price -42.41 -> -74.53 USD, all of the gap from 15 trades
   entered at qliq < 500 that the floor now blocks (docs/NOTES.md "BL-32").
-  Tests: stdlib unittest, `python -m unittest` (375 pass on 3.13).
+  BL-33 R6 backtest tool, part 1 (2026-11-06, the owner's Nov 6 decisions a-c, tool only, no strategy verdict):
+  tools/candles.py fetches GeckoTerminal 5-min pool OHLCV for every token of the logging set, sight -> +7 days, by hand
+  (backtest.yml, one "backtest: candles <day>" commit per day, backtest/ only); 8 calls/min measured (not ~30), ~260
+  calls and ~0.4 MB per logged day. Pools: exact (state.json history, sight_pair), single, age qualify; dex, guess,
+  other, none do not. tools/backtest.py: point-in-time logs, pessimistic candle fills (open of the first candle within
+  5 min else no_fill, stops first, a stop inside a candle at the worse of level and close, trail on earlier peaks,
+  time exits on the last close), core friction imported, JSON specs with sha256, a seeded random twin; holdout = the
+  last third of complete logged days from Oct 31, rounded up (today Nov 4-5), sealed by backtest/holdout.lock.json
+  after one run. Twin validation Oct 31 - Nov 3: 62 trades, all exact; 40 closed in both (29 same exit), no_fill
+  32.8%; logged -28.53 USD vs simulated -35.37 at the same friction (more pessimistic: intra-candle wicks), -48.15 at
+  core friction. Process rule: chat does not look at holdout-day outcomes for BL-34 candidates before the run
+  (docs/NOTES.md "BL-33", with the as-of field list for the BL-34 spec).
+  Tests: stdlib unittest, `python -m unittest` (410 pass on 3.13).
 - cron-job.org token "baseline-desk cron" EXPIRES Thu 2027-01-21: renew by early January or the desk stops silently.
 - Technical detail per card, GoPlus diagnosis, BL-20 budget and full open items: docs/NOTES.md.
 - Open items:
+  - BL-33: spec fields today are log fields only; for sightings before 2026-11-05 the logs give no pool age, and the
+    candle path (price/volume up to t) and GeckoTerminal pool_created_at are not spec fields yet: chat to say which
+    BL-34 needs (docs/NOTES.md "BL-33"). Run launchpad is "other" (no Clanker fee). liq_pull in the backtest sees only
+    logged liquidity. The backlog fetch (~3.5-4 h) may need two Run workflow clicks (340 min timeout).
   - BL-32: EXIT liq_pull still reads total liquidity (liq_usd vs entry_liq_usd), not qliq; left as is (non-negotiable
     7, exits unchanged); chat to decide whether a real-depth exit rule is a new hypothesis (docs/NOTES.md "BL-32").
   - BL-43 (BL-32 adds): the site's token table lists gate kills by name and lacks real_depth and missing:qliq, so those
@@ -254,12 +280,14 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
   - top10 is the top 8-10 after exclusions, slightly lenient (docs/NOTES.md)
   - The exact GoPlus rate-limit code is unverified; code 3 is not one; BL-24 saw code 4029 4 times in 137 calls at 2 s, very likely it (docs/NOTES.md)
   - tokens_24h.json adds ~230 KB of git history per day (overwritten daily), BL-25 ~83 KB/day (+ BL-28 qliq ~15 KB/day) to tasks.csv and BL-26 outcomes.csv ~55 KB/day, BL-27 live.json ~1 KB per tick (rewritten every tick, ~290 KB/day of git history), BL-30 ~40 KB/day on tasks.csv + ~50-140 KB/day on outcomes.csv; include all of them in BL-16's archive plan (docs/NOTES.md)
-- Next step: after the BL-32 deploy, check the first tick: one BOOK RESTART gate_b row, report state gate_restart
-  "BL-32", real_depth rows with their trade keys, trades.csv notes impact_pct= qliq= qliq_src=; then the first weekly
-  refill Mon 2026-11-09 00:03 UTC (two BOOK REFILL rows, report.json per_trade/gate_b from the BL-32 restart). Story
-  order (DECISIONS 2026-11-06 a): R6 backtest + candles (BL-33; rivals BL-34, BL-38, BL-39, order picked by the owner),
-  then R5 survivor momentum spec; execution design researched in parallel (no wallet code). BL-38..BL-42 are
-  candidates only (DECISIONS 2026-11-04). BL-43 owns the display of refills, per-trade stats and real_depth.
+- Next step: the owner clicks Run workflow on backtest.yml (blank days = every complete logged day), and again if the
+  first job stops at its timeout; check one "backtest: candles <day>" commit per day, backtest/ only. Chat writes the
+  BL-34 survivor momentum spec from the as-of field list (docs/NOTES.md "BL-33"; ask for candle or pool-age fields
+  if needed) and the owner approves it; then BL-33 part 2: one development run, then the one sealed holdout run
+  (python -m tools.backtest --spec <file> --holdout --write), lock and result committed. Also check the BL-32 deploy
+  tick (one BOOK RESTART gate_b row) and the first weekly refill Mon 2026-11-09 00:03 UTC. BL-34 (R5 survivor
+  momentum) is the first and only holdout run (DECISIONS 2026-11-06 BL-33 a); its rivals BL-38, BL-39 wait; the
+  execution design is researched in parallel (no wallet code). BL-38..BL-42 are candidates only (DECISIONS 2026-11-04). BL-43 owns the display.
 - Last updated: 2026-11-06.
 
 ## 12. Glossary

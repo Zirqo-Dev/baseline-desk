@@ -1,0 +1,63 @@
+# BL-33: fetch 5-minute GeckoTerminal candles for the backtest. By hand only (Run workflow), never scheduled,
+# never on the tick path; the tick never reads backtest/. CLAUDE.md sections 4 and 7, docs/NOTES.md "BL-33".
+#
+# One day at a time (tools/candles.py --day), one commit per day touching backtest/candles/ only, so a job that
+# stops keeps the days it finished. A day whose 7-day windows are still open gets <day>.open.jsonl.gz (fetched
+# again by later runs); a closed day gets its final <day>.jsonl.gz, written once and then skipped.
+# Pacing 8 calls/min (measured, BL-33): about 200 tokens a day, roughly 30 min per day.
+name: backtest
+
+on:
+  workflow_dispatch:
+    inputs:
+      days:
+        description: "UTC days to fetch, space separated (blank = every complete logged day without a final file)"
+        required: false
+        default: ""
+
+concurrency:
+  group: backtest
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  candles:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 340
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # the state.json history gives traded tokens their exact pool
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Fetch candles, one commit per day
+        env:
+          DAYS: ${{ inputs.days }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          list="$DAYS"
+          [ -n "$list" ] || list="$(python -m tools.candles --list-days)"
+          echo "days: ${list:-none}"
+          for d in $list; do
+            python -m tools.candles --day "$d"
+            git add -A backtest/candles/
+            if git diff --cached --name-only | grep -v '^backtest/'; then
+              echo "ABORT: something outside backtest/ is staged"; exit 1
+            fi
+            if git diff --cached --quiet; then echo "no change for $d"; continue; fi
+            git commit -q -m "backtest: candles $d"
+            ok=""
+            for try in 1 2 3 4 5; do
+              if git pull --rebase -q origin main && git push -q origin HEAD:main; then ok=1; break; fi
+              git rebase --abort 2>/dev/null || true
+              echo "push rejected (try $try)"; sleep $((try * 5))
+            done
+            [ -n "$ok" ] || exit 1
+          done

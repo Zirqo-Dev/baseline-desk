@@ -1287,6 +1287,144 @@ Moved from CLAUDE.md section 11 on 2026-10-23 (BL-2 process cleanup). Wording is
   re-pricing, fresh_pairs() with half the liquidity on the ETH side); BL-27's "entry_qliq changes no decision" becomes
   "entry qliq moves fills, never a decision". 375 pass on 3.13 (348 before).
 
+## BL-33
+- R6 backtest tool, part 1: the tool only, no strategy verdict (the owner's Nov 6 decisions a-c and go-message 1-7,
+  DECISIONS). Code: tools/candles.py (fetch), tools/backtest.py (simulator, split, lock, specs, twin, validation),
+  .github/workflows/backtest.yml (by hand), tests/test_backtest.py. core/ never imports tools/ and never reads backtest/
+  (test); tick.yml is unchanged. No change under core/ or data/.
+- GeckoTerminal, measured from this sandbox on 2026-11-06 (the docs hosts apiguide.geckoterminal.com,
+  www.geckoterminal.com and docs.coingecko.com are blocked by the sandbox proxy, so nothing here is from the docs):
+  no rate-limit headers; a 429 says Retry-After 0. 1 call/s: 2 of 14 refused; 20/min: 12 of 30; 10/min: 3 of 20. So
+  the card's ~30/min does not hold from a shared IP: PACE_S 7.5 s (8/min), up to 5 tries per call with 15 s between.
+  The real fetches: 59 calls with 7 refused (retried), and 26 with 3. OHLCV: limit at most 1,000 ("Invalid limit.
+  must be positive integer less than or equal to 1000"); only 5-minute windows with a trade come back (sparse); paged
+  back with before_timestamp; currency=usd&token=<our token> gives our token's USD price. /tokens/multi takes 30
+  tokens per call with include=top_pools; GeckoTerminal still lists pools DexScreener has dropped (6 of 10 sampled
+  2026-11-02 tokens had no DexScreener pair any more; all 6 resolved on GeckoTerminal).
+- Candles: sight -> +7 days (go-message 1), paging past 1,000 (the busiest sampled pool had 1,763 candles in 7 days: 2
+  calls). Prices at 6 and volume at 4 significant digits (compact(): 2.4x smaller gzipped, far finer than any fill).
+  Every logged day is fetched, holdout days included (go-message 2); only the simulator refuses holdout days.
+  backtest/candles/<sight-day>.jsonl.gz is written once, when every window of the day has closed (last sight + 7 days);
+  until then the workflow writes <sight-day>.open.jsonl.gz, replaced by later runs and deleted with the final file.
+- Calls and storage per logged day, measured with the 7-day window (20 random 2026-10-31 tokens, windows nearly
+  closed): 24 OHLCV calls for 20 tokens (1.2 per token) + 2 pool lookups; median 11 candles, max 1,763; 2.06 KB
+  gzipped per token on average (max 30.6 KB). The twin's 49 tokens (deeper, busier pools): 3.4 KB each. At about 200
+  logged tokens a day: ~240 OHLCV + ~7 batch + ~10-20 single pool lookups = ~260 calls, ~33 min at 8/min (~37 min
+  with retries), ~0.4 MB a day = ~2.9 MB of git a week for the final files; .open files add ~0.4 MB per open day per
+  run. The backlog Oct 31 - Nov 5 (1,271 day-sightings) is ~1,650 calls, ~3.5-4 h: the workflow's 340 min timeout
+  may stop before the end; one commit per day keeps what finished and the next Run workflow continues.
+- Tokens = the logging set (verify.logged(), read back as tools/replay.py past_gate()): the first row per address on
+  each UTC day. A token seen again on a later day gets its own window in that day's file.
+- Pool match quality (go-message 4), per token in the candle file: exact (the position's pair in the state.json the
+  buying tick committed, read from git history, or outcomes.csv sight_pair from 2026-11-06), single (GeckoTerminal
+  lists one pool and its dex matches the logged dex), age (several pools, exactly one with the logged dex and a
+  creation time within 10 min of the logged pair_age; pair_age is logged from 2026-11-05), dex (one pool with the dex
+  among the top pools), guess (the deepest with the dex), other (no dex match, the deepest), none. QUALIFIED = exact,
+  single, age: the only classes the BL-34 run uses (spec "match"). Counts: twin validation 62 of 62 exact (all 64 twin
+  BUYs Oct 31 - Nov 5 found in the state history, 0.6 s, no lookup call); the 20-token sample: single 19, guess 1.
+- Split and lock (c, go-message 2 and 7): logged days = complete UTC days from 2026-10-31 that have a tasks.csv;
+  holdout = the last third rounded up (backtest.split()). On 2026-11-06: development Oct 31 - Nov 3 (4 days), holdout
+  Nov 4 - 5 (2 days); the boundary moves forward as days are added until the first holdout run freezes it in
+  backtest/holdout.lock.json (spec name, sha256 of the spec file, ran_at, split, result). A second holdout run is
+  refused unless docs/DECISIONS.md has a line containing "holdout-rerun <spec name> <first 12 of the sha256>" and
+  "(the owner)"; an allowed rerun is appended under "reruns", never replacing the first. Every run prints the split.
+  Development runs and the validation load development days only and cut every row and candle at the first holdout
+  day's 00:00 UTC; a position open there is pending. --holdout needs --write (the lock and the result go together).
+- PROCESS RULE (the owner, go-message 2): the tool cannot stop anyone reading the raw logs of holdout days, so chat
+  does not look at holdout-day outcomes (outcomes.csv labels, trades, tokens_24h.json of those days) for BL-34
+  candidates before the BL-34 holdout run.
+- Point in time (tools/backtest.py Logs / View): tasks.csv (desk VERIFY rows of the logging set, their trade keys) and
+  outcomes.csv (labels), each row at its own ts; View(t) returns rows with ts <= t only (asserted). tokens_24h.json is
+  not read (it keeps the latest day only). Test: facts at t are identical with and without every later row and label.
+- Simulator rules (pessimistic): buy at the OPEN of the first candle starting at or after the decision and less than
+  300 s after it, else no_fill (go-message 3: same rule for the strategy and the twin, counted per book). No candle =
+  no trade = the pool price stays at the last close. Inside a candle the stops come first (hard stop, then the trail
+  after a rung): an open at or below the stop exits at the open; a low at or below it exits at the WORSE of the stop
+  and the candle's close (STOP_FILL "worse", Claude Code's choice from the validation, see below; "level" = the stop).
+  A rung fills at its price when the high reaches it and no stop hit; one exit per candle. The trail uses the peak of
+  earlier candles only. The time stop is checked at its due time on the last close, then at each later open (a time
+  exit with no trade fills at the last close, go-message 7). liq_pull reads the logged total liquidity (VERIFY rows and
+  labels) as of each candle; candles carry no liquidity, so most pulls are not seen. Optional exits.max_hold_h. No
+  candles = no_data, data ending with the position open = pending; neither is ever a win.
+- Costs: core/friction.py imported (CoreFees): base + launchpad fee + impact 100 x side USD / qliq; the buy at the qliq
+  as of the decision, each sale at the latest logged qliq after entry up to the sale, else the entry qliq, else
+  thin_pct. Launchpad is not in the logged rows, so a run uses "other" (no Clanker 1% fee: a known flattering gap, as
+  BL-8's pool-shape launchpad). Fixed 5 USD ticket from the spec.
+- Specs: a JSON file {name, text, ticket_usd, universe [[field, op, value]], entry [[...]], exits (core EXIT keys +
+  optional max_hold_h), match}; sha256 of the file's bytes. A field missing as of t fails its condition. Decision points
+  = the token's logged row times on decision days; the first point where universe and entry hold is the entry (one
+  trade per token per run; no MAX_OPEN, cooldown or cash in the backtest: judged per trade). The twin: for the i-th
+  spec trade at time t, a random token (random.Random(int(sha256[:12], 16) + i)) among the tokens whose facts at t pass
+  the same universe and that have a qualified candle line, same exits and ticket, entered at t.
+- Twin validation (the honesty check; development days Oct 31 - Nov 3; python -m tools.backtest --validate-twin):
+  the twin's 62 logged lots bought on those days, the same exits (core/config.py EXIT, unchanged since BL-4) and ticket.
+  Results: backtest/results/2026-11-06T212642Z-twin-validation/ (summary.json, trades.csv).
+
+  | | trades |
+  |---|---|
+  | closed in both | 40 (same exit rule 29) |
+  | no_fill (no trade within 5 min of the twin's tick) | 20 of 61 tried = 32.8% |
+  | no_data (LOIRD: no candles at all) | 1 |
+  | pending (Alsa: rungs taken, no logged liquidity pull, the pool's trades end Nov 1) | 1 |
+
+  | 40 closed in both | P&L USD |
+  |---|---|
+  | logged | -28.53 |
+  | simulated at the logged friction %, stop fill "worse" (default) | -35.37 |
+  | simulated at the logged friction %, stop fill "level" | -16.28 |
+  | simulated at core friction (BL-32) | -48.15 |
+
+  Exit time: time stops land -3 / +2 min from the logged ones (the tick runs at :03/:08, candles start on the 5 min).
+  The big gaps:
+  - Liquidity pulls (I O F, USOE 22:13 and 23:13, NAFF 12:28, ADP 23:58, Paper): logged liq_pull at about -5.00;
+    the simulator sees the crash inside one candle 3-8 min before the next tick and exits on the hard stop. At the
+    stop LEVEL it books about -1.4 USD instead of -5.00 (USOE 22:20 candle: open 0.7297, low 0.00000018): a pull
+    falls through the stop in one swap and nobody can sell at the level. With STOP_FILL "worse" (the close) the
+    simulator books -4.9 to -5.0, like the logs. This is why "worse" is the default.
+  - ATLAS 05:48 Nov 1: logged ladder_1 + ladder_2 + trail +4.82; simulated -1.36. The first candle after the tick
+    opened 22% below the logged DexScreener quote and swung +62% / -31% inside 5 min: stop first -> hard stop in the
+    entry candle. The live tick sampled once per 5 min and never saw the low. Pessimistic by design (-6.18 USD).
+  - FFOT 04:28 Nov 2 and UnityCoded 18:58 / 20:58 Nov 2: logged time_stop, simulated hard_stop 43-48 min earlier on a
+    wick below -25% inside a candle; at core friction -3.8 / -4.6 USD each because their entry qliq was 5 / 3 USD
+    (impact on a near-empty real side; BL-32's floor now blocks such entries).
+  - Noah: liq_pull both, the simulator's 62 min later (from a logged label's liquidity) and after its rungs:
+    +4.14 vs +4.94. msUSD 07:28 Nov 2: a liq_pull from a logged liquidity drop, -0.29 vs -0.28.
+  - no_fill: 20 twin buys on sleepy pools (wtCOIN x4, ADOF x2, ...) had no trade in the 5 min after the tick; the live
+    twin filled at a DexScreener quote anyway. Their logged P&L was -0.27 to -0.48 each (time stops), plus IOF -5.00.
+  Conclusion: on the same trades, the candle simulator with "worse" stops books MORE loss than the live logs (-35.37 vs
+  -28.53 at the same friction), mostly from intra-candle wicks the 5-minute tick never saw; with "level" stops it
+  would flatter rugs. The no_fill rate (33% here) has to be reported for every run.
+- As-of fields for the BL-34 spec (go-message 6), for a token at 24-72 h of pool age (View.facts(), FIELDS):
+  - From the sighting's VERIFY rows (pool age 15 min - 48 h at the row; re-checks only while watched, up to 3 h):
+    qliq, liq (the chosen pair's total), b1 s1 b24 s24 (all Base pairs, BL-25), dex, symbol, verdict (the desk's last
+    reason), sight_qliq, since_sight_h, last_qliq, last_liq. pool_age_h and token_age_h come from pair_age /
+    token_age, logged only from 2026-11-05: for sightings before that the logs give NO pool age (a filter on it fails,
+    a missing number). Only 11 of 290 tokens logged Nov 5-6 had a VERIFY row at pool age >= 24 h.
+  - From the outcome labels of that sighting, each known only from its own ts (+1 h, +6 h, +24 h after first sight):
+    l1_/l6_/l24_ price, chg_pct (vs the first price), liq, qliq, pair_b1 pair_s1 pair_b24 pair_s24 (the deepest pair
+    only, BL-26), gone, and from the 2026-11-06 files best_qliq and dead; first_price. 1,262 of 1,298 sightings
+    Oct 31 - Nov 5 have their +24 h label. A sighting at pool age p has its +24 h label at pool age p + 24 h, so a
+    24-72 h entry sees at most the +24 h label.
+  - NOT known at 24-72 h from the logs: any qliq, liquidity, price or buy/sell count after the +24 h label (no label at
+    +48 h or +72 h; the scan rarely re-finds an old pool); holders, GoPlus fields after the sighting; the launchpad
+    (rows do not log it). Known from the candles but NOT wired as spec fields yet: the price and volume path up to t
+    (closes, highs, volumes of candles that started at least 5 min before t) and GeckoTerminal's pool_created_at (a
+    pool age for sightings before 2026-11-05). Chat can ask for these as fields in part 2; a candle field would read
+    only candles that ended before the decision.
+- Tests: tests/test_backtest.py (35): each candle rule (entry at the first open at or after the decision, 299 s vs 300 s
+  no_fill, no candles no_data, stop before rung in one candle, gap at the open, worse-of stop vs level, trail from
+  earlier peaks only, time stop on the last close and later at an open, pending, data end, liq_pull, max_hold); core
+  friction imported (the same object, no copy of its numbers, exit qliq sources exit / entry / none); the leak test
+  (facts identical with and without later rows and labels, View never returns a later row, cutoff, last qliq after
+  entry); split (last third rounded up, 3 of 7), a development run never trades or exits on a holdout day, unqualified
+  pools are no_data; twin seeding (same sha same picks, other seeds other picks, same universe); the lock (first run
+  allowed, second refused, a non-owner line refused, the owner line allows that exact spec only, the first lock entry
+  kept, a frozen split never moves); --holdout without --write refused; spec sha256 of the file and bad fields
+  refused; the fetch client paced and retried on 429 with no network; OHLCV paging past 1,000 and sorting; match
+  classes; resolve exact first then one batch; day file .open until closed then final; core/ never imports tools/;
+  backtest.yml by hand only, stages backtest/ only, never data/; the validation compares one trade and reads
+  development days only. 410 pass on 3.13 (375 before).
+
 ## Open items (detail)
 - Open items:
   - BL-7 done only after 24h of green runs, no overlap, one TICK row per run. The TICK rows show the real run rate for Gate A (90%).
