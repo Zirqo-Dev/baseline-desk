@@ -1869,3 +1869,9 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-06T16:33:14Z,desk,VERIFY,ASE,0xd03c1be8ec1baa4714e077daec7ac8cbc0a1cccc,SKIP,missing:liq_usd,goplus=skipped until=2026-11-07T16:33:14Z
 2026-11-06T16:33:14Z,baseline,EXECUTE,TRND,0xe60dafa98571f14e5288e2214252749aaadaecac,SKIP,size,"seed=202611061633 eligible=2 pick=1 pool=366326,e60daf desk=WATCH launchpad=other"
 2026-11-06T16:33:14Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=8 new=6 checked=14 passed=0 bought=0 held=0 deferred=0 dex_only=6 goplus=8 requests=26 secs=19.0 bl_positions=0 bl_due=1 bl_eligible=2 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=1 labels_done=1 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-06T16:38:16Z,desk,VERIFY,USEO,0x54d15517c4619b28b59c5f55bd8fa13f074de65d,WATCH,goplus_not_ready,first_seen=2026-11-06T16:18:16Z checks=2 pending=top10_pct b1=32 s1=0 b24=32 s24=0 liq=78820 dex=uniswap:v2 qliq=39418 pair_age=33 token_age=33
+2026-11-06T16:38:16Z,desk,VERIFY,CLAUDIA,0x9fb8b71b6e9d313aafb6c4aff7230db3e64ffc0b,WATCH,goplus_not_ready,"first_seen=2026-11-06T16:18:16Z checks=2 pending=honeypot,buy_tax_pct,sell_tax_pct,dev_pct,top10_pct,lp_locked_pct b1=41 s1=0 b24=41 s24=0 liq=207275 dex=uniswap:v2 qliq=103632 pair_age=25 token_age=25"
+2026-11-06T16:38:16Z,desk,VERIFY,signed,0xb2000000000000000000002258baf25f3623f901,SKIP,liquidity,goplus=skipped until=2026-11-07T16:38:16Z
+2026-11-06T16:38:16Z,desk,VERIFY,Tit,0xc725502a68e68bf9144ddb206a04709debdb049c,SKIP,liquidity,goplus=skipped until=2026-11-07T16:38:16Z
+2026-11-06T16:38:16Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
+2026-11-06T16:38:16Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=2 new=2 checked=4 passed=0 bought=0 held=0 deferred=0 dex_only=2 goplus=2 requests=10 secs=4.3 bl_positions=0 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=1 labels_done=1 labels_calls=1 live=ok alerts=none alerts_sent=0
