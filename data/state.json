@@ -1,38 +1,21 @@
 {
   "baseline": {
-    "cash": 44.39274316163613,
+    "cash": 49.104582682847905,
     "cooldown": {
       "a:0x2128acd0e95cf64e3598f5907dcdf293338776b0": "2026-11-07T19:23:14Z",
+      "a:0x27c6e876cf7a8b63e8c8e4875b73e531da133345": "2026-11-07T20:38:16Z",
       "a:0x290af14f2b5afc4db2171a80f143091c21902460": "2026-11-07T18:18:15Z",
       "s:AODF": "2026-11-07T19:23:14Z",
-      "s:MONERO": "2026-11-07T18:18:15Z"
+      "s:MONERO": "2026-11-07T18:18:15Z",
+      "s:NAFF": "2026-11-07T20:38:16Z"
     },
     "day": "2026-11-06",
     "day_start_value": 50.0,
     "halted_day": "",
-    "positions": {
-      "0x27c6e876cf7a8b63e8c8e4875b73e531da133345": {
-        "cost_usd": 5.0,
-        "entry_fill": 0.00557436,
-        "entry_intended": 0.005412,
-        "entry_liq_usd": 8119508.28,
-        "entry_qliq": 7805,
-        "entry_ts": "2026-11-06T19:48:16Z",
-        "ladder_done": [],
-        "last_liq_usd": 8128900.21,
-        "last_price": 0.005418,
-        "last_qliq": 7840,
-        "launchpad": "other",
-        "orig_qty": 896.963956400376,
-        "pair": "0xcc8b778b5958ca59c4727d268be333ed81e9f07f07436fec89485551d8298485",
-        "peak_price": 0.005428,
-        "qty": 896.963956400376,
-        "symbol": "NAFF"
-      }
-    },
+    "positions": {},
     "refill_week": "2026-W45",
     "refills_usd": 46.81211808188797,
-    "ticks_since_buy": 9
+    "ticks_since_buy": 10
   },
   "desk": {
     "cash": 47.60776857887221,
@@ -728,17 +711,6 @@
         "sight_pair": "0x45364f8f3f87154ab7c7434fec69d4756e698479",
         "sight_qliq": 33907,
         "symbol": "NRG"
-      },
-      "0x25c455f440f239025cfd2671af114386da8c242b": {
-        "done": [
-          1,
-          6
-        ],
-        "first_price": 7.247e-06,
-        "first_seen": "2026-11-05T20:33:16Z",
-        "sight_pair": "0x16812cb6853cc9f0f0f362ce99e12d5ad80b337c",
-        "sight_qliq": 34591,
-        "symbol": "CIU"
       },
       "0x277a8bcda9eb7f8ced248c1cfd9d88f72ce62de6": {
         "done": [
@@ -2231,6 +2203,12 @@
         "symbol": "LIQUIDBGT",
         "until": "2026-11-07T13:38:16Z"
       },
+      "0x00fd6cb13bd4005b6a91bf11f68bfc296a3ac183": {
+        "at": "2026-11-06T20:38:16Z",
+        "reason": "real_depth",
+        "symbol": "PMC",
+        "until": "2026-11-07T20:38:16Z"
+      },
       "0x0107e1422dbc4537b8e3e38965be9e2ccd4371b4": {
         "at": "2026-11-06T10:58:14Z",
         "reason": "liquidity",
@@ -3689,12 +3667,6 @@
         "symbol": "US\u200aO\u200aE",
         "until": "2026-11-07T13:08:15Z"
       },
-      "0x31ee544aca715712ea9bbd22b07c70c17e74114a": {
-        "at": "2026-11-05T20:33:16Z",
-        "reason": "liquidity",
-        "symbol": "ICU",
-        "until": "2026-11-06T20:33:16Z"
-      },
       "0x31f177a4e9f6775483aa331b08bd292be271e88e": {
         "at": "2026-11-06T06:58:14Z",
         "reason": "goplus_timeout",
@@ -3832,12 +3804,6 @@
         "reason": "liquidity",
         "symbol": "jeje",
         "until": "2026-11-07T05:13:15Z"
-      },
-      "0x37befe6d18e517e6dd66bfa5a345e401fddb86ea": {
-        "at": "2026-11-05T20:33:16Z",
-        "reason": "liquidity",
-        "symbol": "WAGMI",
-        "until": "2026-11-06T20:33:16Z"
       },
       "0x38003bba6d7a64c7a0d6daad122ed0471f3abb1c": {
         "at": "2026-11-06T02:48:13Z",
@@ -4265,12 +4231,6 @@
         "symbol": "nothing",
         "until": "2026-11-07T16:33:14Z"
       },
-      "0x4700e8f1e10694bab0581faebe33b4a8c2d8ab82": {
-        "at": "2026-11-05T20:33:16Z",
-        "reason": "liquidity",
-        "symbol": "ZEC",
-        "until": "2026-11-06T20:33:16Z"
-      },
       "0x4866af25d162d81817ed4cfa9a4dec2c0f3a637c": {
         "at": "2026-11-06T02:48:13Z",
         "reason": "liquidity",
@@ -4582,12 +4542,6 @@
         "reason": "liquidity",
         "symbol": "VIOR",
         "until": "2026-11-07T11:53:16Z"
-      },
-      "0x5812cdb3754f57d6cbd83126c633b678b0fed65d": {
-        "at": "2026-11-05T20:33:16Z",
-        "reason": "liquidity",
-        "symbol": "DENIM",
-        "until": "2026-11-06T20:33:16Z"
       },
       "0x58205e33500f69145171bdd1b6b48ba515614dcd": {
         "at": "2026-11-06T01:03:14Z",
@@ -5476,12 +5430,6 @@
         "reason": "liquidity",
         "symbol": "OAK",
         "until": "2026-11-07T18:58:16Z"
-      },
-      "0x861240554baf8521292b9647bc60e39760a78819": {
-        "at": "2026-11-05T20:33:16Z",
-        "reason": "liquidity",
-        "symbol": "grantr",
-        "until": "2026-11-06T20:33:16Z"
       },
       "0x867054e1ee41279165a200909b826d607c30e673": {
         "at": "2026-11-06T08:28:15Z",
@@ -6803,12 +6751,6 @@
         "symbol": "DEMOCAT",
         "until": "2026-11-06T22:18:13Z"
       },
-      "0xb200000000000000000000895d3fe4ec0ec18d32": {
-        "at": "2026-11-05T20:33:16Z",
-        "reason": "missing:liq_usd",
-        "symbol": "DENIM",
-        "until": "2026-11-06T20:33:16Z"
-      },
       "0xb2000000000000000000008b6fd82bcbd9e97bb2": {
         "at": "2026-11-06T04:33:13Z",
         "reason": "liquidity",
@@ -6952,12 +6894,6 @@
         "reason": "liquidity",
         "symbol": "CIRCBREA",
         "until": "2026-11-07T00:23:13Z"
-      },
-      "0xb200000000000000000000b512b52dbc28d0d82a": {
-        "at": "2026-11-05T20:33:16Z",
-        "reason": "liquidity",
-        "symbol": "tripleC",
-        "until": "2026-11-06T20:33:16Z"
       },
       "0xb200000000000000000000b538e8accf660189b1": {
         "at": "2026-11-06T14:13:12Z",
@@ -7876,6 +7812,12 @@
         "reason": "liquidity",
         "symbol": "ERA",
         "until": "2026-11-07T11:13:14Z"
+      },
+      "0xcef31ec7b6f239655b4d6547feff198786c82ba3": {
+        "at": "2026-11-06T20:38:16Z",
+        "reason": "real_depth",
+        "symbol": "cbRATS",
+        "until": "2026-11-07T20:38:16Z"
       },
       "0xcf4be9369377d2bf5e7fddee31f20adf93352d0e": {
         "at": "2026-11-06T17:48:16Z",
@@ -8852,9 +8794,9 @@
         "symbol": "USNR"
       },
       "0x2c2d0e21403982e1657556e90d4dacb04a93c91a": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-06T20:23:13Z",
-        "last_check": "2026-11-06T20:23:13Z",
+        "last_check": "2026-11-06T20:38:16Z",
         "symbol": "CLAUDIA"
       },
       "0x8bc9622c8e37920d1a0c694d4718a8a751c6e110": {
