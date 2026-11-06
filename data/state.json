@@ -15,7 +15,7 @@
     "positions": {},
     "refill_week": "2026-W45",
     "refills_usd": 46.81211808188797,
-    "ticks_since_buy": 38
+    "ticks_since_buy": 39
   },
   "desk": {
     "cash": 47.60776857887221,
@@ -1565,7 +1565,9 @@
         "symbol": "ANTF"
       },
       "0x863fe4c0def4dfdc5c0b508cb4dd109acfd08fbc": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 4.25e-06,
         "first_seen": "2026-11-06T21:58:17Z",
         "sight_pair": "0x440a8862b6c94f220947f95bd8f7678554395e94",
@@ -1710,17 +1712,6 @@
         "sight_pair": "0x464c6ce3e593d1dd81ffb9b9aeabe226e541c24d",
         "sight_qliq": 34657,
         "symbol": "UKOR"
-      },
-      "0xaacf9070626e01d3451c4c28adb0d20f0d7ef157": {
-        "done": [
-          1,
-          6
-        ],
-        "first_price": 7.093e-06,
-        "first_seen": "2026-11-05T22:58:15Z",
-        "sight_pair": "0xd99b03fdba4ebde71ede3df3367c532b073fd314",
-        "sight_qliq": 34054,
-        "symbol": "POLYGON MATIC"
       },
       "0xabe5d83f51d44ee920c5a32b85c516b99613646d": {
         "done": [
@@ -2196,6 +2187,12 @@
         "reason": "real_depth",
         "symbol": "PMC",
         "until": "2026-11-07T20:38:16Z"
+      },
+      "0x00fe3dae8083f59faf6d8ecbbc760a8452731b45": {
+        "at": "2026-11-06T23:03:13Z",
+        "reason": "missing:liq_usd",
+        "symbol": "DTCC STELLAR",
+        "until": "2026-11-07T23:03:13Z"
       },
       "0x0107e1422dbc4537b8e3e38965be9e2ccd4371b4": {
         "at": "2026-11-06T10:58:14Z",
@@ -5179,12 +5176,6 @@
         "symbol": "Tit",
         "until": "2026-11-07T01:38:13Z"
       },
-      "0x84598b2e10c491be608ee50f7972a1001ecb8394": {
-        "at": "2026-11-05T22:58:15Z",
-        "reason": "liquidity",
-        "symbol": "GITLAB",
-        "until": "2026-11-06T22:58:15Z"
-      },
       "0x8490471a3971dce31ca5f97d8c8c8a59582fcf50": {
         "at": "2026-11-06T10:23:14Z",
         "reason": "liquidity",
@@ -6979,6 +6970,12 @@
         "symbol": "chunking",
         "until": "2026-11-07T18:38:14Z"
       },
+      "0xb200000000000000000000e763d3c48d4753b2de": {
+        "at": "2026-11-06T23:03:13Z",
+        "reason": "real_depth",
+        "symbol": "ROCCO",
+        "until": "2026-11-07T23:03:13Z"
+      },
       "0xb200000000000000000000e78ec5229677c84578": {
         "at": "2026-11-06T17:43:14Z",
         "reason": "liquidity",
@@ -8506,9 +8503,9 @@
     },
     "watch": {
       "0x79d0d8f417e5d1336036ffc437eb394c19ad6000": {
-        "checks": 2,
+        "checks": 3,
         "first_seen": "2026-11-06T22:28:14Z",
-        "last_check": "2026-11-06T22:43:14Z",
+        "last_check": "2026-11-06T23:03:13Z",
         "symbol": "WEALTH"
       },
       "0xe9d126403fce3744aae618a21e6bc97bab326d49": {
