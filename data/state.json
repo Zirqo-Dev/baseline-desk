@@ -9,17 +9,17 @@
       "s:MONERO": "2026-11-07T18:18:15Z",
       "s:NAFF": "2026-11-07T20:38:16Z"
     },
-    "day": "2026-11-06",
-    "day_start_value": 50.0,
+    "day": "2026-11-07",
+    "day_start_value": 49.104582682847905,
     "halted_day": "",
     "positions": {},
     "refill_week": "2026-W45",
     "refills_usd": 46.81211808188797,
-    "ticks_since_buy": 50
+    "ticks_since_buy": 51
   },
   "desk": {
     "cash": 47.60776857887221,
-    "day": "2026-11-06",
+    "day": "2026-11-07",
     "day_start_value": 47.60776857887221,
     "halted_day": "",
     "positions": {},
@@ -1664,17 +1664,6 @@
         "sight_qliq": 34657,
         "symbol": "UKOR"
       },
-      "0xabe5d83f51d44ee920c5a32b85c516b99613646d": {
-        "done": [
-          1,
-          6
-        ],
-        "first_price": 1.152e-05,
-        "first_seen": "2026-11-05T23:58:15Z",
-        "sight_pair": "0xf9cc93c13d48a03ec5a386f352a2c4c46e484d0f",
-        "sight_qliq": 93314,
-        "symbol": "BIDEN"
-      },
       "0xb02e729675b7ea4895b98074a248737feb068cb9": {
         "done": [
           1,
@@ -2588,6 +2577,12 @@
         "reason": "liquidity",
         "symbol": "US\u200aO\u200aE",
         "until": "2026-11-07T06:08:19Z"
+      },
+      "0x13c38296d5140128d1d67ec3228a4825fcef9e4b": {
+        "at": "2026-11-07T00:03:13Z",
+        "reason": "real_depth",
+        "symbol": "LIQUIDBGT",
+        "until": "2026-11-08T00:03:13Z"
       },
       "0x1414495a4353b9410db6d22af06e0fe5c6f77222": {
         "at": "2026-11-06T21:38:14Z",
@@ -3752,12 +3747,6 @@
         "reason": "liquidity",
         "symbol": "ADOF",
         "until": "2026-11-07T13:08:15Z"
-      },
-      "0x3bcd77f33b47b479f51f2a4533e75d10fb84ba92": {
-        "at": "2026-11-05T23:58:15Z",
-        "reason": "liquidity",
-        "symbol": ".AI",
-        "until": "2026-11-06T23:58:15Z"
       },
       "0x3c06e3797f23da9de4eff4d1ed9a7aa895d6ca75": {
         "at": "2026-11-06T22:13:15Z",
@@ -6885,6 +6874,12 @@
         "symbol": "O1XBT",
         "until": "2026-11-07T15:58:14Z"
       },
+      "0xb200000000000000000000e9ecc2e4551561c0a5": {
+        "at": "2026-11-07T00:03:13Z",
+        "reason": "real_depth",
+        "symbol": "PIKA",
+        "until": "2026-11-08T00:03:13Z"
+      },
       "0xb200000000000000000000ea8829157344179367": {
         "at": "2026-11-06T16:28:15Z",
         "reason": "liquidity",
@@ -7280,12 +7275,6 @@
         "reason": "real_depth",
         "symbol": "BOOTR",
         "until": "2026-11-07T22:23:13Z"
-      },
-      "0xc47ef52fb634ed9428c7c9158f65cfdf9b490713": {
-        "at": "2026-11-05T23:58:15Z",
-        "reason": "liquidity",
-        "symbol": "MEOW",
-        "until": "2026-11-06T23:58:15Z"
       },
       "0xc52d3cf4cf0f5399c55bf8d7315d2e184eb6d0f4": {
         "at": "2026-11-06T05:23:13Z",
@@ -8097,12 +8086,6 @@
         "symbol": "DESCRIPT",
         "until": "2026-11-07T23:38:15Z"
       },
-      "0xf1a6cbb01ed389bf66f96fe37ecb066b624245ab": {
-        "at": "2026-11-05T23:58:15Z",
-        "reason": "liquidity",
-        "symbol": "Launchpad",
-        "until": "2026-11-06T23:58:15Z"
-      },
       "0xf1d50fc071eef0861084c4fba86cdf8424a965aa": {
         "at": "2026-11-06T15:18:14Z",
         "reason": "liquidity",
@@ -8458,6 +8441,13 @@
           "day": "2026-11-05",
           "open": 0,
           "value_usd": 3.187882
+        },
+        {
+          "cash_usd": 49.104583,
+          "day": "2026-11-06",
+          "open": 0,
+          "refills_usd": 46.812118,
+          "value_usd": 49.104583
         }
       ],
       "desk": [
@@ -8508,6 +8498,13 @@
           "day": "2026-11-05",
           "open": 0,
           "value_usd": 47.607769
+        },
+        {
+          "cash_usd": 47.607769,
+          "day": "2026-11-06",
+          "open": 0,
+          "refills_usd": 0.0,
+          "value_usd": 47.607769
         }
       ]
     },
@@ -8526,28 +8523,29 @@
     "totals": {
       "funnel": {
         "buy": 1,
-        "gate": 1298,
+        "gate": 1353,
         "safety": 1,
-        "scan": 10036
+        "scan": 11082
       },
       "kills": {
         "gate": {
-          "liquidity": 7856,
+          "liquidity": 8614,
           "missing:age_min": 1,
-          "missing:liq_usd": 795,
-          "missing:price": 51,
-          "missing:symbol": 35
+          "missing:liq_usd": 874,
+          "missing:price": 56,
+          "missing:symbol": 38,
+          "real_depth": 146
         },
         "safety": {
-          "goplus_partial": 18,
-          "goplus_timeout": 1047,
-          "mint_open": 37,
-          "nobody_can_sell": 3,
+          "goplus_partial": 20,
+          "goplus_timeout": 1096,
+          "mint_open": 38,
+          "nobody_can_sell": 4,
           "too_old": 4,
           "top10_pct": 14
         }
       },
-      "through": "2026-11-05"
+      "through": "2026-11-06"
     }
   }
 }
