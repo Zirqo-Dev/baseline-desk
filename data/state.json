@@ -1,6 +1,6 @@
 {
   "baseline": {
-    "cash": 48.83245757314237,
+    "cash": 43.83245757314237,
     "cooldown": {
       "a:0x013d4ccd61f996202bfbcb41392845eb6904db07": "2026-11-08T14:18:14Z",
       "a:0x2128acd0e95cf64e3598f5907dcdf293338776b0": "2026-11-07T19:23:14Z",
@@ -23,6 +23,22 @@
     "day_start_value": 49.104582682847905,
     "halted_day": "",
     "positions": {
+      "0x56db0ddd93e7e8e14020b4253f227e817151df2a": {
+        "cost_usd": 5.0,
+        "entry_fill": 1.2087012447698745e-08,
+        "entry_intended": 1.173e-08,
+        "entry_liq_usd": 22947.89,
+        "entry_qliq": 11472,
+        "entry_ts": "2026-11-07T14:38:13Z",
+        "ladder_done": [],
+        "last_price": 1.173e-08,
+        "launchpad": "other",
+        "orig_qty": 413667150.7235813,
+        "pair": "0x47b8de1fb939487b8dd07513ab65e1f8a1050ea9",
+        "peak_price": 1.173e-08,
+        "qty": 413667150.7235813,
+        "symbol": "KDX"
+      },
       "0x7159f9c0906a51e1300273c4eb19c59fe6c1efd8": {
         "cost_usd": 1.6999999999999995,
         "entry_fill": 0.0019005099008528046,
@@ -34,20 +50,20 @@
           0,
           1
         ],
-        "last_liq_usd": 242773.4,
-        "last_price": 0.00815,
-        "last_qliq": 121386,
+        "last_liq_usd": 243271.09,
+        "last_price": 0.008184,
+        "last_qliq": 121635,
         "launchpad": "other",
         "orig_qty": 2630.872902980605,
         "pair": "0x66a051f5faaaf00ab1bba4d876f20b5b46a8d3e0",
-        "peak_price": 0.00815,
+        "peak_price": 0.008184,
         "qty": 894.4967870134055,
         "symbol": "Baranos"
       }
     },
     "refill_week": "2026-W45",
     "refills_usd": 46.81211808188797,
-    "ticks_since_buy": 12
+    "ticks_since_buy": 0
   },
   "desk": {
     "cash": 47.60776857887221,
@@ -827,6 +843,14 @@
         "sight_pair": "0x5a32f94b8ab8e2c74ff62a3e9c9e481b88888b15b891ca5380144fa1e589892a",
         "sight_qliq": 718,
         "symbol": "XTruth Oil"
+      },
+      "0x31f34cb6e9c4ef3e63ab5be4f5a2892caf80f496": {
+        "done": [],
+        "first_price": 1.13e-05,
+        "first_seen": "2026-11-07T14:38:13Z",
+        "sight_pair": "0xddbadcacc4054c641ada58ef29efb8f190363315",
+        "sight_qliq": 92171,
+        "symbol": "BOOTR"
       },
       "0x32c93ed57fe71641ba5b0e90cff87a8e6e6706e7": {
         "done": [
@@ -3173,6 +3197,12 @@
         "symbol": "XTruth Oil",
         "until": "2026-11-08T08:53:15Z"
       },
+      "0x291c59c50113297dbf86ae47ed0967a91ef4515d": {
+        "at": "2026-11-07T14:38:13Z",
+        "reason": "real_depth",
+        "symbol": "MEOW",
+        "until": "2026-11-08T14:38:13Z"
+      },
       "0x292412830f5e0a72099a375dabd04a0f884508c5": {
         "at": "2026-11-06T20:28:14Z",
         "reason": "goplus_timeout",
@@ -4246,6 +4276,12 @@
         "reason": "real_depth",
         "symbol": "KAI",
         "until": "2026-11-08T06:58:14Z"
+      },
+      "0x5686a41799fe0e3d2b2b833117ecc98efb2343f5": {
+        "at": "2026-11-07T14:38:13Z",
+        "reason": "real_depth",
+        "symbol": "WORK",
+        "until": "2026-11-08T14:38:13Z"
       },
       "0x56d56b7d157cd824a30a4f404ed7b7114e849b85": {
         "at": "2026-11-06T18:38:14Z",
@@ -6731,6 +6767,12 @@
         "symbol": "DTCC STELLAR",
         "until": "2026-11-07T23:28:14Z"
       },
+      "0xb200000000000000000000c34fab642ba363e7d2": {
+        "at": "2026-11-07T14:38:13Z",
+        "reason": "real_depth",
+        "symbol": "timon",
+        "until": "2026-11-08T14:38:13Z"
+      },
       "0xb200000000000000000000c399611d42fddbb91e": {
         "at": "2026-11-06T15:43:13Z",
         "reason": "liquidity",
@@ -8377,10 +8419,16 @@
         "last_check": "2026-11-07T14:33:16Z",
         "symbol": "USPR"
       },
-      "0x56db0ddd93e7e8e14020b4253f227e817151df2a": {
+      "0x31f34cb6e9c4ef3e63ab5be4f5a2892caf80f496": {
         "checks": 1,
+        "first_seen": "2026-11-07T14:38:13Z",
+        "last_check": "2026-11-07T14:38:13Z",
+        "symbol": "BOOTR"
+      },
+      "0x56db0ddd93e7e8e14020b4253f227e817151df2a": {
+        "checks": 2,
         "first_seen": "2026-11-07T14:23:13Z",
-        "last_check": "2026-11-07T14:23:13Z",
+        "last_check": "2026-11-07T14:38:13Z",
         "symbol": "KDX"
       },
       "0xb80194e3868511b8f43e1d5d6e255cd9e7c3e7dd": {
