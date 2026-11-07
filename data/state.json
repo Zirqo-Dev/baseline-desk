@@ -1,6 +1,6 @@
 {
   "baseline": {
-    "cash": 48.99859273701897,
+    "cash": 43.99859273701897,
     "cooldown": {
       "a:0x2128acd0e95cf64e3598f5907dcdf293338776b0": "2026-11-07T19:23:14Z",
       "a:0x27c6e876cf7a8b63e8c8e4875b73e531da133345": "2026-11-07T20:38:16Z",
@@ -14,10 +14,27 @@
     "day": "2026-11-07",
     "day_start_value": 49.104582682847905,
     "halted_day": "",
-    "positions": {},
+    "positions": {
+      "0x4faa3abd2ef814b421d23ef0fa4ba15af410548e": {
+        "cost_usd": 5.0,
+        "entry_fill": 0.004611168131161594,
+        "entry_intended": 0.004475,
+        "entry_liq_usd": 45699.44,
+        "entry_qliq": 11665,
+        "entry_ts": "2026-11-07T06:48:14Z",
+        "ladder_done": [],
+        "last_price": 0.004475,
+        "launchpad": "other",
+        "orig_qty": 1084.3239408710208,
+        "pair": "0x524e66833d96a7d89c3dde09a209c73497840c58ff357ab738818a39cda1abc1",
+        "peak_price": 0.004475,
+        "qty": 1084.3239408710208,
+        "symbol": "NOTF"
+      }
+    },
     "refill_week": "2026-W45",
     "refills_usd": 46.81211808188797,
-    "ticks_since_buy": 71
+    "ticks_since_buy": 0
   },
   "desk": {
     "cash": 47.60776857887221,
@@ -6485,6 +6502,12 @@
         "symbol": "CARDS",
         "until": "2026-11-07T19:48:16Z"
       },
+      "0xb200000000000000000000907f4eab0558ee53fb": {
+        "at": "2026-11-07T06:48:14Z",
+        "reason": "real_depth",
+        "symbol": "UODF",
+        "until": "2026-11-08T06:48:14Z"
+      },
       "0xb20000000000000000000090dedf1f592c327942": {
         "at": "2026-11-06T08:53:12Z",
         "reason": "liquidity",
@@ -8486,9 +8509,9 @@
     },
     "watch": {
       "0x4faa3abd2ef814b421d23ef0fa4ba15af410548e": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-07T06:33:12Z",
-        "last_check": "2026-11-07T06:33:12Z",
+        "last_check": "2026-11-07T06:48:14Z",
         "symbol": "NOTF"
       },
       "0x5f8ef2e69c2d402c3471c8c3fd5f8945cccee4cd": {
@@ -8504,9 +8527,9 @@
         "symbol": "UODF"
       },
       "0xbb619192ca5bdd04c474c7733b01222183afba91": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-07T06:33:12Z",
-        "last_check": "2026-11-07T06:33:12Z",
+        "last_check": "2026-11-07T06:48:14Z",
         "symbol": "REBOOT"
       }
     }
@@ -8632,7 +8655,7 @@
     "gate_restart": "BL-32",
     "machine_due": "",
     "max_dd_pct": {
-      "baseline": 96.65125366952445,
+      "baseline": 96.83200910954513,
       "desk": 9.811123120222184
     },
     "peak": {
