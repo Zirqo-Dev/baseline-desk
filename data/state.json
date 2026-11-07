@@ -17,7 +17,7 @@
     "positions": {},
     "refill_week": "2026-W45",
     "refills_usd": 46.81211808188797,
-    "ticks_since_buy": 68
+    "ticks_since_buy": 69
   },
   "desk": {
     "cash": 47.60776857887221,
@@ -1107,6 +1107,14 @@
         "sight_qliq": 34583,
         "symbol": "USNR"
       },
+      "0x4faa3abd2ef814b421d23ef0fa4ba15af410548e": {
+        "done": [],
+        "first_price": 0.004476,
+        "first_seen": "2026-11-07T06:33:12Z",
+        "sight_pair": "0x524e66833d96a7d89c3dde09a209c73497840c58ff357ab738818a39cda1abc1",
+        "sight_qliq": 11653,
+        "symbol": "NOTF"
+      },
       "0x501627c6f950145d9494a1da7ba3038cefae0937": {
         "done": [
           1
@@ -1248,7 +1256,9 @@
         "symbol": "SI"
       },
       "0x66bda4efe8167e750c8c72e788d52545eeecf261": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 5.398e-06,
         "first_seen": "2026-11-07T05:28:15Z",
         "sight_pair": "0x49215158e09384957a9f1c912c0e99dde24c9f7a",
@@ -1499,7 +1509,9 @@
         "symbol": "NOTF"
       },
       "0x8f9035b26645f30d4f9cdb5ab788ac83f9b37d50": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 1.532e-05,
         "first_seen": "2026-11-07T05:28:15Z",
         "sight_pair": "0xb813422739e1d2111c937c69595ed10048548537",
@@ -1657,6 +1669,14 @@
         "sight_pair": "0x2acfe5952ea0e78c73ea7ca5d709c3c1c13ab661",
         "sight_qliq": 391665,
         "symbol": "KNTQ"
+      },
+      "0xbb619192ca5bdd04c474c7733b01222183afba91": {
+        "done": [],
+        "first_price": 1.644e-05,
+        "first_seen": "2026-11-07T06:33:12Z",
+        "sight_pair": "0xe86dca6d8c64fbbd8090ca6e554bde82e1b42991",
+        "sight_qliq": 92350,
+        "symbol": "REBOOT"
       },
       "0xbbe9d48f4b9b2883be4b5a98461c8005198bee13": {
         "done": [],
@@ -4036,6 +4056,12 @@
         "reason": "real_depth",
         "symbol": "kenzodadon84",
         "until": "2026-11-08T05:03:12Z"
+      },
+      "0x48252fb866458724c91966d68d36683e2ad3e257": {
+        "at": "2026-11-07T06:33:12Z",
+        "reason": "missing:liq_usd",
+        "symbol": "TROLL",
+        "until": "2026-11-08T06:33:12Z"
       },
       "0x484d87b19a55225c3b8ab47687450dfe09de2718": {
         "at": "2026-11-07T01:23:12Z",
@@ -7853,6 +7879,12 @@
         "symbol": "RELAY",
         "until": "2026-11-07T14:18:15Z"
       },
+      "0xe093cb7c029ede210e8dd3b4d6ba591b3c2829c0": {
+        "at": "2026-11-07T06:33:12Z",
+        "reason": "missing:symbol",
+        "symbol": "",
+        "until": "2026-11-08T06:33:12Z"
+      },
       "0xe0f53004a445a231dc5f49ed0b6f72b457e5bda4": {
         "at": "2026-11-06T10:38:17Z",
         "reason": "liquidity",
@@ -8279,6 +8311,12 @@
         "symbol": "bull",
         "until": "2026-11-07T21:38:14Z"
       },
+      "0xf9ec5ecdee1554ab61699fa7cbb47d6834cca8c9": {
+        "at": "2026-11-07T06:33:12Z",
+        "reason": "missing:liq_usd",
+        "symbol": "PMC",
+        "until": "2026-11-08T06:33:12Z"
+      },
       "0xfa513f3b39546d016c9ad924a040150a827f056a": {
         "at": "2026-11-06T11:53:16Z",
         "reason": "liquidity",
@@ -8425,11 +8463,23 @@
         "last_check": "2026-11-07T06:18:18Z",
         "symbol": "AETF"
       },
+      "0x4faa3abd2ef814b421d23ef0fa4ba15af410548e": {
+        "checks": 1,
+        "first_seen": "2026-11-07T06:33:12Z",
+        "last_check": "2026-11-07T06:33:12Z",
+        "symbol": "NOTF"
+      },
       "0x8e2a5fa341baf0ce84de8bd8adbc883a5e4a9e2c": {
         "checks": 1,
         "first_seen": "2026-11-07T06:23:12Z",
         "last_check": "2026-11-07T06:23:12Z",
         "symbol": "NOTF"
+      },
+      "0xbb619192ca5bdd04c474c7733b01222183afba91": {
+        "checks": 1,
+        "first_seen": "2026-11-07T06:33:12Z",
+        "last_check": "2026-11-07T06:33:12Z",
+        "symbol": "REBOOT"
       }
     }
   },
