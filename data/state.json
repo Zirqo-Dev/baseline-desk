@@ -1,15 +1,17 @@
 {
   "baseline": {
-    "cash": 43.411005824046164,
+    "cash": 45.70829039428696,
     "cooldown": {
       "a:0x2128acd0e95cf64e3598f5907dcdf293338776b0": "2026-11-07T19:23:14Z",
       "a:0x27c6e876cf7a8b63e8c8e4875b73e531da133345": "2026-11-07T20:38:16Z",
       "a:0x290af14f2b5afc4db2171a80f143091c21902460": "2026-11-07T18:18:15Z",
       "a:0x4faa3abd2ef814b421d23ef0fa4ba15af410548e": "2026-11-08T07:33:15Z",
       "a:0x5f8ef2e69c2d402c3471c8c3fd5f8945cccee4cd": "2026-11-08T09:08:15Z",
+      "a:0x7159f9c0906a51e1300273c4eb19c59fe6c1efd8": "2026-11-08T11:33:12Z",
       "a:0xb01384cc86d9eb0b0a7fa3c1a30a1fff13e3785f": "2026-11-08T01:33:13Z",
       "s:AODF": "2026-11-07T19:23:14Z",
       "s:AOP": "2026-11-08T09:08:15Z",
+      "s:BARANOS": "2026-11-08T11:33:12Z",
       "s:BUBBLES": "2026-11-08T01:33:13Z",
       "s:MONERO": "2026-11-07T18:18:15Z",
       "s:NAFF": "2026-11-07T20:38:16Z",
@@ -20,27 +22,29 @@
     "halted_day": "",
     "positions": {
       "0x7159f9c0906a51e1300273c4eb19c59fe6c1efd8": {
-        "cost_usd": 5.0,
+        "cost_usd": 3.3499999999999996,
         "entry_fill": 0.0019005099008528046,
         "entry_intended": 0.001845,
         "entry_liq_usd": 115385.45,
         "entry_qliq": 57692,
         "entry_ts": "2026-11-07T11:13:13Z",
-        "ladder_done": [],
-        "last_liq_usd": 129952.19,
-        "last_price": 0.00234,
-        "last_qliq": 64976,
+        "ladder_done": [
+          0
+        ],
+        "last_liq_usd": 140338.04,
+        "last_price": 0.002728,
+        "last_qliq": 70169,
         "launchpad": "other",
         "orig_qty": 2630.872902980605,
         "pair": "0x66a051f5faaaf00ab1bba4d876f20b5b46a8d3e0",
-        "peak_price": 0.00234,
-        "qty": 2630.872902980605,
+        "peak_price": 0.002728,
+        "qty": 1762.6848449970053,
         "symbol": "Baranos"
       }
     },
     "refill_week": "2026-W45",
     "refills_usd": 46.81211808188797,
-    "ticks_since_buy": 3
+    "ticks_since_buy": 4
   },
   "desk": {
     "cash": 47.60776857887221,
@@ -260,6 +264,14 @@
         "sight_pair": "0xd1f7b0022b8bece8c81558f63cada2f91657ff41e0ff609899acab94d2773fdf",
         "sight_qliq": 1195,
         "symbol": "US\u200aO\u200aE"
+      },
+      "0x0a732e32973897b0e9974f3c6fd02311c9c71b94": {
+        "done": [],
+        "first_price": 0.01942,
+        "first_seen": "2026-11-07T11:33:12Z",
+        "sight_pair": "0x95f07ec234aab32f1251506f4a44eab7c333427b521e6f1dc8c155af09c8a063",
+        "sight_qliq": 676,
+        "symbol": "A\u200aO\u200aDF"
       },
       "0x0c6f1b9f781c256054df1d7c9c8f1fdd607c1bc4": {
         "done": [
@@ -732,6 +744,14 @@
         "sight_pair": "0xa10d5f6cfff96117f607fd5580852864caaa31a1c25de3de7c089be7b0f69068",
         "sight_qliq": 1174,
         "symbol": "AOP"
+      },
+      "0x2a1dbb72f816d163168f15441d59f32e3c4e877c": {
+        "done": [],
+        "first_price": 0.01942,
+        "first_seen": "2026-11-07T11:33:12Z",
+        "sight_pair": "0xb20c6651736f027b4a648530fe6ec6a1a1ec0ad093aaba3f25a47f1c8a4e0246",
+        "sight_qliq": 1181,
+        "symbol": "US\u200aO\u200aE"
       },
       "0x2ba48d5c2d3f5f02d645bb152d320903dbd9dd91": {
         "done": [
@@ -2492,6 +2512,12 @@
         "symbol": "LAPTOP",
         "until": "2026-11-08T04:38:15Z"
       },
+      "0x0a732e32973897b0e9974f3c6fd02311c9c71b94": {
+        "at": "2026-11-07T11:33:12Z",
+        "reason": "real_depth",
+        "symbol": "A\u200aO\u200aDF",
+        "until": "2026-11-08T11:33:12Z"
+      },
       "0x0a99bcb823b4ca334a26b13fc5d5ae113a1e06be": {
         "at": "2026-11-07T10:13:15Z",
         "reason": "real_depth",
@@ -2539,6 +2565,12 @@
         "reason": "goplus_timeout",
         "symbol": "XTruth Oil",
         "until": "2026-11-07T16:28:15Z"
+      },
+      "0x0cc3ec5ac0bb2cd67fbc8d7c51ed79dc677efcdc": {
+        "at": "2026-11-07T11:33:12Z",
+        "reason": "real_depth",
+        "symbol": "DEGEN",
+        "until": "2026-11-08T11:33:12Z"
       },
       "0x0d783683ac6543bff893a21c811031a437a58662": {
         "at": "2026-11-07T03:33:13Z",
@@ -2857,6 +2889,12 @@
         "reason": "real_depth",
         "symbol": "BOOTR",
         "until": "2026-11-08T10:38:15Z"
+      },
+      "0x1abc335612a95dfff897ed0bc47e4cfca241cabe": {
+        "at": "2026-11-07T11:33:12Z",
+        "reason": "missing:liq_usd",
+        "symbol": "PMC",
+        "until": "2026-11-08T11:33:12Z"
       },
       "0x1b5e26e5488055157985a770e4947373aec7cccc": {
         "at": "2026-11-06T17:03:14Z",
@@ -3229,6 +3267,12 @@
         "reason": "real_depth",
         "symbol": "GROK",
         "until": "2026-11-08T06:28:14Z"
+      },
+      "0x2a1dbb72f816d163168f15441d59f32e3c4e877c": {
+        "at": "2026-11-07T11:33:12Z",
+        "reason": "real_depth",
+        "symbol": "US\u200aO\u200aE",
+        "until": "2026-11-08T11:33:12Z"
       },
       "0x2add18e6b99aa7742c1d60d4b6ca0110dd23122e": {
         "at": "2026-11-06T19:53:13Z",
@@ -4171,6 +4215,12 @@
         "reason": "missing:liq_usd",
         "symbol": "PMC",
         "until": "2026-11-08T10:58:13Z"
+      },
+      "0x4c76488d65a8358ca42b98eead7615635e45bc14": {
+        "at": "2026-11-07T11:33:12Z",
+        "reason": "missing:liq_usd",
+        "symbol": "PMC",
+        "until": "2026-11-08T11:33:12Z"
       },
       "0x4c76c47eed545ff254fb805367d4cbfb60e1d3d4": {
         "at": "2026-11-06T23:58:14Z",
@@ -5437,6 +5487,12 @@
         "reason": "missing:price",
         "symbol": "PEGGER",
         "until": "2026-11-07T15:58:14Z"
+      },
+      "0x94a0dd1bf3d5f0ef8dccd187ab35f6e49aeda961": {
+        "at": "2026-11-07T11:33:12Z",
+        "reason": "real_depth",
+        "symbol": "SPACEX",
+        "until": "2026-11-08T11:33:12Z"
       },
       "0x958f5481f109142923ec7852652b98aedbd1ff25": {
         "at": "2026-11-06T21:43:13Z",
@@ -7147,6 +7203,12 @@
         "reason": "missing:liq_usd",
         "symbol": "PMC",
         "until": "2026-11-08T06:38:13Z"
+      },
+      "0xbab77a55a57a4b54d14e27a04023dc1193c310e4": {
+        "at": "2026-11-07T11:33:12Z",
+        "reason": "missing:liq_usd",
+        "symbol": "PMC",
+        "until": "2026-11-08T11:33:12Z"
       },
       "0xbb1d0d8f518fa344019a2f3e7fcea871c42f81e4": {
         "at": "2026-11-07T04:48:14Z",
