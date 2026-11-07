@@ -1,12 +1,13 @@
 {
   "baseline": {
-    "cash": 43.83245757314237,
+    "cash": 46.288308509031815,
     "cooldown": {
       "a:0x013d4ccd61f996202bfbcb41392845eb6904db07": "2026-11-08T14:18:14Z",
       "a:0x2128acd0e95cf64e3598f5907dcdf293338776b0": "2026-11-07T19:23:14Z",
       "a:0x27c6e876cf7a8b63e8c8e4875b73e531da133345": "2026-11-07T20:38:16Z",
       "a:0x290af14f2b5afc4db2171a80f143091c21902460": "2026-11-07T18:18:15Z",
       "a:0x4faa3abd2ef814b421d23ef0fa4ba15af410548e": "2026-11-08T07:33:15Z",
+      "a:0x56db0ddd93e7e8e14020b4253f227e817151df2a": "2026-11-08T15:23:16Z",
       "a:0x5f8ef2e69c2d402c3471c8c3fd5f8945cccee4cd": "2026-11-08T09:08:15Z",
       "a:0x7159f9c0906a51e1300273c4eb19c59fe6c1efd8": "2026-11-08T12:18:15Z",
       "a:0xb01384cc86d9eb0b0a7fa3c1a30a1fff13e3785f": "2026-11-08T01:33:13Z",
@@ -14,6 +15,7 @@
       "s:AOP": "2026-11-08T09:08:15Z",
       "s:BARANOS": "2026-11-08T12:18:15Z",
       "s:BUBBLES": "2026-11-08T01:33:13Z",
+      "s:KDX": "2026-11-08T15:23:16Z",
       "s:MONERO": "2026-11-07T18:18:15Z",
       "s:NAFF": "2026-11-07T20:38:16Z",
       "s:NOTF": "2026-11-08T07:33:15Z",
@@ -24,21 +26,23 @@
     "halted_day": "",
     "positions": {
       "0x56db0ddd93e7e8e14020b4253f227e817151df2a": {
-        "cost_usd": 5.0,
+        "cost_usd": 3.3499999999999996,
         "entry_fill": 1.2087012447698745e-08,
         "entry_intended": 1.173e-08,
         "entry_liq_usd": 22947.89,
         "entry_qliq": 11472,
         "entry_ts": "2026-11-07T14:38:13Z",
-        "ladder_done": [],
-        "last_liq_usd": 26963.99,
-        "last_price": 1.622e-08,
-        "last_qliq": 13482,
+        "ladder_done": [
+          0
+        ],
+        "last_liq_usd": 28843.4,
+        "last_price": 1.855e-08,
+        "last_qliq": 14422,
         "launchpad": "other",
         "orig_qty": 413667150.7235813,
         "pair": "0x47b8de1fb939487b8dd07513ab65e1f8a1050ea9",
-        "peak_price": 1.622e-08,
-        "qty": 413667150.7235813,
+        "peak_price": 1.855e-08,
+        "qty": 277156990.9847995,
         "symbol": "KDX"
       },
       "0x7159f9c0906a51e1300273c4eb19c59fe6c1efd8": {
@@ -52,20 +56,20 @@
           0,
           1
         ],
-        "last_liq_usd": 258711.57,
-        "last_price": 0.009254,
-        "last_qliq": 129355,
+        "last_liq_usd": 258851.82,
+        "last_price": 0.009264,
+        "last_qliq": 129425,
         "launchpad": "other",
         "orig_qty": 2630.872902980605,
         "pair": "0x66a051f5faaaf00ab1bba4d876f20b5b46a8d3e0",
-        "peak_price": 0.009254,
+        "peak_price": 0.009264,
         "qty": 894.4967870134055,
         "symbol": "Baranos"
       }
     },
     "refill_week": "2026-W45",
     "refills_usd": 46.81211808188797,
-    "ticks_since_buy": 8
+    "ticks_since_buy": 9
   },
   "desk": {
     "cash": 47.60776857887221,
@@ -936,17 +940,6 @@
         "sight_qliq": 92745,
         "symbol": "GM"
       },
-      "0x36632647c44766f1f3fe430b2f8b75f1c4471bf9": {
-        "done": [
-          1,
-          6
-        ],
-        "first_price": 0.01924,
-        "first_seen": "2026-11-06T15:23:12Z",
-        "sight_pair": "0xf75c8e88bc1e58b01371b1c2b6bbbb5206cc473391bc7a659bac8be96a6036ff",
-        "sight_qliq": 679,
-        "symbol": "AODF"
-      },
       "0x3668f620517dfb5b492ae34ad79bb46408dbf51e": {
         "done": [
           1
@@ -1299,7 +1292,9 @@
         "symbol": "USEO"
       },
       "0x56db0ddd93e7e8e14020b4253f227e817151df2a": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 1.169e-08,
         "first_seen": "2026-11-07T14:23:13Z",
         "sight_pair": "0x47b8de1fb939487b8dd07513ab65e1f8a1050ea9",
@@ -3179,12 +3174,6 @@
         "symbol": "OpenAI",
         "until": "2026-11-08T07:13:13Z"
       },
-      "0x1d36c36870e9d3e107a0663461500f08bbac6070": {
-        "at": "2026-11-06T15:23:12Z",
-        "reason": "liquidity",
-        "symbol": "NFT",
-        "until": "2026-11-07T15:23:12Z"
-      },
       "0x1d36fa7432fb5dbe026b41657e4ac313557470e3": {
         "at": "2026-11-06T20:03:13Z",
         "reason": "liquidity",
@@ -3256,6 +3245,12 @@
         "reason": "real_depth",
         "symbol": "777",
         "until": "2026-11-08T09:18:14Z"
+      },
+      "0x20621f5d2b8b663692baaeb69dacce76ac2f64b4": {
+        "at": "2026-11-07T15:23:16Z",
+        "reason": "real_depth",
+        "symbol": "Baselion",
+        "until": "2026-11-08T15:23:16Z"
       },
       "0x20cf04358da0e6c85e6c8f51ea2fac628ed90ea4": {
         "at": "2026-11-07T03:33:13Z",
@@ -3611,6 +3606,12 @@
         "symbol": "GM",
         "until": "2026-11-08T12:08:14Z"
       },
+      "0x2d810e0301745643c1aad04f56461c3a9e80c1d6": {
+        "at": "2026-11-07T15:23:16Z",
+        "reason": "real_depth",
+        "symbol": "MONS",
+        "until": "2026-11-08T15:23:16Z"
+      },
       "0x2d8133f318ea695fd54dcce34f65dd64db0d3f24": {
         "at": "2026-11-07T10:23:13Z",
         "reason": "missing:liq_usd",
@@ -3725,6 +3726,12 @@
         "symbol": "BaseHub",
         "until": "2026-11-08T04:38:15Z"
       },
+      "0x31f34cb6e9c4ef3e63ab5be4f5a2892caf80f496": {
+        "at": "2026-11-07T15:23:16Z",
+        "reason": "real_depth",
+        "symbol": "BOOTR",
+        "until": "2026-11-08T15:23:16Z"
+      },
       "0x323ac80ed0448a63234f7da7183cf9086763f213": {
         "at": "2026-11-06T23:43:14Z",
         "reason": "missing:liq_usd",
@@ -3814,6 +3821,12 @@
         "reason": "real_depth",
         "symbol": "SPACEX",
         "until": "2026-11-08T04:33:13Z"
+      },
+      "0x34389199d8285f41c2e5fee3a8d2729cb979cccc": {
+        "at": "2026-11-07T15:23:16Z",
+        "reason": "real_depth",
+        "symbol": "ARIYA",
+        "until": "2026-11-08T15:23:16Z"
       },
       "0x34ae154c6528cddf1b003c7d22704aa3d54c52b5": {
         "at": "2026-11-06T18:33:13Z",
@@ -4115,11 +4128,11 @@
         "symbol": "CATDENIM",
         "until": "2026-11-08T15:13:14Z"
       },
-      "0x3fa53166699ec192d31e77569090b00c1f0fb747": {
-        "at": "2026-11-06T15:23:12Z",
-        "reason": "missing:liq_usd",
-        "symbol": "SMKU",
-        "until": "2026-11-07T15:23:12Z"
+      "0x3f0ddddecb87b8e48a0effd97e6cc6063f8ea774": {
+        "at": "2026-11-07T15:23:16Z",
+        "reason": "real_depth",
+        "symbol": "PEPKING",
+        "until": "2026-11-08T15:23:16Z"
       },
       "0x3fa6fbe125aadd25dce41a71da4e9aedc74ef379": {
         "at": "2026-11-06T21:28:14Z",
@@ -7565,12 +7578,6 @@
         "symbol": "UODF",
         "until": "2026-11-08T06:28:14Z"
       },
-      "0xbc6066ccd5a9b3e23688b49a64de55f8396b26fb": {
-        "at": "2026-11-06T15:23:12Z",
-        "reason": "missing:liq_usd",
-        "symbol": "Anthropic",
-        "until": "2026-11-07T15:23:12Z"
-      },
       "0xbcdc4ae00c642ef0fb5a87a35f0788456905039d": {
         "at": "2026-11-07T04:18:14Z",
         "reason": "real_depth",
@@ -8687,12 +8694,6 @@
         "symbol": "Anthropic",
         "until": "2026-11-07T16:08:17Z"
       },
-      "0xf6d68c0451cc91999c8db75626ee96d4c7aa61f2": {
-        "at": "2026-11-06T15:23:12Z",
-        "reason": "liquidity",
-        "symbol": "1KTO100M",
-        "until": "2026-11-07T15:23:12Z"
-      },
       "0xf780580b6d3b6c941c89f7b6f8a2242499bbebff": {
         "at": "2026-11-07T01:48:13Z",
         "reason": "real_depth",
@@ -8852,27 +8853,21 @@
     },
     "watch": {
       "0x013d4ccd61f996202bfbcb41392845eb6904db07": {
-        "checks": 8,
+        "checks": 9,
         "first_seen": "2026-11-07T13:18:13Z",
-        "last_check": "2026-11-07T15:08:14Z",
+        "last_check": "2026-11-07T15:23:16Z",
         "symbol": "Paper"
       },
       "0x1f8c8a69244f0ab0a4a9b9db096c31b95b8fff87": {
-        "checks": 10,
+        "checks": 11,
         "first_seen": "2026-11-07T12:38:14Z",
-        "last_check": "2026-11-07T15:08:14Z",
+        "last_check": "2026-11-07T15:23:16Z",
         "symbol": "USPR"
       },
-      "0x31f34cb6e9c4ef3e63ab5be4f5a2892caf80f496": {
-        "checks": 3,
-        "first_seen": "2026-11-07T14:38:13Z",
-        "last_check": "2026-11-07T15:08:14Z",
-        "symbol": "BOOTR"
-      },
       "0x56db0ddd93e7e8e14020b4253f227e817151df2a": {
-        "checks": 4,
+        "checks": 5,
         "first_seen": "2026-11-07T14:23:13Z",
-        "last_check": "2026-11-07T15:08:14Z",
+        "last_check": "2026-11-07T15:23:16Z",
         "symbol": "KDX"
       },
       "0x5dac02a6eae5ccd65b352c33e7820ba8c331ee19": {
@@ -8882,9 +8877,9 @@
         "symbol": "REBOOT"
       },
       "0xb80194e3868511b8f43e1d5d6e255cd9e7c3e7dd": {
-        "checks": 5,
+        "checks": 6,
         "first_seen": "2026-11-07T14:03:14Z",
-        "last_check": "2026-11-07T15:08:14Z",
+        "last_check": "2026-11-07T15:23:16Z",
         "symbol": "KNTQ"
       }
     }
