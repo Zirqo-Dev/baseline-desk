@@ -315,6 +315,11 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
   - top10 is the top 8-10 after exclusions, slightly lenient (docs/NOTES.md)
   - The exact GoPlus rate-limit code is unverified; code 3 is not one; BL-24 saw code 4029 4 times in 137 calls at 2 s, very likely it (docs/NOTES.md)
   - tokens_24h.json adds ~230 KB of git history per day (overwritten daily), BL-25 ~83 KB/day (+ BL-28 qliq ~15 KB/day) to tasks.csv and BL-26 outcomes.csv ~55 KB/day, BL-27 live.json ~1 KB per tick (rewritten every tick, ~290 KB/day of git history), BL-30 ~40 KB/day on tasks.csv + ~50-140 KB/day on outcomes.csv; include all of them in BL-16's archive plan (docs/NOTES.md)
+- BL-44 (2026-11-07, evidence only, docs only): desk WATCH goplus_not_ready sightings past the real-depth floor with
+  sells, sightings Oct 31 - Nov 6 only (no row from Nov 7 on read: Nov 7 decides inside BL-34's holdout): 223 sightings;
+  at +24 h median chg -100%, 59% dead, mean +0.0% only from a few big winners (-24.7% without the top 2); the twin's
+  universe is mostly the same group (210 of 230) and looks the same; GoPlus never answered honeypot or tax for any of
+  them, so none is proven honeypot or high-tax; no rule proposal, two hypothesis lines for chat (docs/NOTES.md "BL-44").
 - Next step: BL-34's one holdout run around 2026-11-17. Before it: the owner clicks Run workflow on backtest.yml with
   days blank around Nov 15-17 (after the Nov 14 sightings have their +24 h labels and the Nov 8-14 days are complete), so
   ETH and every token day through Nov 14 have candles (a day still inside its 7-day windows comes as .open: enough for

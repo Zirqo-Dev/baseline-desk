@@ -1645,6 +1645,71 @@ Moved from CLAUDE.md section 11 on 2026-10-23 (BL-2 process cleanup). Wording is
   and dark; the BL-34 card sealed, with a pass lock and a retired lock fixture (scratch, never committed); no horizontal
   scroll at either width; requests = the page + the six URLs.
 
+## BL-44
+- WATCH replay, evidence only (the owner, Nov 7): docs only, no rule, threshold, config, code, workflow or data change.
+  Question, after the twin's Baranos and KDX marks on Nov 7 (both bought while the desk WATCHed them, GoPlus silent): how
+  does the whole group of desk WATCH goplus_not_ready sightings that pass the real-depth floor and have sells do, rugs
+  included, next to the twin's universe; and where GoPlus did answer, how many were honeypots or high-tax?
+- Window (the owner): sightings with first_seen 2026-10-31 .. 2026-11-06 UTC ONLY. Nov 7 sightings decide on Nov 8,
+  inside BL-34's sealed holdout (Nov 8-14), so nothing from Nov 7 on is read. Proof: the script (session scratchpad, not
+  committed) opens only data/daily/2026-10-31 .. 2026-11-06 tasks.csv, trades.csv and outcomes.csv (20 files, 28,251
+  rows) and asserts every row's ts < 2026-11-07T00:00:00Z; the latest ts read is 2026-11-06T23:58:14Z. No live.json, no
+  state.json, no backtest/candles (their windows reach into Nov 8-14), no request. A consequence: outcome labels are
+  filed by the day they land, so Nov 6 sightings have no +24 h label and late Nov 6 sightings no +6 h label (n per
+  horizon below).
+- Sets (unit = a sighting, address + first_seen; each set takes the first qualifying desk VERIFY row of the sighting,
+  read from its BL-25/28/30 keys):
+  - Group: action WATCH, reason goplus_not_ready, qliq >= 10,000 (the BL-32 floor, applied back to Oct 31), s1 > 0.
+    Any GoPlus field may be pending (pending at the row: honeypot 212, top10_pct 189, buy_tax 182, lp_locked 179,
+    sell_tax 176, dev 63, mint / freeze / risk flags 49 each). 92 of 223 at their first check. No age or asset filter:
+    age at the row ok 56 / outside 15 min - 48 h 11 / unknown 156 (pair_age is logged from Nov 5); asset kind wrapped 5,
+    stable 4 (BL-31 would cut them today).
+  - Twin's universe: any desk check (any verdict) with qliq >= 10,000, s1 > 0, age not outside (unknown = pass, as the
+    twin's universe_skip() cannot see it before Nov 5 either) and no asset kind (core/verify.py asset_kind() on the symbol
+    and the first-sight price). 210 of its 230 sightings are group sightings, so it is mostly the same population.
+  - Before the BL-32 deploy (2026-11-06 ~20:33 UTC) only leads with total liq >= 50k were logged with keys, so earlier
+    days hold the liq >= 50k part of today's universe only.
+- Outcomes (BL-26 outcomes.csv, chg_pct = label price vs first-sight price, no friction; dead = the dead column from the
+  2026-11-06 files, else gone or label qliq < 100 as BL-30's approximation; gone = no pair):
+
+| set | horizon | n | chg median | chg mean | mean without the top 2 | up | best | dead | gone |
+|---|---|---|---|---|---|---|---|---|---|
+| group (223 sightings, 218 tokens) | +1 h | 221 | +0.2% | +0.5% | -4.5% | 125 | +686% | 15% | 0% |
+| | +6 h | 221 | -100% | -30.8% | -42.5% | 60 | +1,336% | 52% | 0% |
+| | +24 h | 181 | -100% | +0.0% | -24.7% | 36 | +2,413% | 59% | 1% |
+| twin's universe (230, 223 tokens) | +1 h | 228 | +0.2% | +1.8% | -3.1% | 131 | +686% | 14% | 0% |
+| | +6 h | 228 | -100% | -28.7% | -40.0% | 62 | +1,336% | 49% | 0% |
+| | +24 h | 193 | -100% | +0.6% | -22.5% | 42 | +2,413% | 55% | 1% |
+| twin's universe minus the group (20, 16 tokens) | +1 h | 20 | +0.1% | +7.9% | -0.3% | 11 | +153% | 0% | 0% |
+| | +6 h | 20 | -0.2% | +2.1% | -6.5% | 7 | +153% | 5% | 0% |
+| | +24 h | 20 | +0.4% | +1.1% | -8.1% | 10 | +153% | 5% | 0% |
+
+  Sightings by day (group): Oct 31 22, Nov 1 15, Nov 2 15, Nov 3 28, Nov 4 41, Nov 5 62, Nov 6 40. dead was derived (old
+  files without the column) on 177 / 163 / 136 of the group's 221 / 221 / 181 labels.
+- How the desk's watch ended (group, last desk row of the sighting): SKIP liquidity 121 (the pool was pulled while the
+  desk waited; the pre-BL-32 gate name), SKIP goplus_timeout 102.
+- Where GoPlus did answer: nowhere. In the group: 0 later SKIP honeypot / buy_tax_pct / sell_tax_pct (or any other safety
+  skip), 0 goplus_ready_at, 0 PASS. In the twin's universe: 0 honeypot / tax skips, 0 goplus_ready_at, 0 PASS. Over every
+  desk VERIFY row in the window: 0 SKIP honeypot / buy_tax_pct / sell_tax_pct. So the logs cannot say how many were
+  honeypots or high-tax: GoPlus never gave that answer for any of them (as in BL-24).
+- The twin (paper, exits as built), rows with ts < Nov 7 only: 42 of its 67 buys in the window went into 30 group
+  tokens; realised SELL P&L on them -25.11 USD by 2026-11-06 23:58 UTC. (Baranos and KDX are Nov 7 sightings, outside
+  the window.)
+- Reading: the group is a lottery with a fat left side. The median sighting is dead (-100%) by +6 h and stays dead; the
+  mean is near 0 at +24 h only because of a few very large winners (best +2,413%), and without the top 2 it is -25% (and
+  -43% at +6 h). The twin's universe looks the same because it is mostly this group; the 20 twin-universe sightings
+  outside the group were calmer (5% dead at +24 h) but are too few to read. No rule proposal.
+- Hypothesis lines for chat (not tested, not proposed as rules):
+  - H1: within the group, the rugs are concentrated in the copycat "fund" family (total liq ~29M USD almost all on the
+    token side, price ~0.0197, ~80 sells an hour: IOF, NAFF, NOTF, DTCC...); a pre-registered filter on that shape would
+    cut most dead sightings. Test only as a frozen spec with its own holdout.
+  - H2: the twin's recent lead over the desk comes from the right tail of this same group, not from a better universe;
+    over enough closes the tail should not cover the dead majority after friction (the twin's -25.11 USD on group tokens
+    in the window points that way).
+- Caveats: chg_pct is the price move from first sight with no friction and no exit rules (the twin's trades are the
+  with-exits view); the group's first qualifying row is often later than first sight; dead is approximated on old files;
+  pool age is unknown before Nov 5; ~7 days, one market, many copycat launches from a few deployers.
+
 ## Open items (detail)
 - Open items:
   - BL-7 done only after 24h of green runs, no overlap, one TICK row per run. The TICK rows show the real run rate for Gate A (90%).
