@@ -38,9 +38,9 @@
           0,
           1
         ],
-        "last_liq_usd": 47165.41,
-        "last_price": 4.953e-08,
-        "last_qliq": 23582,
+        "last_liq_usd": 45441.06,
+        "last_price": 4.599e-08,
+        "last_qliq": 22725,
         "launchpad": "other",
         "orig_qty": 413667150.7235813,
         "pair": "0x47b8de1fb939487b8dd07513ab65e1f8a1050ea9",
@@ -51,7 +51,7 @@
     },
     "refill_week": "2026-W45",
     "refills_usd": 46.81211808188797,
-    "ticks_since_buy": 24
+    "ticks_since_buy": 25
   },
   "desk": {
     "cash": 47.60776857887221,
@@ -162,7 +162,8 @@
       },
       "0x06e94234d4793b34bd3426fdb05c455276918fde": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 2.482e-05,
         "first_seen": "2026-11-07T14:08:18Z",
@@ -461,7 +462,8 @@
       },
       "0x19a732af5b8e66c6f98dd0df6474713c9ac96663": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 2.482e-05,
         "first_seen": "2026-11-07T14:13:13Z",
@@ -2305,17 +2307,6 @@
         "sight_qliq": 33960,
         "symbol": "NATF"
       },
-      "0xf44e70985f03ccfd08d9cbd7c64def27e5f525af": {
-        "done": [
-          1,
-          6
-        ],
-        "first_price": 0.004689,
-        "first_seen": "2026-11-06T20:13:13Z",
-        "sight_pair": "0xe3cddd8072d0cfb6c5e704e62fa6aa8e7f849a57",
-        "sight_qliq": 1,
-        "symbol": "Rocco"
-      },
       "0xf5521ed8dd731101efddff537898d6b6cba111c9": {
         "done": [
           1,
@@ -2798,12 +2789,6 @@
         "reason": "real_depth",
         "symbol": "LUCE",
         "until": "2026-11-08T13:23:11Z"
-      },
-      "0x0c3027df7392d785ff23051c2c8b84bc80dfc83c": {
-        "at": "2026-11-06T20:13:13Z",
-        "reason": "liquidity",
-        "symbol": "XCHAT",
-        "until": "2026-11-07T20:13:13Z"
       },
       "0x0c6f1b9f781c256054df1d7c9c8f1fdd607c1bc4": {
         "at": "2026-11-06T22:28:14Z",
@@ -4761,6 +4746,12 @@
         "symbol": "GFEED",
         "until": "2026-11-08T11:48:13Z"
       },
+      "0x58042895bcc55a10edaecebf5b2010dc6d760154": {
+        "at": "2026-11-07T20:13:13Z",
+        "reason": "real_depth",
+        "symbol": "GITLAB",
+        "until": "2026-11-08T20:13:13Z"
+      },
       "0x585ed9ad5ff450709835c889368aabbf95089ba3": {
         "at": "2026-11-07T13:43:13Z",
         "reason": "missing:liq_usd",
@@ -5798,6 +5789,12 @@
         "reason": "real_depth",
         "symbol": "LAPTOP",
         "until": "2026-11-08T07:48:13Z"
+      },
+      "0x8e1382c7bdc37cad37c21b4aade11ed8bb350f65": {
+        "at": "2026-11-07T20:13:13Z",
+        "reason": "real_depth",
+        "symbol": "SPACEX",
+        "until": "2026-11-08T20:13:13Z"
       },
       "0x8e2a5fa341baf0ce84de8bd8adbc883a5e4a9e2c": {
         "at": "2026-11-07T06:38:13Z",
@@ -6842,6 +6839,12 @@
         "reason": "real_depth",
         "symbol": "GOIF",
         "until": "2026-11-08T07:53:15Z"
+      },
+      "0xb2000000000000000000001f8531fcafc5b45068": {
+        "at": "2026-11-07T20:13:13Z",
+        "reason": "real_depth",
+        "symbol": "BrainsDeployer",
+        "until": "2026-11-08T20:13:13Z"
       },
       "0xb2000000000000000000002052aa7b8fe24a1401": {
         "at": "2026-11-07T16:33:12Z",
@@ -8925,6 +8928,12 @@
         "symbol": "RRR",
         "until": "2026-11-08T14:28:14Z"
       },
+      "0xf6d41cbb39a6540a93e0d29a50b4eb720444e754": {
+        "at": "2026-11-07T20:13:13Z",
+        "reason": "goplus_timeout",
+        "symbol": "Anthropic",
+        "until": "2026-11-08T20:13:13Z"
+      },
       "0xf76f2e1da19b3378c8bec18f40d0e8556ac45a21": {
         "at": "2026-11-07T18:33:14Z",
         "reason": "real_depth",
@@ -9090,16 +9099,10 @@
     },
     "watch": {
       "0xd15d76b54ee9452eab97a8b75f6ca1dcdb877bad": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-07T19:58:13Z",
-        "last_check": "2026-11-07T19:58:13Z",
+        "last_check": "2026-11-07T20:13:13Z",
         "symbol": "GM"
-      },
-      "0xf6d41cbb39a6540a93e0d29a50b4eb720444e754": {
-        "checks": 11,
-        "first_seen": "2026-11-07T16:58:14Z",
-        "last_check": "2026-11-07T19:58:13Z",
-        "symbol": "Anthropic"
       }
     }
   },
