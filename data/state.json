@@ -1,6 +1,6 @@
 {
   "baseline": {
-    "cash": 49.11966469566311,
+    "cash": 44.11966469566311,
     "cooldown": {
       "a:0x2128acd0e95cf64e3598f5907dcdf293338776b0": "2026-11-07T19:23:14Z",
       "a:0x27c6e876cf7a8b63e8c8e4875b73e531da133345": "2026-11-07T20:38:16Z",
@@ -21,6 +21,22 @@
     "day_start_value": 49.104582682847905,
     "halted_day": "",
     "positions": {
+      "0x013d4ccd61f996202bfbcb41392845eb6904db07": {
+        "cost_usd": 5.0,
+        "entry_fill": 0.0001050702,
+        "entry_intended": 0.000102,
+        "entry_liq_usd": 1070409.29,
+        "entry_qliq": 50000,
+        "entry_ts": "2026-11-07T13:33:13Z",
+        "ladder_done": [],
+        "last_price": 0.000102,
+        "launchpad": "other",
+        "orig_qty": 47587.23215526382,
+        "pair": "0xa14a3e5b8f5b0c83ab3a623c802feb653f29b22b",
+        "peak_price": 0.000102,
+        "qty": 47587.23215526382,
+        "symbol": "Paper"
+      },
       "0x7159f9c0906a51e1300273c4eb19c59fe6c1efd8": {
         "cost_usd": 1.6999999999999995,
         "entry_fill": 0.0019005099008528046,
@@ -32,20 +48,20 @@
           0,
           1
         ],
-        "last_liq_usd": 200864.65,
-        "last_price": 0.005583,
-        "last_qliq": 100432,
+        "last_liq_usd": 207251.59,
+        "last_price": 0.005943,
+        "last_qliq": 103625,
         "launchpad": "other",
         "orig_qty": 2630.872902980605,
         "pair": "0x66a051f5faaaf00ab1bba4d876f20b5b46a8d3e0",
-        "peak_price": 0.005583,
+        "peak_price": 0.005943,
         "qty": 894.4967870134055,
         "symbol": "Baranos"
       }
     },
     "refill_week": "2026-W45",
     "refills_usd": 46.81211808188797,
-    "ticks_since_buy": 27
+    "ticks_since_buy": 0
   },
   "desk": {
     "cash": 47.60776857887221,
@@ -2285,6 +2301,12 @@
         "symbol": "CHUBBY",
         "until": "2026-11-08T03:48:14Z"
       },
+      "0x064fb9247abcc3158c6bd33fbe16cb719c3b5c26": {
+        "at": "2026-11-07T13:33:13Z",
+        "reason": "real_depth",
+        "symbol": "LAPTOP",
+        "until": "2026-11-08T13:33:13Z"
+      },
       "0x06b04fceda0d3d9538960a79a90b9ebd3c4127c5": {
         "at": "2026-11-07T03:33:13Z",
         "reason": "real_depth",
@@ -2542,6 +2564,12 @@
         "reason": "real_depth",
         "symbol": "ONE",
         "until": "2026-11-08T09:53:13Z"
+      },
+      "0x0e9e0b0dd91abb721d8a510a2fb8ef79bb4b7ccb": {
+        "at": "2026-11-07T13:33:13Z",
+        "reason": "real_depth",
+        "symbol": "KURO",
+        "until": "2026-11-08T13:33:13Z"
       },
       "0x0f6ab78029616f2f1ba397446f9450a4918449fd": {
         "at": "2026-11-07T12:18:15Z",
@@ -3928,6 +3956,12 @@
         "reason": "real_depth",
         "symbol": "GNULL",
         "until": "2026-11-08T05:13:13Z"
+      },
+      "0x45bc784fec8f93f91e6b3d8fab0aebf95ea0ed2e": {
+        "at": "2026-11-07T13:33:13Z",
+        "reason": "real_depth",
+        "symbol": "wtf",
+        "until": "2026-11-08T13:33:13Z"
       },
       "0x46296dd905d452ec4c27e857b6c52538a85434f3": {
         "at": "2026-11-06T17:43:14Z",
@@ -5614,6 +5648,12 @@
         "reason": "liquidity",
         "symbol": "SPACEX",
         "until": "2026-11-07T20:18:14Z"
+      },
+      "0xa0d57bbdf4150b2629b8f3c6c758173870618fb6": {
+        "at": "2026-11-07T13:33:13Z",
+        "reason": "real_depth",
+        "symbol": "SI",
+        "until": "2026-11-08T13:33:13Z"
       },
       "0xa0de1725454b0cc0a1fea606620415a223a9382d": {
         "at": "2026-11-06T23:23:14Z",
@@ -7757,6 +7797,12 @@
         "symbol": "REBOOT",
         "until": "2026-11-07T15:08:15Z"
       },
+      "0xdeb1525e667a7f006cec5a63c201a6ee799af27e": {
+        "at": "2026-11-07T13:33:13Z",
+        "reason": "real_depth",
+        "symbol": "KURO",
+        "until": "2026-11-08T13:33:13Z"
+      },
       "0xdeed3e5fc20c95dc1deac5d81d6bf157906d38af": {
         "at": "2026-11-07T12:08:14Z",
         "reason": "real_depth",
@@ -8366,9 +8412,9 @@
     },
     "watch": {
       "0x013d4ccd61f996202bfbcb41392845eb6904db07": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-07T13:18:13Z",
-        "last_check": "2026-11-07T13:18:13Z",
+        "last_check": "2026-11-07T13:33:13Z",
         "symbol": "Paper"
       },
       "0x1f8c8a69244f0ab0a4a9b9db096c31b95b8fff87": {
@@ -8381,12 +8427,6 @@
         "checks": 1,
         "first_seen": "2026-11-07T13:23:11Z",
         "last_check": "2026-11-07T13:23:11Z",
-        "symbol": "SI"
-      },
-      "0xa0d57bbdf4150b2629b8f3c6c758173870618fb6": {
-        "checks": 1,
-        "first_seen": "2026-11-07T13:18:13Z",
-        "last_check": "2026-11-07T13:18:13Z",
         "symbol": "SI"
       },
       "0xf6ccf3354ef5a05947ef9425be44262ab8e70c31": {
