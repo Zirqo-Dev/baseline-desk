@@ -15,7 +15,9 @@ no data request:
   sell   every desk SELL: rule, price %, pnl, desk cash after that sale
   buy    every desk BUY: symbol, $ size, fill, liq, qliq, DexScreener link
   daily  right after a successful day-roll report: desk value, random value, desk lead, Gate B n/100,
-         closes that day (desk, random), runs x/288 and ERROR rows of the closed day
+         closes that day (desk, random), runs x/288 and ERROR rows of the closed day; BL-43 adds a refill line
+         when a book was topped up that day ("refilled +X (not P&L)", from state.json report.equity), Gate B since
+         with the random closes, and a per-trade line per book (report.json per_trade). Reads only data/.
 Plain text only (no parse_mode), so symbols like w_COIN or [BSTONK] can never break a send. Link previews off.
 Quiet hours 22:00 to 07:00 America/Toronto (zoneinfo, DST-safe): sent with disable_notification=true, never dropped.
 
@@ -126,13 +128,40 @@ def sell_text(symbol, rule, pct, pnl, cash_after):
             f"desk cash after {cash_s}")
 
 
-def daily_text(rep, runs, expected, errors):
-    d, bl = rep["desk"], rep["baseline"]
-    return (f"Baseline daily · {rep['day']}\n"
-            f"desk {_usd(d['value_usd'])} · random {_usd(bl['value_usd'])} · desk lead {_usd(rep['desk_lead_usd'], True)}\n"
-            f"Gate B {rep['gate_b']['desk_closes']}/{rep['gate_b']['target']} desk closes\n"
-            f"closes that day: desk {d['closes_day']} · random {bl['closes_day']}\n"
-            f"runs {runs}/{expected} · ERROR rows {errors}")
+def _since(t):
+    """2026-11-06T20:33:15Z -> 2026-11-06 20:33 UTC; anything else -> na."""
+    return f"{t[:10]} {t[11:16]} UTC" if isinstance(t, str) and len(t) >= 16 else "na"
+
+
+def _per_trade(pt):
+    """BL-43: one book's report.json per_trade as 'n closes · +$x (+y%) each', a dash when n = 0."""
+    n = (pt or {}).get("n")
+    if not isinstance(n, int):
+        return "na"
+    if n == 0:
+        return "0 closes · —"
+    return (f"{n} close{'' if n == 1 else 's'} · {_usd(pt['net_per_trade_usd'], True)} "
+            f"({float(pt['net_per_trade_pct']):+.2f}%) each")
+
+
+def daily_text(rep, runs, expected, errors, refilled=None):
+    """refilled = {book: USD topped up on the report day} (BL-43): a line only when a book was refilled; top-ups are
+    never P&L. Every BL-3 line stays as it was; BL-43 adds the refill, Gate B since and per-trade lines."""
+    d, bl, gb = rep["desk"], rep["baseline"], rep["gate_b"]
+    names = {"desk": "desk", "baseline": "random"}
+    topped = [f"{names[b]} refilled {_usd(x, True)} (not P&L)" for b, x in (refilled or {}).items()
+              if b in names and x is not None and round(x, 2) > 0]
+    since = _since(gb.get("since"))
+    return "\n".join(
+        [f"Baseline daily · {rep['day']}",
+         f"desk {_usd(d['value_usd'])} · random {_usd(bl['value_usd'])} · desk lead {_usd(rep['desk_lead_usd'], True)}"]
+        + ([" · ".join(topped)] if topped else [])
+        + [f"Gate B {gb['desk_closes']}/{gb['target']} desk closes",
+           f"Gate B since {since} · random {gb.get('baseline_closes', 'na')} closes · kill at {gb.get('kill', 'na')}",
+           f"desk per trade since {since}: {_per_trade(d.get('per_trade'))}",
+           f"random per trade since {since}: {_per_trade(bl.get('per_trade'))}",
+           f"closes that day: desk {d['closes_day']} · random {bl['closes_day']}",
+           f"runs {runs}/{expected} · ERROR rows {errors}"])
 
 
 def error_text(now, red):
@@ -190,11 +219,29 @@ def trade_texts(root, now):
     return out
 
 
+def refilled_on(root, day_):
+    """BL-43: USD each book was topped up on day_ = the change in refills_usd between that day's equity entry and the
+    one before it (state.json report.equity; entries before BL-31 have none = 0). A book without an entry for day_,
+    or an unreadable state: None (no line)."""
+    try:
+        eq = (load_state(Path(root) / config.STATE).get("report") or {}).get("equity") or {}
+    except Exception:  # noqa: BLE001 - a broken state only drops the refill line
+        return None
+    out = {}
+    for b, entries in eq.items():
+        i = next((k for k, e in enumerate(entries) if e.get("day") == day_), None)
+        if i is None:
+            continue
+        prev = float(entries[i - 1].get("refills_usd", 0.0)) if i > 0 else 0.0
+        out[b] = float(entries[i].get("refills_usd", 0.0)) - prev
+    return out
+
+
 def daily(root, rep):
     rows = report.tasks(root, rep["day"])
     runs = sum(1 for r in rows if r["book"] == "desk" and r["stage"] == "TICK")
     errors = sum(1 for r in rows if r["action"] == "ERROR")
-    return daily_text(rep, runs, report.TICKS_PER_DAY, errors)
+    return daily_text(rep, runs, report.TICKS_PER_DAY, errors, refilled_on(root, rep["day"]))
 
 
 def _red_alerted_within(root, now, minutes):

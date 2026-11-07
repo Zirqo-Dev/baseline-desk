@@ -60,7 +60,8 @@ ALERTS   core/alerts.py            Telegram alerts (BL-3, display only): desk BU
 BACKTEST tools/backtest.py          by hand only (BL-33): a fixed spec + its seeded random twin on 5-min candles, point in time,
                                    pessimistic fills, core friction; holdout = last third of logged days, sealed by a lock file
 CANDLES  tools/candles.py           by hand only (BL-33, backtest.yml): GeckoTerminal 5-min pool OHLCV, sight -> +7 days;
-                                   --eth: the deepest WETH/USDC pool, one eth-<day> file per complete day (BL-33 part 2)
+                                   --eth: the deepest WETH/USDC pool, one eth-<day> file per complete day (BL-33 part 2);
+                                   backtest/status.json after every run and by --status (BL-43, display only)
 TICK     core/tick.py              one run: roll day (+report, +machine cards, then twin restart once + weekly refills),
                                    exits (desk, baseline), scan -> verify -> buy, baseline buy,
                                    outcome labels (own try), live.json (own try, not on a crash), alerts (own try, also on a crash),
@@ -72,13 +73,16 @@ Folders:
   never on the tick path
 - backtest/: candles/ (<sight-day>.jsonl.gz written once when its 7-day windows closed, <day>.open.jsonl.gz until then,
   eth-<day>.jsonl.gz, twin-validation.jsonl.gz), specs/ (bl34-survivor-momentum-v2.md + .json, frozen; v1 superseded, never run), results/<run>/
-  (summary.json, trades.csv), holdout.lock.json (BL-33); never under data/, never read by the tick
+  (summary.json, trades.csv), holdout.lock.json (BL-33; it also keeps the pass tests, BL-43), status.json (BL-43: which
+  candle files exist + the twin-validation totals, for the site); never under data/, never read by core/ or the tick
 - adapters/: base.py (EVM, chain 8453). Adapter pattern kept so other chains could plug in later (parked).
 - prompts/: x_read.py
 - data/: state.json, report.json, tokens_24h.json, live.json (BL-27), daily/YYYY-MM-DD/ (tasks.csv, trades.csv; both books in the same files, column "book"; outcomes.csv, BL-26)
 - site/: GitHub Pages dashboard (BL-13), one self-contained index.html; fetches only data/report.json and data/tokens_24h.json
-  (at page load) and data/live.json (BL-27: at load, then every 5 min while the tab is visible) from raw.githubusercontent.com
-  (no override); the locked mock is docs/mock/bl13-mock.html (never under site/)
+  (at page load), data/live.json (BL-27: at load, then every 5 min while the tab is visible) and, BL-43, at page load
+  backtest/specs/bl34-survivor-momentum-v2.json, backtest/holdout.lock.json (404 = sealed) and backtest/status.json, all from
+  raw.githubusercontent.com (no override); the locked mock is docs/mock/bl13-mock.html (never under site/); the tick.log
+  terminal and the Paper equity card are pinned byte for byte (BL-43, tests/test_bl43.py)
 - docs/: DECISIONS.md, LEARNINGS.md, NOTES.md, CHANGELOG.md, mock/ (bl13-mock.html, reference only)
 - .github/workflows/: tick.yml, pages.yml (BL-13: deploys site/ on push to main touching site/** or itself, or by hand; no report.yml, BL-8),
   alert-test.yml (BL-3: by hand only, read-only, sends one TEST message, commits nothing),
@@ -109,7 +113,7 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
 - The bot commits data/ to main ("data: tick ..."), only on change, pull --rebase before push.
   Sessions: git pull before working, git pull --rebase before every push, never commit anything under data/.
 - pages.yml deploys site/ only when site/ changes (GitHub Pages soft limit: 10 builds/hour).
-- backtest.yml (BL-33) runs only when the owner clicks Run workflow: candles one day per commit, backtest/ only,
+- backtest.yml (BL-33) runs only when the owner clicks Run workflow: candles one day per commit (+ status.json, BL-43), backtest/ only,
   pull --rebase with retry; it never touches data/ and the tick never reads backtest/.
 - Alerts (BL-3): repo secrets TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID reach only tick.yml's Tick step and alert-test.yml's
   send step. Actions logs are public: never print, log, commit or raise the token, chat id, request URL or Telegram's reply;
@@ -266,7 +270,19 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
   plus results by pool age at the decision, never the verdict. Development runs
   print counts only (no P&L). Process rule: chat does not look at BL-34 candidates' Nov 8-14 outcomes before the run
   (docs/NOTES.md "BL-33 part 2", "BL-34 spec v2").
-  Tests: stdlib unittest, `python -m unittest` (429 pass on 3.13).
+  BL-43 (2026-11-07, display only, the owner's mock approval and Nov 7 answers): the site adds a Refills row under "Net
+  after fees", "Per trade since <gate_b.since>" per book, "Desk lead, net of refills" and an amber top-up note in Desk vs
+  random; Gate B counts both books from gate_b (since, Kill at 200); real_depth / missing:qliq labelled in Why they died
+  and Kill log (the token table keeps raw codes); the site's gate set = report.GATE_KILLS exactly + an asset: prefix
+  rule, new "Gate kills" chip before "Safety kills"; funnel Gate subtitle "Real depth ≥ 10k, DexScreener data present";
+  new cards "BL-34 survivor momentum" (SEALED until backtest/holdout.lock.json exists: test week Nov 8 - 14, verdict
+  ~Nov 17, days left, 5 tests "waiting"; then the tests and verdict from the lock's new "pass" key, never trades or P&L)
+  and "Backtest lab" (backtest/status.json from tools/candles.py write_status(): 6 token days, 8 ETH days, twin
+  validation -28.53 logged vs -35.37 simulated, "Harsher than live, so it doesn't flatter."). Remove-nothing kept; the
+  terminal and Paper equity card byte-identical (screenshots and sha256 pins). Telegram daily adds "<book> refilled +$x
+  (not P&L)" (from state.json report.equity), "Gate B since ... · random N closes · kill at 200" and a per-trade line per
+  book; every BL-3 line stays; no BL-34 line (core/ never reads backtest/, test) (docs/NOTES.md "BL-43").
+  Tests: stdlib unittest, `python -m unittest` (456 pass on 3.13).
 - cron-job.org token "baseline-desk cron" EXPIRES Thu 2027-01-21: renew by early January or the desk stops silently.
 - Technical detail per card, GoPlus diagnosis, BL-20 budget and full open items: docs/NOTES.md.
 - Open items:
@@ -280,10 +296,12 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
     age line was wrong); the holdout run reports results by pool age, never as the verdict (docs/NOTES.md "BL-34 spec v2").
   - BL-32: EXIT liq_pull still reads total liquidity (liq_usd vs entry_liq_usd), not qliq; left as is (non-negotiable
     7, exits unchanged); chat to decide whether a real-depth exit rule is a new hypothesis (docs/NOTES.md "BL-32").
-  - BL-43 (BL-32 adds): the site's token table lists gate kills by name and lacks real_depth and missing:qliq, so those
-    rows show under its Safety chip until BL-43 (tests/test_site.py pins the gap); report.json machine cards are right.
+  - BL-43: the token table classifies by reason alone (tokens_24h.json has no detail), so a too_young / too_old /
+    nobody_can_sell skip that carried goplus=skipped is gate on the machine cards but safety in the table (none on Nov 6).
+    The lock's "pass" key exists only for locks written from BL-43 on (the BL-34 run is the first) (docs/NOTES.md "BL-43").
   - Nov 6 review done (docs/NOTES.md 'Nov 6 review replay'): dead 68% / 81% / 87% at +1/+6/+24 h vs gone 0% / 0% / 8%; still no depth or sells rule from outcome labels without a tested hypothesis (BL-32 is the tested depth step).
-  - BL-43 (chat's card): the site and the Telegram daily summary show plain value_usd, so refills look like a jump; per-trade stats and refills not shown yet (docs/NOTES.md 'BL-31').
+  - BL-43 done: refills and per-trade stats on the site and in the Telegram daily summary; the equity chart keeps plain
+    value_usd with the twin's refill jump by the owner's choice A (docs/NOTES.md "BL-43").
   - Stale-checkout tick misses accepted on paper; fix before live, revisit at BL-35; never Re-run jobs on a tick run (DECISIONS 2026-11-06).
   - BL-20 label shift: thin leads log "real_depth" (before BL-32 "liquidity") with goplus=skipped even if GoPlus would flag them (docs/NOTES.md)
   - Theoretical worst case: ~1,020 s with BL-8's baseline exits (~900 s before) if every request hangs 15 s (job timeout 600 s); real ticks 17.6 s typical, 39.8 s max. If a tick ever exceeds 120 s, add a time guard. No guard in BL-8 (the owner). (docs/NOTES.md)
@@ -305,8 +323,9 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
   lock and result committed; chat reads the verdict. No look at BL-34 candidates' Nov 8-14 outcomes before that. Also
   check the BL-32 deploy tick (one BOOK RESTART gate_b row) and the first weekly refill Mon 2026-11-09 00:03 UTC.
   BL-38, BL-39 wait; the execution design is researched in parallel (no wallet code). BL-38..BL-42 are candidates only
-  (DECISIONS 2026-11-04). BL-43 owns the display.
-- Last updated: 2026-11-06.
+  (DECISIONS 2026-11-04). After BL-43: the owner checks the deployed site (pages.yml deploys on the site/ change) and the
+  first Telegram daily summary with the new lines.
+- Last updated: 2026-11-07.
 
 ## 12. Glossary
 - Lead: a token the scanner found. Survivor: a lead that passed every hard skip.

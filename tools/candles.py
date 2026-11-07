@@ -4,6 +4,7 @@
     python -m tools.candles --day YYYY-MM-DD       fetch one sight day (every token of the logging set seen that day)
     python -m tools.candles --twin-validation      the twin's logged trades on every complete logged day
     python -m tools.candles --eth                  ETH (deepest WETH/USDC pool) for every complete day still missing
+    python -m tools.candles --status               rewrite backtest/status.json only (no request)
 
 Run from .github/workflows/backtest.yml (workflow_dispatch only) or by hand in a session. core/ never imports this
 module and the tick never reads backtest/. Fetching is not testing: every logged day is fetched, holdout days too;
@@ -35,7 +36,8 @@ RETRIES tries per call with BACKOFF_S between them.
 
 Files (backtest/candles/, never data/): <sight-day>.jsonl.gz, written once when every window of that day has closed
 (last sight + 7 days); before that <sight-day>.open.jsonl.gz, replaced by each later fetch and deleted when the final
-file is written. twin-validation.jsonl.gz, written once. Line 1 is {"kind": "meta", ...}; then one line per token:
+file is written. twin-validation.jsonl.gz, written once. backtest/status.json (BL-43, display only, for the site's
+Backtest lab card): rewritten at the end of every run but --list-days, and by --status; see write_status(). Line 1 is {"kind": "meta", ...}; then one line per token:
 {"kind": "token", "address", "symbol", "sight_ts", "pool", "match", "pool_created", "start", "end", "candles":
 [[t, open, high, low, close, volume_usd], ...]} with t = the candle's start (unix s), oldest first, prices at 6 and
 volume at 4 significant digits (compact()), and end = the last second the candles cover (min(window end, fetch time)).
@@ -407,6 +409,68 @@ def fetch_eth(client, root, days, now=None):
     return out
 
 
+# ---- status.json (BL-43, display only) ----
+STATUS = "backtest/status.json"
+RESULTS = "backtest/results"
+FILE_RE = re.compile(r"(eth-)?(\d{4}-\d{2}-\d{2})(\.open)?\.jsonl\.gz")
+
+
+def twin_validation_status(root):
+    """Totals of the latest twin-validation results (BL-33 part 1's honesty check), from its trades.csv: the trades
+    closed in both the live log and the simulation, logged vs simulated P&L at the logged friction (stop fill
+    "worse", the default), plus "level" stops and core friction. None when there is no such run."""
+    runs = sorted(p for p in (Path(root) / RESULTS).glob("*-twin-validation") if (p / "trades.csv").exists())
+    if not runs:
+        return None
+    d = runs[-1]
+    rows = replay._read(d / "trades.csv")
+    summary = json.loads((d / "summary.json").read_text()) if (d / "summary.json").exists() else {}
+    closed = [r for r in rows if r.get("status") == "closed" and r.get("logged_pnl") and r.get("pnl_logged_fric")]
+    total = lambda k: round(sum(float(r[k]) for r in closed if r.get(k)), 2)
+    count = lambda s: sum(r.get("status") == s for r in rows)
+    dev = (summary.get("split") or {}).get("dev") or []
+    return {"run": d.name, "path": f"{RESULTS}/{d.name}/trades.csv", "days": [dev[0], dev[-1]] if dev else None,
+            "trades": len(rows), "closed_both": len(closed), "logged_usd": total("logged_pnl"),
+            "simulated_usd": total("pnl_logged_fric"), "simulated_level_usd": total("pnl_logged_fric_level"),
+            "simulated_core_usd": total("pnl_core"), "no_fill": count("no_fill"), "no_data": count("no_data"),
+            "pending": count("pending"), "tried": len(rows) - count("no_data")}
+
+
+def status(root):
+    """What candle files exist (no directory listing on the site): token days (final or open, tokens, fetched_at),
+    ETH days, and the twin-validation totals."""
+    root, toks, eth = Path(root), {}, []
+    for p in sorted((root / DIR).glob("*.jsonl.gz")):
+        m = FILE_RE.fullmatch(p.name)
+        if not m:
+            continue
+        if m.group(1):
+            eth.append(m.group(2))
+            continue
+        final = not m.group(3)
+        if m.group(2) in toks and not final:
+            continue  # a final file wins over a leftover .open
+        meta, lines = read(p)
+        toks[m.group(2)] = {"day": m.group(2), "state": "final" if final else "open", "tokens": len(lines),
+                            "with_candles": sum(1 for x in lines if x.get("candles")),
+                            "fetched_at": meta.get("fetched_at")}
+    eth_meta = [read(root / DIR / f"eth-{d}.jsonl.gz")[0].get("fetched_at") for d in eth]
+    # as_of = the newest fetch among the files, so the file changes only when a candle file does (no empty commits)
+    stamps = [x for x in [t["fetched_at"] for t in toks.values()] + eth_meta if x]
+    return {"as_of": max(stamps) if stamps else None, "card": "BL-43", "token_days": [toks[d] for d in sorted(toks)],
+            "eth_days": eth, "twin_validation": twin_validation_status(root)}
+
+
+def write_status(root):
+    """Write backtest/status.json (never under data/; core/ and the tick never read it). Returns the path."""
+    p = Path(root) / STATUS
+    p.parent.mkdir(parents=True, exist_ok=True)
+    tmp = p.with_name(p.name + ".tmp")
+    tmp.write_text(json.dumps(status(root), indent=1) + "\n")
+    tmp.replace(p)
+    return p
+
+
 def twin_buys(root, days):
     """The random twin's BUY rows on `days`, from trades.csv."""
     return [r for d in days for r in replay._read(Path(root) / f"data/daily/{d}/trades.csv")
@@ -457,22 +521,29 @@ def main(argv=None):
     g.add_argument("--day")
     g.add_argument("--twin-validation", action="store_true")
     g.add_argument("--eth", action="store_true", help="every complete day without an eth-<day> file")
+    g.add_argument("--status", action="store_true", help="rewrite backtest/status.json only (BL-43)")
     ap.add_argument("--root", default=str(ROOT))
     a = ap.parse_args(argv)
     if a.list_days:
         print(" ".join(days_to_fetch(a.root)))
         return 0
-    c = Client()
-    if a.eth:
-        paths = fetch_eth(c, a.root, eth_days(a.root))
-        print(f"eth candles: {len(paths)} days written calls={c.calls} refused={c.refused}")
+    if a.status:
+        print("status:", write_status(a.root))
         return 0
-    if a.day:
-        path, n = fetch_day(c, a.root, a.day)
-    else:
-        path, n = fetch_twin(c, a.root, logged_days(a.root))  # every logged day: fetching is not testing
-    print(f"candles: {path} tokens={n} calls={c.calls} refused={c.refused}")
-    return 0
+    c = Client()
+    try:
+        if a.eth:
+            paths = fetch_eth(c, a.root, eth_days(a.root))
+            print(f"eth candles: {len(paths)} days written calls={c.calls} refused={c.refused}")
+            return 0
+        if a.day:
+            path, n = fetch_day(c, a.root, a.day)
+        else:
+            path, n = fetch_twin(c, a.root, logged_days(a.root))  # every logged day: fetching is not testing
+        print(f"candles: {path} tokens={n} calls={c.calls} refused={c.refused}")
+        return 0
+    finally:
+        write_status(a.root)  # BL-43: the site's Backtest lab card, also after a failed fetch
 
 
 if __name__ == "__main__":

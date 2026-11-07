@@ -106,17 +106,22 @@ class FormatTest(unittest.TestCase):
                          "Baseline desk SELL SI · ladder_1\nprice +47.35% · pnl +$0.71\ndesk cash after na")
 
     def test_daily(self):
+        # BL-43 adds the Gate B since and per-trade lines (na here: this report predates per_trade); BL-3's lines stay
         self.assertEqual(alerts.daily_text(REP, 288, 288, 0),
                          "Baseline daily · 2026-10-31\ndesk $47.61 · random $27.62 · desk lead +$19.99\n"
-                         "Gate B 1/100 desk closes\ncloses that day: desk 0 · random 22\nruns 288/288 · ERROR rows 0")
+                         "Gate B 1/100 desk closes\n"
+                         "Gate B since na · random na closes · kill at 200\n"
+                         "desk per trade since na: na\nrandom per trade since na: na\n"
+                         "closes that day: desk 0 · random 22\nruns 288/288 · ERROR rows 0")
 
     def test_daily_closes_that_day_is_closes_day_for_both_books(self):
         rep = dict(REP, desk=dict(REP["desk"], closes=40, closes_day=3), baseline=dict(REP["baseline"], closes=90, closes_day=7),
                    gate_b=dict(REP["gate_b"], desk_closes=40))
         lines = alerts.daily_text(rep, 287, 288, 2).splitlines()
         self.assertEqual(lines[2], "Gate B 40/100 desk closes")  # the running total belongs to Gate B only
-        self.assertEqual(lines[3], "closes that day: desk 3 · random 7")
-        self.assertNotRegex(lines[3], r"\b(40|90)\b")
+        closes = next(x for x in lines if x.startswith("closes that day"))  # BL-43 lines sit before it
+        self.assertEqual(closes, "closes that day: desk 3 · random 7")
+        self.assertNotRegex(closes, r"\b(40|90)\b")
 
     def test_error(self):
         self.assertEqual(alerts.error_text(T0, [("labels", "URLError"), ("live", "OSError")]),
@@ -263,7 +268,7 @@ class TickAlertTest(unittest.TestCase):
         self.assertEqual(n["report"], "ok")
         rep = json.loads((self.root / report.REPORT).read_text())
         daily = [t for t in fake.texts if t.startswith("Baseline daily")]
-        self.assertEqual(daily, [alerts.daily_text(rep, 1, 288, 0)])
+        self.assertEqual(daily, [alerts.daily_text(rep, 1, 288, 0, alerts.refilled_on(self.root, rep["day"]))])
         self.assertIn("runs 1/288 · ERROR rows 0", daily[0])
 
     def test_no_daily_summary_when_the_report_fails(self):

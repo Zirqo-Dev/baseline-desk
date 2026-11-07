@@ -146,17 +146,19 @@ def holdout_refusal(root, spec, now=None):
     return ""
 
 
-def write_lock(root, spec, dev, hold, now, result):
+def write_lock(root, spec, dev, hold, now, result, passed=None):
     """The first holdout run creates the lock (spec, sha256, time, frozen split, result); an allowed rerun (an owner
-    line in DECISIONS) is appended under "reruns", never replacing the first."""
+    line in DECISIONS) is appended under "reruns", never replacing the first. BL-43 (display only): "pass" = the
+    pass_tests() answer (tests and verdict) of a decision spec, so the site's BL-34 card reads them from the lock;
+    null for a spec without pass tests. It changes no number of the run."""
     p = Path(root) / LOCK
     lock = load_lock(root)
     if lock is None:
         lock = {"spec": spec["name"], "sha256": spec["sha256"], "ran_at": _iso(now),
-                "split": {"dev": dev, "holdout": hold}, "result": result, "reruns": []}
+                "split": {"dev": dev, "holdout": hold}, "result": result, "pass": passed, "reruns": []}
     else:
         lock.setdefault("reruns", []).append({"spec": spec["name"], "sha256": spec["sha256"], "ran_at": _iso(now),
-                                              "result": result})
+                                              "result": result, "pass": passed})
     p.parent.mkdir(parents=True, exist_ok=True)
     p.write_text(json.dumps(lock, indent=1) + "\n")
     return p
@@ -1088,7 +1090,7 @@ def main(argv=None):
         print("results:", write_results(a.root, spec["name"], res, res["trades"]))
     if a.holdout:
         print("lock:", write_lock(a.root, spec, res["split"]["dev"], res["split"]["holdout"],
-                                  _ts(res["ran_at"]), res["summary"]))
+                                  _ts(res["ran_at"]), res["summary"], res.get("pass")))
     return 0
 
 

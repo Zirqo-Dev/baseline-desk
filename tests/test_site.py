@@ -1,5 +1,5 @@
-"""Offline tests for BL-13 and BL-27: site/index.html reads only keys core/report.py and core/live.py write, and
-fetches only the three data URLs."""
+"""Offline tests for BL-13, BL-27 and BL-43: site/index.html reads only keys core/report.py and core/live.py write, and
+fetches only the six raw URLs (three data files, three backtest files; BL-43)."""
 import json
 import re
 import tempfile
@@ -15,7 +15,10 @@ from tests.test_tick import T0, addr, good
 
 PAGE = Path(__file__).resolve().parent.parent / "site" / "index.html"
 RAW = "https://raw.githubusercontent.com/Zirqo-Dev/baseline-desk/main/data/"
-URLS = {"REPORT_URL": RAW + "report.json", "TOKENS_URL": RAW + "tokens_24h.json", "LIVE_URL": RAW + "live.json"}
+BT = "https://raw.githubusercontent.com/Zirqo-Dev/baseline-desk/main/backtest/"
+URLS = {"REPORT_URL": RAW + "report.json", "TOKENS_URL": RAW + "tokens_24h.json", "LIVE_URL": RAW + "live.json",
+        "SPEC_URL": BT + "specs/bl34-survivor-momentum-v2.json", "LOCK_URL": BT + "holdout.lock.json",
+        "STATUS_URL": BT + "status.json"}  # BL-43: the last three
 
 
 def trade(t, book, side, a, usd, reason, pnl="", intended="1.0", fill="0.97", fric="3.0"):
@@ -30,7 +33,7 @@ def script():
 
 def reads(helper):
     """Every key path the page passes to a reader: R('a.b') / M('a.b') / L('a.b') or B(x, 'k')."""
-    pat = rf"\b{helper}\('([^']+)'\)" if helper in ("R", "M", "L") else rf"\b{helper}\(\w+, '([^']+)'\)"
+    pat = rf"\b{helper}\('([^']+)'\)" if helper in ("R", "M", "L", "SP", "LK", "ST") else rf"\b{helper}\(\w+, '([^']+)'\)"
     return set(re.findall(pat, script()))
 
 
@@ -102,13 +105,11 @@ class PageKeysTest(Files):
         page = set(re.findall(r"\['(\w+)', '[^']+', [01]\]", script()))
         self.assertEqual(page, set(report.RULES))
 
-    # BL-32 added these gate kills to core/report.py; the site is not changed in BL-32 (BL-43 owns the display), so
-    # until BL-43 the site's token table counts them under Safety. Remove this set when BL-43 updates the page.
-    SITE_LAGS_BL43 = {"real_depth", "missing:qliq"}
-
     def test_gate_kills_match(self):
+        """BL-43: the site's gate set is exactly core/report.py GATE_KILLS (BL-32's real_depth and missing:qliq
+        included); fails if they ever differ."""
         js = re.search(r"const GATE = new Set\(\[(.*?)\]\)", script(), re.S).group(1)
-        self.assertEqual(set(re.findall(r"'([^']+)'", js)), report.GATE_KILLS - self.SITE_LAGS_BL43)
+        self.assertEqual(set(re.findall(r"'([^']+)'", js)), report.GATE_KILLS)
 
 
 class LiveKeysTest(unittest.TestCase):
@@ -148,16 +149,16 @@ class LiveKeysTest(unittest.TestCase):
 
 
 class PageFetchTest(unittest.TestCase):
-    """The page fetches only the three raw.githubusercontent.com data URLs; nothing can change where from."""
+    """The page fetches only the six raw.githubusercontent.com URLs; nothing can change where from."""
 
-    def test_three_data_urls_only(self):
+    def test_six_raw_urls_only(self):
         js = script()
         consts = dict(re.findall(r"const (\w+_URL) = '([^']+)';", js))
         self.assertEqual(consts, URLS)
         self.assertEqual(len(re.findall(r"\bfetch\(", js)), 1)
         self.assertRegex(js, r"await fetch\(url, ")
         self.assertEqual(set(re.findall(r"\bload\((\w+)\)", js)), set(URLS) | {"url"})  # url: the definition
-        self.assertEqual(sorted(re.findall(r"\bload\(", js)), ["load("] * 4)  # the function + one call per URL
+        self.assertEqual(sorted(re.findall(r"\bload\(", js)), ["load("] * 7)  # the function + one call per URL
         self.assertEqual(len(re.findall(r"\bfetchLive\(\)", js)), 2)  # live.json: at load and in refreshLive()
 
     def test_only_live_json_is_refetched(self):

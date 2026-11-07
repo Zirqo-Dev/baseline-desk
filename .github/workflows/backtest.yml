@@ -6,6 +6,7 @@
 # stops keeps the days it finished. A day whose 7-day windows are still open gets <day>.open.jsonl.gz, and EVERY later
 # run fetches it again (blank days = every day without a final file); a closed day gets its final <day>.jsonl.gz,
 # written once and then skipped. After a timeout, list only the missing days in "days".
+# BL-43: every run also rewrites backtest/status.json (the site's Backtest lab card), staged with the candles.
 # Pacing 8 calls/min (measured, BL-33): about 200 tokens a day, roughly 30 min per day.
 name: backtest
 
@@ -45,7 +46,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
           commit_push() {
-            git add -A backtest/candles/
+            git add -A backtest/candles/ backtest/status.json
             if git diff --cached --name-only | grep -v '^backtest/'; then
               echo "ABORT: something outside backtest/ is staged"; exit 1
             fi

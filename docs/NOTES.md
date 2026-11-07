@@ -1553,6 +1553,98 @@ Moved from CLAUDE.md section 11 on 2026-10-23 (BL-2 process cleanup). Wording is
   24 h, 72 h-30 d, > 30 d, unknown) and no breakdown on a development run; the fixture world runs on v2 (the too_old
   token now enters, the twin pool grows to three).
 
+## BL-43
+- Display only (the owner's mock approval 2026-11-07 and the Nov 7 answers 1-6, DECISIONS). No mock file in the repo:
+  built from the card text and the hard rules; the before/after screenshots are the proof. Code: site/index.html,
+  core/alerts.py (daily summary only), tools/candles.py (write_status(), --status), tools/backtest.py (the lock's "pass"
+  key), .github/workflows/backtest.yml (stages backtest/status.json), tests/test_bl43.py, tests/test_site.py,
+  tests/test_alerts.py. No rule, threshold, book, exit, report.json, live.json or tick-path change; no new request on the
+  tick path. Nothing under data/ changed.
+- Hard rules kept (the owner): REMOVE NOTHING (every card, its order, layout, icons, colours, fonts and the logo header
+  stay); ZERO changes to the tick.log terminal and the Paper equity card. tests/test_bl43.py pins sha256 of seven
+  segments as of 466419d (the terminal and equity markup, terminal()/termFoot(), curve(), the put('equity', ...) block,
+  the Terminal and Equity CSS), the section order (new cards last in their column), the chips and the funnel subtitles.
+  The rendered terminal and equity outerHTML and their PNG screenshots are byte-identical before and after (phone 390 px
+  and desktop 1280 px, light and dark, fixed clock 2026-11-07 15:31 UTC, the same frozen data files).
+- Changes in the page:
+  1. Desk vs random: a "Refills" row under "Net after fees" (per book refills_usd; "Net after fees" keeps its label and
+     its number, net_pnl_usd, already net of refills since BL-31; no duplicate row, the owner). After the existing verdict
+     line: "Per trade since <gate_b.since>" per book (per_trade n closes, net_per_trade_usd / net_per_trade_pct, "—" when
+     n = 0), "Desk lead, net of refills" = desk_lead_usd, and an amber note per book with refills_usd > 0: "The twin's
+     <value_usd> includes a +<refills_usd> top-up. Top-ups are never profit. Next one: Mon 00:03 UTC." ("The desk's" for
+     the desk).
+  2. Closes toward Gate B: header "both books" (was "desk only"); the big number stays gate_b.desk_closes / target, a
+     "random N closes" (gate_b.baseline_closes) on the right of the same row, and a caption "Desk n / 100 · random m ·
+     both since <gate_b.since> · Kill at 200 closes". Track and scale unchanged.
+  3. Labels: real_depth = "Real depth under 10k", missing:qliq = "No real-depth number", only where the page already used
+     its label map (Why they died, Kill log). The token table keeps raw reason codes and its search (the owner).
+  4. Tokens: GATE = core/report.py GATE_KILLS exactly (real_depth, missing:qliq added; a test fails if they differ),
+     plus the prefix rule asset: (core/report.py kill_stage() counts asset:<kind> as a gate kill via goplus=skipped; no
+     asset kind is in GATE_KILLS). New chip "Gate kills" before "Safety kills" (SKIP and a gate reason); Safety kills =
+     SKIP and not a gate reason. Real Nov 6 tokens_24h.json: All 1,046, Gate kills 991, Safety kills 53, Skipped 1,044.
+     Known gap: the table classifies by reason alone (tokens_24h.json has no detail), so a too_young / too_old /
+     nobody_can_sell skip that carried goplus=skipped counts as gate on the machine cards and as safety in the table
+     (none in the Nov 6 kills_since: too_old 4 and nobody_can_sell 4 were all safety).
+  5. Kill funnel, Gate subtitle: "Real depth ≥ 10k, DexScreener data present". Nothing else in the funnel.
+  6. New card, end of the left column: "BL-34 survivor momentum". Tag SEALED while backtest/holdout.lock.json answers
+     HTTP 404; a one-line description from the spec's numbers (real depth ≥ $10k, ≥ 30 sells in 24 h); test week =
+     split.holdout_days (Nov 8 – Nov 14, "starts Nov 8" / "day k of 7" / "complete"); verdict ~ last holdout day +
+     VERDICT_AFTER_D (3) = ~Nov 17; days left to that date (10 on Nov 7). The 5 pass tests (names from the spec's pass
+     numbers) show "waiting". Once the lock exists: tag RUN ONCE, verdict = lock pass.verdict, run time = lock ran_at,
+     each test pass / fail from lock pass.tests. The card reads the lock only through LK() and only pass, pass.verdict,
+     pass.tests.*, ran_at and spec: never trades, P&L, result or by_pool_age (test). A lock fetch that fails (not 404)
+     shows "unknown", never "sealed". A lock without "pass" says so.
+  7. New card, end of the right column: "Backtest lab" from backtest/status.json: token-candle days (count and range),
+     final / still open, ETH-candle days; honesty check = the latest twin-validation run: trades closed in both, live
+     logged vs simulated on candles (logged friction, stop fill "worse"), no fill in 5 min of tried; "Harsher than live,
+     so it doesn't flatter." when simulated <= logged, else "Kinder than live: read backtest results with care." Today:
+     6 token days (Oct 31 – Nov 5, all .open), 8 ETH days (Oct 30 – Nov 6), 40 closed in both, -$28.53 vs -$35.37, 20 of 61.
+  Footer line and the static foot now also name backtest/ (spec, lock, status.json).
+- Fetches: six raw.githubusercontent.com URLs, the three data files as before plus SPEC_URL
+  (backtest/specs/bl34-survivor-momentum-v2.json), LOCK_URL (backtest/holdout.lock.json, 404 = sealed) and STATUS_URL
+  (backtest/status.json), each once at page load through the same load() (cache no-cache, no override); only live.json
+  is re-fetched. The browser logs its own 404 line for the lock until the run; no script error.
+- backtest/status.json (tools/candles.py write_status(), the owner's answer 6): {as_of, card, token_days [{day, state
+  final|open, tokens, with_candles, fetched_at}], eth_days, twin_validation {run, path, days, trades, closed_both,
+  logged_usd, simulated_usd, simulated_level_usd, simulated_core_usd, no_fill, no_data, pending, tried}}. Written at the
+  end of every tools.candles run but --list-days (in a finally, so also after a failed fetch) and by
+  python -m tools.candles --status (no request). as_of = the newest fetched_at among the candle files, so the file
+  changes only when a candle file does (no empty backtest commits). A final file wins over a leftover .open of the same
+  day. The twin-validation numbers come from that run's trades.csv (its summary.json holds only mode, ran_at and split):
+  the 40 closed rows reproduce NOTES "BL-33" (-28.53 / -35.37 / -16.28 level / -48.15 core). backtest.yml stages it with
+  the candles (git add -A backtest/candles/ backtest/status.json; the outside-backtest/ guard unchanged). Never under
+  data/; core/ and the tick never read it. First copy written in this session.
+- The lock's "pass" key (Claude Code's choice, needed for item 6): write_lock() stored only res["summary"] (per-book
+  counts), not the pass tests or the verdict, so the site could not read them from the lock. write_lock(..., passed)
+  now adds "pass" = pass_tests() (tests, verdict and its means) beside "result", also on an allowed rerun; null for a spec
+  without pass tests. It changes no number of the run, the spec, its sha256 or the split (test: two locks differ only in
+  "pass"). The site shows only the tests and the verdict.
+- Telegram daily summary (core/alerts.py; the owner: no BL-34 line, core/ never reads backtest/): every BL-3 line stays;
+  new lines: after the values line "random refilled +$46.81 (not P&L)" (per book, joined by " · ", only when that day's
+  top-up rounds above 0), after "Gate B n/100 desk closes" the line "Gate B since <since> · random N closes · kill at
+  200", then "desk per trade since <since>: n closes · +$x (+y%) each" and the same for random ("0 closes · —" at n 0,
+  "na" without per_trade). The refill is the change in refills_usd between the report day's equity entry and the one
+  before it in state.json report.equity (entries before BL-31 have none = 0); report.json's equity_daily has no
+  refills_usd, so the state is the source (no report change). Unreadable state: no refill line. Plain text, no
+  parse_mode. Real Nov 6 report: "random refilled +$46.81 (not P&L)" (the BL-31 restart). Test: no core string literal
+  (docstrings aside) names backtest and no core module imports tools.
+- Tests: tests/test_bl43.py (27): the seven pins, section order, the six chips (exact markup and order: hiding, reordering, adding or removing one fails), Desk vs random rows (Refills under Net after
+  fees, no "Net after refills"), funnel subtitles; the label map and labels only in Why/Kill log, raw codes and search in
+  the table; asset:<kind> = gate in core and on the page; Gate/Safety chip filters; status.json shape, final over .open,
+  stable as_of, empty root, --status writes only status.json, the repo copy equals the NOTES numbers, every ST/SD key the
+  page reads exists, backtest.yml stages it; spec keys and the ~Nov 17 constant; lock keys and the page's test ids =
+  pass_tests() keys; the card never reads trades or P&L; the "pass" key changes no number; core never reads backtest; the
+  summary with and without refills, BL-3 lines kept, no BL-34 line, refilled_on() from equity entries (BL-31 gap, a
+  later weekly refill, a missing day, a broken state), per-trade formats. tests/test_site.py: six URLs, seven load(,
+  GATE == GATE_KILLS (the BL-32 lag set removed). tests/test_alerts.py: test_daily gains the new lines, the closes line
+  found by its prefix, the tick test passes refilled_on(). Mutations caught: dropping real_depth from GATE, a terminal
+  text, the equity dash pattern, a curve CSS width, renaming a card, unhiding the run pill, reading a P&L key, hiding or renaming a chip. 456 pass
+  on 3.13 (429 before).
+- Screenshots (Playwright Chromium, page.route serving frozen copies of data/report.json, tokens_24h.json, live.json as of
+  the 15:28 UTC tick and the repo's backtest files; clock fixed): before and after full pages at 390 and 1280 px, light
+  and dark; the BL-34 card sealed, with a pass lock and a retired lock fixture (scratch, never committed); no horizontal
+  scroll at either width; requests = the page + the six URLs.
+
 ## Open items (detail)
 - Open items:
   - BL-7 done only after 24h of green runs, no overlap, one TICK row per run. The TICK rows show the real run rate for Gate A (90%).

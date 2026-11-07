@@ -266,6 +266,31 @@ body { margin: 0; font-size: 14px; }
 .pc-up { background: var(--up-soft); color: var(--up); }
 .pc-warn { background: var(--warn-soft); color: var(--warn-ink); }
 .grp .empty { text-align: left; background: var(--page); }
+/* BL-43: refills, per trade, BL-34 card, Backtest lab (additions only; nothing above changed) */
+.pt { margin-top: 12px; }
+.pt h3 { margin: 0 0 6px; font: 600 12px var(--sans); color: var(--ink-2); }
+.pt .vs { margin-top: 0; }
+.pt .book { gap: 4px; }
+.pt-n { font: 700 17px/1.1 var(--display); font-variant-numeric: tabular-nums; }
+.pt-s { font-size: 12px; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.lead-net { margin: 10px 0 0; font-size: 13px; display: flex; justify-content: space-between; gap: 8px; font-variant-numeric: tabular-nums; }
+.lead-net b { font-weight: 700; }
+.note-warn { margin: 10px 0 0; font-size: 12px; line-height: 1.4; color: var(--warn-ink); background: var(--warn-soft); border-radius: 10px; padding: 9px 11px; }
+.gate-rand { font-size: 13px; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.gate-rand b { color: var(--ink); font-weight: 700; }
+.tag-sealed { color: var(--warn-ink); background: var(--warn-soft); }
+.tag-done { color: var(--ink); background: var(--page); }
+.desc { margin: 0 0 10px; font-size: 13px; line-height: 1.4; color: var(--ink-2); }
+.tests { list-style: none; margin: 0; padding: 0; display: grid; }
+.tests li { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--line); font-size: 13px; }
+.tests li:last-child { border-bottom: 0; }
+.pc-pass { background: var(--up-soft); color: var(--up); }
+.pc-fail { background: var(--down-soft); color: var(--down); }
+.pc-wait { background: var(--page); color: var(--ink-2); }
+.honest { display: grid; grid-template-columns: 1fr auto; gap: 5px 8px; margin: 8px 0 0; font-size: 13px; font-variant-numeric: tabular-nums; }
+.honest dt { color: var(--ink-2); }
+.honest dd { margin: 0; text-align: right; font-weight: 600; }
+.honest-v { margin: 8px 0 0; font-size: 13px; font-weight: 600; }
 </style>
 </head>
 <body>
@@ -321,13 +346,18 @@ body { margin: 0; font-size: 14px; }
     </section>
 
     <section class="card" aria-label="Gate B">
-      <div class="card-h"><h2>Closes toward Gate B</h2><span>desk only</span></div>
+      <div class="card-h"><h2>Closes toward Gate B</h2><span>both books</span></div>
       <div id="gate"></div>
     </section>
 
     <section class="card" aria-label="How trades ended">
       <div class="card-h"><h2>How trades ended</h2><span>by exit rule</span></div>
       <div id="exits"></div>
+    </section>
+
+    <section class="card" aria-label="BL-34 survivor momentum">
+      <div class="card-h"><h2>BL-34 survivor momentum</h2><span id="bl34-h"><span class="tag tag-sealed">SEALED</span></span></div>
+      <div id="bl34"></div>
     </section>
   </div>
 
@@ -352,6 +382,11 @@ body { margin: 0; font-size: 14px; }
       <div class="card-h"><h2>Is it running?</h2><span>last 48 h</span></div>
       <div id="running"></div>
     </section>
+
+    <section class="card" aria-label="Backtest lab">
+      <div class="card-h"><h2>Backtest lab</h2><span id="lab-h">5-min candles</span></div>
+      <div id="lab"></div>
+    </section>
   </div>
 
   <!-- FULL WIDTH: tokens -->
@@ -363,6 +398,7 @@ body { margin: 0; font-size: 14px; }
         <button type="button" class="chip" data-f="all" aria-pressed="true">All</button>
         <button type="button" class="chip" data-f="WATCH" aria-pressed="false">Watching</button>
         <button type="button" class="chip" data-f="LP" aria-pressed="false">LP unknown</button>
+        <button type="button" class="chip" data-f="GATE" aria-pressed="false">Gate kills</button>
         <button type="button" class="chip" data-f="SAFETY" aria-pressed="false">Safety kills</button>
         <button type="button" class="chip" data-f="SKIP" aria-pressed="false">Skipped</button>
       </div>
@@ -377,25 +413,34 @@ body { margin: 0; font-size: 14px; }
     </div>
   </section>
 
-  <p class="foot" id="foot">Paper only · Base chain · every number comes from data/report.json, data/tokens_24h.json and data/live.json; a dash means no number yet</p>
+  <p class="foot" id="foot">Paper only · Base chain · every number comes from data/report.json, data/tokens_24h.json, data/live.json and backtest/ (spec, lock, status.json); a dash means no number yet</p>
 </div>
 
 <script>
 (() => {
-  /* The only three fetches on this page (BL-13, BL-27; DECISIONS 2026-10-30, 2026-11-01). No override of any kind.
-     report.json and tokens_24h.json load once; live.json is fetched again every 5 min while the tab is visible. */
+  /* The only six fetches on this page (BL-13, BL-27, BL-43; DECISIONS 2026-10-30, 2026-11-01, 2026-11-07). No override
+     of any kind. Everything loads once at page load but live.json, fetched again every 5 min while the tab is visible. */
   const REPORT_URL = 'https://raw.githubusercontent.com/Zirqo-Dev/baseline-desk/main/data/report.json';
   const TOKENS_URL = 'https://raw.githubusercontent.com/Zirqo-Dev/baseline-desk/main/data/tokens_24h.json';
   const LIVE_URL = 'https://raw.githubusercontent.com/Zirqo-Dev/baseline-desk/main/data/live.json';
+  /* BL-43: the frozen BL-34 spec (its split), the holdout lock (HTTP 404 = sealed, not run yet) and
+     backtest/status.json (tools/candles.py write_status(): which candle files exist). */
+  const SPEC_URL = 'https://raw.githubusercontent.com/Zirqo-Dev/baseline-desk/main/backtest/specs/bl34-survivor-momentum-v2.json';
+  const LOCK_URL = 'https://raw.githubusercontent.com/Zirqo-Dev/baseline-desk/main/backtest/holdout.lock.json';
+  const STATUS_URL = 'https://raw.githubusercontent.com/Zirqo-Dev/baseline-desk/main/backtest/status.json';
+  const VERDICT_AFTER_D = 3; // the verdict is read about 3 days after the last holdout day
   const STALE_MIN = 15;      // live.json older than this: Stale badge, "No tick for N min" pill
   const REFETCH_MS = 300e3;  // live.json only, while the tab is visible
   const DEX = 'https://dexscreener.com/base/';
   /* Exit rules in the mock's order; keys of report.json exits_by_rule (core/report.py RULES). */
   const RULES = [['time_stop', 'time stop', 0], ['hard_stop', 'hard stop', 1], ['ladder_1', 'ladder 1', 0],
                  ['trail', 'trail', 0], ['liq_pull', 'liq pull', 1], ['ladder_2', 'ladder 2', 0]];
-  /* Gate kills, as core/report.py GATE_KILLS; every other final skip is a safety kill. */
-  const GATE = new Set(['liquidity', 'fetch_error_x3', 'missing:symbol', 'missing:price', 'missing:liq_usd',
-                        'missing:age_min', 'missing:sells_1h']);
+  /* Gate kills, as core/report.py GATE_KILLS, plus asset:<kind> (BL-31: a gate skip with goplus=skipped, which is
+     how core/report.py counts it); every other final skip is a safety kill. */
+  const GATE = new Set(['liquidity', 'real_depth', 'fetch_error_x3', 'missing:symbol', 'missing:price', 'missing:liq_usd',
+                        'missing:age_min', 'missing:sells_1h', 'missing:qliq']);
+  const GATE_PREFIX = 'asset:';
+  const isGate = r => typeof r === 'string' && (GATE.has(r) || r.startsWith(GATE_PREFIX));
   const LABEL = {
     'liquidity': 'Liquidity under the floor', 'fetch_error_x3': 'Fetch failed 3 times',
     'missing:symbol': 'No symbol on DexScreener', 'missing:price': 'No price on DexScreener',
@@ -405,6 +450,7 @@ body { margin: 0; font-size: 14px; }
     'buy_tax_pct': 'Buy tax too high', 'sell_tax_pct': 'Sell tax too high', 'lp_locked': 'LP lock too low',
     'dev_pct': 'Dev holds too much', 'top10_pct': 'Top-10 holders too high', 'too_old': 'Pool too old',
     'too_young': 'Pool too young', 'missing:lp_locked_pct': 'No LP-lock number',
+    'real_depth': 'Real depth under 10k', 'missing:qliq': 'No real-depth number',
   };
   const MON = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
   const fmt = new Intl.NumberFormat('en');
@@ -412,6 +458,7 @@ body { margin: 0; font-size: 14px; }
 
   /* Data readers: every key the page reads goes through one of these (tests/test_site.py checks them). */
   let rep = null, tok = null, lv = null, repRes = null, lvRes = null;
+  let spec = null, lock = null, st = null, specRes = null, lockRes = null, stRes = null;  // BL-43
   const dig = (o, path) => path.split('.').reduce((x, k) => (x != null && typeof x === 'object' && k in x) ? x[k] : null, o);
   const R = path => dig(rep, path);                 // report.json
   const M = path => dig(rep && rep.machine, path);  // report.json "machine" (BL-23)
@@ -424,6 +471,10 @@ body { margin: 0; font-size: 14px; }
   const L = path => dig(lv, path);                  // live.json (BL-27)
   const LB = (o, k) => dig(o, k);                   // one live.json book: books.desk / books.baseline
   const LP = (o, k) => dig(o, k);                   // one open position in live.json
+  const SP = path => dig(spec, path);               // backtest/specs/bl34-survivor-momentum-v2.json (BL-43)
+  const LK = path => dig(lock, path);               // backtest/holdout.lock.json, once it exists (BL-43)
+  const ST = path => dig(st, path);                 // backtest/status.json (BL-43)
+  const SD = (o, k) => dig(o, k);                   // one status.json token_days entry
 
   function h(tag, attrs, ...kids) {
     const el = document.createElement(tag);
@@ -618,6 +669,7 @@ body { margin: 0; font-size: 14px; }
     const win = o => B(o, 'closes') > 0 ? B(o, 'win_rate') : null;
     const rows = [
       ['Net after fees', o => B(o, 'net_pnl_usd'), usd, (a, c) => a > c, true],
+      ['Refills', o => B(o, 'refills_usd'), usd, null],
       ['Closes', o => B(o, 'closes'), n0, null],
       ['Win rate', win, x => pct(x, 0), (a, c) => a > c],
       ['Max drawdown', o => B(o, 'max_dd_pct'), x => pct(x, 1), (a, c) => a < c],
@@ -636,16 +688,20 @@ body { margin: 0; font-size: 14px; }
       h('p', { class: 'verdict' }, isNum(lead) ? ['Desk is ', h('b', { class: sign(lead) }, usd(Math.abs(lead)) +
         (lead > 0 ? ' ahead of' : lead < 0 ? ' behind' : ' level with')), ' random',
         (B(d, 'net_pnl_usd') > 0 ? ' and up overall. ' : ' and not up overall. '),
-        'Gate B wants both: positive ', h('i', {}, 'and'), ' ahead.'] : 'No desk lead in report.json.'));
+        'Gate B wants both: positive ', h('i', {}, 'and'), ' ahead.'] : 'No desk lead in report.json.'),
+      perTrade(d, b), leadNet(lead), refillNotes(d, b));
 
     /* Gate B */
     const c = R('gate_b.desk_closes'), tgt = R('gate_b.target'), kill = R('gate_b.kill');
     put('gate',
-      h('div', { class: 'gate-row' }, h('span', { class: 'gate-num' }, n0(c), ' ', h('small', {}, '/ ' + n0(tgt)))),
+      h('div', { class: 'gate-row' }, h('span', { class: 'gate-num' }, n0(c), ' ', h('small', {}, '/ ' + n0(tgt))),
+        h('span', { class: 'gate-rand' }, 'random ', h('b', {}, n0(R('gate_b.baseline_closes'))), ' closes')),
       h('div', { class: 'track' },
         h('b', { style: 'width:' + (isNum(c) && kill > 0 ? Math.min(100, c / kill * 100) : 0) + '%' }),
         h('s', { style: 'left:' + (kill > 0 && isNum(tgt) ? tgt / kill * 100 : 50) + '%' })),
-      h('div', { class: 'scale' }, h('span', {}, '0'), h('span', {}, 'Gate B · ' + n0(tgt)), h('span', {}, 'Kill · ' + n0(kill))));
+      h('div', { class: 'scale' }, h('span', {}, '0'), h('span', {}, 'Gate B · ' + n0(tgt)), h('span', {}, 'Kill · ' + n0(kill))),
+      h('p', { class: 'cap' }, 'Desk ' + n0(c) + ' / ' + n0(tgt) + ' · random ' + n0(R('gate_b.baseline_closes')) +
+        ' · both since ' + stamp(R('gate_b.since')) + ' · Kill at ' + n0(kill) + ' closes'));
 
     /* How trades ended: share of each book's SELL rows by rule (ladder sells are partial) */
     const tot = o => RULES.reduce((a, [k]) => a + (B(o, 'exits_by_rule.' + k) || 0), 0);
@@ -731,7 +787,7 @@ body { margin: 0; font-size: 14px; }
     const scan = M('funnel_since.scan'), from = M('funnel_since.from'), to = M('funnel_since.to');
     put('funnel-h', h('span', { class: 'tag tag-real' }, 'REAL'), ' ' + short(from) + (from !== to ? ' – ' + short(to) : ''));
     const st = [['scan', 'Scan', 'New Base pools, profiles, boosts', 'blue', 'tokens'],
-                ['gate', 'Gate', 'Liquidity floor, DexScreener data present', 'orange'],
+                ['gate', 'Gate', 'Real depth ≥ 10k, DexScreener data present', 'orange'],
                 ['safety', 'Safety', 'GoPlus answered, every rule passed', 'purple'],
                 ['buy', 'Buy', 'Paper fill after friction', 'green']];
     let prev = null;
@@ -804,16 +860,18 @@ body { margin: 0; font-size: 14px; }
     put('tok-h', 'latest verdict on ' + short(TF(tok, 'day')) + ' · built ' + stamp(TF(tok, 'as_of')) + ' · tap to open on DexScreener');
     if (!list.length) { put('tok-empty', empty('No desk VERIFY rows on ' + (TF(tok, 'day') || dash) + '.')); return; }
     $('tok-ui').hidden = false;
-    const safety = x => TK(x, 'verdict') === 'SKIP' && !GATE.has(TK(x, 'reason'));
+    const safety = x => TK(x, 'verdict') === 'SKIP' && !isGate(TK(x, 'reason'));
+    const gateKill = x => TK(x, 'verdict') === 'SKIP' && isGate(TK(x, 'reason'));  // BL-43 "Gate kills" chip
     const counts = { all: list.length, WATCH: list.filter(x => TK(x, 'verdict') === 'WATCH').length,
-      LP: list.filter(x => TK(x, 'lp_unknown') === true).length, SAFETY: list.filter(safety).length,
+      LP: list.filter(x => TK(x, 'lp_unknown') === true).length, GATE: list.filter(gateKill).length, SAFETY: list.filter(safety).length,
       SKIP: list.filter(x => TK(x, 'verdict') === 'SKIP').length };
     document.querySelectorAll('.chip').forEach(c => { c.textContent += ' ' + fmt.format(counts[c.dataset.f]); });
     const state = { f: 'all', q: '', limit: 60 };
     const draw = () => {
       const q = state.q.trim().toLowerCase();
       const rows = list.filter(x => {
-        const ok = state.f === 'all' || (state.f === 'LP' ? TK(x, 'lp_unknown') === true : state.f === 'SAFETY' ? safety(x) : TK(x, 'verdict') === state.f);
+        const ok = state.f === 'all' || (state.f === 'LP' ? TK(x, 'lp_unknown') === true : state.f === 'SAFETY' ? safety(x)
+          : state.f === 'GATE' ? gateKill(x) : TK(x, 'verdict') === state.f);
         return ok && (!q || [TK(x, 'symbol'), TK(x, 'reason'), TK(x, 'address')].join(' ').toLowerCase().includes(q));
       });
       $('rows').replaceChildren(...rows.slice(0, state.limit).map(x => {
@@ -842,11 +900,108 @@ body { margin: 0; font-size: 14px; }
     draw();
   }
 
+  /* ---- BL-43: Desk vs random additions (report.json per_trade, refills_usd, desk_lead_usd) ---- */
+  function perTrade(d, b) {
+    const one = (o, name, cls) => {
+      const n = B(o, 'per_trade.n'), has = isNum(n) && n > 0;
+      return h('div', { class: 'book' + cls },
+        h('div', { class: 'book-h' }, h('i'), name),
+        h('span', { class: 'pt-n' }, isNum(n) ? n0(n) + (n === 1 ? ' close' : ' closes') : dash),
+        h('span', { class: 'pt-s' }, has ? [h('span', { class: sign(B(o, 'per_trade.net_per_trade_usd')) }, sUsd(B(o, 'per_trade.net_per_trade_usd'))),
+          ' / ', h('span', { class: sign(B(o, 'per_trade.net_per_trade_pct')) }, sPct(B(o, 'per_trade.net_per_trade_pct'), 1)), ' per trade'] : dash));
+    };
+    return h('div', { class: 'pt' }, h('h3', {}, 'Per trade since ' + stamp(R('gate_b.since'))),
+      h('div', { class: 'vs' }, one(d, 'Desk', ''), one(b, 'Random', ' rand')));
+  }
+  const leadNet = lead => h('p', { class: 'lead-net' }, h('span', { class: 'mute' }, 'Desk lead, net of refills'),
+    h('b', { class: sign(lead) }, sUsd(lead)));
+  function refillNotes(d, b) {
+    return [[d, "desk's"], [b, "twin's"]].filter(([o]) => isNum(B(o, 'refills_usd')) && B(o, 'refills_usd') > 0)
+      .map(([o, who]) => h('p', { class: 'note-warn' }, 'The ' + who + ' ' + usd(B(o, 'value_usd')) + ' includes a ' +
+        sUsd(B(o, 'refills_usd')) + ' top-up. Top-ups are never profit. Next one: Mon 00:03 UTC.'));
+  }
+
+  /* ---- BL-43: BL-34 survivor momentum, sealed until backtest/holdout.lock.json exists. Never trades or P&L. ---- */
+  const dayMs = d => Date.parse(d + 'T00:00:00Z');
+  const addDays = (d, n) => new Date(dayMs(d) + n * 864e5).toISOString().slice(0, 10);
+  const TESTS = [['1_min_closed', p => 'At least ' + n0(dig(p, 'min_closed')) + ' closed trades'],
+                 ['2_net_positive', () => 'Net positive per trade after friction'],
+                 ['3_beats_twin', () => 'Beats its random twin per trade'],
+                 ['4_beats_hold_eth', () => 'Beats holding ETH'],
+                 ['5_max_dd', p => 'Max drawdown under ' + n0(dig(p, 'max_dd_pct')) + '%']];
+  function bl34() {
+    if (!spec) { put('bl34', empty("Couldn't load the BL-34 spec (" + (specRes ? why(specRes) : 'not fetched') + '). No dates shown.', true)); return; }
+    const hd = SP('split.holdout_days'), ok = Array.isArray(hd) && hd.length === 2 && hd.every(x => isFinite(dayMs(x)));
+    const first = ok ? hd[0] : null, last = ok ? hd[1] : null, verdict = ok ? addDays(last, VERDICT_AFTER_D) : null;
+    const now = Date.now(), sealed = !lock && lockRes && lockRes.status === 404, ran = !!lock;
+    put('bl34-h', h('span', { class: 'tag ' + (ran ? 'tag-done' : 'tag-sealed') }, ran ? 'RUN ONCE' : 'SEALED'));
+    const left = ok ? Math.max(0, Math.ceil((dayMs(verdict) - now) / 864e5)) : null;
+    const week = !ok ? dash : now < dayMs(first) ? 'starts ' + short(first) : now < dayMs(last) + 864e5
+      ? 'day ' + (Math.floor((now - dayMs(first)) / 864e5) + 1) + ' of ' + (Math.round((dayMs(last) - dayMs(first)) / 864e5) + 1) : 'complete';
+    const depth = (SP('universe') || []).find(u => Array.isArray(u) && u[0] === 'l24_depth');
+    const sells = (SP('universe') || []).find(u => Array.isArray(u) && u[0] === 'l24_pair_s24');
+    const v = LK('pass.verdict');
+    const chip = k => {
+      const r = LK('pass.tests.' + k);
+      if (!ran) return h('span', { class: 'pc pc-wait' }, sealed ? 'waiting' : 'unknown');
+      if (r === true) return h('span', { class: 'pc pc-pass' }, 'pass');
+      if (r === false) return h('span', { class: 'pc pc-fail' }, 'fail');
+      return h('span', { class: 'pc pc-wait' }, dash);
+    };
+    put('bl34',
+      h('p', { class: 'desc' }, 'Tokens still alive at +24 h (real depth ≥ ' + kusd(depth && depth[2]) + ', ≥ ' + n0(sells && sells[2]) +
+        ' sells in 24 h) bought when their 6 h return is positive and beats ETH. One sealed test week, run once.'),
+      h('div', { class: 'stats' },
+        h('div', { class: 'stat' }, h('b', {}, ok ? short(first) + ' – ' + short(last) : dash), h('span', {}, 'test week · ' + week)),
+        h('div', { class: 'stat' }, h('b', {}, ran ? (typeof v === 'string' ? v : dash) : ok ? '~' + short(verdict) : dash),
+          h('span', {}, ran ? 'verdict · run ' + stamp(LK('ran_at')) : 'verdict, about ' + VERDICT_AFTER_D + ' days after')),
+        h('div', { class: 'stat' }, h('b', {}, ran ? '0' : isNum(left) ? n0(left) : dash), h('span', {}, ran ? 'days left · done' : 'days left'))),
+      h('ul', { class: 'tests' }, TESTS.map(([k, name]) => h('li', {}, h('span', {}, name(SP('pass'))), chip(k)))),
+      h('p', { class: 'cap' }, ran ? (LK('pass') && typeof LK('pass') === 'object' ? 'From backtest/holdout.lock.json (spec ' + (LK('spec') || dash) + ').'
+          : 'backtest/holdout.lock.json exists but holds no pass tests (a lock written before BL-43).')
+        : sealed ? 'Sealed: no trades or P&L shown until the one holdout run writes backtest/holdout.lock.json.'
+        : "Couldn't check backtest/holdout.lock.json (" + (lockRes ? why(lockRes) : 'not fetched') + '). Nothing shown.'));
+  }
+
+  /* ---- BL-43: Backtest lab, from backtest/status.json (tools/candles.py write_status()) ---- */
+  function lab() {
+    if (!st) {
+      put('lab', stRes && stRes.status === 404
+        ? empty('No backtest/status.json yet (HTTP 404). tools/candles.py writes it at the end of every run.')
+        : empty("Couldn't load backtest/status.json (" + (stRes ? why(stRes) : 'not fetched') + '). No numbers shown.', true));
+      return;
+    }
+    const td = (Array.isArray(ST('token_days')) ? ST('token_days') : []).filter(x => x && typeof x === 'object');
+    const eth = (Array.isArray(ST('eth_days')) ? ST('eth_days') : []).filter(x => typeof x === 'string');
+    const fin = td.filter(x => SD(x, 'state') === 'final').length;
+    const span = a => a.length ? short(a[0]) + (a.length > 1 ? ' – ' + short(a[a.length - 1]) : '') : 'none yet';
+    put('lab-h', 'as of ' + stamp(ST('as_of')));
+    const logged = ST('twin_validation.logged_usd'), sim = ST('twin_validation.simulated_usd');
+    const harsher = isNum(logged) && isNum(sim) ? sim <= logged : null;
+    const tv = ST('twin_validation') && typeof ST('twin_validation') === 'object';
+    const tvd = ST('twin_validation.days');
+    put('lab',
+      h('div', { class: 'stats' },
+        h('div', { class: 'stat' }, h('b', {}, n0(td.length)), h('span', {}, 'token-candle days · ' + span(td.map(x => SD(x, 'day'))))),
+        h('div', { class: 'stat' }, h('b', {}, n0(fin) + ' / ' + n0(td.length - fin)), h('span', {}, 'final / still open (7-day windows)')),
+        h('div', { class: 'stat' }, h('b', {}, n0(eth.length)), h('span', {}, 'ETH-candle days · ' + span(eth)))),
+      h('h3', { class: 'eyebrow' }, 'Honesty check · twin validation'),
+      tv ? [h('dl', { class: 'honest' },
+          h('dt', {}, 'Trades closed in both' + (Array.isArray(tvd) && tvd.length === 2 ? ' · ' + short(tvd[0]) + ' – ' + short(tvd[1]) : '')),
+          h('dd', {}, n0(ST('twin_validation.closed_both'))),
+          h('dt', {}, 'Live, logged'), h('dd', { class: sign(logged) }, usd(logged)),
+          h('dt', {}, 'Simulated on candles'), h('dd', { class: sign(sim) }, usd(sim)),
+          h('dt', {}, 'No fill in 5 min'), h('dd', {}, n0(ST('twin_validation.no_fill')) + ' of ' + n0(ST('twin_validation.tried')))),
+        h('p', { class: 'honest-v' }, harsher === null ? dash : harsher ? "Harsher than live, so it doesn't flatter."
+          : 'Kinder than live: read backtest results with care.')]
+        : empty('No twin-validation run in backtest/results yet.'));
+  }
+
   function foot() {
     put('foot', 'Paper only · Base chain · report ' + (rep ? (R('day') || dash) + ' built ' + stamp(R('as_of')) : 'not loaded') +
       ' · tokens ' + (tok ? (TF(tok, 'day') || dash) + ' built ' + stamp(TF(tok, 'as_of')) : 'not loaded') +
       ' · live ' + (lv ? 'tick ' + stamp(L('as_of')) : 'not loaded') +
-      ' · every number comes from data/report.json, data/tokens_24h.json and data/live.json; a dash means no number yet');
+      ' · every number comes from data/report.json, data/tokens_24h.json, data/live.json and backtest/ (spec, lock, status.json); a dash means no number yet');
   }
 
   /* Each card renders on its own: a broken one never blanks the others. */
@@ -867,7 +1022,10 @@ body { margin: 0; font-size: 14px; }
     try { setLive(await fetchLive()); renderLive(); } finally { busy = false; }
   }
   (async () => {
-    const [r, t, l] = await Promise.all([load(REPORT_URL), load(TOKENS_URL), fetchLive()]);
+    const [r, t, l, sp, lk, sx] = await Promise.all([load(REPORT_URL), load(TOKENS_URL), fetchLive(),
+      load(SPEC_URL), load(LOCK_URL), load(STATUS_URL)]);
+    const obj = x => x.data && typeof x.data === 'object' ? x.data : null;
+    spec = obj(sp); lock = obj(lk); st = obj(sx); specRes = sp; lockRes = lk; stRes = sx;
     rep = r.data && typeof r.data === 'object' ? r.data : null;
     tok = t.data && typeof t.data === 'object' ? t.data : null;
     if (r.data && !rep) r.error = 'not a JSON object';
@@ -878,6 +1036,8 @@ body { margin: 0; font-size: 14px; }
     safe('open', openNow);
     safe('machine', () => machine(r));
     safe('tokens', () => tokens(t));
+    safe('bl34', bl34);
+    safe('lab', lab);
     safe('foot', foot);
     /* Every minute: ages again, so an open tab never shows a false Live; live.json again every 5 min, only while visible. */
     setInterval(() => {
