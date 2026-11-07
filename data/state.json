@@ -17,7 +17,7 @@
     "positions": {},
     "refill_week": "2026-W45",
     "refills_usd": 46.81211808188797,
-    "ticks_since_buy": 55
+    "ticks_since_buy": 56
   },
   "desk": {
     "cash": 47.60776857887221,
@@ -892,7 +892,8 @@
       },
       "0x35e790b536f0ecf27e4e50c1faf9784934b3369c": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 9.949e-06,
         "first_seen": "2026-11-06T23:28:14Z",
@@ -1278,6 +1279,14 @@
         "sight_qliq": 91449,
         "symbol": "SI"
       },
+      "0x66bda4efe8167e750c8c72e788d52545eeecf261": {
+        "done": [],
+        "first_price": 5.398e-06,
+        "first_seen": "2026-11-07T05:28:15Z",
+        "sight_pair": "0x49215158e09384957a9f1c912c0e99dde24c9f7a",
+        "sight_qliq": 34654,
+        "symbol": "WPLS"
+      },
       "0x67486b01b7d6e104f149e224860bb918b5fa07ad": {
         "done": [
           1,
@@ -1506,6 +1515,14 @@
         "sight_pair": "0x091cd0ab1b5a131cf92a76700a77b48c7bee7985",
         "sight_qliq": 999966,
         "symbol": "RLUSD"
+      },
+      "0x8f9035b26645f30d4f9cdb5ab788ac83f9b37d50": {
+        "done": [],
+        "first_price": 1.532e-05,
+        "first_seen": "2026-11-07T05:28:15Z",
+        "sight_pair": "0xb813422739e1d2111c937c69595ed10048548537",
+        "sight_qliq": 93735,
+        "symbol": "BIDEN"
       },
       "0x8ffc87fba763b892000f4953ee286ab5c69ecb0f": {
         "done": [
@@ -2171,12 +2188,6 @@
         "reason": "real_depth",
         "symbol": "USNR",
         "until": "2026-11-07T20:48:15Z"
-      },
-      "0x02d9f6fd9927b5aa1694ae99f8e8349dce675ec6": {
-        "at": "2026-11-06T05:28:14Z",
-        "reason": "liquidity",
-        "symbol": "fog",
-        "until": "2026-11-07T05:28:14Z"
       },
       "0x02ddccb50b6f378df12d63ad95e6917a99225ad9": {
         "at": "2026-11-06T17:53:15Z",
@@ -7932,6 +7943,12 @@
         "symbol": "MINTSY",
         "until": "2026-11-07T22:43:14Z"
       },
+      "0xe84267ccddf9f59e72be56f364e683f029257ba3": {
+        "at": "2026-11-07T05:28:15Z",
+        "reason": "missing:liq_usd",
+        "symbol": "AIRBNB",
+        "until": "2026-11-08T05:28:15Z"
+      },
       "0xe8612bdfa66c23dbc5b76fa55ea9dadc4362f7ea": {
         "at": "2026-11-06T22:08:13Z",
         "reason": "real_depth",
@@ -8238,6 +8255,12 @@
         "symbol": "aeon",
         "until": "2026-11-07T13:38:16Z"
       },
+      "0xf8fbea88be3862d7fecf1231863c93d0fbc869db": {
+        "at": "2026-11-07T05:28:15Z",
+        "reason": "real_depth",
+        "symbol": "SNP500",
+        "until": "2026-11-08T05:28:15Z"
+      },
       "0xf99dc15f521d6298a9686d3014c388d3c5d63013": {
         "at": "2026-11-06T21:38:14Z",
         "reason": "real_depth",
@@ -8383,7 +8406,20 @@
         "until": "2026-11-07T20:28:14Z"
       }
     },
-    "watch": {}
+    "watch": {
+      "0x66bda4efe8167e750c8c72e788d52545eeecf261": {
+        "checks": 1,
+        "first_seen": "2026-11-07T05:28:15Z",
+        "last_check": "2026-11-07T05:28:15Z",
+        "symbol": "WPLS"
+      },
+      "0x8f9035b26645f30d4f9cdb5ab788ac83f9b37d50": {
+        "checks": 1,
+        "first_seen": "2026-11-07T05:28:15Z",
+        "last_check": "2026-11-07T05:28:15Z",
+        "symbol": "BIDEN"
+      }
+    }
   },
   "report": {
     "due": "",
