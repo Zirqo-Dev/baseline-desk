@@ -17,7 +17,7 @@
     "positions": {},
     "refill_week": "2026-W45",
     "refills_usd": 46.81211808188797,
-    "ticks_since_buy": 30
+    "ticks_since_buy": 31
   },
   "desk": {
     "cash": 47.60776857887221,
@@ -749,7 +749,9 @@
         "symbol": "WPLS"
       },
       "0x2bd3643d9fb2678f00004656f4c552a27055681f": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 0.0001122,
         "first_seen": "2026-11-07T02:23:13Z",
         "sight_pair": "0xa28b19c261cdaa91c8f1acb09ea39586020138c9a6f2709926490f36e949d62a",
@@ -1698,7 +1700,8 @@
       },
       "0xb42e3743566b949c7335660dd74c38464be85860": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 2.53,
         "first_seen": "2026-11-06T21:18:15Z",
@@ -2624,6 +2627,12 @@
         "symbol": "SYND",
         "until": "2026-11-07T09:58:13Z"
       },
+      "0x123232205ef7002ea05b4ddd082dbf63269fd6c4": {
+        "at": "2026-11-07T03:23:14Z",
+        "reason": "real_depth",
+        "symbol": "BOOTR",
+        "until": "2026-11-08T03:23:14Z"
+      },
       "0x12f3b79467e73420b97d0cb8b9445c761b0546f9": {
         "at": "2026-11-06T21:53:14Z",
         "reason": "real_depth",
@@ -3163,12 +3172,6 @@
         "reason": "liquidity",
         "symbol": "SWEATER",
         "until": "2026-11-07T03:48:15Z"
-      },
-      "0x27bd8a39f2efff6bce26fe4b721f71fb7ebc6ba3": {
-        "at": "2026-11-06T03:23:13Z",
-        "reason": "liquidity",
-        "symbol": "LIQGHOST",
-        "until": "2026-11-07T03:23:13Z"
       },
       "0x27c6e876cf7a8b63e8c8e4875b73e531da133345": {
         "at": "2026-11-06T20:08:14Z",
@@ -5948,12 +5951,6 @@
         "symbol": "LIQUIDBGT",
         "until": "2026-11-07T09:13:13Z"
       },
-      "0xaf7f93f2c1b4810205a7b309b69e8211daf45cdb": {
-        "at": "2026-11-06T03:23:13Z",
-        "reason": "liquidity",
-        "symbol": "CHUBBY",
-        "until": "2026-11-07T03:23:13Z"
-      },
       "0xaf9a36f923d3b189fb2b36ab8ee38e2fa4175d2a": {
         "at": "2026-11-06T05:23:13Z",
         "reason": "liquidity",
@@ -7460,6 +7457,12 @@
         "symbol": "ROCCO",
         "until": "2026-11-07T21:43:13Z"
       },
+      "0xcbbb5a3ccb44b1b3575c3637e50e94bb737e6ba3": {
+        "at": "2026-11-07T03:23:14Z",
+        "reason": "missing:liq_usd",
+        "symbol": "SCAMCHI",
+        "until": "2026-11-08T03:23:14Z"
+      },
       "0xcc31abf515c30cf5187e4cad921550bb6a53ce8e": {
         "at": "2026-11-06T22:43:14Z",
         "reason": "real_depth",
@@ -8324,12 +8327,6 @@
         "symbol": "NEX",
         "until": "2026-11-07T17:23:12Z"
       },
-      "0xfb3fa185b7a46d828647d8de052910127ce6e573": {
-        "at": "2026-11-06T03:18:16Z",
-        "reason": "liquidity",
-        "symbol": "LABUBU",
-        "until": "2026-11-07T03:18:16Z"
-      },
       "0xfbbb84e22b88600fc7b6b635fa68953e78ecfbf7": {
         "at": "2026-11-06T10:28:15Z",
         "reason": "liquidity",
@@ -8465,9 +8462,9 @@
         "symbol": "Bubbles"
       },
       "0xca2a6cd72d650f548b13faf6c5ef3f81898b75b0": {
-        "checks": 2,
+        "checks": 3,
         "first_seen": "2026-11-07T02:53:12Z",
-        "last_check": "2026-11-07T03:08:13Z",
+        "last_check": "2026-11-07T03:23:14Z",
         "symbol": "CARV"
       },
       "0xd160f4de00115b62b2eb3f13d7e07aaede6c31d0": {
