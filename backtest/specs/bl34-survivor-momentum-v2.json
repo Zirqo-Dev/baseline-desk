@@ -1,0 +1,120 @@
+{
+ "name": "bl34-survivor-momentum-v2",
+ "text": "backtest/specs/bl34-survivor-momentum-v2.md",
+ "approved": "2026-11-06 by the owner, frozen; replaces v1 (superseded, never run)",
+ "decision": "l24",
+ "ticket_usd": 5,
+ "universe": [
+  [
+   "l24_gone",
+   "==",
+   0
+  ],
+  [
+   "l24_depth",
+   ">=",
+   10000
+  ],
+  [
+   "l24_pair_s24",
+   ">=",
+   30
+  ]
+ ],
+ "match": [
+  "exact",
+  "single",
+  "age"
+ ],
+ "entry": [
+  [
+   "ret_6h_pct",
+   ">",
+   0
+  ],
+  [
+   "ret_6h_pct",
+   ">",
+   {
+    "field": "eth_ret_6h_pct"
+   }
+  ],
+  [
+   "eth_ret_24h_pct",
+   ">=",
+   -3
+  ]
+ ],
+ "exits": {
+  "hard_stop_pct": -25,
+  "ladder": [
+   [
+    40,
+    "1/3"
+   ],
+   [
+    100,
+    "1/3"
+   ]
+  ],
+  "trail_pct": 25,
+  "time_stop_min": null,
+  "time_stop_min_pct": null,
+  "liq_drop_pct": null,
+  "max_hold_h": 72
+ },
+ "stop_fill": "worse",
+ "friction": {
+  "fee_pct": 1,
+  "impact_depth": "l24_depth"
+ },
+ "twin": {
+  "window_h": 6
+ },
+ "hold_eth": true,
+ "pass": {
+  "min_closed": 20,
+  "book_usd": 50,
+  "max_dd_pct": 30
+ },
+ "report_pool_age": [
+  [
+   "24-72 h",
+   0,
+   72
+  ],
+  [
+   "72 h-30 d",
+   72,
+   720
+  ],
+  [
+   "> 30 d",
+   720,
+   null
+  ],
+  [
+   "unknown",
+   null,
+   null
+  ]
+ ],
+ "split": {
+  "dev_last_day": "2026-11-07",
+  "holdout_days": [
+   "2026-11-08",
+   "2026-11-14"
+  ]
+ },
+ "notes": [
+  "v2 changes from v1: no pool-age rule (any pool age) and no verdict rule; the 'only 5 fails' outcome = 'not passed: drawdown' (forward paper vs twin, no money); results by pool age at the decision reported on the holdout run, never the verdict. Every other number is v1's.",
+  "Returns are in percent: ret_6h_pct = 100 x (close of the last candle that ended at or before the decision / close of the last candle that ended at or before the decision - 6 h - 1); eth_ret_6h_pct and eth_ret_24h_pct the same on the ETH series (- 6 h, - 24 h). Either price missing = the field is missing = not in. No trade in the last 6 h gives 0, which fails > 0.",
+  "l24_depth = the +24 h label's best_qliq, else its qliq; it prices the impact on both sides (impact = 100 x side USD / l24_depth).",
+  "Friction per side = core/friction.py with launchpad 'other' (base 3%, no launchpad fee, impact) + fee_pct 1 on every trade; the Clanker pool fee is never added on top.",
+  "time_stop_min null = no time stop; liq_drop_pct null = no liquidity-pull exit (not in the spec); the trail runs after the first rung from the peak of earlier candles only.",
+  "Pass test 4: per trade, net P&L / 5 USD ticket vs ETH's return from the trade's entry fill to its exit fill (no friction), averaged over the trades.",
+  "Pass test 5: cumulative per-trade net P&L ordered by exit time on a 50 USD book; drawdown = (peak - equity) / peak.",
+  "Split: development = decision days up to 2026-11-07 UTC; holdout = decision days 2026-11-08 to 2026-11-14 UTC, run once.",
+  "Pool-age report (never the verdict): GeckoTerminal pool_created_at to the decision, buckets 24-72 h (any age up to 72 h, a pool younger than 24 h included and counted), 72 h-30 d, > 30 d (30 d = 720 h), unknown (no created time)."
+ ]
+}

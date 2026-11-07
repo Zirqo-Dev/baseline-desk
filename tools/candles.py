@@ -3,6 +3,7 @@
     python -m tools.candles --list-days            complete logged days that still need a final file
     python -m tools.candles --day YYYY-MM-DD       fetch one sight day (every token of the logging set seen that day)
     python -m tools.candles --twin-validation      the twin's logged trades on every complete logged day
+    python -m tools.candles --eth                  ETH (deepest WETH/USDC pool) for every complete day still missing
 
 Run from .github/workflows/backtest.yml (workflow_dispatch only) or by hand in a session. core/ never imports this
 module and the tick never reads backtest/. Fetching is not testing: every logged day is fetched, holdout days too;
@@ -225,15 +226,22 @@ def resolve(client, toks, known=None):
         if known.get(a):
             out[a] = (known[a], "exact", None)
     rest = [a for a in toks if a not in out]
-    for i in range(0, len(rest), BATCH):
-        part = rest[i:i + BATCH]
+    every = list(toks)  # exact tokens ride in the same batches: their pool_created_at, no extra call (BL-33 part 2)
+    for i in range(0, len(every), BATCH):
+        part = every[i:i + BATCH]
         body = client.get(f"/networks/base/tokens/multi/{','.join(part)}?include=top_pools") or {}
         pools = {p.get("id"): _pool(p) for p in body.get("included") or [] if p.get("type") == "pool"}
         for t in body.get("data") or []:
             a = ((t.get("attributes") or {}).get("address") or "").lower()
             ids = [x.get("id") for x in ((t.get("relationships") or {}).get("top_pools") or {}).get("data") or []]
-            if a in toks:
-                out[a] = classify(toks[a], [pools[x] for x in ids if x in pools])
+            if a not in toks:
+                continue
+            cands = [pools[x] for x in ids if x in pools]
+            if a in out and out[a][1] == "exact":
+                created = next((p["created"] for p in cands if p["pool"] == out[a][0]), None)
+                out[a] = (out[a][0], "exact", created)
+            else:
+                out[a] = classify(toks[a], cands)
     for a in rest:
         if a not in out or out[a][1] not in QUALIFIED:
             body = client.get(f"/networks/base/tokens/{a}/pools?page=1") or {}
@@ -345,6 +353,60 @@ def fetch_day(client, root, day, now=None):
     return (final if closed else opened), len(lines)
 
 
+# ---- ETH (BL-33 part 2) ----
+WETH = "0x4200000000000000000000000000000000000006"
+USDC = "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913"
+ETH_FIRST_DAY = "2026-10-30"  # the day before FIRST_DAY: the 24 h ETH return of the first decisions
+
+
+def eth_pool(client):
+    """The deepest WETH/USDC pool on Base (GeckoTerminal /tokens/WETH/pools), or None."""
+    body = client.get(f"/networks/base/tokens/{WETH}/pools?page=1") or {}
+    best = None
+    for p in body.get("data") or []:
+        rel = p.get("relationships") or {}
+        sides = {((rel.get(k) or {}).get("data") or {}).get("id", "").lower() for k in ("base_token", "quote_token")}
+        if f"base_{USDC}" in sides and f"base_{WETH}" in sides:
+            x = _pool(p)
+            if best is None or x["reserve"] > best["reserve"]:
+                best = x
+    return best
+
+
+def eth_days(root, now=None):
+    """Complete UTC days from ETH_FIRST_DAY to yesterday without an eth-<day>.jsonl.gz."""
+    now = now or _now()
+    today = datetime.fromtimestamp(now, timezone.utc).strftime("%Y-%m-%d")
+    out, d = [], ETH_FIRST_DAY
+    while d < today:
+        if not (Path(root) / DIR / f"eth-{d}.jsonl.gz").exists():
+            out.append(d)
+        d = (datetime.strptime(d, "%Y-%m-%d") + timedelta(days=1)).strftime("%Y-%m-%d")
+    return out
+
+
+def fetch_eth(client, root, days, now=None):
+    """backtest/candles/eth-<day>.jsonl.gz for each complete day (written once): the day's 288 candles of the deepest
+    WETH/USDC pool, priced in USD (token=WETH). Returns the paths written."""
+    now, root, out = now or _now(), Path(root), []
+    pool = eth_pool(client) if days else None
+    for d in days:
+        if not DAY_RE.fullmatch(d):
+            raise ValueError(f"bad day {d!r}")
+        path = root / DIR / f"eth-{d}.jsonl.gz"
+        start = _ts(f"{d}T00:00:00Z")
+        if path.exists() or start + 86400 > now or not pool:
+            continue
+        candles = ohlcv(client, pool["pool"], WETH, start, start + 86400)
+        write(path, {"day": d, "fetched_at": _iso(now), "calls": client.calls, "refused": client.refused,
+                     "pace_s": client.pace, "source": "geckoterminal ohlcv minute aggregate=5, WETH/USDC"},
+              [{"address": WETH, "symbol": "WETH", "sight_ts": f"{d}T00:00:00Z", "pool": pool["pool"],
+                "match": "exact", "pool_created": _iso(pool["created"]) if pool["created"] else None,
+                "start": start, "end": start + 86400, "candles": candles}])
+        out.append(path)
+    return out
+
+
 def twin_buys(root, days):
     """The random twin's BUY rows on `days`, from trades.csv."""
     return [r for d in days for r in replay._read(Path(root) / f"data/daily/{d}/trades.csv")
@@ -394,12 +456,17 @@ def main(argv=None):
     g.add_argument("--list-days", action="store_true")
     g.add_argument("--day")
     g.add_argument("--twin-validation", action="store_true")
+    g.add_argument("--eth", action="store_true", help="every complete day without an eth-<day> file")
     ap.add_argument("--root", default=str(ROOT))
     a = ap.parse_args(argv)
     if a.list_days:
         print(" ".join(days_to_fetch(a.root)))
         return 0
     c = Client()
+    if a.eth:
+        paths = fetch_eth(c, a.root, eth_days(a.root))
+        print(f"eth candles: {len(paths)} days written calls={c.calls} refused={c.refused}")
+        return 0
     if a.day:
         path, n = fetch_day(c, a.root, a.day)
     else:

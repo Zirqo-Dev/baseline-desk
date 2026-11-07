@@ -59,7 +59,8 @@ LIVE     core/live.py              live view (BL-27, display only): open positio
 ALERTS   core/alerts.py            Telegram alerts (BL-3, display only): desk BUY/SELL, daily summary, red-run error -> the owner's phone
 BACKTEST tools/backtest.py          by hand only (BL-33): a fixed spec + its seeded random twin on 5-min candles, point in time,
                                    pessimistic fills, core friction; holdout = last third of logged days, sealed by a lock file
-CANDLES  tools/candles.py           by hand only (BL-33, backtest.yml): GeckoTerminal 5-min pool OHLCV, sight -> +7 days
+CANDLES  tools/candles.py           by hand only (BL-33, backtest.yml): GeckoTerminal 5-min pool OHLCV, sight -> +7 days;
+                                   --eth: the deepest WETH/USDC pool, one eth-<day> file per complete day (BL-33 part 2)
 TICK     core/tick.py              one run: roll day (+report, +machine cards, then twin restart once + weekly refills),
                                    exits (desk, baseline), scan -> verify -> buy, baseline buy,
                                    outcome labels (own try), live.json (own try, not on a crash), alerts (own try, also on a crash),
@@ -70,8 +71,8 @@ Folders:
 - tools/: replay.py (BL-29, offline replay by hand), backtest.py and candles.py (BL-33); never imported by core/,
   never on the tick path
 - backtest/: candles/ (<sight-day>.jsonl.gz written once when its 7-day windows closed, <day>.open.jsonl.gz until then,
-  twin-validation.jsonl.gz), results/<run>/ (summary.json, trades.csv), holdout.lock.json (BL-33); never under data/,
-  never read by the tick
+  eth-<day>.jsonl.gz, twin-validation.jsonl.gz), specs/ (bl34-survivor-momentum-v2.md + .json, frozen; v1 superseded, never run), results/<run>/
+  (summary.json, trades.csv), holdout.lock.json (BL-33); never under data/, never read by the tick
 - adapters/: base.py (EVM, chain 8453). Adapter pattern kept so other chains could plug in later (parked).
 - prompts/: x_read.py
 - data/: state.json, report.json, tokens_24h.json, live.json (BL-27), daily/YYYY-MM-DD/ (tasks.csv, trades.csv; both books in the same files, column "book"; outcomes.csv, BL-26)
@@ -253,14 +254,30 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
   32.8%; logged -28.53 USD vs simulated -35.37 at the same friction (more pessimistic: intra-candle wicks), -48.15 at
   core friction. Process rule: chat does not look at holdout-day outcomes for BL-34 candidates before the run
   (docs/NOTES.md "BL-33", with the as-of field list for the BL-34 spec).
-  Tests: stdlib unittest, `python -m unittest` (410 pass on 3.13).
+  BL-33 part 2 (2026-11-06, the owner's decisions a-c): BL-34 spec v2 survivor momentum pre-registered and frozen in
+  backtest/specs/bl34-survivor-momentum-v2.md (verbatim) + .json (sha256 e9305116d1230e36319c54dd6cc62448e0d605205e39738d1e751d1a7b6f2e30, the lock's hash;
+  v2 replaced v1 the same evening, before any holdout day: v1's .md/.json stay as written, superseded, never run), with
+  its own split: development = decision days up to 2026-11-07, holdout = 2026-11-08 .. 11-14, run ONCE around Nov 17.
+  The run: decision at each sighting's +24 h label; universe alive, +24 h depth >= 10k, pair_s24 >= 30, a qualified
+  pool, any pool age (no pool-age or verdict rule); entry 6 h token return > 0 and > ETH's, ETH 24 h >= -3% (candles that ended before
+  the decision, ETH from eth-<day> files); exits -25% / 1/3 at +40% and +100% / trail 25% / max hold 72 h, no time stop;
+  friction 3% + 1% + impact at the +24 h depth per side (never with the Clanker fee); a twin from what is known at t
+  only (the part 1 future-candle filter fixed); hold-ETH; the 5 pass tests only on the holdout run (only test 5 failing = "not passed: drawdown"),
+  plus results by pool age at the decision, never the verdict. Development runs
+  print counts only (no P&L). Process rule: chat does not look at BL-34 candidates' Nov 8-14 outcomes before the run
+  (docs/NOTES.md "BL-33 part 2", "BL-34 spec v2").
+  Tests: stdlib unittest, `python -m unittest` (429 pass on 3.13).
 - cron-job.org token "baseline-desk cron" EXPIRES Thu 2027-01-21: renew by early January or the desk stops silently.
 - Technical detail per card, GoPlus diagnosis, BL-20 budget and full open items: docs/NOTES.md.
 - Open items:
   - BL-33: spec fields today are log fields only; for sightings before 2026-11-05 the logs give no pool age, and the
     candle path (price/volume up to t) and GeckoTerminal pool_created_at are not spec fields yet: chat to say which
     BL-34 needs (docs/NOTES.md "BL-33"). Run launchpad is "other" (no Clanker fee). liq_pull in the backtest sees only
-    logged liquidity. The backlog fetch (~3.5-4 h) may need two Run workflow clicks (340 min timeout).
+    logged liquidity. The backlog fetch (~3.5-4 h) may hit the 340 min timeout: a later Run workflow with days blank
+    fetches every .open day again from the start (final files are skipped), so after a timeout list only the missing
+    days in "days".
+  - BL-34: settled by spec v2 (the owner, 2026-11-06): any pool age enters by design (LSTEAK, RSGP, XDP showed v1's
+    age line was wrong); the holdout run reports results by pool age, never as the verdict (docs/NOTES.md "BL-34 spec v2").
   - BL-32: EXIT liq_pull still reads total liquidity (liq_usd vs entry_liq_usd), not qliq; left as is (non-negotiable
     7, exits unchanged); chat to decide whether a real-depth exit rule is a new hypothesis (docs/NOTES.md "BL-32").
   - BL-43 (BL-32 adds): the site's token table lists gate kills by name and lacks real_depth and missing:qliq, so those
@@ -280,14 +297,15 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
   - top10 is the top 8-10 after exclusions, slightly lenient (docs/NOTES.md)
   - The exact GoPlus rate-limit code is unverified; code 3 is not one; BL-24 saw code 4029 4 times in 137 calls at 2 s, very likely it (docs/NOTES.md)
   - tokens_24h.json adds ~230 KB of git history per day (overwritten daily), BL-25 ~83 KB/day (+ BL-28 qliq ~15 KB/day) to tasks.csv and BL-26 outcomes.csv ~55 KB/day, BL-27 live.json ~1 KB per tick (rewritten every tick, ~290 KB/day of git history), BL-30 ~40 KB/day on tasks.csv + ~50-140 KB/day on outcomes.csv; include all of them in BL-16's archive plan (docs/NOTES.md)
-- Next step: the owner clicks Run workflow on backtest.yml (blank days = every complete logged day), and again if the
-  first job stops at its timeout; check one "backtest: candles <day>" commit per day, backtest/ only. Chat writes the
-  BL-34 survivor momentum spec from the as-of field list (docs/NOTES.md "BL-33"; ask for candle or pool-age fields
-  if needed) and the owner approves it; then BL-33 part 2: one development run, then the one sealed holdout run
-  (python -m tools.backtest --spec <file> --holdout --write), lock and result committed. Also check the BL-32 deploy
-  tick (one BOOK RESTART gate_b row) and the first weekly refill Mon 2026-11-09 00:03 UTC. BL-34 (R5 survivor
-  momentum) is the first and only holdout run (DECISIONS 2026-11-06 BL-33 a); its rivals BL-38, BL-39 wait; the
-  execution design is researched in parallel (no wallet code). BL-38..BL-42 are candidates only (DECISIONS 2026-11-04). BL-43 owns the display.
+- Next step: BL-34's one holdout run around 2026-11-17. Before it: the owner clicks Run workflow on backtest.yml with
+  days blank around Nov 15-17 (after the Nov 14 sightings have their +24 h labels and the Nov 8-14 days are complete), so
+  ETH and every token day through Nov 14 have candles (a day still inside its 7-day windows comes as .open: enough for
+  the run, the final file later). Then, in a session: python -m tools.backtest --spec
+  backtest/specs/bl34-survivor-momentum-v2.json --holdout --write (refused until Nov 8-14 are all complete logged days),
+  lock and result committed; chat reads the verdict. No look at BL-34 candidates' Nov 8-14 outcomes before that. Also
+  check the BL-32 deploy tick (one BOOK RESTART gate_b row) and the first weekly refill Mon 2026-11-09 00:03 UTC.
+  BL-38, BL-39 wait; the execution design is researched in parallel (no wallet code). BL-38..BL-42 are candidates only
+  (DECISIONS 2026-11-04). BL-43 owns the display.
 - Last updated: 2026-11-06.
 
 ## 12. Glossary

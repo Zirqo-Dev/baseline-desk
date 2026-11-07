@@ -1312,7 +1312,9 @@ Moved from CLAUDE.md section 11 on 2026-10-23 (BL-2 process cleanup). Wording is
   logged tokens a day: ~240 OHLCV + ~7 batch + ~10-20 single pool lookups = ~260 calls, ~33 min at 8/min (~37 min
   with retries), ~0.4 MB a day = ~2.9 MB of git a week for the final files; .open files add ~0.4 MB per open day per
   run. The backlog Oct 31 - Nov 5 (1,271 day-sightings) is ~1,650 calls, ~3.5-4 h: the workflow's 340 min timeout
-  may stop before the end; one commit per day keeps what finished and the next Run workflow continues.
+  may stop before the end; one commit per day keeps what finished. (Corrected in BL-33 part 2: a later Run workflow
+  with days blank skips days that have a FINAL file but fetches every .open day again from the start, so after a
+  timeout list only the missing days in "days".)
 - Tokens = the logging set (verify.logged(), read back as tools/replay.py past_gate()): the first row per address on
   each UTC day. A token seen again on a later day gets its own window in that day's file.
 - Pool match quality (go-message 4), per token in the candle file: exact (the position's pair in the state.json the
@@ -1424,6 +1426,132 @@ Moved from CLAUDE.md section 11 on 2026-10-23 (BL-2 process cleanup). Wording is
   classes; resolve exact first then one batch; day file .open until closed then final; core/ never imports tools/;
   backtest.yml by hand only, stages backtest/ only, never data/; the validation compares one trade and reads
   development days only. 410 pass on 3.13 (375 before).
+
+## BL-33 part 2
+- Pre-registration of BL-34 spec v1 plus the fields and rules its one run needs (the owner's Nov 6 decisions a-c and
+  go-message 1-6, DECISIONS). No holdout run in this session. Code: tools/backtest.py, tools/candles.py,
+  .github/workflows/backtest.yml, tests/test_bl34.py; nothing under core/ or data/.
+- The spec (v1, SUPERSEDED the same evening by v2, see "BL-34 spec v2": the lock uses v2.json's sha256):
+  backtest/specs/bl34-survivor-momentum-v1.md (the approved text, verbatim) and
+  backtest/specs/bl34-survivor-momentum-v1.json (sha256
+  a0533763e3c3122d17894db851999d3d9e3f84742bbaa72b8348c3b9101e4e1f, kept as written, never run). Committing both makes the pre-registration provable
+  from git's timestamp. The JSON keeps every number of the text; "sell 1/3" is the string "1/3", read as an exact
+  fraction (fractions.Fraction), not 0.33. Its notes hold the definitions below.
+- Split (b): the spec carries its own split: development = complete logged days up to 2026-11-07, holdout = decision
+  days 2026-11-08 .. 2026-11-14 (all after the approval). backtest.split(root, now, spec) uses it (a lock still wins;
+  the last third stays the default for a spec without one). The holdout run is refused until all 7 holdout days are
+  complete logged days, and runs ONCE (the lock), around 2026-11-17.
+- PROCESS RULE (c, the owner): chat does not look at BL-34 candidates' outcomes on 2026-11-08 .. 2026-11-14 before the
+  run (outcomes.csv labels, trades, tokens_24h.json of those days).
+- Decision points (spec "decision": "l24"): the ts of each sighting's +24 h outcome label; one trade per token, its first
+  +24 h decision decides.
+- Universe (as of the decision; v1 had a verdict rule, dropped in v2): verdict (the sighting's last desk VERIFY reason)
+  not_in [too_young, too_old] (v1 only); l24_gone == 0; l24_depth >= 10,000 with l24_depth = the +24 h label's best_qliq, else its qliq (best_qliq exists from
+  the 2026-11-06 files); l24_pair_s24 >= 30; pool match exact, single or age (from the candle file's line for the
+  token: pool identity only). New operators in / not_in; a value {"field": x} compares two fields.
+- Entry: ret_6h_pct > 0; ret_6h_pct > eth_ret_6h_pct; eth_ret_24h_pct >= -3. Returns (go-message 2): price now =
+  close of the last candle that ENDED at or before the decision; price then = close of the last candle that ended at
+  or before decision - 6 h (- 24 h for eth_ret_24h_pct); 100 x (now / then - 1); either missing = the field is missing
+  = not in. No trade in the last 6 h gives 0, which fails "> 0". A candle ending exactly at the decision counts; one
+  ending after it is never read (backtest.candle_return(), tested at both edges and with a gap longer than 6 h).
+- ETH series (3): tools/candles.py --eth writes backtest/candles/eth-<day>.jsonl.gz for every complete day from
+  2026-10-30 without one (written once): the day's 5-minute candles of the deepest WETH/USDC pool on Base (GeckoTerminal
+  /tokens/WETH/pools, the WETH + USDC pool with the highest reserve; 0x6c561b44... on 2026-11-06), priced in USD
+  (token=WETH). One call per day plus one pool lookup: 9 calls for Oct 30 - Nov 5 (1 refused, retried) and 2 for Nov 6,
+  3.8-4.8 KB per day, 251-284 of 288 candles per day (some 5-minute windows have no trade even there). backtest.yml runs --eth first
+  (one "backtest: candles eth" commit), then the token days. EthSeries never reads a candle ending after the cutoff.
+- Exits: time_stop_min null = no time stop (and liq_drop_pct null = no liquidity-pull exit, not in the spec);
+  max_hold_h 72 exits at the last close at entry + 72 h (or at a candle open at or after it); ladder 1/3 at +40% and
+  1/3 at +100% of the original quantity; trail 25% from the peak of earlier candles after the first rung; hard stop
+  -25%, a stop inside a candle at the worse of stop and close (stop_fill "worse").
+- Friction (go-message 3): SpecFees = core/friction.py side_pct() with launchpad "other" (base 3% + impact 100 x side
+  USD / depth, no launchpad fee) + fee_pct 1 on every side; depth = the token's l24_depth on both sides; the sell side is
+  capped at 100%. SpecFees refuses (ValueError) a launchpad with a pool fee together with fee_pct, so the Clanker 1%
+  can never stack with it (test).
+- Twin (go-message 4): at each strategy entry time t, the pool = tokens whose +24 h decision fell in (t - 6 h, t],
+  whose universe facts as of t hold (universe rules only) and whose candle line has a qualified pool. Membership reads
+  no candle at all (tested: the pool is identical with every candle after t removed, and with no candles), which fixes
+  the part 1 filter that kept only tokens with candles anywhere in the 7-day window (future data). Pick =
+  random.Random(int(sha256[:12], 16) + i) over the sorted pool, entered at t through the same simulate() (same no_fill
+  rule) with the same exits, ticket and SpecFees at its own l24_depth; an empty pool = twin_skip (counted).
+- Hold-ETH (go-message 1): per closed trade, ETH's price at the entry fill time and at the exit fill time (the close of
+  the last ETH candle ended at or before each), return = exit / entry - 1, no friction. Pass test 4 compares the mean of
+  trade net P&L / 5 USD with the mean hold-ETH return over the same trades.
+- Pass tests (holdout only, backtest.pass_tests()): 1 closed >= 20; 2 mean net per trade > 0; 3 > the twin's mean net per
+  closed twin trade; 4 mean return > mean hold-ETH; 5 max drawdown of 50 USD + cumulative net P&L ordered by exit time
+  < 30% (drawdown = (peak - equity) / peak). Verdict: inconclusive when 1 fails; retired when 2, 3 or 4 fails; pass when
+  all five hold; "not passed" when only 5 fails (the spec does not name that case). Always reported on the holdout run,
+  never the verdict: no_fill per book, pending, twin_skip, the mean net per trade with stop fill "level", and with
+  tick-like close-only exits (every candle after the entry candle reduced to its close).
+- Development run (go-message 5): python -m tools.backtest --spec backtest/specs/bl34-survivor-momentum-v1.json prints
+  counts only and writes nothing, even with --write: decisions, the log-rule universe, why a universe token has no pool
+  (sight day without a candle file yet / token not in the fetched file / match not qualified), the universe, missing
+  token or ETH returns, entries, per book n / closed / pending / no_fill / no_data / twin_skip, ETH candles per day and
+  the pool-age check. No P&L, no win rate, no pass tests (tested: the output matches none of net, pnl, win, verdict,
+  PASS, FAIL or USD, and no file appears).
+- Pool age check (5, a check, never a rule): GeckoTerminal pool_created_at is now recorded for exact pools too (the
+  exact tokens ride in the same /tokens/multi batches, no extra call); the run counts entries of both books inside /
+  outside 24-72 h of pool age at the decision, and unknown (no created time on the line).
+- Development plumbing run, 2026-11-07 ~00:40 UTC (counts only; development days so far Oct 31 - Nov 6; token candle
+  days fetched yet: 2026-10-31.open and 2026-11-01.open from backtest.yml run 1; ETH Oct 30 - Nov 6):
+
+  | | count |
+  |---|---|
+  | decisions (+24 h labels on development days) | 1,371 |
+  | pass the log rules (verdict, alive, depth >= 10k, pair_s24 >= 30) | 81 |
+  | of those, no pool yet because the sight day has no candle file | 61 |
+  | of those, pool match not qualified | 1 |
+  | in the universe | 19 |
+  | without a token 6 h return / without ETH returns | 0 / 0 |
+  | entries (BL-34) | 6: closed 2, pending 0, no_fill 4, no_data 0 |
+  | twin | 6: closed 3, pending 0, no_fill 3, twin_skip 0 |
+  | ETH candles per day (of 288) | Oct 30 273, Oct 31 251, Nov 1 272, Nov 2 284, Nov 3 278, Nov 4 284, Nov 5 283, Nov 6 274 |
+  | pool age at the decision (both books' entries) | inside 24-72 h 1, outside 6, unknown 5 |
+
+  81 log-rule survivors in 7 days (~12 a day) matches chat's ~10 a day. The pool-age check: the 5 unknown are exact pools
+  from the state history fetched by the part 1 code (no created time; the part 2 batch records it from the next fetch);
+  the 6 outside are LSTEAK (GeckoTerminal pool created 2026-04-06, ~5,014 h at the decision, both books), RSGP (created
+  2026-10-28, ~100 h, both books, the twin twice) and XDP (~843 h, twin); the 1 inside is ADIN (24.6 h). On the whole
+  2026-10-31 file the "single" pools were created 0-15 min before the sighting for 152 tokens, 15 min - 48 h for 24 and
+  > 48 h for 4 (of 180): the identities look right, the logging set simply includes very fresh pools and a few old ones.
+  The frozen spec has no pool-age rule ("pool age 24.25-72 h" in its decision line is descriptive), so old pools can
+  enter BL-34: an item for chat, not changed here. backtest.yml run 1: Oct 31 = 198 tokens (exact 17, single 180,
+  guess 1; 191 with candles), 277 calls with 66 refused (24% from the Actions IP), ~44 min, 195 KB (.open); at that pace
+  6 days take ~4.4 h, inside the 340 min timeout. eth-2026-11-06 was fetched in the session (2 calls) once Nov 6 was
+  complete.
+- Tests: tests/test_bl34.py (17): the JSON encodes the frozen text (each number, "1/3" exact, split, conditions, sha256
+  of the file); the spec's split vs the default and the incomplete-holdout refusal; candle_return edges (a candle ending
+  exactly at t, one after t never read, a gap over 6 h gives 0, missing then); in / not_in / field references; SpecFees
+  = side_pct("other") + 1 on both sides and refuses Clanker with fee_pct; time stop off with max hold 72 h and exact
+  1/3 rungs; pass verdicts (pass, inconclusive, retired x3, not passed on the drawdown) and the drawdown arithmetic;
+  a decision run on a small world (decision at the +24 h label, universe / entry, the twin from universe rules only);
+  the twin pool identical without candles after t and without any candle, the (t - 6 h, t] edges; twin_skip counted and
+  both books through the same simulate() at t; the entry fields identical without later token and ETH candles;
+  l24_depth best_qliq first; SpecFees in a real trade; the CLI plumbing prints no P&L, writes nothing, reads no
+  holdout day; the holdout refused until its days are complete, then inconclusive with 0 closed; the ETH pool pick
+  and one file per complete day; the exact pool's created time from the batch; backtest.yml runs --eth and says open
+  days are fetched again. One part 1 test updated (the exact token now rides in the batch). 427 pass on 3.13 (410
+  before).
+
+## BL-34 spec v2
+- The owner's decision 2026-11-06 ~19:40 Toronto (options A and A, DECISIONS): spec v2 replaces v1. The gap came from
+  the development pool-age check above (LSTEAK, RSGP, XDP on pools far older than 72 h), before any holdout day existed
+  and with no P&L seen. v1's "pool age 24.25-72 h" line was wrong: the desk verdict is only a sighting's LAST reason, so
+  old pools whose last reason was not too_old entered. v2: no pool-age rule (any pool age) and no verdict rule; "only 5
+  fails" = "not passed: drawdown" (forward paper vs twin, no money); results by pool age at the decision reported on
+  the holdout run only, never the verdict. Every other number is v1's (test: decision, ticket, match, entry, exits, stop
+  fill, friction, twin, hold-ETH, pass, split identical; the universe = v1's without the verdict rule).
+- Files: backtest/specs/bl34-survivor-momentum-v2.md (the owner's text, verbatim) and
+  bl34-survivor-momentum-v2.json, sha256 e9305116d1230e36319c54dd6cc62448e0d605205e39738d1e751d1a7b6f2e30 (the holdout lock's hash). v1's .md and .json stay as written
+  (superseded, never run; v1 sha256 a0533763e3c3... checked unchanged by a test).
+- Pool-age report (tools/backtest.py age_report(), holdout only; spec "report_pool_age"): per book and bucket by
+  GeckoTerminal pool_created_at to the decision: 24-72 h (any age up to 72 h; pools under 24 h, i.e. created after the
+  sighting, are counted in it and shown as "under 24 h"), 72 h-30 d (30 d = 720 h), > 30 d, unknown (no created time):
+  n, closed, mean net per closed trade. A development run never computes or prints it.
+- Tests (+2, 429 pass): v2.json encodes the v2 text (no verdict or pool-age rule, the buckets, "only 5 fails"); v2 keeps
+  every other v1 number and v1 is untouched; the "not passed: drawdown" verdict; the age buckets (24-72 h with one under
+  24 h, 72 h-30 d, > 30 d, unknown) and no breakdown on a development run; the fixture world runs on v2 (the too_old
+  token now enters, the twin pool grows to three).
 
 ## Open items (detail)
 - Open items:

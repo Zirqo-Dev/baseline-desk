@@ -35,6 +35,7 @@ decision, each sell at the last logged qliq after entry and up to the sale (else
 import argparse
 import bisect
 import csv
+import fractions
 import hashlib
 import json
 import math
@@ -60,9 +61,11 @@ LABEL_KEYS = ("price", "chg_pct", "liq", "qliq", "best_qliq", "dead", "gone", "p
 VERIFY_KEYS = ("qliq", "liq", "b1", "s1", "b24", "s24")
 FIELDS = (["qliq", "liq", "b1", "s1", "b24", "s24", "dex", "symbol", "pool_age_h", "token_age_h", "since_sight_h",
            "sight_qliq", "first_price", "last_qliq", "last_liq", "verdict"]
-          + [f"l{h}_{k}" for h in HORIZONS for k in LABEL_KEYS])
+          + [f"l{h}_{k}" for h in HORIZONS for k in LABEL_KEYS]
+          + ["l24_depth", "match", "pool_age_gt_h", "ret_6h_pct", "eth_ret_6h_pct", "eth_ret_24h_pct"])  # BL-33 p2
 OPS = {">=": operator.ge, ">": operator.gt, "<=": operator.le, "<": operator.lt, "==": operator.eq,
-       "!=": operator.ne}
+       "!=": operator.ne, "in": lambda a, b: a in b, "not_in": lambda a, b: a not in b}
+OPTIONAL_OFF = ("time_stop_min", "time_stop_min_pct", "liq_drop_pct")  # null = that exit is off (BL-33 part 2)
 EXIT_KEYS = ("hard_stop_pct", "ladder", "trail_pct", "time_stop_min", "time_stop_min_pct", "liq_drop_pct")
 
 
@@ -84,21 +87,40 @@ def load_lock(root):
     return json.loads(p.read_text()) if p.exists() else None
 
 
-def split(root, now=None):
-    """(development days, holdout days). With a lock: the split it froze. Else the last third, rounded up, of the
-    complete logged days is the holdout."""
+def spec_days(spec):
+    """(dev_last_day, [holdout days]) of a spec's own split (BL-33 part 2), or None."""
+    sp = (spec or {}).get("split")
+    if not sp:
+        return None
+    first, last = sp["holdout_days"]
+    days, d = [], first
+    while d <= last:
+        days.append(d)
+        d = _iso(_day_start(d) + 86400)[:10]
+    return sp["dev_last_day"], days
+
+
+def split(root, now=None, spec=None):
+    """(development days, holdout days). With a lock: the split it froze. With a spec that carries its own split
+    (BL-34): development = complete logged days up to its dev_last_day, holdout = its holdout days (all of them, logged
+    or not yet). Else the last third, rounded up, of the complete logged days is the holdout."""
     lock = load_lock(root)
     if lock:
         return list(lock["split"]["dev"]), list(lock["split"]["holdout"])
     days = cdl.logged_days(root, now)
+    own = spec_days(spec)
+    if own:
+        last, hold = own
+        return [d for d in days if d <= last and d < hold[0]], hold
     h = math.ceil(len(days) / 3)
     return days[:len(days) - h], days[len(days) - h:]
 
 
-def split_line(dev, hold, frozen):
+def split_line(dev, hold, frozen, own=False):
+    how = (" FROZEN by " + LOCK if frozen else " (the spec's own split)" if own
+           else " (last third rounded up, not frozen)")
     return (f"split: development {dev[0] if dev else '-'} .. {dev[-1] if dev else '-'} ({len(dev)} days), "
-            f"holdout {hold[0] if hold else '-'} .. {hold[-1] if hold else '-'} ({len(hold)} days)"
-            f"{' FROZEN by ' + LOCK if frozen else ' (last third rounded up, not frozen)'}")
+            f"holdout {hold[0] if hold else '-'} .. {hold[-1] if hold else '-'} ({len(hold)} days){how}")
 
 
 def override(root, spec):
@@ -110,11 +132,17 @@ def override(root, spec):
     return any(tag in line and "(the owner)" in line for line in p.read_text().splitlines())
 
 
-def holdout_refusal(root, spec):
+def holdout_refusal(root, spec, now=None):
     """"" when a holdout run of `spec` may run now, else the reason it is refused."""
     if load_lock(root) and not override(root, spec):
         return (f"refused: {LOCK} exists (one holdout run); a second needs a docs/DECISIONS.md owner line "
                 f"'holdout-rerun {spec['name']} {spec['sha256'][:12]} ... (the owner)'")
+    own = spec_days(spec)
+    if own:
+        logged = set(cdl.logged_days(root, now))
+        missing = [d for d in own[1] if d not in logged]
+        if missing:
+            return f"refused: holdout days not complete yet: {' '.join(missing)}"
     return ""
 
 
@@ -213,6 +241,9 @@ class View:
             fp = replay._num(d.get("first_price"))
             if fp is not None:
                 f["first_price"] = fp
+        depth = f.get("l24_best_qliq", f.get("l24_qliq"))  # BL-34: the +24 h real depth, best_qliq else qliq
+        if depth is not None:
+            f["l24_depth"] = depth
         q = self.last(address, "qliq")
         if q is not None:
             f["last_qliq"] = q
@@ -250,17 +281,37 @@ def check_spec(spec):
     for cond in spec["universe"] + spec["entry"]:
         if len(cond) != 3 or cond[0] not in FIELDS or cond[1] not in OPS:
             raise ValueError(f"spec: bad condition {cond}")
+        if isinstance(cond[2], dict) and cond[2].get("field") not in FIELDS:
+            raise ValueError(f"spec: bad field reference {cond}")
     for k in EXIT_KEYS:
         if k not in spec["exits"]:
             raise ValueError(f"spec: exits missing {k}")
+        if spec["exits"][k] is None and k not in OPTIONAL_OFF:
+            raise ValueError(f"spec: exit {k} cannot be off")
+    spec["exits"] = dict(spec["exits"], ladder=[[g, ladder_share(x)] for g, x in spec["exits"]["ladder"]])
+    if spec.get("decision") not in (None, "l24"):
+        raise ValueError(f"spec: unknown decision {spec.get('decision')}")
     spec.setdefault("match", list(cdl.QUALIFIED))
     spec.setdefault("sha256", hashlib.sha256(json.dumps(spec, sort_keys=True).encode()).hexdigest())
     return spec
 
 
+def ladder_share(x):
+    """A rung's share: a number, or an exact fraction string such as "1/3" (BL-34 sells 1/3, not 0.33)."""
+    return float(fractions.Fraction(x)) if isinstance(x, str) else float(x)
+
+
 def holds(conds, f):
-    """Every [field, op, value] holds on facts f; a missing field fails (a missing number is a skip)."""
-    return all(f.get(k) is not None and OPS[op](f[k], v) for k, op, v in conds)
+    """Every [field, op, value] holds on facts f; a missing field fails (a missing number is a skip). A value
+    {"field": name} compares with another field of f (missing = fails)."""
+    for k, op, v in conds:
+        if isinstance(v, dict):
+            v = f.get(v["field"])
+            if v is None:
+                return False
+        if f.get(k) is None or not OPS[op](f[k], v):
+            return False
+    return True
 
 
 # ---- candles ----
@@ -275,19 +326,89 @@ class Candles:
             for x in lines:
                 self.lines.setdefault(x["address"], []).append(x)
 
-    def get(self, address, t):
+    def line(self, address, t):
+        """The candle line whose 7-day window covers t (pool identity and match only; reads no candle), or None.
+        Coverage is by the window (start .. start + 7 days), never by how far the candles reach."""
         for x in self.lines.get(address, []):
-            if x["start"] <= t < x["end"] + cdl.CANDLE_S:
-                if x["match"] not in self.match or not x.get("pool"):
-                    return None, x["match"], None
-                end = min(x["end"], self.cutoff) if self.cutoff else x["end"]
-                return [c for c in x["candles"] if c[0] < end], x["match"], end
-        return None, "none", None
+            if x["start"] <= t < x["start"] + cdl.WINDOW_S or x["start"] <= t < x["end"] + cdl.CANDLE_S:
+                return x
+        return None
+
+    def get(self, address, t):
+        x = self.line(address, t)
+        if x is None:
+            return None, "none", None
+        if x["match"] not in self.match or not x.get("pool"):
+            return None, x["match"], None
+        end = min(x["end"], self.cutoff) if self.cutoff else x["end"]
+        return [c for c in x["candles"] if c[0] < end], x["match"], end
 
 
-def candle_paths(root):
+DAY_FILE = __import__("re").compile(r"(\d{4}-\d{2}-\d{2})(\.open)?\.jsonl\.gz")
+
+
+def candle_paths(root, days=None):
+    """Token day files (a final file wins over its .open file); never eth-*.jsonl.gz. With `days`: those sight days
+    only. twin-validation.jsonl.gz is read only by the validation."""
     d = Path(root) / cdl.DIR
-    return sorted(p for p in d.glob("*.jsonl.gz")) if d.exists() else []
+    out = {}
+    for p in sorted(d.glob("*.jsonl.gz")) if d.exists() else []:
+        m = DAY_FILE.fullmatch(p.name)
+        if m and (days is None or m.group(1) in days):
+            if not m.group(2) or m.group(1) not in out:
+                out[m.group(1)] = p
+    return [out[k] for k in sorted(out)]
+
+
+def candle_return(candles, t, hours):
+    """100 x (price now / price then - 1) on candles [[start, o, h, l, c, v]]: price now = close of the last candle that
+    ended at or before t, price then = close of the last candle that ended at or before t - hours. None when either is
+    missing. Reads no candle that ends after t (the leak rule)."""
+    now = then = None
+    for c in candles:
+        end = c[0] + cdl.CANDLE_S
+        if end > t:
+            break
+        now = c[4]
+        if end <= t - hours * 3600:
+            then = c[4]
+    if not now or not then:
+        return None
+    return (now / then - 1) * 100
+
+
+class EthSeries:
+    """ETH 5-minute candles from backtest/candles/eth-<day>.jsonl.gz (tools/candles.py --eth), cut at `cutoff`."""
+
+    def __init__(self, root, days=None, cutoff=None):
+        got = {}
+        d = Path(root) / cdl.DIR
+        for p in sorted(d.glob("eth-*.jsonl.gz")) if d.exists() else []:
+            day = p.name[4:14]
+            if days is not None and day not in days:
+                continue
+            for x in cdl.read(p)[1]:
+                for c in x["candles"]:
+                    if cutoff is None or c[0] + cdl.CANDLE_S <= cutoff:
+                        got[c[0]] = c
+        self.candles = [got[k] for k in sorted(got)]
+        self.starts = [c[0] for c in self.candles]
+
+    def ret(self, t, hours):
+        i = bisect.bisect_right(self.starts, t - cdl.CANDLE_S)
+        return candle_return(self.candles[:i], t, hours)
+
+    def price(self, t):
+        """ETH at time t: the close of the last candle that ended at or before t (hold-ETH uses it at both ends)."""
+        i = bisect.bisect_right(self.starts, t - cdl.CANDLE_S)
+        return self.candles[i - 1][4] if i else None
+
+    def coverage(self):
+        """{day: candles} of the series."""
+        out = {}
+        for c in self.candles:
+            out[_iso(c[0])[:10]] = out.get(_iso(c[0])[:10], 0) + 1
+        return out
 
 
 # ---- fees ----
@@ -302,6 +423,24 @@ class CoreFees:
 
     def sell(self, price, qty, qliq):
         return friction.sell_fill(price, qty, qliq, self.lp)
+
+
+class SpecFees:
+    """A spec's friction (BL-34): core/friction.py with launchpad "other" (base + impact at the spec's fixed depth, no
+    launchpad fee) + fee_pct on every side; never both a launchpad fee and fee_pct (ValueError)."""
+
+    def __init__(self, fee_pct, depth, launchpad="other"):
+        if fee_pct and friction.config.FRICTION["pool_fee_pct"].get((launchpad or "").lower(), 0.0):
+            raise ValueError("fee_pct and a launchpad pool fee would stack")
+        self.fee, self.depth, self.lp = float(fee_pct), depth, launchpad
+
+    def buy(self, price, usd, qliq):
+        pct = friction.side_pct(usd, self.depth, self.lp) + self.fee
+        return price * (1 + pct / 100), pct
+
+    def sell(self, price, qty, qliq):
+        pct = min(friction.CAP_PCT, friction.side_pct(qty * price, self.depth, self.lp) + self.fee)
+        return price * (1 - pct / 100), pct
 
 
 class FixedFees:
@@ -341,7 +480,8 @@ def simulate(candles, data_end, t, exits, ticket, fees, qliq=None, qliq_at=None,
     pos = {"qty": qty, "cost": ticket, "ladders": [], "peak": None, "last": first[1]}
     sells = []
     hard = fill * (1 + e["hard_stop_pct"] / 100)
-    ts_due = t_in + e["time_stop_min"] * 60
+    ts_on = e.get("time_stop_min") is not None  # null = no time stop (BL-34)
+    ts_due = t_in + e["time_stop_min"] * 60 if ts_on else None
     max_hold = t_in + e["max_hold_h"] * 3600 if e.get("max_hold_h") else None
     ts_checked = False
 
@@ -365,7 +505,7 @@ def simulate(candles, data_end, t, exits, ticket, fees, qliq=None, qliq_at=None,
         nonlocal ts_checked
         if max_hold is not None and max_hold < upto:
             return sell("max_hold", max_hold, pos["last"])
-        if not pos["ladders"] and not ts_checked and ts_due < upto:
+        if ts_on and not pos["ladders"] and not ts_checked and ts_due < upto:
             ts_checked = True
             if gain(pos["last"]) < e["time_stop_min_pct"]:
                 return sell("time_stop", ts_due, pos["last"])
@@ -381,13 +521,14 @@ def simulate(candles, data_end, t, exits, ticket, fees, qliq=None, qliq_at=None,
             break
         if start > t_in:  # checks at this candle's open
             lq = liq_at(start) if liq_at else None
-            if liq is not None and lq is not None and lq <= liq * (1 - e["liq_drop_pct"] / 100):
+            if (e.get("liq_drop_pct") is not None and liq is not None and lq is not None
+                    and lq <= liq * (1 - e["liq_drop_pct"] / 100)):
                 sell("liq_pull", start, o)
                 break
             if max_hold is not None and start >= max_hold:
                 sell("max_hold", start, o)
                 break
-            if not pos["ladders"] and start >= ts_due and gain(o) < e["time_stop_min_pct"]:
+            if ts_on and not pos["ladders"] and start >= ts_due and gain(o) < e["time_stop_min_pct"]:
                 ts_checked = True
                 if sell("time_stop", start, o):
                     break
@@ -444,7 +585,10 @@ def summarize(trades):
 
 
 def run_spec(root, spec, holdout=False, now=None):
-    """The spec and its seeded random twin. Development: development days only, cut at the first holdout day."""
+    """The spec and its seeded random twin. Development: development days only, cut at the first holdout day.
+    A spec with "decision" (BL-34) runs run_decision_spec()."""
+    if spec.get("decision"):
+        return run_decision_spec(root, spec, holdout, now)
     now = now or cdl._now()
     dev, hold = split(root, now)
     frozen = load_lock(root) is not None
@@ -503,6 +647,282 @@ def match_counts(trades):
         out.setdefault(t["book"], {}).setdefault(t["match"], 0)
         out[t["book"]][t["match"]] += 1
     return out
+
+
+# ---- decision specs (BL-34) ----
+def l24_points(logs, a):
+    """The token's +24 h outcome-label times (one per sighting), oldest first."""
+    return [t for t, k, d in logs.rows.get(a, []) if k == "label" and str(d.get("horizon")) == "24h"]
+
+
+def base_facts(logs, cs, a, t):
+    """Log facts as of t plus the pool match of the candle line covering t (no candle read): the universe's inputs.
+    pool_age_gt_h = GeckoTerminal pool_created_at to t (a check, never a rule)."""
+    f = logs.asof(t).facts(a)
+    if not f:
+        return f
+    line = cs.line(a, t)
+    f["match"] = line["match"] if line and line.get("pool") else "none"
+    created = line.get("pool_created") if line else None
+    if created:
+        f["pool_age_gt_h"] = (t - _ts(created)) / 3600
+    return f
+
+
+def entry_facts(f, cs, eth, a, t):
+    """The base facts plus the candle fields at t: ret_6h_pct of the token (candles that ended at or before t),
+    eth_ret_6h_pct, eth_ret_24h_pct. A missing price leaves the field out."""
+    f = dict(f)
+    candles, _, _ = cs.get(a, t)
+    r = candle_return(candles or [], t, 6)
+    if r is not None:
+        f["ret_6h_pct"] = r
+    for h in (6, 24):
+        e = eth.ret(t, h)
+        if e is not None:
+            f[f"eth_ret_{h}h_pct"] = e
+    return f
+
+
+def sim_spec_trade(book, a, t, f, spec, cs, eth):
+    """One trade of a decision spec at t, priced with SpecFees at the token's +24 h depth; hold-ETH over the fills."""
+    candles, match, end = cs.get(a, t)
+    base = {"book": book, "address": a, "symbol": f.get("symbol", ""), "decision_t": t, "match": match,
+            "depth": f.get("l24_depth")}
+    if not candles:
+        return dict(base, status="no_data", pnl=None)
+    fees = SpecFees(spec["friction"]["fee_pct"], f.get("l24_depth"))
+    kw = dict(qliq=f.get("l24_depth"))
+    r = simulate(candles, end, t, spec["exits"], spec["ticket_usd"], fees, stop_fill=spec.get("stop_fill", STOP_FILL),
+                 **kw)
+    out = dict(base, **r)
+    if r["status"] == "closed":
+        e0, e1 = eth.price(r["entry_t"]), eth.price(r["exit_t"])
+        out["eth_ret"] = (e1 / e0 - 1) if e0 and e1 else None
+        out["ret"] = r["pnl"] / spec["ticket_usd"]
+        lvl = simulate(candles, end, t, spec["exits"], spec["ticket_usd"], fees, stop_fill="level", **kw)
+        out["pnl_level"] = lvl.get("pnl")
+        closes = [[c[0], c[4], c[4], c[4], c[4], c[5]] if c[0] > r["entry_t"] else c for c in candles]
+        out["pnl_close_only"] = simulate(closes, end, t, spec["exits"], spec["ticket_usd"], fees,
+                                         stop_fill=spec.get("stop_fill", STOP_FILL), **kw).get("pnl")
+    return out
+
+
+def twin_pool(logs, cs, spec, t, decide_window_h):
+    """Twin candidates at t, from what is known at t only: tokens whose +24 h decision fell in (t - window, t], whose
+    universe facts as of t hold, with a qualified pool on the candle line (identity, not candles)."""
+    lo = t - decide_window_h * 3600
+    out = []
+    for a in sorted(logs.rows):
+        if not any(lo < x <= t for x in l24_points(logs, a)):
+            continue
+        f = base_facts(logs, cs, a, t)
+        if f and f["match"] in spec["match"] and holds(spec["universe"], f):
+            out.append(a)
+    return out
+
+
+def run_decision_spec(root, spec, holdout=False, now=None):
+    """A spec with "decision": "l24" (BL-34). Development: development days only, cut at the first holdout day."""
+    now = now or cdl._now()
+    dev, hold = split(root, now, spec)
+    frozen = load_lock(root) is not None
+    if holdout:
+        why = holdout_refusal(root, spec, now)
+        if why:
+            raise PermissionError(why)
+        days, cutoff, decide = dev + hold, None, set(hold)
+    else:
+        days, cutoff, decide = dev, (_day_start(hold[0]) if hold else None), set(dev)
+    logs = Logs(root, days, cutoff)
+    cs = Candles(candle_paths(root, set(days)), cutoff, spec["match"])
+    eth_days = {_iso(_day_start(d) - 86400)[:10] for d in days} | set(days)
+    eth = EthSeries(root, None if holdout else eth_days, cutoff)
+    seed = int(spec["sha256"][:12], 16)
+    trades = []
+    counts = dict.fromkeys(("decisions", "log_rules", "no_candle_file", "not_in_file", "match_not_qualified",
+                            "universe", "no_ret", "no_eth", "entries"), 0)
+    fetched = {DAY_FILE.fullmatch(p.name).group(1) for p in candle_paths(root)}
+    for a in sorted(logs.rows):
+        for t in l24_points(logs, a):
+            if _iso(t)[:10] not in decide:
+                continue
+            counts["decisions"] += 1
+            f = base_facts(logs, cs, a, t)
+            if not (f and holds(spec["universe"], f)):
+                break  # one decision per token: the first +24 h label decides
+            counts["log_rules"] += 1
+            if f["match"] not in spec["match"]:
+                sight_day = _iso(t - int(f.get("since_sight_h", 24) * 3600))[:10]
+                key = ("no_candle_file" if sight_day not in fetched else
+                       "not_in_file" if f["match"] == "none" else "match_not_qualified")
+                counts[key] += 1
+                break
+            counts["universe"] += 1
+            ef = entry_facts(f, cs, eth, a, t)
+            if "ret_6h_pct" not in ef:
+                counts["no_ret"] += 1
+            if "eth_ret_6h_pct" not in ef or "eth_ret_24h_pct" not in ef:
+                counts["no_eth"] += 1
+            if holds(spec["entry"], ef):
+                counts["entries"] += 1
+                trades.append(sim_spec_trade(spec["name"], a, t, ef, spec, cs, eth))
+            break  # one trade per token: its first +24 h decision decides
+    trades.sort(key=lambda x: x["decision_t"])
+    twin = []
+    for i, tr in enumerate(trades):
+        t = tr["decision_t"]
+        pool = twin_pool(logs, cs, spec, t, spec["twin"]["window_h"])
+        if not pool:
+            twin.append({"book": "twin", "address": "", "symbol": "", "decision_t": t, "status": "twin_skip",
+                         "match": "none", "pnl": None, "eligible": 0})
+            continue
+        a = random.Random(seed + i).choice(pool)
+        x = sim_spec_trade("twin", a, t, base_facts(logs, cs, a, t), spec, cs, eth)
+        x["eligible"] = len(pool)
+        twin.append(x)
+    allt = trades + twin
+    return {"spec": spec["name"], "sha256": spec["sha256"], "mode": "holdout" if holdout else "development",
+            "split": {"dev": dev, "holdout": hold, "frozen": frozen, "own": True}, "ran_at": _iso(now), "counts": counts,
+            "plumbing": plumbing(allt), "eth_coverage": eth.coverage(), "match": match_counts(allt),
+            "pool_age": pool_age_check(allt, logs, cs), "trades": allt,
+            "summary": summarize([t for t in allt if t["status"] != "twin_skip"]) if holdout else None,
+            "pass": pass_tests(trades, twin, spec) if holdout else None,
+            "by_pool_age": age_report(allt, cs, spec) if holdout and spec.get("report_pool_age") else None}
+
+
+def age_report(trades, cs, spec):
+    """Holdout only, never the verdict (BL-34 spec v2): per book and pool-age bucket at the decision (GeckoTerminal
+    pool_created_at; spec "report_pool_age" = [[label, lo_h, hi_h], ...], "unknown" = no created time): n, closed,
+    mean net per closed trade, and how many of the first bucket are under 24 h."""
+    buckets = spec["report_pool_age"]
+    out = {}
+    for t in trades:
+        if not t.get("address"):
+            continue
+        line = cs.line(t["address"], t["decision_t"])
+        created = line.get("pool_created") if line else None
+        age = (t["decision_t"] - _ts(created)) / 3600 if created else None
+        label = "unknown"
+        for name, lo, hi in buckets:
+            if age is not None and lo is not None and (hi is None or age <= hi) and (age > lo or lo == 0):
+                label = name
+                break
+        b = out.setdefault(t["book"], {}).setdefault(label, {"n": 0, "closed": 0, "net": 0.0, "under_24h": 0})
+        b["n"] += 1
+        if age is not None and age < 24:
+            b["under_24h"] += 1
+        if t["status"] == "closed":
+            b["closed"] += 1
+            b["net"] += t["pnl"]
+    for book in out.values():
+        for b in book.values():
+            b["mean_net"] = b["net"] / b["closed"] if b["closed"] else None
+    return out
+
+
+def plumbing(trades):
+    """Counts only (no P&L): per book n, closed, pending, no_fill, no_data, twin_skip."""
+    out = {}
+    for t in trades:
+        b = out.setdefault(t["book"], dict.fromkeys(("n", "closed", "pending", "no_fill", "no_data", "twin_skip"), 0))
+        b["n"] += 1
+        b[t["status"]] = b.get(t["status"], 0) + 1
+    return out
+
+
+def pool_age_check(trades, logs, cs):
+    """How many entries (both books) sit outside 24-72 h of GeckoTerminal pool age at the decision; unknown counted."""
+    out = {"inside": 0, "outside": 0, "unknown": 0}
+    for t in trades:
+        if not t.get("address"):
+            continue
+        line = cs.line(t["address"], t["decision_t"])
+        created = line.get("pool_created") if line else None
+        if not created:
+            out["unknown"] += 1
+            continue
+        age = (t["decision_t"] - _ts(created)) / 3600
+        out["inside" if 24 <= age <= 72 else "outside"] += 1
+    return out
+
+
+def max_dd_pct(pnls_by_exit, book_usd):
+    """Max drawdown (%) of book_usd + cumulative P&L, in the given order; drawdown = (peak - equity) / peak."""
+    eq = peak = float(book_usd)
+    dd = 0.0
+    for x in pnls_by_exit:
+        eq += x
+        peak = max(peak, eq)
+        dd = max(dd, (peak - eq) / peak * 100 if peak > 0 else 0.0)
+    return dd
+
+
+def pass_tests(trades, twin, spec):
+    """The five pass tests (holdout only) and the verdict: pass | inconclusive (< min_closed) | retired (fails 2, 3 or 4)
+    | not passed: drawdown (only 5 fails; BL-34 spec v2: forward paper vs twin, no money)."""
+    p = spec["pass"]
+    closed = [t for t in trades if t["status"] == "closed"]
+    tw = [t for t in twin if t["status"] == "closed"]
+    mean = lambda xs: sum(xs) / len(xs) if xs else None
+    m, mt = mean([t["pnl"] for t in closed]), mean([t["pnl"] for t in tw])
+    paired = [t for t in closed if t.get("eth_ret") is not None]
+    mr, me = mean([t["ret"] for t in paired]), mean([t["eth_ret"] for t in paired])
+    dd = max_dd_pct([t["pnl"] for t in sorted(closed, key=lambda x: x["exit_t"])], p["book_usd"])
+    tests = {"1_min_closed": len(closed) >= p["min_closed"], "2_net_positive": m is not None and m > 0,
+             "3_beats_twin": m is not None and mt is not None and m > mt,
+             "4_beats_hold_eth": mr is not None and me is not None and mr > me, "5_max_dd": dd < p["max_dd_pct"]}
+    if not tests["1_min_closed"]:
+        verdict = "inconclusive"
+    elif not (tests["2_net_positive"] and tests["3_beats_twin"] and tests["4_beats_hold_eth"]):
+        verdict = "retired"
+    else:
+        verdict = "pass" if tests["5_max_dd"] else "not passed: drawdown"  # v2: forward paper vs twin, no money
+    return {"tests": tests, "verdict": verdict, "closed": len(closed), "mean_net": m, "twin_mean_net": mt,
+            "mean_ret": mr, "hold_eth_mean_ret": me, "paired_eth": len(paired), "max_dd_pct": dd,
+            "level_mean_net": mean([t["pnl_level"] for t in closed if t.get("pnl_level") is not None]),
+            "close_only_mean_net": mean([t["pnl_close_only"] for t in closed if t.get("pnl_close_only") is not None])}
+
+
+def render_plumbing(res):
+    """Development run of a decision spec: counts only, never P&L, win rate or the pass tests (the owner, BL-33 p2)."""
+    c = res["counts"]
+    out = [split_line(res["split"]["dev"], res["split"]["holdout"], res["split"]["frozen"], res["split"].get("own")),
+           f"spec {res['spec']} sha256 {res['sha256'][:12]} mode development (plumbing only: no P&L, no win rate, "
+           f"no pass tests, no results file)",
+           f"  decisions (+24 h labels on development days) {c['decisions']}; pass the log rules {c['log_rules']}; "
+           f"of those, no pool because the sight day has no candle file yet {c['no_candle_file']}, token not in the "
+           f"fetched file {c['not_in_file']}, pool match not qualified {c['match_not_qualified']}",
+           f"  in the universe {c['universe']}; without a token 6 h return {c['no_ret']}; without ETH returns "
+           f"{c['no_eth']}; entries {c['entries']}"]
+    for book, b in res["plumbing"].items():
+        out.append(f"  {book:28} n {b['n']} closed {b['closed']} pending {b['pending']} no_fill {b['no_fill']} "
+                   f"no_data {b['no_data']} twin_skip {b['twin_skip']}")
+    out.append("  ETH candles per day (288 = full): " + (", ".join(f"{d} {n}" for d, n in sorted(res["eth_coverage"].items()))
+                                                       or "none"))
+    pa = res["pool_age"]
+    out.append(f"  pool age at the decision (GeckoTerminal pool_created_at, a check): inside 24-72 h {pa['inside']}, "
+               f"outside {pa['outside']}, unknown {pa['unknown']}")
+    return "\n".join(out)
+
+
+def render_holdout(res):
+    """The one holdout run: plumbing + the five pass tests + the always-reported lines."""
+    p = res["pass"]
+    out = [render_plumbing(res).replace("mode development (plumbing only: no P&L, no win rate, no pass tests, "
+                                        "no results file)", "mode HOLDOUT")]
+    for k, v in p["tests"].items():
+        out.append(f"  test {k}: {'PASS' if v else 'FAIL'}")
+    out.append(f"  verdict: {p['verdict']} (closed {p['closed']}; mean net {_f(p['mean_net'], '{:+.4f}')} USD vs twin "
+               f"{_f(p['twin_mean_net'], '{:+.4f}')}; mean return {_f(p['mean_ret'], '{:+.4f}')} vs hold-ETH "
+               f"{_f(p['hold_eth_mean_ret'], '{:+.4f}')} over {p['paired_eth']}; max drawdown {p['max_dd_pct']:.1f}%)")
+    out.append(f"  always reported, never the verdict: stop fill level {_f(p['level_mean_net'], '{:+.4f}')}, tick-like "
+               f"close-only exits {_f(p['close_only_mean_net'], '{:+.4f}')} USD per trade")
+    for book, bs in (res.get("by_pool_age") or {}).items():
+        out.append(f"  by pool age, {book}: " + "; ".join(
+            f"{k} n {v['n']} closed {v['closed']} mean net {_f(v['mean_net'], '{:+.4f}')}"
+            + (f" (under 24 h {v['under_24h']})" if v["under_24h"] else "") for k, v in bs.items()))
+    return "\n".join(out)
 
 
 # ---- the honesty check ----
@@ -630,17 +1050,20 @@ def write_results(root, name, res, rows):
 
 def main(argv=None):
     ap = argparse.ArgumentParser(prog="python -m tools.backtest", description=__doc__.split("\n")[0])
-    g = ap.add_mutually_exclusive_group(required=True)
+    g = ap.add_mutually_exclusive_group()
     g.add_argument("--split", action="store_true")
     g.add_argument("--validate-twin", action="store_true")
-    g.add_argument("--spec")
+    ap.add_argument("--spec")
     ap.add_argument("--holdout", action="store_true")
     ap.add_argument("--write", action="store_true")
     ap.add_argument("--root", default=str(ROOT))
     a = ap.parse_args(argv)
+    if not (a.split or a.validate_twin or a.spec):
+        ap.error("one of --split, --validate-twin or --spec is required")
     if a.split:
-        dev, hold = split(a.root)
-        print(split_line(dev, hold, load_lock(a.root) is not None))
+        sp = load_spec(a.spec) if a.spec else None
+        dev, hold = split(a.root, spec=sp)
+        print(split_line(dev, hold, load_lock(a.root) is not None, bool(spec_days(sp))))
         return 0
     if a.validate_twin:
         v = validate_twin(a.root)
@@ -657,7 +1080,10 @@ def main(argv=None):
     except PermissionError as e:
         print(e)
         return 2
-    print(render_run(res))
+    if spec.get("decision") and not a.holdout:
+        print(render_plumbing(res))  # never P&L on development days of a frozen spec, never a results file
+        return 0
+    print(render_holdout(res) if spec.get("decision") else render_run(res))
     if a.write:
         print("results:", write_results(a.root, spec["name"], res, res["trades"]))
     if a.holdout:

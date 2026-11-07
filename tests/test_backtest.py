@@ -400,8 +400,8 @@ class CandleFetchTest(Root):
         out = cdl.resolve(cl, toks, known={a(1): "0xexact"})
         self.assertEqual(out[a(1)], ("0xexact", "exact", None))
         self.assertEqual(out[a(2)][:2], ("0xp2", "single"))
-        self.assertEqual(len(http.urls), 1)
-        self.assertIn(f"tokens/multi/{a(2)}?include=top_pools", http.urls[0])
+        self.assertEqual(len(http.urls), 1)  # one batch: the exact token rides along for its pool_created_at
+        self.assertIn(f"tokens/multi/{a(1)},{a(2)}?include=top_pools", http.urls[0])
 
     def test_day_file_final_once_closed_else_open(self):
         day = "2026-11-01"
