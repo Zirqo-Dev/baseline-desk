@@ -494,3 +494,11 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-07T06:58:14Z,baseline,EXIT,NOTF,0x4faa3abd2ef814b421d23ef0fa4ba15af410548e,HOLD,,pct=-2.93
 2026-11-07T06:58:14Z,desk,VERIFY,KAI,0x55b05b55a04960898a9ef136c3c5a9220c923ac0,SKIP,real_depth,goplus=skipped until=2026-11-08T06:58:14Z
 2026-11-07T06:58:14Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=15 rechecks=0 new=1 checked=1 passed=0 bought=0 held=0 deferred=0 dex_only=1 goplus=0 requests=6 secs=1.6 bl_positions=1 bl_due=0 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=5 labels_done=5 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-07T07:03:16Z,baseline,EXIT,NOTF,0x4faa3abd2ef814b421d23ef0fa4ba15af410548e,HOLD,,pct=-2.91
+2026-11-07T07:03:16Z,desk,VERIFY,NOTF,0x4faa3abd2ef814b421d23ef0fa4ba15af410548e,WATCH,goplus_not_ready,"first_seen=2026-11-07T06:33:12Z checks=3 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct b1=18 s1=8 b24=18 s24=8 liq=45720 dex=uniswap:v4 qliq=11682 pair_age=36 token_age=36"
+2026-11-07T07:03:16Z,desk,VERIFY,REBOOT,0xbb619192ca5bdd04c474c7733b01222183afba91,WATCH,goplus_not_ready,first_seen=2026-11-07T06:33:12Z checks=3 pending=top10_pct b1=56 s1=0 b24=56 s24=0 liq=218308 dex=uniswap:v2 qliq=109214 pair_age=34 token_age=34
+2026-11-07T07:03:16Z,desk,VERIFY,SPACEX,0x6ac3bbdb2a93c4d584608aed1855e8f32e4bcaf3,SKIP,real_depth,goplus=skipped until=2026-11-08T07:03:16Z
+2026-11-07T07:03:16Z,desk,VERIFY,UODF,0xb200000000000000000000bdefe417ee309e9262,SKIP,real_depth,goplus=skipped until=2026-11-08T07:03:16Z
+2026-11-07T07:03:16Z,desk,VERIFY,WBNB,0x7fdaa50d7399ac436943028eda6ed9a1bd89509f,SKIP,asset:wrapped,goplus=skipped until=2026-11-08T07:03:16Z
+2026-11-07T07:03:16Z,desk,VERIFY,1KTO100M,0x1e730db301381abe6a7431d863361819ade35de0,SKIP,real_depth,goplus=skipped until=2026-11-08T07:03:16Z
+2026-11-07T07:03:16Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=16 rechecks=2 new=4 checked=6 passed=0 bought=0 held=0 deferred=0 dex_only=4 goplus=2 requests=13 secs=4.7 bl_positions=1 bl_due=0 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=7 labels_done=7 labels_calls=1 live=ok alerts=none alerts_sent=0
