@@ -1,22 +1,22 @@
 {
- "as_of": "2026-11-07T16:53:14Z",
+ "as_of": "2026-11-07T16:58:14Z",
  "last_tick": {
-  "ts": "2026-11-07T16:53:14Z",
+  "ts": "2026-11-07T16:58:14Z",
   "seen": 20,
   "new": 6,
   "checked": 6,
-  "dex_only": 6,
-  "goplus": 0,
+  "dex_only": 5,
+  "goplus": 1,
   "passed": 0,
   "bought": 0,
   "exits": 0,
   "requests": 12,
-  "secs": 3.6
+  "secs": 3.8
  },
  "today": {
   "day": "2026-11-07",
-  "ticks": 203,
-  "expected": 203,
+  "ticks": 204,
+  "expected": 204,
   "errors": 0
  },
  "exit": {
@@ -32,25 +32,39 @@
    "open": []
   },
   "baseline": {
-   "cash_usd": 59.0563,
-   "value_usd": 62.7595,
+   "cash_usd": 54.0563,
+   "value_usd": 62.7367,
    "open": [
     {
      "symbol": "KDX",
      "address": "0x56db0ddd93e7e8e14020b4253f227e817151df2a",
      "entry_ts": "2026-11-07T14:38:13Z",
-     "age_min": 135,
+     "age_min": 140,
      "cost_usd": 1.7,
-     "value_usd": 3.7032,
-     "value_pct": 117.83,
-     "price_pct": 124.62,
-     "liq_usd": 34863,
+     "value_usd": 3.9718,
+     "value_pct": 133.64,
+     "price_pct": 140.92,
+     "liq_usd": 36095,
      "qliq": 11472,
      "ladders_done": [
       "ladder_1",
       "ladder_2"
      ],
      "time_stop_at": "2026-11-07T15:23:13Z"
+    },
+    {
+     "symbol": "Anthropic",
+     "address": "0xf6d41cbb39a6540a93e0d29a50b4eb720444e754",
+     "entry_ts": "2026-11-07T16:58:14Z",
+     "age_min": 0,
+     "cost_usd": 5.0,
+     "value_usd": 4.7085,
+     "value_pct": -5.83,
+     "price_pct": -2.91,
+     "liq_usd": 10332175,
+     "qliq": 230062,
+     "ladders_done": [],
+     "time_stop_at": "2026-11-07T17:43:14Z"
     }
    ]
   }
