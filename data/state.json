@@ -1,6 +1,6 @@
 {
   "baseline": {
-    "cash": 48.411005824046164,
+    "cash": 43.411005824046164,
     "cooldown": {
       "a:0x2128acd0e95cf64e3598f5907dcdf293338776b0": "2026-11-07T19:23:14Z",
       "a:0x27c6e876cf7a8b63e8c8e4875b73e531da133345": "2026-11-07T20:38:16Z",
@@ -18,10 +18,27 @@
     "day": "2026-11-07",
     "day_start_value": 49.104582682847905,
     "halted_day": "",
-    "positions": {},
+    "positions": {
+      "0x7159f9c0906a51e1300273c4eb19c59fe6c1efd8": {
+        "cost_usd": 5.0,
+        "entry_fill": 0.0019005099008528046,
+        "entry_intended": 0.001845,
+        "entry_liq_usd": 115385.45,
+        "entry_qliq": 57692,
+        "entry_ts": "2026-11-07T11:13:13Z",
+        "ladder_done": [],
+        "last_price": 0.001845,
+        "launchpad": "other",
+        "orig_qty": 2630.872902980605,
+        "pair": "0x66a051f5faaaf00ab1bba4d876f20b5b46a8d3e0",
+        "peak_price": 0.001845,
+        "qty": 2630.872902980605,
+        "symbol": "Baranos"
+      }
+    },
     "refill_week": "2026-W45",
     "refills_usd": 46.81211808188797,
-    "ticks_since_buy": 34
+    "ticks_since_buy": 0
   },
   "desk": {
     "cash": 47.60776857887221,
@@ -376,6 +393,14 @@
         "sight_pair": "0xa7db4f6bc3b05dd3abdb54f2b7f68561ae4049a754cae57fa60767df41c4194d",
         "sight_qliq": 672,
         "symbol": "M\u200aO\u200aNERO"
+      },
+      "0x18d1f4ae0ee33e48b22640617a8e73f82b5dcc8e": {
+        "done": [],
+        "first_price": 4.877e-06,
+        "first_seen": "2026-11-07T11:13:13Z",
+        "sight_pair": "0x72cc7c6a4ef816353c6aeb59ca0e15cff0b26fa5",
+        "sight_qliq": 34863,
+        "symbol": "WOTF"
       },
       "0x18d9d79a2c5a901284f456a2a130cbbd041fabd3": {
         "done": [
@@ -5969,6 +5994,12 @@
         "symbol": "DENIM",
         "until": "2026-11-08T02:08:14Z"
       },
+      "0xb2000000000000000000000924bf867b9baa58f8": {
+        "at": "2026-11-07T11:13:13Z",
+        "reason": "real_depth",
+        "symbol": "SAAI",
+        "until": "2026-11-08T11:13:13Z"
+      },
       "0xb2000000000000000000000990f8156052427c01": {
         "at": "2026-11-06T15:38:16Z",
         "reason": "liquidity",
@@ -7715,6 +7746,12 @@
         "symbol": "REBOOT",
         "until": "2026-11-07T15:08:15Z"
       },
+      "0xdef6ea5922133489e76ac8435e541add62712195": {
+        "at": "2026-11-07T11:13:13Z",
+        "reason": "real_depth",
+        "symbol": "REBOOT",
+        "until": "2026-11-08T11:13:13Z"
+      },
       "0xdf02fbe74d964b545890d8a9612b5610ca88bc80": {
         "at": "2026-11-07T06:28:14Z",
         "reason": "real_depth",
@@ -7996,6 +8033,12 @@
         "reason": "real_depth",
         "symbol": "STARLINK",
         "until": "2026-11-08T04:03:14Z"
+      },
+      "0xf06a5d5840f8e14072a117c3a9ec7fb00b98cccc": {
+        "at": "2026-11-07T11:13:13Z",
+        "reason": "real_depth",
+        "symbol": "PAXG",
+        "until": "2026-11-08T11:13:13Z"
       },
       "0xf0a2a4af77e5b877a6d2f81764452f8b926af1d8": {
         "at": "2026-11-06T17:58:14Z",
@@ -8353,22 +8396,22 @@
       }
     },
     "watch": {
+      "0x18d1f4ae0ee33e48b22640617a8e73f82b5dcc8e": {
+        "checks": 1,
+        "first_seen": "2026-11-07T11:13:13Z",
+        "last_check": "2026-11-07T11:13:13Z",
+        "symbol": "WOTF"
+      },
       "0x7159f9c0906a51e1300273c4eb19c59fe6c1efd8": {
-        "checks": 3,
+        "checks": 4,
         "first_seen": "2026-11-07T10:23:13Z",
-        "last_check": "2026-11-07T10:58:13Z",
+        "last_check": "2026-11-07T11:13:13Z",
         "symbol": "Baranos"
       },
       "0xa9334dd6b234c842841abecb8176aa979e7a0586": {
         "checks": 1,
         "first_seen": "2026-11-07T11:03:13Z",
         "last_check": "2026-11-07T11:03:13Z",
-        "symbol": "REBOOT"
-      },
-      "0xdef6ea5922133489e76ac8435e541add62712195": {
-        "checks": 2,
-        "first_seen": "2026-11-07T10:43:12Z",
-        "last_check": "2026-11-07T10:58:13Z",
         "symbol": "REBOOT"
       }
     }
@@ -8494,7 +8537,7 @@
     "gate_restart": "BL-32",
     "machine_due": "",
     "max_dd_pct": {
-      "baseline": 97.3285664246,
+      "baseline": 97.81095612152504,
       "desk": 9.811123120222184
     },
     "peak": {
