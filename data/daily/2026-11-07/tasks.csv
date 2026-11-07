@@ -1386,3 +1386,16 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-07T16:23:13Z,desk,VERIFY,PEPE69,0x24e4660166c61f52a1d5ab7480d29baf5727c8b5,SKIP,real_depth,goplus=skipped until=2026-11-08T16:23:13Z
 2026-11-07T16:23:13Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
 2026-11-07T16:23:13Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=0 new=7 checked=7 passed=0 bought=0 held=0 deferred=0 dex_only=7 goplus=0 requests=13 secs=2.8 bl_positions=2 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=4 labels_done=4 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-07T16:28:16Z,baseline,EXIT,KDX,0x56db0ddd93e7e8e14020b4253f227e817151df2a,HOLD,,pct=108.65
+2026-11-07T16:28:16Z,baseline,EXIT,Baranos,0x7159f9c0906a51e1300273c4eb19c59fe6c1efd8,HOLD,,pct=463.53
+2026-11-07T16:28:16Z,desk,VERIFY,Paper,0x013d4ccd61f996202bfbcb41392845eb6904db07,SKIP,goplus_timeout,first_seen=2026-11-07T13:18:13Z checks=13 until=2026-11-08T16:28:16Z b1=181 s1=180 b24=1529 s24=1481 liq=10332093 dex=aerodrome qliq=230036 pair_age=191 token_age=191
+2026-11-07T16:28:16Z,desk,VERIFY,KNTQ,0xb80194e3868511b8f43e1d5d6e255cd9e7c3e7dd,WATCH,goplus_not_ready,first_seen=2026-11-07T14:03:14Z checks=10 pending=honeypot b1=1530 s1=1549 b24=14966 s24=14703 liq=849823 dex=aero qliq=433443 pair_age=3474 token_age=3474
+2026-11-07T16:28:16Z,desk,VERIFY,KDX,0x56db0ddd93e7e8e14020b4253f227e817151df2a,WATCH,goplus_not_ready,"first_seen=2026-11-07T14:23:13Z checks=9 pending=mint_open,freeze_or_blacklist,honeypot,risk_flags b1=5 s1=3 b24=13 s24=5 liq=33609 dex=uniswap:v2 qliq=16804 pair_age=131 token_age=131"
+2026-11-07T16:28:16Z,desk,VERIFY,GM,0x6eab01d84887b91a43e0b3c49dcd86d7e0d19f9a,SKIP,real_depth,first_seen=2026-11-07T15:53:13Z checks=3 goplus=skipped until=2026-11-08T16:28:16Z
+2026-11-07T16:28:16Z,desk,VERIFY,CHUBBY,0x88fa3f1a838637b30fb3bce8ebe041a4d5330a63,SKIP,real_depth,goplus=skipped until=2026-11-08T16:28:16Z
+2026-11-07T16:28:16Z,desk,VERIFY,TRUMP2028,0x99620657e01259b0f941a4de21ae477c6971b65e,WATCH,goplus_not_ready,"first_seen=2026-11-07T16:28:16Z checks=1 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct b1=5 s1=0 b24=5 s24=0 liq=181636 dex=uniswap:v2 qliq=90818 pair_age=2 token_age=2"
+2026-11-07T16:28:16Z,desk,VERIFY,AXGT,0x9b700b043e9587dde9a0c29a9483e2f8fa450d54,SKIP,real_depth,goplus=skipped until=2026-11-08T16:28:16Z
+2026-11-07T16:28:16Z,desk,VERIFY,FROK69,0xb200000000000000000000d9d6c7ffa5cb5db62e,SKIP,real_depth,goplus=skipped until=2026-11-08T16:28:16Z
+2026-11-07T16:28:16Z,desk,VERIFY,PEPE69,0x4355284625cc7657dc1b4c0730f61a6939d91222,SKIP,real_depth,goplus=skipped until=2026-11-08T16:28:16Z
+2026-11-07T16:28:16Z,baseline,EXECUTE,Paper,0x013d4ccd61f996202bfbcb41392845eb6904db07,SKIP,reentry_cooldown,seed=202611071628 eligible=1 pick=0 pool=013d4c desk=goplus_timeout launchpad=other
+2026-11-07T16:28:16Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=19 rechecks=4 new=5 checked=9 passed=0 bought=0 held=0 deferred=0 dex_only=5 goplus=4 requests=21 secs=9.5 bl_positions=2 bl_due=1 bl_eligible=1 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=1 labels_done=1 labels_calls=1 live=ok alerts=none alerts_sent=0
