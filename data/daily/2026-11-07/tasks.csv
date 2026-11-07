@@ -1513,3 +1513,12 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-07T17:23:13Z,baseline,EXIT,KDX,0x56db0ddd93e7e8e14020b4253f227e817151df2a,HOLD,,pct=169.30
 2026-11-07T17:23:13Z,baseline,EXIT,Anthropic,0xf6d41cbb39a6540a93e0d29a50b4eb720444e754,HOLD,,pct=-2.91
 2026-11-07T17:23:13Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=0 new=0 checked=0 passed=0 bought=0 held=0 deferred=0 dex_only=0 goplus=0 requests=6 secs=1.6 bl_positions=2 bl_due=0 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=2 labels_done=2 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-07T17:28:13Z,baseline,EXIT,KDX,0x56db0ddd93e7e8e14020b4253f227e817151df2a,HOLD,,pct=148.94
+2026-11-07T17:28:13Z,baseline,EXIT,Anthropic,0xf6d41cbb39a6540a93e0d29a50b4eb720444e754,HOLD,,pct=-2.91
+2026-11-07T17:28:13Z,desk,VERIFY,KDX,0x56db0ddd93e7e8e14020b4253f227e817151df2a,SKIP,goplus_timeout,first_seen=2026-11-07T14:23:13Z checks=12 until=2026-11-08T17:28:13Z b1=5 s1=3 b24=18 s24=8 liq=36719 dex=uniswap:v2 qliq=18356 pair_age=191 token_age=191
+2026-11-07T17:28:13Z,desk,VERIFY,DiamondPepe,0x361dc5bf165d6a3873f68b52bb16dd57cf3f5b42,WATCH,goplus_not_ready,"first_seen=2026-11-07T16:48:14Z checks=3 pending=mint_open,freeze_or_blacklist,honeypot,top10_pct,risk_flags b1=418 s1=222 b24=418 s24=222 liq=95446 dex=uniswap:v4 qliq=42591 pair_age=44 token_age=44"
+2026-11-07T17:28:13Z,desk,VERIFY,HODL,0x61ddf5f9eb494af8a4f5f1054854fcc467f138d6,SKIP,real_depth,goplus=skipped until=2026-11-08T17:28:13Z b1=5 s1=0 b24=5 s24=0 liq=3406240 dex=uniswap:v3 qliq=0 pair_age=5 token_age=5
+2026-11-07T17:28:13Z,desk,VERIFY,Basetiger,0x2c07e79f039af0cf17a2ee553f311bb593d44605,SKIP,real_depth,goplus=skipped until=2026-11-08T17:28:13Z
+2026-11-07T17:28:13Z,desk,VERIFY,SPACEX,0xcd0b8ff18d1f2b3c539baa27e57a3b758c3728d2,SKIP,real_depth,goplus=skipped until=2026-11-08T17:28:13Z
+2026-11-07T17:28:13Z,desk,VERIFY,USRN,0x517f10e8f051b76f10b3e7fcfaeb31d6f2fa5c62,SKIP,real_depth,goplus=skipped until=2026-11-08T17:28:13Z b1=18 s1=0 b24=18 s24=0 liq=216991 dex=uniswap:v4 qliq=7 pair_age=18 token_age=18
+2026-11-07T17:28:13Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=2 new=4 checked=6 passed=0 bought=0 held=0 deferred=0 dex_only=4 goplus=2 requests=13 secs=4.4 bl_positions=2 bl_due=0 bl_eligible=1 bl_bought=0 report=none machine=none bl_error=none labels=none labels_due=0 labels_done=0 labels_calls=0 live=ok alerts=none alerts_sent=0
