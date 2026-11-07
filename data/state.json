@@ -21,7 +21,7 @@
     "positions": {},
     "refill_week": "2026-W45",
     "refills_usd": 46.81211808188797,
-    "ticks_since_buy": 27
+    "ticks_since_buy": 28
   },
   "desk": {
     "cash": 47.60776857887221,
@@ -1086,7 +1086,9 @@
         "symbol": "UODF"
       },
       "0x4a7133730642207b53c3f6e93e9e783373f890c0": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 1.108e-05,
         "first_seen": "2026-11-07T09:38:14Z",
         "sight_pair": "0xeaf9e16d8c326e55f1592713e5516adacc35ad55",
@@ -2867,6 +2869,12 @@
         "reason": "liquidity",
         "symbol": "LAPTOP",
         "until": "2026-11-07T13:58:15Z"
+      },
+      "0x1aa68c82957b3166466a49b0a2bf5a8455d2f820": {
+        "at": "2026-11-07T10:38:15Z",
+        "reason": "real_depth",
+        "symbol": "BOOTR",
+        "until": "2026-11-08T10:38:15Z"
       },
       "0x1b5e26e5488055157985a770e4947373aec7cccc": {
         "at": "2026-11-06T17:03:14Z",
@@ -5099,6 +5107,12 @@
         "reason": "missing:liq_usd",
         "symbol": "DIGITAL OIL TRUST FUND",
         "until": "2026-11-07T15:08:15Z"
+      },
+      "0x8198ffa3c7e7b583ab255bd4eca2ac89b69e96ea": {
+        "at": "2026-11-07T10:38:15Z",
+        "reason": "real_depth",
+        "symbol": "MOM",
+        "until": "2026-11-08T10:38:15Z"
       },
       "0x8292a5a5212e995abd803e8944bdfc652dec5ba3": {
         "at": "2026-11-06T21:18:15Z",
@@ -7806,6 +7820,12 @@
         "symbol": "ANTHROPIC",
         "until": "2026-11-07T16:28:15Z"
       },
+      "0xdc757c3b064c60308ef951c720e407706a1a5372": {
+        "at": "2026-11-07T10:38:15Z",
+        "reason": "missing:liq_usd",
+        "symbol": "PMC",
+        "until": "2026-11-08T10:38:15Z"
+      },
       "0xdcc30f6395eec10349336e06bcb648dcc8e416f0": {
         "at": "2026-11-06T17:08:15Z",
         "reason": "liquidity",
@@ -8486,12 +8506,6 @@
       }
     },
     "watch": {
-      "0x1aa68c82957b3166466a49b0a2bf5a8455d2f820": {
-        "checks": 2,
-        "first_seen": "2026-11-07T10:03:12Z",
-        "last_check": "2026-11-07T10:18:15Z",
-        "symbol": "BOOTR"
-      },
       "0x4ce2d3a02c739781d9737a9ee235c46510ce7029": {
         "checks": 1,
         "first_seen": "2026-11-07T10:28:14Z",
@@ -8499,9 +8513,9 @@
         "symbol": "WOTF"
       },
       "0x7159f9c0906a51e1300273c4eb19c59fe6c1efd8": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-07T10:23:13Z",
-        "last_check": "2026-11-07T10:23:13Z",
+        "last_check": "2026-11-07T10:38:15Z",
         "symbol": "Baranos"
       }
     }
