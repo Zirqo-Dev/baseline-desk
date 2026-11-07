@@ -17,7 +17,7 @@
     "positions": {},
     "refill_week": "2026-W45",
     "refills_usd": 46.81211808188797,
-    "ticks_since_buy": 25
+    "ticks_since_buy": 26
   },
   "desk": {
     "cash": 47.60776857887221,
@@ -313,7 +313,8 @@
       },
       "0x0fd25190e9bfa61080d6945b282e95f62025be65": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 1.293e-05,
         "first_seen": "2026-11-06T20:58:14Z",
@@ -736,6 +737,14 @@
         "sight_pair": "0x2bb9e55802041b5a16e07224f0a14d0f7bd81db39c5747cbb0145034ac1cb5e9",
         "sight_qliq": 1146,
         "symbol": "ADP"
+      },
+      "0x2baab6f753beff5af3fbf91d10a689692caea5fa": {
+        "done": [],
+        "first_price": 8.623e-05,
+        "first_seen": "2026-11-07T02:58:14Z",
+        "sight_pair": "0x2917e08e275fd6b6ab207cebf9efd1c4f0fdf18d284aa02f33089a0dec4a3776",
+        "sight_qliq": 3,
+        "symbol": "WPLS"
       },
       "0x2bd3643d9fb2678f00004656f4c552a27055681f": {
         "done": [],
@@ -1346,17 +1355,6 @@
         "sight_qliq": 95844,
         "symbol": "BIDEN"
       },
-      "0x6a70c8ed80def274e82bd28393dd3b2b0eaaacfa": {
-        "done": [
-          1,
-          6
-        ],
-        "first_price": 3.673e-06,
-        "first_seen": "2026-11-06T02:53:13Z",
-        "sight_pair": "0x0cba6971300362711ec8928486d1633481eb5d45",
-        "sight_qliq": 34459,
-        "symbol": "NFAD"
-      },
       "0x6c873ba3611a07017fcd286a2df01e6dc03c52a3": {
         "done": [
           1,
@@ -1672,7 +1670,9 @@
         "symbol": "FRAG01"
       },
       "0xb200000000000000000000000017443857710000": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 0.0005083,
         "first_seen": "2026-11-07T01:58:12Z",
         "sight_pair": "0x074c7090c65100caf1fa3f38a3efd40b709ca737",
@@ -2679,6 +2679,12 @@
         "symbol": "LAPTOP",
         "until": "2026-11-07T12:48:15Z"
       },
+      "0x170a60fd52f820c716bf906464ff1287e972e46b": {
+        "at": "2026-11-07T02:58:14Z",
+        "reason": "real_depth",
+        "symbol": "NATF",
+        "until": "2026-11-08T02:58:14Z"
+      },
       "0x172177b75813664da647604220d309343eaa1bdc": {
         "at": "2026-11-06T03:48:15Z",
         "reason": "missing:symbol",
@@ -3225,6 +3231,12 @@
         "symbol": "ADP",
         "until": "2026-11-08T00:58:14Z"
       },
+      "0x2baab6f753beff5af3fbf91d10a689692caea5fa": {
+        "at": "2026-11-07T02:58:14Z",
+        "reason": "real_depth",
+        "symbol": "WPLS",
+        "until": "2026-11-08T02:58:14Z"
+      },
       "0x2baf21c672e069660e3fe838b8bb03a6d9245af3": {
         "at": "2026-11-07T00:33:13Z",
         "reason": "real_depth",
@@ -3614,6 +3626,12 @@
         "reason": "real_depth",
         "symbol": "MRDN",
         "until": "2026-11-08T00:48:13Z"
+      },
+      "0x3728f349f99db1589beafca06e0b6812a121f72f": {
+        "at": "2026-11-07T02:58:14Z",
+        "reason": "real_depth",
+        "symbol": "MEOW",
+        "until": "2026-11-08T02:58:14Z"
       },
       "0x3734048a203251481e5de2fb2c6a1829dab63ba3": {
         "at": "2026-11-06T21:58:17Z",
@@ -4149,6 +4167,12 @@
         "symbol": "SISF",
         "until": "2026-11-07T11:58:15Z"
       },
+      "0x51fb750de60e51b72100f30268e19fe07a42de9d": {
+        "at": "2026-11-07T02:58:14Z",
+        "reason": "real_depth",
+        "symbol": "QSAND",
+        "until": "2026-11-08T02:58:14Z"
+      },
       "0x5218cc38b9f4313225d8d32df1ba31e5f543647a": {
         "at": "2026-11-06T07:03:13Z",
         "reason": "missing:liq_usd",
@@ -4472,6 +4496,12 @@
         "reason": "liquidity",
         "symbol": "LOL",
         "until": "2026-11-07T07:58:14Z"
+      },
+      "0x647c2e8a654939842a980541f8667f80b93d83cb": {
+        "at": "2026-11-07T02:58:14Z",
+        "reason": "missing:liq_usd",
+        "symbol": "AETF",
+        "until": "2026-11-08T02:58:14Z"
       },
       "0x648f4aa9ace33e63f0a2dfdab848142a6e9593e3": {
         "at": "2026-11-06T17:53:15Z",
@@ -5426,6 +5456,12 @@
         "reason": "liquidity",
         "symbol": "MEOW",
         "until": "2026-11-07T11:33:15Z"
+      },
+      "0x979902e22605adb9a43900b840c961d8c630bbd6": {
+        "at": "2026-11-07T02:58:14Z",
+        "reason": "real_depth",
+        "symbol": "ANTHROPIC",
+        "until": "2026-11-08T02:58:14Z"
       },
       "0x97b81cf9cbf57ba2df91f84fd6d65273df48c9ec": {
         "at": "2026-11-06T17:43:14Z",
@@ -7305,12 +7341,6 @@
         "symbol": "CHUBBY",
         "until": "2026-11-08T01:53:16Z"
       },
-      "0xc62818027b4ab7f0c3aa7d31d56bd78164d0f947": {
-        "at": "2026-11-06T02:53:13Z",
-        "reason": "liquidity",
-        "symbol": "1KTO100M",
-        "until": "2026-11-07T02:53:13Z"
-      },
       "0xc6a15d4a3712e9002473c5add330609812b38eac": {
         "at": "2026-11-06T16:03:13Z",
         "reason": "liquidity",
@@ -7863,6 +7893,12 @@
         "symbol": "",
         "until": "2026-11-07T05:08:14Z"
       },
+      "0xe4a61567951a43da92a115f95dbcabf46379389d": {
+        "at": "2026-11-07T02:58:14Z",
+        "reason": "real_depth",
+        "symbol": "Gitbank",
+        "until": "2026-11-08T02:58:14Z"
+      },
       "0xe4e48aa35ac6a5b91a5e7fae6eff33da84f022b9": {
         "at": "2026-11-06T11:08:14Z",
         "reason": "liquidity",
@@ -8375,22 +8411,16 @@
       }
     },
     "watch": {
-      "0x170a60fd52f820c716bf906464ff1287e972e46b": {
-        "checks": 3,
-        "first_seen": "2026-11-07T02:13:12Z",
-        "last_check": "2026-11-07T02:43:14Z",
-        "symbol": "NATF"
-      },
       "0x89d9e0b743fb2eb123424d40b91b0ed80f062bb0": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-07T02:38:14Z",
-        "last_check": "2026-11-07T02:38:14Z",
+        "last_check": "2026-11-07T02:58:14Z",
         "symbol": "REBOOT"
       },
       "0xb01384cc86d9eb0b0a7fa3c1a30a1fff13e3785f": {
-        "checks": 9,
+        "checks": 10,
         "first_seen": "2026-11-07T00:33:13Z",
-        "last_check": "2026-11-07T02:43:14Z",
+        "last_check": "2026-11-07T02:58:14Z",
         "symbol": "Bubbles"
       },
       "0xca2a6cd72d650f548b13faf6c5ef3f81898b75b0": {
