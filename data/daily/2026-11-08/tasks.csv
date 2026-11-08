@@ -1020,3 +1020,8 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-08T14:18:14Z,desk,VERIFY,Bucky,0x56f5c5bbb6dc4f87ff87bf741e4b290e1eb0bcb9,SKIP,real_depth,goplus=skipped until=2026-11-09T14:18:14Z
 2026-11-08T14:18:14Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
 2026-11-08T14:18:14Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=0 new=1 checked=1 passed=0 bought=0 held=0 deferred=0 dex_only=1 goplus=0 requests=4 secs=1.3 bl_positions=0 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=none labels_due=0 labels_done=0 labels_calls=0 live=ok alerts=none alerts_sent=0
+2026-11-08T14:23:14Z,desk,VERIFY,XDP,0x2a20358655bb39d93084f948201bef88fb287c48,WATCH,goplus_not_ready,first_seen=2026-11-08T14:08:14Z checks=2 pending=top10_pct b1=36 s1=0 b24=36 s24=0 liq=203130 dex=uniswap:v2 qliq=101515 pair_age=20 token_age=20
+2026-11-08T14:23:14Z,desk,VERIFY,OMARCHY,0xb200000000000000000000d890b7d432d9408250,SKIP,real_depth,goplus=skipped until=2026-11-09T14:23:14Z
+2026-11-08T14:23:14Z,desk,VERIFY,MEOW,0xc6f22ded423e1fc9dc8707c987230587733e9264,SKIP,real_depth,goplus=skipped until=2026-11-09T14:23:14Z
+2026-11-08T14:23:14Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
+2026-11-08T14:23:14Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=1 new=2 checked=3 passed=0 bought=0 held=0 deferred=0 dex_only=2 goplus=1 requests=8 secs=2.4 bl_positions=0 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=1 labels_done=1 labels_calls=1 live=ok alerts=none alerts_sent=0
