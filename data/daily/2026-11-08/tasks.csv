@@ -1600,3 +1600,9 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-08T20:53:12Z,desk,VERIFY,NADF,0xb200000000000000000000a879dbae78c56f88e0,SKIP,real_depth,goplus=skipped until=2026-11-09T20:53:12Z
 2026-11-08T20:53:12Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
 2026-11-08T20:53:12Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=0 new=2 checked=2 passed=0 bought=0 held=0 deferred=0 dex_only=2 goplus=0 requests=6 secs=1.5 bl_positions=0 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=1 labels_done=1 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-08T20:58:14Z,desk,VERIFY,USPR,0x473a4376dcb1631e9957a386e72186812d15bd15,WATCH,goplus_not_ready,first_seen=2026-11-08T19:23:12Z checks=6 pending=honeypot b1=58 s1=58 b24=226 s24=155 liq=90312 dex=uniswap:v4 qliq=34026 pair_age=99 token_age=99
+2026-11-08T20:58:14Z,desk,VERIFY,ICNT,0x4117863f512887f6ba8723b9194632c5311f3ccb,SKIP,real_depth,first_seen=2026-11-08T20:03:13Z checks=4 goplus=skipped until=2026-11-09T20:58:14Z
+2026-11-08T20:58:14Z,desk,VERIFY,BIDEN,0x7bfcb8126b374334d18bb7801e6683470925efe6,SKIP,real_depth,first_seen=2026-11-08T20:18:16Z checks=3 goplus=skipped until=2026-11-09T20:58:14Z
+2026-11-08T20:58:14Z,desk,VERIFY,WORK,0x41616e873ad00cd6b66b9ee356a302d33dcc432b,SKIP,real_depth,goplus=skipped until=2026-11-09T20:58:14Z
+2026-11-08T20:58:14Z,baseline,EXECUTE,USPR,0x473a4376dcb1631e9957a386e72186812d15bd15,SKIP,reentry_cooldown,seed=202611082058 eligible=1 pick=0 pool=473a43 desk=WATCH launchpad=other
+2026-11-08T20:58:14Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=3 new=1 checked=4 passed=0 bought=0 held=0 deferred=0 dex_only=3 goplus=1 requests=9 secs=2.3 bl_positions=0 bl_due=1 bl_eligible=1 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=2 labels_done=2 labels_calls=1 live=ok alerts=none alerts_sent=0
