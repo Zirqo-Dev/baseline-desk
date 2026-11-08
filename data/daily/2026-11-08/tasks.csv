@@ -1465,3 +1465,10 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-08T19:28:15Z,desk,VERIFY,STRX,0xe635a41fcdca0e203f547287f2d4a82bdbc4db66,WATCH,goplus_not_ready,"first_seen=2026-11-08T19:28:15Z checks=1 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct b1=4 s1=0 b24=4 s24=0 liq=68728 dex=uniswap:v2 qliq=34367 pair_age=5 token_age=5"
 2026-11-08T19:28:15Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
 2026-11-08T19:28:15Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=21 rechecks=6 new=3 checked=9 passed=0 bought=0 held=0 deferred=0 dex_only=2 goplus=7 requests=21 secs=13.8 bl_positions=0 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=5 labels_done=5 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-08T19:33:13Z,desk,VERIFY,TROLL,0xd5c800b638959765f3ab443e8c0db229d002892d,SKIP,real_depth,goplus=skipped until=2026-11-09T19:33:13Z
+2026-11-08T19:33:13Z,desk,VERIFY,PEPKING,0xbeab1aa12e0044062e78c6da260146265dccd9f6,SKIP,real_depth,goplus=skipped until=2026-11-09T19:33:13Z
+2026-11-08T19:33:13Z,desk,VERIFY,BTC,0x097d1853a6ba5e8bb550ded71ce9be4589cadb07,SKIP,real_depth,goplus=skipped until=2026-11-09T19:33:13Z
+2026-11-08T19:33:13Z,desk,VERIFY,RUST,0x9ca9a0764314d440113efcb051feef0927eccccc,SKIP,real_depth,goplus=skipped until=2026-11-09T19:33:13Z
+2026-11-08T19:33:13Z,desk,VERIFY,LINK,0xf643eceff7865673c6e855c2e11d24679364645c,SKIP,missing:liq_usd,goplus=skipped until=2026-11-09T19:33:13Z
+2026-11-08T19:33:13Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
+2026-11-08T19:33:13Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=21 rechecks=0 new=5 checked=5 passed=0 bought=0 held=0 deferred=0 dex_only=5 goplus=0 requests=9 secs=2.3 bl_positions=0 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=1 labels_done=1 labels_calls=1 live=ok alerts=none alerts_sent=0
