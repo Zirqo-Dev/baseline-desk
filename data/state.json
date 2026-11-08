@@ -31,7 +31,7 @@
     "positions": {},
     "refill_week": "2026-W45",
     "refills_usd": 46.81211808188797,
-    "ticks_since_buy": 25
+    "ticks_since_buy": 26
   },
   "desk": {
     "cash": 47.60776857887221,
@@ -1948,6 +1948,14 @@
         "sight_qliq": 33864,
         "symbol": "\ud83d\udd25"
       },
+      "0xc57d74c6446b8855557219c041131a4b6c7a3372": {
+        "done": [],
+        "first_price": 1.207e-05,
+        "first_seen": "2026-11-08T12:58:15Z",
+        "sight_pair": "0x040ae4876f2c6dbc7154d498c76fe6df2cfce920",
+        "sight_qliq": 92227,
+        "symbol": "BOOTR"
+      },
       "0xc657cf5569263e2302b412b84a6237487c7207da": {
         "done": [
           1,
@@ -2703,6 +2711,12 @@
         "reason": "real_depth",
         "symbol": "SWAPME",
         "until": "2026-11-08T16:13:15Z"
+      },
+      "0x0f5f9a2154317a271a1175864c808c988261c4d1": {
+        "at": "2026-11-08T12:58:15Z",
+        "reason": "real_depth",
+        "symbol": "BIDEN",
+        "until": "2026-11-09T12:58:15Z"
       },
       "0x0f6545b3e037e1dd6c7a7d264bd698f484d74dde": {
         "at": "2026-11-07T21:53:12Z",
@@ -4083,12 +4097,6 @@
         "reason": "real_depth",
         "symbol": "WSOS",
         "until": "2026-11-09T04:58:14Z"
-      },
-      "0x495d9d7e67ad5af2dab8301066594f824cafdcdc": {
-        "at": "2026-11-07T12:53:17Z",
-        "reason": "real_depth",
-        "symbol": "1KTO100M",
-        "until": "2026-11-08T12:53:17Z"
       },
       "0x49cc2f6ffa8289ae9be09278a8acea2369411524": {
         "at": "2026-11-07T18:28:17Z",
@@ -5764,12 +5772,6 @@
         "symbol": "AOFT",
         "until": "2026-11-08T14:48:14Z"
       },
-      "0x9d497318b84c88514bfedb77fa30d34e495e7c44": {
-        "at": "2026-11-07T12:58:13Z",
-        "reason": "real_depth",
-        "symbol": "DENIMB",
-        "until": "2026-11-08T12:58:13Z"
-      },
       "0x9d62986e56910102a9e970c58efa244eb78e602d": {
         "at": "2026-11-07T19:38:16Z",
         "reason": "real_depth",
@@ -5895,12 +5897,6 @@
         "reason": "real_depth",
         "symbol": "COIN",
         "until": "2026-11-08T20:58:13Z"
-      },
-      "0xa2cfb4c171c0d5d139df7247f635ae68536f05d8": {
-        "at": "2026-11-07T12:58:13Z",
-        "reason": "real_depth",
-        "symbol": "DENIMB",
-        "until": "2026-11-08T12:58:13Z"
       },
       "0xa3d2a8e6f353362e6c7e286c320c91abbd711473": {
         "at": "2026-11-07T14:58:15Z",
@@ -7420,6 +7416,12 @@
         "symbol": "BB",
         "until": "2026-11-08T17:08:15Z"
       },
+      "0xb65ee7a17081eab34eb8c589802fe96315a42e1a": {
+        "at": "2026-11-08T12:58:15Z",
+        "reason": "real_depth",
+        "symbol": "AOC",
+        "until": "2026-11-09T12:58:15Z"
+      },
       "0xb72471ec2566e5660e47ec3590ccdf9763f39046": {
         "at": "2026-11-07T18:28:17Z",
         "reason": "real_depth",
@@ -7557,12 +7559,6 @@
         "reason": "real_depth",
         "symbol": "CHUBBY",
         "until": "2026-11-09T07:33:14Z"
-      },
-      "0xbdacfbaf78df6c6e0bc5f2003ae9d5c6166bbc10": {
-        "at": "2026-11-07T12:58:13Z",
-        "reason": "real_depth",
-        "symbol": "TROLL",
-        "until": "2026-11-08T12:58:13Z"
       },
       "0xbdbc84fd2cae3f1cde0e1d38854f23d5080eca1e": {
         "at": "2026-11-08T03:28:12Z",
@@ -8416,12 +8412,6 @@
         "symbol": "Timon",
         "until": "2026-11-08T13:53:12Z"
       },
-      "0xe8024493ec82d63c3d221f7955abe06ff79be8db": {
-        "at": "2026-11-07T12:53:17Z",
-        "reason": "real_depth",
-        "symbol": "DENIMB",
-        "until": "2026-11-08T12:53:17Z"
-      },
       "0xe8441ef7f6904f668cfc3b9813199f577307dda3": {
         "at": "2026-11-07T15:48:13Z",
         "reason": "real_depth",
@@ -8826,28 +8816,22 @@
       }
     },
     "watch": {
-      "0x0f5f9a2154317a271a1175864c808c988261c4d1": {
-        "checks": 2,
-        "first_seen": "2026-11-08T12:23:14Z",
-        "last_check": "2026-11-08T12:38:17Z",
-        "symbol": "BIDEN"
-      },
       "0x928ad934a34504b80e8a46e52278731b5a13de48": {
         "checks": 1,
         "first_seen": "2026-11-08T12:53:13Z",
         "last_check": "2026-11-08T12:53:13Z",
         "symbol": "OIL CHAIN"
       },
-      "0xb65ee7a17081eab34eb8c589802fe96315a42e1a": {
-        "checks": 3,
-        "first_seen": "2026-11-08T12:08:14Z",
-        "last_check": "2026-11-08T12:38:17Z",
-        "symbol": "AOC"
+      "0xc57d74c6446b8855557219c041131a4b6c7a3372": {
+        "checks": 1,
+        "first_seen": "2026-11-08T12:58:15Z",
+        "last_check": "2026-11-08T12:58:15Z",
+        "symbol": "BOOTR"
       },
       "0xfe419c791d845fb69ad7e4a77dab605277e921e9": {
-        "checks": 9,
+        "checks": 10,
         "first_seen": "2026-11-08T10:08:15Z",
-        "last_check": "2026-11-08T12:38:17Z",
+        "last_check": "2026-11-08T12:58:15Z",
         "symbol": "CLAUDIA"
       }
     }
