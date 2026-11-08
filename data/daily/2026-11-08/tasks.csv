@@ -1447,3 +1447,10 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-08T19:18:14Z,desk,VERIFY,TREASURE,0x3263a6a40296601dd6e4db91bb1d6de6edf5cccc,SKIP,real_depth,goplus=skipped until=2026-11-09T19:18:14Z
 2026-11-08T19:18:14Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
 2026-11-08T19:18:14Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=21 rechecks=1 new=3 checked=4 passed=0 bought=0 held=0 deferred=0 dex_only=3 goplus=1 requests=9 secs=2.3 bl_positions=0 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=1 labels_done=1 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-08T19:23:12Z,desk,VERIFY,POSTURE,0x283af3e14bbb17c7af2f33dc714e567da079bd04,WATCH,goplus_not_ready,first_seen=2026-11-08T17:38:14Z checks=7 pending=honeypot b1=345 s1=221 b24=861 s24=517 liq=198616 dex=uniswap:v4 qliq=88165 pair_age=108 token_age=108
+2026-11-08T19:23:12Z,desk,VERIFY,RIP POPE,0x923b0b0cf376e7992fd8dcea7156fe9e059baeea,SKIP,real_depth,goplus=skipped until=2026-11-09T19:23:12Z
+2026-11-08T19:23:12Z,desk,VERIFY,PRDT,0xb200000000000000000000165f48e4d7361b36e4,SKIP,real_depth,goplus=skipped until=2026-11-09T19:23:12Z
+2026-11-08T19:23:12Z,desk,VERIFY,BTC,0xfa25a24d462a0b38b030b49c404367e6080aa1b6,SKIP,real_depth,goplus=skipped until=2026-11-09T19:23:12Z
+2026-11-08T19:23:12Z,desk,VERIFY,USPR,0x473a4376dcb1631e9957a386e72186812d15bd15,WATCH,goplus_not_ready,"first_seen=2026-11-08T19:23:12Z checks=1 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct b1=48 s1=14 b24=48 s24=14 liq=49420 dex=uniswap:v4 qliq=13074 pair_age=4 token_age=4"
+2026-11-08T19:23:12Z,baseline,EXECUTE,POSTURE,0x283af3e14bbb17c7af2f33dc714e567da079bd04,SKIP,reentry_cooldown,seed=202611081923 eligible=1 pick=0 pool=283af3 desk=WATCH launchpad=other
+2026-11-08T19:23:12Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=21 rechecks=1 new=4 checked=5 passed=0 bought=0 held=0 deferred=0 dex_only=3 goplus=2 requests=11 secs=3.8 bl_positions=0 bl_due=1 bl_eligible=1 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=3 labels_done=3 labels_calls=1 live=ok alerts=none alerts_sent=0
