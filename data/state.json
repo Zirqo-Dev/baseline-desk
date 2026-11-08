@@ -1,6 +1,6 @@
 {
   "baseline": {
-    "cash": 54.11837909590602,
+    "cash": 49.11837909590602,
     "cooldown": {
       "a:0x25d3b900efa1b6e8d101d9cd6063727e21e1daa1": "2026-11-09T17:58:16Z",
       "a:0x283af3e14bbb17c7af2f33dc714e567da079bd04": "2026-11-09T19:03:17Z",
@@ -26,10 +26,27 @@
     "day": "2026-11-08",
     "day_start_value": 64.64344513444021,
     "halted_day": "",
-    "positions": {},
+    "positions": {
+      "0xcf9924049f304c5dd0d127dde28b763954cecd81": {
+        "cost_usd": 5.0,
+        "entry_fill": 1.952971618988712e-05,
+        "entry_intended": 1.896e-05,
+        "entry_liq_usd": 207036.42,
+        "entry_qliq": 103472,
+        "entry_ts": "2026-11-08T21:58:15Z",
+        "ladder_done": [],
+        "last_price": 1.896e-05,
+        "launchpad": "other",
+        "orig_qty": 256020.10553482088,
+        "pair": "0x72d614b99d340ae0dab7524e5c3316d920641892",
+        "peak_price": 1.896e-05,
+        "qty": 256020.10553482088,
+        "symbol": "REBOOT"
+      }
+    },
     "refill_week": "2026-W45",
     "refills_usd": 46.81211808188797,
-    "ticks_since_buy": 45
+    "ticks_since_buy": 0
   },
   "desk": {
     "cash": 47.60776857887221,
@@ -4974,12 +4991,6 @@
         "symbol": "TRUMP2028",
         "until": "2026-11-09T10:38:15Z"
       },
-      "0x84f9ec6a5526bfed29e64cb2453bed233392571f": {
-        "at": "2026-11-07T21:58:15Z",
-        "reason": "real_depth",
-        "symbol": "DETECTIVE",
-        "until": "2026-11-08T21:58:15Z"
-      },
       "0x8536a159a670887e7fbd747cc9e2e9030f6b1422": {
         "at": "2026-11-08T19:53:12Z",
         "reason": "real_depth",
@@ -6216,12 +6227,6 @@
         "symbol": "WHITECHAIN",
         "until": "2026-11-09T10:08:15Z"
       },
-      "0xb200000000000000000000853ef3cf023727c8a9": {
-        "at": "2026-11-07T21:58:15Z",
-        "reason": "real_depth",
-        "symbol": "BRIANBRAIN",
-        "until": "2026-11-08T21:58:15Z"
-      },
       "0xb2000000000000000000008545d37c3a384cdf1a": {
         "at": "2026-11-08T19:28:15Z",
         "reason": "real_depth",
@@ -6647,12 +6652,6 @@
         "reason": "real_depth",
         "symbol": "DUGE",
         "until": "2026-11-09T00:28:16Z"
-      },
-      "0xb200000000000000000000f596d8c6cdd57ae86e": {
-        "at": "2026-11-07T21:58:15Z",
-        "reason": "real_depth",
-        "symbol": "SLOPCASH",
-        "until": "2026-11-08T21:58:15Z"
       },
       "0xb200000000000000000000f6df0b4136b0637d0f": {
         "at": "2026-11-08T18:13:13Z",
@@ -8010,12 +8009,6 @@
         "symbol": "BTC",
         "until": "2026-11-09T04:53:15Z"
       },
-      "0xf561c655d841a715fa1ab73e8d33225558e5cba3": {
-        "at": "2026-11-07T21:58:15Z",
-        "reason": "real_depth",
-        "symbol": "IRLING",
-        "until": "2026-11-08T21:58:15Z"
-      },
       "0xf5762a8f07033492b25bbd77c668eacc384256cd": {
         "at": "2026-11-08T16:23:13Z",
         "reason": "real_depth",
@@ -8217,9 +8210,9 @@
         "symbol": "YAWN"
       },
       "0xcf9924049f304c5dd0d127dde28b763954cecd81": {
-        "checks": 2,
+        "checks": 3,
         "first_seen": "2026-11-08T21:28:14Z",
-        "last_check": "2026-11-08T21:43:14Z",
+        "last_check": "2026-11-08T21:58:15Z",
         "symbol": "REBOOT"
       }
     }
