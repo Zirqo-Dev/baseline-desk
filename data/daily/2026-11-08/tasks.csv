@@ -606,3 +606,8 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-08T09:08:14Z,desk,VERIFY,Whitechain,0xb2000000000000000000003ee89846a992ecd5dd,SKIP,real_depth,goplus=skipped until=2026-11-09T09:08:14Z
 2026-11-08T09:08:14Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
 2026-11-08T09:08:14Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=1 new=2 checked=3 passed=0 bought=0 held=0 deferred=0 dex_only=2 goplus=1 requests=7 secs=2.0 bl_positions=0 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=none labels_due=0 labels_done=0 labels_calls=0 live=ok alerts=none alerts_sent=0
+2026-11-08T09:13:12Z,desk,VERIFY,XDP,0x42d463ec3e706d78c79a788cb59c082bd5d3c818,WATCH,goplus_not_ready,"first_seen=2026-11-08T09:13:12Z checks=1 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct b1=2 s1=0 b24=2 s24=0 liq=179454 dex=uniswap:v2 qliq=89718 pair_age=1 token_age=1"
+2026-11-08T09:13:12Z,desk,VERIFY,USPR,0xed867226f5ac7761ef33a0657b0e1b4685b20723,WATCH,goplus_not_ready,"first_seen=2026-11-08T09:13:12Z checks=1 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct b1=29 s1=3 b24=29 s24=3 liq=53286 dex=uniswap:v4 qliq=15625 pair_age=3 token_age=3"
+2026-11-08T09:13:12Z,desk,VERIFY,LIQUIDBGT,0xead6d0aa3d177b925489021df63ce5515090c00f,SKIP,real_depth,goplus=skipped until=2026-11-09T09:13:12Z
+2026-11-08T09:13:12Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
+2026-11-08T09:13:12Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=0 new=3 checked=3 passed=0 bought=0 held=0 deferred=0 dex_only=1 goplus=2 requests=9 secs=3.7 bl_positions=0 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=2 labels_done=2 labels_calls=1 live=ok alerts=none alerts_sent=0
