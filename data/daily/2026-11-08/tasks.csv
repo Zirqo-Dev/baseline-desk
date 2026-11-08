@@ -764,3 +764,8 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-08T11:08:13Z,desk,VERIFY,CLAUDIA,0xfe419c791d845fb69ad7e4a77dab605277e921e9,WATCH,goplus_not_ready,"first_seen=2026-11-08T10:08:15Z checks=4 pending=honeypot,top10_pct b1=94 s1=44 b24=103 s24=49 liq=49245 dex=uniswap:v4 qliq=24617 pair_age=65 token_age=65"
 2026-11-08T11:08:13Z,desk,VERIFY,URSP,0xb1980d5e68b1e8782bebcaeb8b39684f30b45422,WATCH,goplus_not_ready,first_seen=2026-11-08T10:48:16Z checks=2 pending=top10_pct b1=23 s1=0 b24=23 s24=0 liq=76915 dex=uniswap:v2 qliq=38457 pair_age=25 token_age=25
 2026-11-08T11:08:13Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=18 rechecks=4 new=0 checked=4 passed=0 bought=0 held=0 deferred=0 dex_only=0 goplus=4 requests=13 secs=7.8 bl_positions=1 bl_due=0 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=2 labels_done=2 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-08T11:13:13Z,baseline,EXIT,CLAUDIA,0xfe419c791d845fb69ad7e4a77dab605277e921e9,HOLD,,pct=0.24
+2026-11-08T11:13:13Z,desk,VERIFY,,0xe2bf65eb5f7ef168282cc13c70778f6fa7def61c,SKIP,missing:symbol,goplus=skipped until=2026-11-09T11:13:13Z
+2026-11-08T11:13:13Z,desk,VERIFY,PITCH,0x0323ca9fd64c62e72b1aee0856468e7d6e06263b,SKIP,real_depth,goplus=skipped until=2026-11-09T11:13:13Z
+2026-11-08T11:13:13Z,desk,VERIFY,plans,0xb20000000000000000000086a71b12f3fd132e27,SKIP,real_depth,goplus=skipped until=2026-11-09T11:13:13Z
+2026-11-08T11:13:13Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=18 rechecks=0 new=3 checked=3 passed=0 bought=0 held=0 deferred=0 dex_only=3 goplus=0 requests=8 secs=2.4 bl_positions=1 bl_due=0 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=2 labels_done=2 labels_calls=1 live=ok alerts=none alerts_sent=0
