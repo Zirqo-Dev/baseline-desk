@@ -29,7 +29,7 @@
     "positions": {},
     "refill_week": "2026-W45",
     "refills_usd": 46.81211808188797,
-    "ticks_since_buy": 18
+    "ticks_since_buy": 19
   },
   "desk": {
     "cash": 47.60776857887221,
@@ -170,6 +170,14 @@
         "sight_pair": "0x5b861c4654f6c79e82ef64a0d3d509e23762eb6a691c002117bfdec2190afd12",
         "sight_qliq": 1173,
         "symbol": "ADOF"
+      },
+      "0x07e3491a300b072fed8ffa5e1c294e024ee1f346": {
+        "done": [],
+        "first_price": 7.794e-06,
+        "first_seen": "2026-11-08T04:43:13Z",
+        "sight_pair": "0x0bafb700f04c67ec64526dadd7ea3eba64f090a4",
+        "sight_qliq": 33904,
+        "symbol": "AATF"
       },
       "0x083025f88ddf9b166ced4ebcd5a080956d582085": {
         "done": [
@@ -1434,17 +1442,6 @@
         "sight_qliq": 0,
         "symbol": "USPR"
       },
-      "0x85f6ce3e040e80ba0d41bc0b75a67f849d8a03cb": {
-        "done": [
-          1,
-          6
-        ],
-        "first_price": 5.306e-06,
-        "first_seen": "2026-11-07T04:43:13Z",
-        "sight_pair": "0x78488e3a59cbb2d374f689ac2cbeeeeaabc14871",
-        "sight_qliq": 35068,
-        "symbol": "USRP"
-      },
       "0x871bc9732c926ca458505678cf18106e5483b741": {
         "done": [
           1,
@@ -1500,7 +1497,9 @@
         "symbol": "BIDEN"
       },
       "0x8f9cc5f2327ce90b9ceea05e8280b51cb3586241": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 1.235e-05,
         "first_seen": "2026-11-08T03:43:11Z",
         "sight_pair": "0x252fa1b0974f4bbea71503b38b890acea36e8dcf",
@@ -2626,12 +2625,6 @@
         "symbol": "zorazzhole",
         "until": "2026-11-08T18:08:14Z"
       },
-      "0x0a721bc8961ab29aa0ad1bce6b4acf49046ab54f": {
-        "at": "2026-11-07T04:38:15Z",
-        "reason": "real_depth",
-        "symbol": "LAPTOP",
-        "until": "2026-11-08T04:38:15Z"
-      },
       "0x0a732e32973897b0e9974f3c6fd02311c9c71b94": {
         "at": "2026-11-07T11:33:12Z",
         "reason": "real_depth",
@@ -3651,12 +3644,6 @@
         "reason": "real_depth",
         "symbol": "WATER",
         "until": "2026-11-08T07:18:14Z"
-      },
-      "0x31a88a481e721a8d705bec29665214c86ec99976": {
-        "at": "2026-11-07T04:38:15Z",
-        "reason": "real_depth",
-        "symbol": "BaseHub",
-        "until": "2026-11-08T04:38:15Z"
       },
       "0x31f34cb6e9c4ef3e63ab5be4f5a2892caf80f496": {
         "at": "2026-11-07T15:23:16Z",
@@ -6604,12 +6591,6 @@
         "symbol": "BASE",
         "until": "2026-11-08T16:33:12Z"
       },
-      "0xb2000000000000000000001696724c9517754604": {
-        "at": "2026-11-07T04:38:15Z",
-        "reason": "real_depth",
-        "symbol": "BOOTR",
-        "until": "2026-11-08T04:38:15Z"
-      },
       "0xb200000000000000000000191bb920bb745dc97e": {
         "at": "2026-11-08T00:23:13Z",
         "reason": "real_depth",
@@ -7029,12 +7010,6 @@
         "reason": "real_depth",
         "symbol": "GALVAN",
         "until": "2026-11-09T04:33:13Z"
-      },
-      "0xb2000000000000000000007aa5137a36168ba830": {
-        "at": "2026-11-07T04:43:13Z",
-        "reason": "real_depth",
-        "symbol": "GROUCONT",
-        "until": "2026-11-08T04:43:13Z"
       },
       "0xb2000000000000000000007cc3f1406cdffba640": {
         "at": "2026-11-07T10:43:12Z",
@@ -8098,12 +8073,6 @@
         "symbol": "SPACEX",
         "until": "2026-11-08T12:48:15Z"
       },
-      "0xcd8eea09b3647d726f45f57ea2a328bfb52ace08": {
-        "at": "2026-11-07T04:38:15Z",
-        "reason": "missing:symbol",
-        "symbol": "",
-        "until": "2026-11-08T04:38:15Z"
-      },
       "0xcda3f08053fb99e9661c699ce5fa3262f828eba3": {
         "at": "2026-11-07T15:28:13Z",
         "reason": "missing:liq_usd",
@@ -9054,6 +9023,12 @@
       }
     },
     "watch": {
+      "0x07e3491a300b072fed8ffa5e1c294e024ee1f346": {
+        "checks": 1,
+        "first_seen": "2026-11-08T04:43:13Z",
+        "last_check": "2026-11-08T04:43:13Z",
+        "symbol": "AATF"
+      },
       "0x25d06f2cf7622080fba575f3c63a8a677d2d9924": {
         "checks": 3,
         "first_seen": "2026-11-08T04:03:11Z",
@@ -9061,9 +9036,9 @@
         "symbol": "NAFO"
       },
       "0x77dc109cbe5b7a8d8685e315625736120c237e5b": {
-        "checks": 2,
+        "checks": 3,
         "first_seen": "2026-11-08T04:13:13Z",
-        "last_check": "2026-11-08T04:28:13Z",
+        "last_check": "2026-11-08T04:43:13Z",
         "symbol": "XDP"
       }
     }
