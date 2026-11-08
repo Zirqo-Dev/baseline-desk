@@ -31,7 +31,7 @@
     "positions": {},
     "refill_week": "2026-W45",
     "refills_usd": 46.81211808188797,
-    "ticks_since_buy": 18
+    "ticks_since_buy": 19
   },
   "desk": {
     "cash": 47.60776857887221,
@@ -279,6 +279,14 @@
         "sight_pair": "0x3f72cd764aaaf4625bc9b6ca5b58b79b4246635808a1d436598f7f1697c8913a",
         "sight_qliq": 2,
         "symbol": "RARELIST"
+      },
+      "0x0f5f9a2154317a271a1175864c808c988261c4d1": {
+        "done": [],
+        "first_price": 2.105e-05,
+        "first_seen": "2026-11-08T12:23:14Z",
+        "sight_pair": "0xbf177ef363a0f7b5dafb2281463bfafcc344d11d",
+        "sight_qliq": 90908,
+        "symbol": "BIDEN"
       },
       "0x0f6545b3e037e1dd6c7a7d264bd698f484d74dde": {
         "done": [
@@ -1797,7 +1805,9 @@
         "symbol": "FODF"
       },
       "0xb9da6f346df0a597c4efd6973a5c079edb7d967e": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 4.517e-06,
         "first_seen": "2026-11-08T11:23:14Z",
         "sight_pair": "0x23eedee8a5edef2eb6fcc76c515552895d3f3068",
@@ -2400,6 +2410,12 @@
         "reason": "real_depth",
         "symbol": "BASED",
         "until": "2026-11-09T05:18:13Z"
+      },
+      "0x07de08729c949e3749728c76c50e9841ffd2b67b": {
+        "at": "2026-11-08T12:23:14Z",
+        "reason": "real_depth",
+        "symbol": "SPACEX",
+        "until": "2026-11-09T12:23:14Z"
       },
       "0x07e3491a300b072fed8ffa5e1c294e024ee1f346": {
         "at": "2026-11-08T05:28:15Z",
@@ -3451,12 +3467,6 @@
         "symbol": "LAPTOP",
         "until": "2026-11-09T05:08:13Z"
       },
-      "0x32dbd9bc3cbda6753c2070cbc674017317c3bce5": {
-        "at": "2026-11-07T12:23:14Z",
-        "reason": "real_depth",
-        "symbol": "USPR",
-        "until": "2026-11-08T12:23:14Z"
-      },
       "0x336c545ee5fe55cf8aeda99b47b3ad60f47a9f9b": {
         "at": "2026-11-07T15:33:14Z",
         "reason": "real_depth",
@@ -4332,12 +4342,6 @@
         "reason": "real_depth",
         "symbol": "CLAUDIA",
         "until": "2026-11-09T06:38:13Z"
-      },
-      "0x58cf79b6d893c0319ad9237bb0483b9b52123755": {
-        "at": "2026-11-07T12:23:14Z",
-        "reason": "real_depth",
-        "symbol": "USPR",
-        "until": "2026-11-08T12:23:14Z"
       },
       "0x593488c05d4e9199e7788eb4ef633ec26b7125ba": {
         "at": "2026-11-07T23:33:12Z",
@@ -8425,6 +8429,12 @@
         "symbol": "DEGEN",
         "until": "2026-11-09T04:53:15Z"
       },
+      "0xed867226f5ac7761ef33a0657b0e1b4685b20723": {
+        "at": "2026-11-08T12:23:14Z",
+        "reason": "goplus_timeout",
+        "symbol": "USPR",
+        "until": "2026-11-09T12:23:14Z"
+      },
       "0xed8dc167e11bb04a151226250a24707c9c45dce7": {
         "at": "2026-11-08T07:28:14Z",
         "reason": "real_depth",
@@ -8733,6 +8743,12 @@
       }
     },
     "watch": {
+      "0x0f5f9a2154317a271a1175864c808c988261c4d1": {
+        "checks": 1,
+        "first_seen": "2026-11-08T12:23:14Z",
+        "last_check": "2026-11-08T12:23:14Z",
+        "symbol": "BIDEN"
+      },
       "0x29ceb7156cc6e94b3d9e0b9bcf3d5041864c99e7": {
         "checks": 10,
         "first_seen": "2026-11-08T09:33:15Z",
@@ -8746,16 +8762,10 @@
         "symbol": "BIDEN"
       },
       "0xb65ee7a17081eab34eb8c589802fe96315a42e1a": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-08T12:08:14Z",
-        "last_check": "2026-11-08T12:08:14Z",
+        "last_check": "2026-11-08T12:23:14Z",
         "symbol": "AOC"
-      },
-      "0xed867226f5ac7761ef33a0657b0e1b4685b20723": {
-        "checks": 11,
-        "first_seen": "2026-11-08T09:13:12Z",
-        "last_check": "2026-11-08T12:08:14Z",
-        "symbol": "USPR"
       },
       "0xfe419c791d845fb69ad7e4a77dab605277e921e9": {
         "checks": 8,
