@@ -35,7 +35,9 @@
         "entry_qliq": 34582,
         "entry_ts": "2026-11-08T09:28:14Z",
         "ladder_done": [],
+        "last_liq_usd": 74790.24,
         "last_price": 1.023e-06,
+        "last_qliq": 34582,
         "launchpad": "other",
         "orig_qty": 4744562.665467789,
         "pair": "0x1811bf3de7eb9b63475913c52bc551772d98c21d224af945990ba466107c0324",
@@ -46,7 +48,7 @@
     },
     "refill_week": "2026-W45",
     "refills_usd": 46.81211808188797,
-    "ticks_since_buy": 0
+    "ticks_since_buy": 1
   },
   "desk": {
     "cash": 47.60776857887221,
@@ -614,6 +616,14 @@
         "sight_pair": "0x8782723dd0c08bf072fa2a15eb1ffec314ec5a606759e76d9113b780b444e739",
         "sight_qliq": 1,
         "symbol": "jose"
+      },
+      "0x29ceb7156cc6e94b3d9e0b9bcf3d5041864c99e7": {
+        "done": [],
+        "first_price": 5.869e-07,
+        "first_seen": "2026-11-08T09:33:15Z",
+        "sight_pair": "0x3a42d9034919d659ac6c561d9b840d569f76ef7577f4f60a8db8c64ca77505b8",
+        "sight_qliq": 13866,
+        "symbol": "USPR"
       },
       "0x29ec7b04ee48d743be5f9105d2c9da5ad082e18e": {
         "done": [
@@ -1370,7 +1380,9 @@
         "symbol": "WOFT"
       },
       "0x80a769e3115f1edea88fae183cc558d02ece839e": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 1.393e-05,
         "first_seen": "2026-11-08T08:33:13Z",
         "sight_pair": "0xc75b9ecd2a4020920bd2ad7bcb6084eaed40ef22",
@@ -4614,12 +4626,6 @@
         "symbol": "DEGEN",
         "until": "2026-11-08T19:38:16Z"
       },
-      "0x5f9f813d44f266531cd8d5572fe82b41f0ada775": {
-        "at": "2026-11-07T09:28:15Z",
-        "reason": "missing:liq_usd",
-        "symbol": "TRMT",
-        "until": "2026-11-08T09:28:15Z"
-      },
       "0x5fc88f7e51ed19e21391392078609bac271ee101": {
         "at": "2026-11-08T00:03:16Z",
         "reason": "real_depth",
@@ -5562,12 +5568,6 @@
         "symbol": "KAI",
         "until": "2026-11-08T22:08:13Z"
       },
-      "0x8ee8323eabc7ca1e324f566a35f5b398c2b0f689": {
-        "at": "2026-11-07T09:28:15Z",
-        "reason": "real_depth",
-        "symbol": "JFF",
-        "until": "2026-11-08T09:28:15Z"
-      },
       "0x8f1642d13dc8776c3de9f11b6b5e66859b273780": {
         "at": "2026-11-07T12:03:18Z",
         "reason": "real_depth",
@@ -5789,6 +5789,12 @@
         "reason": "real_depth",
         "symbol": "BASED",
         "until": "2026-11-08T16:23:13Z"
+      },
+      "0x99bf1b64c70bbee0acfb9b66a68932d91146d220": {
+        "at": "2026-11-08T09:33:15Z",
+        "reason": "real_depth",
+        "symbol": ".AI",
+        "until": "2026-11-09T09:33:15Z"
       },
       "0x9a0ed5b75ac841448e7b12e14689e66e4542e6d8": {
         "at": "2026-11-07T14:43:14Z",
@@ -6816,6 +6822,12 @@
         "symbol": "TREG",
         "until": "2026-11-09T02:58:14Z"
       },
+      "0xb2000000000000000000005831e51592eadc9078": {
+        "at": "2026-11-08T09:33:15Z",
+        "reason": "real_depth",
+        "symbol": "BTC",
+        "until": "2026-11-09T09:33:15Z"
+      },
       "0xb200000000000000000000597bb106ce67897aa8": {
         "at": "2026-11-07T19:38:16Z",
         "reason": "real_depth",
@@ -7259,12 +7271,6 @@
         "reason": "real_depth",
         "symbol": "Whitechain",
         "until": "2026-11-09T06:53:14Z"
-      },
-      "0xb200000000000000000000cab649fdbca4138e31": {
-        "at": "2026-11-07T09:28:15Z",
-        "reason": "real_depth",
-        "symbol": "NOTF",
-        "until": "2026-11-08T09:28:15Z"
       },
       "0xb200000000000000000000cc60c741a7eb12f354": {
         "at": "2026-11-07T14:43:14Z",
@@ -7914,12 +7920,6 @@
         "symbol": "THE",
         "until": "2026-11-08T23:33:12Z"
       },
-      "0xcafe23ccc4fc69c77ea7670337815df7749498cf": {
-        "at": "2026-11-07T09:28:15Z",
-        "reason": "real_depth",
-        "symbol": "MEOW",
-        "until": "2026-11-08T09:28:15Z"
-      },
       "0xcb009e44d44e07a8c9f4b0fc9736aabd1ffb86ea": {
         "at": "2026-11-07T20:58:13Z",
         "reason": "real_depth",
@@ -8303,6 +8303,12 @@
         "reason": "real_depth",
         "symbol": "XCHAT",
         "until": "2026-11-08T19:33:14Z"
+      },
+      "0xdbac9076072754c58324c30120261d4f9d1ba7f6": {
+        "at": "2026-11-08T09:33:15Z",
+        "reason": "real_depth",
+        "symbol": "WHITECHAIN",
+        "until": "2026-11-09T09:33:15Z"
       },
       "0xdc757c3b064c60308ef951c720e407706a1a5372": {
         "at": "2026-11-07T10:38:15Z",
@@ -8942,6 +8948,12 @@
       }
     },
     "watch": {
+      "0x29ceb7156cc6e94b3d9e0b9bcf3d5041864c99e7": {
+        "checks": 1,
+        "first_seen": "2026-11-08T09:33:15Z",
+        "last_check": "2026-11-08T09:33:15Z",
+        "symbol": "USPR"
+      },
       "0x42d463ec3e706d78c79a788cb59c082bd5d3c818": {
         "checks": 2,
         "first_seen": "2026-11-08T09:13:12Z",
@@ -8949,9 +8961,9 @@
         "symbol": "XDP"
       },
       "0x8d13cc1afbc1badf14d795a4e1769b4012d66909": {
-        "checks": 2,
+        "checks": 3,
         "first_seen": "2026-11-08T08:58:15Z",
-        "last_check": "2026-11-08T09:18:14Z",
+        "last_check": "2026-11-08T09:33:15Z",
         "symbol": "GIGAHUG"
       },
       "0xd9a5bda06ef0cdb35e912bf3ece2b96d16f71854": {
@@ -8967,9 +8979,9 @@
         "symbol": "USPR"
       },
       "0xeef2217eff2f9014f4c76b970acdb1c4fec02387": {
-        "checks": 8,
+        "checks": 9,
         "first_seen": "2026-11-08T07:08:13Z",
-        "last_check": "2026-11-08T09:18:14Z",
+        "last_check": "2026-11-08T09:33:15Z",
         "symbol": "BB"
       }
     }
