@@ -27,7 +27,7 @@
     "positions": {},
     "refill_week": "2026-W45",
     "refills_usd": 46.81211808188797,
-    "ticks_since_buy": 48
+    "ticks_since_buy": 49
   },
   "desk": {
     "cash": 47.60776857887221,
@@ -1713,7 +1713,9 @@
         "symbol": "SI"
       },
       "0xa10af5bbec94d897efc3a9973763df1fbb051499": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 0.000114,
         "first_seen": "2026-11-07T23:53:12Z",
         "sight_pair": "0xb353e7e75a08b5a7c9bce06aadc943ab961a8ff0aad5ad6316c281294072e86d",
@@ -2434,6 +2436,14 @@
         "sight_qliq": 91794,
         "symbol": "SI"
       },
+      "0xfaea0e1f3690edfebefda7fd1d7719186b8ead28": {
+        "done": [],
+        "first_price": 3.756e-06,
+        "first_seen": "2026-11-08T00:53:14Z",
+        "sight_pair": "0x27cdc4389df4d8ab05371e517bb633f6626ce012",
+        "sight_qliq": 34577,
+        "symbol": "NAOF"
+      },
       "0xfd760b8be718e7635c0a45a839fddc6afd7dcb1d": {
         "done": [],
         "first_price": 1.104e-05,
@@ -2540,6 +2550,12 @@
         "reason": "asset:stable",
         "symbol": "USDP",
         "until": "2026-11-08T22:23:14Z"
+      },
+      "0x02d4b325c70a17716fb55a84e89c8d847fdda3bc": {
+        "at": "2026-11-08T00:53:14Z",
+        "reason": "real_depth",
+        "symbol": "LIQUIDBGT",
+        "until": "2026-11-09T00:53:14Z"
       },
       "0x02e5c25a9524472bee5378a9a44da5e1bf86cca2": {
         "at": "2026-11-07T23:28:15Z",
@@ -7029,6 +7045,12 @@
         "symbol": "STANK",
         "until": "2026-11-08T21:28:16Z"
       },
+      "0xb200000000000000000000359fbbbd80ca379d3c": {
+        "at": "2026-11-08T00:53:14Z",
+        "reason": "real_depth",
+        "symbol": "DEPKID",
+        "until": "2026-11-09T00:53:14Z"
+      },
       "0xb20000000000000000000035eb4b35750f590372": {
         "at": "2026-11-07T10:58:13Z",
         "reason": "real_depth",
@@ -9293,6 +9315,12 @@
       }
     },
     "watch": {
+      "0xfaea0e1f3690edfebefda7fd1d7719186b8ead28": {
+        "checks": 1,
+        "first_seen": "2026-11-08T00:53:14Z",
+        "last_check": "2026-11-08T00:53:14Z",
+        "symbol": "NAOF"
+      },
       "0xfd760b8be718e7635c0a45a839fddc6afd7dcb1d": {
         "checks": 2,
         "first_seen": "2026-11-08T00:33:13Z",
