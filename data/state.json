@@ -29,7 +29,7 @@
     "positions": {},
     "refill_week": "2026-W45",
     "refills_usd": 46.81211808188797,
-    "ticks_since_buy": 11
+    "ticks_since_buy": 12
   },
   "desk": {
     "cash": 47.60776857887221,
@@ -1488,7 +1488,9 @@
         "symbol": "NOTF"
       },
       "0x8eb31b4b9d38480a6871b7096327b1d2dc30e0a5": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 2.038e-05,
         "first_seen": "2026-11-08T03:03:12Z",
         "sight_pair": "0x12599fb84a3c9cc0950b2e172cc794b249f08b5c",
@@ -1899,7 +1901,8 @@
       },
       "0xb9a7de4a80f69f751da276989efbd60b127a21e0": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 2.51,
         "first_seen": "2026-11-07T22:03:14Z",
@@ -2708,6 +2711,12 @@
         "reason": "missing:liq_usd",
         "symbol": "UFDT",
         "until": "2026-11-08T14:53:13Z"
+      },
+      "0x0d4b206244392a35ad5b580b4adc22df56e4744c": {
+        "at": "2026-11-08T04:08:14Z",
+        "reason": "real_depth",
+        "symbol": "DAOR",
+        "until": "2026-11-09T04:08:14Z"
       },
       "0x0d7d1d6b5dc10718819402914d5a839e565ad520": {
         "at": "2026-11-07T16:58:14Z",
@@ -6021,12 +6030,6 @@
         "symbol": "USRN",
         "until": "2026-11-08T23:18:14Z"
       },
-      "0x9fbf810ac8e416262f58cd07b1149525b23c429d": {
-        "at": "2026-11-07T04:03:14Z",
-        "reason": "real_depth",
-        "symbol": "CHUBBY",
-        "until": "2026-11-08T04:03:14Z"
-      },
       "0x9fd756cedbc1e26536c4ad88461f7a7d0d1c1f6e": {
         "at": "2026-11-07T06:23:12Z",
         "reason": "missing:liq_usd",
@@ -8751,12 +8754,6 @@
         "symbol": "\u200e\u202e\u0395\u054f\u0410\u0412",
         "until": "2026-11-08T16:38:14Z"
       },
-      "0xefdd33131c8638258f8d8c69c28e4c65b8c25389": {
-        "at": "2026-11-07T04:03:14Z",
-        "reason": "real_depth",
-        "symbol": "STARLINK",
-        "until": "2026-11-08T04:03:14Z"
-      },
       "0xf06a5d5840f8e14072a117c3a9ec7fb00b98cccc": {
         "at": "2026-11-07T11:13:13Z",
         "reason": "real_depth",
@@ -9077,12 +9074,6 @@
       }
     },
     "watch": {
-      "0x0d4b206244392a35ad5b580b4adc22df56e4744c": {
-        "checks": 2,
-        "first_seen": "2026-11-08T03:28:12Z",
-        "last_check": "2026-11-08T03:48:14Z",
-        "symbol": "DAOR"
-      },
       "0x25d06f2cf7622080fba575f3c63a8a677d2d9924": {
         "checks": 1,
         "first_seen": "2026-11-08T04:03:11Z",
