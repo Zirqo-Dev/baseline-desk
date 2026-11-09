@@ -29,7 +29,7 @@
     "positions": {},
     "refill_week": "2026-W46",
     "refills_usd": 47.693738985981945,
-    "ticks_since_buy": 24
+    "ticks_since_buy": 25
   },
   "desk": {
     "cash": 50.0,
@@ -322,6 +322,14 @@
         "sight_pair": "0xd981cbd51ec537adf5bd416f5c3ca64a387994c2124efdde876ec6a641487270",
         "sight_qliq": 682,
         "symbol": "A\u200aO\u200aD\u200aF"
+      },
+      "0x0d17dc476b76477b778f99071add54a8085dfc7e": {
+        "done": [],
+        "first_price": 1.138e-05,
+        "first_seen": "2026-11-09T07:13:15Z",
+        "sight_pair": "0x9933bf5f15ed9ea0ec8cd0c12a597b952384e1a3",
+        "sight_qliq": 86313,
+        "symbol": "REBOOT"
       },
       "0x0d6dc54954e308328b3e18233ec5ca3ea414f54d": {
         "done": [
@@ -1242,7 +1250,9 @@
         "symbol": "USPR"
       },
       "0x497b670d7426fac60e606a2caaec1e8eab3ff618": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 0.0001079,
         "first_seen": "2026-11-09T06:08:15Z",
         "sight_pair": "0xba3c5ed775306ed064b4ab4d81b5d35cafd2b527cb50cfe31d05b10f782db3f4",
@@ -2358,7 +2368,9 @@
         "symbol": "PIEVERSE"
       },
       "0xe6fae5b1c0e0aa365c79ad11f1e531f9cdc7a39a": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 0.0001242,
         "first_seen": "2026-11-09T06:08:15Z",
         "sight_pair": "0xac8049e35fa2bd5718d56213ca7c66a1d29bcc6ea8f2fd98590802e7af77f4a6",
@@ -6691,6 +6703,12 @@
         "symbol": "KOLBE",
         "until": "2026-11-09T15:28:14Z"
       },
+      "0xb200000000000000000000c815d99f2fa1121648": {
+        "at": "2026-11-09T07:13:15Z",
+        "reason": "real_depth",
+        "symbol": "MENGO",
+        "until": "2026-11-10T07:13:15Z"
+      },
       "0xb200000000000000000000ca7e1790033caf7ac5": {
         "at": "2026-11-09T02:58:13Z",
         "reason": "real_depth",
@@ -8229,16 +8247,22 @@
       }
     },
     "watch": {
+      "0x0d17dc476b76477b778f99071add54a8085dfc7e": {
+        "checks": 1,
+        "first_seen": "2026-11-09T07:13:15Z",
+        "last_check": "2026-11-09T07:13:15Z",
+        "symbol": "REBOOT"
+      },
       "0x3f53a22d889e7135b187df9e66001a64d513b38f": {
-        "checks": 8,
+        "checks": 9,
         "first_seen": "2026-11-09T04:53:12Z",
-        "last_check": "2026-11-09T06:58:13Z",
+        "last_check": "2026-11-09T07:13:15Z",
         "symbol": "DACITY"
       },
       "0x49cbbbc9613c8284578b7c0477effe7e2f055bd8": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-09T06:58:13Z",
-        "last_check": "2026-11-09T06:58:13Z",
+        "last_check": "2026-11-09T07:13:15Z",
         "symbol": "VANA"
       },
       "0xa0490bc77a4644bce9c8e66197d304d2bdc27e95": {
