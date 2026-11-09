@@ -1204,3 +1204,12 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-09T14:43:13Z,desk,VERIFY,BRIAN,0xb200000000000000000000c30003587650670c83,SKIP,real_depth,goplus=skipped until=2026-11-10T14:43:13Z
 2026-11-09T14:43:13Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
 2026-11-09T14:43:13Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=0 new=1 checked=1 passed=0 bought=0 held=0 deferred=0 dex_only=1 goplus=0 requests=4 secs=1.4 bl_positions=0 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=none labels_due=0 labels_done=0 labels_calls=0 live=ok alerts=none alerts_sent=0
+2026-11-09T14:48:14Z,desk,VERIFY,NVIDIH,0x4962b1712f5f9d5bf8b6ef6f0633330ad3e88d7d,SKIP,goplus_timeout,first_seen=2026-11-09T11:28:17Z checks=12 until=2026-11-10T14:48:14Z b1=67 s1=52 b24=258 s24=187 liq=49501 dex=uniswap:v4 qliq=24727 pair_age=208 token_age=208
+2026-11-09T14:48:14Z,desk,VERIFY,Rhule,0xff76fc747b06473a6e7a16700ee4b41dc57bff09,WATCH,goplus_not_ready,first_seen=2026-11-09T14:28:14Z checks=2 pending=top10_pct b1=43 s1=0 b24=43 s24=0 liq=174046 dex=uniswap:v2 qliq=87014 pair_age=25 token_age=25
+2026-11-09T14:48:14Z,desk,VERIFY,CHUBBY,0x84dba90d8ed32d518ed714a134a1fe6f45f72531,SKIP,real_depth,goplus=skipped until=2026-11-10T14:48:14Z
+2026-11-09T14:48:14Z,desk,VERIFY,SPACEX,0xd2289982972c3b2cf287892bfd6bf3bae1be8583,SKIP,real_depth,goplus=skipped until=2026-11-10T14:48:14Z
+2026-11-09T14:48:14Z,desk,VERIFY,SI,0x61fa92104e8d8f27540067f70de73ef8137f6d9a,WATCH,goplus_not_ready,"first_seen=2026-11-09T14:48:14Z checks=1 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct b1=5 s1=0 b24=5 s24=0 liq=171225 dex=uniswap:v2 qliq=85620 pair_age=3 token_age=3"
+2026-11-09T14:48:14Z,desk,VERIFY,USD1,0x68a1e7e418d06a1aa9e0a4c3fd236b62ec67cccc,SKIP,real_depth,goplus=skipped until=2026-11-10T14:48:14Z
+2026-11-09T14:48:14Z,desk,VERIFY,Basedeer,0x33f765e1b5425dba806f7264ae0363469fd98e7c,SKIP,real_depth,goplus=skipped until=2026-11-10T14:48:14Z
+2026-11-09T14:48:14Z,baseline,EXECUTE,NVIDIH,0x4962b1712f5f9d5bf8b6ef6f0633330ad3e88d7d,SKIP,reentry_cooldown,seed=202611091448 eligible=1 pick=0 pool=4962b1 desk=goplus_timeout launchpad=other
+2026-11-09T14:48:14Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=2 new=5 checked=7 passed=0 bought=0 held=0 deferred=0 dex_only=4 goplus=3 requests=14 secs=6.1 bl_positions=0 bl_due=1 bl_eligible=1 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=4 labels_done=4 labels_calls=1 live=ok alerts=none alerts_sent=0
