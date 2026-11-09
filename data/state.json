@@ -1,6 +1,6 @@
 {
   "baseline": {
-    "cash": 49.952437571652844,
+    "cash": 44.952437571652844,
     "cooldown": {
       "a:0x25d3b900efa1b6e8d101d9cd6063727e21e1daa1": "2026-11-09T17:58:16Z",
       "a:0x283af3e14bbb17c7af2f33dc714e567da079bd04": "2026-11-09T19:03:17Z",
@@ -24,10 +24,27 @@
     "day": "2026-11-09",
     "day_start_value": 50.0,
     "halted_day": "",
-    "positions": {},
+    "positions": {
+      "0xc9f11bc50a2b925d2df8f63ea42f3a6c10fce5a5": {
+        "cost_usd": 5.0,
+        "entry_fill": 7.399703673851921e-05,
+        "entry_intended": 7.182e-05,
+        "entry_liq_usd": 63744.65,
+        "entry_qliq": 16005,
+        "entry_ts": "2026-11-09T11:58:18Z",
+        "ladder_done": [],
+        "last_price": 7.182e-05,
+        "launchpad": "other",
+        "orig_qty": 67570.27335659844,
+        "pair": "0x614e2058a0dc3da2d416bbaca814f0bddbec558df0eb5f12eb5fbb10d3fb8cdd",
+        "peak_price": 7.182e-05,
+        "qty": 67570.27335659844,
+        "symbol": "Coinbank"
+      }
+    },
     "refill_week": "2026-W46",
     "refills_usd": 47.693738985981945,
-    "ticks_since_buy": 11
+    "ticks_since_buy": 0
   },
   "desk": {
     "cash": 50.0,
@@ -1711,6 +1728,14 @@
         "sight_qliq": 46695,
         "symbol": "Coinbank"
       },
+      "0x80bd2dd890f31d8ba5c097d51b9c4bf3d5b73987": {
+        "done": [],
+        "first_price": 3.966e-06,
+        "first_seen": "2026-11-09T11:58:18Z",
+        "sight_pair": "0x51a710c8f4382ee4cb323cf26f2811d16380ed94",
+        "sight_qliq": 33185,
+        "symbol": "Coinbank"
+      },
       "0x8551dddac62ba6abe451ea958f2e46d892d1c8e0": {
         "done": [
           1,
@@ -1968,7 +1993,8 @@
       },
       "0x9dbdfd162dfc961f2fa3d15a44f3312d0202c2bb": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 9.65e-06,
         "first_seen": "2026-11-09T05:58:14Z",
@@ -2060,7 +2086,8 @@
       },
       "0xa7f4c377a7e459f27d0b971f2d8cb8455eb0c8e1": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 0.0001266,
         "first_seen": "2026-11-09T05:58:14Z",
@@ -3024,6 +3051,12 @@
         "symbol": "NADF",
         "until": "2026-11-09T14:43:14Z"
       },
+      "0x0ea6770fa5e688d4bb69f372ab2d6c393fb67222": {
+        "at": "2026-11-09T11:58:18Z",
+        "reason": "missing:price",
+        "symbol": "BANKCOIN",
+        "until": "2026-11-10T11:58:18Z"
+      },
       "0x0f2e795db02dc5ff857598b01cc1b982bef337df": {
         "at": "2026-11-08T12:43:16Z",
         "reason": "real_depth",
@@ -3281,12 +3314,6 @@
         "reason": "real_depth",
         "symbol": "GIGANT",
         "until": "2026-11-09T17:48:14Z"
-      },
-      "0x1b1f1fbe12c0129b7ca69fbe30c99f9554644467": {
-        "at": "2026-11-08T11:58:14Z",
-        "reason": "real_depth",
-        "symbol": "COMET",
-        "until": "2026-11-09T11:58:14Z"
       },
       "0x1b556fc6c5bf30b4d3e5fa148a8d4794a02c31c6": {
         "at": "2026-11-08T22:38:13Z",
@@ -3815,6 +3842,12 @@
         "reason": "real_depth",
         "symbol": "USPF",
         "until": "2026-11-09T16:18:15Z"
+      },
+      "0x31aa1de3ace7200eae22fffa2c08ea0197571ec0": {
+        "at": "2026-11-09T11:58:18Z",
+        "reason": "real_depth",
+        "symbol": "LOL",
+        "until": "2026-11-10T11:58:18Z"
       },
       "0x31deed4738884c994c8a1b2da63bc03cf03aaba3": {
         "at": "2026-11-08T15:58:15Z",
@@ -4644,6 +4677,12 @@
         "symbol": "LOL",
         "until": "2026-11-09T20:38:15Z"
       },
+      "0x5814929d618978b782ab556f6678dc00326dca01": {
+        "at": "2026-11-09T11:58:18Z",
+        "reason": "real_depth",
+        "symbol": "BITBANK",
+        "until": "2026-11-10T11:58:18Z"
+      },
       "0x582ee35af2d435e93d30c6c0fb1d4e35cdffa158": {
         "at": "2026-11-09T00:53:14Z",
         "reason": "real_depth",
@@ -4793,6 +4832,12 @@
         "reason": "real_depth",
         "symbol": "XOT",
         "until": "2026-11-10T09:18:15Z"
+      },
+      "0x6242d8a1f3d82f9321915adc9ac9b754aaba6152": {
+        "at": "2026-11-09T11:58:18Z",
+        "reason": "real_depth",
+        "symbol": "SPACEX",
+        "until": "2026-11-10T11:58:18Z"
       },
       "0x62c2e94d2ad86412dd6ba5667d31a1391ab1fa3e": {
         "at": "2026-11-09T08:33:13Z",
@@ -5129,6 +5174,12 @@
         "reason": "real_depth",
         "symbol": "QFE",
         "until": "2026-11-10T04:58:15Z"
+      },
+      "0x7172025909a31c86c672622413d123021f98d201": {
+        "at": "2026-11-09T11:58:18Z",
+        "reason": "real_depth",
+        "symbol": "TI",
+        "until": "2026-11-10T11:58:18Z"
       },
       "0x71d8b28d31605921dcc925fbf5b8e1bbc5c110c9": {
         "at": "2026-11-09T03:18:14Z",
@@ -5801,12 +5852,6 @@
         "reason": "real_depth",
         "symbol": "Elysium",
         "until": "2026-11-10T10:13:13Z"
-      },
-      "0x9b46e94f2c0c2f6e2f92fc1149fa5a829333e56b": {
-        "at": "2026-11-08T11:58:14Z",
-        "reason": "real_depth",
-        "symbol": "SPACEX",
-        "until": "2026-11-09T11:58:14Z"
       },
       "0x9b6973cd2ae9b401d270c7c8c42c1117000861f5": {
         "at": "2026-11-08T21:33:13Z",
@@ -8702,16 +8747,22 @@
         "last_check": "2026-11-09T11:53:15Z",
         "symbol": "Coinbank"
       },
+      "0x80bd2dd890f31d8ba5c097d51b9c4bf3d5b73987": {
+        "checks": 1,
+        "first_seen": "2026-11-09T11:58:18Z",
+        "last_check": "2026-11-09T11:58:18Z",
+        "symbol": "Coinbank"
+      },
       "0x9a3ad2e5d475c3d33f8885795974169d30a5a63d": {
-        "checks": 2,
+        "checks": 3,
         "first_seen": "2026-11-09T11:23:19Z",
-        "last_check": "2026-11-09T11:43:15Z",
+        "last_check": "2026-11-09T11:58:18Z",
         "symbol": "Coinbank"
       },
       "0xc9f11bc50a2b925d2df8f63ea42f3a6c10fce5a5": {
-        "checks": 2,
+        "checks": 3,
         "first_seen": "2026-11-09T11:23:19Z",
-        "last_check": "2026-11-09T11:43:15Z",
+        "last_check": "2026-11-09T11:58:18Z",
         "symbol": "Coinbank"
       },
       "0xed6f7268d940d34c6ee07a2eefab48acdd81da54": {
