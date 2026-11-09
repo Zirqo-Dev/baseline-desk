@@ -31,7 +31,7 @@
     "positions": {},
     "refill_week": "2026-W46",
     "refills_usd": 47.693738985981945,
-    "ticks_since_buy": 42
+    "ticks_since_buy": 43
   },
   "desk": {
     "cash": 50.0,
@@ -134,7 +134,8 @@
       },
       "0x080929f9354e26dedd8fc60b2825e8eddc407bde": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 8.964e-05,
         "first_seen": "2026-11-09T10:33:12Z",
@@ -1084,6 +1085,14 @@
         "sight_pair": "0x622154f2863a6ba4407c3299049413d846355e71f26372699cf33cfdcb37211e",
         "sight_qliq": 1,
         "symbol": "UOFT"
+      },
+      "0x4cecffdcfe60b2044aafa373ac88c3918f7ef601": {
+        "done": [],
+        "first_price": 1.048e-05,
+        "first_seen": "2026-11-09T16:33:14Z",
+        "sight_pair": "0x2a334dc53c725b1d2777ce315d88ad91e1966a36",
+        "sight_qliq": 88452,
+        "symbol": "REBOOT"
       },
       "0x4e90263fda0a2e6a9c47be71b6b8380812be55d8": {
         "done": [
@@ -4090,12 +4099,6 @@
         "symbol": "OPEN",
         "until": "2026-11-10T06:08:15Z"
       },
-      "0x49c1798e46d57fbfec9b0835214002eeb0e5f2b2": {
-        "at": "2026-11-08T16:33:12Z",
-        "reason": "real_depth",
-        "symbol": "LIQUIDBGT",
-        "until": "2026-11-09T16:33:12Z"
-      },
       "0x49cbbbc9613c8284578b7c0477effe7e2f055bd8": {
         "at": "2026-11-09T07:33:13Z",
         "reason": "real_depth",
@@ -5031,12 +5034,6 @@
         "reason": "real_depth",
         "symbol": "Commas",
         "until": "2026-11-10T12:38:15Z"
-      },
-      "0x7cf06d61f3d39e147f8bf52fc90e042923a59f33": {
-        "at": "2026-11-08T16:33:12Z",
-        "reason": "real_depth",
-        "symbol": "MICRO",
-        "until": "2026-11-09T16:33:12Z"
       },
       "0x7d0ff87a99629abd8ae8e0ea94c75f10cf4bb62f": {
         "at": "2026-11-09T10:38:16Z",
@@ -6015,6 +6012,12 @@
         "reason": "real_depth",
         "symbol": "House",
         "until": "2026-11-09T18:28:15Z"
+      },
+      "0xb08e0a5aa7cf30315b78747713cd31549c99cba3": {
+        "at": "2026-11-09T16:33:14Z",
+        "reason": "real_depth",
+        "symbol": "Exact",
+        "until": "2026-11-10T16:33:14Z"
       },
       "0xb0e012875025666229faa22643f76a79d4b5ce01": {
         "at": "2026-11-09T15:33:12Z",
@@ -7858,12 +7861,6 @@
         "symbol": "DGUY",
         "until": "2026-11-09T17:58:16Z"
       },
-      "0xe37b008533be57d857f698dc26212de0253abeb3": {
-        "at": "2026-11-08T16:33:12Z",
-        "reason": "real_depth",
-        "symbol": "FOBO",
-        "until": "2026-11-09T16:33:12Z"
-      },
       "0xe3943e173ae5849a335a44399f9e10b34b459ba3": {
         "at": "2026-11-09T07:38:14Z",
         "reason": "real_depth",
@@ -8382,6 +8379,12 @@
       }
     },
     "watch": {
+      "0x4cecffdcfe60b2044aafa373ac88c3918f7ef601": {
+        "checks": 1,
+        "first_seen": "2026-11-09T16:33:14Z",
+        "last_check": "2026-11-09T16:33:14Z",
+        "symbol": "REBOOT"
+      },
       "0xd84410830d5ed47e7cf7cc7e06b92d2ac01e26d0": {
         "checks": 3,
         "first_seen": "2026-11-09T15:58:14Z",
