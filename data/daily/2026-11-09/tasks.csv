@@ -762,3 +762,8 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-09T10:13:13Z,desk,VERIFY,BANKCOIN,0x435373632ba54dea9594ea52525a02d90edf9401,SKIP,real_depth,goplus=skipped until=2026-11-10T10:13:13Z
 2026-11-09T10:13:13Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
 2026-11-09T10:13:13Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=0 new=6 checked=6 passed=0 bought=0 held=0 deferred=0 dex_only=6 goplus=0 requests=10 secs=2.3 bl_positions=0 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=2 labels_done=2 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-09T10:18:15Z,desk,VERIFY,AFOE,0x787456c0afd3fbd628746c5e2036819a80973790,WATCH,goplus_not_ready,"first_seen=2026-11-09T09:58:16Z checks=2 pending=mint_open,freeze_or_blacklist,honeypot,buy_tax_pct,sell_tax_pct,dev_pct,top10_pct,lp_locked_pct,risk_flags b1=24 s1=0 b24=24 s24=0 liq=71344 dex=uniswap:v2 qliq=35678 pair_age=26 token_age=26"
+2026-11-09T10:18:15Z,desk,VERIFY,BLG,0x7d0ff87a99629abd8ae8e0ea94c75f10cf4bb62f,WATCH,goplus_not_ready,first_seen=2026-11-09T09:58:16Z checks=2 pending=top10_pct b1=41 s1=0 b24=41 s24=0 liq=171148 dex=uniswap:v2 qliq=85538 pair_age=24 token_age=24
+2026-11-09T10:18:15Z,desk,VERIFY,gork,0xc078ab45a20498d53251eb5e8d8a9c705149ca1a,SKIP,real_depth,goplus=skipped until=2026-11-10T10:18:15Z
+2026-11-09T10:18:15Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
+2026-11-09T10:18:15Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=2 new=1 checked=3 passed=0 bought=0 held=0 deferred=0 dex_only=1 goplus=2 requests=9 secs=3.9 bl_positions=0 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=11 labels_done=11 labels_calls=1 live=ok alerts=none alerts_sent=0
