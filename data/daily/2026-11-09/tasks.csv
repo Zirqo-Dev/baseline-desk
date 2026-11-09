@@ -128,3 +128,9 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-09T01:53:13Z,desk,VERIFY,PRPS,0x3710e625d281b0bd4eedd867a66af16a62c16a46,SKIP,real_depth,goplus=skipped until=2026-11-10T01:53:13Z
 2026-11-09T01:53:13Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
 2026-11-09T01:53:13Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=21 rechecks=0 new=2 checked=2 passed=0 bought=0 held=0 deferred=0 dex_only=2 goplus=0 requests=6 secs=1.7 bl_positions=0 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=1 labels_done=1 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-09T01:58:15Z,desk,VERIFY,BOOTR,0xacd44daa18ead0ac358b23b5be2378d9bf7a34cf,WATCH,goplus_not_ready,"first_seen=2026-11-09T01:38:14Z checks=2 pending=honeypot,buy_tax_pct,sell_tax_pct,dev_pct,top10_pct,lp_locked_pct b1=38 s1=0 b24=38 s24=0 liq=196679 dex=uniswap:v2 qliq=98329 pair_age=23 token_age=23"
+2026-11-09T01:58:15Z,desk,VERIFY,XCHAT,0x694b25f6d654d6152c6149f8dc9393e1543ba8f6,SKIP,real_depth,goplus=skipped until=2026-11-10T01:58:15Z
+2026-11-09T01:58:15Z,desk,VERIFY,UniBase,0x7acb5bb711e342bacd31e23472c7a262e63f0ee9,SKIP,real_depth,goplus=skipped until=2026-11-10T01:58:15Z
+2026-11-09T01:58:15Z,desk,VERIFY,BANKRIUM,0xb200000000000000000000cdc9e9a3f57579313a,SKIP,real_depth,goplus=skipped until=2026-11-10T01:58:15Z
+2026-11-09T01:58:15Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
+2026-11-09T01:58:15Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=21 rechecks=1 new=3 checked=4 passed=0 bought=0 held=0 deferred=0 dex_only=3 goplus=1 requests=9 secs=2.4 bl_positions=0 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=1 labels_done=1 labels_calls=1 live=ok alerts=none alerts_sent=0
