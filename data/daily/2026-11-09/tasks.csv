@@ -829,3 +829,7 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-09T11:03:13Z,desk,VERIFY,Coinbank,0xb2000000000000000000008115b06279484ecaf7,SKIP,real_depth,goplus=skipped until=2026-11-10T11:03:13Z
 2026-11-09T11:03:13Z,desk,VERIFY,TBLOCK,0xb200000000000000000000ba9bf8330307f8830e,SKIP,missing:price,goplus=skipped until=2026-11-10T11:03:13Z
 2026-11-09T11:03:13Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=0 new=2 checked=2 passed=0 bought=0 held=0 deferred=0 dex_only=2 goplus=0 requests=7 secs=1.7 bl_positions=1 bl_due=0 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=1 labels_done=1 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-09T11:08:14Z,baseline,EXIT,GTA6,0x46e3e18f4c6ea3d9a0ec18bf628334b0918e72a1,HOLD,,pct=-11.03
+2026-11-09T11:08:14Z,desk,VERIFY,SI,0x5d1775fc906fd6d337de1ba0318cd11fa61c7ace,WATCH,goplus_not_ready,"first_seen=2026-11-09T10:48:18Z checks=2 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct b1=48 s1=0 b24=48 s24=0 liq=198632 dex=uniswap:v2 qliq=99313 pair_age=25 token_age=25"
+2026-11-09T11:08:14Z,desk,VERIFY,LUCE,0xd0fcca7dbbfef7b4778507f64b769362a75a9568,SKIP,real_depth,goplus=skipped until=2026-11-10T11:08:14Z
+2026-11-09T11:08:14Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=1 new=1 checked=2 passed=0 bought=0 held=0 deferred=0 dex_only=1 goplus=1 requests=7 secs=2.0 bl_positions=1 bl_due=0 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=none labels_due=0 labels_done=0 labels_calls=0 live=ok alerts=none alerts_sent=0
