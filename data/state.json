@@ -29,7 +29,7 @@
     "positions": {},
     "refill_week": "2026-W46",
     "refills_usd": 47.693738985981945,
-    "ticks_since_buy": 49
+    "ticks_since_buy": 50
   },
   "desk": {
     "cash": 50.0,
@@ -1060,6 +1060,14 @@
         "sight_qliq": 717,
         "symbol": "A\u200aO\u200aD\u200aF"
       },
+      "0x36fcfc9462a69382433500be9da847dfada791e6": {
+        "done": [],
+        "first_price": 1.133e-05,
+        "first_seen": "2026-11-09T02:08:13Z",
+        "sight_pair": "0xa9f5dd8f62038215fa6cee6972efc4d0895575d4c423a426349ec4976c95c773",
+        "sight_qliq": 178953,
+        "symbol": "ANT"
+      },
       "0x375add4502f8c74c5eaade4ab0fe841412d229d2": {
         "done": [
           1,
@@ -1611,17 +1619,6 @@
         "sight_pair": "0x252fa1b0974f4bbea71503b38b890acea36e8dcf",
         "sight_qliq": 93233,
         "symbol": "REBOOT"
-      },
-      "0x90745fd7d7f5a1e22f55cc1d07ab915179e9abdc": {
-        "done": [
-          1,
-          6
-        ],
-        "first_price": 5.11e-06,
-        "first_seen": "2026-11-08T02:08:13Z",
-        "sight_pair": "0xce0d41da9f4536661297d6f40825252d6b0ebe00",
-        "sight_qliq": 34100,
-        "symbol": "NAOF"
       },
       "0x910e106d9dd859072966259208aa3b1ccb5ee63f": {
         "done": [
@@ -4125,12 +4122,6 @@
         "symbol": "BRAIN",
         "until": "2026-11-10T00:28:15Z"
       },
-      "0x51342f97ed6d555f747193bb7fe29ee00d2ee754": {
-        "at": "2026-11-08T02:08:13Z",
-        "reason": "real_depth",
-        "symbol": "U.S POWER RESERVE",
-        "until": "2026-11-09T02:08:13Z"
-      },
       "0x51dac381d51e24942c38e5efbb07a4accf1d6536": {
         "at": "2026-11-08T21:13:15Z",
         "reason": "missing:liq_usd",
@@ -5049,12 +5040,6 @@
         "symbol": "NAOF",
         "until": "2026-11-09T02:48:14Z"
       },
-      "0x9092ae5f19ecde360c980ec39714fab0974759c1": {
-        "at": "2026-11-08T02:08:13Z",
-        "reason": "real_depth",
-        "symbol": "MEOW",
-        "until": "2026-11-09T02:08:13Z"
-      },
       "0x910e106d9dd859072966259208aa3b1ccb5ee63f": {
         "at": "2026-11-08T20:18:16Z",
         "reason": "real_depth",
@@ -5673,12 +5658,6 @@
         "symbol": "Gianniarone",
         "until": "2026-11-10T01:18:14Z"
       },
-      "0xb2000000000000000000001b914c37c1a79960b5": {
-        "at": "2026-11-08T02:08:13Z",
-        "reason": "real_depth",
-        "symbol": "DEPKID",
-        "until": "2026-11-09T02:08:13Z"
-      },
       "0xb2000000000000000000001c71cb82d59b229149": {
         "at": "2026-11-08T13:03:13Z",
         "reason": "real_depth",
@@ -5786,12 +5765,6 @@
         "reason": "real_depth",
         "symbol": "JESSE2045",
         "until": "2026-11-09T08:28:13Z"
-      },
-      "0xb2000000000000000000003926be0bad531dc552": {
-        "at": "2026-11-08T02:08:13Z",
-        "reason": "missing:liq_usd",
-        "symbol": "DEPKID",
-        "until": "2026-11-09T02:08:13Z"
       },
       "0xb20000000000000000000039ed96fdd3e0796e26": {
         "at": "2026-11-08T10:18:14Z",
@@ -7889,10 +7862,16 @@
       }
     },
     "watch": {
+      "0x36fcfc9462a69382433500be9da847dfada791e6": {
+        "checks": 1,
+        "first_seen": "2026-11-09T02:08:13Z",
+        "last_check": "2026-11-09T02:08:13Z",
+        "symbol": "ANT"
+      },
       "0x7300060ee9aab557013c6d23671a2ecbb2cf046e": {
-        "checks": 2,
+        "checks": 3,
         "first_seen": "2026-11-09T01:33:13Z",
-        "last_check": "2026-11-09T01:48:15Z",
+        "last_check": "2026-11-09T02:08:13Z",
         "symbol": "POWER U.S RESERVE"
       },
       "0xacd44daa18ead0ac358b23b5be2378d9bf7a34cf": {
