@@ -62,6 +62,8 @@ BACKTEST tools/backtest.py          by hand only (BL-33): a fixed spec + its see
 CANDLES  tools/candles.py           by hand only (BL-33, backtest.yml): GeckoTerminal 5-min pool OHLCV, sight -> +7 days;
                                    --eth: the deepest WETH/USDC pool, one eth-<day> file per complete day (BL-33 part 2);
                                    backtest/status.json after every run and by --status (BL-43, display only)
+LIQUID   tools/liquid.py            by hand only (BL-39 part 1): liquid Base token survey, GeckoTerminal pool lists + daily
+                                   OHLCV ending before a CUT, counts and coverage only (no returns) -> backtest/liquid/
 TICK     core/tick.py              one run: roll day (+report, +machine cards, then twin restart once + weekly refills),
                                    exits (desk, baseline), scan -> verify -> buy, baseline buy,
                                    outcome labels (own try), live.json (own try, not on a crash), alerts (own try, also on a crash),
@@ -69,12 +71,13 @@ TICK     core/tick.py              one run: roll day (+report, +machine cards, t
 
 Folders:
 - core/: config.py, book.py, desk.py, verify.py, leads.py, exits.py, friction.py, tick.py, baseline.py, report.py, labels.py, live.py, alerts.py
-- tools/: replay.py (BL-29, offline replay by hand), backtest.py and candles.py (BL-33); never imported by core/,
-  never on the tick path
+- tools/: replay.py (BL-29, offline replay by hand), backtest.py and candles.py (BL-33), liquid.py (BL-39 part 1);
+  never imported by core/, never on the tick path
 - backtest/: candles/ (<sight-day>.jsonl.gz written once when its 7-day windows closed, <day>.open.jsonl.gz until then,
   eth-<day>.jsonl.gz, twin-validation.jsonl.gz), specs/ (bl34-survivor-momentum-v2.md + .json, frozen; v1 superseded, never run), results/<run>/
   (summary.json, trades.csv), holdout.lock.json (BL-33; it also keeps the pass tests, BL-43), status.json (BL-43: which
-  candle files exist + the twin-validation totals, for the site); never under data/, never read by core/ or the tick
+  candle files exist + the twin-validation totals, for the site), liquid/ (BL-39 part 1: universe.json + daily.jsonl.gz,
+  every candle day ended before CUT 2026-11-08); never under data/, never read by core/ or the tick
 - adapters/: base.py (EVM, chain 8453). Adapter pattern kept so other chains could plug in later (parked).
 - prompts/: x_read.py
 - data/: state.json, report.json, tokens_24h.json, live.json (BL-27), daily/YYYY-MM-DD/ (tasks.csv, trades.csv; both books in the same files, column "book"; outcomes.csv, BL-26)
@@ -282,7 +285,7 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
   terminal and Paper equity card byte-identical (screenshots and sha256 pins). Telegram daily adds "<book> refilled +$x
   (not P&L)" (from state.json report.equity), "Gate B since ... · random N closes · kill at 200" and a per-trade line per
   book; every BL-3 line stays; no BL-34 line (core/ never reads backtest/, test) (docs/NOTES.md "BL-43").
-  Tests: stdlib unittest, `python -m unittest` (456 pass on 3.13).
+  Tests: stdlib unittest, `python -m unittest` (477 pass on 3.13).
 - cron-job.org token "baseline-desk cron" EXPIRES Thu 2027-01-21: renew by early January or the desk stops silently.
 - Technical detail per card, GoPlus diagnosis, BL-20 budget and full open items: docs/NOTES.md.
 - Open items:
@@ -320,17 +323,32 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
   at +24 h median chg -100%, 59% dead, mean +0.0% only from a few big winners (-24.7% without the top 2); the twin's
   universe is mostly the same group (210 of 230) and looks the same; GoPlus never answered honeypot or tax for any of
   them, so none is proven honeypot or high-tax; no rule proposal, two hypothesis lines for chat (docs/NOTES.md "BL-44").
+- Gate A passed (the owner, 2026-11-08): Oct 26 - Nov 8, 4,011 of 4,032 ticks, 0 ERROR rows; BL-11 Done.
+- BL-31 Done: the first weekly refill logged two BOOK REFILL reason=weekly rows (one per book) at 2026-11-09 00:03 UTC.
+- BL-39 part 1 survey (2026-11-09, evidence only, the owner's Nov 9 choices; also BL-38's universe): tools/liquid.py (by
+  hand) took Base pools from GeckoTerminal's network and top-8-dex lists (1,630 pools, 901 tokens), dropped the 129
+  launch-universe addresses of tasks.csv Oct 23 - Nov 7, asset kinds via core asset_kind() (75), young pools (342,
+  count only): 355 established tokens (deepest pool created before 2026-10-09), each with daily candles ending before
+  CUT 2026-11-08T00:00Z (none at or after it is kept; test) in backtest/liquid/ (universe.json, daily.jsonl.gz, 1.1 MB,
+  committed). Counts only, no returns: reserve at fetch >= 100k / 1M / 10M: 172 / 19 / 1; median daily volume over the
+  30 days before CUT: 39 / 4 / 1; weekly universe May 18 - Nov 2 (25 full weeks) 290-352 tokens with a trade, 40-71
+  at >= 100k USD/day; BL-39 top-10% group 22-26 a week (4-7 within >= 100k/day); BL-38's bottom-10% bucket is dust
+  (median 1-9 USD/day, none >= 10k). History: the free API gives at most 184 daily candles per pool and refuses older
+  requests, so daily-trading pools start 2026-05-09 (>= 365 candles: 0, API limit); any BL-38/39 development/holdout
+  split must fit inside May 9 - Nov 7 or be forward, and daily.jsonl.gz is the only copy of those days. Survivorship:
+  picking tokens from the Nov 9 lists is post-CUT selection; no upper bound from free data; floor: of 57 tokens at
+  >= 100k/day on May 18, 28 were below it by Nov 2 (docs/NOTES.md "BL-39 survey"). 613 calls, 91 min.
 - Next step: BL-34's one holdout run around 2026-11-17. Before it: the owner clicks Run workflow on backtest.yml with
   days blank around Nov 15-17 (after the Nov 14 sightings have their +24 h labels and the Nov 8-14 days are complete), so
   ETH and every token day through Nov 14 have candles (a day still inside its 7-day windows comes as .open: enough for
   the run, the final file later). Then, in a session: python -m tools.backtest --spec
   backtest/specs/bl34-survivor-momentum-v2.json --holdout --write (refused until Nov 8-14 are all complete logged days),
   lock and result committed; chat reads the verdict. No look at BL-34 candidates' Nov 8-14 outcomes before that. Also
-  check the BL-32 deploy tick (one BOOK RESTART gate_b row) and the first weekly refill Mon 2026-11-09 00:03 UTC.
-  BL-38, BL-39 wait; the execution design is researched in parallel (no wallet code). BL-38..BL-42 are candidates only
+  check the BL-32 deploy tick (one BOOK RESTART gate_b row). BL-38, BL-39 wait (BL-39 part 1 survey done, counts only;
+  no return has been computed from backtest/liquid/); the execution design is researched in parallel (no wallet code). BL-38..BL-42 are candidates only
   (DECISIONS 2026-11-04). After BL-43: the owner checks the deployed site (pages.yml deploys on the site/ change) and the
   first Telegram daily summary with the new lines.
-- Last updated: 2026-11-07.
+- Last updated: 2026-11-09.
 
 ## 12. Glossary
 - Lead: a token the scanner found. Survivor: a lead that passed every hard skip.

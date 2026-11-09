@@ -1710,6 +1710,159 @@ Moved from CLAUDE.md section 11 on 2026-10-23 (BL-2 process cleanup). Wording is
   with-exits view); the group's first qualifying row is often later than first sight; dead is approximated on old files;
   pool age is unknown before Nov 5; ~7 days, one market, many copycat launches from a few deployers.
 
+## BL-39 survey
+- BL-39 part 1 (also BL-38: same universe), evidence only (the owner, Nov 9 choices and go-message 1-4, DECISIONS):
+  counts and coverage of established, liquid Base tokens, NO returns of any kind (no P&L, no price change, no forward
+  return by MAX or reversal bucket, no backtest), so the BL-38/39 spec can still be written blind. Code:
+  tools/liquid.py (by hand), tests/test_liquid.py; files backtest/liquid/universe.json (116 KB) and daily.jsonl.gz
+  (1.1 MB, committed by the owner's choice A). Nothing under core/ or data/ changed; core/ never reads backtest/.
+- CUT = 2026-11-08T00:00:00Z (protects BL-34's sealed holdout, Nov 8-14). Daily candles asked with
+  before_timestamp=CUT; GeckoTerminal also returns the candle STARTING at CUT, so every candle whose day does not end
+  by CUT (t + 1 d > CUT) is dropped on arrival (keep()); write() refuses any other. Largest stored candle start
+  2026-11-07T00:00:00Z (its day ends at CUT). The list answers carry today's prices and volumes: dropped unread; only
+  pool identity, pool_created_at and reserve_in_usd (at fetch, the owner's field list) are kept. The one price read is
+  the last daily close before CUT, as core/verify.py asset_kind()'s price input (last_close()). From data/ only the
+  address column of data/daily/2026-10-23 .. 2026-11-07 tasks.csv was read (the launch-universe drop set); no
+  data/daily file from Nov 8 on, no live.json / state.json / report.json, no BL-34 token candle file.
+- Run: 2026-11-09 14:18-15:50 UTC (91 min), 613 calls (116 refused by the rate limit, all retried; 0 errors) through
+  tools/candles.py Client (7.5 s pace) under a 1,200-call cap: 147 list + token calls, 465 daily-candle calls (one per
+  established pool, 370, plus retries), 1 history check.
+- Set, endpoints and counts:
+  - Pools: /networks/base/pools sorted by h24_volume_usd_desc and by h24_tx_count_desc, then
+    /networks/base/dexes/{dex}/pools (h24_volume_usd_desc) for the 8 dexes most frequent in those two lists
+    (aero-slipstream-base, uniswap-v4-base, uniswap-v3-base, aerodrome-slipstream-3, pancakeswap-v3-base,
+    aerodrome-slipstream, aerodrome-base, uniswap-v2-base); 10 pages x 20 each, at most 200 pools a list.
+  - Tokens = both sides of every listed pool; /networks/base/tokens/multi (30 per call, include=top_pools) gives each
+    token's deepest pool (highest reserve among its top pools and the listed pools) and its base / quote pair counts.
+  - Established = the deepest pool created before 2026-10-09 (>= 30 days at CUT).
+
+  | step | n |
+  |---|---|
+  | pools listed | 1,630 |
+  | tokens on them | 901 |
+  | launch-universe tokens dropped (address in tasks.csv Oct 23 - Nov 7) | 129 |
+  | tokens resolved (deepest pool found) | 772 |
+  | asset excluded (asset_kind, imported): stable / wrapped / quote | 33 / 23 / 19 (15 of the wrapped by the last close >= 100 USD) |
+  | young (deepest pool created on or after 2026-10-09): count only, no candles | 342 |
+  | established = the survey | 355 |
+
+  The survey's deepest pools by dex: uniswap-v3 117, aerodrome 72, aerodrome-slipstream(-2/-3) 77, uniswap-v2 32,
+  uniswap-v4 26, pancakeswap-v3 15, other 16. Every one of the 355 has candles.
+
+- The history cap (the owner's go-message 3, measured): one daily-OHLCV answer holds at most 184 candles (limit=1000 is
+  not honoured), and a request ending 200 days before CUT on the oldest daily-trading pool (KRAV 0x65488e..., 1 call)
+  came back refused or empty ("api_limit"), so no paging back. Pools that trade every day therefore have candles from
+  2026-05-09 only (window_start: the latest first candle among the pools created > 200 days before CUT with no missing
+  day); thin pools reach further back in calendar time with gaps (89 tokens have a candle older than 184 days, the
+  oldest 2025-06-02). So ">= 365" below is 0 by the API limit, not because the tokens are young: 197 of the 355 pools
+  are >= 365 days old at CUT.
+- Tokens by size (n = 355):
+
+  | | >= 100k USD | >= 1M USD | >= 10M USD |
+  |---|---|---|---|
+  | reserve at fetch (Nov 9, total both sides) | 172 | 19 | 1 |
+  | median daily volume, the 30 days before CUT (Oct 9 - Nov 7, a no-trade day = 0) | 39 | 4 | 1 |
+
+  Median reserve 83k USD. Median daily volume >= 10k: 138, >= 1k: 215, = 0: 24. Both median volume >= 100k/day and
+  reserve >= 1M: 6 (reserve >= 100k: 38).
+- Days of history per token (n = 355):
+
+  | | >= 30 | >= 90 | >= 180 | >= 365 |
+  |---|---|---|---|---|
+  | daily candles held (days with a trade) | 347 | 313 | 282 | 0 (API limit) |
+  | calendar span, first candle to CUT | 355 | 317 | 293 | 13 (thin pools, with gaps) |
+
+  Max 184 candles; max span 524 days.
+- Data gaps (n = 355): GeckoTerminal returns a daily candle only for a day with a trade, so a missing day = no trade
+  (or no data); zero-volume candles: 0. Missing days between a token's first candle and CUT: 7,704 in all; tokens with
+  0 missing 217, 1-5 49, 6-30 42, > 30 47. Last candle more than 6 days before Nov 7: 3 tokens.
+- Point-in-time universe per week (as of each Monday 00:00 UTC; trailing 7 days [Monday - 7 d, Monday) as mean
+  USD/day of the deepest pool's volume; universe = a trade in those 7 days). Only full weeks inside the candle window:
+  week -26 (as of May 11, trailing May 4-10) is partial (window from May 9) and dropped, so the table starts at the
+  earliest full week, May 18: 25 weeks. BL-39 group (the owner): tokens with all 31 daily closes in the 31 days
+  before the Monday (the trailing 30 days, BL-39's draft MAX lookback), then 10% rounded up; MAX itself is never
+  computed; "—" where that lookback starts before the window (May 18 - Jun 8). BL-38 bucket: the bottom 10% (rounded
+  up) of the universe by trailing 7-day volume, its median (USD/day) and how many clear 10k / 100k USD/day.
+
+  | as of | universe | >= 100k/d | >= 1M/d | >= 10M/d | BL-39 eligible | BL-39 group | eligible, >= 100k/d | group, >= 100k/d | BL-38 bucket n | its median USD/d | >= 10k/d | >= 100k/d |
+  |---|---|---|---|---|---|---|---|---|---|---|---|---|
+  | May 18 | 290 | 57 | 10 | 0 | — | — | — | — | 29 | 3.81 | 0 | 0 |
+  | May 25 | 290 | 57 | 9 | 1 | — | — | — | — | 29 | 2.61 | 0 | 0 |
+  | Jun 1 | 295 | 47 | 11 | 1 | — | — | — | — | 30 | 1.63 | 0 | 0 |
+  | Jun 8 | 300 | 45 | 10 | 1 | — | — | — | — | 30 | 1.26 | 0 | 0 |
+  | Jun 15 | 296 | 43 | 7 | 1 | 227 | 23 | 38 | 4 | 30 | 5.77 | 0 | 0 |
+  | Jun 22 | 299 | 47 | 7 | 0 | 228 | 23 | 43 | 5 | 30 | 3.38 | 0 | 0 |
+  | Jun 29 | 301 | 45 | 4 | 0 | 231 | 24 | 44 | 5 | 31 | 3.15 | 0 | 0 |
+  | Jul 6 | 303 | 40 | 5 | 0 | 238 | 24 | 39 | 4 | 31 | 4.36 | 0 | 0 |
+  | Jul 13 | 305 | 45 | 4 | 0 | 235 | 24 | 44 | 5 | 31 | 3.93 | 0 | 0 |
+  | Jul 20 | 309 | 48 | 2 | 0 | 234 | 24 | 48 | 5 | 31 | 2.69 | 0 | 0 |
+  | Jul 27 | 308 | 53 | 4 | 0 | 231 | 24 | 53 | 6 | 31 | 2.42 | 0 | 0 |
+  | Aug 3 | 308 | 54 | 3 | 0 | 230 | 23 | 53 | 6 | 31 | 1.63 | 0 | 0 |
+  | Aug 10 | 310 | 47 | 3 | 1 | 226 | 23 | 46 | 5 | 31 | 1.48 | 0 | 0 |
+  | Aug 17 | 310 | 48 | 5 | 3 | 224 | 23 | 44 | 5 | 31 | 2.02 | 0 | 0 |
+  | Aug 24 | 320 | 62 | 9 | 1 | 220 | 22 | 58 | 6 | 32 | 2.84 | 0 | 0 |
+  | Aug 31 | 321 | 71 | 8 | 1 | 225 | 23 | 63 | 7 | 33 | 5.38 | 0 | 0 |
+  | Sep 7 | 323 | 67 | 9 | 1 | 227 | 23 | 58 | 6 | 33 | 6.30 | 0 | 0 |
+  | Sep 14 | 324 | 54 | 9 | 1 | 234 | 24 | 48 | 5 | 33 | 4.60 | 0 | 0 |
+  | Sep 21 | 329 | 62 | 4 | 1 | 247 | 25 | 57 | 6 | 33 | 2.68 | 0 | 0 |
+  | Sep 28 | 340 | 64 | 6 | 1 | 251 | 26 | 59 | 6 | 34 | 3.90 | 0 | 0 |
+  | Oct 5 | 343 | 59 | 7 | 1 | 253 | 26 | 56 | 6 | 35 | 8.51 | 0 | 0 |
+  | Oct 12 | 351 | 58 | 3 | 1 | 248 | 25 | 57 | 6 | 36 | 5.68 | 0 | 0 |
+  | Oct 19 | 352 | 50 | 5 | 1 | 252 | 26 | 49 | 5 | 36 | 1.86 | 0 | 0 |
+  | Oct 26 | 351 | 49 | 4 | 1 | 252 | 26 | 48 | 5 | 36 | 1.90 | 0 | 0 |
+  | Nov 2 | 351 | 42 | 4 | 1 | 254 | 26 | 41 | 5 | 36 | 1.24 | 0 | 0 |
+
+  Reading (counts only): about 40-70 survey tokens a week trade >= 100k USD/day in their deepest pool, 2-11 trade >= 1M,
+  0-3 >= 10M. A BL-39 top-10% group holds 22-26 tokens a week over the whole universe, 4-7 over the >= 100k/day part.
+  The BL-38 bottom-10% bucket of this universe is dust (median 1-9 USD/day, none clears 10k): a lowest-volume bucket
+  needs a volume floor first (an item for the BL-38 spec, not decided here). The universe grows from 290 to 351 because
+  pools created after May join (any pool created before Oct 9 is in the set).
+- Survivorship (go-message 4): selecting tokens from today's (Nov 9) GeckoTerminal lists is itself post-CUT selection,
+  i.e. the survivorship bias: every token here was still busy or deep enough on Nov 9 to rank in a network or dex top-200
+  list, so tokens that died, rugged or faded between May and November are not in the set at all, and the lists, ranked
+  by today's 24 h activity, also pull in tokens that are hot today. That flatters long and momentum strategies
+  (BL-39 most). Free data before CUT holds no list of established Base tokens as of May, so there is NO upper bound on
+  the bias. Floor only, among tokens still listed today:
+
+  | in the universe as of May 18 at | n | still there as of Nov 2 | below the line | no trade in the last week |
+  |---|---|---|---|---|
+  | >= 100k USD/day | 57 | 29 | 28 | 0 |
+  | >= 1M USD/day | 10 | 1 | 9 | 0 |
+  | >= 10M USD/day | 0 | 0 | 0 | 0 |
+
+  134 tokens cleared 100k/day in at least one of the 25 weeks; 29 of them have a reserve under 100k at fetch. So even
+  among survivors, half of the May >= 100k group fell below the line by November; the real attrition is at least that.
+  An honest fix is forward only: snapshot the universe (list + reserve) every week from now on, so a later BL-38/39
+  test can use point-in-time lists; not built (an item for the spec).
+- Constraint on any BL-38/39 development/holdout split (go-message 4): the free API gives ~184 daily candles per pool
+  and refuses older requests, so the usable daily history is 2026-05-09 .. 2026-11-07 (25 full weekly as-of points May
+  18 - Nov 2; 21 with BL-39's full 31-close lookback, Jun 15 - Nov 2). The window moves forward one day a day and old
+  days fall off the free API: backtest/liquid/daily.jsonl.gz is the only copy of May - Nov 2026. Any development and
+  holdout split must fit inside it (or be a forward holdout after CUT), and must be fixed in calendar time before
+  anyone reads a return from these files. Days at or after CUT are not in the files.
+- Caveats:
+  - reserve_usd is the deepest pool's total value, both sides, at fetch (Nov 9): not real depth (qliq) and not point
+    in time. GeckoTerminal's pool answer has no per-side reserve, so quote_side_usd is null. No reserve history exists
+    here: volume is the only point-in-time liquidity proxy.
+  - Volume is the deepest pool's only (deepest at fetch, maybe not in May), not the token's volume over all pools; it
+    can include wash or bot volume.
+  - asset_kind()'s quote rule uses GeckoTerminal's base/quote sides among the token's top pools (19 dropped as quote);
+    universe.json lists only the kept tokens (asset_kind ""), the excluded ones are counted by kind in "counts".
+  - One pool is the deepest for both of its tokens (pjailbkOHM / pJailbrkPE): its volume counts for both.
+  - Established is judged on the deepest pool's creation date; a token with an old shallow pool and a young deep one
+    counts as young.
+  - The lists are top-200 views (10 lists): smaller dexes and quiet pools outside every top 200 are missing.
+- Tests: tests/test_liquid.py (21): every stored candle ends by CUT, the request's before_timestamp <= CUT, keep()
+  drops the CUT day and any unfinished day, write() refuses a candle at CUT, list prices never kept (universe fields
+  exact); asset_kind is core's own function (not copied), stable / wrapped (by symbol and by the last close) excluded;
+  launch addresses from the address column only, a Nov 8 file never opened and a day at CUT refused, launch tokens
+  dropped and counted only; young pools counted only (no candle call, not in the files); deepest pool per token;
+  the call cap; history_check at most 2 attempts and its three answers; history counts (span vs candles held, thin
+  pools, window start from daily-trading old pools); gaps; full weeks only, BL-39 group (31 closes, 10% up, "—"
+  before the lookback fits) and BL-38 bucket (n, median, 10k / 100k); the survivorship floor; no return code (candle
+  price columns read only in last_close(), no pnl / ret / chg / win / gain names, no such key in the output); core
+  never imports tools.liquid. 477 pass on 3.13 (456 before).
+
 ## Open items (detail)
 - Open items:
   - BL-7 done only after 24h of green runs, no overlap, one TICK row per run. The TICK rows show the real run rate for Gate A (90%).
