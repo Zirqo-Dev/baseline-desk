@@ -356,3 +356,7 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-09T04:58:15Z,desk,VERIFY,POL,0xda2a3e1cfbf5b0e4fcd9a3405fa87bc22c691234,SKIP,real_depth,goplus=skipped until=2026-11-10T04:58:15Z b1=6 s1=0 b24=6 s24=0 liq=121004 dex=uniswap:v4 qliq=0 pair_age=9 token_age=9
 2026-11-09T04:58:15Z,baseline,EXECUTE,HELL,0x2e7f8b39a367fd54048ddb6ca02a2f68002a5e5e,SKIP,reentry_cooldown,seed=202611090458 eligible=1 pick=0 pool=2e7f8b desk=WATCH launchpad=other
 2026-11-09T04:58:15Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=18 rechecks=3 new=11 checked=14 passed=0 bought=0 held=0 deferred=0 dex_only=11 goplus=3 requests=21 secs=6.1 bl_positions=0 bl_due=1 bl_eligible=1 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=2 labels_done=2 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-09T05:03:14Z,desk,VERIFY,,0x39f5d3d375c96da97d98ba856f69dc6fc77d2133,SKIP,missing:symbol,goplus=skipped until=2026-11-10T05:03:14Z
+2026-11-09T05:03:14Z,desk,VERIFY,牛逼,0x4f939955d0798dc9b1c06d04f79d0ed4048c2ebe,SKIP,missing:liq_usd,goplus=skipped until=2026-11-10T05:03:14Z
+2026-11-09T05:03:14Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
+2026-11-09T05:03:14Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=18 rechecks=0 new=2 checked=2 passed=0 bought=0 held=0 deferred=0 dex_only=2 goplus=0 requests=5 secs=1.6 bl_positions=0 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=none labels_due=0 labels_done=0 labels_calls=0 live=ok alerts=none alerts_sent=0
