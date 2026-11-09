@@ -1167,3 +1167,7 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-09T14:13:16Z,desk,VERIFY,CLAUDIA,0xc788f2aabfdae9b5c83504477d1b66ceae81b74d,WATCH,goplus_not_ready,first_seen=2026-11-09T14:13:16Z checks=1 pending=top10_pct b1=15 s1=0 b24=15 s24=0 liq=177582 dex=uniswap:v2 qliq=88633 pair_age=7 token_age=7
 2026-11-09T14:13:16Z,baseline,EXECUTE,Coinbank,0x094c0165f4502c4f6fdbe1647347e874381e2203,SKIP,reentry_cooldown,seed=202611091413 eligible=1 pick=0 pool=094c01 desk=WATCH launchpad=other
 2026-11-09T14:13:16Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=19 rechecks=5 new=5 checked=10 passed=0 bought=0 held=0 deferred=0 dex_only=4 goplus=6 requests=20 secs=11.6 bl_positions=0 bl_due=1 bl_eligible=1 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=4 labels_done=4 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-09T14:18:18Z,desk,VERIFY,SPACEX,0x03420eb83c792af206aeba77cbe53e36425a4365,SKIP,real_depth,goplus=skipped until=2026-11-10T14:18:18Z
+2026-11-09T14:18:18Z,desk,VERIFY,$GDEX,0x93bd74a4aaf30cf8c2b309896b10da18ae1d4eec,SKIP,real_depth,goplus=skipped until=2026-11-10T14:18:18Z
+2026-11-09T14:18:18Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
+2026-11-09T14:18:18Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=19 rechecks=0 new=2 checked=2 passed=0 bought=0 held=0 deferred=0 dex_only=2 goplus=0 requests=6 secs=1.7 bl_positions=0 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=1 labels_done=1 labels_calls=1 live=ok alerts=none alerts_sent=0
