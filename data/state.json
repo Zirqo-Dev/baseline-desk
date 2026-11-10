@@ -33,9 +33,9 @@
         "entry_qliq": 17393,
         "entry_ts": "2026-11-10T05:48:15Z",
         "ladder_done": [],
-        "last_liq_usd": 43830.63,
-        "last_price": 0.004316,
-        "last_qliq": 17415,
+        "last_liq_usd": 43750.93,
+        "last_price": 0.004308,
+        "last_qliq": 17387,
         "launchpad": "other",
         "orig_qty": 1125.467175451977,
         "pair": "0xb2dd3237b39ffc231556e703934b842f1b6c7ed0ad1d6195a7ddd8b992dc7a08",
@@ -46,7 +46,7 @@
     },
     "refill_week": "2026-W46",
     "refills_usd": 47.693738985981945,
-    "ticks_since_buy": 1
+    "ticks_since_buy": 2
   },
   "desk": {
     "cash": 50.0,
@@ -982,7 +982,9 @@
         "symbol": "XTRUTH (XTO)"
       },
       "0x6629692b5f75d54441c68d4608209fbc2b718758": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 8.65e-06,
         "first_seen": "2026-11-10T04:53:16Z",
         "sight_pair": "0x5f25f605db0b1278e1fb3d071b16e18f2d1f4365",
@@ -1620,17 +1622,6 @@
         "sight_qliq": 0,
         "symbol": "Elysium"
       },
-      "0x9dbdfd162dfc961f2fa3d15a44f3312d0202c2bb": {
-        "done": [
-          1,
-          6
-        ],
-        "first_price": 9.65e-06,
-        "first_seen": "2026-11-09T05:58:14Z",
-        "sight_pair": "0x20e755b4bd76d1cd76563756383563e7adc9475d",
-        "sight_qliq": 88438,
-        "symbol": "BIDEN"
-      },
       "0x9e19a8d70bf551bd4ff1d463dfcbb01eb80b3df3": {
         "done": [
           1,
@@ -1778,17 +1769,6 @@
         "sight_pair": "0x4ffaf057c3a1bff1d25f5963672b9d0fc2b1333e",
         "sight_qliq": 68330,
         "symbol": "DANA"
-      },
-      "0xa7f4c377a7e459f27d0b971f2d8cb8455eb0c8e1": {
-        "done": [
-          1,
-          6
-        ],
-        "first_price": 0.0001266,
-        "first_seen": "2026-11-09T05:58:14Z",
-        "sight_pair": "0x7d38aa22d5091c64ed977b5665e14e737b2dcb49203c977da07858cc9bbd676d",
-        "sight_qliq": 1,
-        "symbol": "SRX"
       },
       "0xa8198a54b36ed4989b0afa37d59eacf07388f13c": {
         "done": [
@@ -2246,7 +2226,8 @@
       },
       "0xe0ed098029141c4163be80d495d08fc358b3b3c9": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 1.282e-05,
         "first_seen": "2026-11-09T23:58:13Z",
@@ -3949,6 +3930,12 @@
         "reason": "missing:liq_usd",
         "symbol": "House",
         "until": "2026-11-10T09:33:13Z"
+      },
+      "0x4ae954d3cce1ab4113f2385ada177ab94a9742ed": {
+        "at": "2026-11-10T05:58:15Z",
+        "reason": "real_depth",
+        "symbol": "PULSE",
+        "until": "2026-11-11T05:58:15Z"
       },
       "0x4c39b82918adc9dcf95de5b80ac9c243c73cc9dc": {
         "at": "2026-11-09T10:08:15Z",
@@ -6026,12 +6013,6 @@
         "symbol": "ETH",
         "until": "2026-11-10T12:23:13Z"
       },
-      "0xa7f4c377a7e459f27d0b971f2d8cb8455eb0c8e1": {
-        "at": "2026-11-09T05:58:14Z",
-        "reason": "real_depth",
-        "symbol": "SRX",
-        "until": "2026-11-10T05:58:14Z"
-      },
       "0xa8198a54b36ed4989b0afa37d59eacf07388f13c": {
         "at": "2026-11-09T14:33:15Z",
         "reason": "real_depth",
@@ -6625,12 +6606,6 @@
         "reason": "real_depth",
         "symbol": "ACHIMALA",
         "until": "2026-11-11T05:13:15Z"
-      },
-      "0xb2000000000000000000007072a07bed4061220f": {
-        "at": "2026-11-09T05:58:14Z",
-        "reason": "real_depth",
-        "symbol": "URANUS",
-        "until": "2026-11-10T05:58:14Z"
       },
       "0xb2000000000000000000007163fb0c9676b036f5": {
         "at": "2026-11-09T15:43:14Z",
@@ -7243,6 +7218,12 @@
         "reason": "real_depth",
         "symbol": "BOXA",
         "until": "2026-11-10T17:18:16Z"
+      },
+      "0xb8e2f58ba9ca12409c78399159234690740e5e9a": {
+        "at": "2026-11-10T05:58:15Z",
+        "reason": "real_depth",
+        "symbol": "XCHAT",
+        "until": "2026-11-11T05:58:15Z"
       },
       "0xb8ee46561869c3d890260ab46dc884b8b117a49c": {
         "at": "2026-11-09T09:28:15Z",
@@ -8246,12 +8227,6 @@
         "symbol": "UDSP",
         "until": "2026-11-10T21:33:15Z"
       },
-      "0xe812a191358fac05629e7da112a616d816bb8689": {
-        "at": "2026-11-09T05:58:14Z",
-        "reason": "real_depth",
-        "symbol": "SI",
-        "until": "2026-11-10T05:58:14Z"
-      },
       "0xe89a857efebd84c3cf2c95ef2f4f350564cac603": {
         "at": "2026-11-10T01:38:15Z",
         "reason": "real_depth",
@@ -8705,15 +8680,15 @@
         "symbol": "UDTF"
       },
       "0x928a4b2d6625a37b296ffe7bcdc5a99d15dbcfe7": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-10T05:38:15Z",
-        "last_check": "2026-11-10T05:38:15Z",
+        "last_check": "2026-11-10T05:58:15Z",
         "symbol": "XDP"
       },
       "0x9296dde9801a777ac43b48abb8372e523269adf8": {
-        "checks": 6,
+        "checks": 7,
         "first_seen": "2026-11-10T04:13:17Z",
-        "last_check": "2026-11-10T05:38:15Z",
+        "last_check": "2026-11-10T05:58:15Z",
         "symbol": "Anthropic"
       },
       "0xa287e37e6995e00a57986421db2eafb79709b1b7": {
@@ -8723,9 +8698,9 @@
         "symbol": "XTO"
       },
       "0xa3948bd32092033eb731556abadb20f45c8f9d1f": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-10T05:38:15Z",
-        "last_check": "2026-11-10T05:38:15Z",
+        "last_check": "2026-11-10T05:58:15Z",
         "symbol": "AGI"
       },
       "0xc3414e41eae6bf08051511296be02e7de03d7773": {
@@ -8899,7 +8874,7 @@
     "gate_restart": "BL-32",
     "machine_due": "",
     "max_dd_pct": {
-      "baseline": 98.70752225074966,
+      "baseline": 98.71483363336081,
       "desk": 9.811123120222184
     },
     "peak": {
