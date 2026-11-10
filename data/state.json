@@ -29,7 +29,7 @@
     "positions": {},
     "refill_week": "2026-W46",
     "refills_usd": 47.693738985981945,
-    "ticks_since_buy": 11
+    "ticks_since_buy": 12
   },
   "desk": {
     "cash": 50.0,
@@ -1345,6 +1345,14 @@
         "sight_qliq": 127,
         "symbol": "USRA"
       },
+      "0x6985884c4392d348587b19cb9eaaf157f13271cd": {
+        "done": [],
+        "first_price": 1.45,
+        "first_seen": "2026-11-10T18:08:16Z",
+        "sight_pair": "0x0f21a72a02dc78217c2987826d061500aecf7707",
+        "sight_qliq": 95018,
+        "symbol": "ZRO"
+      },
       "0x69a31d3876e8ceab096b7ef4617ebd78ab42e7a0": {
         "done": [
           1,
@@ -1788,6 +1796,14 @@
         "sight_pair": "0x181a8bd5786962b7d6c8373975d3223a86e4774ea118f959cf8ef045f81b6964",
         "sight_qliq": 26,
         "symbol": "UOES"
+      },
+      "0x8d8a606a156806db15c762366593869d3a3976ab": {
+        "done": [],
+        "first_price": 1.451e-05,
+        "first_seen": "2026-11-10T18:08:16Z",
+        "sight_pair": "0xbd7f222ab77179d49512f70ffae19a5dff2ce28a",
+        "sight_qliq": 63139,
+        "symbol": "Anthropic"
       },
       "0x8e02f30c05a2189d4004e5bab60b66edf0b5941c": {
         "done": [
@@ -2367,7 +2383,9 @@
         "symbol": "ADFT"
       },
       "0xbdde27c23ce5b36d71156e15821117c8b98256a0": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 1.25e-05,
         "first_seen": "2026-11-10T17:08:15Z",
         "sight_pair": "0x71784e5f5d1b2b25d2c917e245c8227543ca2127",
@@ -2416,17 +2434,6 @@
         "sight_pair": "0x0e4c037505689cec9c1e1dfca64fc6ae47bb70a087c48ab1fa69cf802d850b0c",
         "sight_qliq": 2,
         "symbol": "USRP"
-      },
-      "0xc1917f4b2e03a9f17613dca8f0951fb1d920931f": {
-        "done": [
-          1,
-          6
-        ],
-        "first_price": 9.394e-06,
-        "first_seen": "2026-11-09T18:08:16Z",
-        "sight_pair": "0x95f70bbe077fa3669ed4ecfbad370f32c2489f2c",
-        "sight_qliq": 67323,
-        "symbol": "NVIDIA"
       },
       "0xc32e1b6d232578f90d1d981bb6cec53de46a6cf8": {
         "done": [],
@@ -3735,6 +3742,12 @@
         "reason": "missing:liq_usd",
         "symbol": "SWEATER",
         "until": "2026-11-11T14:13:12Z"
+      },
+      "0x19c870aca7f51c725a5c21b6273cf4632a380b95": {
+        "at": "2026-11-10T18:08:16Z",
+        "reason": "real_depth",
+        "symbol": "INIT",
+        "until": "2026-11-11T18:08:16Z"
       },
       "0x1a1f39264b239c3db61a9f4360fc408e6d17e8f1": {
         "at": "2026-11-09T19:53:16Z",
@@ -6736,6 +6749,12 @@
         "symbol": "NADF",
         "until": "2026-11-11T13:53:16Z"
       },
+      "0x97460267e665e4a51ce2633f4fcf4a558ca38fed": {
+        "at": "2026-11-10T18:08:16Z",
+        "reason": "real_depth",
+        "symbol": "BTC",
+        "until": "2026-11-11T18:08:16Z"
+      },
       "0x9779cc514c3d55b571511b9e6c97ea6a2063662d": {
         "at": "2026-11-10T17:03:14Z",
         "reason": "missing:liq_usd",
@@ -9574,12 +9593,6 @@
         "symbol": "",
         "until": "2026-11-11T10:43:13Z"
       },
-      "0xf0f606cce0a3ace1a09d3fee373d4fa37fcbd497": {
-        "at": "2026-11-09T18:08:16Z",
-        "reason": "missing:liq_usd",
-        "symbol": "GITLAB",
-        "until": "2026-11-10T18:08:16Z"
-      },
       "0xf1770d367c65c2cf91f38ff9bd5aab683ed8eef3": {
         "at": "2026-11-10T17:48:16Z",
         "reason": "real_depth",
@@ -9777,6 +9790,12 @@
         "reason": "real_depth",
         "symbol": "XCHAT",
         "until": "2026-11-11T16:23:14Z"
+      },
+      "0xf9244c8840be8ed4b610601d4cb66ffd82d14de4": {
+        "at": "2026-11-10T18:08:16Z",
+        "reason": "real_depth",
+        "symbol": "GAGGLE",
+        "until": "2026-11-11T18:08:16Z"
       },
       "0xf9669af1a89d0abe8d326e00377e2b0ef9900317": {
         "at": "2026-11-09T22:13:16Z",
@@ -10002,16 +10021,28 @@
         "last_check": "2026-11-10T18:03:19Z",
         "symbol": "CUIN"
       },
+      "0x6985884c4392d348587b19cb9eaaf157f13271cd": {
+        "checks": 1,
+        "first_seen": "2026-11-10T18:08:16Z",
+        "last_check": "2026-11-10T18:08:16Z",
+        "symbol": "ZRO"
+      },
       "0x85fd6b4db08320d261b74a321a3385a913cc0dd8": {
         "checks": 2,
         "first_seen": "2026-11-10T17:48:16Z",
         "last_check": "2026-11-10T18:03:19Z",
         "symbol": "BOOTR"
       },
-      "0xc32e1b6d232578f90d1d981bb6cec53de46a6cf8": {
+      "0x8d8a606a156806db15c762366593869d3a3976ab": {
         "checks": 1,
+        "first_seen": "2026-11-10T18:08:16Z",
+        "last_check": "2026-11-10T18:08:16Z",
+        "symbol": "Anthropic"
+      },
+      "0xc32e1b6d232578f90d1d981bb6cec53de46a6cf8": {
+        "checks": 2,
         "first_seen": "2026-11-10T17:53:16Z",
-        "last_check": "2026-11-10T17:53:16Z",
+        "last_check": "2026-11-10T18:08:16Z",
         "symbol": "SOFS"
       },
       "0xda2dc46778ae1a06da45e6aad041c5400ca09d38": {
