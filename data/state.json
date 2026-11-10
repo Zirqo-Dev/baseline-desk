@@ -1,6 +1,6 @@
 {
   "baseline": {
-    "cash": 48.75925574175183,
+    "cash": 43.75925574175183,
     "cooldown": {
       "a:0x038826c4a1b788f807d44306c851b257063e0d0f": "2026-11-11T03:48:14Z",
       "a:0x2363980e0dcc1914499528fc521f28f3c174c81b": "2026-11-10T17:48:16Z",
@@ -24,10 +24,27 @@
     "day": "2026-11-10",
     "day_start_value": 49.361784843872286,
     "halted_day": "",
-    "positions": {},
+    "positions": {
+      "0x4bed843fd33ab77b6ee202e321f9d53aa3c1a2ee": {
+        "cost_usd": 5.0,
+        "entry_fill": 0.004442599579141033,
+        "entry_intended": 0.004312,
+        "entry_liq_usd": 43793.6,
+        "entry_qliq": 17393,
+        "entry_ts": "2026-11-10T05:48:15Z",
+        "ladder_done": [],
+        "last_price": 0.004312,
+        "launchpad": "other",
+        "orig_qty": 1125.467175451977,
+        "pair": "0xb2dd3237b39ffc231556e703934b842f1b6c7ed0ad1d6195a7ddd8b992dc7a08",
+        "peak_price": 0.004312,
+        "qty": 1125.467175451977,
+        "symbol": "FOTF"
+      }
+    },
     "refill_week": "2026-W46",
     "refills_usd": 47.693738985981945,
-    "ticks_since_buy": 14
+    "ticks_since_buy": 0
   },
   "desk": {
     "cash": 50.0,
@@ -465,17 +482,6 @@
         "sight_pair": "0x5c3a5be33fe898b330fc9482e048066a95dff3de688e0cae4f83bde83f146a84",
         "sight_qliq": 148377,
         "symbol": "X\u200aT\u200aO"
-      },
-      "0x317d9a9f554cb2e458bc7325d6ac4ff7a7d66200": {
-        "done": [
-          1,
-          6
-        ],
-        "first_price": 0.0001317,
-        "first_seen": "2026-11-09T05:48:13Z",
-        "sight_pair": "0xeef9563603e932a80fa7ad44e58efc085145b9dc0893e3f9caa3de17f1d37ce3",
-        "sight_qliq": 1,
-        "symbol": "SHX"
       },
       "0x32bae4f0854f4912989b1755257d8b5fc48c29ca": {
         "done": [
@@ -2614,12 +2620,6 @@
         "symbol": "SMKN",
         "until": "2026-11-10T21:38:16Z"
       },
-      "0x060a69bf26645c155a7efdba67937c68c16da032": {
-        "at": "2026-11-09T05:48:13Z",
-        "reason": "real_depth",
-        "symbol": "Uranus",
-        "until": "2026-11-10T05:48:13Z"
-      },
       "0x06b6148f5a365270e0b1189071675a7dd0187d4d": {
         "at": "2026-11-09T09:13:13Z",
         "reason": "real_depth",
@@ -2943,18 +2943,6 @@
         "reason": "real_depth",
         "symbol": "GIGANT",
         "until": "2026-11-10T08:58:15Z"
-      },
-      "0x13c200ca4a66d71116082df874f712dcca28c547": {
-        "at": "2026-11-09T05:48:13Z",
-        "reason": "real_depth",
-        "symbol": "SBC",
-        "until": "2026-11-10T05:48:13Z"
-      },
-      "0x1416faa7f7f0fea9600b8079c8dd5c8e3ca0bd0d": {
-        "at": "2026-11-09T05:48:13Z",
-        "reason": "real_depth",
-        "symbol": "RVYTEST4",
-        "until": "2026-11-10T05:48:13Z"
       },
       "0x147da992c9e704bde66aeac56782584ebebd4310": {
         "at": "2026-11-09T21:53:14Z",
@@ -3448,12 +3436,6 @@
         "symbol": "SPORE",
         "until": "2026-11-10T11:43:15Z"
       },
-      "0x317d9a9f554cb2e458bc7325d6ac4ff7a7d66200": {
-        "at": "2026-11-09T05:48:13Z",
-        "reason": "real_depth",
-        "symbol": "SHX",
-        "until": "2026-11-10T05:48:13Z"
-      },
       "0x31aa1de3ace7200eae22fffa2c08ea0197571ec0": {
         "at": "2026-11-09T11:58:18Z",
         "reason": "real_depth",
@@ -3549,12 +3531,6 @@
         "reason": "real_depth",
         "symbol": "schnoz",
         "until": "2026-11-10T09:53:13Z"
-      },
-      "0x369f45a5c6536aca2302bf63bc89274c5abccccc": {
-        "at": "2026-11-09T05:48:13Z",
-        "reason": "real_depth",
-        "symbol": "RVYTEST5",
-        "until": "2026-11-10T05:48:13Z"
       },
       "0x37063db5da5e93fa7f7d1a97a65fbb625628424a": {
         "at": "2026-11-10T02:43:12Z",
@@ -4606,6 +4582,12 @@
         "symbol": "BTC",
         "until": "2026-11-10T20:58:15Z"
       },
+      "0x6629692b5f75d54441c68d4608209fbc2b718758": {
+        "at": "2026-11-10T05:48:15Z",
+        "reason": "real_depth",
+        "symbol": "BLG",
+        "until": "2026-11-11T05:48:15Z"
+      },
       "0x662aab8d4303ed97d2356620faba2801c495b35e": {
         "at": "2026-11-09T16:58:17Z",
         "reason": "real_depth",
@@ -5487,12 +5469,6 @@
         "reason": "real_depth",
         "symbol": "KNTQ",
         "until": "2026-11-10T10:43:14Z"
-      },
-      "0x8cdea72f0cc6e4faa5a406f4fdc8fd837f9604d7": {
-        "at": "2026-11-09T05:48:13Z",
-        "reason": "real_depth",
-        "symbol": "PEPKING",
-        "until": "2026-11-10T05:48:13Z"
       },
       "0x8d4a2962ea46ef939b1dea6261ac37a816cf871c": {
         "at": "2026-11-09T17:58:19Z",
@@ -6796,6 +6772,12 @@
         "symbol": "BRIUNBRAIN",
         "until": "2026-11-10T07:38:14Z"
       },
+      "0xb200000000000000000000a2ac20d1bdbb1852fd": {
+        "at": "2026-11-10T05:48:15Z",
+        "reason": "real_depth",
+        "symbol": "NATE",
+        "until": "2026-11-11T05:48:15Z"
+      },
       "0xb200000000000000000000a36e9abbf33641c785": {
         "at": "2026-11-09T17:18:16Z",
         "reason": "real_depth",
@@ -6963,6 +6945,12 @@
         "reason": "real_depth",
         "symbol": "National",
         "until": "2026-11-10T11:28:17Z"
+      },
+      "0xb200000000000000000000cd2edc58cc6e5bd901": {
+        "at": "2026-11-10T05:48:15Z",
+        "reason": "real_depth",
+        "symbol": "Montra",
+        "until": "2026-11-11T05:48:15Z"
       },
       "0xb200000000000000000000cdad8cf78e41749497": {
         "at": "2026-11-10T04:18:17Z",
@@ -8296,12 +8284,6 @@
         "symbol": "ANTHROPIC",
         "until": "2026-11-11T01:38:15Z"
       },
-      "0xe966d8fabbef5e738915752278db2154d6738918": {
-        "at": "2026-11-09T05:48:13Z",
-        "reason": "real_depth",
-        "symbol": "SPACEX",
-        "until": "2026-11-10T05:48:13Z"
-      },
       "0xe99422993c1d9b5986796eccaf37f8a7114bcc29": {
         "at": "2026-11-09T16:18:16Z",
         "reason": "real_depth",
@@ -8722,12 +8704,6 @@
         "symbol": "HOOD",
         "until": "2026-11-10T21:38:16Z"
       },
-      "0xff411d40ca600eb623d54b09410991858b223d6c": {
-        "at": "2026-11-09T05:48:13Z",
-        "reason": "missing:liq_usd",
-        "symbol": "ICX",
-        "until": "2026-11-10T05:48:13Z"
-      },
       "0xff76fc747b06473a6e7a16700ee4b41dc57bff09": {
         "at": "2026-11-09T15:08:17Z",
         "reason": "real_depth",
@@ -8743,21 +8719,15 @@
     },
     "watch": {
       "0x4bed843fd33ab77b6ee202e321f9d53aa3c1a2ee": {
-        "checks": 7,
+        "checks": 8,
         "first_seen": "2026-11-10T03:48:14Z",
-        "last_check": "2026-11-10T05:28:15Z",
+        "last_check": "2026-11-10T05:48:15Z",
         "symbol": "FOTF"
       },
-      "0x6629692b5f75d54441c68d4608209fbc2b718758": {
-        "checks": 3,
-        "first_seen": "2026-11-10T04:53:16Z",
-        "last_check": "2026-11-10T05:28:15Z",
-        "symbol": "BLG"
-      },
       "0x877b777aee28b40b34a64eef72f6c7cc146c8a6e": {
-        "checks": 8,
+        "checks": 9,
         "first_seen": "2026-11-10T03:33:14Z",
-        "last_check": "2026-11-10T05:28:15Z",
+        "last_check": "2026-11-10T05:48:15Z",
         "symbol": "UDTF"
       },
       "0x928a4b2d6625a37b296ffe7bcdc5a99d15dbcfe7": {
@@ -8773,9 +8743,9 @@
         "symbol": "Anthropic"
       },
       "0xa287e37e6995e00a57986421db2eafb79709b1b7": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-10T05:28:15Z",
-        "last_check": "2026-11-10T05:28:15Z",
+        "last_check": "2026-11-10T05:48:15Z",
         "symbol": "XTO"
       },
       "0xa3948bd32092033eb731556abadb20f45c8f9d1f": {
@@ -8785,9 +8755,9 @@
         "symbol": "AGI"
       },
       "0xc3414e41eae6bf08051511296be02e7de03d7773": {
-        "checks": 4,
+        "checks": 5,
         "first_seen": "2026-11-10T04:43:13Z",
-        "last_check": "2026-11-10T05:28:15Z",
+        "last_check": "2026-11-10T05:48:15Z",
         "symbol": "UKOR"
       }
     }
@@ -8955,7 +8925,7 @@
     "gate_restart": "BL-32",
     "machine_due": "",
     "max_dd_pct": {
-      "baseline": 98.48678343013893,
+      "baseline": 98.70752225074966,
       "desk": 9.811123120222184
     },
     "peak": {
