@@ -55,3 +55,10 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-10T00:53:15Z,desk,VERIFY,AERON,0x1b03582cb815b49abf64ab1f02e0f77b0ef18423,SKIP,real_depth,goplus=skipped until=2026-11-11T00:53:15Z
 2026-11-10T00:53:15Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
 2026-11-10T00:53:15Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=19 rechecks=1 new=1 checked=2 passed=0 bought=0 held=0 deferred=0 dex_only=1 goplus=1 requests=7 secs=1.9 bl_positions=0 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=4 labels_done=4 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-10T00:58:14Z,desk,VERIFY,,0x4ed51f106a170e1d5c82cf625fcde95e53125ff4,SKIP,missing:symbol,goplus=skipped until=2026-11-11T00:58:14Z
+2026-11-10T00:58:14Z,desk,VERIFY,UODF,0x5fa060d8686b59b2166cfefcd25579e0635942bd,SKIP,real_depth,goplus=skipped until=2026-11-11T00:58:14Z
+2026-11-10T00:58:14Z,desk,VERIFY,REBOOT,0x7e675012c93ffcb47c53ae45bbc44f63a08e683f,WATCH,goplus_not_ready,"first_seen=2026-11-10T00:58:14Z checks=1 pending=mint_open,freeze_or_blacklist,honeypot,buy_tax_pct,sell_tax_pct,dev_pct,top10_pct,lp_locked_pct,risk_flags b1=9 s1=0 b24=9 s24=0 liq=175558 dex=uniswap:v2 qliq=87733 pair_age=5 token_age=5"
+2026-11-10T00:58:14Z,desk,VERIFY,titcoin,0x939111250372aadcbd9865b1c55d4bf93f1252a1,SKIP,real_depth,goplus=skipped until=2026-11-11T00:58:14Z
+2026-11-10T00:58:14Z,desk,VERIFY,USNR,0xc91630f38084f69495d28b6ed46322ca7a3c5f81,WATCH,goplus_not_ready,"first_seen=2026-11-10T00:58:14Z checks=1 pending=mint_open,freeze_or_blacklist,honeypot,buy_tax_pct,sell_tax_pct,dev_pct,top10_pct,lp_locked_pct,risk_flags b1=7 s1=0 b24=7 s24=0 liq=66577 dex=uniswap:v2 qliq=33214 pair_age=6 token_age=6"
+2026-11-10T00:58:14Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
+2026-11-10T00:58:14Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=19 rechecks=0 new=5 checked=5 passed=0 bought=0 held=0 deferred=0 dex_only=3 goplus=2 requests=11 secs=4.4 bl_positions=0 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=1 labels_done=1 labels_calls=1 live=ok alerts=none alerts_sent=0
