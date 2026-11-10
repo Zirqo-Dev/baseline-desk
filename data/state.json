@@ -1,10 +1,10 @@
 {
   "baseline": {
-    "cash": 37.704850481412144,
+    "cash": 42.429016789039636,
     "cooldown": {
       "a:0x038826c4a1b788f807d44306c851b257063e0d0f": "2026-11-11T03:48:14Z",
-      "a:0x2363980e0dcc1914499528fc521f28f3c174c81b": "2026-11-10T17:48:16Z",
       "a:0x2e9e636050a28714872a5d3c70e9e99e41de5172": "2026-11-11T02:38:14Z",
+      "a:0x32c448a3b7b77e4c60d57535dcfc7bff8de102b5": "2026-11-11T17:53:16Z",
       "a:0x4bed843fd33ab77b6ee202e321f9d53aa3c1a2ee": "2026-11-11T06:38:14Z",
       "a:0x9296dde9801a777ac43b48abb8372e523269adf8": "2026-11-11T05:18:15Z",
       "a:0xba94b559b8da0a5ddee25f8c5f92f2a4a7f55b69": "2026-11-11T15:38:15Z",
@@ -19,36 +19,17 @@
       "s:FOTF": "2026-11-11T06:38:14Z",
       "s:MONTRA": "2026-11-11T15:38:15Z",
       "s:ONLYCATS": "2026-11-11T03:48:14Z",
-      "s:ORGENT": "2026-11-10T17:48:16Z",
       "s:UKOR": "2026-11-11T08:08:15Z",
+      "s:USOE": "2026-11-11T17:53:16Z",
       "s:XTO": "2026-11-11T02:38:14Z"
     },
     "day": "2026-11-10",
     "day_start_value": 49.361784843872286,
     "halted_day": "",
-    "positions": {
-      "0x32c448a3b7b77e4c60d57535dcfc7bff8de102b5": {
-        "cost_usd": 5.0,
-        "entry_fill": 0.018026344767700986,
-        "entry_intended": 0.0175,
-        "entry_liq_usd": 26256338.92,
-        "entry_qliq": 65067,
-        "entry_ts": "2026-11-10T17:08:15Z",
-        "ladder_done": [],
-        "last_liq_usd": 26295358.47,
-        "last_price": 0.01752,
-        "last_qliq": 65139,
-        "launchpad": "other",
-        "orig_qty": 277.37181688429905,
-        "pair": "0x5cc4ab0017ab0a7d792e79550e79a63b69098204645c64044b05ceb898290a26",
-        "peak_price": 0.01758,
-        "qty": 277.37181688429905,
-        "symbol": "U\u200aS\u200aO\u200aE"
-      }
-    },
+    "positions": {},
     "refill_week": "2026-W46",
     "refills_usd": 47.693738985981945,
-    "ticks_since_buy": 8
+    "ticks_since_buy": 9
   },
   "desk": {
     "cash": 50.0,
@@ -759,7 +740,9 @@
         "symbol": "BLG"
       },
       "0x3687df434139623c4e148029fc80614833743138": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 0.03107,
         "first_seen": "2026-11-10T16:53:13Z",
         "sight_pair": "0xa0a0250d7e35bfc349b9d030a38115d9d7ba17585f3a683900f5d07dc18e2390",
@@ -2276,7 +2259,8 @@
       },
       "0xb84ee239f6c6f1a0f6bd4ad44801207dad78eef8": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 3.985e-06,
         "first_seen": "2026-11-10T11:53:14Z",
@@ -2447,6 +2431,14 @@
         "sight_pair": "0x95f70bbe077fa3669ed4ecfbad370f32c2489f2c",
         "sight_qliq": 67323,
         "symbol": "NVIDIA"
+      },
+      "0xc32e1b6d232578f90d1d981bb6cec53de46a6cf8": {
+        "done": [],
+        "first_price": 7.101e-06,
+        "first_seen": "2026-11-10T17:53:16Z",
+        "sight_pair": "0xa993999e3e4811bfb4e834f4311f7d75c5570aac",
+        "sight_qliq": 30806,
+        "symbol": "SOFS"
       },
       "0xc3414e41eae6bf08051511296be02e7de03d7773": {
         "done": [
@@ -6937,6 +6929,12 @@
         "symbol": "UFDS",
         "until": "2026-11-10T22:13:16Z"
       },
+      "0xa1c865ac7541a1aac8a8bbce63abc25879662ba3": {
+        "at": "2026-11-10T17:53:16Z",
+        "reason": "real_depth",
+        "symbol": "Legion",
+        "until": "2026-11-11T17:53:16Z"
+      },
       "0xa287e37e6995e00a57986421db2eafb79709b1b7": {
         "at": "2026-11-10T06:08:15Z",
         "reason": "real_depth",
@@ -8785,6 +8783,12 @@
         "symbol": "ISPF",
         "until": "2026-11-11T13:48:17Z"
       },
+      "0xcd7534004205db6474128fa19ebfb2a5317afee1": {
+        "at": "2026-11-10T17:53:16Z",
+        "reason": "real_depth",
+        "symbol": "FDA",
+        "until": "2026-11-11T17:53:16Z"
+      },
       "0xcd8962ba247a70489743844218b054dc8e534f99": {
         "at": "2026-11-10T11:43:13Z",
         "reason": "real_depth",
@@ -10004,6 +10008,12 @@
         "first_seen": "2026-11-10T17:08:15Z",
         "last_check": "2026-11-10T17:38:18Z",
         "symbol": "BIDEN"
+      },
+      "0xc32e1b6d232578f90d1d981bb6cec53de46a6cf8": {
+        "checks": 1,
+        "first_seen": "2026-11-10T17:53:16Z",
+        "last_check": "2026-11-10T17:53:16Z",
+        "symbol": "SOFS"
       },
       "0xda2dc46778ae1a06da45e6aad041c5400ca09d38": {
         "checks": 9,
