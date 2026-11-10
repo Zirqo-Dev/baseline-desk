@@ -31,7 +31,7 @@
     "positions": {},
     "refill_week": "2026-W46",
     "refills_usd": 47.693738985981945,
-    "ticks_since_buy": 17
+    "ticks_since_buy": 18
   },
   "desk": {
     "cash": 50.0,
@@ -148,17 +148,6 @@
         "sight_pair": "0x1e8e6b846e4dd17ca5ce1c23a92e3214b2f03dba116ea8e91b24fa91a64509ae",
         "sight_qliq": 1073,
         "symbol": "ADO\u200aF"
-      },
-      "0x08d8a5998d4452ec7620fbfb2ecd26f570696896": {
-        "done": [
-          1,
-          6
-        ],
-        "first_price": 9.065e-06,
-        "first_seen": "2026-11-09T09:48:16Z",
-        "sight_pair": "0xb1f5b7e9e51e45541aebf44d34419d0eba3c3a66",
-        "sight_qliq": 67358,
-        "symbol": "MMM"
       },
       "0x094c0165f4502c4f6fdbe1647347e874381e2203": {
         "done": [
@@ -705,7 +694,8 @@
       },
       "0x4bed843fd33ab77b6ee202e321f9d53aa3c1a2ee": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 0.00428,
         "first_seen": "2026-11-10T03:48:14Z",
@@ -951,6 +941,14 @@
         "sight_pair": "0xca890824cb65dc2fdef35bd30afc58b7c48439d8",
         "sight_qliq": 32922,
         "symbol": "NAOF"
+      },
+      "0x646760690d96495c17a5ad2a63e05a23a6fffe13": {
+        "done": [],
+        "first_price": 1.628e-05,
+        "first_seen": "2026-11-10T09:48:16Z",
+        "sight_pair": "0x814088244b14cb14278cf235c849112f652c8e0e",
+        "sight_qliq": 88088,
+        "symbol": "REBOOT"
       },
       "0x64861443518e8044762dc73f6e081a9d444de44f": {
         "done": [
@@ -3998,6 +3996,12 @@
         "symbol": "FOTF",
         "until": "2026-11-11T06:58:15Z"
       },
+      "0x4c17427315e44ca91a0fde18d3fdb1b1b358555c": {
+        "at": "2026-11-10T09:48:16Z",
+        "reason": "real_depth",
+        "symbol": "APEXC",
+        "until": "2026-11-11T09:48:16Z"
+      },
       "0x4c39b82918adc9dcf95de5b80ac9c243c73cc9dc": {
         "at": "2026-11-09T10:08:15Z",
         "reason": "real_depth",
@@ -5047,6 +5051,12 @@
         "reason": "real_depth",
         "symbol": "basemaxxing",
         "until": "2026-11-10T16:58:17Z"
+      },
+      "0x773434fcbecd8470401d6f6e8e23c39fbce241e8": {
+        "at": "2026-11-10T09:48:16Z",
+        "reason": "real_depth",
+        "symbol": "COMET",
+        "until": "2026-11-11T09:48:16Z"
       },
       "0x7747804a518a08c4d0252cbb80ad90473869cad8": {
         "at": "2026-11-09T21:13:18Z",
@@ -7880,6 +7890,12 @@
         "symbol": "\ud83c\udfd4",
         "until": "2026-11-10T12:38:15Z"
       },
+      "0xceddb433eb7da399caa44b016a34729c8f8f97c2": {
+        "at": "2026-11-10T09:48:16Z",
+        "reason": "real_depth",
+        "symbol": ".AI",
+        "until": "2026-11-11T09:48:16Z"
+      },
       "0xcf054755122565ea16cd0a10e9be7b2914ea6540": {
         "at": "2026-11-09T23:53:13Z",
         "reason": "real_depth",
@@ -8732,17 +8748,17 @@
         "symbol": "1KTO100M",
         "until": "2026-11-10T20:58:15Z"
       },
+      "0xf9f1184e2047e2ea7e6a320d77e8888fb35fe026": {
+        "at": "2026-11-10T09:48:16Z",
+        "reason": "real_depth",
+        "symbol": "BELLY",
+        "until": "2026-11-11T09:48:16Z"
+      },
       "0xf9f71b20857ad64eefb1ba361db40e2e4717cb10": {
         "at": "2026-11-10T02:13:14Z",
         "reason": "real_depth",
         "symbol": "UNP",
         "until": "2026-11-11T02:13:14Z"
-      },
-      "0xf9ffc48c184a165ea0beeec92b4cd602cb019af2": {
-        "at": "2026-11-09T09:48:16Z",
-        "reason": "missing:liq_usd",
-        "symbol": "Sahur",
-        "until": "2026-11-10T09:48:16Z"
       },
       "0xfa02c8b61207909d78af8126b3a8c22b4968d117": {
         "at": "2026-11-10T09:08:15Z",
@@ -8849,10 +8865,16 @@
     },
     "watch": {
       "0x038b9238befad3d8e1b170c167ebc4998e76dba0": {
-        "checks": 2,
+        "checks": 3,
         "first_seen": "2026-11-10T09:13:14Z",
-        "last_check": "2026-11-10T09:28:16Z",
+        "last_check": "2026-11-10T09:48:16Z",
         "symbol": "XOT"
+      },
+      "0x646760690d96495c17a5ad2a63e05a23a6fffe13": {
+        "checks": 1,
+        "first_seen": "2026-11-10T09:48:16Z",
+        "last_check": "2026-11-10T09:48:16Z",
+        "symbol": "REBOOT"
       },
       "0xe25630208f7038202eead8e84a4457c073877ef1": {
         "checks": 10,
