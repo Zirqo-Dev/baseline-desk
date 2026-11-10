@@ -33,7 +33,7 @@
     "positions": {},
     "refill_week": "2026-W46",
     "refills_usd": 47.693738985981945,
-    "ticks_since_buy": 10
+    "ticks_since_buy": 11
   },
   "desk": {
     "cash": 50.0,
@@ -238,17 +238,6 @@
         "sight_pair": "0x6a3dfd4587025322c59b3df51a9caf94f20c8b5c",
         "sight_qliq": 86516,
         "symbol": "Basecat"
-      },
-      "0x1759a323d5a6e2257e321267c95deaf40d9b3b37": {
-        "done": [
-          1,
-          6
-        ],
-        "first_price": 0.002411,
-        "first_seen": "2026-11-09T21:38:16Z",
-        "sight_pair": "0xd9ed5a42c91d8b07c945db1b005668b2f5639c6b826d4a0eb78d3b587f446bd6",
-        "sight_qliq": 42,
-        "symbol": "USNR"
       },
       "0x17e52d9a57e21b678037ebbd54e286a20568b549": {
         "done": [
@@ -1703,6 +1692,14 @@
         "sight_qliq": 26,
         "symbol": "POWER U.S RESERVE"
       },
+      "0x9a8621e34c6b4c3a7bfabbf7c9191f0d2184ba6e": {
+        "done": [],
+        "first_price": 4.224e-06,
+        "first_seen": "2026-11-10T21:38:17Z",
+        "sight_pair": "0x4de7ab528c9226bba8c37155d08bda9f818af2a0",
+        "sight_qliq": 31480,
+        "symbol": "DTCC Hedera"
+      },
       "0x9b516293b43c916fac07a4149c9ddd5ead7375b9": {
         "done": [
           1
@@ -1775,17 +1772,6 @@
         "sight_pair": "0x1147d959b57aa5c76c8b85c2e27e3ea6113d1cda2ff310106078171dbd25a14a",
         "sight_qliq": 56,
         "symbol": "ADF"
-      },
-      "0xa16b348e2d3ca71105b44a6b1298c0cfde941e2d": {
-        "done": [
-          1,
-          6
-        ],
-        "first_price": 3.851e-06,
-        "first_seen": "2026-11-09T21:38:16Z",
-        "sight_pair": "0xb25d956ee8f62e0681f27c375a6834aa0f630949",
-        "sight_qliq": 32732,
-        "symbol": "UFDS"
       },
       "0xa287e37e6995e00a57986421db2eafb79709b1b7": {
         "done": [
@@ -2886,12 +2872,6 @@
         "symbol": "UODF",
         "until": "2026-11-11T16:33:14Z"
       },
-      "0x05fc810ce1de4423631dc384f2f24f13b3c528a8": {
-        "at": "2026-11-09T21:38:16Z",
-        "reason": "real_depth",
-        "symbol": "SMKN",
-        "until": "2026-11-10T21:38:16Z"
-      },
       "0x05ffbb615d2eec0af2c2d2e615ac656ab0037b07": {
         "at": "2026-11-10T11:23:13Z",
         "reason": "missing:liq_usd",
@@ -3251,12 +3231,6 @@
         "reason": "real_depth",
         "symbol": "Grok bot",
         "until": "2026-11-11T03:13:14Z"
-      },
-      "0x1759a323d5a6e2257e321267c95deaf40d9b3b37": {
-        "at": "2026-11-09T21:38:16Z",
-        "reason": "real_depth",
-        "symbol": "USNR",
-        "until": "2026-11-10T21:38:16Z"
       },
       "0x17aca1361d3b14322fd130bd649e6102a9351222": {
         "at": "2026-11-10T09:38:15Z",
@@ -4662,6 +4636,12 @@
         "symbol": "GPU",
         "until": "2026-11-11T18:43:14Z"
       },
+      "0x4fcfc2139d82179ae7e26adde3f28e50669c397b": {
+        "at": "2026-11-10T21:38:17Z",
+        "reason": "real_depth",
+        "symbol": "CITY XRP",
+        "until": "2026-11-11T21:38:17Z"
+      },
       "0x502d1c00b89eb32a9dd836a2e9216aa2999acccc": {
         "at": "2026-11-10T17:18:18Z",
         "reason": "real_depth",
@@ -4931,6 +4911,12 @@
         "reason": "real_depth",
         "symbol": "Basepig",
         "until": "2026-11-11T20:28:16Z"
+      },
+      "0x5c6218f6c554175464aebb7bf1a3c25fbc34146b": {
+        "at": "2026-11-10T21:38:17Z",
+        "reason": "real_depth",
+        "symbol": "Basetiger",
+        "until": "2026-11-11T21:38:17Z"
       },
       "0x5c80be4a9156c8bd8b2c3e99bfc4af907c368d43": {
         "at": "2026-11-10T17:33:15Z",
@@ -6708,12 +6694,6 @@
         "symbol": "SPACEX",
         "until": "2026-11-11T06:43:14Z"
       },
-      "0xaa043187422adfed121ce243ea39f51a4898edd6": {
-        "at": "2026-11-09T21:38:16Z",
-        "reason": "real_depth",
-        "symbol": "IGOR",
-        "until": "2026-11-10T21:38:16Z"
-      },
       "0xaa85f8e47ba02afa78d413085915524ffed5cccc": {
         "at": "2026-11-10T00:48:15Z",
         "reason": "missing:liq_usd",
@@ -7380,11 +7360,23 @@
         "symbol": "TIDE",
         "until": "2026-11-11T07:23:13Z"
       },
+      "0xb20000000000000000000080dc9167cc665e30e4": {
+        "at": "2026-11-10T21:38:17Z",
+        "reason": "real_depth",
+        "symbol": "TESTV5",
+        "until": "2026-11-11T21:38:17Z"
+      },
       "0xb20000000000000000000083d4aa371afdae6a96": {
         "at": "2026-11-10T16:53:13Z",
         "reason": "missing:liq_usd",
         "symbol": "RAIN",
         "until": "2026-11-11T16:53:13Z"
+      },
+      "0xb20000000000000000000083e6891b644ad2b4a4": {
+        "at": "2026-11-10T21:38:17Z",
+        "reason": "real_depth",
+        "symbol": "TESTV5",
+        "until": "2026-11-11T21:38:17Z"
       },
       "0xb20000000000000000000084d4753cf2d7977439": {
         "at": "2026-11-10T16:33:14Z",
@@ -9642,12 +9634,6 @@
         "symbol": "AOFN",
         "until": "2026-11-11T17:03:14Z"
       },
-      "0xff0c7eb14b16046698629e38070b9c424e0316ea": {
-        "at": "2026-11-09T21:38:16Z",
-        "reason": "real_depth",
-        "symbol": "HOOD",
-        "until": "2026-11-10T21:38:16Z"
-      },
       "0xffc1b67b75dc626f7925bfe76a9e268387028f46": {
         "at": "2026-11-10T17:58:16Z",
         "reason": "real_depth",
@@ -9669,27 +9655,21 @@
     },
     "watch": {
       "0x2230ef3f7978924026a4639a7e463bacca506610": {
-        "checks": 6,
+        "checks": 7,
         "first_seen": "2026-11-10T19:53:14Z",
-        "last_check": "2026-11-10T21:18:18Z",
+        "last_check": "2026-11-10T21:38:17Z",
         "symbol": "FOTF"
       },
       "0x39069fb470bc31480976d73da4842dea98cecedc": {
-        "checks": 6,
+        "checks": 7,
         "first_seen": "2026-11-10T19:53:14Z",
-        "last_check": "2026-11-10T21:18:18Z",
+        "last_check": "2026-11-10T21:38:17Z",
         "symbol": "U\u200aS\u200aO\u200aE"
       },
-      "0x4fcfc2139d82179ae7e26adde3f28e50669c397b": {
-        "checks": 2,
-        "first_seen": "2026-11-10T21:03:15Z",
-        "last_check": "2026-11-10T21:18:18Z",
-        "symbol": "CITY XRP"
-      },
       "0x57699dcaa6133de371c4fc408bb20840aaabb19b": {
-        "checks": 6,
+        "checks": 7,
         "first_seen": "2026-11-10T19:48:16Z",
-        "last_check": "2026-11-10T21:18:18Z",
+        "last_check": "2026-11-10T21:38:17Z",
         "symbol": "UNISEUM"
       },
       "0x8dfad3a71c7e6bd620ada23ef84f973b2d0db1a7": {
@@ -9697,6 +9677,12 @@
         "first_seen": "2026-11-10T21:13:16Z",
         "last_check": "2026-11-10T21:33:15Z",
         "symbol": "HALLOWEEN"
+      },
+      "0x9a8621e34c6b4c3a7bfabbf7c9191f0d2184ba6e": {
+        "checks": 1,
+        "first_seen": "2026-11-10T21:38:17Z",
+        "last_check": "2026-11-10T21:38:17Z",
+        "symbol": "DTCC Hedera"
       },
       "0xb113d678063a4b2321037f14e91f975f78cb6af0": {
         "checks": 2,
