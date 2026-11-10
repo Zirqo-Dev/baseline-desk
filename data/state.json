@@ -1,20 +1,20 @@
 {
   "baseline": {
-    "cash": 44.050772050139244,
+    "cash": 48.75925574175183,
     "cooldown": {
       "a:0x038826c4a1b788f807d44306c851b257063e0d0f": "2026-11-11T03:48:14Z",
       "a:0x2363980e0dcc1914499528fc521f28f3c174c81b": "2026-11-10T17:48:16Z",
-      "a:0x2e7f8b39a367fd54048ddb6ca02a2f68002a5e5e": "2026-11-10T04:18:13Z",
       "a:0x2e9e636050a28714872a5d3c70e9e99e41de5172": "2026-11-11T02:38:14Z",
       "a:0x3f53a22d889e7135b187df9e66001a64d513b38f": "2026-11-10T06:23:13Z",
       "a:0x46e3e18f4c6ea3d9a0ec18bf628334b0918e72a1": "2026-11-10T11:53:15Z",
       "a:0x4962b1712f5f9d5bf8b6ef6f0633330ad3e88d7d": "2026-11-10T13:43:16Z",
+      "a:0x9296dde9801a777ac43b48abb8372e523269adf8": "2026-11-11T05:18:15Z",
       "a:0x9f9bc28fb04bd28536a6f45ad5a3f8a459289e54": "2026-11-10T09:43:14Z",
       "a:0xc9f11bc50a2b925d2df8f63ea42f3a6c10fce5a5": "2026-11-10T12:48:15Z",
+      "s:ANTHROPIC": "2026-11-11T05:18:15Z",
       "s:COINBANK": "2026-11-10T12:48:15Z",
       "s:DACITY": "2026-11-10T06:23:13Z",
       "s:GTA6": "2026-11-10T11:53:15Z",
-      "s:HELL": "2026-11-10T04:18:13Z",
       "s:NVIDIH": "2026-11-10T13:43:16Z",
       "s:ONLYCATS": "2026-11-11T03:48:14Z",
       "s:ORGENT": "2026-11-10T17:48:16Z",
@@ -24,29 +24,10 @@
     "day": "2026-11-10",
     "day_start_value": 49.361784843872286,
     "halted_day": "",
-    "positions": {
-      "0x9296dde9801a777ac43b48abb8372e523269adf8": {
-        "cost_usd": 5.0,
-        "entry_fill": 0.0001050633854875434,
-        "entry_intended": 0.000102,
-        "entry_liq_usd": 10253389.3,
-        "entry_qliq": 150643,
-        "entry_ts": "2026-11-10T04:33:14Z",
-        "ladder_done": [],
-        "last_liq_usd": 10332077.37,
-        "last_price": 0.000102,
-        "last_qliq": 230018,
-        "launchpad": "other",
-        "orig_qty": 47590.31870901222,
-        "pair": "0x82c5fe505e3e2ed06219e51d09f716963fa5ff40",
-        "peak_price": 0.000102,
-        "qty": 47590.31870901222,
-        "symbol": "Anthropic"
-      }
-    },
+    "positions": {},
     "refill_week": "2026-W46",
     "refills_usd": 47.693738985981945,
-    "ticks_since_buy": 8
+    "ticks_since_buy": 9
   },
   "desk": {
     "cash": 50.0,
@@ -1591,7 +1572,9 @@
         "symbol": "NODF"
       },
       "0x9296dde9801a777ac43b48abb8372e523269adf8": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 0.0001002,
         "first_seen": "2026-11-10T04:13:17Z",
         "sight_pair": "0x82c5fe505e3e2ed06219e51d09f716963fa5ff40",
@@ -3481,12 +3464,6 @@
         "symbol": "CAT",
         "until": "2026-11-10T16:38:16Z"
       },
-      "0x2fdf13f8d8d599642ac480720dbfa347c75acd77": {
-        "at": "2026-11-09T05:18:14Z",
-        "reason": "missing:symbol",
-        "symbol": "",
-        "until": "2026-11-10T05:18:14Z"
-      },
       "0x2fe72ca2ae3e55b6f8ea55629fde455187b29f29": {
         "at": "2026-11-09T21:13:18Z",
         "reason": "real_depth",
@@ -3582,12 +3559,6 @@
         "reason": "real_depth",
         "symbol": "SPACEX",
         "until": "2026-11-10T09:28:15Z"
-      },
-      "0x33ddf9a3658cbadcd758505176924dd95a711c43": {
-        "at": "2026-11-09T05:18:14Z",
-        "reason": "missing:symbol",
-        "symbol": "",
-        "until": "2026-11-10T05:18:14Z"
       },
       "0x33f765e1b5425dba806f7264ae0363469fd98e7c": {
         "at": "2026-11-09T14:48:14Z",
@@ -6673,6 +6644,12 @@
         "symbol": "YorkAI",
         "until": "2026-11-10T16:48:20Z"
       },
+      "0xb20000000000000000000066176ebbb87eb2857d": {
+        "at": "2026-11-10T05:18:15Z",
+        "reason": "real_depth",
+        "symbol": "ACHIMALAYA",
+        "until": "2026-11-11T05:18:15Z"
+      },
       "0xb2000000000000000000006630d3edbb26619d98": {
         "at": "2026-11-09T13:23:13Z",
         "reason": "real_depth",
@@ -7152,12 +7129,6 @@
         "reason": "missing:symbol",
         "symbol": "",
         "until": "2026-11-10T22:23:13Z"
-      },
-      "0xb30cf337ba110feecc59680608486e1c8c523e1f": {
-        "at": "2026-11-09T05:18:14Z",
-        "reason": "missing:symbol",
-        "symbol": "",
-        "until": "2026-11-10T05:18:14Z"
       },
       "0xb344f9177d7f527c5335c3405581c1eaadf1f693": {
         "at": "2026-11-09T19:23:13Z",
@@ -8842,9 +8813,9 @@
     },
     "watch": {
       "0x038826c4a1b788f807d44306c851b257063e0d0f": {
-        "checks": 9,
+        "checks": 10,
         "first_seen": "2026-11-10T02:38:14Z",
-        "last_check": "2026-11-10T05:03:14Z",
+        "last_check": "2026-11-10T05:18:15Z",
         "symbol": "OnlyCats"
       },
       "0x4bed843fd33ab77b6ee202e321f9d53aa3c1a2ee": {
@@ -8860,9 +8831,9 @@
         "symbol": "BLG"
       },
       "0x76046d4a41c6fc4cf8c8452de39ac3b954f0199f": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-10T05:03:14Z",
-        "last_check": "2026-11-10T05:03:14Z",
+        "last_check": "2026-11-10T05:18:15Z",
         "symbol": "REBOOT"
       },
       "0x877b777aee28b40b34a64eef72f6c7cc146c8a6e": {
@@ -8872,9 +8843,9 @@
         "symbol": "UDTF"
       },
       "0x9296dde9801a777ac43b48abb8372e523269adf8": {
-        "checks": 4,
+        "checks": 5,
         "first_seen": "2026-11-10T04:13:17Z",
-        "last_check": "2026-11-10T05:03:14Z",
+        "last_check": "2026-11-10T05:18:15Z",
         "symbol": "Anthropic"
       },
       "0xb9c53f93e2cf29fd9fc17d46af4fdecf1917b304": {
