@@ -29,7 +29,7 @@
     "positions": {},
     "refill_week": "2026-W46",
     "refills_usd": 47.693738985981945,
-    "ticks_since_buy": 13
+    "ticks_since_buy": 14
   },
   "desk": {
     "cash": 50.0,
@@ -458,7 +458,8 @@
       },
       "0x22271ad6ac65a1f181b465d482884105899f5aad": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 0.0001314,
         "first_seen": "2026-11-10T12:18:15Z",
@@ -858,6 +859,14 @@
         "sight_pair": "0x5979d7eaa325108fba54eea4ef087fc0e16fc622fab3770063671539809f6b4a",
         "sight_qliq": 27,
         "symbol": "PIEVERSE"
+      },
+      "0x3e8448ef7e47bb98369ec0fc8d4ab29f3258f6ca": {
+        "done": [],
+        "first_price": 9.873e-06,
+        "first_seen": "2026-11-10T18:18:17Z",
+        "sight_pair": "0xd1b6b18a8df9051265a89cdf47d28de51c4c4b31",
+        "sight_qliq": 83783,
+        "symbol": "BOOTR"
       },
       "0x3ed744342f5fce93d7da46e60dc3a7ba25a9f1c1": {
         "done": [
@@ -2132,7 +2141,8 @@
       },
       "0xab302df7656f3ce559e6041cfdbd793a4e3a3436": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 8.136e-05,
         "first_seen": "2026-11-10T12:18:15Z",
@@ -2205,7 +2215,8 @@
       },
       "0xb47b731df62b3a10dc85ba8d24dc0f593f7f0f0d": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 0.0001003,
         "first_seen": "2026-11-10T12:18:15Z",
@@ -2830,7 +2841,8 @@
       },
       "0xec60f9a66eb63622d63270659e7f6d4964d56f64": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 7.544e-05,
         "first_seen": "2026-11-10T12:18:15Z",
@@ -4915,6 +4927,12 @@
         "symbol": "SPACEX",
         "until": "2026-11-11T05:53:14Z"
       },
+      "0x4c681df811791b19fb15fc35c1582bd7d03c4d23": {
+        "at": "2026-11-10T18:18:17Z",
+        "reason": "real_depth",
+        "symbol": "NEBRASKA",
+        "until": "2026-11-11T18:18:17Z"
+      },
       "0x4c86dd0dbf3520eeda6b6ca8fb81b8c6c939068c": {
         "at": "2026-11-10T17:48:16Z",
         "reason": "real_depth",
@@ -5436,6 +5454,12 @@
         "reason": "real_depth",
         "symbol": "OIL DIVIDEND FUND UNITED",
         "until": "2026-11-11T14:43:15Z"
+      },
+      "0x638d264eddccb47ea9434a9aa56b97cc4ff19db9": {
+        "at": "2026-11-10T18:18:17Z",
+        "reason": "real_depth",
+        "symbol": "Francis",
+        "until": "2026-11-11T18:18:17Z"
       },
       "0x63b627a425ba629807211caab940effe2c3888c9": {
         "at": "2026-11-10T13:48:17Z",
@@ -9919,6 +9943,12 @@
         "symbol": "MUSIG",
         "until": "2026-11-11T17:43:14Z"
       },
+      "0xfce31c6664b164b306f83453d985e0992d982849": {
+        "at": "2026-11-10T18:18:17Z",
+        "reason": "goplus_timeout",
+        "symbol": "AOTF",
+        "until": "2026-11-11T18:18:17Z"
+      },
       "0xfd773557b2f680152af037bbf4afc5292154db62": {
         "at": "2026-11-09T22:18:15Z",
         "reason": "real_depth",
@@ -10018,22 +10048,22 @@
     },
     "watch": {
       "0x32c448a3b7b77e4c60d57535dcfc7bff8de102b5": {
-        "checks": 6,
+        "checks": 7,
         "first_seen": "2026-11-10T16:33:14Z",
-        "last_check": "2026-11-10T17:58:16Z",
+        "last_check": "2026-11-10T18:18:17Z",
         "symbol": "U\u200aS\u200aO\u200aE"
       },
-      "0x4ae9ab62eeb93059608d626900610097cd6a4ff5": {
-        "checks": 3,
-        "first_seen": "2026-11-10T17:23:15Z",
-        "last_check": "2026-11-10T17:58:16Z",
-        "symbol": "EXM"
+      "0x3e8448ef7e47bb98369ec0fc8d4ab29f3258f6ca": {
+        "checks": 1,
+        "first_seen": "2026-11-10T18:18:17Z",
+        "last_check": "2026-11-10T18:18:17Z",
+        "symbol": "BOOTR"
       },
-      "0x4c681df811791b19fb15fc35c1582bd7d03c4d23": {
-        "checks": 3,
+      "0x4ae9ab62eeb93059608d626900610097cd6a4ff5": {
+        "checks": 4,
         "first_seen": "2026-11-10T17:23:15Z",
-        "last_check": "2026-11-10T17:58:16Z",
-        "symbol": "NEBRASKA"
+        "last_check": "2026-11-10T18:18:17Z",
+        "symbol": "EXM"
       },
       "0x55538f440d34e75cd830aa8da3c9eb2c2791228d": {
         "checks": 4,
@@ -10066,16 +10096,10 @@
         "symbol": "SOFS"
       },
       "0xda2dc46778ae1a06da45e6aad041c5400ca09d38": {
-        "checks": 10,
+        "checks": 11,
         "first_seen": "2026-11-10T15:23:14Z",
-        "last_check": "2026-11-10T17:58:16Z",
+        "last_check": "2026-11-10T18:18:17Z",
         "symbol": "FOTF"
-      },
-      "0xfce31c6664b164b306f83453d985e0992d982849": {
-        "checks": 10,
-        "first_seen": "2026-11-10T15:18:16Z",
-        "last_check": "2026-11-10T17:58:16Z",
-        "symbol": "AOTF"
       }
     }
   },
