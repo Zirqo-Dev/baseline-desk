@@ -1,6 +1,6 @@
 {
   "baseline": {
-    "cash": 43.002666250963614,
+    "cash": 38.002666250963614,
     "cooldown": {
       "a:0x038826c4a1b788f807d44306c851b257063e0d0f": "2026-11-11T03:48:14Z",
       "a:0x2363980e0dcc1914499528fc521f28f3c174c81b": "2026-11-10T17:48:16Z",
@@ -24,10 +24,27 @@
     "day": "2026-11-10",
     "day_start_value": 49.361784843872286,
     "halted_day": "",
-    "positions": {},
+    "positions": {
+      "0xfce31c6664b164b306f83453d985e0992d982849": {
+        "cost_usd": 5.0,
+        "entry_fill": 0.1762523696651346,
+        "entry_intended": 0.1711,
+        "entry_liq_usd": 115015.65,
+        "entry_qliq": 44167,
+        "entry_ts": "2026-11-10T15:53:16Z",
+        "ladder_done": [],
+        "last_price": 0.1711,
+        "launchpad": "other",
+        "orig_qty": 28.368412915523347,
+        "pair": "0x503b624a55a1d3c3765827a7eb7c9ffaa50e43ad36d3ce3d103d008deee7aa87",
+        "peak_price": 0.1711,
+        "qty": 28.368412915523347,
+        "symbol": "AOTF"
+      }
+    },
     "refill_week": "2026-W46",
     "refills_usd": 47.693738985981945,
-    "ticks_since_buy": 11
+    "ticks_since_buy": 0
   },
   "desk": {
     "cash": 50.0,
@@ -167,7 +184,9 @@
         "symbol": "ADO\u200aF"
       },
       "0x09386f9e13a0c277509e16e43e75e05eac47087a": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 0.0001243,
         "first_seen": "2026-11-10T14:53:14Z",
         "sight_pair": "0x87f9e9a18e63c33b12ead62342f41e7de7ca93f2df4258404752424940d9cd0e",
@@ -384,6 +403,14 @@
         "sight_pair": "0xf1e21827e402ec92fca956cc9bb008adb21ade45068c281fa919b4bbd870d578",
         "sight_qliq": 0,
         "symbol": "POWER FUND INTERNATIONAL"
+      },
+      "0x1dde30d04970f1620e83928a8f9530f6169438fa": {
+        "done": [],
+        "first_price": 0.0001153,
+        "first_seen": "2026-11-10T15:53:16Z",
+        "sight_pair": "0xf56338e12dd10d852daf03f70305bbe71dda542e88943198aeccd224e913ef36",
+        "sight_qliq": 51,
+        "symbol": "UPRS"
       },
       "0x204a6d536ae13034f47f215a316112434d8a84d1": {
         "done": [
@@ -835,7 +862,9 @@
         "symbol": "NODF"
       },
       "0x47524f4e77e0b72a80eb7c1b0f6d29210bce3f82": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 0.0001714,
         "first_seen": "2026-11-10T14:53:14Z",
         "sight_pair": "0x722757c2223f9cb1d015d3e835d7b8653a2602b0f76b7ce91cd1412c727ba9a4",
@@ -951,7 +980,8 @@
       },
       "0x5663d06699c33e7160fe9fd9e72cca0e84c37749": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 7.183e-06,
         "first_seen": "2026-11-10T09:53:16Z",
@@ -1497,6 +1527,14 @@
         "sight_pair": "0x7f09d8da56caa4abce346f6365783627d9ef47c3",
         "sight_qliq": 85022,
         "symbol": "TRUMP2028"
+      },
+      "0x825a812b586cd4aa3b70c2b82105049369bb5bfc": {
+        "done": [],
+        "first_price": 4.236e-06,
+        "first_seen": "2026-11-10T15:53:16Z",
+        "sight_pair": "0x47c2ea04b82d1ef4a697cb96482e8bd1f746b84a",
+        "sight_qliq": 31654,
+        "symbol": "USRP"
       },
       "0x82dda778aeaccb85cf3415120c1cd31b07c83008": {
         "done": [
@@ -3563,6 +3601,12 @@
         "symbol": "EDGE",
         "until": "2026-11-10T17:48:16Z"
       },
+      "0x1dde30d04970f1620e83928a8f9530f6169438fa": {
+        "at": "2026-11-10T15:53:16Z",
+        "reason": "real_depth",
+        "symbol": "UPRS",
+        "until": "2026-11-11T15:53:16Z"
+      },
       "0x1e026ac4661c6b6608ed661a38d715ccef242765": {
         "at": "2026-11-10T02:43:12Z",
         "reason": "missing:symbol",
@@ -5135,6 +5179,12 @@
         "symbol": "LC",
         "until": "2026-11-10T22:58:15Z"
       },
+      "0x6790e3e974d35c5235ab45d10ab693d9834e40d2": {
+        "at": "2026-11-10T15:53:16Z",
+        "reason": "real_depth",
+        "symbol": "USDT.E",
+        "until": "2026-11-11T15:53:16Z"
+      },
       "0x67b00f773054031ced8cd3daeb7d5211a092a003": {
         "at": "2026-11-10T00:03:13Z",
         "reason": "real_depth",
@@ -6124,6 +6174,12 @@
         "reason": "missing:liq_usd",
         "symbol": "MARKETBANK",
         "until": "2026-11-10T22:43:14Z"
+      },
+      "0x9278b8e8b4406edec5a618bab720c4066bb3d7af": {
+        "at": "2026-11-10T15:53:16Z",
+        "reason": "real_depth",
+        "symbol": "CLANKER",
+        "until": "2026-11-11T15:53:16Z"
       },
       "0x92854b4c06b1894c009fba97e6cbfd97acb978ef": {
         "at": "2026-11-10T15:13:16Z",
@@ -7313,6 +7369,12 @@
         "symbol": "Muse",
         "until": "2026-11-10T18:23:14Z"
       },
+      "0xb200000000000000000000992c6aa69dff79c430": {
+        "at": "2026-11-10T15:53:16Z",
+        "reason": "real_depth",
+        "symbol": "MATCH",
+        "until": "2026-11-11T15:53:16Z"
+      },
       "0xb2000000000000000000009bef882374ce80f9cf": {
         "at": "2026-11-10T14:13:12Z",
         "reason": "real_depth",
@@ -7498,6 +7560,12 @@
         "reason": "real_depth",
         "symbol": "Herdr",
         "until": "2026-11-11T12:43:14Z"
+      },
+      "0xb200000000000000000000ee4f907b7b3030ad48": {
+        "at": "2026-11-10T15:53:16Z",
+        "reason": "real_depth",
+        "symbol": "BBS",
+        "until": "2026-11-11T15:53:16Z"
       },
       "0xb200000000000000000000f62cb48e00c62cea3e": {
         "at": "2026-11-10T14:48:15Z",
@@ -8350,6 +8418,12 @@
         "reason": "real_depth",
         "symbol": "NATF",
         "until": "2026-11-10T21:08:18Z"
+      },
+      "0xd4b130ecc3da8bc58d45ce331d59796f0baa8066": {
+        "at": "2026-11-10T15:53:16Z",
+        "reason": "real_depth",
+        "symbol": "NOVAL",
+        "until": "2026-11-11T15:53:16Z"
       },
       "0xd4b3bc67ba18bd22bd52c41244c46096e7758e0e": {
         "at": "2026-11-10T15:08:16Z",
@@ -9284,10 +9358,16 @@
         "symbol": "MOGGING"
       },
       "0x8232ff4e25811f4124dadb57e9e91accf9699c7a": {
-        "checks": 2,
+        "checks": 3,
         "first_seen": "2026-11-10T15:23:14Z",
-        "last_check": "2026-11-10T15:38:15Z",
+        "last_check": "2026-11-10T15:53:16Z",
         "symbol": "TRUMP2028"
+      },
+      "0x825a812b586cd4aa3b70c2b82105049369bb5bfc": {
+        "checks": 1,
+        "first_seen": "2026-11-10T15:53:16Z",
+        "last_check": "2026-11-10T15:53:16Z",
+        "symbol": "USRP"
       },
       "0xb95f35e8defc813696976350becd0f5449fd8d9c": {
         "checks": 3,
@@ -9308,15 +9388,15 @@
         "symbol": "Anthropic"
       },
       "0xda2dc46778ae1a06da45e6aad041c5400ca09d38": {
-        "checks": 2,
+        "checks": 3,
         "first_seen": "2026-11-10T15:23:14Z",
-        "last_check": "2026-11-10T15:38:15Z",
+        "last_check": "2026-11-10T15:53:16Z",
         "symbol": "FOTF"
       },
       "0xfce31c6664b164b306f83453d985e0992d982849": {
-        "checks": 2,
+        "checks": 3,
         "first_seen": "2026-11-10T15:18:16Z",
-        "last_check": "2026-11-10T15:38:15Z",
+        "last_check": "2026-11-10T15:53:16Z",
         "symbol": "AOTF"
       }
     }
@@ -9484,7 +9564,7 @@
     "gate_restart": "BL-32",
     "machine_due": "",
     "max_dd_pct": {
-      "baseline": 107.96384577469841,
+      "baseline": 108.3476235643737,
       "desk": 9.811123120222184
     },
     "peak": {
