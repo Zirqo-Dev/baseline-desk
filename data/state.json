@@ -33,7 +33,7 @@
         "entry_qliq": 150643,
         "entry_ts": "2026-11-10T04:33:14Z",
         "ladder_done": [],
-        "last_liq_usd": 10332077.27,
+        "last_liq_usd": 10332077.31,
         "last_price": 0.000102,
         "last_qliq": 230018,
         "launchpad": "other",
@@ -46,7 +46,7 @@
     },
     "refill_week": "2026-W46",
     "refills_usd": 47.693738985981945,
-    "ticks_since_buy": 5
+    "ticks_since_buy": 6
   },
   "desk": {
     "cash": 50.0,
@@ -464,7 +464,8 @@
       },
       "0x2ddb0eb0812429c4720cac0d0d0d2645f8103da9": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 0.01847,
         "first_seen": "2026-11-09T23:03:14Z",
@@ -914,7 +915,9 @@
         "symbol": "SOSF"
       },
       "0x5f40f898adf273e6d1a7b7e4be4c7e912a791371": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 6.759e-06,
         "first_seen": "2026-11-10T04:03:12Z",
         "sight_pair": "0x77652113343f2e12948c578e70f7c70e4589ec6f",
@@ -1242,6 +1245,14 @@
         "sight_pair": "0x6367538a92f9dcd3f966834f08b754f5aa403376",
         "sight_qliq": 65063,
         "symbol": "DANA"
+      },
+      "0x76046d4a41c6fc4cf8c8452de39ac3b954f0199f": {
+        "done": [],
+        "first_price": 1.953e-05,
+        "first_seen": "2026-11-10T05:03:14Z",
+        "sight_pair": "0xc938e1bdc3279aefaba5d510616f9a1dee2472b0",
+        "sight_qliq": 86194,
+        "symbol": "REBOOT"
       },
       "0x76ff51f120873a8eddc66ec3a6b1c775f78da23a": {
         "done": [
@@ -3723,12 +3734,6 @@
         "symbol": "CHUBBY",
         "until": "2026-11-11T04:33:14Z"
       },
-      "0x39f5d3d375c96da97d98ba856f69dc6fc77d2133": {
-        "at": "2026-11-09T05:03:14Z",
-        "reason": "missing:symbol",
-        "symbol": "",
-        "until": "2026-11-10T05:03:14Z"
-      },
       "0x3a0eddc21abff1c735a1e2472c04edc9ec9ba6ea": {
         "at": "2026-11-09T20:18:16Z",
         "reason": "real_depth",
@@ -4190,12 +4195,6 @@
         "reason": "real_depth",
         "symbol": "CADD",
         "until": "2026-11-11T02:58:17Z"
-      },
-      "0x4f939955d0798dc9b1c06d04f79d0ed4048c2ebe": {
-        "at": "2026-11-09T05:03:14Z",
-        "reason": "missing:liq_usd",
-        "symbol": "\u725b\u903c",
-        "until": "2026-11-10T05:03:14Z"
       },
       "0x4fd816e4d67a2e9fb981bcd531e45881c92f2e93": {
         "at": "2026-11-09T19:53:16Z",
@@ -6152,6 +6151,12 @@
         "reason": "real_depth",
         "symbol": "TROLL",
         "until": "2026-11-11T02:18:14Z"
+      },
+      "0xa6d4988453d3771258bef8ca98a8744db9b37093": {
+        "at": "2026-11-10T05:03:14Z",
+        "reason": "missing:liq_usd",
+        "symbol": "Basehorse",
+        "until": "2026-11-11T05:03:14Z"
       },
       "0xa739ef34e8b9935cc0568b603afbb41b7300cccc": {
         "at": "2026-11-09T10:23:12Z",
@@ -8898,9 +8903,9 @@
     },
     "watch": {
       "0x038826c4a1b788f807d44306c851b257063e0d0f": {
-        "checks": 8,
+        "checks": 9,
         "first_seen": "2026-11-10T02:38:14Z",
-        "last_check": "2026-11-10T04:48:14Z",
+        "last_check": "2026-11-10T05:03:14Z",
         "symbol": "OnlyCats"
       },
       "0x4bed843fd33ab77b6ee202e321f9d53aa3c1a2ee": {
@@ -8915,6 +8920,12 @@
         "last_check": "2026-11-10T04:53:16Z",
         "symbol": "BLG"
       },
+      "0x76046d4a41c6fc4cf8c8452de39ac3b954f0199f": {
+        "checks": 1,
+        "first_seen": "2026-11-10T05:03:14Z",
+        "last_check": "2026-11-10T05:03:14Z",
+        "symbol": "REBOOT"
+      },
       "0x877b777aee28b40b34a64eef72f6c7cc146c8a6e": {
         "checks": 6,
         "first_seen": "2026-11-10T03:33:14Z",
@@ -8922,9 +8933,9 @@
         "symbol": "UDTF"
       },
       "0x9296dde9801a777ac43b48abb8372e523269adf8": {
-        "checks": 3,
+        "checks": 4,
         "first_seen": "2026-11-10T04:13:17Z",
-        "last_check": "2026-11-10T04:48:14Z",
+        "last_check": "2026-11-10T05:03:14Z",
         "symbol": "Anthropic"
       },
       "0xb9c53f93e2cf29fd9fc17d46af4fdecf1917b304": {
