@@ -33,9 +33,9 @@
         "entry_qliq": 17393,
         "entry_ts": "2026-11-10T05:48:15Z",
         "ladder_done": [],
-        "last_liq_usd": 43532.27,
-        "last_price": 0.004287,
-        "last_qliq": 17327,
+        "last_liq_usd": 43576.94,
+        "last_price": 0.004291,
+        "last_qliq": 17349,
         "launchpad": "other",
         "orig_qty": 1125.467175451977,
         "pair": "0xb2dd3237b39ffc231556e703934b842f1b6c7ed0ad1d6195a7ddd8b992dc7a08",
@@ -46,7 +46,7 @@
     },
     "refill_week": "2026-W46",
     "refills_usd": 47.693738985981945,
-    "ticks_since_buy": 6
+    "ticks_since_buy": 7
   },
   "desk": {
     "cash": 50.0,
@@ -260,6 +260,14 @@
         "sight_pair": "0x9933bf5f15ed9ea0ec8cd0c12a597b952384e1a3",
         "sight_qliq": 86313,
         "symbol": "REBOOT"
+      },
+      "0x0d794ed025f9d6529cd91e38873fb0b36d7bc0cb": {
+        "done": [],
+        "first_price": 1.035e-05,
+        "first_seen": "2026-11-10T06:23:15Z",
+        "sight_pair": "0xc33248119abbafdd2543361fc9e17a2402958e8d",
+        "sight_qliq": 66400,
+        "symbol": "NVIDIA"
       },
       "0x0d88badbb42feb42d829e520ba3acd2cb984a4d4": {
         "done": [
@@ -1506,7 +1514,8 @@
       },
       "0x8e02f30c05a2189d4004e5bab60b66edf0b5941c": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 9.627e-06,
         "first_seen": "2026-11-10T00:18:18Z",
@@ -3864,12 +3873,6 @@
         "reason": "real_depth",
         "symbol": "BELLWATCHAI",
         "until": "2026-11-11T02:38:14Z"
-      },
-      "0x48a4a56f05ef0e21ad68de48468a5821a03cc3b9": {
-        "at": "2026-11-09T06:23:13Z",
-        "reason": "missing:liq_usd",
-        "symbol": "AOKUMA",
-        "until": "2026-11-10T06:23:13Z"
       },
       "0x48e20d36cee0632b93394a5c419706e5b52708ba": {
         "at": "2026-11-10T04:43:13Z",
@@ -6919,6 +6922,12 @@
         "symbol": "BANK",
         "until": "2026-11-11T03:18:17Z"
       },
+      "0xb200000000000000000000d3a6c37c12e08be29a": {
+        "at": "2026-11-10T06:23:15Z",
+        "reason": "real_depth",
+        "symbol": "BREW",
+        "until": "2026-11-11T06:23:15Z"
+      },
       "0xb200000000000000000000d5bc3cbf6a90ae03de": {
         "at": "2026-11-09T15:28:15Z",
         "reason": "real_depth",
@@ -8455,6 +8464,12 @@
         "symbol": "SMEA",
         "until": "2026-11-10T16:43:16Z"
       },
+      "0xf610b552cce2834fc7b25e3353efb3c1deeea188": {
+        "at": "2026-11-10T06:23:15Z",
+        "reason": "real_depth",
+        "symbol": "Basetiger",
+        "until": "2026-11-11T06:23:15Z"
+      },
       "0xf653826e54746a829eeac090391a9f7720abe18c": {
         "at": "2026-11-09T17:28:16Z",
         "reason": "real_depth",
@@ -8656,21 +8671,27 @@
     },
     "watch": {
       "0x0163d756f9841c93caad4a4525338bd00589b149": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-10T06:08:15Z",
-        "last_check": "2026-11-10T06:08:15Z",
+        "last_check": "2026-11-10T06:23:15Z",
         "symbol": "TRUMP2028"
       },
+      "0x0d794ed025f9d6529cd91e38873fb0b36d7bc0cb": {
+        "checks": 1,
+        "first_seen": "2026-11-10T06:23:15Z",
+        "last_check": "2026-11-10T06:23:15Z",
+        "symbol": "NVIDIA"
+      },
       "0x4bed843fd33ab77b6ee202e321f9d53aa3c1a2ee": {
-        "checks": 9,
+        "checks": 10,
         "first_seen": "2026-11-10T03:48:14Z",
-        "last_check": "2026-11-10T06:08:15Z",
+        "last_check": "2026-11-10T06:23:15Z",
         "symbol": "FOTF"
       },
       "0x877b777aee28b40b34a64eef72f6c7cc146c8a6e": {
-        "checks": 10,
+        "checks": 11,
         "first_seen": "2026-11-10T03:33:14Z",
-        "last_check": "2026-11-10T06:08:15Z",
+        "last_check": "2026-11-10T06:23:15Z",
         "symbol": "UDTF"
       },
       "0x9296dde9801a777ac43b48abb8372e523269adf8": {
@@ -8680,9 +8701,9 @@
         "symbol": "Anthropic"
       },
       "0xc3414e41eae6bf08051511296be02e7de03d7773": {
-        "checks": 6,
+        "checks": 7,
         "first_seen": "2026-11-10T04:43:13Z",
-        "last_check": "2026-11-10T06:08:15Z",
+        "last_check": "2026-11-10T06:23:15Z",
         "symbol": "UKOR"
       },
       "0xeefef12a5820a3226ac59427871c1667b07b9aca": {
