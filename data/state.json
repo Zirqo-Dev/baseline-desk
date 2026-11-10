@@ -1,6 +1,6 @@
 {
   "baseline": {
-    "cash": 43.23230897637803,
+    "cash": 38.23230897637803,
     "cooldown": {
       "a:0x038826c4a1b788f807d44306c851b257063e0d0f": "2026-11-11T03:48:14Z",
       "a:0x2363980e0dcc1914499528fc521f28f3c174c81b": "2026-11-10T17:48:16Z",
@@ -28,10 +28,27 @@
     "day": "2026-11-10",
     "day_start_value": 49.361784843872286,
     "halted_day": "",
-    "positions": {},
+    "positions": {
+      "0xba94b559b8da0a5ddee25f8c5f92f2a4a7f55b69": {
+        "cost_usd": 5.0,
+        "entry_fill": 3.29860675227102e-05,
+        "entry_intended": 3.202e-05,
+        "entry_liq_usd": 58795.01,
+        "entry_qliq": 29282,
+        "entry_ts": "2026-11-10T14:53:14Z",
+        "ladder_done": [],
+        "last_price": 3.202e-05,
+        "launchpad": "other",
+        "orig_qty": 151579.14766765112,
+        "pair": "0x010b47d7c31bcdf2b22758d53f97ae397cd1e86437b69cb6b521a1b385705887",
+        "peak_price": 3.202e-05,
+        "qty": 151579.14766765112,
+        "symbol": "MONTRA"
+      }
+    },
     "refill_week": "2026-W46",
     "refills_usd": 47.693738985981945,
-    "ticks_since_buy": 36
+    "ticks_since_buy": 0
   },
   "desk": {
     "cash": 50.0,
@@ -156,6 +173,14 @@
         "sight_pair": "0x1e8e6b846e4dd17ca5ce1c23a92e3214b2f03dba116ea8e91b24fa91a64509ae",
         "sight_qliq": 1073,
         "symbol": "ADO\u200aF"
+      },
+      "0x09386f9e13a0c277509e16e43e75e05eac47087a": {
+        "done": [],
+        "first_price": 0.0001243,
+        "first_seen": "2026-11-10T14:53:14Z",
+        "sight_pair": "0x87f9e9a18e63c33b12ead62342f41e7de7ca93f2df4258404752424940d9cd0e",
+        "sight_qliq": 25,
+        "symbol": "NADF"
       },
       "0x094f940bd8e35ac88a4ec72bdac8b4237bc82d7d": {
         "done": [
@@ -720,7 +745,9 @@
         "symbol": "AERO"
       },
       "0x3faaa4759e93c43cf3ab68f8c3ff6d7f574b5fd9": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 8.673e-05,
         "first_seen": "2026-11-10T13:48:17Z",
         "sight_pair": "0xe9ba3df2260d9c4a76253453473b18f4395002bcf3586c7a0f9b9542d20dca2e",
@@ -779,6 +806,14 @@
         "sight_pair": "0x830eb1ce99926800070cdb5d5de48f5cab846bfa922c3ba0372a9b4c2a439599",
         "sight_qliq": 39,
         "symbol": "PM"
+      },
+      "0x47524f4e77e0b72a80eb7c1b0f6d29210bce3f82": {
+        "done": [],
+        "first_price": 0.0001714,
+        "first_seen": "2026-11-10T14:53:14Z",
+        "sight_pair": "0x722757c2223f9cb1d015d3e835d7b8653a2602b0f76b7ce91cd1412c727ba9a4",
+        "sight_qliq": 0,
+        "symbol": "UNITED OIL FUND DIVIDEND"
       },
       "0x4800ae60191d46f4d0e085e3d638506f38344b11": {
         "done": [],
@@ -1598,7 +1633,9 @@
         "symbol": "Anthropic"
       },
       "0x934c0cf56d13fbcac68d73cb49e95e020ebaca43": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 0.0001826,
         "first_seen": "2026-11-10T13:48:17Z",
         "sight_pair": "0xfaea5f45b341ea57b158c51eaaa6e6416290593ab704393d2a2bd237a627891f",
@@ -2191,7 +2228,9 @@
         "symbol": "SI"
       },
       "0xcd55bc333bc8a4379f17f258625dfc0ca1b9a33c": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 0.0001559,
         "first_seen": "2026-11-10T13:48:17Z",
         "sight_pair": "0x06ef14c0220afa98069ed461818068259db86cd03f3726d8f94c330f4265a92d",
@@ -2853,6 +2892,12 @@
         "reason": "missing:liq_usd",
         "symbol": "WATER",
         "until": "2026-11-11T11:28:16Z"
+      },
+      "0x09386f9e13a0c277509e16e43e75e05eac47087a": {
+        "at": "2026-11-10T14:53:14Z",
+        "reason": "real_depth",
+        "symbol": "NADF",
+        "until": "2026-11-11T14:53:14Z"
       },
       "0x094c0165f4502c4f6fdbe1647347e874381e2203": {
         "at": "2026-11-09T16:08:15Z",
@@ -4180,6 +4225,12 @@
         "symbol": "MEME",
         "until": "2026-11-11T12:58:16Z"
       },
+      "0x47524f4e77e0b72a80eb7c1b0f6d29210bce3f82": {
+        "at": "2026-11-10T14:53:14Z",
+        "reason": "real_depth",
+        "symbol": "UNITED OIL FUND DIVIDEND",
+        "until": "2026-11-11T14:53:14Z"
+      },
       "0x4799783dad9a284773cb34eb13d5af0365ffe1c9": {
         "at": "2026-11-09T21:23:15Z",
         "reason": "real_depth",
@@ -4593,12 +4644,6 @@
         "reason": "real_depth",
         "symbol": "Slock",
         "until": "2026-11-11T08:23:14Z"
-      },
-      "0x5be75e3b0aff5d1a042a5363ae36acb1d6d755ea": {
-        "at": "2026-11-09T14:53:13Z",
-        "reason": "goplus_timeout",
-        "symbol": "AXIS",
-        "until": "2026-11-10T14:53:13Z"
       },
       "0x5bfdc84f873ef0bba6f59c40c585d2a1511c4ed5": {
         "at": "2026-11-10T02:23:14Z",
@@ -6388,12 +6433,6 @@
         "symbol": "SPACEX",
         "until": "2026-11-11T00:48:15Z"
       },
-      "0xabe2fa2c22a5ccebbcd5ad6c9fcb50e9e643ba41": {
-        "at": "2026-11-09T14:53:13Z",
-        "reason": "real_depth",
-        "symbol": "SPCXB",
-        "until": "2026-11-10T14:53:13Z"
-      },
       "0xac161b95a50c5c3b677c31b87ede96ecbddf16ea": {
         "at": "2026-11-10T02:03:12Z",
         "reason": "real_depth",
@@ -7822,12 +7861,6 @@
         "symbol": "UN\u0130TED ",
         "until": "2026-11-11T07:53:12Z"
       },
-      "0xc788f2aabfdae9b5c83504477d1b66ceae81b74d": {
-        "at": "2026-11-09T14:53:13Z",
-        "reason": "real_depth",
-        "symbol": "CLAUDIA",
-        "until": "2026-11-10T14:53:13Z"
-      },
       "0xc7caa341d10fc8decb97e6e92c5c2a955f0a4d5d": {
         "at": "2026-11-10T10:18:16Z",
         "reason": "real_depth",
@@ -9055,9 +9088,9 @@
         "symbol": "Basecat"
       },
       "0x3f05118a24bcf9c40fc022da9ccd69b397834cc5": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-10T14:38:14Z",
-        "last_check": "2026-11-10T14:38:14Z",
+        "last_check": "2026-11-10T14:53:14Z",
         "symbol": "FUND OIL DIVIDEND UNITED"
       },
       "0x92854b4c06b1894c009fba97e6cbfd97acb978ef": {
@@ -9067,15 +9100,15 @@
         "symbol": "HABIBI"
       },
       "0xba94b559b8da0a5ddee25f8c5f92f2a4a7f55b69": {
-        "checks": 2,
+        "checks": 3,
         "first_seen": "2026-11-10T14:18:18Z",
-        "last_check": "2026-11-10T14:38:14Z",
+        "last_check": "2026-11-10T14:53:14Z",
         "symbol": "MONTRA"
       },
       "0xc35763695ffb9f05a0f84c02780d7456d9e7b50c": {
-        "checks": 5,
+        "checks": 6,
         "first_seen": "2026-11-10T13:33:13Z",
-        "last_check": "2026-11-10T14:38:14Z",
+        "last_check": "2026-11-10T14:53:14Z",
         "symbol": "Anthropic"
       }
     }
@@ -9243,7 +9276,7 @@
     "gate_restart": "BL-32",
     "machine_due": "",
     "max_dd_pct": {
-      "baseline": 107.47330027839523,
+      "baseline": 107.96384577469841,
       "desk": 9.811123120222184
     },
     "peak": {
