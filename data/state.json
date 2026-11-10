@@ -31,7 +31,7 @@
     "positions": {},
     "refill_week": "2026-W46",
     "refills_usd": 47.693738985981945,
-    "ticks_since_buy": 31
+    "ticks_since_buy": 32
   },
   "desk": {
     "cash": 50.0,
@@ -475,6 +475,14 @@
         "sight_qliq": 67095,
         "symbol": "BLG"
       },
+      "0x33168047ab4a5344cb3a8f782d82f8d5579e7240": {
+        "done": [],
+        "first_price": 1.262e-05,
+        "first_seen": "2026-11-10T10:58:15Z",
+        "sight_pair": "0x2e4b63f57d99fe49ce3d997e510b2bda0a1507fe",
+        "sight_qliq": 85155,
+        "symbol": "TRUMP2028"
+      },
       "0x338353de8d98e09bcf133727f800a4d8c033fc14": {
         "done": [
           1,
@@ -733,7 +741,9 @@
         "symbol": "$TMITECRYPTO    $EDENKEY"
       },
       "0x5663d06699c33e7160fe9fd9e72cca0e84c37749": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 7.183e-06,
         "first_seen": "2026-11-10T09:53:16Z",
         "sight_pair": "0xe8159af03999652d60a5252a6bad59d5519d71ac",
@@ -905,7 +915,8 @@
       },
       "0x6629692b5f75d54441c68d4608209fbc2b718758": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 8.65e-06,
         "first_seen": "2026-11-10T04:53:16Z",
@@ -2881,6 +2892,12 @@
         "symbol": "LIQUIDBGT",
         "until": "2026-11-10T12:58:15Z"
       },
+      "0x13eeaeb9665e375526ab481d7ba54c1004b5200d": {
+        "at": "2026-11-10T10:58:15Z",
+        "reason": "real_depth",
+        "symbol": "Basecat",
+        "until": "2026-11-11T10:58:15Z"
+      },
       "0x147da992c9e704bde66aeac56782584ebebd4310": {
         "at": "2026-11-09T21:53:14Z",
         "reason": "real_depth",
@@ -3138,6 +3155,12 @@
         "reason": "real_depth",
         "symbol": "SPACEX",
         "until": "2026-11-11T03:28:14Z"
+      },
+      "0x25153ec499ef77443c859b52295a92eb13eb3b98": {
+        "at": "2026-11-10T10:58:15Z",
+        "reason": "real_depth",
+        "symbol": "DETECTIVE",
+        "until": "2026-11-11T10:58:15Z"
       },
       "0x252fde9f1d6df7f31fc125704bb40294115ff81b": {
         "at": "2026-11-09T17:38:15Z",
@@ -4531,6 +4554,12 @@
         "symbol": "ELYSIUM",
         "until": "2026-11-10T20:48:15Z"
       },
+      "0x676c684b21fe00d666dac46c945749a9ab49286e": {
+        "at": "2026-11-10T10:58:15Z",
+        "reason": "real_depth",
+        "symbol": "NAOF",
+        "until": "2026-11-11T10:58:15Z"
+      },
       "0x676e303c905f1b954921b92e3c523186ac16a41c": {
         "at": "2026-11-09T22:58:15Z",
         "reason": "real_depth",
@@ -5166,12 +5195,6 @@
         "reason": "real_depth",
         "symbol": "ANTHROPIC",
         "until": "2026-11-10T19:23:13Z"
-      },
-      "0x83c0f7f68cb84d3d948122c77091ba38b9b3953e": {
-        "at": "2026-11-09T10:53:13Z",
-        "reason": "missing:liq_usd",
-        "symbol": "NOAF",
-        "until": "2026-11-10T10:53:13Z"
       },
       "0x83dc12cdf6b4c0a32b1cd15ca691fa6142be5698": {
         "at": "2026-11-10T03:28:14Z",
@@ -7927,12 +7950,6 @@
         "symbol": "DETECTIVE",
         "until": "2026-11-10T19:43:14Z"
       },
-      "0xd9c7e0d1260c6087325be46f685bd2cd7b9eace8": {
-        "at": "2026-11-09T10:53:13Z",
-        "reason": "real_depth",
-        "symbol": "B2",
-        "until": "2026-11-10T10:53:13Z"
-      },
       "0xd9cb8d7ae3e176765f4e7f28e11270ec2e0df1e0": {
         "at": "2026-11-10T07:38:14Z",
         "reason": "real_depth",
@@ -8304,6 +8321,12 @@
         "reason": "real_depth",
         "symbol": "ZCAT",
         "until": "2026-11-11T07:33:15Z"
+      },
+      "0xee8ef75566ff03f8ddfa32e698297f44d9918d83": {
+        "at": "2026-11-10T10:58:15Z",
+        "reason": "real_depth",
+        "symbol": "LIQUIDBGT",
+        "until": "2026-11-11T10:58:15Z"
       },
       "0xeeb1bc274899af0ba9076f0e85dd0fbe46093b8d": {
         "at": "2026-11-09T14:03:14Z",
@@ -8697,16 +8720,16 @@
       }
     },
     "watch": {
-      "0x13eeaeb9665e375526ab481d7ba54c1004b5200d": {
-        "checks": 2,
-        "first_seen": "2026-11-10T10:18:16Z",
-        "last_check": "2026-11-10T10:38:15Z",
-        "symbol": "Basecat"
+      "0x33168047ab4a5344cb3a8f782d82f8d5579e7240": {
+        "checks": 1,
+        "first_seen": "2026-11-10T10:58:15Z",
+        "last_check": "2026-11-10T10:58:15Z",
+        "symbol": "TRUMP2028"
       },
       "0xde43650a0a2c5e827786ae96b2311d9b25689889": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-10T10:38:15Z",
-        "last_check": "2026-11-10T10:38:15Z",
+        "last_check": "2026-11-10T10:58:15Z",
         "symbol": "DANA"
       },
       "0xf37496f6bd8935d588066674714c87a120f5aaff": {
