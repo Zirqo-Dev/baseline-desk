@@ -1057,3 +1057,8 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-11T12:48:14Z,desk,VERIFY,CLANKER,0xb20000000000000000000004f9f64ddac0f62302,SKIP,real_depth,goplus=skipped until=2026-11-12T12:48:14Z
 2026-11-11T12:48:14Z,desk,VERIFY,BNKR,0x607e50dee3563bbfa1e0abc8b95c5ffc1cc05592,SKIP,real_depth,goplus=skipped until=2026-11-12T12:48:14Z
 2026-11-11T12:48:14Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=19 rechecks=3 new=7 checked=10 passed=0 bought=0 held=0 deferred=0 dex_only=5 goplus=5 requests=20 secs=10.8 bl_positions=1 bl_due=0 bl_eligible=1 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=1 labels_done=1 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-11T12:53:13Z,baseline,EXIT,GEL,0x68be42c124cd461e290e5951326447c8f7af21be,HOLD,,pct=28.99
+2026-11-11T12:53:13Z,desk,VERIFY,,0xb671e9ee35632a1bb420baf976776a04a594bc2c,SKIP,missing:symbol,goplus=skipped until=2026-11-12T12:53:13Z
+2026-11-11T12:53:13Z,desk,VERIFY,NOAF,0x9c04165520914d2fae177ef20e166431b18f7302,SKIP,missing:liq_usd,goplus=skipped until=2026-11-12T12:53:13Z
+2026-11-11T12:53:13Z,desk,VERIFY,FOTF,0x2f86385f77aa5bc441363cd4ca83fc3ed7347095,WATCH,goplus_not_ready,"first_seen=2026-11-11T12:53:13Z checks=1 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct b1=6 s1=2 b24=6 s24=2 liq=58139152 dex=uniswap:v4 qliq=134389 pair_age=1 token_age=1"
+2026-11-11T12:53:13Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=19 rechecks=0 new=3 checked=3 passed=0 bought=0 held=0 deferred=0 dex_only=2 goplus=1 requests=9 secs=2.2 bl_positions=1 bl_due=0 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=2 labels_done=2 labels_calls=1 live=ok alerts=none alerts_sent=0
