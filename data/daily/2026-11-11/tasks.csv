@@ -1353,3 +1353,12 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-11T15:48:16Z,desk,VERIFY,GITLAB,0x3811c69e243df7ea0b524cfe1c6f555e32960b0f,SKIP,missing:liq_usd,goplus=skipped until=2026-11-12T15:48:16Z
 2026-11-11T15:48:16Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
 2026-11-11T15:48:16Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=1 new=1 checked=2 passed=0 bought=0 held=0 deferred=0 dex_only=1 goplus=1 requests=8 secs=2.2 bl_positions=1 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=8 labels_done=8 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-11T15:53:15Z,baseline,EXIT,GEL,0x68be42c124cd461e290e5951326447c8f7af21be,HOLD,,pct=121.93
+2026-11-11T15:53:15Z,desk,VERIFY,FOTF,0x061413b03eac33d826bdfa0d6f0660f6ac29ef4d,SKIP,goplus_timeout,first_seen=2026-11-11T12:48:14Z checks=12 until=2026-11-12T15:53:15Z b1=0 s1=0 b24=12 s24=9 liq=134353 dex=uniswap:v4 qliq=134337 pair_age=187 token_age=187
+2026-11-11T15:53:15Z,desk,VERIFY,FOTF,0x2f86385f77aa5bc441363cd4ca83fc3ed7347095,SKIP,goplus_timeout,first_seen=2026-11-11T12:53:13Z checks=12 until=2026-11-12T15:53:15Z b1=0 s1=0 b24=43 s24=26 liq=133984 dex=uniswap:v4 qliq=133987 pair_age=181 token_age=181
+2026-11-11T15:53:15Z,desk,VERIFY,FOTF,0x3b47c6c48d9fec27ef4a436906d268d904e706f9,WATCH,goplus_not_ready,"first_seen=2026-11-11T13:13:13Z checks=11 pending=honeypot,buy_tax_pct,sell_tax_pct b1=122 s1=79 b24=358 s24=244 liq=58715112 dex=uniswap:v4 qliq=136169 pair_age=161 token_age=161"
+2026-11-11T15:53:15Z,desk,VERIFY,HABIBI,0x311e0c65ba24df8292bf64f3e5f18f10773fa960,SKIP,real_depth,first_seen=2026-11-11T15:03:15Z checks=4 goplus=skipped until=2026-11-12T15:53:15Z
+2026-11-11T15:53:15Z,desk,VERIFY,OKA,0xb2000000000000000000006bbc03d707dda38d93,SKIP,real_depth,goplus=skipped until=2026-11-12T15:53:15Z
+2026-11-11T15:53:15Z,desk,VERIFY,MOGGING,0xfad31c96d8153a0074e08f6b4a8ff01a5c4cd9cc,SKIP,real_depth,goplus=skipped until=2026-11-12T15:53:15Z
+2026-11-11T15:53:15Z,baseline,EXECUTE,FOTF,0x3b47c6c48d9fec27ef4a436906d268d904e706f9,SKIP,reentry_cooldown,seed=202611111553 eligible=1 pick=0 pool=3b47c6 desk=WATCH launchpad=other
+2026-11-11T15:53:15Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=4 new=2 checked=6 passed=0 bought=0 held=0 deferred=0 dex_only=3 goplus=3 requests=13 secs=6.4 bl_positions=1 bl_due=1 bl_eligible=1 bl_bought=0 report=none machine=none bl_error=none labels=none labels_due=0 labels_done=0 labels_calls=0 live=ok alerts=none alerts_sent=0
