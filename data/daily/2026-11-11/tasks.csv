@@ -1131,3 +1131,12 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-11T13:33:13Z,desk,VERIFY,STRC,0xb270b76840b13782bc7d514d4dbae45eb75f7b41,SKIP,missing:liq_usd,goplus=skipped until=2026-11-12T13:33:13Z
 2026-11-11T13:33:13Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
 2026-11-11T13:33:13Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=0 new=8 checked=8 passed=0 bought=0 held=0 deferred=0 dex_only=6 goplus=2 requests=15 secs=4.8 bl_positions=1 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=6 labels_done=6 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-11T13:38:15Z,baseline,EXIT,GEL,0x68be42c124cd461e290e5951326447c8f7af21be,HOLD,,pct=65.84
+2026-11-11T13:38:15Z,desk,VERIFY,GEL,0x68be42c124cd461e290e5951326447c8f7af21be,SKIP,goplus_timeout,first_seen=2026-11-11T10:33:12Z checks=11 until=2026-11-12T13:38:15Z b1=283 s1=60 b24=817 s24=155 liq=174218 dex=uniswap:v2 qliq=87108 pair_age=200 token_age=200
+2026-11-11T13:38:15Z,desk,VERIFY,TRUMP2028,0x58f0d00d50b526f250edb373d531e56d6617aae2,SKIP,real_depth,first_seen=2026-11-11T12:58:15Z checks=3 goplus=skipped until=2026-11-12T13:38:15Z
+2026-11-11T13:38:15Z,desk,VERIFY,NOAF,0x7b06b7a2e7c2340a78047a01f1132c499fb7f129,SKIP,real_depth,first_seen=2026-11-11T12:58:15Z checks=3 goplus=skipped until=2026-11-12T13:38:15Z
+2026-11-11T13:38:15Z,desk,VERIFY,STRC,0x82b856d6b742fcb95eb8bd4a3224964d1bd3617b,SKIP,real_depth,goplus=skipped until=2026-11-12T13:38:15Z
+2026-11-11T13:38:15Z,desk,VERIFY,Anthropic,0x5ea94adf97ff491b96332c66c48cbafd5153f4fe,WATCH,goplus_not_ready,"first_seen=2026-11-11T13:38:15Z checks=1 pending=mint_open,freeze_or_blacklist,honeypot,buy_tax_pct,sell_tax_pct,dev_pct,top10_pct,lp_locked_pct,risk_flags b1=7 s1=0 b24=7 s24=0 liq=132032 dex=uniswap:v2 qliq=66016 pair_age=4 token_age=4"
+2026-11-11T13:38:15Z,desk,VERIFY,STRC,0xcde24db97f125e743a0d3cee1c90c07510fe4584,SKIP,real_depth,goplus=skipped until=2026-11-12T13:38:15Z
+2026-11-11T13:38:15Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
+2026-11-11T13:38:15Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=3 new=3 checked=6 passed=0 bought=0 held=0 deferred=0 dex_only=4 goplus=2 requests=12 secs=4.0 bl_positions=1 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=none labels_due=0 labels_done=0 labels_calls=0 live=ok alerts=none alerts_sent=0
