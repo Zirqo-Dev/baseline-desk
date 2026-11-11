@@ -29,7 +29,7 @@
     "positions": {},
     "refill_week": "2026-W46",
     "refills_usd": 47.693738985981945,
-    "ticks_since_buy": 30
+    "ticks_since_buy": 31
   },
   "desk": {
     "cash": 50.0,
@@ -758,7 +758,9 @@
         "symbol": "Anthropic"
       },
       "0x442985e686eaa134349d4bb1f7d4493cb0d18ae5": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 1.18e-05,
         "first_seen": "2026-11-11T20:57:42Z",
         "sight_pair": "0x19fe930e027f4f6caba005fc313ad4ff9d179760",
@@ -853,7 +855,8 @@
       },
       "0x4d5e5f42a2c8dc29f1bd84d0c1c541fcf3ecf6ca": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 1.171e-05,
         "first_seen": "2026-11-11T15:58:14Z",
@@ -1208,7 +1211,9 @@
         "symbol": "MIHAO"
       },
       "0x73e5be79b477bf2271e4fca5de86f30d7dc19ff5": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 4.225e-06,
         "first_seen": "2026-11-11T20:57:42Z",
         "sight_pair": "0xc16d0129573ff1fc4b9515336ecb63fd243acf69",
@@ -1840,7 +1845,8 @@
       },
       "0xbef455b1ae67f39846da8402f0389409824fc4dc": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 1.289e-05,
         "first_seen": "2026-11-11T15:58:14Z",
@@ -2282,7 +2288,8 @@
       },
       "0xf14b85d25ff88e9365827077c4a03712f3ba3e94": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 3.4e-06,
         "first_seen": "2026-11-11T15:58:14Z",
@@ -2762,12 +2769,6 @@
         "reason": "missing:liq_usd",
         "symbol": "GTAVI",
         "until": "2026-11-12T02:43:12Z"
-      },
-      "0x0bf0c79b4ce4035acdc821ad8ad5de5e553d46c9": {
-        "at": "2026-11-10T21:53:15Z",
-        "reason": "real_depth",
-        "symbol": "OPST",
-        "until": "2026-11-11T21:53:15Z"
       },
       "0x0c89b50fb12f99666d0a03e384c66d98150af316": {
         "at": "2026-11-11T18:18:14Z",
@@ -6063,6 +6064,12 @@
         "symbol": "Basewhale",
         "until": "2026-11-12T13:08:15Z"
       },
+      "0x9dc26bbf60ce31c1a9c4398980b9b3aec7487dce": {
+        "at": "2026-11-11T21:58:15Z",
+        "reason": "real_depth",
+        "symbol": "UISO",
+        "until": "2026-11-12T21:58:15Z"
+      },
       "0x9e1e8f84e34184d1d1f478650cea7e0aa7083e71": {
         "at": "2026-11-11T06:28:16Z",
         "reason": "real_depth",
@@ -7196,6 +7203,12 @@
         "reason": "real_depth",
         "symbol": "POC",
         "until": "2026-11-12T18:48:16Z"
+      },
+      "0xb200000000000000000000bde0e4b512a5b43033": {
+        "at": "2026-11-11T21:58:15Z",
+        "reason": "real_depth",
+        "symbol": "ERV",
+        "until": "2026-11-12T21:58:15Z"
       },
       "0xb200000000000000000000c31276740b145d9459": {
         "at": "2026-11-11T10:53:14Z",
@@ -8553,6 +8566,12 @@
         "symbol": "ANTHROPIC",
         "until": "2026-11-12T19:13:13Z"
       },
+      "0xdc8757f9c1dc6a9155bd827df1187b0dba7891c6": {
+        "at": "2026-11-11T21:58:15Z",
+        "reason": "real_depth",
+        "symbol": "BANANA",
+        "until": "2026-11-12T21:58:15Z"
+      },
       "0xdcf31199acb540d6467aa911ee2ef42e801dcc37": {
         "at": "2026-11-11T21:23:15Z",
         "reason": "real_depth",
@@ -9378,21 +9397,15 @@
     },
     "watch": {
       "0x91d52d7259bcdfc557ac8f9449bce1bce9e9b014": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-11T21:43:15Z",
-        "last_check": "2026-11-11T21:43:15Z",
+        "last_check": "2026-11-11T21:58:15Z",
         "symbol": "TRUMP2028"
       },
-      "0x9dc26bbf60ce31c1a9c4398980b9b3aec7487dce": {
-        "checks": 2,
-        "first_seen": "2026-11-11T21:18:17Z",
-        "last_check": "2026-11-11T21:38:19Z",
-        "symbol": "UISO"
-      },
       "0xea5c18daaaad1bd5bb68d1e270fdee0ab8c4c404": {
-        "checks": 2,
+        "checks": 3,
         "first_seen": "2026-11-11T21:23:15Z",
-        "last_check": "2026-11-11T21:38:19Z",
+        "last_check": "2026-11-11T21:58:15Z",
         "symbol": "MOGGING"
       },
       "0xfc6ab2a74098cd8ed615295299183586b34d04aa": {
