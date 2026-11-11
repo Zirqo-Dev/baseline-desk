@@ -1,22 +1,22 @@
 {
- "as_of": "2026-11-11T16:08:15Z",
+ "as_of": "2026-11-11T16:13:15Z",
  "last_tick": {
-  "ts": "2026-11-11T16:08:15Z",
+  "ts": "2026-11-11T16:13:15Z",
   "seen": 20,
-  "new": 4,
-  "checked": 6,
-  "dex_only": 5,
-  "goplus": 1,
+  "new": 1,
+  "checked": 4,
+  "dex_only": 1,
+  "goplus": 3,
   "passed": 0,
   "bought": 0,
   "exits": 0,
-  "requests": 11,
-  "secs": 2.8
+  "requests": 12,
+  "secs": 6.2
  },
  "today": {
   "day": "2026-11-11",
-  "ticks": 194,
-  "expected": 194,
+  "ticks": 195,
+  "expected": 195,
   "errors": 0
  },
  "exit": {
@@ -32,25 +32,39 @@
    "open": []
   },
   "baseline": {
-   "cash_usd": 37.4483,
-   "value_usd": 41.1324,
+   "cash_usd": 32.4483,
+   "value_usd": 40.8516,
    "open": [
     {
      "symbol": "GEL",
      "address": "0x68be42c124cd461e290e5951326447c8f7af21be",
      "entry_ts": "2026-11-11T12:08:14Z",
-     "age_min": 240,
+     "age_min": 245,
      "cost_usd": 1.7,
-     "value_usd": 3.6842,
-     "value_pct": 116.72,
-     "price_pct": 123.43,
-     "liq_usd": 202232,
+     "value_usd": 3.6952,
+     "value_pct": 117.37,
+     "price_pct": 124.1,
+     "liq_usd": 202456,
      "qliq": 66614,
      "ladders_done": [
       "ladder_1",
       "ladder_2"
      ],
      "time_stop_at": "2026-11-11T12:53:14Z"
+    },
+    {
+     "symbol": "MOGGING",
+     "address": "0x4d5e5f42a2c8dc29f1bd84d0c1c541fcf3ecf6ca",
+     "entry_ts": "2026-11-11T16:13:15Z",
+     "age_min": 0,
+     "cost_usd": 5.0,
+     "value_usd": 4.7081,
+     "value_pct": -5.84,
+     "price_pct": -2.92,
+     "liq_usd": 152714,
+     "qliq": 76792,
+     "ladders_done": [],
+     "time_stop_at": "2026-11-11T16:58:15Z"
     }
    ]
   }
