@@ -37,7 +37,9 @@
         "entry_qliq": 134658,
         "entry_ts": "2026-11-11T08:43:14Z",
         "ladder_done": [],
-        "last_price": 0.04873,
+        "last_liq_usd": 73076932.32,
+        "last_price": 0.04871,
+        "last_qliq": 134677,
         "launchpad": "other",
         "orig_qty": 99.61407634353883,
         "pair": "0x41acccd31521fd4113f1a85f051981fdfdafaceb119c2aee91140c1363d0c685",
@@ -48,7 +50,7 @@
     },
     "refill_week": "2026-W46",
     "refills_usd": 47.693738985981945,
-    "ticks_since_buy": 0
+    "ticks_since_buy": 1
   },
   "desk": {
     "cash": 50.0,
@@ -2302,6 +2304,14 @@
         "sight_qliq": 21,
         "symbol": "THR"
       },
+      "0xd266a0962bc5724a547ef0c15145b474f58263db": {
+        "done": [],
+        "first_price": 0.0002276,
+        "first_seen": "2026-11-11T08:48:15Z",
+        "sight_pair": "0x4ac7f95e62217f8e5b5fcba63654c568aa3479a89caca6fbd0d7b18eb2ecbcbf",
+        "sight_qliq": 1,
+        "symbol": "ECB"
+      },
       "0xd3e87884d015fe7cc234b57c7553fd1ddd6a2760": {
         "done": [
           1,
@@ -2544,7 +2554,8 @@
       },
       "0xe80f07e45fbf238c1c575df00ac161a1fd3791f4": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 8.679e-05,
         "first_seen": "2026-11-11T02:48:14Z",
@@ -2709,6 +2720,14 @@
         "sight_pair": "0x5fd6411d89cd328af8ab46172d609dd5095c2a5e454b3396f85de831393f0879",
         "sight_qliq": 2291,
         "symbol": "NOTF"
+      },
+      "0xfb3e0b80fb24249d752d526afacac0ada11f1db7": {
+        "done": [],
+        "first_price": 0.000195,
+        "first_seen": "2026-11-11T08:48:15Z",
+        "sight_pair": "0x8d38c403f6490de18e42fe0ab813f64b243cdf8f7392a9db1ca46b2c44b68d47",
+        "sight_qliq": 1,
+        "symbol": "ECB"
       },
       "0xfb4363281e26e40b4d347ce36e5a2e093f17079c": {
         "done": [],
@@ -3941,12 +3960,6 @@
         "reason": "real_depth",
         "symbol": "SODA",
         "until": "2026-11-12T05:23:13Z"
-      },
-      "0x2e0f51dbc65d5d48689f12c0d9413aabac29e059": {
-        "at": "2026-11-10T08:48:14Z",
-        "reason": "real_depth",
-        "symbol": "TOON",
-        "until": "2026-11-11T08:48:14Z"
       },
       "0x2e7542eb513377e158a199e527044c6b9796d0c4": {
         "at": "2026-11-10T20:38:17Z",
@@ -5802,12 +5815,6 @@
         "symbol": "RIP POPE",
         "until": "2026-11-12T08:38:13Z"
       },
-      "0x7ac9cd84967a3c72130e9a0f3ce215fc62164497": {
-        "at": "2026-11-10T08:48:14Z",
-        "reason": "real_depth",
-        "symbol": "HABIBI",
-        "until": "2026-11-11T08:48:14Z"
-      },
       "0x7aeb9cf90bdce59a10bd5909b3c5bf2b2da58039": {
         "at": "2026-11-10T12:23:13Z",
         "reason": "real_depth",
@@ -6569,6 +6576,12 @@
         "reason": "real_depth",
         "symbol": "QRL",
         "until": "2026-11-12T05:28:14Z"
+      },
+      "0x9e3d94fbfb2c9baef6a0f5fbe6391d08557e17c4": {
+        "at": "2026-11-11T08:48:15Z",
+        "reason": "real_depth",
+        "symbol": "TROLL",
+        "until": "2026-11-12T08:48:15Z"
       },
       "0x9f1f28ec1f1556992d2209c853c0911ff5aad6ef": {
         "at": "2026-11-10T23:38:15Z",
@@ -8736,6 +8749,12 @@
         "symbol": "hyasyahs",
         "until": "2026-11-11T18:38:16Z"
       },
+      "0xd266a0962bc5724a547ef0c15145b474f58263db": {
+        "at": "2026-11-11T08:48:15Z",
+        "reason": "real_depth",
+        "symbol": "ECB",
+        "until": "2026-11-12T08:48:15Z"
+      },
       "0xd3319b41fc7b119609c7823b5f9c2123441c2307": {
         "at": "2026-11-11T00:48:16Z",
         "reason": "real_depth",
@@ -9678,6 +9697,12 @@
         "symbol": "NOTF",
         "until": "2026-11-12T05:53:13Z"
       },
+      "0xfb3e0b80fb24249d752d526afacac0ada11f1db7": {
+        "at": "2026-11-11T08:48:15Z",
+        "reason": "real_depth",
+        "symbol": "ECB",
+        "until": "2026-11-12T08:48:15Z"
+      },
       "0xfb4363281e26e40b4d347ce36e5a2e093f17079c": {
         "at": "2026-11-11T08:43:14Z",
         "reason": "real_depth",
@@ -10045,7 +10070,7 @@
     "gate_restart": "BL-32",
     "machine_due": "",
     "max_dd_pct": {
-      "baseline": 113.55394153438357,
+      "baseline": 113.55717838735575,
       "desk": 9.811123120222184
     },
     "peak": {
