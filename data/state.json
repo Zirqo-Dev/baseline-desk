@@ -35,20 +35,20 @@
         "entry_qliq": 66614,
         "entry_ts": "2026-11-11T12:08:14Z",
         "ladder_done": [],
-        "last_liq_usd": 134320.45,
-        "last_price": 0.002499,
-        "last_qliq": 67170,
+        "last_liq_usd": 135745.3,
+        "last_price": 0.002552,
+        "last_qliq": 67872,
         "launchpad": "other",
         "orig_qty": 1974.7824267230635,
         "pair": "0x82c100287c5de8185d3dde5bafd4cfbb8b68ab43",
-        "peak_price": 0.002499,
+        "peak_price": 0.002552,
         "qty": 1974.7824267230635,
         "symbol": "GEL"
       }
     },
     "refill_week": "2026-W46",
     "refills_usd": 47.693738985981945,
-    "ticks_since_buy": 1
+    "ticks_since_buy": 2
   },
   "desk": {
     "cash": 50.0,
@@ -953,7 +953,9 @@
         "symbol": "NAOF"
       },
       "0x4abd4eece8345e27921e25ed028f0954eb4602eb": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 8.759e-05,
         "first_seen": "2026-11-11T11:18:14Z",
         "sight_pair": "0x873204ead4944449fb4cba91ab07435cd6e88a4ccdec14618e4ccfa60a838737",
@@ -1911,7 +1913,9 @@
         "symbol": "DROA"
       },
       "0x9c262b62f1cf1ebb523eadff5e8212a08e29489f": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 0.0002232,
         "first_seen": "2026-11-11T11:18:14Z",
         "sight_pair": "0x880a2692810feca1a7f522ed1af5cef067c780d96baa133bd6828503174919c0",
@@ -4315,6 +4319,12 @@
         "symbol": "NEBRASKA",
         "until": "2026-11-11T23:03:14Z"
       },
+      "0x2d388d51091351e931b551bb23b08c8d2bb46d90": {
+        "at": "2026-11-11T12:18:14Z",
+        "reason": "real_depth",
+        "symbol": "RIPPLE",
+        "until": "2026-11-12T12:18:14Z"
+      },
       "0x2d8051f41f1a2580ea16ec432b73f0cea2f33f83": {
         "at": "2026-11-10T21:58:16Z",
         "reason": "real_depth",
@@ -4644,6 +4654,12 @@
         "reason": "real_depth",
         "symbol": "PEPKING",
         "until": "2026-11-12T10:53:14Z"
+      },
+      "0x3874e761b71ab73fbee533396be234fb881b07a9": {
+        "at": "2026-11-11T12:18:14Z",
+        "reason": "real_depth",
+        "symbol": "REBOOT",
+        "until": "2026-11-12T12:18:14Z"
       },
       "0x388428c5775730e342f7c701e0058c81590f2ba3": {
         "at": "2026-11-10T19:48:16Z",
@@ -7471,6 +7487,12 @@
         "symbol": "USOR",
         "until": "2026-11-12T09:58:16Z"
       },
+      "0xb11dbfcf8e4c4bea5b7e08a59631676a7e56cccc": {
+        "at": "2026-11-11T12:18:14Z",
+        "reason": "missing:liq_usd",
+        "symbol": "BOTTLE",
+        "until": "2026-11-12T12:18:14Z"
+      },
       "0xb1c6438531e00525b26c56cd7b4df14e052dc4c9": {
         "at": "2026-11-11T02:18:14Z",
         "reason": "real_depth",
@@ -9133,6 +9155,12 @@
         "symbol": "ANTHROPIC",
         "until": "2026-11-12T11:33:14Z"
       },
+      "0xcb804b7db242b5d03d130e60d7b114a0831e1683": {
+        "at": "2026-11-11T12:18:14Z",
+        "reason": "real_depth",
+        "symbol": "Basegoat",
+        "until": "2026-11-12T12:18:14Z"
+      },
       "0xcbb465798411bd3f0959979da2b66d9f966276cc": {
         "at": "2026-11-10T13:28:15Z",
         "reason": "real_depth",
@@ -10432,22 +10460,16 @@
     },
     "watch": {
       "0x05cfaa50b59e4de40bc7e659ad3d3c24837572fe": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-11T12:03:14Z",
-        "last_check": "2026-11-11T12:03:14Z",
+        "last_check": "2026-11-11T12:18:14Z",
         "symbol": "DANA"
       },
       "0x369b4103f8e9f1f15b86d7b7685224437f4f2d74": {
-        "checks": 3,
+        "checks": 4,
         "first_seen": "2026-11-11T11:23:12Z",
-        "last_check": "2026-11-11T11:58:15Z",
+        "last_check": "2026-11-11T12:18:14Z",
         "symbol": "FOTF"
-      },
-      "0x3874e761b71ab73fbee533396be234fb881b07a9": {
-        "checks": 2,
-        "first_seen": "2026-11-11T11:43:12Z",
-        "last_check": "2026-11-11T11:58:15Z",
-        "symbol": "REBOOT"
       },
       "0x68be42c124cd461e290e5951326447c8f7af21be": {
         "checks": 6,
