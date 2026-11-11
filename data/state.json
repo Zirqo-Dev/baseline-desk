@@ -1,21 +1,21 @@
 {
   "baseline": {
-    "cash": 34.4379227657371,
+    "cash": 36.90124804255433,
     "cooldown": {
       "a:0x24d18d0592180d79b563a49500c2da1480a3967a": "2026-11-12T09:28:14Z",
       "a:0x32c448a3b7b77e4c60d57535dcfc7bff8de102b5": "2026-11-11T17:53:16Z",
       "a:0x4ae9ab62eeb93059608d626900610097cd6a4ff5": "2026-11-11T19:13:14Z",
       "a:0x57699dcaa6133de371c4fc408bb20840aaabb19b": "2026-11-11T21:33:15Z",
+      "a:0x68be42c124cd461e290e5951326447c8f7af21be": "2026-11-12T13:03:13Z",
       "a:0xa1a6f951a1317003adee3c1de302b4f2850c2b07": "2026-11-12T01:13:15Z",
       "a:0xa26a0e61f03958cbdafb895ca499e6f4b4fd93ec": "2026-11-12T11:38:14Z",
       "a:0xba94b559b8da0a5ddee25f8c5f92f2a4a7f55b69": "2026-11-11T15:38:15Z",
       "a:0xf92739a272fb1711968dfc87205933124a572e9d": "2026-11-12T05:38:17Z",
-      "a:0xf9f1523e7ecc1a81d415ea52b29c8822d5599957": "2026-11-11T11:53:14Z",
       "a:0xfce31c6664b164b306f83453d985e0992d982849": "2026-11-11T16:38:17Z",
       "s:AOTF": "2026-11-11T16:38:17Z",
-      "s:DANA": "2026-11-11T11:53:14Z",
       "s:EXM": "2026-11-11T19:13:14Z",
       "s:FOTF": "2026-11-12T09:28:14Z",
+      "s:GEL": "2026-11-12T13:03:13Z",
       "s:MIHAO": "2026-11-12T01:13:15Z",
       "s:MONTRA": "2026-11-11T15:38:15Z",
       "s:MORI": "2026-11-12T05:38:17Z",
@@ -28,27 +28,29 @@
     "halted_day": "",
     "positions": {
       "0x68be42c124cd461e290e5951326447c8f7af21be": {
-        "cost_usd": 5.0,
+        "cost_usd": 3.3499999999999996,
         "entry_fill": 0.002531924495751644,
         "entry_intended": 0.002458,
         "entry_liq_usd": 133214.9,
         "entry_qliq": 66614,
         "entry_ts": "2026-11-11T12:08:14Z",
-        "ladder_done": [],
-        "last_liq_usd": 154639.57,
-        "last_price": 0.003311,
-        "last_qliq": 77343,
+        "ladder_done": [
+          0
+        ],
+        "last_liq_usd": 167799.4,
+        "last_price": 0.003897,
+        "last_qliq": 83789,
         "launchpad": "other",
         "orig_qty": 1974.7824267230635,
         "pair": "0x82c100287c5de8185d3dde5bafd4cfbb8b68ab43",
-        "peak_price": 0.003311,
-        "qty": 1974.7824267230635,
+        "peak_price": 0.003897,
+        "qty": 1323.1042259044525,
         "symbol": "GEL"
       }
     },
     "refill_week": "2026-W46",
     "refills_usd": 47.693738985981945,
-    "ticks_since_buy": 10
+    "ticks_since_buy": 11
   },
   "desk": {
     "cash": 50.0,
@@ -4282,6 +4284,12 @@
         "symbol": "CHUBBY",
         "until": "2026-11-11T17:18:18Z"
       },
+      "0x2c1d008a5303fdf3ef4a971347ec49cbc78aac3a": {
+        "at": "2026-11-11T13:03:13Z",
+        "reason": "real_depth",
+        "symbol": "MEOW",
+        "until": "2026-11-12T13:03:13Z"
+      },
       "0x2c587250c2a430db3d9de203bc49d8ef410e4fc7": {
         "at": "2026-11-10T18:58:16Z",
         "reason": "real_depth",
@@ -4996,12 +5004,6 @@
         "symbol": "CLAUDIA",
         "until": "2026-11-12T01:33:14Z"
       },
-      "0x46fd18c9a243b2196fd2f24705b17052e9f606ea": {
-        "at": "2026-11-10T12:58:16Z",
-        "reason": "real_depth",
-        "symbol": "MEME",
-        "until": "2026-11-11T12:58:16Z"
-      },
       "0x47524f4e77e0b72a80eb7c1b0f6d29210bce3f82": {
         "at": "2026-11-10T14:53:14Z",
         "reason": "real_depth",
@@ -5037,12 +5039,6 @@
         "reason": "missing:liq_usd",
         "symbol": "WLFI",
         "until": "2026-11-11T16:13:14Z"
-      },
-      "0x4a201d816534b03bac4d446744bb7ab6cbe10f4b": {
-        "at": "2026-11-10T12:58:16Z",
-        "reason": "real_depth",
-        "symbol": "BALL",
-        "until": "2026-11-11T12:58:16Z"
       },
       "0x4a46f2dc7ae824294a5f2714eaa3534e6043253a": {
         "at": "2026-11-10T19:18:15Z",
@@ -9195,12 +9191,6 @@
         "reason": "real_depth",
         "symbol": "CHUBBY",
         "until": "2026-11-12T09:33:16Z"
-      },
-      "0xce359c883f87253a763b5ee206ca364c709e8501": {
-        "at": "2026-11-10T12:58:16Z",
-        "reason": "real_depth",
-        "symbol": "BASETIME",
-        "until": "2026-11-11T12:58:16Z"
       },
       "0xceacecde8004045f562ed245a3b3b4b20859816a": {
         "at": "2026-11-11T12:03:14Z",
