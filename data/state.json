@@ -1,6 +1,6 @@
 {
   "baseline": {
-    "cash": 38.4572921165541,
+    "cash": 33.4572921165541,
     "cooldown": {
       "a:0x24d18d0592180d79b563a49500c2da1480a3967a": "2026-11-12T09:28:14Z",
       "a:0x32c448a3b7b77e4c60d57535dcfc7bff8de102b5": "2026-11-11T17:53:16Z",
@@ -26,10 +26,27 @@
     "day": "2026-11-11",
     "day_start_value": 40.91514490931043,
     "halted_day": "",
-    "positions": {},
+    "positions": {
+      "0x87deab1ef0d7e63e7204d68e220c1cab23c4b58b": {
+        "cost_usd": 5.0,
+        "entry_fill": 0.0002505208021538713,
+        "entry_intended": 0.0002432,
+        "entry_liq_usd": 121731.86,
+        "entry_qliq": 49028,
+        "entry_ts": "2026-11-11T17:18:16Z",
+        "ladder_done": [],
+        "last_price": 0.0002432,
+        "launchpad": "other",
+        "orig_qty": 19958.422442416468,
+        "pair": "0x7f486a5bfc46595617cfd37a5091144f3d698095122b8f20e955913e89bd5fcc",
+        "peak_price": 0.0002432,
+        "qty": 19958.422442416468,
+        "symbol": "REVVY"
+      }
+    },
     "refill_week": "2026-W46",
     "refills_usd": 47.693738985981945,
-    "ticks_since_buy": 12
+    "ticks_since_buy": 0
   },
   "desk": {
     "cash": 50.0,
@@ -42,17 +59,6 @@
   },
   "labels": {
     "pending": {
-      "0x00c8696dcb875fda45f049cbad2ebc6c3939caf7": {
-        "done": [
-          1,
-          6
-        ],
-        "first_price": 3.926e-06,
-        "first_seen": "2026-11-10T17:13:14Z",
-        "sight_pair": "0x1682d72489ea1acdbf277eddb0a3c048b30a6d2d",
-        "sight_qliq": 30652,
-        "symbol": "AOFN"
-      },
       "0x00f34c293484b57df875d4cfaeb4dc56539457b8": {
         "done": [
           1,
@@ -771,7 +777,8 @@
       },
       "0x4abd4eece8345e27921e25ed028f0954eb4602eb": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 8.759e-05,
         "first_seen": "2026-11-11T11:18:14Z",
@@ -918,17 +925,6 @@
         "sight_pair": "0x31f547f23d9b113842a0ea292c931eb48e3b3714c17f71c0521a0b90492953f4",
         "sight_qliq": 1,
         "symbol": "DacityCoin"
-      },
-      "0x55538f440d34e75cd830aa8da3c9eb2c2791228d": {
-        "done": [
-          1,
-          6
-        ],
-        "first_price": 6.53e-05,
-        "first_seen": "2026-11-10T17:13:14Z",
-        "sight_pair": "0xb5efa9fc6a58573e5d230d3b3473e65ef829044857d36bb03042cd6728f1ab51",
-        "sight_qliq": 14780,
-        "symbol": "CUIN"
       },
       "0x56210c5f451c173931716b6f899f28b0d7242a12": {
         "done": [
@@ -1193,6 +1189,14 @@
         "sight_pair": "0x2f54451a9454976434fe83fb2bc39202c6201cf8",
         "sight_qliq": 85490,
         "symbol": "REBOOT"
+      },
+      "0x6c1e8e509ced1e7fe30f1aae0cf43e1667c0fee3": {
+        "done": [],
+        "first_price": 4.168e-06,
+        "first_seen": "2026-11-11T17:18:16Z",
+        "sight_pair": "0x67c0546a3f61e10fec23f98d671aec5d34ed584c",
+        "sight_qliq": 32067,
+        "symbol": "SAPR"
       },
       "0x6dede96dddb9da517fcebe79ba6c224c9c77502e": {
         "done": [
@@ -1633,7 +1637,8 @@
       },
       "0x9c262b62f1cf1ebb523eadff5e8212a08e29489f": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 0.0002232,
         "first_seen": "2026-11-11T11:18:14Z",
@@ -1908,17 +1913,6 @@
         "sight_pair": "0xf3783c1864d924c5602e696c11ea13310d4d9e5d",
         "sight_qliq": 84684,
         "symbol": "BIDEN"
-      },
-      "0xbbd4929a98fe56605151380d15096dd4684e2dff": {
-        "done": [
-          1,
-          6
-        ],
-        "first_price": 0.0001786,
-        "first_seen": "2026-11-10T17:13:14Z",
-        "sight_pair": "0x365b0557d1c9e6c1f8969ed423f86c9855da4bf15c08af9775db2f0fe3b69d49",
-        "sight_qliq": 0,
-        "symbol": "NFOA"
       },
       "0xbbd552845d9064591a3054bc7d48037f6437d721": {
         "done": [
@@ -2848,11 +2842,23 @@
         "symbol": "PEPKING",
         "until": "2026-11-12T08:58:17Z"
       },
+      "0x08b48583b0635b0df90259f674338f9bd482cccc": {
+        "at": "2026-11-11T17:18:16Z",
+        "reason": "missing:liq_usd",
+        "symbol": "TRENCHER",
+        "until": "2026-11-12T17:18:16Z"
+      },
       "0x08e1764ad12502d1d178907ebeebd4bd51c8ae5f": {
         "at": "2026-11-11T10:33:12Z",
         "reason": "real_depth",
         "symbol": "ECHO",
         "until": "2026-11-12T10:33:12Z"
+      },
+      "0x0927d5a38d94af8db2f98c7e8db9842b125f2c01": {
+        "at": "2026-11-11T17:18:16Z",
+        "reason": "real_depth",
+        "symbol": "LEMONADE",
+        "until": "2026-11-12T17:18:16Z"
       },
       "0x093507aaae0b94d56a020591f50568c165a3fc72": {
         "at": "2026-11-10T17:33:15Z",
@@ -2955,12 +2961,6 @@
         "reason": "real_depth",
         "symbol": "LAPTOP",
         "until": "2026-11-12T09:13:14Z"
-      },
-      "0x0f609bce137fb9f400a54a8d110567bc5ac98499": {
-        "at": "2026-11-10T17:13:14Z",
-        "reason": "real_depth",
-        "symbol": "RSC",
-        "until": "2026-11-11T17:13:14Z"
       },
       "0x0f91b21902c83b45b3e69111e13d7061f82e71d8": {
         "at": "2026-11-11T08:28:14Z",
@@ -3412,6 +3412,12 @@
         "symbol": "EDOG",
         "until": "2026-11-11T19:28:20Z"
       },
+      "0x1fc55c4b8f322618b3976d260669fea0afa4cccc": {
+        "at": "2026-11-11T17:18:16Z",
+        "reason": "missing:symbol",
+        "symbol": "",
+        "until": "2026-11-12T17:18:16Z"
+      },
       "0x1fc8f65a3aa4fc00bad18ecdf6ef0f8a78cbdbd0": {
         "at": "2026-11-11T06:13:13Z",
         "reason": "real_depth",
@@ -3807,12 +3813,6 @@
         "reason": "real_depth",
         "symbol": "TORCH",
         "until": "2026-11-12T11:18:14Z"
-      },
-      "0x3046ba2bac70f63100b7a636cc3d8f225f1b6010": {
-        "at": "2026-11-10T17:13:14Z",
-        "reason": "real_depth",
-        "symbol": "CHUBBY",
-        "until": "2026-11-11T17:13:14Z"
       },
       "0x30754ebf9bb1376e41e8fe0ef519857359253bcd": {
         "at": "2026-11-10T20:08:17Z",
@@ -4504,12 +4504,6 @@
         "symbol": "MOGGING",
         "until": "2026-11-12T16:53:13Z"
       },
-      "0x4d7dd9d83d693834ee5a68ab54c836f81675d955": {
-        "at": "2026-11-10T17:13:14Z",
-        "reason": "missing:price",
-        "symbol": "BASE",
-        "until": "2026-11-11T17:13:14Z"
-      },
       "0x4da9b6cb21743cbe181a7202cc7222ddf78d0eea": {
         "at": "2026-11-11T10:38:13Z",
         "reason": "real_depth",
@@ -5008,12 +5002,6 @@
         "symbol": "BNKR",
         "until": "2026-11-12T12:48:14Z"
       },
-      "0x60f30e0e4229ed4d249074dc357c65cb0745841f": {
-        "at": "2026-11-10T17:13:14Z",
-        "reason": "real_depth",
-        "symbol": "RIP POPE",
-        "until": "2026-11-11T17:13:14Z"
-      },
       "0x6140cb49908d1673eea8039d9215f38556c1fba3": {
         "at": "2026-11-11T16:33:17Z",
         "reason": "missing:liq_usd",
@@ -5289,6 +5277,12 @@
         "reason": "real_depth",
         "symbol": "TSG",
         "until": "2026-11-12T14:18:13Z"
+      },
+      "0x6cb397c2ba85c61cd93497a14c08cc215e6ddc9c": {
+        "at": "2026-11-11T17:18:16Z",
+        "reason": "real_depth",
+        "symbol": "LAPTOP",
+        "until": "2026-11-12T17:18:16Z"
       },
       "0x6d10f8f27f6565979141a951e641bd50977ef6ea": {
         "at": "2026-11-11T00:58:14Z",
@@ -5595,6 +5589,12 @@
         "reason": "real_depth",
         "symbol": "hyasyahs",
         "until": "2026-11-12T06:43:15Z"
+      },
+      "0x7b6065107099f93b8519f7246de515ce7a50cccc": {
+        "at": "2026-11-11T17:18:16Z",
+        "reason": "real_depth",
+        "symbol": "REVPE",
+        "until": "2026-11-12T17:18:16Z"
       },
       "0x7bdb304dec4c5c14daf04be3756f43fa9edb8a0d": {
         "at": "2026-11-10T22:18:15Z",
@@ -7054,6 +7054,12 @@
         "symbol": "jesseold",
         "until": "2026-11-12T09:48:14Z"
       },
+      "0xb200000000000000000000584fbf816c7267f301": {
+        "at": "2026-11-11T17:18:16Z",
+        "reason": "real_depth",
+        "symbol": "onchain",
+        "until": "2026-11-12T17:18:16Z"
+      },
       "0xb2000000000000000000005853cbe07fae223001": {
         "at": "2026-11-10T17:18:18Z",
         "reason": "real_depth",
@@ -7173,12 +7179,6 @@
         "reason": "real_depth",
         "symbol": "BTC",
         "until": "2026-11-11T23:53:14Z"
-      },
-      "0xb2000000000000000000006f520c4e607d719001": {
-        "at": "2026-11-10T17:13:14Z",
-        "reason": "real_depth",
-        "symbol": "RTM",
-        "until": "2026-11-11T17:13:14Z"
       },
       "0xb2000000000000000000006fb47356c12fc1ef41": {
         "at": "2026-11-11T11:23:12Z",
@@ -7918,12 +7918,6 @@
         "symbol": "REVVY",
         "until": "2026-11-12T16:23:15Z"
       },
-      "0xbbd4929a98fe56605151380d15096dd4684e2dff": {
-        "at": "2026-11-10T17:13:14Z",
-        "reason": "real_depth",
-        "symbol": "NFOA",
-        "until": "2026-11-11T17:13:14Z"
-      },
       "0xbbd552845d9064591a3054bc7d48037f6437d721": {
         "at": "2026-11-10T20:38:17Z",
         "reason": "real_depth",
@@ -8554,6 +8548,12 @@
         "symbol": "",
         "until": "2026-11-12T15:33:14Z"
       },
+      "0xd1ff21536adec88cf1532c50aa4c081bc9b3d690": {
+        "at": "2026-11-11T17:18:16Z",
+        "reason": "real_depth",
+        "symbol": "MEOW",
+        "until": "2026-11-12T17:18:16Z"
+      },
       "0xd266a0962bc5724a547ef0c15145b474f58263db": {
         "at": "2026-11-11T08:48:15Z",
         "reason": "real_depth",
@@ -8752,6 +8752,12 @@
         "symbol": "SPCX",
         "until": "2026-11-12T15:08:17Z"
       },
+      "0xdb1d7fc4d0ab1f6611c9fbd7473fe101149e7401": {
+        "at": "2026-11-11T17:18:16Z",
+        "reason": "real_depth",
+        "symbol": "Lemonade ",
+        "until": "2026-11-12T17:18:16Z"
+      },
       "0xdb417d9d3c06fb74c2e11da0850285c5400f54db": {
         "at": "2026-11-11T01:08:17Z",
         "reason": "real_depth",
@@ -8841,6 +8847,12 @@
         "reason": "real_depth",
         "symbol": "QUBIC",
         "until": "2026-11-12T10:38:13Z"
+      },
+      "0xde36221b953abc0c147a3052282d3e36fb4adc01": {
+        "at": "2026-11-11T17:18:16Z",
+        "reason": "real_depth",
+        "symbol": "Lemonade ",
+        "until": "2026-11-12T17:18:16Z"
       },
       "0xdf02385018ce823d8d377dba95a0368f0abd50fe": {
         "at": "2026-11-11T17:08:16Z",
@@ -9238,12 +9250,6 @@
         "symbol": "ASTRO",
         "until": "2026-11-12T16:53:13Z"
       },
-      "0xed84be5eedd264833cd59752e17a02db635bcf01": {
-        "at": "2026-11-10T17:13:14Z",
-        "reason": "real_depth",
-        "symbol": "ANGELA",
-        "until": "2026-11-11T17:13:14Z"
-      },
       "0xee07ebc21d41b764bb35e0a5f54f8d7fe315cccc": {
         "at": "2026-11-11T16:23:15Z",
         "reason": "real_depth",
@@ -9405,12 +9411,6 @@
         "reason": "real_depth",
         "symbol": "Wizard",
         "until": "2026-11-12T09:18:17Z"
-      },
-      "0xf6e2cb1989f19e0c2269af349f0257f3acc3ff01": {
-        "at": "2026-11-10T17:13:14Z",
-        "reason": "real_depth",
-        "symbol": "EXM",
-        "until": "2026-11-11T17:13:14Z"
       },
       "0xf747c7fd9ce4febad50c16deb05dddeedaa9bff8": {
         "at": "2026-11-10T23:58:14Z",
@@ -9679,9 +9679,9 @@
         "symbol": "TRUMP2028"
       },
       "0x44e98d14f2e46bd744ca6b88bb2ade4855b0801e": {
-        "checks": 3,
+        "checks": 4,
         "first_seen": "2026-11-11T16:23:15Z",
-        "last_check": "2026-11-11T16:59:02Z",
+        "last_check": "2026-11-11T17:18:16Z",
         "symbol": "FABLES"
       },
       "0x6209f19c599e86008f3f3cd181381c471f8dada6": {
@@ -9690,10 +9690,16 @@
         "last_check": "2026-11-11T17:08:16Z",
         "symbol": "DANA"
       },
+      "0x6c1e8e509ced1e7fe30f1aae0cf43e1667c0fee3": {
+        "checks": 1,
+        "first_seen": "2026-11-11T17:18:16Z",
+        "last_check": "2026-11-11T17:18:16Z",
+        "symbol": "SAPR"
+      },
       "0x87deab1ef0d7e63e7204d68e220c1cab23c4b58b": {
-        "checks": 3,
+        "checks": 4,
         "first_seen": "2026-11-11T16:23:15Z",
-        "last_check": "2026-11-11T16:59:02Z",
+        "last_check": "2026-11-11T17:18:16Z",
         "symbol": "REVVY"
       }
     }
@@ -9875,7 +9881,7 @@
     "gate_restart": "BL-32",
     "machine_due": "",
     "max_dd_pct": {
-      "baseline": 115.47188699858278,
+      "baseline": 115.96136336371217,
       "desk": 9.811123120222184
     },
     "peak": {
