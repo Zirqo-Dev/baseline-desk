@@ -1,6 +1,6 @@
 {
   "baseline": {
-    "cash": 36.90124804255433,
+    "cash": 31.90124804255433,
     "cooldown": {
       "a:0x24d18d0592180d79b563a49500c2da1480a3967a": "2026-11-12T09:28:14Z",
       "a:0x32c448a3b7b77e4c60d57535dcfc7bff8de102b5": "2026-11-11T17:53:16Z",
@@ -27,6 +27,22 @@
     "day_start_value": 40.91514490931043,
     "halted_day": "",
     "positions": {
+      "0x5ea94adf97ff491b96332c66c48cbafd5153f4fe": {
+        "cost_usd": 5.0,
+        "entry_fill": 1.2103235478217326e-05,
+        "entry_intended": 1.175e-05,
+        "entry_liq_usd": 159858.09,
+        "entry_qliq": 79880,
+        "entry_ts": "2026-11-11T13:53:15Z",
+        "ladder_done": [],
+        "last_price": 1.175e-05,
+        "launchpad": "other",
+        "orig_qty": 413112.6762755875,
+        "pair": "0x40a4c71d7cd6fe2f7f2c47c7b1c917e16e8413f1",
+        "peak_price": 1.175e-05,
+        "qty": 413112.6762755875,
+        "symbol": "Anthropic"
+      },
       "0x68be42c124cd461e290e5951326447c8f7af21be": {
         "cost_usd": 3.3499999999999996,
         "entry_fill": 0.002531924495751644,
@@ -37,20 +53,20 @@
         "ladder_done": [
           0
         ],
-        "last_liq_usd": 176671.34,
-        "last_price": 0.00432,
-        "last_qliq": 88335,
+        "last_liq_usd": 177580.37,
+        "last_price": 0.004364,
+        "last_qliq": 88790,
         "launchpad": "other",
         "orig_qty": 1974.7824267230635,
         "pair": "0x82c100287c5de8185d3dde5bafd4cfbb8b68ab43",
-        "peak_price": 0.00432,
+        "peak_price": 0.004364,
         "qty": 1323.1042259044525,
         "symbol": "GEL"
       }
     },
     "refill_week": "2026-W46",
     "refills_usd": 47.693738985981945,
-    "ticks_since_buy": 20
+    "ticks_since_buy": 0
   },
   "desk": {
     "cash": 50.0,
@@ -215,7 +231,8 @@
       },
       "0x080331a6f9f28e2d027c3bcd2cc5eb30d2b7d1a6": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 0.0179,
         "first_seen": "2026-11-11T07:53:15Z",
@@ -414,7 +431,8 @@
       },
       "0x1fe01fd0191d7aca50a6b444a6d7706cb72342a2": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 0.004799,
         "first_seen": "2026-11-11T07:48:16Z",
@@ -551,7 +569,9 @@
         "symbol": "FOLKS"
       },
       "0x2f86385f77aa5bc441363cd4ca83fc3ed7347095": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 0.03875,
         "first_seen": "2026-11-11T12:53:13Z",
         "sight_pair": "0x9124a9077e69d024d3248597a83599636a65c006a0f36071b4cb8a6a949a96e6",
@@ -866,17 +886,6 @@
         "sight_qliq": 2290,
         "symbol": "NOTF"
       },
-      "0x3faaa4759e93c43cf3ab68f8c3ff6d7f574b5fd9": {
-        "done": [
-          1,
-          6
-        ],
-        "first_price": 8.673e-05,
-        "first_seen": "2026-11-10T13:48:17Z",
-        "sight_pair": "0xe9ba3df2260d9c4a76253453473b18f4395002bcf3586c7a0f9b9542d20dca2e",
-        "sight_qliq": 10,
-        "symbol": "SOFS"
-      },
       "0x416a5a3d0247620ec52419b7fd61b457472add2f": {
         "done": [
           1
@@ -1058,6 +1067,14 @@
         "sight_qliq": 31067,
         "symbol": "CITY XRP"
       },
+      "0x5006da831e8954b3d009f247a3d0c9caaa7c47f0": {
+        "done": [],
+        "first_price": 9.832e-05,
+        "first_seen": "2026-11-11T13:53:15Z",
+        "sight_pair": "0x3a1a1ecb89ed9245c8b670e84a80f5293edb32f517909ed0af258a9f0193e378",
+        "sight_qliq": 3,
+        "symbol": "MPLX"
+      },
       "0x52370bc5ef0367a00a5d74731a3229572d4bec63": {
         "done": [
           1,
@@ -1090,6 +1107,14 @@
         "sight_pair": "0xfc6749c6c2429e7303ff70e89935cf3471e9f3ef1f1ffc67e44b1353aea4ea96",
         "sight_qliq": 1,
         "symbol": "UDOF"
+      },
+      "0x55424024de2c3c336ba2f6f8b187628d0bd67799": {
+        "done": [],
+        "first_price": 0.0001199,
+        "first_seen": "2026-11-11T13:53:15Z",
+        "sight_pair": "0x31f547f23d9b113842a0ea292c931eb48e3b3714c17f71c0521a0b90492953f4",
+        "sight_qliq": 1,
+        "symbol": "DacityCoin"
       },
       "0x55538f440d34e75cd830aa8da3c9eb2c2791228d": {
         "done": [
@@ -1698,6 +1723,14 @@
         "sight_qliq": 1,
         "symbol": "STRC"
       },
+      "0x8952d30631d5a13d486248e302d200ef5f966262": {
+        "done": [],
+        "first_price": 0.0002139,
+        "first_seen": "2026-11-11T13:53:15Z",
+        "sight_pair": "0x4aeae82d9dcc4caeab49fa4586fe459068cab4e4ed1aaa06b73613dae252153f",
+        "sight_qliq": 3,
+        "symbol": "AGT"
+      },
       "0x899655a13293f201dd87a572e3504ae4de2a32cf": {
         "done": [
           1,
@@ -1784,17 +1817,6 @@
         "sight_pair": "0x9a99e2a4280d8f0b0ee2eba1caf5606d9a9d1205",
         "sight_qliq": 66402,
         "symbol": "HABIBI"
-      },
-      "0x934c0cf56d13fbcac68d73cb49e95e020ebaca43": {
-        "done": [
-          1,
-          6
-        ],
-        "first_price": 0.0001826,
-        "first_seen": "2026-11-10T13:48:17Z",
-        "sight_pair": "0xfaea5f45b341ea57b158c51eaaa6e6416290593ab704393d2a2bd237a627891f",
-        "sight_qliq": 27,
-        "symbol": "UNITED DIVIDEND FUND OIL"
       },
       "0x93a8c0b283d98d609ffcef88f1e1510b4b1507b9": {
         "done": [
@@ -2525,17 +2547,6 @@
         "sight_pair": "0x8c43026f4fa1c2530db52b5e70fa11cd749710e9",
         "sight_qliq": 31454,
         "symbol": "ATOF"
-      },
-      "0xcd55bc333bc8a4379f17f258625dfc0ca1b9a33c": {
-        "done": [
-          1,
-          6
-        ],
-        "first_price": 0.0001559,
-        "first_seen": "2026-11-10T13:48:17Z",
-        "sight_pair": "0x06ef14c0220afa98069ed461818068259db86cd03f3726d8f94c330f4265a92d",
-        "sight_qliq": 18,
-        "symbol": "ISPF"
       },
       "0xcf556d1f640bff166aef1c9c3c4b3769255b49ce": {
         "done": [
@@ -3584,12 +3595,6 @@
         "reason": "real_depth",
         "symbol": "XCHAT",
         "until": "2026-11-12T06:13:13Z"
-      },
-      "0x142792ee240ec5a935abddc7e8aa5b5c3176c1ca": {
-        "at": "2026-11-10T13:48:17Z",
-        "reason": "real_depth",
-        "symbol": "LABUBU",
-        "until": "2026-11-11T13:48:17Z"
       },
       "0x14357e4da43f2c733c09c999d7d1d7917e699b6b": {
         "at": "2026-11-10T17:28:18Z",
@@ -4851,12 +4856,6 @@
         "symbol": "NOTF",
         "until": "2026-11-11T18:23:16Z"
       },
-      "0x3faaa4759e93c43cf3ab68f8c3ff6d7f574b5fd9": {
-        "at": "2026-11-10T13:48:17Z",
-        "reason": "real_depth",
-        "symbol": "SOFS",
-        "until": "2026-11-11T13:48:17Z"
-      },
       "0x40e0e27aa0faf622256e0110ff3a377411bc92ed": {
         "at": "2026-11-11T08:08:16Z",
         "reason": "real_depth",
@@ -5006,12 +5005,6 @@
         "reason": "real_depth",
         "symbol": "NAOF",
         "until": "2026-11-11T14:23:14Z"
-      },
-      "0x48b3e8510d6c43b109960cc56d2c27a72e19fdb4": {
-        "at": "2026-11-10T13:48:17Z",
-        "reason": "real_depth",
-        "symbol": "\ud83c\udf198",
-        "until": "2026-11-11T13:48:17Z"
       },
       "0x49a28e3cbfab4edde3dbc4519a16ac163ce98e0a": {
         "at": "2026-11-10T21:13:16Z",
@@ -5169,6 +5162,12 @@
         "symbol": "CITY XRP",
         "until": "2026-11-11T21:38:17Z"
       },
+      "0x5006da831e8954b3d009f247a3d0c9caaa7c47f0": {
+        "at": "2026-11-11T13:53:15Z",
+        "reason": "real_depth",
+        "symbol": "MPLX",
+        "until": "2026-11-12T13:53:15Z"
+      },
       "0x502d1c00b89eb32a9dd836a2e9216aa2999acccc": {
         "at": "2026-11-10T17:18:18Z",
         "reason": "real_depth",
@@ -5288,6 +5287,12 @@
         "reason": "real_depth",
         "symbol": "MEGA MILLIONS",
         "until": "2026-11-11T13:58:18Z"
+      },
+      "0x55424024de2c3c336ba2f6f8b187628d0bd67799": {
+        "at": "2026-11-11T13:53:15Z",
+        "reason": "real_depth",
+        "symbol": "DacityCoin",
+        "until": "2026-11-12T13:53:15Z"
       },
       "0x554c8b856d5a5a680ec35f33bb5badfb5f13d701": {
         "at": "2026-11-10T21:48:15Z",
@@ -5660,12 +5665,6 @@
         "reason": "real_depth",
         "symbol": "Francis",
         "until": "2026-11-11T18:18:17Z"
-      },
-      "0x63b627a425ba629807211caab940effe2c3888c9": {
-        "at": "2026-11-10T13:48:17Z",
-        "reason": "real_depth",
-        "symbol": "SPACEX",
-        "until": "2026-11-11T13:48:17Z"
       },
       "0x63e6c0666be6638b4db6fc370e15e39ac1c72869": {
         "at": "2026-11-10T18:53:16Z",
@@ -6537,6 +6536,12 @@
         "symbol": "NAMI",
         "until": "2026-11-11T16:38:17Z"
       },
+      "0x8952d30631d5a13d486248e302d200ef5f966262": {
+        "at": "2026-11-11T13:53:15Z",
+        "reason": "real_depth",
+        "symbol": "AGT",
+        "until": "2026-11-12T13:53:15Z"
+      },
       "0x898a601908ad769aa2d257d4c5808c949d81d535": {
         "at": "2026-11-10T23:23:13Z",
         "reason": "missing:liq_usd",
@@ -6740,12 +6745,6 @@
         "reason": "missing:price",
         "symbol": "Build on zora",
         "until": "2026-11-12T04:48:15Z"
-      },
-      "0x934c0cf56d13fbcac68d73cb49e95e020ebaca43": {
-        "at": "2026-11-10T13:48:17Z",
-        "reason": "real_depth",
-        "symbol": "UNITED DIVIDEND FUND OIL",
-        "until": "2026-11-11T13:48:17Z"
       },
       "0x935d8095ad93ea65796b98cdbdf01b704f470f2b": {
         "at": "2026-11-11T10:33:12Z",
@@ -7893,12 +7892,6 @@
         "symbol": "GTI",
         "until": "2026-11-11T23:43:16Z"
       },
-      "0xb20000000000000000000067daef17020cdda6d2": {
-        "at": "2026-11-10T13:48:17Z",
-        "reason": "real_depth",
-        "symbol": "BELLY",
-        "until": "2026-11-11T13:48:17Z"
-      },
       "0xb2000000000000000000006818f2775012195dc4": {
         "at": "2026-11-11T01:23:13Z",
         "reason": "real_depth",
@@ -8276,18 +8269,6 @@
         "reason": "real_depth",
         "symbol": "XFILL",
         "until": "2026-11-12T10:53:14Z"
-      },
-      "0xb200000000000000000000cbf5f41149cea13a58": {
-        "at": "2026-11-10T13:48:17Z",
-        "reason": "real_depth",
-        "symbol": "BELLY",
-        "until": "2026-11-11T13:48:17Z"
-      },
-      "0xb200000000000000000000da5b7d0397c960e73d": {
-        "at": "2026-11-10T13:48:17Z",
-        "reason": "real_depth",
-        "symbol": "Herdr",
-        "until": "2026-11-11T13:48:17Z"
       },
       "0xb200000000000000000000dc7608a8261981d890": {
         "at": "2026-11-10T14:18:18Z",
@@ -9201,12 +9182,6 @@
         "symbol": "ATOF",
         "until": "2026-11-12T03:43:16Z"
       },
-      "0xcd55bc333bc8a4379f17f258625dfc0ca1b9a33c": {
-        "at": "2026-11-10T13:48:17Z",
-        "reason": "real_depth",
-        "symbol": "ISPF",
-        "until": "2026-11-11T13:48:17Z"
-      },
       "0xcd5b371a83022b13afdd3eb8f321d9d0eae8dba3": {
         "at": "2026-11-10T20:08:17Z",
         "reason": "real_depth",
@@ -10101,12 +10076,6 @@
         "symbol": "HYPE",
         "until": "2026-11-12T02:13:13Z"
       },
-      "0xf32b8bb87f6503eb14eb2ed9641dd0844367c710": {
-        "at": "2026-11-10T13:48:17Z",
-        "reason": "real_depth",
-        "symbol": "WRM",
-        "until": "2026-11-11T13:48:17Z"
-      },
       "0xf34e8c4851f147eae450dcf8ccdf4073404428c2": {
         "at": "2026-11-10T23:33:14Z",
         "reason": "real_depth",
@@ -10446,9 +10415,9 @@
         "symbol": "CLAUDIA"
       },
       "0x5ea94adf97ff491b96332c66c48cbafd5153f4fe": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-11T13:38:15Z",
-        "last_check": "2026-11-11T13:38:15Z",
+        "last_check": "2026-11-11T13:53:15Z",
         "symbol": "Anthropic"
       },
       "0x785ab0e2b58891879489abb86ec021481238a9a9": {
