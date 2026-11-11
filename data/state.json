@@ -27,17 +27,17 @@
       "s:USOE": "2026-11-11T17:53:16Z",
       "s:XTO": "2026-11-11T02:38:14Z"
     },
-    "day": "2026-11-10",
-    "day_start_value": 49.361784843872286,
+    "day": "2026-11-11",
+    "day_start_value": 40.91514490931043,
     "halted_day": "",
     "positions": {},
     "refill_week": "2026-W46",
     "refills_usd": 47.693738985981945,
-    "ticks_since_buy": 39
+    "ticks_since_buy": 40
   },
   "desk": {
     "cash": 50.0,
-    "day": "2026-11-10",
+    "day": "2026-11-11",
     "day_start_value": 50.0,
     "halted_day": "",
     "positions": {},
@@ -4856,12 +4856,6 @@
         "symbol": "EXRD",
         "until": "2026-11-11T17:23:15Z"
       },
-      "0x58a4f266e55dd5b101eb72aa3fd5bc012780753d": {
-        "at": "2026-11-10T00:03:13Z",
-        "reason": "real_depth",
-        "symbol": "JMU",
-        "until": "2026-11-11T00:03:13Z"
-      },
       "0x58bf0d809ef0dda0661d9789cce1408354fb67ce": {
         "at": "2026-11-10T14:13:12Z",
         "reason": "real_depth",
@@ -5251,12 +5245,6 @@
         "reason": "real_depth",
         "symbol": "USDT.E",
         "until": "2026-11-11T15:53:16Z"
-      },
-      "0x67b00f773054031ced8cd3daeb7d5211a092a003": {
-        "at": "2026-11-10T00:03:13Z",
-        "reason": "real_depth",
-        "symbol": "SI",
-        "until": "2026-11-11T00:03:13Z"
       },
       "0x67cca87224472ebf56c2cdc289ff07eb317f7518": {
         "at": "2026-11-10T16:13:14Z",
@@ -7412,12 +7400,6 @@
         "symbol": "EPD",
         "until": "2026-11-11T16:33:14Z"
       },
-      "0xb2000000000000000000008813cdfa2e6f912b89": {
-        "at": "2026-11-10T00:03:13Z",
-        "reason": "real_depth",
-        "symbol": "VOLTA",
-        "until": "2026-11-11T00:03:13Z"
-      },
       "0xb20000000000000000000088d009e7cd5ae24301": {
         "at": "2026-11-10T15:48:16Z",
         "reason": "real_depth",
@@ -8786,6 +8768,12 @@
         "symbol": "grantr",
         "until": "2026-11-11T22:03:14Z"
       },
+      "0xd8a714ee44dba4e46e5b6bfdd9ebbf3f2fca084b": {
+        "at": "2026-11-11T00:03:15Z",
+        "reason": "real_depth",
+        "symbol": "NEBRASKA",
+        "until": "2026-11-12T00:03:15Z"
+      },
       "0xd8c29484e47b58fca5fc79ccc6d8bedc31c2de9c": {
         "at": "2026-11-10T23:08:15Z",
         "reason": "real_depth",
@@ -9742,12 +9730,6 @@
         "last_check": "2026-11-10T23:53:14Z",
         "symbol": "Anthropic"
       },
-      "0xd8a714ee44dba4e46e5b6bfdd9ebbf3f2fca084b": {
-        "checks": 3,
-        "first_seen": "2026-11-10T23:08:15Z",
-        "last_check": "2026-11-10T23:43:16Z",
-        "symbol": "NEBRASKA"
-      },
       "0xf15fb19b997e68c7b3d94910bc7c8d1ee1c0d894": {
         "checks": 2,
         "first_seen": "2026-11-10T23:38:15Z",
@@ -9835,6 +9817,13 @@
           "open": 0,
           "refills_usd": 47.693739,
           "value_usd": 49.361785
+        },
+        {
+          "cash_usd": 40.915145,
+          "day": "2026-11-10",
+          "open": 0,
+          "refills_usd": 47.693739,
+          "value_usd": 40.915145
         }
       ],
       "desk": [
@@ -9913,6 +9902,13 @@
           "open": 0,
           "refills_usd": 2.392231,
           "value_usd": 50.0
+        },
+        {
+          "cash_usd": 50.0,
+          "day": "2026-11-10",
+          "open": 0,
+          "refills_usd": 2.392231,
+          "value_usd": 50.0
         }
       ]
     },
@@ -9931,32 +9927,32 @@
     "totals": {
       "funnel": {
         "buy": 1,
-        "gate": 1408,
+        "gate": 1429,
         "safety": 1,
-        "scan": 14205
+        "scan": 15383
       },
       "kills": {
         "gate": {
           "asset:quote": 2,
-          "asset:stable": 7,
-          "asset:wrapped": 3,
+          "asset:stable": 12,
+          "asset:wrapped": 6,
           "liquidity": 8614,
-          "missing:age_min": 1,
-          "missing:liq_usd": 1115,
-          "missing:price": 78,
-          "missing:symbol": 79,
-          "real_depth": 2898
+          "missing:age_min": 2,
+          "missing:liq_usd": 1231,
+          "missing:price": 91,
+          "missing:symbol": 96,
+          "real_depth": 3900
         },
         "safety": {
           "goplus_partial": 20,
-          "goplus_timeout": 1135,
+          "goplus_timeout": 1153,
           "mint_open": 42,
           "nobody_can_sell": 6,
           "too_old": 4,
           "top10_pct": 15
         }
       },
-      "through": "2026-11-09"
+      "through": "2026-11-10"
     }
   }
 }
