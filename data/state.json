@@ -1,6 +1,6 @@
 {
   "baseline": {
-    "cash": 40.62286165268416,
+    "cash": 35.62286165268416,
     "cooldown": {
       "a:0x038826c4a1b788f807d44306c851b257063e0d0f": "2026-11-11T03:48:14Z",
       "a:0x2e9e636050a28714872a5d3c70e9e99e41de5172": "2026-11-11T02:38:14Z",
@@ -32,10 +32,27 @@
     "day": "2026-11-11",
     "day_start_value": 40.91514490931043,
     "halted_day": "",
-    "positions": {},
+    "positions": {
+      "0xf92739a272fb1711968dfc87205933124a572e9d": {
+        "cost_usd": 5.0,
+        "entry_fill": 1.1963600885763857e-08,
+        "entry_intended": 1.161e-08,
+        "entry_liq_usd": 21908.53,
+        "entry_qliq": 10951,
+        "entry_ts": "2026-11-11T04:48:15Z",
+        "ladder_done": [],
+        "last_price": 1.161e-08,
+        "launchpad": "other",
+        "orig_qty": 417934370.0732924,
+        "pair": "0x129175b21f84ffac3c055c233fb4b1675988b89f",
+        "peak_price": 1.161e-08,
+        "qty": 417934370.0732924,
+        "symbol": "MORI"
+      }
+    },
     "refill_week": "2026-W46",
     "refills_usd": 47.693738985981945,
-    "ticks_since_buy": 51
+    "ticks_since_buy": 0
   },
   "desk": {
     "cash": 50.0,
@@ -420,7 +437,8 @@
       },
       "0x2d005e7d6134dba45792b98dbe8f53f9b5bf588b": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 8.917e-06,
         "first_seen": "2026-11-10T22:43:15Z",
@@ -473,7 +491,9 @@
         "symbol": "M\u200aO\u200aNER\u200aO"
       },
       "0x3278b99c49f7d9184d8dbc3afb78d78717ba2893": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 0.0002145,
         "first_seen": "2026-11-11T03:48:15Z",
         "sight_pair": "0x093a13c439a7a713a32254b757f1b14221609ff261bacc7c63b14c49e8cb6561",
@@ -1792,7 +1812,9 @@
         "symbol": "BIDEN"
       },
       "0xa90569897c80dcc19661d6d06fa8df9be11ef9c6": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 8.77e-06,
         "first_seen": "2026-11-11T03:48:15Z",
         "sight_pair": "0x0e0d30a735bbb3781b9c5a3db5b129e226e9c949",
@@ -5806,6 +5828,12 @@
         "symbol": "KNTQ",
         "until": "2026-11-11T13:43:15Z"
       },
+      "0x7fa5bca832d077c547b71fb1cdef82d0d3562841": {
+        "at": "2026-11-11T04:48:15Z",
+        "reason": "real_depth",
+        "symbol": "MOGGING",
+        "until": "2026-11-12T04:48:15Z"
+      },
       "0x7fc98cd2f4db6ec96b1e408f23b59f165ce59af9": {
         "at": "2026-11-10T09:08:15Z",
         "reason": "real_depth",
@@ -6237,6 +6265,12 @@
         "reason": "missing:liq_usd",
         "symbol": "COMET",
         "until": "2026-11-12T00:53:13Z"
+      },
+      "0x931234f61292e4aca350d4e8b41aca450c294467": {
+        "at": "2026-11-11T04:48:15Z",
+        "reason": "missing:price",
+        "symbol": "Build on zora",
+        "until": "2026-11-12T04:48:15Z"
       },
       "0x934c0cf56d13fbcac68d73cb49e95e020ebaca43": {
         "at": "2026-11-10T13:48:17Z",
@@ -7161,12 +7195,6 @@
         "reason": "real_depth",
         "symbol": "ACHIMALA",
         "until": "2026-11-11T09:33:15Z"
-      },
-      "0xb2000000000000000000004c931b3d78c9eff5a7": {
-        "at": "2026-11-10T04:48:14Z",
-        "reason": "real_depth",
-        "symbol": "ACHIMALA",
-        "until": "2026-11-11T04:48:14Z"
       },
       "0xb2000000000000000000004e7b3bbf531646908e": {
         "at": "2026-11-11T04:33:15Z",
@@ -9720,12 +9748,6 @@
         "last_check": "2026-11-11T04:43:14Z",
         "symbol": "HALLOWEEN"
       },
-      "0x7fa5bca832d077c547b71fb1cdef82d0d3562841": {
-        "checks": 3,
-        "first_seen": "2026-11-11T03:53:13Z",
-        "last_check": "2026-11-11T04:28:15Z",
-        "symbol": "MOGGING"
-      },
       "0x8ed8aa3e0f149449a8af4454ece297d89d2f0c64": {
         "checks": 2,
         "first_seen": "2026-11-11T04:23:13Z",
@@ -9739,9 +9761,9 @@
         "symbol": "UOSE"
       },
       "0xf92739a272fb1711968dfc87205933124a572e9d": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-11T04:28:15Z",
-        "last_check": "2026-11-11T04:28:15Z",
+        "last_check": "2026-11-11T04:48:15Z",
         "symbol": "MORI"
       }
     }
@@ -9923,7 +9945,7 @@
     "gate_restart": "BL-32",
     "machine_due": "",
     "max_dd_pct": {
-      "baseline": 111.90746059233511,
+      "baseline": 112.33934815769733,
       "desk": 9.811123120222184
     },
     "peak": {
