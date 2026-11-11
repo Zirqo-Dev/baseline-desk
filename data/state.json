@@ -29,7 +29,7 @@
     "positions": {},
     "refill_week": "2026-W46",
     "refills_usd": 47.693738985981945,
-    "ticks_since_buy": 34
+    "ticks_since_buy": 35
   },
   "desk": {
     "cash": 50.0,
@@ -410,7 +410,9 @@
         "symbol": "FOTF"
       },
       "0x25766b5e4a2b452c938b548e9e878bd9387baadb": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 9.725e-06,
         "first_seen": "2026-11-11T21:13:16Z",
         "sight_pair": "0x5e4bf751609e41e9795b638f4c4e773ed407b794",
@@ -799,6 +801,14 @@
         "sight_pair": "0xd9737296e43bcfa18efe3a93b4d6f7f9688c67f637fc96d9aebb45d7fbe3a835",
         "sight_qliq": 2,
         "symbol": "PROVE"
+      },
+      "0x46150c29c48dd34bce5e24983b343dcd8a509177": {
+        "done": [],
+        "first_price": 1.123e-05,
+        "first_seen": "2026-11-11T22:18:15Z",
+        "sight_pair": "0x1dddf25cc99b05e0b719ea9ade10a7570f9dba1e",
+        "sight_qliq": 85608,
+        "symbol": "CLAUDIA"
       },
       "0x46b9d16ef411406c1ec86134e9a34cd661707bf2": {
         "done": [
@@ -2860,12 +2870,6 @@
         "symbol": "CLAUDIA",
         "until": "2026-11-12T10:18:14Z"
       },
-      "0x1240d8b20b8368f30a11abccf640417fb925ff79": {
-        "at": "2026-11-10T22:18:15Z",
-        "reason": "real_depth",
-        "symbol": "SPACEX",
-        "until": "2026-11-11T22:18:15Z"
-      },
       "0x126cabe6eb74e8d945e3e1532e8390435d84c2f0": {
         "at": "2026-11-10T23:23:13Z",
         "reason": "missing:symbol",
@@ -4053,6 +4057,12 @@
         "reason": "real_depth",
         "symbol": "Based\ud83d\udc99",
         "until": "2026-11-12T12:03:14Z"
+      },
+      "0x429475f93d16cffe4e9febcf970872045681597f": {
+        "at": "2026-11-11T22:18:15Z",
+        "reason": "real_depth",
+        "symbol": "CalifraudiaRepublic",
+        "until": "2026-11-12T22:18:15Z"
       },
       "0x42ddbddaca4fc7a96e740979a15960b0ecff4984": {
         "at": "2026-11-11T05:08:14Z",
@@ -5392,12 +5402,6 @@
         "symbol": "Max",
         "until": "2026-11-12T21:28:16Z"
       },
-      "0x7bdb304dec4c5c14daf04be3756f43fa9edb8a0d": {
-        "at": "2026-11-10T22:18:15Z",
-        "reason": "real_depth",
-        "symbol": "PUMP",
-        "until": "2026-11-11T22:18:15Z"
-      },
       "0x7c4a311e58a2dbb8b311d505ef6e3f4ef9e44150": {
         "at": "2026-11-11T02:58:13Z",
         "reason": "real_depth",
@@ -5800,6 +5804,12 @@
         "symbol": "UTYA",
         "until": "2026-11-12T08:03:14Z"
       },
+      "0x91d52d7259bcdfc557ac8f9449bce1bce9e9b014": {
+        "at": "2026-11-11T22:18:15Z",
+        "reason": "real_depth",
+        "symbol": "TRUMP2028",
+        "until": "2026-11-12T22:18:15Z"
+      },
       "0x91ddfdcecf837358c9ce029893a4fea12fdcc2db": {
         "at": "2026-11-11T18:28:15Z",
         "reason": "real_depth",
@@ -5973,12 +5983,6 @@
         "reason": "real_depth",
         "symbol": "nothing",
         "until": "2026-11-12T02:58:13Z"
-      },
-      "0x9a8621e34c6b4c3a7bfabbf7c9191f0d2184ba6e": {
-        "at": "2026-11-10T22:18:15Z",
-        "reason": "real_depth",
-        "symbol": "DTCC Hedera",
-        "until": "2026-11-11T22:18:15Z"
       },
       "0x9b686254d6811dbed2a48bb6d39e35f9b6f7413f": {
         "at": "2026-11-10T23:23:13Z",
@@ -8224,12 +8228,6 @@
         "symbol": "GABBY",
         "until": "2026-11-12T01:33:14Z"
       },
-      "0xd130401fa36af8ff1b915411ea9892ac301891bc": {
-        "at": "2026-11-10T22:18:15Z",
-        "reason": "real_depth",
-        "symbol": "LAPTOP",
-        "until": "2026-11-11T22:18:15Z"
-      },
       "0xd1efaa18d03877ff3e7938bfb8cccd2ab1f0848e": {
         "at": "2026-11-11T17:13:13Z",
         "reason": "real_depth",
@@ -8884,6 +8882,12 @@
         "symbol": "SATOSHI",
         "until": "2026-11-12T17:48:15Z"
       },
+      "0xea5c18daaaad1bd5bb68d1e270fdee0ab8c4c404": {
+        "at": "2026-11-11T22:18:15Z",
+        "reason": "real_depth",
+        "symbol": "MOGGING",
+        "until": "2026-11-12T22:18:15Z"
+      },
       "0xeae9e07c1edc184231a0f2b0fa146a54a69a867e": {
         "at": "2026-11-11T10:48:15Z",
         "reason": "real_depth",
@@ -9354,23 +9358,17 @@
       }
     },
     "watch": {
-      "0x91d52d7259bcdfc557ac8f9449bce1bce9e9b014": {
-        "checks": 2,
-        "first_seen": "2026-11-11T21:43:15Z",
-        "last_check": "2026-11-11T21:58:15Z",
-        "symbol": "TRUMP2028"
+      "0x46150c29c48dd34bce5e24983b343dcd8a509177": {
+        "checks": 1,
+        "first_seen": "2026-11-11T22:18:15Z",
+        "last_check": "2026-11-11T22:18:15Z",
+        "symbol": "CLAUDIA"
       },
       "0xc8fe57ad1c98dbfe3745e1e9d7017110150357d5": {
         "checks": 1,
         "first_seen": "2026-11-11T22:08:16Z",
         "last_check": "2026-11-11T22:08:16Z",
         "symbol": "HALLOWEEN"
-      },
-      "0xea5c18daaaad1bd5bb68d1e270fdee0ab8c4c404": {
-        "checks": 3,
-        "first_seen": "2026-11-11T21:23:15Z",
-        "last_check": "2026-11-11T21:58:15Z",
-        "symbol": "MOGGING"
       },
       "0xfc6ab2a74098cd8ed615295299183586b34d04aa": {
         "checks": 2,
