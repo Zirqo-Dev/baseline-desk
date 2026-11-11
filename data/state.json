@@ -29,7 +29,7 @@
     "positions": {},
     "refill_week": "2026-W46",
     "refills_usd": 47.693738985981945,
-    "ticks_since_buy": 45
+    "ticks_since_buy": 46
   },
   "desk": {
     "cash": 50.0,
@@ -347,7 +347,8 @@
       },
       "0x1ee53bcd18463d1824cd6b65f40501b983fffbe7": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 1.638e-05,
         "first_seen": "2026-11-11T17:13:13Z",
@@ -1911,7 +1912,9 @@
         "symbol": "USOI"
       },
       "0xc8fe57ad1c98dbfe3745e1e9d7017110150357d5": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 6.827e-06,
         "first_seen": "2026-11-11T22:08:16Z",
         "sight_pair": "0x0ad5e58fa9a0ca659b9da91e892d1f7b4597fe5d",
@@ -1964,7 +1967,8 @@
       },
       "0xcb51210a87f8a28c4d6badd122fcd8b5486aa66c": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 0.0001,
         "first_seen": "2026-11-11T17:13:13Z",
@@ -2028,7 +2032,8 @@
       },
       "0xd1efaa18d03877ff3e7938bfb8cccd2ab1f0848e": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 0.0002255,
         "first_seen": "2026-11-11T17:13:13Z",
@@ -2101,17 +2106,6 @@
         "sight_pair": "0xf9159aa10bd3123338a57652b130ad102516d5a1",
         "sight_qliq": 68949,
         "symbol": "DANA"
-      },
-      "0xd8a714ee44dba4e46e5b6bfdd9ebbf3f2fca084b": {
-        "done": [
-          1,
-          6
-        ],
-        "first_price": 1.078e-05,
-        "first_seen": "2026-11-10T23:08:15Z",
-        "sight_pair": "0xddffafa5d10cbaf64f5592e5e23332250246d5e8",
-        "sight_qliq": 65291,
-        "symbol": "NEBRASKA"
       },
       "0xda432464a0a4108a95a802cc216982352476e05b": {
         "done": [
@@ -2587,6 +2581,12 @@
         "reason": "missing:liq_usd",
         "symbol": "xaalon",
         "until": "2026-11-12T07:58:13Z"
+      },
+      "0x047bbd3239b87b616e9776870fe7fc024914f577": {
+        "at": "2026-11-11T23:13:15Z",
+        "reason": "real_depth",
+        "symbol": "MEOW",
+        "until": "2026-11-12T23:13:15Z"
       },
       "0x05b6a2cc7d3607b2564e53e613ffaeb9d5ffa6ff": {
         "at": "2026-11-11T03:38:15Z",
@@ -3080,12 +3080,6 @@
         "symbol": "MASK",
         "until": "2026-11-12T19:48:13Z"
       },
-      "0x1ad866cfd6e084905a154631ccaba8765bd45480": {
-        "at": "2026-11-10T23:08:15Z",
-        "reason": "real_depth",
-        "symbol": "QUILL",
-        "until": "2026-11-11T23:08:15Z"
-      },
       "0x1b30eea00881af774ee328dc38c18faff263ae3b": {
         "at": "2026-11-11T00:08:16Z",
         "reason": "real_depth",
@@ -3181,6 +3175,12 @@
         "reason": "real_depth",
         "symbol": "FIRE",
         "until": "2026-11-12T05:58:15Z"
+      },
+      "0x1dd68c89e1c1dea31aab6933cbc0e2b97b95b055": {
+        "at": "2026-11-11T23:13:15Z",
+        "reason": "real_depth",
+        "symbol": "MCAT",
+        "until": "2026-11-12T23:13:15Z"
       },
       "0x1de4641749a7f5591a68fdce2e1efaea8c678483": {
         "at": "2026-11-11T05:38:17Z",
@@ -4645,6 +4645,12 @@
         "reason": "real_depth",
         "symbol": "RSHIBA",
         "until": "2026-11-12T17:48:15Z"
+      },
+      "0x5bce9dbdd9b965fa0573af6d55eba1fef058aba3": {
+        "at": "2026-11-11T23:13:15Z",
+        "reason": "real_depth",
+        "symbol": "INDEXMAXI",
+        "until": "2026-11-12T23:13:15Z"
       },
       "0x5c08347900f13cd4a40f15e1654ac5f2f8a91dc5": {
         "at": "2026-11-11T08:58:17Z",
@@ -6374,12 +6380,6 @@
         "symbol": "REVVY",
         "until": "2026-11-12T17:13:13Z"
       },
-      "0xac275c180f5e44b2c5f944d267a05612dc12bb66": {
-        "at": "2026-11-10T23:08:15Z",
-        "reason": "missing:price",
-        "symbol": "HB",
-        "until": "2026-11-11T23:08:15Z"
-      },
       "0xac438b53afeef01ed2f2d4ddf053a66ae57fcccc": {
         "at": "2026-11-11T17:38:14Z",
         "reason": "real_depth",
@@ -6836,12 +6836,6 @@
         "symbol": "XDC",
         "until": "2026-11-12T14:53:16Z"
       },
-      "0xb20000000000000000000057b6273641166cb868": {
-        "at": "2026-11-10T23:13:13Z",
-        "reason": "real_depth",
-        "symbol": "STROPE",
-        "until": "2026-11-11T23:13:13Z"
-      },
       "0xb20000000000000000000058013e9c382027ba0a": {
         "at": "2026-11-11T09:48:14Z",
         "reason": "real_depth",
@@ -6931,6 +6925,12 @@
         "reason": "real_depth",
         "symbol": "DRS",
         "until": "2026-11-12T18:23:13Z"
+      },
+      "0xb2000000000000000000006a0fb09c4d151a25cc": {
+        "at": "2026-11-11T23:13:15Z",
+        "reason": "missing:liq_usd",
+        "symbol": "Binnet",
+        "until": "2026-11-12T23:13:15Z"
       },
       "0xb2000000000000000000006a71808f8b92b68a83": {
         "at": "2026-11-11T08:08:16Z",
@@ -7147,12 +7147,6 @@
         "reason": "real_depth",
         "symbol": "XSOXL",
         "until": "2026-11-12T12:13:14Z"
-      },
-      "0xb200000000000000000000ac51d28b7eed747792": {
-        "at": "2026-11-10T23:08:15Z",
-        "reason": "missing:liq_usd",
-        "symbol": "LEAKCHIP",
-        "until": "2026-11-11T23:08:15Z"
       },
       "0xb200000000000000000000ace7ae74bc16d0c23a": {
         "at": "2026-11-11T12:58:15Z",
@@ -7507,12 +7501,6 @@
         "reason": "real_depth",
         "symbol": "DacityCoin",
         "until": "2026-11-12T14:38:16Z"
-      },
-      "0xb564b3bb4418f9bea4dc9829f64f5a8b86a421bc": {
-        "at": "2026-11-10T23:08:15Z",
-        "reason": "real_depth",
-        "symbol": ".AI",
-        "until": "2026-11-11T23:08:15Z"
       },
       "0xb671e9ee35632a1bb420baf976776a04a594bc2c": {
         "at": "2026-11-11T12:53:13Z",
@@ -8288,6 +8276,12 @@
         "symbol": "CHUBBY",
         "until": "2026-11-12T00:48:16Z"
       },
+      "0xd37c477796ebac032ada391f9d6bcff2c6459ba3": {
+        "at": "2026-11-11T23:13:15Z",
+        "reason": "real_depth",
+        "symbol": "MONTRA",
+        "until": "2026-11-12T23:13:15Z"
+      },
       "0xd3c50dc187fcae8f3c36dbf8ecf46abc67744057": {
         "at": "2026-11-11T08:28:14Z",
         "reason": "real_depth",
@@ -8437,12 +8431,6 @@
         "reason": "real_depth",
         "symbol": "NEBRASKA",
         "until": "2026-11-12T00:03:15Z"
-      },
-      "0xd8c29484e47b58fca5fc79ccc6d8bedc31c2de9c": {
-        "at": "2026-11-10T23:08:15Z",
-        "reason": "real_depth",
-        "symbol": "SPACEX",
-        "until": "2026-11-11T23:08:15Z"
       },
       "0xd9284ee23734463dc7aa4d3a5242a8d9d765cccc": {
         "at": "2026-11-11T18:18:14Z",
@@ -9371,9 +9359,9 @@
         "symbol": "INDE"
       },
       "0xfca0b7f2e7eabb6a46c88bb618ca3f9f73e36924": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-11T22:53:15Z",
-        "last_check": "2026-11-11T22:53:15Z",
+        "last_check": "2026-11-11T23:13:15Z",
         "symbol": "DANA"
       }
     }
