@@ -327,3 +327,9 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-11T04:28:15Z,desk,VERIFY,MORI,0xf92739a272fb1711968dfc87205933124a572e9d,WATCH,goplus_not_ready,"first_seen=2026-11-11T04:28:15Z checks=1 pending=mint_open,freeze_or_blacklist,honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct,risk_flags b1=2 s1=0 b24=2 s24=0 liq=21625 dex=uniswap:v2 qliq=10806 pair_age=8 token_age=8"
 2026-11-11T04:28:15Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
 2026-11-11T04:28:15Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=2 new=2 checked=4 passed=0 bought=0 held=0 deferred=0 dex_only=2 goplus=2 requests=10 secs=4.2 bl_positions=0 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=2 labels_done=2 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-11T04:33:15Z,desk,VERIFY,Anthropic,0xb51d897806ed81a483fb778ebba54f6179753d5f,SKIP,missing:liq_usd,goplus=skipped until=2026-11-12T04:33:15Z
+2026-11-11T04:33:15Z,desk,VERIFY,NAFO,0xb2000000000000000000004039c8845a4c474a48,SKIP,real_depth,goplus=skipped until=2026-11-12T04:33:15Z
+2026-11-11T04:33:15Z,desk,VERIFY,NFOA,0xb2000000000000000000004e7b3bbf531646908e,SKIP,real_depth,goplus=skipped until=2026-11-12T04:33:15Z
+2026-11-11T04:33:15Z,desk,VERIFY,SPACEX,0xa521bd5555ec113dfa7b08ca9c566731189ef8bb,SKIP,real_depth,goplus=skipped until=2026-11-12T04:33:15Z
+2026-11-11T04:33:15Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
+2026-11-11T04:33:15Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=0 new=4 checked=4 passed=0 bought=0 held=0 deferred=0 dex_only=4 goplus=0 requests=7 secs=2.1 bl_positions=0 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=none labels_due=0 labels_done=0 labels_calls=0 live=ok alerts=none alerts_sent=0
