@@ -41,7 +41,9 @@
         "entry_qliq": 10951,
         "entry_ts": "2026-11-11T04:48:15Z",
         "ladder_done": [],
-        "last_price": 1.161e-08,
+        "last_liq_usd": 20879.51,
+        "last_price": 1.054e-08,
+        "last_qliq": 10432,
         "launchpad": "other",
         "orig_qty": 417934370.0732924,
         "pair": "0x129175b21f84ffac3c055c233fb4b1675988b89f",
@@ -52,7 +54,7 @@
     },
     "refill_week": "2026-W46",
     "refills_usd": 47.693738985981945,
-    "ticks_since_buy": 0
+    "ticks_since_buy": 1
   },
   "desk": {
     "cash": 50.0,
@@ -1071,6 +1073,14 @@
         "sight_qliq": 0,
         "symbol": "SIK "
       },
+      "0x6347b6120fe9659cfdfe6920956a86b3e8e48d14": {
+        "done": [],
+        "first_price": 0.0002238,
+        "first_seen": "2026-11-11T04:53:13Z",
+        "sight_pair": "0x7c206cbc95cc0ecae5325ef7dcdd414a79e5bc3ab8d1ac33ea5970808171ee98",
+        "sight_qliq": 0,
+        "symbol": "USOE"
+      },
       "0x637e2f7c2c3087515aaf0ca2b1678c8147101d7a": {
         "done": [
           1,
@@ -1384,7 +1394,9 @@
         "symbol": "KNTQ"
       },
       "0x7fa5bca832d077c547b71fb1cdef82d0d3562841": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 9.537e-06,
         "first_seen": "2026-11-11T03:53:13Z",
         "sight_pair": "0xfb16eca3d3fed74389973310a609ca4991f5be55",
@@ -5198,6 +5210,12 @@
         "symbol": "LAPTOP",
         "until": "2026-11-11T09:43:14Z"
       },
+      "0x6347b6120fe9659cfdfe6920956a86b3e8e48d14": {
+        "at": "2026-11-11T04:53:13Z",
+        "reason": "real_depth",
+        "symbol": "USOE",
+        "until": "2026-11-12T04:53:13Z"
+      },
       "0x6351db9d16fab6fd52b464b133247c7bf990d601": {
         "at": "2026-11-10T09:38:15Z",
         "reason": "missing:liq_usd",
@@ -5611,6 +5629,12 @@
         "reason": "real_depth",
         "symbol": "MEOW",
         "until": "2026-11-11T17:03:14Z"
+      },
+      "0x73cc9f7afbb80cd25d8c781e44dbf5310f1f3ff8": {
+        "at": "2026-11-11T04:53:13Z",
+        "reason": "real_depth",
+        "symbol": "UNISEUM",
+        "until": "2026-11-12T04:53:13Z"
       },
       "0x73f2d0889414f9ab93a7ac316e96716b70c62548": {
         "at": "2026-11-11T04:18:14Z",
@@ -6181,6 +6205,12 @@
         "reason": "real_depth",
         "symbol": "LUMEN",
         "until": "2026-11-11T15:08:16Z"
+      },
+      "0x8ed8aa3e0f149449a8af4454ece297d89d2f0c64": {
+        "at": "2026-11-11T04:53:13Z",
+        "reason": "real_depth",
+        "symbol": "Basecat",
+        "until": "2026-11-12T04:53:13Z"
       },
       "0x8efa14616083210ad9e1fba6112d58e508dbb63e": {
         "at": "2026-11-10T05:43:14Z",
@@ -9748,16 +9778,10 @@
         "last_check": "2026-11-11T04:43:14Z",
         "symbol": "HALLOWEEN"
       },
-      "0x8ed8aa3e0f149449a8af4454ece297d89d2f0c64": {
-        "checks": 2,
-        "first_seen": "2026-11-11T04:23:13Z",
-        "last_check": "2026-11-11T04:38:13Z",
-        "symbol": "Basecat"
-      },
       "0xd4ebcd20907c2f65d621587387d83a2e9f607d30": {
-        "checks": 2,
+        "checks": 3,
         "first_seen": "2026-11-11T04:23:13Z",
-        "last_check": "2026-11-11T04:38:13Z",
+        "last_check": "2026-11-11T04:53:13Z",
         "symbol": "UOSE"
       },
       "0xf92739a272fb1711968dfc87205933124a572e9d": {
@@ -9945,7 +9969,7 @@
     "gate_restart": "BL-32",
     "machine_due": "",
     "max_dd_pct": {
-      "baseline": 112.33934815769733,
+      "baseline": 113.06547356571535,
       "desk": 9.811123120222184
     },
     "peak": {
