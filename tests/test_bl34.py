@@ -306,6 +306,14 @@ class DecisionRunTest(Root):
         spec = self.spec()
         with self.assertRaises(PermissionError):
             bt.run_decision_spec(self.root, spec, holdout=True, now=ts("2026-11-05T12:00:00Z"))
+        with self.assertRaisesRegex(PermissionError, "ETH series does not cover"):  # BL-34 v3 hygiene: ETH to +72 h
+            bt.run_decision_spec(self.root, spec, holdout=True, now=self.now)
+        for d in ("2026-11-06", "2026-11-07", "2026-11-08"):
+            s0 = ts(f"{d}T00:00:00Z")
+            cdl.write(self.root / cdl.DIR / f"eth-{d}.jsonl.gz", {"day": d}, [
+                {"address": cdl.WETH, "symbol": "WETH", "sight_ts": f"{d}T00:00:00Z", "pool": "0xeth", "match": "exact",
+                 "pool_created": None, "start": s0, "end": s0 + 86400,
+                 "candles": [c(s0 + k * 300, 2000.0, 2000.0, 2000.0, 2000.0) for k in range(288)]}])
         res = bt.run_decision_spec(self.root, spec, holdout=True, now=self.now)
         self.assertIsNotNone(res["pass"])
         self.assertEqual(res["pass"]["verdict"], "inconclusive")  # 0 closed on the holdout days

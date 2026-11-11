@@ -74,7 +74,7 @@ Folders:
 - tools/: replay.py (BL-29, offline replay by hand), backtest.py and candles.py (BL-33), liquid.py (BL-39 part 1);
   never imported by core/, never on the tick path
 - backtest/: candles/ (<sight-day>.jsonl.gz written once when its 7-day windows closed, <day>.open.jsonl.gz until then,
-  eth-<day>.jsonl.gz, twin-validation.jsonl.gz), specs/ (bl34-survivor-momentum-v2.md + .json, frozen; v1 superseded, never run), results/<run>/
+  eth-<day>.jsonl.gz, twin-validation.jsonl.gz), specs/ (bl34-survivor-momentum-v3.md + .json, frozen; v1 and v2 superseded, never run), results/<run>/
   (summary.json, trades.csv), holdout.lock.json (BL-33; it also keeps the pass tests, BL-43), status.json (BL-43: which
   candle files exist + the twin-validation totals, for the site), liquid/ (BL-39 part 1: universe.json + daily.jsonl.gz,
   every candle day ended before CUT 2026-11-08); never under data/, never read by core/ or the tick
@@ -285,7 +285,7 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
   terminal and Paper equity card byte-identical (screenshots and sha256 pins). Telegram daily adds "<book> refilled +$x
   (not P&L)" (from state.json report.equity), "Gate B since ... · random N closes · kill at 200" and a per-trade line per
   book; every BL-3 line stays; no BL-34 line (core/ never reads backtest/, test) (docs/NOTES.md "BL-43").
-  Tests: stdlib unittest, `python -m unittest` (477 pass on 3.13).
+  Tests: stdlib unittest, `python -m unittest` (496 pass on 3.13).
 - cron-job.org token "baseline-desk cron" EXPIRES Thu 2027-01-21: renew by early January or the desk stops silently.
 - Technical detail per card, GoPlus diagnosis, BL-20 budget and full open items: docs/NOTES.md.
 - Open items:
@@ -338,17 +338,22 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
   split must fit inside May 9 - Nov 7 or be forward, and daily.jsonl.gz is the only copy of those days. Survivorship:
   picking tokens from the Nov 9 lists is post-CUT selection; no upper bound from free data; floor: of 57 tokens at
   >= 100k/day on May 18, 28 were below it by Nov 2 (docs/NOTES.md "BL-39 survey"). 613 calls, 91 min.
-- Next step: BL-34's one holdout run around 2026-11-17. Before it: the owner clicks Run workflow on backtest.yml with
-  days blank around Nov 15-17 (after the Nov 14 sightings have their +24 h labels and the Nov 8-14 days are complete), so
-  ETH and every token day through Nov 14 have candles (a day still inside its 7-day windows comes as .open: enough for
-  the run, the final file later). Then, in a session: python -m tools.backtest --spec
-  backtest/specs/bl34-survivor-momentum-v2.json --holdout --write (refused until Nov 8-14 are all complete logged days),
-  lock and result committed; chat reads the verdict. No look at BL-34 candidates' Nov 8-14 outcomes before that. Also
-  check the BL-32 deploy tick (one BOOK RESTART gate_b row). BL-38, BL-39 wait (BL-39 part 1 survey done, counts only;
-  no return has been computed from backtest/liquid/); the execution design is researched in parallel (no wallet code). BL-38..BL-42 are candidates only
-  (DECISIONS 2026-11-04). After BL-43: the owner checks the deployed site (pages.yml deploys on the site/ change) and the
-  first Telegram daily summary with the new lines.
-- Last updated: 2026-11-09.
+- BL-34 spec v3 frozen (2026-11-11, the owner's D1-D3 + fill rule A; sha256 ae831edb992b...; v2 superseded, never run):
+  holdout = decision days 2026-11-08 .. 2026-11-21 (P = 8.0 < 30; 15.0 under the v3 fill); entry fill = open within 5 min,
+  else the last close (both books); tests 2 and 4 also on the close-only path; ETH older than 10 min = missing, test 4 fails over 10% unpaired. The tool
+  refuses a holdout run without every sight day's candle file, candle lines to decision + 72 h and ETH Nov 7 - 24;
+  earliest safe run 2026-11-25T00:10Z. Open: review finding 18 (old run_spec() twin); the site card still shows v2
+  (separate site story, mock first) (docs/NOTES.md "BL-34 spec v3").
+- Next step: BL-34's one v3 holdout run, after 2026-11-25T00:10Z. First the owner clicks Run workflow on backtest.yml
+  (--eth for eth-2026-11-07 .. 11-24, then the token sight days 2026-11-06 .. 2026-11-20 listed in "days"; ~44 min a
+  day, so 2-3 runs inside the 340 min timeout); then a fresh-context review; then, in a session: python -m
+  tools.backtest --spec backtest/specs/bl34-survivor-momentum-v3.json --holdout --write (the tool refuses until the
+  files reach), lock and result committed; chat reads the verdict. No look at BL-34 candidates' outcomes from Nov 8 on
+  before that. Also check the BL-32 deploy tick (one BOOK RESTART gate_b row). BL-38, BL-39 wait (BL-39 part 1 survey
+  done, counts only; no return has been computed from backtest/liquid/); the execution design is researched in
+  parallel (no wallet code). BL-38..BL-42 are candidates only (DECISIONS 2026-11-04). The owner checks the deployed site
+  and the first Telegram daily summary with the BL-43 lines.
+- Last updated: 2026-11-11.
 
 ## 12. Glossary
 - Lead: a token the scanner found. Survivor: a lead that passed every hard skip.

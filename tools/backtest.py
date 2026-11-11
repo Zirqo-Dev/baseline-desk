@@ -29,6 +29,14 @@ a time exit with no trade fills at the last close. liq_pull reads the logged tot
 only: candles carry no liquidity). No pool or no candles = no_data, never a win; data ending with the position open =
 pending. Physical time on candles, never swap order. Exits are fixed before entry from the spec.
 
+BL-34 spec v3 (decision specs only): "entry_fill": "open_within_5min_else_last_close" = the open of the first candle
+starting less than FILL_WAIT_S after t, else the close of the last candle that ENDED at or before t (entered at t; exits
+from the first candle that starts after t); no candle at or before t = no_fill. ETH prices (EthSeries) older than
+ETH_MAX_AGE_S when needed are missing (None). A holdout run is refused unless every sight day of the holdout decisions
+(and of the twin's window before the first one) has a candle file, every candle line they use reaches the decision +
+max hold + FILL_WAIT_S, and the ETH files cover the first holdout day - 24 h to the last holdout day + max hold
+(holdout_data_refusal()); the earliest safe run time = last holdout day end + max hold + SAFE_MARGIN_S (safe_time()).
+
 Costs: core/friction.py per side (base + launchpad fee + impact 100 x side USD / qliq): the buy at the qliq as of the
 decision, each sell at the last logged qliq after entry and up to the sale (else the entry qliq, else thin_pct).
 """
@@ -55,6 +63,9 @@ LOCK = "backtest/holdout.lock.json"
 RESULTS = "backtest/results"
 DECISIONS = "docs/DECISIONS.md"
 FILL_WAIT_S = 300
+LAST_CLOSE = "open_within_5min_else_last_close"  # BL-34 spec v3 entry fill (both books)
+ETH_MAX_AGE_S = 600  # BL-34: an ETH price older than 10 minutes when needed is missing (None), never stale
+SAFE_MARGIN_S = 600  # BL-34: earliest safe holdout run = last holdout day end + max hold + 10 minutes
 HORIZONS = (1, 6, 24)
 LABEL_KEYS = ("price", "chg_pct", "liq", "qliq", "best_qliq", "dead", "gone", "pair_b1", "pair_s1", "pair_b24",
               "pair_s24")
@@ -142,8 +153,63 @@ def holdout_refusal(root, spec, now=None):
         logged = set(cdl.logged_days(root, now))
         missing = [d for d in own[1] if d not in logged]
         if missing:
-            return f"refused: holdout days not complete yet: {' '.join(missing)}"
+            return f"refused: holdout days not complete yet: {' '.join(missing)}. {safe_line(spec)}"
     return ""
+
+
+def safe_time(spec):
+    """BL-34: the earliest safe holdout run (unix s) = the last holdout day's end + max hold + SAFE_MARGIN_S, or None."""
+    own = spec_days(spec)
+    if not own or not own[1]:
+        return None
+    return _day_start(own[1][-1]) + 86400 + int((spec["exits"].get("max_hold_h") or 0) * 3600) + SAFE_MARGIN_S
+
+
+def safe_line(spec):
+    t = safe_time(spec)
+    return "" if t is None else (f"earliest safe holdout run {_iso(t)} (last holdout day end + "
+                                 f"{spec['exits'].get('max_hold_h') or 0:g} h + {SAFE_MARGIN_S // 60} min)")
+
+
+def holdout_data_refusal(root, spec, logs, cs, eth, hold):
+    """BL-34 (the owner's D1): "" when the data reach far enough for the holdout run, else the reason it is refused.
+    1. every +24 h label in (first holdout day - twin window, last holdout day end) needs its sight day's candle file
+       (a missing file is a refusal, never a count), and every candle line covering such a label must reach
+       min(label + twin window, last day end) + max hold + FILL_WAIT_S (the latest entry fill + max hold);
+    2. the ETH files must cover first holdout day - 24 h to last holdout day end + max hold (one eth-<day> per day).
+    Reads label times, sight days and line ends only: no price, no outcome."""
+    lo = _day_start(hold[0]) - spec["twin"]["window_h"] * 3600
+    hi = _day_start(hold[-1]) + 86400
+    hold_s = int((spec["exits"].get("max_hold_h") or 0) * 3600)
+    fetched = {DAY_FILE.fullmatch(p.name).group(1) for p in candle_paths(root)}
+    missing, short = set(), []
+    for a in sorted(logs.rows):
+        for t, kind, d in logs.rows[a]:
+            if kind != "label" or str(d.get("horizon")) != "24h" or not lo < t < hi:
+                continue
+            sight_day = (d.get("first_seen") or _iso(t - 86400))[:10]
+            if sight_day not in fetched:
+                missing.add(sight_day)
+                continue
+            line = cs.line(a, t)
+            need = min(t + spec["twin"]["window_h"] * 3600, hi) + hold_s + FILL_WAIT_S
+            if line is not None and line["end"] < need:
+                short.append((a, _iso(t), _iso(line["end"]), _iso(need)))
+    why = []
+    if missing:
+        why.append(f"no candle file for holdout sight day(s) {' '.join(sorted(missing))}")
+    if short:
+        a, t, end, need = short[0]
+        why.append(f"{len(short)} candle line(s) end before decision + {hold_s // 3600} h (first: {a} decided {t}, "
+                   f"line ends {end}, needs {need}): fetch again after the safe time")
+    d, last, need_days = _day_start(hold[0]) - 86400, hi + hold_s, []
+    while d < last:
+        need_days.append(_iso(d)[:10])
+        d += 86400
+    gone = [x for x in need_days if x not in eth.days()]
+    if gone:
+        why.append(f"ETH series does not cover {need_days[0]} .. {need_days[-1]}: missing eth-{' eth-'.join(gone)}")
+    return "" if not why else "refused: " + "; ".join(why) + ". " + safe_line(spec)
 
 
 def write_lock(root, spec, dev, hold, now, result, passed=None):
@@ -291,6 +357,8 @@ def check_spec(spec):
         if spec["exits"][k] is None and k not in OPTIONAL_OFF:
             raise ValueError(f"spec: exit {k} cannot be off")
     spec["exits"] = dict(spec["exits"], ladder=[[g, ladder_share(x)] for g, x in spec["exits"]["ladder"]])
+    if spec.get("entry_fill") not in (None, LAST_CLOSE):
+        raise ValueError(f"spec: unknown entry_fill {spec.get('entry_fill')}")
     if spec.get("decision") not in (None, "l24"):
         raise ValueError(f"spec: unknown decision {spec.get('decision')}")
     spec.setdefault("match", list(cdl.QUALIFIED))
@@ -382,13 +450,15 @@ def candle_return(candles, t, hours):
 class EthSeries:
     """ETH 5-minute candles from backtest/candles/eth-<day>.jsonl.gz (tools/candles.py --eth), cut at `cutoff`."""
 
-    def __init__(self, root, days=None, cutoff=None):
+    def __init__(self, root, days=None, cutoff=None, max_age_s=ETH_MAX_AGE_S):
         got = {}
+        self.max_age_s, self.file_days = max_age_s, []
         d = Path(root) / cdl.DIR
         for p in sorted(d.glob("eth-*.jsonl.gz")) if d.exists() else []:
             day = p.name[4:14]
             if days is not None and day not in days:
                 continue
+            self.file_days.append(day)
             for x in cdl.read(p)[1]:
                 for c in x["candles"]:
                     if cutoff is None or c[0] + cdl.CANDLE_S <= cutoff:
@@ -397,13 +467,26 @@ class EthSeries:
         self.starts = [c[0] for c in self.candles]
 
     def ret(self, t, hours):
-        i = bisect.bisect_right(self.starts, t - cdl.CANDLE_S)
-        return candle_return(self.candles[:i], t, hours)
+        """100 x (price(t) / price(t - hours) - 1); None when either price is missing (or stale, see price())."""
+        now, then = self.price(t), self.price(t - hours * 3600)
+        if not now or not then:
+            return None
+        return (now / then - 1) * 100
 
     def price(self, t):
-        """ETH at time t: the close of the last candle that ended at or before t (hold-ETH uses it at both ends)."""
+        """ETH at time t: the close of the last candle that ended at or before t (hold-ETH uses it at both ends).
+        BL-34: None when that candle ended more than max_age_s before t (missing, never a stale price)."""
         i = bisect.bisect_right(self.starts, t - cdl.CANDLE_S)
-        return self.candles[i - 1][4] if i else None
+        if not i:
+            return None
+        c = self.candles[i - 1]
+        if self.max_age_s is not None and t - (c[0] + cdl.CANDLE_S) > self.max_age_s:
+            return None
+        return c[4]
+
+    def days(self):
+        """The UTC days with an eth-<day> file loaded."""
+        return set(self.file_days)
 
     def coverage(self):
         """{day: candles} of the series."""
@@ -463,18 +546,32 @@ STOP_FILL = "worse"  # a stop hit inside a candle fills at the worse of the stop
 
 
 def simulate(candles, data_end, t, exits, ticket, fees, qliq=None, qliq_at=None, liq=None, liq_at=None,
-             stop_fill=STOP_FILL):
+             stop_fill=STOP_FILL, entry_fill=None):
     """One position on 5-minute candles [[start, o, h, l, c, v]] (oldest first), decided at t (unix s); data_end = the
     last second the candles cover. qliq_at(t0, t1) / liq_at(t1) give the logged values (None when not known).
     stop_fill: "worse" (default) = a stop hit inside a candle (open above it, low at or below it) fills at
     min(stop level, the candle's close): a liquidity pull drops through the stop in one swap and recovers nothing, so the
     level alone flatters (the twin validation: USOE, NAFF, ADP, I O F); "level" = at the stop level.
+    entry_fill: None (v2) = the open rule above, else no_fill; LAST_CLOSE (BL-34 spec v3) = the open rule, else the close
+    of the last candle that ENDED at or before t, entered at t, exits checked from the first candle that STARTS after t
+    (an AMM pool quotes at its last price); no candle at or before t = no_fill. Open fills keep v2's exit timing (the
+    entry candle is checked).
     Returns {status: closed | pending | no_fill | no_data, entry_t, entry_price, entry_fill, sells, pnl, ...}."""
     if not candles:
         return {"status": "no_data"}
     first = next((c for c in candles if c[0] >= t), None)
+    how, last_age = "open", None
     if first is None or first[0] - t >= FILL_WAIT_S:
-        return {"status": "no_fill", "wait_s": None if first is None else first[0] - t}
+        if entry_fill != LAST_CLOSE:
+            return {"status": "no_fill", "wait_s": None if first is None else first[0] - t}
+        prev = None
+        for c in candles:  # only candles that ENDED at or before t: none after t is read for the fill
+            if c[0] + cdl.CANDLE_S > t:
+                break
+            prev = c
+        if prev is None:
+            return {"status": "no_fill", "wait_s": None, "fill_how": None}
+        first, how, last_age = [t, prev[4]], "last_close", t - (prev[0] + cdl.CANDLE_S)
     e = exits
     t_in = first[0]
     fill, pct_in = fees.buy(first[1], ticket, qliq)
@@ -515,7 +612,7 @@ def simulate(candles, data_end, t, exits, ticket, fees, qliq=None, qliq_at=None,
 
     for c in candles:
         start, o, h, low, close = c[0], c[1], c[2], c[3], c[4]
-        if start < t_in:
+        if start < t_in or (how == "last_close" and start <= t_in):  # last close: from the first candle after t
             continue
         if start >= data_end:
             break
@@ -564,10 +661,13 @@ def simulate(candles, data_end, t, exits, ticket, fees, qliq=None, qliq_at=None,
         timed(data_end)
     closed = pos["qty"] <= 1e-12 * orig
     pnl = sum(s["pnl"] for s in sells)
-    return {"status": "closed" if closed else "pending", "entry_t": t_in, "entry_price": first[1],
-            "entry_fill": fill, "entry_pct": pct_in, "wait_s": t_in - t, "sells": sells, "pnl": pnl if closed else None,
-            "pnl_so_far": pnl, "exit_t": sells[-1]["t"] if closed else None,
-            "exit_rule": sells[-1]["rule"] if closed else None, "exit_price": sells[-1]["price"] if closed else None}
+    out = {"status": "closed" if closed else "pending", "entry_t": t_in, "entry_price": first[1],
+           "entry_fill": fill, "entry_pct": pct_in, "wait_s": t_in - t, "sells": sells, "pnl": pnl if closed else None,
+           "pnl_so_far": pnl, "exit_t": sells[-1]["t"] if closed else None,
+           "exit_rule": sells[-1]["rule"] if closed else None, "exit_price": sells[-1]["price"] if closed else None}
+    if entry_fill is not None:
+        out.update(fill_how=how, last_age_s=last_age)
+    return out
 
 
 # ---- runs ----
@@ -694,19 +794,27 @@ def sim_spec_trade(book, a, t, f, spec, cs, eth):
     if not candles:
         return dict(base, status="no_data", pnl=None)
     fees = SpecFees(spec["friction"]["fee_pct"], f.get("l24_depth"))
-    kw = dict(qliq=f.get("l24_depth"))
+    kw = dict(qliq=f.get("l24_depth"), entry_fill=spec.get("entry_fill"))  # one fill rule for both books (BL-34 v3)
     r = simulate(candles, end, t, spec["exits"], spec["ticket_usd"], fees, stop_fill=spec.get("stop_fill", STOP_FILL),
                  **kw)
     out = dict(base, **r)
+    if spec.get("eth_entry_fill_required") and r.get("entry_t") is not None and eth.price(r["entry_t"]) is None:
+        return dict(out, status="no_eth", pnl=None)  # BL-34 v3: ETH missing at the entry fill = the trade is not in
     if r["status"] == "closed":
         e0, e1 = eth.price(r["entry_t"]), eth.price(r["exit_t"])
         out["eth_ret"] = (e1 / e0 - 1) if e0 and e1 else None
         out["ret"] = r["pnl"] / spec["ticket_usd"]
         lvl = simulate(candles, end, t, spec["exits"], spec["ticket_usd"], fees, stop_fill="level", **kw)
         out["pnl_level"] = lvl.get("pnl")
+        # close-only path: every candle after the entry candle (a last-close fill: every candle starting after t)
         closes = [[c[0], c[4], c[4], c[4], c[4], c[5]] if c[0] > r["entry_t"] else c for c in candles]
-        out["pnl_close_only"] = simulate(closes, end, t, spec["exits"], spec["ticket_usd"], fees,
-                                         stop_fill=spec.get("stop_fill", STOP_FILL), **kw).get("pnl")
+        co = simulate(closes, end, t, spec["exits"], spec["ticket_usd"], fees,
+                      stop_fill=spec.get("stop_fill", STOP_FILL), **kw)
+        out["pnl_close_only"] = co.get("pnl")
+        if co.get("status") == "closed":  # BL-34 v3: hold-ETH over the close-only path's own window
+            e2 = eth.price(co["exit_t"])
+            out.update(ret_close_only=co["pnl"] / spec["ticket_usd"], exit_t_close_only=co["exit_t"],
+                       eth_ret_close_only=(e2 / e0 - 1) if e0 and e2 else None)
     return out
 
 
@@ -740,6 +848,10 @@ def run_decision_spec(root, spec, holdout=False, now=None):
     cs = Candles(candle_paths(root, set(days)), cutoff, spec["match"])
     eth_days = {_iso(_day_start(d) - 86400)[:10] for d in days} | set(days)
     eth = EthSeries(root, None if holdout else eth_days, cutoff)
+    if holdout:
+        why = holdout_data_refusal(root, spec, logs, cs, eth, hold)
+        if why:
+            raise PermissionError(why)
     seed = int(spec["sha256"][:12], 16)
     trades = []
     counts = dict.fromkeys(("decisions", "log_rules", "no_candle_file", "not_in_file", "match_not_qualified",
@@ -771,10 +883,11 @@ def run_decision_spec(root, spec, holdout=False, now=None):
                 trades.append(sim_spec_trade(spec["name"], a, t, ef, spec, cs, eth))
             break  # one trade per token: its first +24 h decision decides
     trades.sort(key=lambda x: x["decision_t"])
-    twin = []
+    twin, pools = [], []
     for i, tr in enumerate(trades):
         t = tr["decision_t"]
         pool = twin_pool(logs, cs, spec, t, spec["twin"]["window_h"])
+        pools.append(pool)
         if not pool:
             twin.append({"book": "twin", "address": "", "symbol": "", "decision_t": t, "status": "twin_skip",
                          "match": "none", "pnl": None, "eligible": 0})
@@ -790,7 +903,72 @@ def run_decision_spec(root, spec, holdout=False, now=None):
             "pool_age": pool_age_check(allt, logs, cs), "trades": allt,
             "summary": summarize([t for t in allt if t["status"] != "twin_skip"]) if holdout else None,
             "pass": pass_tests(trades, twin, spec) if holdout else None,
-            "by_pool_age": age_report(allt, cs, spec) if holdout and spec.get("report_pool_age") else None}
+            "by_pool_age": age_report(allt, cs, spec) if holdout and spec.get("report_pool_age") else None,
+            "extra": (report_extra(trades, twin, pools, spec, logs, cs, eth)
+                      if holdout and spec.get("report_extra") else None),
+            "safe": safe_line(spec)}
+
+
+def _closed_mean(xs):
+    xs = [x["pnl"] for x in xs if x.get("status") == "closed"]
+    return (sum(xs) / len(xs) if xs else None), len(xs)
+
+
+def report_extra(trades, twin, pools, spec, logs, cs, eth):
+    """Holdout only, never the verdict (BL-34 spec v3 "report_extra"):
+    expected_twin = for each strategy entry, every token of its twin pool simulated at t with the same rules; the mean
+      net per closed trade of each pool, then the mean over pools (the expected value of one random pick);
+    twin_rank = 1,000 seeded draws of one token per pool (random.Random("<sha256>:<k>")), each draw's mean net per closed
+      trade vs the strategy's: rank = 1 + draws above it, beats = draws below it, ties;
+    v2_no_fill = per book, the trades that v2's 5-minute rule would have dropped (last-close fills): n, closed, mean net,
+      and the book's mean net per closed trade without them;
+    twin_same_token = twin draws equal to the strategy's own token at the same t;
+    fill_age_min = per book, the age of each last-close fill (minutes since that candle ended): n, min, median, max."""
+    ex = spec["report_extra"]
+    out = {}
+    sims, means = {}, []
+    for tr, pool in zip(trades, pools):
+        t = tr["decision_t"]
+        for a in pool:
+            if (a, t) not in sims:
+                sims[(a, t)] = sim_spec_trade("pool", a, t, base_facts(logs, cs, a, t), spec, cs, eth)
+        m, n = _closed_mean([sims[(a, t)] for a in pool])
+        if n:
+            means.append(m)
+    if ex.get("expected_twin"):
+        out["expected_twin"] = {"mean_net": sum(means) / len(means) if means else None, "pools": len(means)}
+    draws = int(ex.get("twin_rank_draws") or 0)
+    if draws:
+        mine, _ = _closed_mean(trades)
+        vals = []
+        for k in range(draws):
+            rng = random.Random(f"{spec['sha256']}:{k}")
+            picks = [sims[(rng.choice(pool), tr["decision_t"])] for tr, pool in zip(trades, pools) if pool]
+            m, n = _closed_mean(picks)
+            if n:
+                vals.append(m)
+        out["twin_rank"] = {"draws": draws, "with_closed": len(vals),
+                            "rank": None if mine is None else 1 + sum(v > mine for v in vals),
+                            "beats": None if mine is None else sum(v < mine for v in vals),
+                            "ties": None if mine is None else sum(v == mine for v in vals)}
+    if ex.get("v2_no_fill"):
+        v2 = {}
+        for book, xs in (("strategy", trades), ("twin", twin)):
+            lc = [x for x in xs if x.get("fill_how") == "last_close"]
+            m, n = _closed_mean(lc)
+            md, nd = _closed_mean([x for x in xs if x.get("fill_how") != "last_close"])
+            v2[book] = {"n": len(lc), "closed": n, "mean_net": m, "dropped_closed": nd, "dropped_mean_net": md}
+        out["v2_no_fill"] = v2
+    if ex.get("twin_same_token"):
+        out["twin_same_token"] = sum(1 for tr, tw in zip(trades, twin) if tw.get("address") == tr["address"])
+    if ex.get("fill_age"):
+        ages = {}
+        for book, xs in (("strategy", trades), ("twin", twin)):
+            v = sorted(x["last_age_s"] / 60 for x in xs if x.get("fill_how") == "last_close")
+            med = None if not v else (v[len(v) // 2] if len(v) % 2 else (v[len(v) // 2 - 1] + v[len(v) // 2]) / 2)
+            ages[book] = {"n": len(v), "min": v[0] if v else None, "median": med, "max": v[-1] if v else None}
+        out["fill_age_min"] = ages
+    return out
 
 
 def age_report(trades, cs, spec):
@@ -874,6 +1052,29 @@ def pass_tests(trades, twin, spec):
     tests = {"1_min_closed": len(closed) >= p["min_closed"], "2_net_positive": m is not None and m > 0,
              "3_beats_twin": m is not None and mt is not None and m > mt,
              "4_beats_hold_eth": mr is not None and me is not None and mr > me, "5_max_dd": dd < p["max_dd_pct"]}
+    both = set(p.get("both_paths") or [])  # BL-34 v3: tests 2 and 4 also on the close-only path
+    co = [t["pnl_close_only"] for t in closed if t.get("pnl_close_only") is not None]
+    mco = mean(co)
+    pco = [t for t in closed if t.get("ret_close_only") is not None and t.get("eth_ret_close_only") is not None]
+    mrc, mec = mean([t["ret_close_only"] for t in pco]), mean([t["eth_ret_close_only"] for t in pco])
+    paths = {}
+    if 2 in both:  # every closed trade must also close on the close-only path, else the test cannot pass
+        paths["2_net_positive"] = {"verdict": tests["2_net_positive"],
+                                   "close_only": len(co) == len(closed) and mco is not None and mco > 0}
+        tests["2_net_positive"] = all(paths["2_net_positive"].values())
+    if 4 in both:
+        paths["4_beats_hold_eth"] = {"verdict": tests["4_beats_hold_eth"],
+                                     "close_only": mrc is not None and mec is not None and mrc > mec}
+    cap = p.get("max_unpaired_pct")  # BL-34 v3: test 4 fails when more than cap % of closed trades are unpaired
+    unpaired = {"verdict": len(closed) - len(paired), "close_only": len(closed) - len(pco)}
+    if cap is not None:
+        over = lambda k: bool(closed) and unpaired[k] * 100 > cap * len(closed)
+        if 4 in both:
+            paths["4_beats_hold_eth"] = {k: ok and not over(k) for k, ok in paths["4_beats_hold_eth"].items()}
+        else:
+            tests["4_beats_hold_eth"] = tests["4_beats_hold_eth"] and not over("verdict")
+    if 4 in both:
+        tests["4_beats_hold_eth"] = all(paths["4_beats_hold_eth"].values())
     if not tests["1_min_closed"]:
         verdict = "inconclusive"
     elif not (tests["2_net_positive"] and tests["3_beats_twin"] and tests["4_beats_hold_eth"]):
@@ -883,7 +1084,9 @@ def pass_tests(trades, twin, spec):
     return {"tests": tests, "verdict": verdict, "closed": len(closed), "mean_net": m, "twin_mean_net": mt,
             "mean_ret": mr, "hold_eth_mean_ret": me, "paired_eth": len(paired), "max_dd_pct": dd,
             "level_mean_net": mean([t["pnl_level"] for t in closed if t.get("pnl_level") is not None]),
-            "close_only_mean_net": mean([t["pnl_close_only"] for t in closed if t.get("pnl_close_only") is not None])}
+            "close_only_mean_net": mco, "close_only_closed": len(co), "close_only_mean_ret": mrc,
+            "close_only_hold_eth_mean_ret": mec, "close_only_paired_eth": len(pco), "paths": paths,
+            "unpaired": unpaired if cap is not None else None, "max_unpaired_pct": cap}
 
 
 def render_plumbing(res):
@@ -899,12 +1102,15 @@ def render_plumbing(res):
            f"{c['no_eth']}; entries {c['entries']}"]
     for book, b in res["plumbing"].items():
         out.append(f"  {book:28} n {b['n']} closed {b['closed']} pending {b['pending']} no_fill {b['no_fill']} "
-                   f"no_data {b['no_data']} twin_skip {b['twin_skip']}")
+                   f"no_data {b['no_data']} twin_skip {b['twin_skip']}"
+                   + (f" no_eth {b['no_eth']}" if b.get("no_eth") else ""))
     out.append("  ETH candles per day (288 = full): " + (", ".join(f"{d} {n}" for d, n in sorted(res["eth_coverage"].items()))
                                                        or "none"))
     pa = res["pool_age"]
     out.append(f"  pool age at the decision (GeckoTerminal pool_created_at, a check): inside 24-72 h {pa['inside']}, "
                f"outside {pa['outside']}, unknown {pa['unknown']}")
+    if res.get("safe"):
+        out.append("  " + res["safe"])
     return "\n".join(out)
 
 
@@ -914,12 +1120,39 @@ def render_holdout(res):
     out = [render_plumbing(res).replace("mode development (plumbing only: no P&L, no win rate, no pass tests, "
                                         "no results file)", "mode HOLDOUT")]
     for k, v in p["tests"].items():
-        out.append(f"  test {k}: {'PASS' if v else 'FAIL'}")
+        by = p.get("paths", {}).get(k)
+        out.append(f"  test {k}: {'PASS' if v else 'FAIL'}" + (
+            f" (verdict path {'PASS' if by['verdict'] else 'FAIL'}, close-only path "
+            f"{'PASS' if by['close_only'] else 'FAIL'})" if by else ""))
     out.append(f"  verdict: {p['verdict']} (closed {p['closed']}; mean net {_f(p['mean_net'], '{:+.4f}')} USD vs twin "
                f"{_f(p['twin_mean_net'], '{:+.4f}')}; mean return {_f(p['mean_ret'], '{:+.4f}')} vs hold-ETH "
                f"{_f(p['hold_eth_mean_ret'], '{:+.4f}')} over {p['paired_eth']}; max drawdown {p['max_dd_pct']:.1f}%)")
     out.append(f"  always reported, never the verdict: stop fill level {_f(p['level_mean_net'], '{:+.4f}')}, tick-like "
                f"close-only exits {_f(p['close_only_mean_net'], '{:+.4f}')} USD per trade")
+    if p.get("unpaired") is not None:
+        out.append(f"  test 4 unpaired (no ETH at the exit fill): verdict path {p['unpaired']['verdict']}, close-only "
+                   f"path {p['unpaired']['close_only']} of {p['closed']} closed (fails over {p['max_unpaired_pct']:g}%)")
+    if p.get("paths"):
+        out.append(f"  close-only path: closed {p['close_only_closed']} of {p['closed']}; mean net "
+                   f"{_f(p['close_only_mean_net'], '{:+.4f}')} USD; mean return {_f(p['close_only_mean_ret'], '{:+.4f}')} "
+                   f"vs hold-ETH {_f(p['close_only_hold_eth_mean_ret'], '{:+.4f}')} over {p['close_only_paired_eth']}")
+    x = res.get("extra") or {}
+    if "expected_twin" in x:
+        out.append(f"  expected twin: {_f(x['expected_twin']['mean_net'], '{:+.4f}')} USD per trade over "
+                   f"{x['expected_twin']['pools']} pools")
+    if "twin_rank" in x:
+        r = x["twin_rank"]
+        out.append(f"  rank among {r['draws']} seeded twin draws: {r['rank']} (beats {r['beats']}, ties {r['ties']}, "
+                   f"draws with a closed trade {r['with_closed']})")
+    for book, v in (x.get("v2_no_fill") or {}).items():
+        out.append(f"  v2 no_fill line, {book}: {v['n']} trades v2 would drop (closed {v['closed']}, mean net "
+                   f"{_f(v['mean_net'], '{:+.4f}')}); without them closed {v['dropped_closed']}, mean net "
+                   f"{_f(v['dropped_mean_net'], '{:+.4f}')}")
+    if "twin_same_token" in x:
+        out.append(f"  twin draws equal to the strategy's own token: {x['twin_same_token']}")
+    for book, v in (x.get("fill_age_min") or {}).items():
+        out.append(f"  last-close fill age, {book}: n {v['n']}, min / median / max {_f(v['min'], '{:.0f}')} / "
+                   f"{_f(v['median'], '{:.0f}')} / {_f(v['max'], '{:.0f}')} min")
     for book, bs in (res.get("by_pool_age") or {}).items():
         out.append(f"  by pool age, {book}: " + "; ".join(
             f"{k} n {v['n']} closed {v['closed']} mean net {_f(v['mean_net'], '{:+.4f}')}"

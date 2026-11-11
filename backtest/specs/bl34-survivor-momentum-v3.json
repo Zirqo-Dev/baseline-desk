@@ -1,0 +1,144 @@
+{
+ "name": "bl34-survivor-momentum-v3",
+ "text": "backtest/specs/bl34-survivor-momentum-v3.md",
+ "approved": "2026-11-11 by the owner, frozen; replaces v2 (superseded, never run)",
+ "decision": "l24",
+ "ticket_usd": 5,
+ "universe": [
+  [
+   "l24_gone",
+   "==",
+   0
+  ],
+  [
+   "l24_depth",
+   ">=",
+   10000
+  ],
+  [
+   "l24_pair_s24",
+   ">=",
+   30
+  ]
+ ],
+ "match": [
+  "exact",
+  "single",
+  "age"
+ ],
+ "entry": [
+  [
+   "ret_6h_pct",
+   ">",
+   0
+  ],
+  [
+   "ret_6h_pct",
+   ">",
+   {
+    "field": "eth_ret_6h_pct"
+   }
+  ],
+  [
+   "eth_ret_24h_pct",
+   ">=",
+   -3
+  ]
+ ],
+ "entry_fill": "open_within_5min_else_last_close",
+ "eth_max_age_min": 10,
+ "eth_entry_fill_required": true,
+ "exits": {
+  "hard_stop_pct": -25,
+  "ladder": [
+   [
+    40,
+    "1/3"
+   ],
+   [
+    100,
+    "1/3"
+   ]
+  ],
+  "trail_pct": 25,
+  "time_stop_min": null,
+  "time_stop_min_pct": null,
+  "liq_drop_pct": null,
+  "max_hold_h": 72
+ },
+ "stop_fill": "worse",
+ "close_only_path": true,
+ "friction": {
+  "fee_pct": 1,
+  "impact_depth": "l24_depth"
+ },
+ "twin": {
+  "window_h": 6
+ },
+ "hold_eth": true,
+ "pass": {
+  "min_closed": 20,
+  "book_usd": 50,
+  "max_dd_pct": 30,
+  "both_paths": [
+   2,
+   4
+  ],
+  "max_unpaired_pct": 10
+ },
+ "report_pool_age": [
+  [
+   "24-72 h",
+   0,
+   72
+  ],
+  [
+   "72 h-30 d",
+   72,
+   720
+  ],
+  [
+   "> 30 d",
+   720,
+   null
+  ],
+  [
+   "unknown",
+   null,
+   null
+  ]
+ ],
+ "report_extra": {
+  "expected_twin": true,
+  "twin_rank_draws": 1000,
+  "v2_no_fill": true,
+  "twin_same_token": true,
+  "fill_age": true
+ },
+ "split": {
+  "dev_last_day": "2026-11-07",
+  "holdout_days": [
+   "2026-11-08",
+   "2026-11-21"
+  ]
+ },
+ "notes": [
+  "v3 changes from v2: holdout decision days 2026-11-08 .. 2026-11-21 (P < 30, the owner's Nov 11 rule); entry_fill; the close-only path joins pass tests 2 and 4 (pass.both_paths); eth_max_age_min, eth_entry_fill_required and pass.max_unpaired_pct (missing ETH at exit capped at 10% unpaired for test 4); the RUN coverage refusal (tool); report_extra (five always-reported lines added). Every other number is v2's.",
+  "v2 changes from v1: no pool-age rule (any pool age) and no verdict rule; the 'only 5 fails' outcome = 'not passed: drawdown' (forward paper vs twin, no money); results by pool age at the decision reported on the holdout run, never the verdict. Every other number is v1's.",
+  "Returns are in percent: ret_6h_pct = 100 x (close of the last candle that ended at or before the decision / close of the last candle that ended at or before the decision - 6 h - 1); eth_ret_6h_pct and eth_ret_24h_pct the same on the ETH series (- 6 h, - 24 h). Either price missing = the field is missing = not in. No trade in the last 6 h gives 0, which fails > 0.",
+  "l24_depth = the +24 h label's best_qliq, else its qliq; it prices the impact on both sides (impact = 100 x side USD / l24_depth).",
+  "Friction per side = core/friction.py with launchpad 'other' (base 3%, no launchpad fee, impact) + fee_pct 1 on every trade; the Clanker pool fee is never added on top.",
+  "time_stop_min null = no time stop; liq_drop_pct null = no liquidity-pull exit (not in the spec); the trail runs after the first rung from the peak of earlier candles only.",
+  "Pass test 4: per trade, net P&L / 5 USD ticket vs ETH's return from the trade's entry fill to its exit fill (no friction), averaged over the trades.",
+  "Pass test 5: cumulative per-trade net P&L ordered by exit time on a 50 USD book; drawdown = (peak - equity) / peak.",
+  "Pool-age report (never the verdict): GeckoTerminal pool_created_at to the decision, buckets 24-72 h (any age up to 72 h, a pool younger than 24 h included and counted), 72 h-30 d, > 30 d (30 d = 720 h), unknown (no created time).",
+  "Split: development = decision days up to 2026-11-07 UTC; holdout = decision days 2026-11-08 to 2026-11-21 UTC, run once.",
+  "entry_fill 'open_within_5min_else_last_close' (both books, the same function): the open of the first candle that starts at or after t, if it starts less than 300 seconds after t; else the close of the last candle that ENDED at or before t, entered at t (an AMM pool quotes at its last price), no age cap; no candle that ended at or before t = no_fill (counted). An open fill checks exits from the entry candle (as v2); a last-close fill from the first candle that starts after t. Hold-ETH starts at the fill time (t for a last-close fill).",
+  "close_only_path: the same entries; every candle after the entry candle (a last-close fill: every candle starting after t) becomes open = high = low = close = its close; same exits, ticket and friction.",
+  "pass.both_paths [2, 4]: test 2 = mean net per trade > 0 on the verdict path AND on the close-only path (every closed trade must also close on the close-only path); test 4 = mean return > mean hold-ETH on each path, each against ETH over that path's own entry-to-exit windows. A test that fails on either path fails.",
+  "eth_max_age_min 10: an ETH price (the close of the last candle that ended at or before the time needed) whose candle ended more than 10 minutes before that time is missing (None), never a stale price and never 0%. eth_entry_fill_required: missing at the decision (eth_ret_6h_pct, eth_ret_24h_pct) or at the entry fill time = the trade is not in (status no_eth, counted, both books). pass.max_unpaired_pct 10: missing at the exit fill = the trade is left out of test 4's pairing and counted as unpaired; test 4 fails when more than 10% of closed trades are unpaired, on the verdict path or on the close-only path (close-only unpaired = no close-only exit or no ETH at it).",
+  "report_extra (holdout only, never the verdict): expected_twin = for each strategy entry, every token of its twin pool simulated at t with the same rules, the mean net per closed trade of each pool, then the mean over pools; twin_rank_draws 1000 = seeded draws (random.Random('<sha256>:<k>')) of one token per pool, the strategy's rank = 1 + draws whose mean net per closed trade is above its own (with beats and ties); v2_no_fill = per book, the trades v2's 5-minute rule would have dropped (last-close fills): n, closed, mean net, and the book's results without them; twin_same_token = twin draws equal to the strategy's own token at the same t; fill_age = per book, the age of each last-close fill in minutes since its candle ended: n, min, median, max.",
+  "RUN (tool, tools/backtest.py holdout_data_refusal()): the holdout run is refused unless every holdout sight day has a candle file, every candle line used reaches decision + 72 h + 5 min, and eth-<day> files cover first holdout day - 24 h to last holdout day end + 72 h; earliest safe time 2026-11-25T00:10:00Z (last holdout day end + 72 h + 10 min). Every pass test is computed on that one run, and its result is the verdict. After the lock is written, a second run needs an owner holdout-rerun line in docs/DECISIONS.md, is logged under reruns and never replaces the first result; the candles used are the ones fetched before that first run.",
+  "Twin: entered at t by the same ENTRY FILL rule, with the same exits, ticket and friction (SpecFees at its own l24_depth); the twin has no ETH entry condition (no 6 h or regime rule), but the ETH missing-price rules apply to it as to the strategy (eth_entry_fill_required: no_eth at the entry fill)."
+ ]
+}

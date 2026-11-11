@@ -1553,6 +1553,84 @@ Moved from CLAUDE.md section 11 on 2026-10-23 (BL-2 process cleanup). Wording is
   24 h, 72 h-30 d, > 30 d, unknown) and no breakdown on a development run; the fixture world runs on v2 (the too_old
   token now enters, the twin pool grows to three).
 
+## BL-34 spec v3
+- Run hygiene + spec v3 (2026-11-11, the owner's decisions D1-D3 after an independent review on Nov 11, plus the
+  Nov 11 fill decision A and the readings 1-3, DECISIONS). No holdout run, no candle fetch, nothing under core/,
+  data/ or site/. Code: tools/backtest.py, backtest/specs/bl34-survivor-momentum-v3.md + .json, tests/test_bl34_v3.py
+  (+19), one tests/test_bl34.py fixture (its holdout world now needs ETH to +72 h). 496 pass on 3.13 (477 before).
+- Files: v3.md (the approved text, verbatim) and v3.json, sha256
+  ae831edb992b33084fb1fc06cd6e63f89365462f7e22d64766021e9aa31ee913 (the lock will carry it). v2's .md and .json stay as
+  written (superseded, never run; v2 sha256 e9305116d123... checked unchanged by a test). v3 = v2 word for word plus
+  the title, ENTRY FILL, ETH, CLOSE-ONLY PATH, SPLIT and RUN lines, the PASS line's tests 2 and 4 and its always-reported
+  list, and a "Changes from v2" line (test: every other line identical).
+- Projection before the plan (development, counts only, cut at 2026-11-08T00:00Z; token candle files Oct 31 - Nov 5,
+  all .open, fetched Nov 6 22:39 - Nov 7 02:52 UTC; no Nov 6 file, so Nov 7's 13 log-rule tokens are uncounted):
+
+  | decision day | decisions | log rules | universe | entries | filled v2 rule | filled v3 rule | at last close |
+  |---|---|---|---|---|---|---|---|
+  | Oct 31 | 101 | 1 | 1 | 1 | 0 | 1 | 1 |
+  | Nov 1 | 185 | 10 | 9 | 3 | 2 | 3 | 1 |
+  | Nov 2 | 167 | 9 | 9 | 2 | 0 | 2 | 2 |
+  | Nov 3 | 212 | 9 | 7 | 3 | 2 | 3 | 1 |
+  | Nov 4 | 235 | 6 | 5 | 3 | 2 | 3 | 1 |
+  | Nov 5 | 228 | 20 | 18 | 3 | 2 | 3 | 1 |
+  | Nov 6 | 243 | 26 | 25 | 0 | 0 | 0 | 0 |
+  | Nov 7 | 190 | 13 | 0 (no file) | 0 | 0 | 0 | 0 |
+
+  P (v2 fill) = 8 filled / 7 days with a file x 7 = 8.0 (7.0 counting Nov 7): P < 30, so the holdout = decision days
+  2026-11-08 .. 2026-11-21 (D2). Under the v3 fill: 15 filled (v2 dropped 7 as no_fill), P_new = 15.0, so ~30 filled
+  projected over 14 days: borderline for test 1's 20 closed. The twin: 15 filled under v3 (11 at the last close) vs
+  4 under v2. Nov 6's 0 entries: the ETH 24 h regime failed for 21 of 25. The last closes used were 8-78 min old.
+  The 10-minute ETH rule touches 1 universe decision (Nov 6, 13 min, not an entry). The .open files limit closed vs
+  pending only (pending counts as filled); every entry window ended before its file's fetch, so no_fill was real.
+- Refusals (holdout run only, holdout_data_refusal(), each message ends with the safe time):
+  1. every +24 h label in (first holdout day - 6 h twin window, last holdout day end) needs its sight day's candle file
+     (first_seen's day): a missing file is a refusal, never a count; every candle line covering such a label must end
+     at or after min(label + 6 h, last day end) + 72 h + 5 min (the latest entry fill + max hold), so no holdout trade
+     of either book can be pending for lack of data;
+  2. eth-<day> files for every day from first holdout day - 24 h to last holdout day end + 72 h (Nov 7 .. Nov 24);
+  3. EthSeries.price(): the close of the last candle that ended at or before t, None when it ended more than 10 min
+     (ETH_MAX_AGE_S) before t; ret() = None when either end is None (never 0.0%, never stale). This is a tool rule for
+     every run (v2 too). Token returns keep v2's rule (no trade in 6 h gives 0, which fails "> 0").
+  4. v3 only ("eth_entry_fill_required"): ETH missing at the entry fill time = status no_eth (not in, counted,
+     both books, sim_spec_trade()); missing at the decision already keeps the entry out. With 5-minute candles and
+     a fill within 5 min of t this almost never differs from the decision check.
+  The v3 RUN line states refusals 1 and 2 in the spec text.
+  The day-completeness refusal stays. safe_time() = last holdout day end + max hold + 10 min = 2026-11-25T00:10:00Z
+  for v3; development runs print it (render_plumbing).
+- Entry fill (spec "entry_fill": "open_within_5min_else_last_close", simulate(entry_fill=...), both books through
+  sim_spec_trade()): the open of the first candle starting within 5 min of t (exits from the entry candle, as v2);
+  else the close of the last candle that ENDED at or before t (the loop stops at the first candle ending after t, so no
+  later candle is read for the fill), entered at t, exits from the first candle that starts after t (a candle that
+  started before t is never checked); none = no_fill. Trades carry fill_how and last_age_s. Without entry_fill
+  (v2) simulate() is unchanged (test: identical output, no fill_how key). Hold-ETH starts at the fill time (t for a
+  last-close fill); max hold runs from it.
+- Close-only path: candles starting after entry_t become open = high = low = close (for a last-close fill entry_t = t);
+  the trade keeps pnl_close_only, ret_close_only, exit_t_close_only and eth_ret_close_only (ETH over the close-only
+  exit window). pass_tests() with pass.both_paths [2, 4]: test 2 = verdict-path mean > 0 AND every closed trade closed
+  on the close-only path with a mean > 0; test 4 = mean return > mean hold-ETH on each path over its own windows; the
+  result keeps "paths" per test; v2 (no both_paths) unchanged. pass.max_unpaired_pct 10 (v3): a closed trade
+  without ETH at its exit fill is left out of test 4's pairing and counted ("unpaired" per path; close-only
+  unpaired = no close-only exit or no ETH at it); test 4 fails when unpaired x 100 > 10 x closed on either path
+  (1 of 10 passes, 2 of 10 fails, tested); v2 has no cap.
+- Always reported (report_extra(), holdout only, never the verdict, in summary.json "extra"): expected twin (every
+  pool token simulated at t, mean net per closed trade per pool, then the mean over pools); rank among 1,000 draws
+  (random.Random("<sha256>:<k>"), one pick per pool; rank = 1 + draws above, beats, ties); the v2 no_fill line per
+  book (last-close fills: n, closed, mean net; the book without them); twin draws equal to the strategy's token; the
+  last-close fill age per book (n, min / median / max minutes).
+- Truth tests (made-up candles, 64 tokens every 45 min over Nov 3-4, decisions Nov 4-5, ETH flat): a planted edge
+  (rising tokens keep rising, falling ones keep falling; 8 last-close fills) passes all five tests on both paths and
+  ranks in the top 10 of 1,000 twin draws; a zero-drift random walk loses the flat round-trip friction (about -0.39 USD
+  per trade, within 0.12) in both books and is retired.
+- Fetch and run (D1): after 2026-11-25T00:10Z run backtest.yml --eth (eth-2026-11-07 .. 11-24) and the token sight days
+  2026-11-06 .. 2026-11-20 (list them in "days"; ~44 min a day, so 2-3 runs inside the 340 min timeout); then the one
+  run: python -m tools.backtest --spec backtest/specs/bl34-survivor-momentum-v3.json --holdout --write. The tool
+  refuses until the files reach. A fresh-context review comes before the run (process rule).
+- Open items: review finding 18, the old run_spec() twin path (non-decision specs) still uses the part 1 twin; not
+  used by BL-34, not changed here. The site's BL-34 card still reads v2.json (Nov 8 - 14, verdict ~Nov 17): a
+  separate small site story after this commit (mock first); the smallest truthful change would point SPEC_URL at
+  v3.json and move VERDICT_AFTER_D from 3 to 5 (~Nov 26), with tests/test_bl43.py's pins.
+
 ## BL-43
 - Display only (the owner's mock approval 2026-11-07 and the Nov 7 answers 1-6, DECISIONS). No mock file in the repo:
   built from the card text and the hard rules; the before/after screenshots are the proof. Code: site/index.html,
