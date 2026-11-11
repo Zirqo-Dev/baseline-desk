@@ -35,7 +35,7 @@
     "positions": {},
     "refill_week": "2026-W46",
     "refills_usd": 47.693738985981945,
-    "ticks_since_buy": 41
+    "ticks_since_buy": 42
   },
   "desk": {
     "cash": 50.0,
@@ -1344,17 +1344,6 @@
         "sight_qliq": 70138,
         "symbol": "HABIBI"
       },
-      "0x7cd827ebac70f9eb340830e28fde8d8d8c9047f7": {
-        "done": [
-          1,
-          6
-        ],
-        "first_price": 1.841e-05,
-        "first_seen": "2026-11-10T03:53:15Z",
-        "sight_pair": "0x6574ddbbe8b686b358fa2058e05c11059834a27d",
-        "sight_qliq": 87129,
-        "symbol": "BIDEN"
-      },
       "0x7f4ba8b96791a816743a009d9ee426a5ebaea10c": {
         "done": [
           1,
@@ -2258,7 +2247,9 @@
         "symbol": "SI"
       },
       "0xcd189348fd6593c16f7b47002650ff72fcf3bfd2": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 6.967e-06,
         "first_seen": "2026-11-11T02:58:13Z",
         "sight_pair": "0x8c43026f4fa1c2530db52b5e70fa11cd749710e9",
@@ -4754,12 +4745,6 @@
         "symbol": "EXM",
         "until": "2026-11-11T17:18:18Z"
       },
-      "0x50587ec3c0a7ced0f22300f765bc16c6bb8af3da": {
-        "at": "2026-11-10T03:53:15Z",
-        "reason": "real_depth",
-        "symbol": "SI",
-        "until": "2026-11-11T03:53:15Z"
-      },
       "0x505db0b3f67d839f8f74650161f6f7f114f92e63": {
         "at": "2026-11-10T13:03:15Z",
         "reason": "real_depth",
@@ -5185,12 +5170,6 @@
         "reason": "real_depth",
         "symbol": "fog",
         "until": "2026-11-11T15:58:16Z"
-      },
-      "0x61b5602d3b58b4a77e0c1b6933245a7b3cb52e32": {
-        "at": "2026-11-10T03:58:13Z",
-        "reason": "real_depth",
-        "symbol": "AETHER",
-        "until": "2026-11-11T03:58:13Z"
       },
       "0x61e3af1a0f8fd5847a8bb4a4753a6f9b2a62d0c7": {
         "at": "2026-11-10T11:18:15Z",
@@ -6164,6 +6143,12 @@
         "symbol": "Anthropic",
         "until": "2026-11-11T18:53:16Z"
       },
+      "0x8d8fcac258553f3b0356514438b264408d04da52": {
+        "at": "2026-11-11T03:58:14Z",
+        "reason": "real_depth",
+        "symbol": "NORMIE",
+        "until": "2026-11-12T03:58:14Z"
+      },
       "0x8d92cadd5e279323b6612778671893bb14c97c90": {
         "at": "2026-11-10T08:33:15Z",
         "reason": "missing:symbol",
@@ -6697,12 +6682,6 @@
         "reason": "real_depth",
         "symbol": "Gitbank",
         "until": "2026-11-11T07:08:17Z"
-      },
-      "0xa86b5545cb273d58fee50f281a1c585154a3e9fb": {
-        "at": "2026-11-10T03:53:15Z",
-        "reason": "real_depth",
-        "symbol": "THT",
-        "until": "2026-11-11T03:53:15Z"
       },
       "0xa8948e71e56dab90323110ff92e58a213089cfd7": {
         "at": "2026-11-10T22:38:15Z",
@@ -8378,6 +8357,12 @@
         "symbol": "Basesheep",
         "until": "2026-11-11T05:33:13Z"
       },
+      "0xc573059a33b5788d0db566bbbfd955dfd7816654": {
+        "at": "2026-11-11T03:58:14Z",
+        "reason": "real_depth",
+        "symbol": "CHUBBY",
+        "until": "2026-11-12T03:58:14Z"
+      },
       "0xc60bbdbeed4358b2d93114c203e1a4092ce68930": {
         "at": "2026-11-10T18:33:15Z",
         "reason": "real_depth",
@@ -8719,12 +8704,6 @@
         "reason": "real_depth",
         "symbol": "hyasyahs",
         "until": "2026-11-11T18:38:16Z"
-      },
-      "0xd38a4beb23aa82511d3a67c066982893a591dcbc": {
-        "at": "2026-11-10T03:58:13Z",
-        "reason": "real_depth",
-        "symbol": "PRIME",
-        "until": "2026-11-11T03:58:13Z"
       },
       "0xd3e87884d015fe7cc234b57c7553fd1ddd6a2760": {
         "at": "2026-11-11T02:08:16Z",
@@ -9320,12 +9299,6 @@
         "symbol": "INIT",
         "until": "2026-11-11T19:43:14Z"
       },
-      "0xecc8fa4e46f61eeba0c6172c09309ba3af9295f8": {
-        "at": "2026-11-10T03:58:13Z",
-        "reason": "real_depth",
-        "symbol": "Basebird",
-        "until": "2026-11-11T03:58:13Z"
-      },
       "0xed489855501c8d9d8748dfefab20ecb62f10f90a": {
         "at": "2026-11-10T21:08:16Z",
         "reason": "real_depth",
@@ -9767,9 +9740,9 @@
         "symbol": "BOOTR"
       },
       "0x73f2d0889414f9ab93a7ac316e96716b70c62548": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-11T03:38:15Z",
-        "last_check": "2026-11-11T03:38:15Z",
+        "last_check": "2026-11-11T03:58:14Z",
         "symbol": "AOTF"
       },
       "0x7fa5bca832d077c547b71fb1cdef82d0d3562841": {
