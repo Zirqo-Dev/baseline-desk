@@ -130,3 +130,10 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-11T01:48:13Z,desk,VERIFY,GROK,0x80e8a344fc44aa7c5fed87e738f2205bb9249ad6,SKIP,real_depth,goplus=skipped until=2026-11-12T01:48:13Z
 2026-11-11T01:48:13Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
 2026-11-11T01:48:13Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=21 rechecks=0 new=3 checked=3 passed=0 bought=0 held=0 deferred=0 dex_only=3 goplus=0 requests=6 secs=1.6 bl_positions=0 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=none labels_due=0 labels_done=0 labels_calls=0 live=ok alerts=none alerts_sent=0
+2026-11-11T01:53:13Z,desk,VERIFY,FTFO,0x5ca963e3a0b5b38f738521ffa2474073a2076cbe,WATCH,goplus_not_ready,first_seen=2026-11-11T01:33:14Z checks=2 pending=top10_pct b1=20 s1=0 b24=20 s24=0 liq=69150 dex=uniswap:v2 qliq=34393 pair_age=22 token_age=22
+2026-11-11T01:53:13Z,desk,VERIFY,XRP,0xc4937157797cb0f0e27c9428f58637194c34ea35,SKIP,missing:liq_usd,goplus=skipped until=2026-11-12T01:53:13Z
+2026-11-11T01:53:13Z,desk,VERIFY,.AI,0xb9f3ef70c1f5a3c5e6d821d4a70700273b5c2cf1,SKIP,real_depth,goplus=skipped until=2026-11-12T01:53:13Z
+2026-11-11T01:53:13Z,desk,VERIFY,BTC,0x10205a965efe184b4f42571e0b4a2c84327de0e6,SKIP,real_depth,goplus=skipped until=2026-11-12T01:53:13Z
+2026-11-11T01:53:13Z,desk,VERIFY,USD𖼊,0xb2000000000000000000005b4be4227372e25b79,SKIP,real_depth,goplus=skipped until=2026-11-12T01:53:13Z
+2026-11-11T01:53:13Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
+2026-11-11T01:53:13Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=21 rechecks=1 new=4 checked=5 passed=0 bought=0 held=0 deferred=0 dex_only=4 goplus=1 requests=10 secs=2.4 bl_positions=0 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=3 labels_done=3 labels_calls=1 live=ok alerts=none alerts_sent=0

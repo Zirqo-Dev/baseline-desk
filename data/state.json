@@ -35,7 +35,7 @@
     "positions": {},
     "refill_week": "2026-W46",
     "refills_usd": 47.693738985981945,
-    "ticks_since_buy": 16
+    "ticks_since_buy": 17
   },
   "desk": {
     "cash": 50.0,
@@ -189,7 +189,9 @@
         "symbol": "NADF"
       },
       "0x0952d37ad2c9036d77d71548eb4366cf5e158931": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 8.736e-06,
         "first_seen": "2026-11-11T00:48:16Z",
         "sight_pair": "0x84b6b0465713b1af134834a9dca9d8e736b60e07",
@@ -448,7 +450,8 @@
       },
       "0x3144e663afec6b1c6241fe6d9646651a2fe77956": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 5.625e-06,
         "first_seen": "2026-11-10T19:48:16Z",
@@ -967,7 +970,8 @@
       },
       "0x57699dcaa6133de371c4fc408bb20840aaabb19b": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 2.26e-05,
         "first_seen": "2026-11-10T19:48:16Z",
@@ -3132,6 +3136,12 @@
         "reason": "real_depth",
         "symbol": "RSC",
         "until": "2026-11-11T17:13:14Z"
+      },
+      "0x10205a965efe184b4f42571e0b4a2c84327de0e6": {
+        "at": "2026-11-11T01:53:13Z",
+        "reason": "real_depth",
+        "symbol": "BTC",
+        "until": "2026-11-12T01:53:13Z"
       },
       "0x10324ed0c36d44e7538fb43a1c606124cf01cccc": {
         "at": "2026-11-10T22:33:14Z",
@@ -6241,12 +6251,6 @@
         "symbol": "Basecat",
         "until": "2026-11-11T10:13:13Z"
       },
-      "0x8f399f755e57d56b042eb7bf747eed497a25bda3": {
-        "at": "2026-11-10T01:48:15Z",
-        "reason": "real_depth",
-        "symbol": "Rhule",
-        "until": "2026-11-11T01:48:15Z"
-      },
       "0x9000778b49f5f4b61e21199cc6991e69fc8a0236": {
         "at": "2026-11-10T19:28:20Z",
         "reason": "real_depth",
@@ -7291,6 +7295,12 @@
         "symbol": "TESTV5",
         "until": "2026-11-11T20:38:17Z"
       },
+      "0xb2000000000000000000005b4be4227372e25b79": {
+        "at": "2026-11-11T01:53:13Z",
+        "reason": "real_depth",
+        "symbol": "USD\ud81b\udf0a",
+        "until": "2026-11-12T01:53:13Z"
+      },
       "0xb2000000000000000000005b8b86acdb89ea80ba": {
         "at": "2026-11-10T04:13:17Z",
         "reason": "real_depth",
@@ -8161,6 +8171,12 @@
         "symbol": "UOFD",
         "until": "2026-11-11T05:28:15Z"
       },
+      "0xb9f3ef70c1f5a3c5e6d821d4a70700273b5c2cf1": {
+        "at": "2026-11-11T01:53:13Z",
+        "reason": "real_depth",
+        "symbol": ".AI",
+        "until": "2026-11-12T01:53:13Z"
+      },
       "0xba1e5e427887cca5cc007915dbf7aced7bdaac96": {
         "at": "2026-11-11T01:08:17Z",
         "reason": "real_depth",
@@ -8406,6 +8422,12 @@
         "reason": "real_depth",
         "symbol": "RAMEN",
         "until": "2026-11-12T00:28:15Z"
+      },
+      "0xc4937157797cb0f0e27c9428f58637194c34ea35": {
+        "at": "2026-11-11T01:53:13Z",
+        "reason": "missing:liq_usd",
+        "symbol": "XRP",
+        "until": "2026-11-12T01:53:13Z"
       },
       "0xc4ed916a014acbfea3b8a175cf80df4202c7a313": {
         "at": "2026-11-10T03:23:13Z",
@@ -9529,12 +9551,6 @@
         "symbol": "BOAR",
         "until": "2026-11-11T23:33:14Z"
       },
-      "0xf36c7c7dbffc0dba70673319097a6f8d673d0f4b": {
-        "at": "2026-11-10T01:48:15Z",
-        "reason": "real_depth",
-        "symbol": "bull",
-        "until": "2026-11-11T01:48:15Z"
-      },
       "0xf37496f6bd8935d588066674714c87a120f5aaff": {
         "at": "2026-11-10T11:28:16Z",
         "reason": "real_depth",
@@ -9868,9 +9884,9 @@
     },
     "watch": {
       "0x5ca963e3a0b5b38f738521ffa2474073a2076cbe": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-11T01:33:14Z",
-        "last_check": "2026-11-11T01:33:14Z",
+        "last_check": "2026-11-11T01:53:13Z",
         "symbol": "FTFO"
       },
       "0xa1a6f951a1317003adee3c1de302b4f2850c2b07": {
