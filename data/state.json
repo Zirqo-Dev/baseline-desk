@@ -37,9 +37,9 @@
         "entry_qliq": 134658,
         "entry_ts": "2026-11-11T08:43:14Z",
         "ladder_done": [],
-        "last_liq_usd": 73076932.32,
-        "last_price": 0.04871,
-        "last_qliq": 134677,
+        "last_liq_usd": 73102543.62,
+        "last_price": 0.04873,
+        "last_qliq": 134693,
         "launchpad": "other",
         "orig_qty": 99.61407634353883,
         "pair": "0x41acccd31521fd4113f1a85f051981fdfdafaceb119c2aee91140c1363d0c685",
@@ -50,7 +50,7 @@
     },
     "refill_week": "2026-W46",
     "refills_usd": 47.693738985981945,
-    "ticks_since_buy": 1
+    "ticks_since_buy": 2
   },
   "desk": {
     "cash": 50.0,
@@ -371,7 +371,9 @@
         "symbol": "BIDEN"
       },
       "0x1fe01fd0191d7aca50a6b444a6d7706cb72342a2": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 0.004799,
         "first_seen": "2026-11-11T07:48:16Z",
         "sight_pair": "0x1f1c81b6f1843eeac7c42770460a518e1815a8f92d5059d22f63074505fa8eed",
@@ -1237,7 +1239,8 @@
       },
       "0x69d669c4b311b08a39b9d7b28e1e023631925ece": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 0.0001229,
         "first_seen": "2026-11-11T02:53:13Z",
@@ -2671,6 +2674,14 @@
         "sight_qliq": 31769,
         "symbol": "THR"
       },
+      "0xf4afda384bd61e07ce0e0f0fbb61b530e22d35a3": {
+        "done": [],
+        "first_price": 8.379e-06,
+        "first_seen": "2026-11-11T08:53:14Z",
+        "sight_pair": "0xa350bc24257855b59755e2b4e4ca86030f6a4206",
+        "sight_qliq": 82497,
+        "symbol": "TRUMP2028"
+      },
       "0xf79634b8905df693c5f5623776571c370d912c1c": {
         "done": [
           1,
@@ -2970,6 +2981,12 @@
         "reason": "real_depth",
         "symbol": "MEOW",
         "until": "2026-11-11T14:28:15Z"
+      },
+      "0x07615ec8f378c8bbbe9f350908537243de6cd2ab": {
+        "at": "2026-11-11T08:53:14Z",
+        "reason": "real_depth",
+        "symbol": "Basecat",
+        "until": "2026-11-12T08:53:14Z"
       },
       "0x07dc9a96dd3a35778fe0153898bfd1c49c1dd294": {
         "at": "2026-11-11T05:33:14Z",
@@ -3336,6 +3353,12 @@
         "reason": "missing:liq_usd",
         "symbol": "STEEL",
         "until": "2026-11-11T18:28:16Z"
+      },
+      "0x157c6c217bbff3a9f43a84f0999ce8fb348c7f9e": {
+        "at": "2026-11-11T08:53:14Z",
+        "reason": "real_depth",
+        "symbol": "VPR",
+        "until": "2026-11-12T08:53:14Z"
       },
       "0x15bd67e8edd56a8591efafb598118711b7a6b5cd": {
         "at": "2026-11-10T17:33:15Z",
@@ -5929,6 +5952,12 @@
         "symbol": "mihao",
         "until": "2026-11-11T23:38:15Z"
       },
+      "0x800b4be092490d8d662372caad5bcce1db1b39ff": {
+        "at": "2026-11-11T08:53:14Z",
+        "reason": "real_depth",
+        "symbol": "1KTO100M",
+        "until": "2026-11-12T08:53:14Z"
+      },
       "0x80e8a344fc44aa7c5fed87e738f2205bb9249ad6": {
         "at": "2026-11-11T01:48:13Z",
         "reason": "real_depth",
@@ -6174,6 +6203,12 @@
         "reason": "real_depth",
         "symbol": "AOKUMA",
         "until": "2026-11-12T04:18:14Z"
+      },
+      "0x8c0a8d936fa422cb19a312410ebc44cbc189d598": {
+        "at": "2026-11-11T08:53:14Z",
+        "reason": "real_depth",
+        "symbol": "FREN",
+        "until": "2026-11-12T08:53:14Z"
       },
       "0x8c61839930c8079c5db2aa0b7cf341c2073b562a": {
         "at": "2026-11-10T17:48:16Z",
@@ -9861,12 +9896,6 @@
       }
     },
     "watch": {
-      "0x07615ec8f378c8bbbe9f350908537243de6cd2ab": {
-        "checks": 2,
-        "first_seen": "2026-11-11T08:18:13Z",
-        "last_check": "2026-11-11T08:38:13Z",
-        "symbol": "Basecat"
-      },
       "0x080331a6f9f28e2d027c3bcd2cc5eb30d2b7d1a6": {
         "checks": 4,
         "first_seen": "2026-11-11T07:53:15Z",
@@ -9885,10 +9914,16 @@
         "last_check": "2026-11-11T08:43:14Z",
         "symbol": "GABBY"
       },
-      "0xf882985d45a9b2ea8e9014317777fbff8355728a": {
+      "0xf4afda384bd61e07ce0e0f0fbb61b530e22d35a3": {
         "checks": 1,
+        "first_seen": "2026-11-11T08:53:14Z",
+        "last_check": "2026-11-11T08:53:14Z",
+        "symbol": "TRUMP2028"
+      },
+      "0xf882985d45a9b2ea8e9014317777fbff8355728a": {
+        "checks": 2,
         "first_seen": "2026-11-11T08:38:13Z",
-        "last_check": "2026-11-11T08:38:13Z",
+        "last_check": "2026-11-11T08:53:14Z",
         "symbol": "DOAR"
       }
     }
