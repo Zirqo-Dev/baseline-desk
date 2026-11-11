@@ -1,6 +1,6 @@
 {
   "baseline": {
-    "cash": 35.91514490931043,
+    "cash": 40.62286165268416,
     "cooldown": {
       "a:0x038826c4a1b788f807d44306c851b257063e0d0f": "2026-11-11T03:48:14Z",
       "a:0x2e9e636050a28714872a5d3c70e9e99e41de5172": "2026-11-11T02:38:14Z",
@@ -9,6 +9,7 @@
       "a:0x4bed843fd33ab77b6ee202e321f9d53aa3c1a2ee": "2026-11-11T06:38:14Z",
       "a:0x57699dcaa6133de371c4fc408bb20840aaabb19b": "2026-11-11T21:33:15Z",
       "a:0x9296dde9801a777ac43b48abb8372e523269adf8": "2026-11-11T05:18:15Z",
+      "a:0xa1a6f951a1317003adee3c1de302b4f2850c2b07": "2026-11-12T01:13:15Z",
       "a:0xba94b559b8da0a5ddee25f8c5f92f2a4a7f55b69": "2026-11-11T15:38:15Z",
       "a:0xc3414e41eae6bf08051511296be02e7de03d7773": "2026-11-11T08:08:15Z",
       "a:0xe25630208f7038202eead8e84a4457c073877ef1": "2026-11-11T09:03:16Z",
@@ -20,6 +21,7 @@
       "s:DANA": "2026-11-11T11:53:14Z",
       "s:EXM": "2026-11-11T19:13:14Z",
       "s:FOTF": "2026-11-11T06:38:14Z",
+      "s:MIHAO": "2026-11-12T01:13:15Z",
       "s:MONTRA": "2026-11-11T15:38:15Z",
       "s:ONLYCATS": "2026-11-11T03:48:14Z",
       "s:UKOR": "2026-11-11T08:08:15Z",
@@ -30,29 +32,10 @@
     "day": "2026-11-11",
     "day_start_value": 40.91514490931043,
     "halted_day": "",
-    "positions": {
-      "0xa1a6f951a1317003adee3c1de302b4f2850c2b07": {
-        "cost_usd": 5.0,
-        "entry_fill": 2.1838333105892195e-06,
-        "entry_intended": 2.12e-06,
-        "entry_liq_usd": 111378.75,
-        "entry_qliq": 45433,
-        "entry_ts": "2026-11-11T00:28:15Z",
-        "ladder_done": [],
-        "last_liq_usd": 111376.98,
-        "last_price": 2.12e-06,
-        "last_qliq": 45477,
-        "launchpad": "other",
-        "orig_qty": 2289552.034834999,
-        "pair": "0x9d547fe20718431198b76e34031cd5e664d082feb9de51426ab09ec59d2d1dfb",
-        "peak_price": 2.12e-06,
-        "qty": 2289552.034834999,
-        "symbol": "mihao"
-      }
-    },
+    "positions": {},
     "refill_week": "2026-W46",
     "refills_usd": 47.693738985981945,
-    "ticks_since_buy": 8
+    "ticks_since_buy": 9
   },
   "desk": {
     "cash": 50.0,
@@ -1141,7 +1124,8 @@
       },
       "0x67de734d142bcd8792a0233b8315015adc7ce7ec": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 0.0001689,
         "first_seen": "2026-11-10T19:13:14Z",
@@ -1238,7 +1222,9 @@
         "symbol": "FUND OIL DIVIDEND UNITED"
       },
       "0x726131c4f93d341253a65129f6a4defa123b44cf": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 1.119e-05,
         "first_seen": "2026-11-11T00:13:13Z",
         "sight_pair": "0xfe7734a2168344de90cbfc256620bea28a33a568",
@@ -2179,7 +2165,9 @@
         "symbol": "UN\u0130TED "
       },
       "0xc95a28cc6f1fdfe3259987a4d00e5ae251adca51": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 3.276e-06,
         "first_seen": "2026-11-11T00:13:13Z",
         "sight_pair": "0x650b5f925aec8518c204d585859e6d3fbd5e6468",
@@ -9812,9 +9800,9 @@
         "symbol": "mihao"
       },
       "0xd117fc863abf510d2e9a344bf4c6c1c3bd1fe5b0": {
-        "checks": 2,
+        "checks": 3,
         "first_seen": "2026-11-11T00:38:16Z",
-        "last_check": "2026-11-11T00:58:14Z",
+        "last_check": "2026-11-11T01:13:15Z",
         "symbol": "GABBY"
       }
     }
