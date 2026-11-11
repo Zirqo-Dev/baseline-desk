@@ -460,3 +460,11 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-11T06:03:12Z,desk,VERIFY,GTAVI,0xb2000000000000000000005938be6aa22288c8d5,SKIP,real_depth,goplus=skipped until=2026-11-12T06:03:12Z
 2026-11-11T06:03:12Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
 2026-11-11T06:03:12Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=0 new=1 checked=1 passed=0 bought=0 held=0 deferred=0 dex_only=1 goplus=0 requests=4 secs=1.2 bl_positions=0 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=none labels_due=0 labels_done=0 labels_calls=0 live=ok alerts=none alerts_sent=0
+2026-11-11T06:08:15Z,desk,VERIFY,MORI,0xf92739a272fb1711968dfc87205933124a572e9d,WATCH,goplus_not_ready,"first_seen=2026-11-11T04:28:15Z checks=6 pending=mint_open,freeze_or_blacklist,honeypot,risk_flags b1=1 s1=1 b24=5 s24=5 liq=20815 dex=uniswap:v2 qliq=10402 pair_age=108 token_age=108"
+2026-11-11T06:08:15Z,desk,VERIFY,CLAUDIA,0x5a55392e165c6c88f2ab8980e77e7fa0160d7197,SKIP,real_depth,first_seen=2026-11-11T05:28:14Z checks=3 goplus=skipped until=2026-11-12T06:08:15Z
+2026-11-11T06:08:15Z,desk,VERIFY,DANA,0xd71e409f5c048ecc2ca9723ca3659fcc4fd8659f,SKIP,real_depth,first_seen=2026-11-11T05:28:14Z checks=3 goplus=skipped until=2026-11-12T06:08:15Z
+2026-11-11T06:08:15Z,desk,VERIFY,MEOW,0xe504eb4f8fbd7e3bfcb21dd640dfc30ff5b8021a,SKIP,real_depth,goplus=skipped until=2026-11-12T06:08:15Z
+2026-11-11T06:08:15Z,desk,VERIFY,Momcoin,0xc63972e2adedad1a538ce7a33b2bc8ee67e90e67,SKIP,real_depth,goplus=skipped until=2026-11-12T06:08:15Z
+2026-11-11T06:08:15Z,desk,VERIFY,PF,0xb200000000000000000000f0cae2f45299890021,SKIP,real_depth,goplus=skipped until=2026-11-12T06:08:15Z
+2026-11-11T06:08:15Z,baseline,EXECUTE,MORI,0xf92739a272fb1711968dfc87205933124a572e9d,SKIP,reentry_cooldown,seed=202611110608 eligible=1 pick=0 pool=f92739 desk=WATCH launchpad=other
+2026-11-11T06:08:15Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=3 new=3 checked=6 passed=0 bought=0 held=0 deferred=0 dex_only=5 goplus=1 requests=11 secs=2.9 bl_positions=0 bl_due=1 bl_eligible=1 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=3 labels_done=3 labels_calls=1 live=ok alerts=none alerts_sent=0
