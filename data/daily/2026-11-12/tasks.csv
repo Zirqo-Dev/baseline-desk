@@ -601,3 +601,8 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-12T08:13:14Z,desk,VERIFY,,0xba2fcad02dc2136ff3c15e06f11cf7be4a4c725c,SKIP,missing:symbol,goplus=skipped until=2026-11-13T08:13:14Z
 2026-11-12T08:13:14Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
 2026-11-12T08:13:14Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=19 rechecks=0 new=3 checked=3 passed=0 bought=0 held=0 deferred=0 dex_only=3 goplus=0 requests=7 secs=1.9 bl_positions=0 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=3 labels_done=3 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-12T08:18:14Z,desk,VERIFY,MAX,0xbb2677412ade6f649e24850167503341669afcc5,WATCH,goplus_not_ready,first_seen=2026-11-12T05:28:16Z checks=11 pending=honeypot b1=0 s1=0 b24=159 s24=96 liq=43561 dex=uniswap:v4 qliq=21760 pair_age=181 token_age=181
+2026-11-12T08:18:14Z,desk,VERIFY,CLAUDIA,0xc22279bacd6e28e668bbe02b85f490cda9e6e2f5,WATCH,goplus_not_ready,first_seen=2026-11-12T07:03:14Z checks=5 pending=top10_pct b1=0 s1=0 b24=27 s24=0 liq=181492 dex=uniswap:v2 qliq=90320 pair_age=77 token_age=77
+2026-11-12T08:18:14Z,desk,VERIFY,USRP,0x352ce1f7a7ec15756a4a67598895085233645a54,WATCH,goplus_not_ready,first_seen=2026-11-12T07:13:15Z checks=5 pending=top10_pct b1=0 s1=0 b24=7 s24=0 liq=63844 dex=uniswap:v2 qliq=31934 pair_age=70 token_age=70
+2026-11-12T08:18:14Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
+2026-11-12T08:18:14Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=19 rechecks=3 new=0 checked=3 passed=0 bought=0 held=0 deferred=0 dex_only=0 goplus=3 requests=10 secs=5.4 bl_positions=0 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=2 labels_done=2 labels_calls=1 live=ok alerts=none alerts_sent=0
