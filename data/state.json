@@ -1,7 +1,8 @@
 {
   "baseline": {
-    "cash": 32.131440157516195,
+    "cash": 36.836267516921374,
     "cooldown": {
+      "a:0x148d9c29cded09bf9240bb3b2c2ecca94291910d": "2026-11-13T16:33:15Z",
       "a:0x2cb1ba2b538eb449297e7b4c8e0e3330b0e4ab07": "2026-11-13T02:58:14Z",
       "a:0x44e98d14f2e46bd744ca6b88bb2ade4855b0801e": "2026-11-12T19:38:14Z",
       "a:0x4d5e5f42a2c8dc29f1bd84d0c1c541fcf3ecf6ca": "2026-11-12T16:48:16Z",
@@ -16,6 +17,7 @@
       "s:MEPR": "2026-11-13T16:03:13Z",
       "s:MOGGING": "2026-11-12T16:48:16Z",
       "s:PAPER": "2026-11-13T02:58:14Z",
+      "s:PENNY": "2026-11-13T16:33:15Z",
       "s:REVVY": "2026-11-12T17:33:13Z",
       "s:SEPPUKU": "2026-11-13T14:43:14Z"
     },
@@ -23,24 +25,6 @@
     "day_start_value": 36.77464268534725,
     "halted_day": "",
     "positions": {
-      "0x148d9c29cded09bf9240bb3b2c2ecca94291910d": {
-        "cost_usd": 5.0,
-        "entry_fill": 5.307700853000674e-05,
-        "entry_intended": 5.151e-05,
-        "entry_liq_usd": 32642.1,
-        "entry_qliq": 11864,
-        "entry_ts": "2026-11-12T15:43:18Z",
-        "ladder_done": [],
-        "last_liq_usd": 32642.1,
-        "last_price": 5.151e-05,
-        "last_qliq": 11864,
-        "launchpad": "other",
-        "orig_qty": 94202.74688565545,
-        "pair": "0x0e672fef87d3a1cae27fe4cc47d22cdddb84807db08b2c0fb1835f90c3ea8c35",
-        "peak_price": 5.151e-05,
-        "qty": 94202.74688565545,
-        "symbol": "PENNY"
-      },
       "0xd3115aa6a8565ad9434a23ef9b93be08b2a76c8e": {
         "cost_usd": 1.6999999999999995,
         "entry_fill": 1.1026188633498205e-08,
@@ -52,20 +36,20 @@
           0,
           1
         ],
-        "last_liq_usd": 31207.42,
-        "last_price": 2.41e-08,
-        "last_qliq": 15606,
+        "last_liq_usd": 32568.56,
+        "last_price": 2.63e-08,
+        "last_qliq": 16294,
         "launchpad": "other",
         "orig_qty": 453465849.91387755,
         "pair": "0xb5449720084f670b9034ca03305885809e379a65",
-        "peak_price": 2.483e-08,
+        "peak_price": 2.63e-08,
         "qty": 154178388.97071832,
         "symbol": "MEPR"
       }
     },
     "refill_week": "2026-W46",
     "refills_usd": 47.693738985981945,
-    "ticks_since_buy": 9
+    "ticks_since_buy": 10
   },
   "desk": {
     "cash": 50.0,
@@ -959,6 +943,14 @@
         "sight_qliq": 25,
         "symbol": "SAOR "
       },
+      "0x8090ec93d445d7fb87c820560a99c9283dddeb93": {
+        "done": [],
+        "first_price": 3.608e-06,
+        "first_seen": "2026-11-12T16:33:15Z",
+        "sight_pair": "0x2ea7f6e4ca83dc2410d50aea4177c091b045d2b0",
+        "sight_qliq": 30953,
+        "symbol": "TXO"
+      },
       "0x8aff4e243f944f21949e7039ab7940498507c188": {
         "done": [
           1
@@ -1497,7 +1489,8 @@
       },
       "0xf1f4ecad08d273cb01fe06fb23dc87c3673740ca": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 1.315e-05,
         "first_seen": "2026-11-12T10:28:16Z",
@@ -1556,6 +1549,14 @@
         "sight_pair": "0xf932f5b0464b67bc1fafc1a5639a45160482e5026b1565ef98b911a4aec970f8",
         "sight_qliq": 19,
         "symbol": "NAFO"
+      },
+      "0xf839836e86fa178111ffda562e04011edf951b6c": {
+        "done": [],
+        "first_price": 0.0002771,
+        "first_seen": "2026-11-12T16:33:15Z",
+        "sight_pair": "0xcc2d20573d3db3ee13b8c0abc0280b76d4b47bdb629d8f063c29c60a56626ad9",
+        "sight_qliq": 0,
+        "symbol": "UTOF"
       },
       "0xf85d8e73256ab4c22b966c7e3fc059989fbdeac9": {
         "done": [
@@ -4829,6 +4830,12 @@
         "symbol": "Basedeer",
         "until": "2026-11-13T03:38:14Z"
       },
+      "0x87aed479bebb87802306ad06c887721858f9fdb7": {
+        "at": "2026-11-12T16:33:15Z",
+        "reason": "real_depth",
+        "symbol": "SPACEX",
+        "until": "2026-11-13T16:33:15Z"
+      },
       "0x87deab1ef0d7e63e7204d68e220c1cab23c4b58b": {
         "at": "2026-11-11T19:28:15Z",
         "reason": "goplus_timeout",
@@ -6256,6 +6263,12 @@
         "reason": "real_depth",
         "symbol": "trusted",
         "until": "2026-11-13T15:23:15Z"
+      },
+      "0xb200000000000000000000c5c50e2bfc05dc1edc": {
+        "at": "2026-11-12T16:33:15Z",
+        "reason": "real_depth",
+        "symbol": "RAKA",
+        "until": "2026-11-13T16:33:15Z"
       },
       "0xb200000000000000000000c6bd8c8799d76a6405": {
         "at": "2026-11-12T15:28:15Z",
@@ -8045,6 +8058,12 @@
         "symbol": "LC",
         "until": "2026-11-13T11:48:14Z"
       },
+      "0xf839836e86fa178111ffda562e04011edf951b6c": {
+        "at": "2026-11-12T16:33:15Z",
+        "reason": "real_depth",
+        "symbol": "UTOF",
+        "until": "2026-11-13T16:33:15Z"
+      },
       "0xf85d8e73256ab4c22b966c7e3fc059989fbdeac9": {
         "at": "2026-11-12T09:53:13Z",
         "reason": "real_depth",
@@ -8238,6 +8257,12 @@
         "first_seen": "2026-11-12T14:43:14Z",
         "last_check": "2026-11-12T16:28:15Z",
         "symbol": "Max"
+      },
+      "0x8090ec93d445d7fb87c820560a99c9283dddeb93": {
+        "checks": 1,
+        "first_seen": "2026-11-12T16:33:15Z",
+        "last_check": "2026-11-12T16:33:15Z",
+        "symbol": "TXO"
       },
       "0xa073b83fd694dd7b5c998ab338b6abb64d74b436": {
         "checks": 7,
