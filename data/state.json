@@ -1,6 +1,6 @@
 {
   "baseline": {
-    "cash": 31.485361063393597,
+    "cash": 26.485361063393597,
     "cooldown": {
       "a:0x24d18d0592180d79b563a49500c2da1480a3967a": "2026-11-12T09:28:14Z",
       "a:0x2cb1ba2b538eb449297e7b4c8e0e3330b0e4ab07": "2026-11-13T02:58:14Z",
@@ -25,6 +25,22 @@
     "day_start_value": 36.77464268534725,
     "halted_day": "",
     "positions": {
+      "0xd3115aa6a8565ad9434a23ef9b93be08b2a76c8e": {
+        "cost_usd": 5.0,
+        "entry_fill": 1.1026188633498205e-08,
+        "entry_intended": 1.07e-08,
+        "entry_liq_usd": 20635.1,
+        "entry_qliq": 10311,
+        "entry_ts": "2026-11-12T14:38:15Z",
+        "ladder_done": [],
+        "last_price": 1.07e-08,
+        "launchpad": "other",
+        "orig_qty": 453465849.91387755,
+        "pair": "0xb5449720084f670b9034ca03305885809e379a65",
+        "peak_price": 1.07e-08,
+        "qty": 453465849.91387755,
+        "symbol": "MEPR"
+      },
       "0xe76c707be369c881642e30e526b77c832d2817f4": {
         "cost_usd": 5.0,
         "entry_fill": 3.0453183621992834e-08,
@@ -33,9 +49,9 @@
         "entry_qliq": 23153,
         "entry_ts": "2026-11-12T13:38:15Z",
         "ladder_done": [],
-        "last_liq_usd": 51139.82,
-        "last_price": 3.641e-08,
-        "last_qliq": 25583,
+        "last_liq_usd": 49230.85,
+        "last_price": 3.364e-08,
+        "last_qliq": 24627,
         "launchpad": "other",
         "orig_qty": 164186446.38483953,
         "pair": "0xcc396e5bd1e395f151530eba82b97bd8c09a25f6",
@@ -46,7 +62,7 @@
     },
     "refill_week": "2026-W46",
     "refills_usd": 47.693738985981945,
-    "ticks_since_buy": 11
+    "ticks_since_buy": 0
   },
   "desk": {
     "cash": 50.0,
@@ -483,7 +499,9 @@
         "symbol": "OIL U.S INDEX"
       },
       "0x3dc87e7c24a709e1a83984ae2509250a36192602": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 9.294e-06,
         "first_seen": "2026-11-12T13:38:15Z",
         "sight_pair": "0xe76b3fe57976f5eaf0eefce2ef4deb6fadf57005",
@@ -1212,7 +1230,9 @@
         "symbol": "DacityCoin"
       },
       "0xc6866c5ef6a2ddcec938e01ca8705c914f3dc90d": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 0.0001001,
         "first_seen": "2026-11-12T13:38:15Z",
         "sight_pair": "0x82a21825fbe403c7691ae163c0ce08cc843f9cef48b5b0bba19c4ab5dd3a61cb",
@@ -4746,6 +4766,12 @@
         "symbol": "ANTHROPIC",
         "until": "2026-11-13T00:33:15Z"
       },
+      "0x873c8d7c93f056e135f91019341b928cbe57bea5": {
+        "at": "2026-11-12T14:38:15Z",
+        "reason": "real_depth",
+        "symbol": "ANTHROPIC",
+        "until": "2026-11-13T14:38:15Z"
+      },
       "0x8742ce0b04d8111495345eedcdb7d4ee487fcccc": {
         "at": "2026-11-11T16:59:02Z",
         "reason": "real_depth",
@@ -8045,13 +8071,19 @@
         "reason": "real_depth",
         "symbol": "RugProof",
         "until": "2026-11-12T16:38:15Z"
+      },
+      "0xfffc8a21a271e621b9be78618aa5f592ea7041bd": {
+        "at": "2026-11-12T14:38:15Z",
+        "reason": "real_depth",
+        "symbol": "bull",
+        "until": "2026-11-13T14:38:15Z"
       }
     },
     "watch": {
       "0x968b089928b7286d2d2f1e0d9ec0fe5ed8c1c6a0": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-12T14:18:16Z",
-        "last_check": "2026-11-12T14:18:16Z",
+        "last_check": "2026-11-12T14:38:15Z",
         "symbol": "VOF"
       },
       "0xb7b741ba8b117c2d722c5995f18799a800b7c892": {
@@ -8061,15 +8093,15 @@
         "symbol": "Basecat"
       },
       "0xd3115aa6a8565ad9434a23ef9b93be08b2a76c8e": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-12T14:18:16Z",
-        "last_check": "2026-11-12T14:18:16Z",
+        "last_check": "2026-11-12T14:38:15Z",
         "symbol": "MEPR"
       },
       "0xe76c707be369c881642e30e526b77c832d2817f4": {
-        "checks": 4,
+        "checks": 5,
         "first_seen": "2026-11-12T13:23:13Z",
-        "last_check": "2026-11-12T14:18:16Z",
+        "last_check": "2026-11-12T14:38:15Z",
         "symbol": "SEPPUKU"
       }
     }
