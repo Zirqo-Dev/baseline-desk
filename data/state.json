@@ -1,6 +1,6 @@
 {
   "baseline": {
-    "cash": 36.77464268534725,
+    "cash": 31.774642685347253,
     "cooldown": {
       "a:0x24d18d0592180d79b563a49500c2da1480a3967a": "2026-11-12T09:28:14Z",
       "a:0x44e98d14f2e46bd744ca6b88bb2ade4855b0801e": "2026-11-12T19:38:14Z",
@@ -26,10 +26,27 @@
     "day": "2026-11-12",
     "day_start_value": 36.77464268534725,
     "halted_day": "",
-    "positions": {},
+    "positions": {
+      "0x2cb1ba2b538eb449297e7b4c8e0e3330b0e4ab07": {
+        "cost_usd": 5.0,
+        "entry_fill": 0.00010397697523526499,
+        "entry_intended": 0.0001009,
+        "entry_liq_usd": 6469375.68,
+        "entry_qliq": 10095,
+        "entry_ts": "2026-11-12T02:48:15Z",
+        "ladder_done": [],
+        "last_price": 0.0001009,
+        "launchpad": "other",
+        "orig_qty": 48087.56927855113,
+        "pair": "0x346b53c5fb513f65c20f12514e8c1154f5185ea4",
+        "peak_price": 0.0001009,
+        "qty": 48087.56927855113,
+        "symbol": "Paper"
+      }
+    },
     "refill_week": "2026-W46",
     "refills_usd": 47.693738985981945,
-    "ticks_since_buy": 88
+    "ticks_since_buy": 0
   },
   "desk": {
     "cash": 50.0,
@@ -192,6 +209,14 @@
         "sight_pair": "0x01c27afcb51cc76821f69aab3b087c8221952048",
         "sight_qliq": 85818,
         "symbol": "SI"
+      },
+      "0x0d71df463906bba82b4f6cb6b11a3f843938a88f": {
+        "done": [],
+        "first_price": 9.765e-06,
+        "first_seen": "2026-11-12T02:48:15Z",
+        "sight_pair": "0x745e79a50d48cf344465c79f12bc9c8b22817d37",
+        "sight_qliq": 83116,
+        "symbol": "CLAUDIA"
       },
       "0x0d829aa17f6e7ed79a9560953d48e782039144d7": {
         "done": [
@@ -2121,17 +2146,6 @@
         "sight_qliq": 0,
         "symbol": "AGT"
       },
-      "0xe80f07e45fbf238c1c575df00ac161a1fd3791f4": {
-        "done": [
-          1,
-          6
-        ],
-        "first_price": 8.679e-05,
-        "first_seen": "2026-11-11T02:48:14Z",
-        "sight_pair": "0xfdfbdcd9e3ddd1925b2fe4e7f65c13a7a70b462c62f4c032b3b8ebc2baa3f3c7",
-        "sight_qliq": 17,
-        "symbol": "FOI"
-      },
       "0xea5c18daaaad1bd5bb68d1e270fdee0ab8c4c404": {
         "done": [
           1
@@ -3668,12 +3682,6 @@
         "symbol": "LUCKY",
         "until": "2026-11-12T17:38:14Z"
       },
-      "0x3512caa385f09cc69dd51c381822877d514c647c": {
-        "at": "2026-11-11T02:48:14Z",
-        "reason": "real_depth",
-        "symbol": "SI",
-        "until": "2026-11-12T02:48:14Z"
-      },
       "0x351b4c6095d8bad34bfed4e0e36ac8582716d6dd": {
         "at": "2026-11-12T00:58:17Z",
         "reason": "real_depth",
@@ -4303,6 +4311,12 @@
         "reason": "missing:liq_usd",
         "symbol": "RFROG",
         "until": "2026-11-12T16:53:13Z"
+      },
+      "0x5381e0bf05d5eb7045ab82bb3dc3293949aaaf54": {
+        "at": "2026-11-12T02:48:15Z",
+        "reason": "real_depth",
+        "symbol": "NEBRASKA",
+        "until": "2026-11-13T02:48:15Z"
       },
       "0x54195f7330bc05e61c446c2d03ace8e2391d5218": {
         "at": "2026-11-11T17:54:00Z",
@@ -7406,6 +7420,12 @@
         "symbol": "DacityCoin",
         "until": "2026-11-12T14:38:16Z"
       },
+      "0xb595a8ca72c88874d020b20baac130b848a7fba3": {
+        "at": "2026-11-12T02:48:15Z",
+        "reason": "real_depth",
+        "symbol": "MAXPOYER",
+        "until": "2026-11-13T02:48:15Z"
+      },
       "0xb6686cb156fd046ec69e985dbbebe366172f1dfe": {
         "at": "2026-11-12T02:43:13Z",
         "reason": "real_depth",
@@ -8630,12 +8650,6 @@
         "symbol": "XCHAT",
         "until": "2026-11-12T16:33:17Z"
       },
-      "0xe80f07e45fbf238c1c575df00ac161a1fd3791f4": {
-        "at": "2026-11-11T02:48:14Z",
-        "reason": "real_depth",
-        "symbol": "FOI",
-        "until": "2026-11-12T02:48:14Z"
-      },
       "0xe81a58f3ed7996583ac5399e7e5d2b09ba53bdd6": {
         "at": "2026-11-11T10:18:14Z",
         "reason": "real_depth",
@@ -9136,23 +9150,23 @@
       }
     },
     "watch": {
-      "0x2cb1ba2b538eb449297e7b4c8e0e3330b0e4ab07": {
+      "0x0d71df463906bba82b4f6cb6b11a3f843938a88f": {
         "checks": 1,
+        "first_seen": "2026-11-12T02:48:15Z",
+        "last_check": "2026-11-12T02:48:15Z",
+        "symbol": "CLAUDIA"
+      },
+      "0x2cb1ba2b538eb449297e7b4c8e0e3330b0e4ab07": {
+        "checks": 2,
         "first_seen": "2026-11-12T02:28:14Z",
-        "last_check": "2026-11-12T02:28:14Z",
+        "last_check": "2026-11-12T02:48:15Z",
         "symbol": "Paper"
       },
       "0x3055913c90fcc1a6ce9a358911721eeb942013a1": {
-        "checks": 7,
+        "checks": 8,
         "first_seen": "2026-11-12T00:38:15Z",
-        "last_check": "2026-11-12T02:28:14Z",
+        "last_check": "2026-11-12T02:48:15Z",
         "symbol": "Cake"
-      },
-      "0x5381e0bf05d5eb7045ab82bb3dc3293949aaaf54": {
-        "checks": 3,
-        "first_seen": "2026-11-12T01:53:13Z",
-        "last_check": "2026-11-12T02:28:14Z",
-        "symbol": "NEBRASKA"
       },
       "0x8e64a5588e2c049995c7ab9e0f2b3de274eb9e16": {
         "checks": 1,
@@ -9365,7 +9379,7 @@
     "gate_restart": "BL-32",
     "machine_due": "",
     "max_dd_pct": {
-      "baseline": 118.48895135243502,
+      "baseline": 118.78606555538529,
       "desk": 9.811123120222184
     },
     "peak": {
