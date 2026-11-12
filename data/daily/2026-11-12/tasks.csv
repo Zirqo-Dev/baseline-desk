@@ -783,3 +783,10 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-12T10:53:14Z,desk,VERIFY,GHO,0x0f52c7003dc0036e7265cbdeee1294e128a1b30a,SKIP,missing:liq_usd,goplus=skipped until=2026-11-13T10:53:14Z
 2026-11-12T10:53:14Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
 2026-11-12T10:53:14Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=0 new=3 checked=3 passed=0 bought=0 held=0 deferred=0 dex_only=3 goplus=0 requests=7 secs=1.8 bl_positions=0 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=3 labels_done=3 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-12T10:58:15Z,desk,VERIFY,INFO,0x5b4a52696d026c22188247862a9a0bb5d79b609a,WATCH,goplus_not_ready,"first_seen=2026-11-12T10:43:14Z checks=2 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct b1=19 s1=0 b24=19 s24=0 liq=67375 dex=uniswap:v2 qliq=33691 pair_age=20 token_age=20"
+2026-11-12T10:58:15Z,desk,VERIFY,LIQUIDBGT,0x79c0508c18765998c3055478650dd4765f3d77f4,SKIP,real_depth,goplus=skipped until=2026-11-13T10:58:15Z
+2026-11-12T10:58:15Z,desk,VERIFY,MACHINEFI,0xada3f423f27e662df421609e050b9a0a2f2dcccc,SKIP,real_depth,goplus=skipped until=2026-11-13T10:58:15Z
+2026-11-12T10:58:15Z,desk,VERIFY,GHO,0xe4fa7ab00a3d61007901c4ca5bab4356f4424e62,SKIP,real_depth,goplus=skipped until=2026-11-13T10:58:15Z
+2026-11-12T10:58:15Z,desk,VERIFY,MASK,0x9525f9d548d81aa96322e94a127c780e4ddafa1a,SKIP,real_depth,goplus=skipped until=2026-11-13T10:58:15Z
+2026-11-12T10:58:15Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
+2026-11-12T10:58:15Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=1 new=4 checked=5 passed=0 bought=0 held=0 deferred=0 dex_only=4 goplus=1 requests=10 secs=2.7 bl_positions=0 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=1 labels_done=1 labels_calls=1 live=ok alerts=none alerts_sent=0
