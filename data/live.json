@@ -1,22 +1,22 @@
 {
- "as_of": "2026-11-12T15:38:16Z",
+ "as_of": "2026-11-12T15:43:18Z",
  "last_tick": {
-  "ts": "2026-11-12T15:38:16Z",
+  "ts": "2026-11-12T15:43:18Z",
   "seen": 20,
-  "new": 1,
-  "checked": 1,
-  "dex_only": 1,
-  "goplus": 0,
+  "new": 5,
+  "checked": 7,
+  "dex_only": 5,
+  "goplus": 2,
   "passed": 0,
   "bought": 0,
   "exits": 0,
-  "requests": 5,
-  "secs": 1.6
+  "requests": 14,
+  "secs": 4.9
  },
  "today": {
   "day": "2026-11-12",
-  "ticks": 188,
-  "expected": 188,
+  "ticks": 189,
+  "expected": 189,
   "errors": 0
  },
  "exit": {
@@ -32,24 +32,38 @@
    "open": []
   },
   "baseline": {
-   "cash_usd": 33.8604,
-   "value_usd": 38.9037,
+   "cash_usd": 28.8604,
+   "value_usd": 39.3154,
    "open": [
     {
      "symbol": "MEPR",
      "address": "0xd3115aa6a8565ad9434a23ef9b93be08b2a76c8e",
      "entry_ts": "2026-11-12T14:38:15Z",
-     "age_min": 60,
+     "age_min": 65,
      "cost_usd": 3.35,
-     "value_usd": 5.0433,
-     "value_pct": 50.55,
-     "price_pct": 55.27,
-     "liq_usd": 26209,
+     "value_usd": 5.7502,
+     "value_pct": 71.65,
+     "price_pct": 77.03,
+     "liq_usd": 27932,
      "qliq": 10311,
      "ladders_done": [
       "ladder_1"
      ],
      "time_stop_at": "2026-11-12T15:23:15Z"
+    },
+    {
+     "symbol": "PENNY",
+     "address": "0x148d9c29cded09bf9240bb3b2c2ecca94291910d",
+     "entry_ts": "2026-11-12T15:43:18Z",
+     "age_min": 0,
+     "cost_usd": 5.0,
+     "value_usd": 4.7048,
+     "value_pct": -5.9,
+     "price_pct": -2.95,
+     "liq_usd": 32642,
+     "qliq": 11864,
+     "ladders_done": [],
+     "time_stop_at": "2026-11-12T16:28:18Z"
     }
    ]
   }
