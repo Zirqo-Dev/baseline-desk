@@ -1048,3 +1048,8 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-12T14:23:21Z,desk,VERIFY,DTCC,0x122ce50d0a53f61dc2c705ee2eef38f1819667d1,SKIP,real_depth,first_seen=2026-11-12T13:33:12Z checks=4 goplus=skipped until=2026-11-13T14:23:21Z
 2026-11-12T14:23:21Z,desk,VERIFY,POT,0xb2000000000000000000007fa419eec81b9747f2,SKIP,real_depth,goplus=skipped until=2026-11-13T14:23:21Z
 2026-11-12T14:23:21Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=19 rechecks=1 new=1 checked=2 passed=0 bought=0 held=0 deferred=0 dex_only=2 goplus=0 requests=7 secs=1.8 bl_positions=1 bl_due=0 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=2 labels_done=2 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-12T14:28:16Z,baseline,EXIT,SEPPUKU,0xe76c707be369c881642e30e526b77c832d2817f4,HOLD,,pct=31.84
+2026-11-12T14:28:16Z,desk,VERIFY,Basecat,0xb7b741ba8b117c2d722c5995f18799a800b7c892,WATCH,goplus_not_ready,first_seen=2026-11-12T14:13:13Z checks=2 pending=top10_pct b1=33 s1=0 b24=33 s24=0 liq=179738 dex=uniswap:v2 qliq=89877 pair_age=20 token_age=20
+2026-11-12T14:28:16Z,desk,VERIFY,agree,0xb2000000000000000000005f6938cb7a0f60dd01,SKIP,real_depth,goplus=skipped until=2026-11-13T14:28:16Z
+2026-11-12T14:28:16Z,desk,VERIFY,NVIDICK,0x0e0575b12e39f1e4507f98acbf1a575c3baacccc,SKIP,missing:liq_usd,goplus=skipped until=2026-11-13T14:28:16Z
+2026-11-12T14:28:16Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=19 rechecks=1 new=2 checked=3 passed=0 bought=0 held=0 deferred=0 dex_only=2 goplus=1 requests=8 secs=2.1 bl_positions=1 bl_due=0 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=none labels_due=0 labels_done=0 labels_calls=0 live=ok alerts=none alerts_sent=0
