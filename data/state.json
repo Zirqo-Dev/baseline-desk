@@ -33,9 +33,9 @@
         "entry_qliq": 20589,
         "entry_ts": "2026-11-12T05:43:16Z",
         "ladder_done": [],
-        "last_liq_usd": 41546.41,
-        "last_price": 2.341e-05,
-        "last_qliq": 20778,
+        "last_liq_usd": 41485.03,
+        "last_price": 2.333e-05,
+        "last_qliq": 20726,
         "launchpad": "other",
         "orig_qty": 210643.431579566,
         "pair": "0x7e6d259740b7f3d64f09bc0b2132b5123a8616a7d9b188d3732d9e98a1049555",
@@ -46,7 +46,7 @@
     },
     "refill_week": "2026-W46",
     "refills_usd": 47.693738985981945,
-    "ticks_since_buy": 2
+    "ticks_since_buy": 3
   },
   "desk": {
     "cash": 50.0,
@@ -1412,7 +1412,9 @@
         "symbol": "NEBRASKA"
       },
       "0x7f1326fc3323b798c2ce85e519bd16fab6def7e3": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 0.000107,
         "first_seen": "2026-11-12T04:58:13Z",
         "sight_pair": "0x1782a81ed4e9a8c10d8e8b195f5b06c507dd37121bde7203ec03148e5498e573",
@@ -2189,6 +2191,14 @@
         "sight_pair": "0x3e47bf5c8fced8f2c77f17d252bf7e2e31d1bdfe5c278f538c63d74c57640a97",
         "sight_qliq": 1,
         "symbol": "WHITE"
+      },
+      "0xed08de1bbc40363564ddac8782f0740d1309a544": {
+        "done": [],
+        "first_price": 1.362e-05,
+        "first_seen": "2026-11-12T05:58:14Z",
+        "sight_pair": "0x435b4c1fbdab107ed9e935e24894e1a559fe5214",
+        "sight_qliq": 85000,
+        "symbol": "Basecat"
       },
       "0xf10d2832f5dbdc2634296ba51b370008b1e68599": {
         "done": [
@@ -3387,6 +3397,12 @@
         "reason": "real_depth",
         "symbol": "SLPX",
         "until": "2026-11-12T14:18:13Z"
+      },
+      "0x29680af05b43947fb36f639b043f18268d9fcccc": {
+        "at": "2026-11-12T05:58:14Z",
+        "reason": "real_depth",
+        "symbol": "VAULTLOCK",
+        "until": "2026-11-13T05:58:14Z"
       },
       "0x297068e84409bcbc09a339c8ef8e1454318bcccc": {
         "at": "2026-11-11T16:48:16Z",
@@ -5019,6 +5035,12 @@
         "reason": "real_depth",
         "symbol": "SPACEX",
         "until": "2026-11-13T04:33:13Z"
+      },
+      "0x72f4aacbaa10edce05c3c49f11438e6097708e1d": {
+        "at": "2026-11-12T05:58:14Z",
+        "reason": "real_depth",
+        "symbol": "REBOOT",
+        "until": "2026-11-13T05:58:14Z"
       },
       "0x72fb11ef2f476ce53b5b87a8398372ccc05d82f0": {
         "at": "2026-11-11T11:13:13Z",
@@ -8458,6 +8480,12 @@
         "symbol": "XBOX",
         "until": "2026-11-12T20:57:42Z"
       },
+      "0xe4798d8ea588213578176df6a0ff74d76605af83": {
+        "at": "2026-11-12T05:58:14Z",
+        "reason": "real_depth",
+        "symbol": "KellyClaude",
+        "until": "2026-11-13T05:58:14Z"
+      },
       "0xe47f883f877ba1c86abe4c9c21c1d8901064dc19": {
         "at": "2026-11-11T20:57:42Z",
         "reason": "real_depth",
@@ -9036,17 +9064,17 @@
       }
     },
     "watch": {
-      "0x72f4aacbaa10edce05c3c49f11438e6097708e1d": {
-        "checks": 2,
-        "first_seen": "2026-11-12T05:18:16Z",
-        "last_check": "2026-11-12T05:38:16Z",
-        "symbol": "REBOOT"
-      },
       "0xbb2677412ade6f649e24850167503341669afcc5": {
         "checks": 2,
         "first_seen": "2026-11-12T05:28:16Z",
         "last_check": "2026-11-12T05:43:16Z",
         "symbol": "MAX"
+      },
+      "0xed08de1bbc40363564ddac8782f0740d1309a544": {
+        "checks": 1,
+        "first_seen": "2026-11-12T05:58:14Z",
+        "last_check": "2026-11-12T05:58:14Z",
+        "symbol": "Basecat"
       }
     }
   },
