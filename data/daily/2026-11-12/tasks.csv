@@ -1619,3 +1619,13 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-12T19:58:15Z,desk,VERIFY,Gitbank,0x97de78d0f236f7bcd866c548e52bf2794bd4ef8d,SKIP,real_depth,goplus=skipped until=2026-11-13T19:58:15Z
 2026-11-12T19:58:15Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
 2026-11-12T19:58:15Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=0 new=3 checked=3 passed=0 bought=0 held=0 deferred=0 dex_only=3 goplus=0 requests=9 secs=2.9 bl_positions=1 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=12 labels_done=12 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-12T20:03:12Z,baseline,EXIT,MEPR,0xd3115aa6a8565ad9434a23ef9b93be08b2a76c8e,HOLD,,pct=356.28
+2026-11-12T20:03:12Z,desk,VERIFY,CLAUDIA,0x0dbbd20416b00a9e19fed01efbea4ad7cd59a3ec,SKIP,real_depth,first_seen=2026-11-12T19:28:15Z checks=3 goplus=skipped until=2026-11-13T20:03:12Z
+2026-11-12T20:03:12Z,desk,VERIFY,UOSE🔥,0x21820cac07ab8bf206e5d1dacc0bda5892514fc3,WATCH,goplus_not_ready,first_seen=2026-11-12T19:43:16Z checks=2 pending=top10_pct b1=22 s1=0 b24=22 s24=0 liq=68816 dex=uniswap:v2 qliq=34414 pair_age=25 token_age=25
+2026-11-12T20:03:12Z,desk,VERIFY,FOTF,0x3d9210072722ea22d609540d9ba26358d016707f,WATCH,goplus_not_ready,"first_seen=2026-11-12T19:43:16Z checks=2 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct b1=62 s1=38 b24=62 s24=38 liq=57978139 dex=uniswap:v4 qliq=131688 pair_age=29 token_age=29"
+2026-11-12T20:03:12Z,desk,VERIFY,LAPTOP,0xbbbb8a221692c77c9714b12c40fd041fd4af89c6,SKIP,real_depth,goplus=skipped until=2026-11-13T20:03:12Z
+2026-11-12T20:03:12Z,desk,VERIFY,ANTHROPIC,0xdbf69fd02ccb0f44350e7188b7727912057e06ea,SKIP,real_depth,goplus=skipped until=2026-11-13T20:03:12Z
+2026-11-12T20:03:12Z,desk,VERIFY,PENNY,0xb200000000000000000000c85c33b6039aa1241b,SKIP,real_depth,goplus=skipped until=2026-11-13T20:03:12Z
+2026-11-12T20:03:12Z,desk,VERIFY,VBEE,0x7dea76219769d53e93c57432231c976a8747011d,SKIP,real_depth,goplus=skipped until=2026-11-13T20:03:12Z
+2026-11-12T20:03:12Z,baseline,EXECUTE,FOTF,0x3d9210072722ea22d609540d9ba26358d016707f,BUY,,usd=5.00 fill=0.03981096748 seed=202611122003 eligible=1 pick=0 pool=3d9210 desk=WATCH launchpad=other b1=62 s1=38 b24=62 s24=38 liq=57978139 dex=uniswap:v4 qliq=131688 pair_age=29 token_age=29
+2026-11-12T20:03:12Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=3 new=4 checked=7 passed=0 bought=0 held=0 deferred=0 dex_only=5 goplus=2 requests=14 secs=4.8 bl_positions=1 bl_due=1 bl_eligible=1 bl_bought=1 report=none machine=none bl_error=none labels=ok labels_due=2 labels_done=2 labels_calls=1 live=ok alerts=none alerts_sent=0
