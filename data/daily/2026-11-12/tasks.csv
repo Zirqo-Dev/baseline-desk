@@ -893,3 +893,11 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-12T12:33:13Z,desk,VERIFY,MAXXING,0x0711080c81b3050b9f36e4616babc290788dcccc,SKIP,real_depth,goplus=skipped until=2026-11-13T12:33:13Z
 2026-11-12T12:33:13Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
 2026-11-12T12:33:13Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=19 rechecks=0 new=3 checked=3 passed=0 bought=0 held=0 deferred=0 dex_only=3 goplus=0 requests=7 secs=1.9 bl_positions=0 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=3 labels_done=3 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-12T12:38:15Z,desk,VERIFY,Max,0xd5d67ab696b4516e6a4ae0e173290978b9988448,WATCH,goplus_not_ready,"first_seen=2026-11-12T11:03:15Z checks=6 pending=mint_open,freeze_or_blacklist,honeypot,risk_flags b1=23 s1=20 b24=46 s24=32 liq=63323 dex=uniswap:v2 qliq=31670 pair_age=104 token_age=104"
+2026-11-12T12:38:15Z,desk,VERIFY,SI,0x428544500438194c47a5ccfb560cf7666fd8a94f,SKIP,real_depth,first_seen=2026-11-12T11:48:14Z checks=4 goplus=skipped until=2026-11-13T12:38:15Z
+2026-11-12T12:38:15Z,desk,VERIFY,LIQUIDBGT,0xc0bce399b881ef846f9345f6823484a7f66a1c4c,SKIP,real_depth,goplus=skipped until=2026-11-13T12:38:15Z
+2026-11-12T12:38:15Z,desk,VERIFY,Claude,0xab35c8ec5e51e31a350aba8fbfc9ca132bc05b07,SKIP,asset:stable,goplus=skipped until=2026-11-13T12:38:15Z
+2026-11-12T12:38:15Z,desk,VERIFY,BTV5,0x9be5b15db54fe06dfe6c3ed8355a02471ec2b34d,SKIP,real_depth,goplus=skipped until=2026-11-13T12:38:15Z
+2026-11-12T12:38:15Z,desk,VERIFY,joobi,0x54695b960bfb0ee64c9513645714b54f41d81e24,SKIP,real_depth,goplus=skipped until=2026-11-13T12:38:15Z
+2026-11-12T12:38:15Z,baseline,EXECUTE,Max,0xd5d67ab696b4516e6a4ae0e173290978b9988448,SKIP,reentry_cooldown,seed=202611121238 eligible=1 pick=0 pool=d5d67a desk=WATCH launchpad=other
+2026-11-12T12:38:15Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=19 rechecks=2 new=4 checked=6 passed=0 bought=0 held=0 deferred=0 dex_only=5 goplus=1 requests=12 secs=3.0 bl_positions=0 bl_due=1 bl_eligible=1 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=3 labels_done=3 labels_calls=1 live=ok alerts=none alerts_sent=0
