@@ -1607,3 +1607,9 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-12T19:48:16Z,desk,VERIFY,LIQUIDBGT,0xc8993329345ee1d7d738339d76600c41ea676310,SKIP,real_depth,goplus=skipped until=2026-11-13T19:48:16Z
 2026-11-12T19:48:16Z,baseline,EXECUTE,Max,0x6a7f7ea86290c7e5615c890dd84a849a7f210080,SKIP,reentry_cooldown,seed=202611121948 eligible=1 pick=0 pool=6a7f7e desk=WATCH launchpad=other
 2026-11-12T19:48:16Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=1 new=2 checked=3 passed=0 bought=0 held=0 deferred=0 dex_only=2 goplus=1 requests=9 secs=2.3 bl_positions=1 bl_due=1 bl_eligible=1 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=2 labels_done=2 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-12T19:53:14Z,baseline,EXIT,MEPR,0xd3115aa6a8565ad9434a23ef9b93be08b2a76c8e,HOLD,,pct=327.53
+2026-11-12T19:53:14Z,desk,VERIFY,FAFO,0x6b1fb795e729c5c66920c58ada91135259a2031b,SKIP,real_depth,goplus=skipped until=2026-11-13T19:53:14Z
+2026-11-12T19:53:14Z,desk,VERIFY,NOTF,0x9bc0f6368fb5a1fe5bac1f656009db74c1af3a63,SKIP,real_depth,goplus=skipped until=2026-11-13T19:53:14Z b1=2 s1=0 b24=2 s24=0 liq=67119 dex=uniswap:v4 qliq=2291 pair_age=4 token_age=4
+2026-11-12T19:53:14Z,desk,VERIFY,THRONE,0x2bf13475ec0935dc6666a445654556d687e30ba3,SKIP,missing:liq_usd,goplus=skipped until=2026-11-13T19:53:14Z
+2026-11-12T19:53:14Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
+2026-11-12T19:53:14Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=0 new=3 checked=3 passed=0 bought=0 held=0 deferred=0 dex_only=3 goplus=0 requests=8 secs=2.6 bl_positions=1 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=none labels_due=0 labels_done=0 labels_calls=0 live=ok alerts=none alerts_sent=0
