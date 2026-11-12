@@ -35,18 +35,20 @@
         "entry_qliq": 10095,
         "entry_ts": "2026-11-12T02:48:15Z",
         "ladder_done": [],
-        "last_price": 0.0001009,
+        "last_liq_usd": 7084842.09,
+        "last_price": 0.000101,
+        "last_qliq": 170102,
         "launchpad": "other",
         "orig_qty": 48087.56927855113,
         "pair": "0x346b53c5fb513f65c20f12514e8c1154f5185ea4",
-        "peak_price": 0.0001009,
+        "peak_price": 0.000101,
         "qty": 48087.56927855113,
         "symbol": "Paper"
       }
     },
     "refill_week": "2026-W46",
     "refills_usd": 47.693738985981945,
-    "ticks_since_buy": 0
+    "ticks_since_buy": 1
   },
   "desk": {
     "cash": 50.0,
@@ -296,7 +298,9 @@
         "symbol": "ELF"
       },
       "0x18dfeaa02aa7a56c2e5794182810b3b057a338ca": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 1.552e-05,
         "first_seen": "2026-11-12T01:48:18Z",
         "sight_pair": "0xb02808b93b7427c7c4e80957bc9fb848e970d3a6",
@@ -942,7 +946,9 @@
         "symbol": "HALLOWEEN"
       },
       "0x5381e0bf05d5eb7045ab82bb3dc3293949aaaf54": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 6.932e-06,
         "first_seen": "2026-11-12T01:53:13Z",
         "sight_pair": "0x38058c22be810c0e033533ffde10e5b9c1b43583",
@@ -1012,6 +1018,14 @@
         "sight_pair": "0x5fe74148186f96c66d1a7ba24b9cfce9c0bd6813",
         "sight_qliq": 63933,
         "symbol": "GABBY"
+      },
+      "0x59a1be705f0500cb0444d097b68f73a2786797fa": {
+        "done": [],
+        "first_price": 0.0001219,
+        "first_seen": "2026-11-12T02:53:14Z",
+        "sight_pair": "0xbc734c8c936db4bdedd179ecce194d19879a5a773b699f476bd02586fac99379",
+        "sight_qliq": 31,
+        "symbol": "UOTF"
       },
       "0x5a55392e165c6c88f2ab8980e77e7fa0160d7197": {
         "done": [
@@ -1142,17 +1156,6 @@
         "sight_pair": "0x8f5c825fa2a604573f1a1ac4622aea02567b444f070501b5839931b5f992e5db",
         "sight_qliq": 28,
         "symbol": "OIL INDEX U.S"
-      },
-      "0x69d669c4b311b08a39b9d7b28e1e023631925ece": {
-        "done": [
-          1,
-          6
-        ],
-        "first_price": 0.0001229,
-        "first_seen": "2026-11-11T02:53:13Z",
-        "sight_pair": "0xf9cdd58fd26b2926bae8c4c37c19ddb7342604abe5cc3423c2382bb0678b0186",
-        "sight_qliq": 32,
-        "symbol": "XLM"
       },
       "0x6af13ba498d157436713a78aa7b081118ec9af95": {
         "done": [
@@ -2745,12 +2748,6 @@
         "reason": "real_depth",
         "symbol": "CHUBBY",
         "until": "2026-11-12T17:54:00Z"
-      },
-      "0x0ef29b7053a4ff24effd4a5263947b6894e51eb0": {
-        "at": "2026-11-11T02:53:13Z",
-        "reason": "real_depth",
-        "symbol": "CHUBBY",
-        "until": "2026-11-12T02:53:13Z"
       },
       "0x0ef64bc8e5340b1fe0c08c131102a1ac7815e6ea": {
         "at": "2026-11-11T09:13:14Z",
@@ -4486,6 +4483,12 @@
         "symbol": "GABBY",
         "until": "2026-11-13T01:48:18Z"
       },
+      "0x59a1be705f0500cb0444d097b68f73a2786797fa": {
+        "at": "2026-11-12T02:53:14Z",
+        "reason": "real_depth",
+        "symbol": "UOTF",
+        "until": "2026-11-13T02:53:14Z"
+      },
       "0x59ab383e906eb21390ae2688ea3dca8a68ef4c39": {
         "at": "2026-11-11T23:03:17Z",
         "reason": "real_depth",
@@ -4857,12 +4860,6 @@
         "reason": "real_depth",
         "symbol": "SPACEX",
         "until": "2026-11-12T14:53:16Z"
-      },
-      "0x69d669c4b311b08a39b9d7b28e1e023631925ece": {
-        "at": "2026-11-11T02:53:13Z",
-        "reason": "real_depth",
-        "symbol": "XLM",
-        "until": "2026-11-12T02:53:13Z"
       },
       "0x6a0112fc5eed46246deb17a6fff8b8bfaf2f621c": {
         "at": "2026-11-11T20:57:42Z",
@@ -5476,6 +5473,12 @@
         "symbol": "LAPTOP",
         "until": "2026-11-12T05:38:17Z"
       },
+      "0x84759e5c168ae12394a8f68c99eb25664ec8bd40": {
+        "at": "2026-11-12T02:53:14Z",
+        "reason": "real_depth",
+        "symbol": "1KTO100M",
+        "until": "2026-11-13T02:53:14Z"
+      },
       "0x84dbb866b9e0dacb1e0fb136f33ad847325bb636": {
         "at": "2026-11-11T03:13:14Z",
         "reason": "real_depth",
@@ -5583,6 +5586,12 @@
         "reason": "real_depth",
         "symbol": "FOTF",
         "until": "2026-11-12T06:38:14Z"
+      },
+      "0x8a63f4e12651548e7aff597b905549192f9d2957": {
+        "at": "2026-11-12T02:53:14Z",
+        "reason": "missing:liq_usd",
+        "symbol": "UNOS",
+        "until": "2026-11-13T02:53:14Z"
       },
       "0x8b6dabe6874e448002584855656162d1c807db53": {
         "at": "2026-11-11T12:58:15Z",
@@ -6538,6 +6547,12 @@
         "symbol": "MAXI",
         "until": "2026-11-13T01:08:13Z"
       },
+      "0xb2000000000000000000002932894c14ecd6ea5e": {
+        "at": "2026-11-12T02:53:14Z",
+        "reason": "real_depth",
+        "symbol": "IMAXI",
+        "until": "2026-11-13T02:53:14Z"
+      },
       "0xb2000000000000000000002a781f90f387fb3569": {
         "at": "2026-11-11T21:33:14Z",
         "reason": "real_depth",
@@ -6549,12 +6564,6 @@
         "reason": "real_depth",
         "symbol": "DEATH",
         "until": "2026-11-12T18:18:14Z"
-      },
-      "0xb20000000000000000000030f079ac7013387986": {
-        "at": "2026-11-11T02:53:13Z",
-        "reason": "real_depth",
-        "symbol": "GTAVI",
-        "until": "2026-11-12T02:53:13Z"
       },
       "0xb2000000000000000000003276a7c54a7475dae1": {
         "at": "2026-11-11T08:43:14Z",
@@ -7210,12 +7219,6 @@
         "symbol": "ERV",
         "until": "2026-11-12T20:57:42Z"
       },
-      "0xb200000000000000000000e6e12d52854702e724": {
-        "at": "2026-11-11T02:53:13Z",
-        "reason": "real_depth",
-        "symbol": "BTC",
-        "until": "2026-11-12T02:53:13Z"
-      },
       "0xb200000000000000000000e74f6c2dd14df031d7": {
         "at": "2026-11-11T03:28:14Z",
         "reason": "real_depth",
@@ -7365,12 +7368,6 @@
         "reason": "missing:liq_usd",
         "symbol": "RCAT",
         "until": "2026-11-12T16:23:15Z"
-      },
-      "0xb3ac1fee8ba0ac230a502c7f1937a83d67f8fba3": {
-        "at": "2026-11-11T02:53:13Z",
-        "reason": "real_depth",
-        "symbol": "CARTIER",
-        "until": "2026-11-12T02:53:13Z"
       },
       "0xb3b2ec863dda3330497e07d845801c5a94b5b113": {
         "at": "2026-11-11T15:58:14Z",
