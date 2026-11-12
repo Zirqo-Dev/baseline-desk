@@ -1,16 +1,16 @@
 {
   "baseline": {
-    "cash": 31.560489739818394,
+    "cash": 38.99514381101155,
     "cooldown": {
       "a:0x148d9c29cded09bf9240bb3b2c2ecca94291910d": "2026-11-13T16:33:15Z",
       "a:0x2cb1ba2b538eb449297e7b4c8e0e3330b0e4ab07": "2026-11-13T02:58:14Z",
       "a:0x3d9210072722ea22d609540d9ba26358d016707f": "2026-11-13T20:48:15Z",
       "a:0xbb2677412ade6f649e24850167503341669afcc5": "2026-11-13T06:33:15Z",
-      "a:0xd3115aa6a8565ad9434a23ef9b93be08b2a76c8e": "2026-11-13T16:03:13Z",
+      "a:0xd3115aa6a8565ad9434a23ef9b93be08b2a76c8e": "2026-11-13T22:23:15Z",
       "a:0xe76c707be369c881642e30e526b77c832d2817f4": "2026-11-13T14:43:14Z",
       "s:FOTF": "2026-11-13T20:48:15Z",
       "s:MAX": "2026-11-13T06:33:15Z",
-      "s:MEPR": "2026-11-13T16:03:13Z",
+      "s:MEPR": "2026-11-13T22:23:15Z",
       "s:PAPER": "2026-11-13T02:58:14Z",
       "s:PENNY": "2026-11-13T16:33:15Z",
       "s:SEPPUKU": "2026-11-13T14:43:14Z"
@@ -27,41 +27,20 @@
         "entry_qliq": 17380,
         "entry_ts": "2026-11-12T21:48:14Z",
         "ladder_done": [],
-        "last_liq_usd": 37402.86,
-        "last_price": 5.455e-05,
-        "last_qliq": 18687,
+        "last_liq_usd": 37679.79,
+        "last_price": 5.535e-05,
+        "last_qliq": 18844,
         "launchpad": "other",
         "orig_qty": 103365.56864123211,
         "pair": "0x2d253172416b06ebb703d811f0ca9a6230820f66dffa66505f24e31866af7960",
-        "peak_price": 5.455e-05,
+        "peak_price": 5.535e-05,
         "qty": 103365.56864123211,
         "symbol": "Huang"
-      },
-      "0xd3115aa6a8565ad9434a23ef9b93be08b2a76c8e": {
-        "cost_usd": 1.6999999999999995,
-        "entry_fill": 1.1026188633498205e-08,
-        "entry_intended": 1.07e-08,
-        "entry_liq_usd": 20635.1,
-        "entry_qliq": 10311,
-        "entry_ts": "2026-11-12T14:38:15Z",
-        "ladder_done": [
-          0,
-          1
-        ],
-        "last_liq_usd": 46576.18,
-        "last_price": 5.347e-08,
-        "last_qliq": 23286,
-        "launchpad": "other",
-        "orig_qty": 453465849.91387755,
-        "pair": "0xb5449720084f670b9034ca03305885809e379a65",
-        "peak_price": 6.805e-08,
-        "qty": 154178388.97071832,
-        "symbol": "MEPR"
       }
     },
     "refill_week": "2026-W46",
     "refills_usd": 47.693738985981945,
-    "ticks_since_buy": 6
+    "ticks_since_buy": 7
   },
   "desk": {
     "cash": 50.0,
@@ -3274,6 +3253,12 @@
         "symbol": "A\u200aO\u200aD\u200aF",
         "until": "2026-11-13T22:08:14Z"
       },
+      "0x3d9210072722ea22d609540d9ba26358d016707f": {
+        "at": "2026-11-12T22:23:15Z",
+        "reason": "real_depth",
+        "symbol": "FOTF",
+        "until": "2026-11-13T22:23:15Z"
+      },
       "0x3dc87e7c24a709e1a83984ae2509250a36192602": {
         "at": "2026-11-12T14:18:16Z",
         "reason": "real_depth",
@@ -4299,6 +4284,12 @@
         "reason": "missing:liq_usd",
         "symbol": "FTF",
         "until": "2026-11-13T21:33:16Z"
+      },
+      "0x6a9a574551e790c45e1834a479d0fb8bf6114ba3": {
+        "at": "2026-11-12T22:23:15Z",
+        "reason": "real_depth",
+        "symbol": "burnbot",
+        "until": "2026-11-13T22:23:15Z"
       },
       "0x6ab3efab08104dfea7f6f1a9436c3cc558f4e9a3": {
         "at": "2026-11-12T02:13:12Z",
@@ -8155,21 +8146,15 @@
     },
     "watch": {
       "0x1ffebad866b0b7f0f0e76aa644de565b49b1c080": {
-        "checks": 6,
+        "checks": 7,
         "first_seen": "2026-11-12T20:38:14Z",
-        "last_check": "2026-11-12T22:03:24Z",
+        "last_check": "2026-11-12T22:23:15Z",
         "symbol": "Huang"
       },
-      "0x3d9210072722ea22d609540d9ba26358d016707f": {
-        "checks": 9,
-        "first_seen": "2026-11-12T19:43:16Z",
-        "last_check": "2026-11-12T22:03:24Z",
-        "symbol": "FOTF"
-      },
       "0x57d5d70edc26d8c745cf60b6fd7a58bea70da41a": {
-        "checks": 2,
+        "checks": 3,
         "first_seen": "2026-11-12T21:53:14Z",
-        "last_check": "2026-11-12T22:08:14Z",
+        "last_check": "2026-11-12T22:23:15Z",
         "symbol": "REBOOT"
       },
       "0xa2f08c813ff93493dbabf2f81b9c66502147cff3": {
