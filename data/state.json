@@ -27,7 +27,7 @@
     "positions": {},
     "refill_week": "2026-W46",
     "refills_usd": 47.693738985981945,
-    "ticks_since_buy": 33
+    "ticks_since_buy": 34
   },
   "desk": {
     "cash": 50.0,
@@ -139,7 +139,9 @@
         "symbol": "U\u200aS\u200aO\u200aE"
       },
       "0x09bfd645012ec9ab8fda9ff747ac1427d079c691": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 8.811e-06,
         "first_seen": "2026-11-12T04:38:16Z",
         "sight_pair": "0x1b77741a7d5eb4db6fabab41ce2d149a59c2b6e4",
@@ -950,7 +952,8 @@
       },
       "0x57217695bf2f86cae9b6007a858be7e583e74eba": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 7.433e-06,
         "first_seen": "2026-11-11T23:38:14Z",
@@ -2512,6 +2515,12 @@
         "symbol": "Basecat",
         "until": "2026-11-12T08:53:14Z"
       },
+      "0x07856fa9bb7c20831e2467360d34a51e75ea3d5f": {
+        "at": "2026-11-12T05:38:16Z",
+        "reason": "real_depth",
+        "symbol": "ANTHROPIC",
+        "until": "2026-11-13T05:38:16Z"
+      },
       "0x07cdc3b10355ee7501a4be447443f7238a05e80e": {
         "at": "2026-11-11T18:28:15Z",
         "reason": "real_depth",
@@ -3418,6 +3427,12 @@
         "symbol": "U.S OIL INDEX",
         "until": "2026-11-12T14:58:14Z"
       },
+      "0x2bf4342efa6de63371d1dbb5984ffbf74f9a7884": {
+        "at": "2026-11-12T05:38:16Z",
+        "reason": "real_depth",
+        "symbol": "AIB",
+        "until": "2026-11-13T05:38:16Z"
+      },
       "0x2c1d008a5303fdf3ef4a971347ec49cbc78aac3a": {
         "at": "2026-11-11T13:03:13Z",
         "reason": "real_depth",
@@ -3429,6 +3444,12 @@
         "reason": "real_depth",
         "symbol": "CLANKER",
         "until": "2026-11-12T11:03:14Z"
+      },
+      "0x2cb1ba2b538eb449297e7b4c8e0e3330b0e4ab07": {
+        "at": "2026-11-12T05:38:16Z",
+        "reason": "goplus_timeout",
+        "symbol": "Paper",
+        "until": "2026-11-13T05:38:16Z"
       },
       "0x2cece55aa267a0fae1d701868fe817b6e2b5e2e5": {
         "at": "2026-11-11T18:33:14Z",
@@ -9066,16 +9087,10 @@
       }
     },
     "watch": {
-      "0x2cb1ba2b538eb449297e7b4c8e0e3330b0e4ab07": {
-        "checks": 10,
-        "first_seen": "2026-11-12T02:28:14Z",
-        "last_check": "2026-11-12T05:18:16Z",
-        "symbol": "Paper"
-      },
       "0x72f4aacbaa10edce05c3c49f11438e6097708e1d": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-12T05:18:16Z",
-        "last_check": "2026-11-12T05:18:16Z",
+        "last_check": "2026-11-12T05:38:16Z",
         "symbol": "REBOOT"
       },
       "0xbb2677412ade6f649e24850167503341669afcc5": {
