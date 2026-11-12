@@ -1,6 +1,6 @@
 {
   "baseline": {
-    "cash": 38.99514381101155,
+    "cash": 33.99514381101155,
     "cooldown": {
       "a:0x148d9c29cded09bf9240bb3b2c2ecca94291910d": "2026-11-13T16:33:15Z",
       "a:0x2cb1ba2b538eb449297e7b4c8e0e3330b0e4ab07": "2026-11-13T02:58:14Z",
@@ -19,6 +19,22 @@
     "day_start_value": 36.77464268534725,
     "halted_day": "",
     "positions": {
+      "0x10c76d44ca43fdc91894f42974a190195fe2e609": {
+        "cost_usd": 5.0,
+        "entry_fill": 0.00010014934209727884,
+        "entry_intended": 9.721e-05,
+        "entry_liq_usd": 52535.37,
+        "entry_qliq": 21094,
+        "entry_ts": "2026-11-12T23:18:16Z",
+        "ladder_done": [],
+        "last_price": 9.721e-05,
+        "launchpad": "other",
+        "orig_qty": 49925.44030037972,
+        "pair": "0x37e6f9fdc846732d1b382da731213d17b11660e83221e0eb0f79db9d764b38b9",
+        "peak_price": 9.721e-05,
+        "qty": 49925.44030037972,
+        "symbol": "CoinaSaurus"
+      },
       "0x1ffebad866b0b7f0f0e76aa644de565b49b1c080": {
         "cost_usd": 5.0,
         "entry_fill": 4.8372006904487924e-05,
@@ -27,20 +43,20 @@
         "entry_qliq": 17380,
         "entry_ts": "2026-11-12T21:48:14Z",
         "ladder_done": [],
-        "last_liq_usd": 39401.69,
-        "last_price": 6.042e-05,
-        "last_qliq": 19719,
+        "last_liq_usd": 39410.51,
+        "last_price": 6.045e-05,
+        "last_qliq": 19733,
         "launchpad": "other",
         "orig_qty": 103365.56864123211,
         "pair": "0x2d253172416b06ebb703d811f0ca9a6230820f66dffa66505f24e31866af7960",
-        "peak_price": 6.042e-05,
+        "peak_price": 6.045e-05,
         "qty": 103365.56864123211,
         "symbol": "Huang"
       }
     },
     "refill_week": "2026-W46",
     "refills_usd": 47.693738985981945,
-    "ticks_since_buy": 17
+    "ticks_since_buy": 0
   },
   "desk": {
     "cash": 50.0,
@@ -475,7 +491,9 @@
         "symbol": "US\u200aO\u200aE"
       },
       "0x2a5f3209901d81a824e3057816d33cd5d0d5891d": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 9.93e-05,
         "first_seen": "2026-11-12T22:18:15Z",
         "sight_pair": "0xa9d2c88f3e0932188e3be3a1ad481e5dd3e9c8d66fb51c6c1a8a7f46cf75ac5e",
@@ -1038,7 +1056,9 @@
         "symbol": "Basecat"
       },
       "0x6dbb62528586a1262909d195fcc9b8e26d01055f": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 0.0002303,
         "first_seen": "2026-11-12T22:18:15Z",
         "sight_pair": "0xd8552232ea09619836a0bdfb66ff1eef7c0d2b9e7a9a44bab217ec07f5c4db53",
@@ -1374,7 +1394,8 @@
       },
       "0xb8f3fe83b8dfd2064d91b9915b5fc90afcbb4294": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 0.0001276,
         "first_seen": "2026-11-12T17:13:14Z",
@@ -1478,7 +1499,9 @@
         "symbol": "SLGOLD"
       },
       "0xc6989de4e2911977dd242f4bea2232681c177e64": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 0.0001001,
         "first_seen": "2026-11-12T22:18:15Z",
         "sight_pair": "0x6eb59a4ab09c2534be631fde438211e08f10bee86cb09a10e4da006e5a49cb56",
@@ -2004,12 +2027,6 @@
         "symbol": "",
         "until": "2026-11-13T08:43:13Z"
       },
-      "0x047bbd3239b87b616e9776870fe7fc024914f577": {
-        "at": "2026-11-11T23:13:15Z",
-        "reason": "real_depth",
-        "symbol": "MEOW",
-        "until": "2026-11-12T23:13:15Z"
-      },
       "0x0499853efcee3cff14dd8ff47c3bd339dc1c4ba3": {
         "at": "2026-11-12T13:33:12Z",
         "reason": "real_depth",
@@ -2021,6 +2038,12 @@
         "reason": "real_depth",
         "symbol": "Harvy",
         "until": "2026-11-13T15:43:18Z"
+      },
+      "0x04c4f23bb3c72a8ebfde2205d484d011d8371536": {
+        "at": "2026-11-12T23:18:16Z",
+        "reason": "real_depth",
+        "symbol": "NARUZO",
+        "until": "2026-11-13T23:18:16Z"
       },
       "0x052e302e2fe9937fb6f443a40355dfb2c68ccccc": {
         "at": "2026-11-12T15:28:15Z",
@@ -2688,12 +2711,6 @@
         "symbol": "UODF",
         "until": "2026-11-13T01:13:13Z"
       },
-      "0x1dd68c89e1c1dea31aab6933cbc0e2b97b95b055": {
-        "at": "2026-11-11T23:13:15Z",
-        "reason": "real_depth",
-        "symbol": "MCAT",
-        "until": "2026-11-12T23:13:15Z"
-      },
       "0x1e492e917d72f17b8568d6bdff048f5c8e7a81d4": {
         "at": "2026-11-12T07:48:14Z",
         "reason": "missing:symbol",
@@ -2843,6 +2860,12 @@
         "reason": "real_depth",
         "symbol": "RST",
         "until": "2026-11-13T22:53:14Z"
+      },
+      "0x241daa3ecd92c5d3fab6fb82d543799a0c0d3ba3": {
+        "at": "2026-11-12T23:18:16Z",
+        "reason": "missing:liq_usd",
+        "symbol": "VICE",
+        "until": "2026-11-13T23:18:16Z"
       },
       "0x243f374bf3fc96de8c593f5e9b5936f9dff8cccc": {
         "at": "2026-11-12T22:18:15Z",
@@ -3203,6 +3226,12 @@
         "reason": "missing:liq_usd",
         "symbol": "BITCOIN",
         "until": "2026-11-13T07:18:19Z"
+      },
+      "0x34b5f3f74c344347d1f384f489aca6996c39cccc": {
+        "at": "2026-11-12T23:18:16Z",
+        "reason": "real_depth",
+        "symbol": "INDEXER",
+        "until": "2026-11-13T23:18:16Z"
       },
       "0x34bdf940b70b79952be5810a9c339b0f17873af1": {
         "at": "2026-11-12T05:03:13Z",
@@ -4056,12 +4085,6 @@
         "symbol": "MINING",
         "until": "2026-11-13T21:58:16Z"
       },
-      "0x5bce9dbdd9b965fa0573af6d55eba1fef058aba3": {
-        "at": "2026-11-11T23:13:15Z",
-        "reason": "real_depth",
-        "symbol": "INDEXMAXI",
-        "until": "2026-11-12T23:13:15Z"
-      },
       "0x5bdfdf6636196bfe17bd35205043cfbaf5e9cccc": {
         "at": "2026-11-12T09:43:14Z",
         "reason": "real_depth",
@@ -4199,6 +4222,12 @@
         "reason": "real_depth",
         "symbol": "\u9ed1\u5929\u9e45",
         "until": "2026-11-13T15:23:15Z"
+      },
+      "0x631e65f25b6d3a18349dc7c17a47c63856f8fee1": {
+        "at": "2026-11-12T23:18:16Z",
+        "reason": "real_depth",
+        "symbol": "JACKET",
+        "until": "2026-11-13T23:18:16Z"
       },
       "0x636d1d21581d2251ffaf4caf8bf51fa5f5edcccc": {
         "at": "2026-11-12T05:43:16Z",
@@ -6180,12 +6209,6 @@
         "symbol": "",
         "until": "2026-11-13T07:33:13Z"
       },
-      "0xb2000000000000000000006a0fb09c4d151a25cc": {
-        "at": "2026-11-11T23:13:15Z",
-        "reason": "missing:liq_usd",
-        "symbol": "Binnet",
-        "until": "2026-11-12T23:13:15Z"
-      },
       "0xb2000000000000000000006bf70e37c943369181": {
         "at": "2026-11-12T11:53:14Z",
         "reason": "real_depth",
@@ -6647,6 +6670,12 @@
         "reason": "real_depth",
         "symbol": "BLACKSWAN",
         "until": "2026-11-13T13:18:14Z"
+      },
+      "0xb200000000000000000000e20507bc5d3eb16665": {
+        "at": "2026-11-12T23:18:16Z",
+        "reason": "real_depth",
+        "symbol": "LONGDOG",
+        "until": "2026-11-13T23:18:16Z"
       },
       "0xb200000000000000000000e37562579aa316d64a": {
         "at": "2026-11-12T10:03:13Z",
@@ -7421,12 +7450,6 @@
         "reason": "goplus_timeout",
         "symbol": "MEPR",
         "until": "2026-11-13T17:28:15Z"
-      },
-      "0xd37c477796ebac032ada391f9d6bcff2c6459ba3": {
-        "at": "2026-11-11T23:13:15Z",
-        "reason": "real_depth",
-        "symbol": "MONTRA",
-        "until": "2026-11-12T23:13:15Z"
       },
       "0xd38a19e667926d59f7538e6baf074f0a1a9ede20": {
         "at": "2026-11-12T21:43:15Z",
@@ -8325,15 +8348,15 @@
     },
     "watch": {
       "0x10c76d44ca43fdc91894f42974a190195fe2e609": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-12T23:03:13Z",
-        "last_check": "2026-11-12T23:03:13Z",
+        "last_check": "2026-11-12T23:18:16Z",
         "symbol": "CoinaSaurus"
       },
       "0x1ffebad866b0b7f0f0e76aa644de565b49b1c080": {
-        "checks": 9,
+        "checks": 10,
         "first_seen": "2026-11-12T20:38:14Z",
-        "last_check": "2026-11-12T22:58:17Z",
+        "last_check": "2026-11-12T23:18:16Z",
         "symbol": "Huang"
       },
       "0xb056632ff104fa981c0744fd34c2171768c33339": {
@@ -8343,9 +8366,9 @@
         "symbol": "CoinaSaurus"
       },
       "0xed203d3b2af1b9d291c595d3bc23908f3c520b97": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-12T23:03:13Z",
-        "last_check": "2026-11-12T23:03:13Z",
+        "last_check": "2026-11-12T23:18:16Z",
         "symbol": "TRUMP2028"
       }
     }
