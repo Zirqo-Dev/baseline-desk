@@ -29,7 +29,7 @@
     "positions": {},
     "refill_week": "2026-W46",
     "refills_usd": 47.693738985981945,
-    "ticks_since_buy": 59
+    "ticks_since_buy": 60
   },
   "desk": {
     "cash": 50.0,
@@ -383,7 +383,8 @@
       },
       "0x2410faa0925773abc32b87cb1a45f51c34773343": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 1.601e-05,
         "first_seen": "2026-11-11T18:18:14Z",
@@ -1287,7 +1288,8 @@
       },
       "0x75c8b7ca5be1857ea1c8c46da0a85217e14e6287": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 0.0002175,
         "first_seen": "2026-11-11T18:23:13Z",
@@ -2292,7 +2294,9 @@
         "symbol": "MONTRA"
       },
       "0xf10d2832f5dbdc2634296ba51b370008b1e68599": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 1.134e-05,
         "first_seen": "2026-11-11T23:23:13Z",
         "sight_pair": "0xb92c8ceb747e5ba54ff21427f352b6c9890cc9d5",
@@ -3086,12 +3090,6 @@
         "symbol": "AERO",
         "until": "2026-11-12T12:38:14Z"
       },
-      "0x1c34d29b8a5909cdb2118403199090e80abdb261": {
-        "at": "2026-11-11T00:23:13Z",
-        "reason": "real_depth",
-        "symbol": "OPST",
-        "until": "2026-11-12T00:23:13Z"
-      },
       "0x1c910e4d385e03ad35702f11c2bbd6a65fb94750": {
         "at": "2026-11-11T12:48:14Z",
         "reason": "real_depth",
@@ -3229,6 +3227,12 @@
         "reason": "real_depth",
         "symbol": "TOADZ",
         "until": "2026-11-12T20:57:42Z"
+      },
+      "0x1fac2a25ba34809a66ac143d4759c18f7bd4a6af": {
+        "at": "2026-11-12T00:23:13Z",
+        "reason": "real_depth",
+        "symbol": "1KTO100M",
+        "until": "2026-11-13T00:23:13Z"
       },
       "0x1fc55c4b8f322618b3976d260669fea0afa4cccc": {
         "at": "2026-11-11T17:18:16Z",
@@ -5750,12 +5754,6 @@
         "symbol": "BORLY",
         "until": "2026-11-12T06:18:15Z"
       },
-      "0x9297a662f7d9321badf7859d4e65c563d26f26ea": {
-        "at": "2026-11-11T00:18:15Z",
-        "reason": "real_depth",
-        "symbol": "MIHAO",
-        "until": "2026-11-12T00:18:15Z"
-      },
       "0x92a0b27103dedb0baad5d472dc811f04435930ce": {
         "at": "2026-11-11T00:53:13Z",
         "reason": "missing:liq_usd",
@@ -5941,6 +5939,12 @@
         "reason": "real_depth",
         "symbol": "nothing",
         "until": "2026-11-12T02:58:13Z"
+      },
+      "0x9b08d26f77c1d5e6942cb6cab0f215d61b378888": {
+        "at": "2026-11-12T00:23:13Z",
+        "reason": "real_depth",
+        "symbol": "Xiongbi",
+        "until": "2026-11-13T00:23:13Z"
       },
       "0x9bb03ad9c0b476922ed55272ff246746673fcccc": {
         "at": "2026-11-11T18:23:13Z",
@@ -6679,12 +6683,6 @@
         "reason": "real_depth",
         "symbol": "Jesse",
         "until": "2026-11-12T11:48:15Z"
-      },
-      "0xb200000000000000000000446979ecb860f85281": {
-        "at": "2026-11-11T00:18:15Z",
-        "reason": "missing:liq_usd",
-        "symbol": "STROPE",
-        "until": "2026-11-12T00:18:15Z"
       },
       "0xb20000000000000000000046891633d4dfa3e759": {
         "at": "2026-11-11T04:23:13Z",
@@ -8960,12 +8958,6 @@
         "symbol": "U.S OIL INDEX",
         "until": "2026-11-12T16:33:17Z"
       },
-      "0xf15fb19b997e68c7b3d94910bc7c8d1ee1c0d894": {
-        "at": "2026-11-11T00:18:15Z",
-        "reason": "real_depth",
-        "symbol": "Basecat",
-        "until": "2026-11-12T00:18:15Z"
-      },
       "0xf1bf0efcf91aa4f5531229206c0b76028e7ccccc": {
         "at": "2026-11-11T17:38:14Z",
         "reason": "real_depth",
@@ -9275,9 +9267,9 @@
     },
     "watch": {
       "0x35c7e205008d92fb13904f782ed83cf848267fbb": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-12T00:03:14Z",
-        "last_check": "2026-11-12T00:03:14Z",
+        "last_check": "2026-11-12T00:23:13Z",
         "symbol": "UFDS"
       },
       "0x7bd9881a817a18aa35c828b6fd51e26e580fa102": {
