@@ -51,3 +51,10 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-12T00:43:13Z,desk,VERIFY,,0x1bb8647afddc7b96fb077d07a73a4e7cf12ff8e3,SKIP,missing:symbol,goplus=skipped until=2026-11-13T00:43:13Z
 2026-11-12T00:43:13Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
 2026-11-12T00:43:13Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=18 rechecks=0 new=2 checked=2 passed=0 bought=0 held=0 deferred=0 dex_only=2 goplus=0 requests=6 secs=1.6 bl_positions=0 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=2 labels_done=2 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-12T00:48:15Z,desk,VERIFY,Anthropic,0xec5e746ab1edf2eb1bc7da92b39803b734bc586e,WATCH,goplus_not_ready,first_seen=2026-11-12T00:18:13Z checks=3 pending=top10_pct b1=60 s1=0 b24=60 s24=0 liq=188748 dex=uniswap:v2 qliq=94348 pair_age=33 token_age=33
+2026-11-12T00:48:15Z,desk,VERIFY,REBOOT,0x015544341b00d7b9e45a852c9780383e10319ad1,WATCH,goplus_not_ready,"first_seen=2026-11-12T00:33:15Z checks=2 pending=mint_open,freeze_or_blacklist,honeypot,buy_tax_pct,sell_tax_pct,dev_pct,top10_pct,lp_locked_pct,risk_flags b1=32 s1=0 b24=32 s24=0 liq=186682 dex=uniswap:v2 qliq=93327 pair_age=18 token_age=18"
+2026-11-12T00:48:15Z,desk,VERIFY,MEOW,0x37896f495c473639fedd6feffd4f67deab36d85d,SKIP,real_depth,goplus=skipped until=2026-11-13T00:48:15Z
+2026-11-12T00:48:15Z,desk,VERIFY,MOE,0x56c9bf0329708b4e23f01cb33ab1361865edc560,SKIP,real_depth,goplus=skipped until=2026-11-13T00:48:15Z
+2026-11-12T00:48:15Z,desk,VERIFY,IMAXI,0xb2000000000000000000001259a286effdccc903,SKIP,real_depth,goplus=skipped until=2026-11-13T00:48:15Z
+2026-11-12T00:48:15Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
+2026-11-12T00:48:15Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=19 rechecks=2 new=3 checked=5 passed=0 bought=0 held=0 deferred=0 dex_only=3 goplus=2 requests=10 secs=4.0 bl_positions=0 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=none labels_due=0 labels_done=0 labels_calls=0 live=ok alerts=none alerts_sent=0
