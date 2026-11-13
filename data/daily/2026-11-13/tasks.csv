@@ -1105,3 +1105,13 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-13T14:08:15Z,desk,VERIFY,Ready,0xb2000000000000000000000c2e789cfbebb1d301,SKIP,real_depth,goplus=skipped until=2026-11-14T14:08:15Z
 2026-11-13T14:08:15Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
 2026-11-13T14:08:15Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=21 rechecks=0 new=3 checked=3 passed=0 bought=0 held=0 deferred=0 dex_only=3 goplus=0 requests=7 secs=2.1 bl_positions=0 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=1 labels_done=1 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-13T14:13:14Z,desk,VERIFY,GODF,0x0734f0f9d424e5b84e7ee5222bdb0d2385d09332,WATCH,goplus_not_ready,"first_seen=2026-11-13T13:08:15Z checks=5 pending=honeypot,buy_tax_pct,sell_tax_pct,dev_pct,top10_pct,lp_locked_pct b1=118 s1=80 b24=145 s24=97 liq=42554672 dex=uniswap:v4 qliq=45269 pair_age=72 token_age=72"
+2026-11-13T14:13:14Z,desk,VERIFY,SI,0xf45ce6899552c31f83894c0314dd17310f8bf6a1,SKIP,real_depth,first_seen=2026-11-13T13:43:12Z checks=3 goplus=skipped until=2026-11-14T14:13:14Z
+2026-11-13T14:13:14Z,desk,VERIFY,,0x7126aef72327d5c60ad93bb4b6311f52fb722c81,SKIP,missing:symbol,goplus=skipped until=2026-11-14T14:13:14Z
+2026-11-13T14:13:14Z,desk,VERIFY,CHUBBY,0xa27df75cc78d88e1b3b2d32d321cddb21bc0d78b,SKIP,real_depth,goplus=skipped until=2026-11-14T14:13:14Z
+2026-11-13T14:13:14Z,desk,VERIFY,Launchpad,0xafc247baa62fe46a8bb545ff9e4a533a416e9ee6,SKIP,real_depth,goplus=skipped until=2026-11-14T14:13:14Z
+2026-11-13T14:13:14Z,desk,VERIFY,GOFD,0xb2000000000000000000000fd51d83ce888fb6ee,SKIP,real_depth,goplus=skipped until=2026-11-14T14:13:14Z
+2026-11-13T14:13:14Z,desk,VERIFY,SUPERAÇÃO,0xefc58900bba6279730cce8646f85e80e71493fa1,SKIP,real_depth,goplus=skipped until=2026-11-14T14:13:14Z b1=1 s1=0 b24=1 s24=0 liq=100004 dex=uniswap:v4 qliq=1 pair_age=5 token_age=5
+2026-11-13T14:13:14Z,desk,VERIFY,SPEED,0xb20000000000000000000025a8899eae34b9bc01,SKIP,missing:liq_usd,goplus=skipped until=2026-11-14T14:13:14Z
+2026-11-13T14:13:14Z,baseline,EXECUTE,GODF,0x0734f0f9d424e5b84e7ee5222bdb0d2385d09332,SKIP,reentry_cooldown,seed=202611131413 eligible=1 pick=0 pool=0734f0 desk=WATCH launchpad=other
+2026-11-13T14:13:14Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=21 rechecks=2 new=6 checked=8 passed=0 bought=0 held=0 deferred=0 dex_only=7 goplus=1 requests=13 secs=3.3 bl_positions=0 bl_due=1 bl_eligible=1 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=5 labels_done=5 labels_calls=1 live=ok alerts=none alerts_sent=0
