@@ -1,8 +1,9 @@
 {
   "baseline": {
-    "cash": 30.891721281289684,
+    "cash": 35.58643781971221,
     "cooldown": {
       "a:0x10c76d44ca43fdc91894f42974a190195fe2e609": "2026-11-13T23:23:13Z",
+      "a:0x10ea17564458a091f096da77908c9d6c59fdfef6": "2026-11-14T15:53:14Z",
       "a:0x148d9c29cded09bf9240bb3b2c2ecca94291910d": "2026-11-13T16:33:15Z",
       "a:0x1d58617c4dd3a38ce9b4621efc2b03e42eda661a": "2026-11-14T13:03:13Z",
       "a:0x1ffebad866b0b7f0f0e76aa644de565b49b1c080": "2026-11-14T04:38:15Z",
@@ -13,7 +14,6 @@
       "a:0xb3c86288f00ca2ee9de57f6cd5db1ab75c2d2222": "2026-11-14T11:33:14Z",
       "a:0xd3115aa6a8565ad9434a23ef9b93be08b2a76c8e": "2026-11-13T22:23:15Z",
       "a:0xdc5bb02c894d5e848d1449a5811b2b23de26f6d0": "2026-11-14T10:28:15Z",
-      "a:0xe76c707be369c881642e30e526b77c832d2817f4": "2026-11-13T14:43:14Z",
       "s:AIPF": "2026-11-14T12:28:16Z",
       "s:AOTF": "2026-11-14T05:48:14Z",
       "s:CFD": "2026-11-14T10:28:15Z",
@@ -25,34 +25,15 @@
       "s:MEPR": "2026-11-13T22:23:15Z",
       "s:NAMI": "2026-11-14T08:23:16Z",
       "s:PENNY": "2026-11-13T16:33:15Z",
-      "s:SEPPUKU": "2026-11-13T14:43:14Z"
+      "s:RST": "2026-11-14T15:53:14Z"
     },
     "day": "2026-11-13",
     "day_start_value": 43.87773239130222,
     "halted_day": "",
-    "positions": {
-      "0x10ea17564458a091f096da77908c9d6c59fdfef6": {
-        "cost_usd": 5.0,
-        "entry_fill": 0.0025473754184473737,
-        "entry_intended": 0.002473,
-        "entry_liq_usd": 3711331.0,
-        "entry_qliq": 66687,
-        "entry_ts": "2026-11-13T15:03:19Z",
-        "ladder_done": [],
-        "last_liq_usd": 3668948.14,
-        "last_price": 0.002445,
-        "last_qliq": 66157,
-        "launchpad": "other",
-        "orig_qty": 1962.8045257057172,
-        "pair": "0x754d266396d2048aeb54ceb26cc6542b9b1adf78a7321b54d558dd3e28995c05",
-        "peak_price": 0.002481,
-        "qty": 1962.8045257057172,
-        "symbol": "RST"
-      }
-    },
+    "positions": {},
     "refill_week": "2026-W46",
     "refills_usd": 47.693738985981945,
-    "ticks_since_buy": 9
+    "ticks_since_buy": 10
   },
   "desk": {
     "cash": 50.0,
@@ -801,6 +782,14 @@
         "sight_qliq": 6491,
         "symbol": "AO\u200aDT"
       },
+      "0x27811a9e8b3ba8b263c982fd586ba150e1f32e35": {
+        "done": [],
+        "first_price": 7.608e-05,
+        "first_seen": "2026-11-13T15:53:14Z",
+        "sight_pair": "0xcf78f19ca00b43eaa4dcace8a4becfbfbce4afe4334d00c890fdb22fdaadc110",
+        "sight_qliq": 19018,
+        "symbol": "Speed"
+      },
       "0x287347c0ccd5be603990c73ac1dbce1f15f71f56": {
         "done": [
           1,
@@ -1240,7 +1229,8 @@
       },
       "0x4149ba44e84cb72c8ad05aeb26db068ab93143ca": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 1.063e-05,
         "first_seen": "2026-11-13T09:53:13Z",
@@ -2038,7 +2028,8 @@
       },
       "0xa1defb3f313429db8bbbeaf8246e46aec48fcf0b": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 1.755e-05,
         "first_seen": "2026-11-13T09:53:13Z",
@@ -8261,6 +8252,12 @@
         "symbol": "LUCE",
         "until": "2026-11-14T06:28:16Z"
       },
+      "0xdaded554e09db0c2423779288f2483fa423ec54b": {
+        "at": "2026-11-13T15:53:14Z",
+        "reason": "real_depth",
+        "symbol": "PENNY",
+        "until": "2026-11-14T15:53:14Z"
+      },
       "0xdb444915ab3fa8dd1c3f85185655f18d2810c080": {
         "at": "2026-11-13T13:58:13Z",
         "reason": "real_depth",
@@ -8953,6 +8950,12 @@
         "last_check": "2026-11-13T15:38:15Z",
         "symbol": "RST"
       },
+      "0x27811a9e8b3ba8b263c982fd586ba150e1f32e35": {
+        "checks": 1,
+        "first_seen": "2026-11-13T15:53:14Z",
+        "last_check": "2026-11-13T15:53:14Z",
+        "symbol": "Speed"
+      },
       "0x41e3e1ede901fda7d613b1ce6d554c18ac2f60d6": {
         "checks": 3,
         "first_seen": "2026-11-13T15:03:19Z",
@@ -8965,16 +8968,10 @@
         "last_check": "2026-11-13T15:38:15Z",
         "symbol": "FOTF"
       },
-      "0xdaded554e09db0c2423779288f2483fa423ec54b": {
-        "checks": 2,
-        "first_seen": "2026-11-13T15:18:15Z",
-        "last_check": "2026-11-13T15:33:16Z",
-        "symbol": "PENNY"
-      },
       "0xe59de4b55d36c2b6fcbbf95748132d3be26ce9b0": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-13T15:33:16Z",
-        "last_check": "2026-11-13T15:33:16Z",
+        "last_check": "2026-11-13T15:53:14Z",
         "symbol": "REBOOT"
       }
     }
