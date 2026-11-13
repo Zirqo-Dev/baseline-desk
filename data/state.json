@@ -25,7 +25,7 @@
     "positions": {},
     "refill_week": "2026-W46",
     "refills_usd": 47.693738985981945,
-    "ticks_since_buy": 28
+    "ticks_since_buy": 29
   },
   "desk": {
     "cash": 50.0,
@@ -1401,6 +1401,14 @@
         "sight_qliq": 78126,
         "symbol": "BOOTR"
       },
+      "0x7479ae5d7466c34bf955acf2807175c3a4e4d51d": {
+        "done": [],
+        "first_price": 0.0002688,
+        "first_seen": "2026-11-13T07:23:21Z",
+        "sight_pair": "0x9385ada1f643e2c55457ec5aa8e9f185e73fb3e362ad2fc1162df18186700f9b",
+        "sight_qliq": 29,
+        "symbol": "NUCLEAR RESERVE U.S"
+      },
       "0x74885933552312c344069d7df7a8d8ca958b7cd8": {
         "done": [
           1
@@ -1837,7 +1845,9 @@
         "symbol": "Basecat"
       },
       "0xb7f4185fde61b4cedd433f02a40e5c239ea187b4": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 7.054e-05,
         "first_seen": "2026-11-13T06:23:17Z",
         "sight_pair": "0xb24f7158592cd579d79c13f20667747a8f065d5614c838d730941d65b2a8b688",
@@ -3887,12 +3897,6 @@
         "symbol": "GER",
         "until": "2026-11-13T21:33:16Z"
       },
-      "0x34981922b2aba5d553f3bc120ae0d5beb87a0ba1": {
-        "at": "2026-11-12T07:18:19Z",
-        "reason": "missing:liq_usd",
-        "symbol": "BITCOIN",
-        "until": "2026-11-13T07:18:19Z"
-      },
       "0x34b5f3f74c344347d1f384f489aca6996c39cccc": {
         "at": "2026-11-12T23:18:16Z",
         "reason": "real_depth",
@@ -4331,12 +4335,6 @@
         "symbol": "U.S RESERVE POWER",
         "until": "2026-11-13T10:48:15Z"
       },
-      "0x45d3ffa70162853115c25f65af3474d2ea9bcccc": {
-        "at": "2026-11-12T07:23:15Z",
-        "reason": "missing:symbol",
-        "symbol": "",
-        "until": "2026-11-13T07:23:15Z"
-      },
       "0x461915c42a77a4795626f884b04e42c02073b076": {
         "at": "2026-11-12T22:33:14Z",
         "reason": "real_depth",
@@ -4498,6 +4496,12 @@
         "reason": "real_depth",
         "symbol": "SID",
         "until": "2026-11-14T04:53:12Z"
+      },
+      "0x4fe7a0f612bcad69abf6084df39bc1c2ee4fe7c5": {
+        "at": "2026-11-13T07:23:21Z",
+        "reason": "real_depth",
+        "symbol": "OIF",
+        "until": "2026-11-14T07:23:21Z"
       },
       "0x4fff816eddceb2198f449d293c248bde81b56749": {
         "at": "2026-11-12T11:58:15Z",
@@ -5267,6 +5271,12 @@
         "symbol": "FIRE",
         "until": "2026-11-13T12:18:14Z"
       },
+      "0x7479ae5d7466c34bf955acf2807175c3a4e4d51d": {
+        "at": "2026-11-13T07:23:21Z",
+        "reason": "real_depth",
+        "symbol": "NUCLEAR RESERVE U.S",
+        "until": "2026-11-14T07:23:21Z"
+      },
       "0x74885933552312c344069d7df7a8d8ca958b7cd8": {
         "at": "2026-11-13T02:23:13Z",
         "reason": "real_depth",
@@ -5692,12 +5702,6 @@
         "reason": "real_depth",
         "symbol": "AODF",
         "until": "2026-11-13T14:43:14Z"
-      },
-      "0x8c0ffeb75a41fcc99465bacdf07f7b9a7cb427d0": {
-        "at": "2026-11-12T07:23:15Z",
-        "reason": "missing:symbol",
-        "symbol": "",
-        "until": "2026-11-13T07:23:15Z"
       },
       "0x8c437e02144ba1761095be0a3b20e74d9ee62301": {
         "at": "2026-11-12T16:38:16Z",
@@ -7301,6 +7305,12 @@
         "symbol": "BSWAN",
         "until": "2026-11-13T15:08:15Z"
       },
+      "0xb200000000000000000000e9178754c76891c344": {
+        "at": "2026-11-13T07:23:21Z",
+        "reason": "real_depth",
+        "symbol": "Omnia",
+        "until": "2026-11-14T07:23:21Z"
+      },
       "0xb200000000000000000000e9bbcd43afc4a69301": {
         "at": "2026-11-12T16:18:18Z",
         "reason": "real_depth",
@@ -7684,12 +7694,6 @@
         "reason": "real_depth",
         "symbol": "UCI",
         "until": "2026-11-14T02:48:16Z"
-      },
-      "0xc242625eb570a37b9976d70bc23e7d443a876a20": {
-        "at": "2026-11-12T07:18:19Z",
-        "reason": "real_depth",
-        "symbol": "1KTO100M",
-        "until": "2026-11-13T07:18:19Z"
       },
       "0xc2debf1e11e8b63df288418094f3683e139fbb01": {
         "at": "2026-11-12T18:38:16Z",
@@ -8954,16 +8958,10 @@
         "symbol": "NDG"
       },
       "0x4f5d88722ce0ef78a0f67edc509b4c0be7d6cb0e": {
-        "checks": 2,
-        "first_seen": "2026-11-13T06:53:15Z",
-        "last_check": "2026-11-13T07:08:16Z",
-        "symbol": "Basecat"
-      },
-      "0x4fe7a0f612bcad69abf6084df39bc1c2ee4fe7c5": {
         "checks": 3,
-        "first_seen": "2026-11-13T06:38:14Z",
-        "last_check": "2026-11-13T07:08:16Z",
-        "symbol": "OIF"
+        "first_seen": "2026-11-13T06:53:15Z",
+        "last_check": "2026-11-13T07:23:21Z",
+        "symbol": "Basecat"
       },
       "0x81c7ec3ae827601e9d0211bad68ac36475e9626f": {
         "checks": 1,
