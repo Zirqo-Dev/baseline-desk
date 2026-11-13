@@ -1,12 +1,12 @@
 {
   "baseline": {
-    "cash": 33.00317803273275,
+    "cash": 36.88776273139528,
     "cooldown": {
       "a:0x10c76d44ca43fdc91894f42974a190195fe2e609": "2026-11-13T23:23:13Z",
       "a:0x10ea17564458a091f096da77908c9d6c59fdfef6": "2026-11-14T15:53:14Z",
       "a:0x1d58617c4dd3a38ce9b4621efc2b03e42eda661a": "2026-11-14T13:03:13Z",
       "a:0x1ffebad866b0b7f0f0e76aa644de565b49b1c080": "2026-11-14T04:38:15Z",
-      "a:0x27811a9e8b3ba8b263c982fd586ba150e1f32e35": "2026-11-14T16:33:19Z",
+      "a:0x27811a9e8b3ba8b263c982fd586ba150e1f32e35": "2026-11-14T16:43:13Z",
       "a:0x3d9210072722ea22d609540d9ba26358d016707f": "2026-11-13T20:48:15Z",
       "a:0x8888cdad9ef66382f89e68f95ec384d89ec28888": "2026-11-14T08:23:16Z",
       "a:0xa1defb3f313429db8bbbeaf8246e46aec48fcf0b": "2026-11-14T12:28:16Z",
@@ -25,36 +25,15 @@
       "s:MEPR": "2026-11-13T22:23:15Z",
       "s:NAMI": "2026-11-14T08:23:16Z",
       "s:RST": "2026-11-14T15:53:14Z",
-      "s:SPEED": "2026-11-14T16:33:19Z"
+      "s:SPEED": "2026-11-14T16:43:13Z"
     },
     "day": "2026-11-13",
     "day_start_value": 43.87773239130222,
     "halted_day": "",
-    "positions": {
-      "0x27811a9e8b3ba8b263c982fd586ba150e1f32e35": {
-        "cost_usd": 3.3499999999999996,
-        "entry_fill": 0.00012495983333333334,
-        "entry_intended": 0.0001213,
-        "entry_liq_usd": 77490.22,
-        "entry_qliq": 29112,
-        "entry_ts": "2026-11-13T16:08:23Z",
-        "ladder_done": [
-          0
-        ],
-        "last_liq_usd": 112333.35,
-        "last_price": 0.0002244,
-        "last_qliq": 46541,
-        "launchpad": "other",
-        "orig_qty": 40012.857464865374,
-        "pair": "0xcf78f19ca00b43eaa4dcace8a4becfbfbce4afe4334d00c890fdb22fdaadc110",
-        "peak_price": 0.0002244,
-        "qty": 26808.6145014598,
-        "symbol": "Speed"
-      }
-    },
+    "positions": {},
     "refill_week": "2026-W46",
     "refills_usd": 47.693738985981945,
-    "ticks_since_buy": 6
+    "ticks_since_buy": 7
   },
   "desk": {
     "cash": 50.0,
@@ -4126,12 +4105,6 @@
         "symbol": "ECFL",
         "until": "2026-11-14T09:13:14Z"
       },
-      "0x2d927cd6a91e67ec64bb787b34c93f9d95d37e01": {
-        "at": "2026-11-12T16:38:16Z",
-        "reason": "missing:liq_usd",
-        "symbol": "PENNY",
-        "until": "2026-11-13T16:38:16Z"
-      },
       "0x2e4675dc1cf1a32a569fb2152706f59f37026410": {
         "at": "2026-11-13T06:48:14Z",
         "reason": "missing:liq_usd",
@@ -4557,12 +4530,6 @@
         "reason": "top10_pct",
         "symbol": "AERO",
         "until": "2026-11-14T07:08:16Z"
-      },
-      "0x3f7665512084d992ef4bf704f4686e8302f7cccc": {
-        "at": "2026-11-12T16:38:16Z",
-        "reason": "real_depth",
-        "symbol": "MONOS",
-        "until": "2026-11-13T16:38:16Z"
       },
       "0x3fd8a156fe4c5a38c853b63ee95ccf6bc5563d28": {
         "at": "2026-11-12T18:23:16Z",
@@ -5578,6 +5545,12 @@
         "symbol": "TONIC",
         "until": "2026-11-13T20:58:13Z"
       },
+      "0x7821d7d24c03e2101bf1c823b0c268ca72210801": {
+        "at": "2026-11-13T16:43:13Z",
+        "reason": "missing:liq_usd",
+        "symbol": "NORMIE",
+        "until": "2026-11-14T16:43:13Z"
+      },
       "0x7857eca51892f6956298335cfe5d2a5a72b42ba3": {
         "at": "2026-11-13T14:43:14Z",
         "reason": "missing:liq_usd",
@@ -5883,12 +5856,6 @@
         "reason": "real_depth",
         "symbol": "BOOTR",
         "until": "2026-11-14T11:18:15Z"
-      },
-      "0x8c437e02144ba1761095be0a3b20e74d9ee62301": {
-        "at": "2026-11-12T16:38:16Z",
-        "reason": "missing:liq_usd",
-        "symbol": "Penny",
-        "until": "2026-11-13T16:38:16Z"
       },
       "0x8c619ba5b81abda7d72ac8fdf6ea7e610e3c6a03": {
         "at": "2026-11-13T15:28:16Z",
@@ -6382,12 +6349,6 @@
         "symbol": "Huang",
         "until": "2026-11-14T08:43:14Z"
       },
-      "0xa93aeb436f9365c9b202fd188e0eea19d135e9a8": {
-        "at": "2026-11-12T16:38:16Z",
-        "reason": "real_depth",
-        "symbol": "Basedog",
-        "until": "2026-11-13T16:38:16Z"
-      },
       "0xa94c5b24926aeae5b473de3d8a2745510ff8ffa3": {
         "at": "2026-11-12T20:28:15Z",
         "reason": "real_depth",
@@ -6843,6 +6804,12 @@
         "reason": "real_depth",
         "symbol": "BSWN",
         "until": "2026-11-14T12:43:13Z"
+      },
+      "0xb2000000000000000000003817901460f4b31dd7": {
+        "at": "2026-11-13T16:43:13Z",
+        "reason": "real_depth",
+        "symbol": "PENNY",
+        "until": "2026-11-14T16:43:13Z"
       },
       "0xb20000000000000000000038a5c7bc13a6ddeaf4": {
         "at": "2026-11-12T23:13:13Z",
