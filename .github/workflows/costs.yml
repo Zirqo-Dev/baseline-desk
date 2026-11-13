@@ -1,0 +1,48 @@
+# BL-45: read-only cost meter (the owner's D5, docs/DECISIONS.md; docs/NOTES.md "BL-45"). Every 2 h plus by hand.
+# One run = python -m tools.costs --run: about 78 eth_calls to Base's public RPC (cap 100), state override only,
+# nothing broadcast, no secret, no key. Writes backtest/costs/<UTC day>.csv (+ window.json once) and commits ONLY
+# backtest/costs/ ("backtest: costs <ts>"). Never touches data/, never on the tick path, own concurrency group,
+# so it can never make tick.yml red. A failed run commits nothing.
+name: costs
+
+on:
+  schedule:
+    - cron: "17 */2 * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: costs
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  meter:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Measure and commit backtest/costs/ only
+        run: |
+          python -m tools.costs --run
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          git add -A backtest/costs/
+          if git diff --cached --name-only | grep -v '^backtest/costs/'; then
+            echo "ABORT: something outside backtest/costs/ is staged"; exit 1
+          fi
+          if git diff --cached --quiet; then echo "no change"; exit 0; fi
+          git commit -q -m "backtest: costs $(date -u +%Y-%m-%dT%H:%MZ)"
+          for try in 1 2 3 4 5; do
+            if git pull --rebase -q origin main && git push -q origin HEAD:main; then exit 0; fi
+            git rebase --abort 2>/dev/null || true
+            echo "push rejected (try $try)"; sleep $((try * 5))
+          done
+          exit 1

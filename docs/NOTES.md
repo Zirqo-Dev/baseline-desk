@@ -1941,6 +1941,117 @@ Moved from CLAUDE.md section 11 on 2026-10-23 (BL-2 process cleanup). Wording is
   price columns read only in last_close(), no pnl / ret / chg / win / gain names, no such key in the output); core
   never imports tools.liquid. 477 pass on 3.13 (456 before).
 
+## BL-45
+- Read-only cost meter (the owner's D5 option B, 2026-11-11, written 2026-11-12, the one exception to non-negotiable 1;
+  the owner's Nov 12 answers Q1 A, Q2 hop measured, Q3 A, Q4 keep running, and plan changes 1-6, DECISIONS). Code:
+  tools/costs.py (meter, freeze, summary, probe build helpers; stdlib only), tools/costprobe.sol + tools/costprobe.hex,
+  .github/workflows/costs.yml, tests/test_costs.py; files backtest/costs/tokens.json (frozen in the BL-45 commit),
+  then <UTC day>.csv and window.json from the workflow. Nothing under core/, data/ or site/ changed; core/ never imports
+  tools.costs or reads backtest/costs/ (test); no rule reads it; no threshold or friction number changed. Evidence only:
+  any change to a threshold or to the 3% base friction from this data still goes through the owner in core/config.py.
+- Source (one): Base's public RPC https://mainnet.base.org, keyless, chain 8453, eth_call (+ one eth_blockNumber per
+  run) only. GeckoTerminal is NOT used by the meter: its terms page answers automated clients with a bot challenge
+  and its API guide moved to docs.coingecko.com (outside the session network), so its terms could not be read; pool
+  tokens, fee tiers, hop pools and the quote-token prices used for sizing all come from the chain instead. The
+  survey file backtest/liquid/universe.json (BL-39) gives the token list and each token's deepest pool.
+- Terms check (2026-11-12, docs.base.org "Connect to Base"): "The public RPC endpoints are free, rate limited, and best
+  effort. They are not suitable for production apps." and Base Mainnet "lowered the read-request rate limit on October
+  8, 2026" (no number published). No terms page in the docs and nothing forbids automated use; a light research job
+  (about 80 calls every 2 h) is not a production app. If the endpoint ever refuses the meter, a dedicated provider is a
+  new owner decision (a key would be a secret), never switched to silently.
+- Method (sale simulation without holding the token): one eth_call per token, leg and size, to a made-up address
+  (PROBE 0x...c0517e, caller FROM 0x...0c0517) with a state override that (a) places the CostProbe runtime code there
+  and (b) plants a start-token balance (10^30 raw) in that token's balance slot. Inside the call the probe reads the
+  pool's mid (slot0 sqrtPriceX96, or getReserves), buys `amount` of the start token into the other token, reads the
+  mid again, then sells everything it received back, and returns the pool's own math and the real balance changes.
+  Nothing is broadcast; no key, wallet, signature or allowance exists. Payment per pool type:
+
+  | dex label (universe.json) | n of 36 | pool type | paid by |
+  |---|---|---|---|
+  | uniswap-v3-base | 26 | Uniswap v3 | swap() then uniswapV3SwapCallback: a transfer of what the pool asks |
+  | pancakeswap-v3-base | 3 | PancakeSwap v3 | swap() then pancakeV3SwapCallback: a transfer |
+  | aerodrome-slipstream | 3 | Aerodrome Slipstream (CL) | swap() then uniswapV3SwapCallback: a transfer |
+  | aerodrome-slipstream-3 | 2 | Aerodrome Slipstream (CL) | swap() then uniswapV3SwapCallback: a transfer |
+  | aerodrome-base | 2 | Aerodrome v2 volatile (solidly) | transfer to the pool, then swap() (getAmountOut on what arrived) |
+  | uniswap-v4-base | 0 (3 excluded) | Uniswap v4 (PoolManager) | not supported: excluded and counted (plan change 2, Q3 A) |
+
+  Aerodrome v2 stable pools and any other dex label would be excluded and counted (none in the 39).
+- Balance slots (plan change 3): for each start token the freeze tries the holder's balance key under Solidity mapping
+  slots 0-40, Vyper key order, Solady ERC20 (seed 0x87a211a2) and OpenZeppelin v5 namespaced ERC20, planting 10^30
+  with stateDiff, and keeps the first key for which balanceOf(PROBE) returns exactly 10^30. A token with no confirmed
+  key is excluded (balance_slot_unconfirmed; none). Found: USDC solidity:9 (FiatToken balanceAndBlacklistStates), WETH
+  solidity:3 (WETH9), ADS 0xb20a4bd0... oz5. The key is stored in tokens.json (it depends on PROBE only).
+- Hops (Q2): each quote token gets a hop toward USDC: the deepest pool between it and USDC or WETH, searched with
+  getPool over the factories the 36 pools came from (Uniswap v3 fees 100/500/3000/10000, PancakeSwap v3 100/500/2500/
+  10000, Slipstream tick spacings 1/10/50/100/200/2000, Aerodrome v2 volatile), by the USD value of USDC / WETH the pool
+  holds at the freeze. Result: WETH -> USDC = Uniswap v3 0x6c561b44... (0.3% fee, about 35.2M USD of USDC held), ADS
+  -> WETH = Uniswap v3 0x16793ae3... (0.3%, about 185k USD of WETH). Quote mix of the 36: ADS 22 (route token/ADS ->
+  ADS/WETH -> WETH/USDC), USDC 11, WETH 3 (-> WETH/USDC). Each hop is metered as its own leg at the same sizes, from
+  its USDC-side token (USDC for WETH/USDC, WETH for ADS/WETH). Caveat: the deepest pool is not the cheapest route (a
+  router would likely use a 0.05% WETH/USDC pool), so the hop cost is pessimistic, never flattering.
+- Sizing: 5 and 25 USD of the start token, priced from this run's hop mids (one mids() eth_call per run); the price is
+  used for the amount only and never stored.
+- Costs (all % against the pool's own mid, so the pool fee is inside them): buy_pct = 1 - received x mid_before /
+  spent; sell_pct = 1 - received back / (sold x mid just before the sell); rt_pct = 1 - (1 - buy)(1 - sell), the HELD
+  round trip (buy now, sell later at an unchanged mid). Not 1 - received back / spent: an instant flip in one call wins
+  its own price impact back and shows only the fees (the first smoke showed exactly 2 x the fee at 5 and 25 USD).
+  usdc_rt_pct (token legs) = 1 - (1 - rt token leg) x the product over its hops (1 - rt hop) at the same size and run;
+  blank when any leg failed. short_buy_pct = 1 - received / the pool's stated output; short_sell_pct = the larger of
+  1 - arrived at the pool / sent and 1 - received / the pool's stated output.
+- Sale simulation verdict: pass; fail with reason revert_buy (the buy reverted), revert_sell (the sale reverted:
+  honeypot-like, or a fee-on-transfer token a v3 pool refuses), tax_like (a shortfall over 1.0% on either side, costs
+  still logged), no_route (no readable mid, or a zero output). sim "error" (rpc_error, cap, no_price) is not a sale
+  result and is left out of the fail rate. A token that blocks contracts or the probe's made-up addresses would show as
+  a fail; a token whose tax only starts later, or that blocks only some sellers, can still pass (one simulation is not
+  proof of a clean exit).
+- Columns of backtest/costs/<UTC day>.csv (one row per leg and size per run, appended; header once): ts (run start),
+  block (every call of a run is pinned to it), leg (token | hop), token, symbol, start (the token the trip starts
+  from), pool, dex, fee_pct (pool fee at the freeze; v3 fee / 10,000, Aerodrome v2 factory getFee / 100), size_usd (5 or
+  25: the ticket, not a value of the token), buy_pct, sell_pct, rt_pct, usdc_rt_pct, short_buy_pct, short_sell_pct, sim
+  (pass | fail | error), reason, source ("base-rpc eth_call"), latency_ms. Percentages and pass/fail only: no price, no
+  token amount, no USD value of a token (test), which also keeps BL-39's "no returns from backtest/liquid/" seal: the
+  freeze reads only the volume column of daily.jsonl.gz, as the survey did.
+- Token rule (frozen 2026-11-13T00:27Z UTC (frozen_at) at block 56,696,481, in tokens.json): backtest/liquid/universe.json tokens
+  whose deepest pool's median daily volume over the 30 days before CUT 2026-11-08 is >= 100k USD (a no-trade day = 0;
+  the survey's "median daily volume" row): 39. Excluded: an address in any data/daily/*/tasks.csv address column 0
+  (seal A; the survey had already dropped the Oct 23 - Nov 7 launch universe), Uniswap v4 3 (BSW, Surplus, POD), other
+  pool types 0, stable curves 0, no hop 0, unconfirmed slot 0. Metered: 36 (dex mix in the table above). Note: 22 of
+  the 36 are ADS-paired tokens named after software projects (ADGUARDHOME, INFLUXDB, ...): volume rank is not proof
+  of real demand. The Nov 2 week's trailing 7-day mean (the other survey measure) gives 42 (35 in both).
+- Window (Q4, plan change 1): tokens.json records the window (7 days from the first run); the first workflow run
+  writes backtest/costs/window.json once (start, end = start + 7 d), never rewritten. --summary reads that window by
+  default (--all for every row). After the window the meter keeps running with the same frozen list until a later story
+  changes it.
+- Call budget (measured 2026-11-13 from this sandbox): no refusal at 0.5, 0.25 or 0.1 s between calls (100 calls);
+  latency ~120-140 ms. Pace 0.5 s (PACE_S). One full run = 1 eth_blockNumber + 1 mids + 4 hop trips + 72 token trips =
+  78 calls, 38.7 s, 0 refused; hard cap MAX_CALLS 100 per run (retries count; at the cap the remaining rows are logged
+  sim=error reason=cap). 12 runs a day = ~940 calls/day; ~70 KB of CSV a day. The freeze took 352 calls (2 min 56 s).
+- Workflow costs.yml: cron "17 */2 * * *" (GitHub schedule) + workflow_dispatch, concurrency group costs (never the
+  tick's), 15 min timeout, Python 3.13, no secret, no env; stages backtest/costs/ only (aborts if anything else is
+  staged), commits "backtest: costs <UTC ts>", pull --rebase + push with 5 tries (backtest.yml's pattern). It can never
+  make tick.yml red; a failed run commits nothing.
+- Probe build (plan change 4, reproducible): solcjs 0.8.26 (npm solc@0.8.26, commit 8a97fa7a), optimizer on, 200 runs,
+  evmVersion cancun. Rebuild from the repo root:
+  python -m tools.costs --probe-input | npx -y -p solc@0.8.26 solcjs --standard-json | python -m tools.costs --probe-output
+  tools/costprobe.hex sha256 7b55d75b3339a657c36b36b7460b76756b156796d87f0e46387f7b18c28da8e7 (4,122 bytes; pinned by
+  tests/test_costs.py and in tokens.json). Rebuilt from source in a clean folder: same sha256.
+- Commands: python -m tools.costs --run [--out DIR] [--tokens a,b]; --summary [--all] (per leg, token and size: n,
+  errors, median and p90 round trip %, sale-sim fail rate and reasons; token legs use usdc_rt_pct, hops rt_pct);
+  --freeze (done; never re-run without a new story).
+- Tests (tests/test_costs.py): keccak vectors and solc's selectors; the .hex sha256 pin; cost math (orientation, held
+  round trip, instant flip, tax_like line, stage reasons, chaining, p90); a fake-chain run (columns, hop chaining,
+  sizes in raw units, every request an eth_call to the probe pinned to the run's block, or eth_blockNumber); failure
+  rows; the cap; window.json once; summary; no price / amount / value column; files under backtest/costs/ only; core/
+  never imports or reads it; tick.yml untouched; the workflow (schedule, group, no secret, stages only backtest/costs/);
+  seal A (no meter address in any tasks.csv address column, read by that column only); tokens.json (39 / 36 / 3 v4,
+  every start token has a slot) and the rule reproduced from the survey files; whole-word forbidden-word grep over
+  *.py, *.sol, *.yml (no eth_sendTransaction, eth_sendRawTransaction, signing call, private key, mnemonic, approve);
+  only eth_call and eth_blockNumber in tools/costs.py; no env read.
+- Open items: Uniswap v4 (3 tokens) is a later story; launch-universe tokens join only after BL-34's holdout run (seal
+  A, a later story); the hop pool is chosen by depth, not by the cheapest route (pessimistic); fee_pct is the freeze
+  value (Slipstream fees can change; the measured costs carry the live fee); one simulation per run cannot prove a
+  token never blocks sells later.
+
 ## Open items (detail)
 - Open items:
   - BL-7 done only after 24h of green runs, no overlap, one TICK row per run. The TICK rows show the real run rate for Gate A (90%).
