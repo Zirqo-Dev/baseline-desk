@@ -33,7 +33,7 @@
     "positions": {},
     "refill_week": "2026-W46",
     "refills_usd": 47.693738985981945,
-    "ticks_since_buy": 29
+    "ticks_since_buy": 30
   },
   "desk": {
     "cash": 50.0,
@@ -535,6 +535,14 @@
         "sight_pair": "0x95d5f60d1f318236c6f73cb1fb9c1ecf7afcdf04a9136bbbdfb898423ceceb56",
         "sight_qliq": 617,
         "symbol": "FOTF"
+      },
+      "0x1e4f609de375fe24e550d651e94ae6771882f7cc": {
+        "done": [],
+        "first_price": 0.002513,
+        "first_seen": "2026-11-13T18:38:15Z",
+        "sight_pair": "0x0ff8f1a00284b33b20dcaa19524079fd4b5d8e60822384b70f0a4a4b83cbe802",
+        "sight_qliq": 66629,
+        "symbol": "RST"
       },
       "0x1e5bebd6faa29145be47999acd95f9b007b9aa0a": {
         "done": [
@@ -1213,6 +1221,14 @@
         "sight_pair": "0xc85d5cb72d1aad6f152a8decad228ae4a59ac9b3",
         "sight_qliq": 267185,
         "symbol": "AERO"
+      },
+      "0x409659ab78fecd66cb92a7d0dbf8eb7f279e9d20": {
+        "done": [],
+        "first_price": 0.02845,
+        "first_seen": "2026-11-13T18:38:15Z",
+        "sight_pair": "0x5b5a451c87c81ed089e1270a53ef5d5e8b92aff01eaf74b42e7f160855c037b0",
+        "sight_qliq": 149585,
+        "symbol": "GODF"
       },
       "0x4149ba44e84cb72c8ad05aeb26db068ab93143ca": {
         "done": [
@@ -4210,6 +4226,12 @@
         "reason": "missing:symbol",
         "symbol": "",
         "until": "2026-11-14T18:33:13Z"
+      },
+      "0x32abfa80febc849a838a8787c2ff5314b6dd0aba": {
+        "at": "2026-11-13T18:38:15Z",
+        "reason": "real_depth",
+        "symbol": "RST",
+        "until": "2026-11-14T18:38:15Z"
       },
       "0x336e149d4b8d2bfac5ed9e92bb58485c050892cc": {
         "at": "2026-11-12T23:53:14Z",
@@ -8225,6 +8247,12 @@
         "symbol": "IOF",
         "until": "2026-11-13T21:43:15Z"
       },
+      "0xd3b22610b8d6820c3e00d5cf048d51c8283d17d9": {
+        "at": "2026-11-13T18:38:15Z",
+        "reason": "real_depth",
+        "symbol": "OPST",
+        "until": "2026-11-14T18:38:15Z"
+      },
       "0xd3c85b829ab2cae1bf8d8e476a2db29c6ac6c35a": {
         "at": "2026-11-13T11:48:15Z",
         "reason": "real_depth",
@@ -9019,17 +9047,23 @@
       }
     },
     "watch": {
+      "0x1e4f609de375fe24e550d651e94ae6771882f7cc": {
+        "checks": 1,
+        "first_seen": "2026-11-13T18:38:15Z",
+        "last_check": "2026-11-13T18:38:15Z",
+        "symbol": "RST"
+      },
       "0x27811a9e8b3ba8b263c982fd586ba150e1f32e35": {
-        "checks": 9,
+        "checks": 10,
         "first_seen": "2026-11-13T15:53:14Z",
-        "last_check": "2026-11-13T18:18:15Z",
+        "last_check": "2026-11-13T18:38:15Z",
         "symbol": "Speed"
       },
-      "0x32abfa80febc849a838a8787c2ff5314b6dd0aba": {
-        "checks": 7,
-        "first_seen": "2026-11-13T16:33:19Z",
-        "last_check": "2026-11-13T18:18:15Z",
-        "symbol": "RST"
+      "0x409659ab78fecd66cb92a7d0dbf8eb7f279e9d20": {
+        "checks": 1,
+        "first_seen": "2026-11-13T18:38:15Z",
+        "last_check": "2026-11-13T18:38:15Z",
+        "symbol": "GODF"
       },
       "0x478f0b0ea3237bb00f338efc7c87a6c59e444f61": {
         "checks": 2,
@@ -9044,9 +9078,9 @@
         "symbol": "UASD"
       },
       "0xa88594d404727625a9437c3f886c7643872296ae": {
-        "checks": 4,
+        "checks": 5,
         "first_seen": "2026-11-13T17:23:14Z",
-        "last_check": "2026-11-13T18:18:15Z",
+        "last_check": "2026-11-13T18:38:15Z",
         "symbol": "WELL"
       }
     }
