@@ -2052,6 +2052,111 @@ Moved from CLAUDE.md section 11 on 2026-10-23 (BL-2 process cleanup). Wording is
   value (Slipstream fees can change; the measured costs carry the live fee); one simulation per run cannot prove a
   token never blocks sells later.
 
+## BL-46
+- Weekly point-in-time snapshot of liquid Base pools (the owner's Nov 12 choices, all option A, and the Nov 13 go
+  additions 1-3, DECISIONS). A forward record only: the honest fix for the survey's survivorship bias (NOTES "BL-39
+  survey") is to list the universe as it is each week from now on, so a later BL-38/39 test can use point-in-time
+  lists. Code: tools/snapshot.py (by workflow or by hand; it imports tools/liquid.py's list constants, tools/candles.py's
+  Client and tools/costs.py launch_addresses(); liquid.py is unchanged), .github/workflows/snapshot.yml,
+  tests/test_snapshot.py. Files: backtest/liquid/snapshots/<UTC day>.json.gz and
+  sealed/<UTC day>.json.gz (the seal's side file, read by nothing), one pair per run. Nothing under core/, data/
+  or site/ changed; core/ never imports tools.snapshot or reads backtest/liquid/ (test); no rule reads it.
+- Same lists and method as the survey: /networks/base/pools sorted by h24_volume_usd_desc and by h24_tx_count_desc,
+  then /networks/base/dexes/{dex}/pools (h24_volume_usd_desc) for the 8 dexes most frequent in those two lists, 10 pages
+  x 20 each; tokens = both sides of every listed pool; /networks/base/tokens/multi (30 per call, include=top_pools)
+  gives each token's deepest pool (highest reserve among its top pools and the listed pools) and its base / quote pair
+  counts. One difference: the list calls add include=base_token,quote_token, read for the pool's symbols only (same
+  number of calls). The dexes are picked again each run from that run's network lists, so they can differ week to
+  week; the header lists them.
+- Stored (the owner's field list): per pool = pool, dex, base, quote, base_symbol, quote_symbol, pool_created_at,
+  reserve_usd (reserve_in_usd at fetch, total both sides, not real depth), volume_h24_usd (the pool's 24 h USD volume
+  at fetch), lists (every list it came from: pools:<sort>, dex:<dex>, or tokens/multi:top_pools for a pool seen only as
+  a token's top pool). Per token (the listed pools' tokens) = token, symbol, pool (its deepest unsealed pool),
+  base_pairs, quote_pairs, asset_kind. Records are built field by field from those keys, so no price, price change,
+  FDV, market cap, transaction count, candle or return is ever copied (test). Header "meta": card, as_of (UTC, run
+  start), source, complete, params (sorts, pages, top dexes, the dexes used, list paths, include, the tokens call,
+  the deepest-pool rule, the asset-kind rule), calls, refused, failed, max_calls, capped, seal {rule, tokens_dropped,
+  pools_dropped}, counts {pools_listed, pools_from_top_pools, pools_written, tokens_listed, tokens_resolved,
+  tokens_unresolved, asset_kinds}, errors (paths only, max 50), n_errors. pools_written = pools_listed +
+  pools_from_top_pools - pools_dropped.
+- Young pools are kept (go addition 2): there is no "established" filter in the snapshot, unlike the survey;
+  pool_created_at is stored so a later spec filters by age as of the snapshot day.
+- Asset kind (go addition 3): core/verify.py asset_kind() (imported, never copied) with the /tokens/multi price_usd as
+  its price input, read in memory only and never stored. The survey used the last daily close before CUT instead, so
+  a "wrapped by price >= 100 USD" label can differ between the two. Snapshots keep every token and label it; they do
+  not drop asset kinds (the survey dropped them).
+- Seal (BL-34, option A; go addition 1; seal fix A of 2026-11-13, which supersedes addition 1's "never resolved"):
+  the launch set = every address in any data/daily/*/tasks.csv address column as of the run (that column only;
+  tools/costs.py launch_addresses(), the BL-45 function, called). The main file never carries a sealed address: every
+  pool whose base or quote is in the set, also pools that came in through top pools, and every such token go to the
+  sealed side file instead. A token's deepest pool in the main file is chosen among unsealed pools. The main header
+  keeps seal {rule, tokens_dropped, pools_dropped} (counts only). The address column is read every run from the
+  checkout, so tokens the desk sees later are sealed in later snapshots, never removed from earlier files.
+- Sealed side file (seal fix A): backtest/liquid/snapshots/sealed/<UTC day>.json.gz, written by the same run beside the
+  main file, never overwritten (the run refuses the day if either file exists). Same pool and token fields; header
+  meta {card, as_of, sealed: true, source, complete, rule ("tasks.csv address column as of the run"; the main file's
+  params apply), calls, refused, failed, max_calls, capped, counts {pools, tokens, tokens_unresolved, asset_kinds}}.
+  Sealed tokens ARE resolved with /tokens/multi like the others (deepest pool among their own candidate pools, pair
+  counts, asset kind) for this file only: about 13 more calls a run. Why: the first smoke dropped 718 of 1,733 pools,
+  because a few busy tokens (AERO, VIRTUAL and 4 survey tokens) are in tasks.csv and every pool paired with them went
+  too; dropping them would lose those weeks for good. Nothing reads the sealed files: no summary, print or log line
+  with their names or numbers; the run prints their counts and bytes only; tools/snapshot.py read() refuses any path
+  under sealed/; a test checks that no module under tools/, core/, adapters/, prompts/ or site/ except the writer
+  names the folder, and no other workflow names snapshots; tests use fake data only. How sealed files are opened is
+  a later story, after BL-34's holdout run.
+- complete (go addition 3): false when the call cap was hit or any call failed after every retry (5 tries, candles.
+  Client); the file is still written with the counts (a partial week beats a lost week), the workflow commits it and
+  then ends red. A 429 that a retry got through is counted in "refused" but loses nothing, so it does not make a run
+  partial (partial flag A, the owner 2026-11-13: kept as built). A run where no pool came back at all (main or sealed)
+  writes nothing (exit 1), so a later run the same UTC day can still try.
+- Never overwritten: the run refuses before its first call if backtest/liquid/snapshots/<UTC day>.json.gz or its
+  sealed/<UTC day>.json.gz exists (exit 2), and each file is opened in exclusive-create mode; gzip with mtime 0. The
+  survey files universe.json and daily.jsonl.gz are never opened or rewritten (sha256 pinned in tests/test_snapshot.py); the survey's CUT rule is
+  unchanged, because a snapshot is a forward record with no price and no return.
+- Calls and pace: candles.Client (7.5 s between calls, 5 tries per call, 15 s back-off); hard cap MAX_CALLS 300 per
+  run: a call starts only while every retry it may need still fits (calls + 5 <= 300), so attempts never pass 300.
+  About 100 list calls at most (most lists end early) + one /tokens/multi call per 30 tokens.
+- Smoke 2 (2026-11-13, after seal fix A, this sandbox, not committed): 02:18-02:36 UTC, 18.3 min, 139 calls (8 refused
+  by the rate limit, all retried; 0 failed; cap 300 not reached), complete: true. Main file: pools listed 1,624 (survey
+  1,630) + 126 from top pools; 1,020 pools and 526 tokens written (22 unresolved: every candidate pool sealed, or no
+  answer); asset kinds labelled (kept): wrapped 53, stable 31, quote 13; 149 of the 1,020 pools created in the 30 days
+  before the run (kept); 0 sealed addresses, 0 banned keys; 480 KB raw, 119 KB gz. Sealed side file (counts and bytes
+  only, never opened): 730 pools, 380 tokens, 351 KB raw, 87 KB gz. 1,020 + 730 = every pool seen (1,750). The 8 dexes
+  are the survey's 8. Timeout 60 min: a run at the cap is 300 x 7.5 s = 37.5 min plus back-offs.
+- Smoke 1 (2026-11-13 01:51-02:08 UTC, before seal fix A, not committed): 127 calls, 16.8 min, complete; the seal then
+  dropped 383 tokens and 718 pools for good (more than the survey's 129 tokens because the address column now runs Oct
+  23 - Nov 13 and today's lists carry many launch pools): the reason for seal fix A.
+- Workflow snapshot.yml: cron "37 0 * * 1" (Mondays 00:37 UTC, GitHub schedule) + workflow_dispatch, concurrency group
+  snapshot (never the tick's or costs'), timeout 60 min, Python 3.13, no secret, no env; stages
+  backtest/liquid/snapshots/ only (aborts if anything else is staged), commits "backtest: snapshot <UTC day>" (the day
+  from the file name), pull --rebase + push with 5 tries (backtest.yml's pattern). A second run on the same UTC day is
+  refused (red, nothing committed). It can never make tick.yml red.
+- Size: about 119 KB (main) + 87 KB (sealed) gzipped a week (smoke 2), so about 11 MB a year of committed history.
+- GeckoTerminal terms (the owner's terms A, tried once on 2026-11-13): https://www.coingecko.com/en/api_terms and
+  https://www.geckoterminal.com/terms-conditions could not be read: the session's egress proxy refused both hosts
+  (www.coingecko.com, www.geckoterminal.com: connect_rejected, outside the session network). Not worked around; built
+  anyway. Open item for ALL GeckoTerminal use (BL-33 candles, BL-39 survey, BL-46 snapshots): the API terms of the
+  free public API are unread; the owner or chat reads them (CoinGecko API terms / GeckoTerminal terms) and, if they
+  forbid automated use, disables backtest.yml and snapshot.yml and stops tools/candles.py, tools/liquid.py and
+  tools/snapshot.py. BL-45 already avoids GeckoTerminal for the same reason.
+- Tests (tests/test_snapshot.py): no price / change / fdv / market_cap / return / candle key in pools or tokens, and
+  no fake price value in the file; exact pool and token key sets; pool values and list tags; young pools kept; asset
+  kind from the in-memory price, the price never stored; deepest pool among unsealed pools; the seal (the main file
+  has no sealed address, top-pool ones included, counts only, the address column only, BL-45's function); the sealed
+  side file (sealed tokens resolved, header sealed: true + rule + counts + complete, same fields, no price, each pool
+  in exactly one file, printed as counts and bytes only, read() refuses it, written beside the main file, never
+  overwritten, either file refuses the day; no other module under tools/, core/, adapters/, prompts/ or site/ names
+  the folder, no other workflow names snapshots); complete true / false on a failed call and on the cap, both still written; the cap is hard;
+  no pool = no file; never overwritten (refused before the first call, exclusive write); default location under
+  backtest/liquid/snapshots/ only, nothing written without --write; committed snapshots clean; survey files
+  byte-identical (sha256) and never opened; core/ never imports or reads it; tick.yml, costs.yml, backtest.yml,
+  pages.yml, alert-test.yml untouched; the workflow (schedule, group, Python 3.13, no secret, no env, staged path,
+  commit message, 5-try push). The whole-word forbidden-word scan is BL-45's
+  tests/test_costs.py ReadOnly, which covers every *.py / *.yml file, these included.
+- Open items: GeckoTerminal terms unread (above); top-200 views per list (quiet pools outside every list are not in a
+  snapshot, as in the survey); reserve is total both sides, not real depth; 24 h volume can include wash or bot volume;
+  the first snapshot is the first point-in-time list, so no earlier week can ever be reconstructed this way.
+
 ## Open items (detail)
 - Open items:
   - BL-7 done only after 24h of green runs, no overlap, one TICK row per run. The TICK rows show the real run rate for Gate A (90%).

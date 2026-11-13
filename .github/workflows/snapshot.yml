@@ -1,0 +1,56 @@
+# BL-46: weekly point-in-time snapshot of liquid Base pools (docs/NOTES.md "BL-46"). Mondays 00:37 UTC plus by hand.
+# One run = python -m tools.snapshot --write: the BL-39 survey's GeckoTerminal lists + /tokens/multi (cap 300 calls,
+# ~8 calls/min), pool identity, reserve and 24 h volume only (no price, no return). Writes one
+# backtest/liquid/snapshots/<UTC day>.json.gz and its sealed side file sealed/<UTC day>.json.gz (both never
+# overwritten; nothing reads the sealed one) and commits ONLY backtest/liquid/snapshots/ ("backtest: snapshot <UTC day>").
+# Never touches data/, never on the tick path, own concurrency group, no secret.
+# A partial run (cap hit or a call failed after every retry) is still committed (complete: false), then the job is red.
+name: snapshot
+
+on:
+  schedule:
+    - cron: "37 0 * * 1"
+  workflow_dispatch:
+
+concurrency:
+  group: snapshot
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  snapshot:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Snapshot and commit backtest/liquid/snapshots/ only
+        run: |
+          rc=0
+          python -m tools.snapshot --write || rc=$?
+          if [ "$rc" != 0 ] && [ "$rc" != 3 ]; then exit "$rc"; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          git add -A backtest/liquid/snapshots/
+          if git diff --cached --name-only | grep -v '^backtest/liquid/snapshots/'; then
+            echo "ABORT: something outside backtest/liquid/snapshots/ is staged"; exit 1
+          fi
+          if git diff --cached --quiet; then echo "no change"; exit "$rc"; fi
+          day=$(git diff --cached --name-only | head -1 | sed 's#.*/##; s#\.json\.gz$##')
+          git commit -q -m "backtest: snapshot $day"
+          for try in 1 2 3 4 5; do
+            if git pull --rebase -q origin main && git push -q origin HEAD:main; then
+              if [ "$rc" = 3 ]; then echo "partial snapshot committed (complete: false)"; exit 1; fi
+              exit 0
+            fi
+            git rebase --abort 2>/dev/null || true
+            echo "push rejected (try $try)"; sleep $((try * 5))
+          done
+          exit 1

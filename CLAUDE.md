@@ -69,6 +69,10 @@ LIQUID   tools/liquid.py            by hand only (BL-39 part 1): liquid Base tok
 COSTS    tools/costs.py             costs.yml every 2 h (BL-45, read-only, D5): 5 and 25 USD round trips in each frozen liquid
                                    token's deepest pool + its hops to USDC, simulated by eth_call (tools/costprobe.sol) on
                                    Base's public RPC; percentages and pass/fail only -> backtest/costs/; --summary
+SNAPSHOT tools/snapshot.py          snapshot.yml every Monday (BL-46): the BL-39 survey's GeckoTerminal lists + /tokens/multi,
+                                   pool identity, reserve and 24 h volume only (no price, no return), young pools kept
+                                   -> backtest/liquid/snapshots/<UTC day>.json.gz (no sealed address) + sealed/<UTC day>.json.gz
+                                   (the seal's side file, read by nothing until a story after BL-34's run), never overwritten
 TICK     core/tick.py              one run: roll day (+report, +machine cards, then twin restart once + weekly refills),
                                    exits (desk, baseline), scan -> verify -> buy, baseline buy,
                                    outcome labels (own try), live.json (own try, not on a crash), alerts (own try, also on a crash),
@@ -77,12 +81,14 @@ TICK     core/tick.py              one run: roll day (+report, +machine cards, t
 Folders:
 - core/: config.py, book.py, desk.py, verify.py, leads.py, exits.py, friction.py, tick.py, baseline.py, report.py, labels.py, live.py, alerts.py
 - tools/: replay.py (BL-29, offline replay by hand), backtest.py and candles.py (BL-33), liquid.py (BL-39 part 1),
-  costs.py + costprobe.sol + costprobe.hex (BL-45); never imported by core/, never on the tick path
+  costs.py + costprobe.sol + costprobe.hex (BL-45), snapshot.py (BL-46); never imported by core/, never on the tick path
 - backtest/: candles/ (<sight-day>.jsonl.gz written once when its 7-day windows closed, <day>.open.jsonl.gz until then,
   eth-<day>.jsonl.gz, twin-validation.jsonl.gz), specs/ (bl34-survivor-momentum-v3.md + .json, frozen; v1 and v2 superseded, never run), results/<run>/
   (summary.json, trades.csv), holdout.lock.json (BL-33; it also keeps the pass tests, BL-43), status.json (BL-43: which
   candle files exist + the twin-validation totals, for the site), liquid/ (BL-39 part 1: universe.json + daily.jsonl.gz,
-  every candle day ended before CUT 2026-11-08), costs/ (BL-45: tokens.json frozen, window.json, <UTC day>.csv);
+  every candle day ended before CUT 2026-11-08; liquid/snapshots/<UTC day>.json.gz, BL-46, forward records, no price,
+  and liquid/snapshots/sealed/<UTC day>.json.gz, the seal's side file, read by nothing),
+  costs/ (BL-45: tokens.json frozen, window.json, <UTC day>.csv);
   never under data/, never read by core/ or the tick
 - adapters/: base.py (EVM, chain 8453). Adapter pattern kept so other chains could plug in later (parked).
 - prompts/: x_read.py
@@ -96,7 +102,9 @@ Folders:
 - .github/workflows/: tick.yml, pages.yml (BL-13: deploys site/ on push to main touching site/** or itself, or by hand; no report.yml, BL-8),
   alert-test.yml (BL-3: by hand only, read-only, sends one TEST message, commits nothing),
   backtest.yml (BL-33: by hand only, fetches candles one day per commit, stages backtest/candles/ only, "backtest:" commits),
-  costs.yml (BL-45: every 2 h + by hand, own group, stages backtest/costs/ only, "backtest: costs" commits, no secret)
+  costs.yml (BL-45: every 2 h + by hand, own group, stages backtest/costs/ only, "backtest: costs" commits, no secret),
+  snapshot.yml (BL-46: Mondays 00:37 UTC + by hand, own group, stages backtest/liquid/snapshots/ only, "backtest: snapshot"
+  commits, no secret)
 
 Standard facts dict (every field required; missing = skip):
 symbol, price, liq_usd, age_min, sells_1h, qliq (BL-32), mint_open, freeze_or_blacklist, honeypot,
@@ -127,6 +135,10 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
   pull --rebase with retry; it never touches data/ and the tick never reads backtest/.
 - costs.yml (BL-45) runs on a GitHub schedule (17 */2 * * *) and by hand: one meter run (~78 eth_calls, cap 100, ~40 s),
   backtest/costs/ only, pull --rebase with retry; own concurrency group, so it never blocks or reddens a tick.
+- snapshot.yml (BL-46) runs on a GitHub schedule (37 0 * * 1, Mondays) and by hand: one snapshot (cap 300 GeckoTerminal
+  calls at ~8/min), backtest/liquid/snapshots/ only, pull --rebase with retry; own concurrency group; a partial run is
+  committed (complete: false) and the job ends red; a second run the same UTC day is refused; it stages both files
+  (main + sealed/) and nothing else.
 - Alerts (BL-3): repo secrets TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID reach only tick.yml's Tick step and alert-test.yml's
   send step. Actions logs are public: never print, log, commit or raise the token, chat id, request URL or Telegram's reply;
   only alerts=ok|off|none|error:<type> and a count. No set -x, env dump or debug output in either workflow.
@@ -362,7 +374,24 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
   78 calls, 38.7 s, 0 refused, 76 of 76 pass; first reading, one run only: USDC round trips about 0.02-1.3%
   (ADS-paired ~1.2%, most of it the two 0.3% hops). Evidence only, no threshold or friction change
   (docs/NOTES.md "BL-45").
-- Next step: BL-45: 7 days of costs.yml runs from the first run (backtest/costs/window.json), then chat reads python -m
+- BL-46 (2026-11-13, the owner's Nov 12 choices seal A / schedule A / terms A and the Nov 13 go additions, DECISIONS):
+  tools/snapshot.py + snapshot.yml (Mondays 00:37 UTC + by hand) write one backtest/liquid/snapshots/<UTC day>.json.gz a
+  week, never overwritten: the BL-39 survey's lists and /tokens/multi method, per pool identity, reserve and 24 h volume
+  only (no price, change, FDV, market cap, candle or return; test), young pools kept (pool_created_at stored), asset
+  kind from the /tokens/multi price in memory only; complete: false on the cap (300, hard) or a call failed after
+  every retry, still written (partial flag A: a retried refusal is only counted). Seal fix A: the main file has no
+  address from any tasks.csv address column; every pool and token the seal removes (resolved with /tokens/multi too)
+  goes to backtest/liquid/snapshots/sealed/<UTC day>.json.gz (same fields, header sealed: true, rule, counts,
+  complete), which nothing reads (read() refuses it; test) and the run reports as counts and bytes only. Survey
+  files untouched (sha256 test). Smoke 2: 139 calls, 18.3 min, complete; main 1,020 pools and 526 tokens, 119 KB gz;
+  sealed 730 pools and 380 tokens, 87 KB gz (docs/NOTES.md "BL-46").
+  - Open item, ALL GeckoTerminal use (BL-33 candles, BL-39 survey, BL-46 snapshots): the CoinGecko / GeckoTerminal API
+    terms are unread (www.coingecko.com and www.geckoterminal.com outside the session network, 2026-11-13; BL-45 hit a
+    bot challenge); the owner or chat reads them; if they forbid automated use, disable backtest.yml and snapshot.yml.
+- Next step: BL-46: the owner clicks Run workflow on snapshot.yml once after the commit; then automatic every Monday.
+  How the sealed snapshot files (backtest/liquid/snapshots/sealed/) are opened is a later story, after BL-34's holdout
+  run; until then nothing reads them.
+  BL-45: 7 days of costs.yml runs from the first run (backtest/costs/window.json), then chat reads python -m
   tools.costs --summary; the BL-39 freeze after that; launch tokens join the meter only after BL-34's holdout run
   (a later story); Uniswap v4 a later story. BL-34's one v3 holdout run, after 2026-11-25T00:10Z. First the owner clicks Run workflow on backtest.yml
   (--eth for eth-2026-11-07 .. 11-24, then the token sight days 2026-11-06 .. 2026-11-20 listed in "days"; ~44 min a
@@ -373,7 +402,7 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
   done, counts only; no return has been computed from backtest/liquid/); the execution design is researched in
   parallel (no wallet code). BL-38..BL-42 are candidates only (DECISIONS 2026-11-04). The owner checks the deployed site
   and the first Telegram daily summary with the BL-43 lines.
-- Last updated: 2026-11-12.
+- Last updated: 2026-11-13.
 
 ## 12. Glossary
 - Lead: a token the scanner found. Survivor: a lead that passed every hard skip.
