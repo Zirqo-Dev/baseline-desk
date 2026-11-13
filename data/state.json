@@ -1,6 +1,6 @@
 {
   "baseline": {
-    "cash": 40.22448407273123,
+    "cash": 35.22448407273123,
     "cooldown": {
       "a:0x10c76d44ca43fdc91894f42974a190195fe2e609": "2026-11-13T23:23:13Z",
       "a:0x148d9c29cded09bf9240bb3b2c2ecca94291910d": "2026-11-13T16:33:15Z",
@@ -24,10 +24,27 @@
     "day": "2026-11-13",
     "day_start_value": 43.87773239130222,
     "halted_day": "",
-    "positions": {},
+    "positions": {
+      "0xb3c86288f00ca2ee9de57f6cd5db1ab75c2d2222": {
+        "cost_usd": 5.0,
+        "entry_fill": 0.0009133486234922361,
+        "entry_intended": 0.0008866,
+        "entry_liq_usd": 58859.91,
+        "entry_qliq": 29431,
+        "entry_ts": "2026-11-13T10:38:13Z",
+        "ladder_done": [],
+        "last_price": 0.0008866,
+        "launchpad": "other",
+        "orig_qty": 5474.360908195426,
+        "pair": "0x5d020084793dddb8c5270ce450ff8c9fd08809889b529d23180badebf7da098e",
+        "peak_price": 0.0008866,
+        "qty": 5474.360908195426,
+        "symbol": "MARSBASE"
+      }
+    },
     "refill_week": "2026-W46",
     "refills_usd": 47.693738985981945,
-    "ticks_since_buy": 11
+    "ticks_since_buy": 0
   },
   "desk": {
     "cash": 50.0,
@@ -418,7 +435,8 @@
       },
       "0x18b09a8b1965bcd1a04bd8dac918d8fceb868173": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 0.002496,
         "first_seen": "2026-11-13T04:33:17Z",
@@ -481,7 +499,8 @@
       },
       "0x1e07cf6191cda39907c8f68ead1eba9d01e8ee97": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 0.03849,
         "first_seen": "2026-11-13T04:33:17Z",
@@ -718,7 +737,8 @@
       },
       "0x28db45e0bfac273e6721a869399b912def2bf798": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 0.0048,
         "first_seen": "2026-11-13T04:33:17Z",
@@ -946,7 +966,8 @@
       },
       "0x3471b43d140952821a849a653d7595fdda2028a1": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 0.002496,
         "first_seen": "2026-11-13T04:33:17Z",
@@ -1019,7 +1040,8 @@
       },
       "0x3a854c0771d6b94d1fd3d89d8f0d154d6d174e76": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 0.03966,
         "first_seen": "2026-11-13T04:33:17Z",
@@ -4669,12 +4691,6 @@
         "symbol": "DickHuang",
         "until": "2026-11-13T15:03:14Z"
       },
-      "0x4ecd6c5a28e3341058a463abfe81b2f88c62cccc": {
-        "at": "2026-11-12T10:33:15Z",
-        "reason": "real_depth",
-        "symbol": "DEEPNODE",
-        "until": "2026-11-13T10:33:15Z"
-      },
       "0x4f5d88722ce0ef78a0f67edc509b4c0be7d6cb0e": {
         "at": "2026-11-13T07:43:12Z",
         "reason": "real_depth",
@@ -5484,12 +5500,6 @@
         "reason": "real_depth",
         "symbol": "NUCLEAR U.S RESERVE",
         "until": "2026-11-14T07:18:15Z"
-      },
-      "0x76f901c996a504cd0cebf884fad64ee344bccccc": {
-        "at": "2026-11-12T10:33:15Z",
-        "reason": "real_depth",
-        "symbol": "BULLISH",
-        "until": "2026-11-13T10:33:15Z"
       },
       "0x778a30e5518fce2ab56ca6ad4870cdcbebdfd512": {
         "at": "2026-11-13T05:18:14Z",
@@ -6474,6 +6484,12 @@
         "reason": "mint_open",
         "symbol": "VVV",
         "until": "2026-11-14T06:28:16Z"
+      },
+      "0xad0881aa8fdb076badfbc4aee52f41a21d805b92": {
+        "at": "2026-11-13T10:38:13Z",
+        "reason": "real_depth",
+        "symbol": "MEOW",
+        "until": "2026-11-14T10:38:13Z"
       },
       "0xad11dbd5f2b3c6c067310171950ae19a1abbb26c": {
         "at": "2026-11-13T00:58:17Z",
@@ -8299,6 +8315,12 @@
         "symbol": "MUSE",
         "until": "2026-11-13T18:48:16Z"
       },
+      "0xd5cc1e5a9a33ab3e67c186e4b8b8d84581b614b9": {
+        "at": "2026-11-13T10:38:13Z",
+        "reason": "real_depth",
+        "symbol": "Basewhale",
+        "until": "2026-11-14T10:38:13Z"
+      },
       "0xd5d67ab696b4516e6a4ae0e173290978b9988448": {
         "at": "2026-11-12T13:28:17Z",
         "reason": "real_depth",
@@ -8394,6 +8416,12 @@
         "reason": "real_depth",
         "symbol": "AONF",
         "until": "2026-11-13T21:58:16Z"
+      },
+      "0xdc5bb02c894d5e848d1449a5811b2b23de26f6d0": {
+        "at": "2026-11-13T10:38:13Z",
+        "reason": "lp_locked",
+        "symbol": "CFD",
+        "until": "2026-11-14T10:38:13Z"
       },
       "0xdc9ceb5752f466b9bb064af4816f79d0f7cecccc": {
         "at": "2026-11-12T14:18:16Z",
@@ -8617,12 +8645,6 @@
         "symbol": "CLAUDIA",
         "until": "2026-11-13T18:33:13Z"
       },
-      "0xe7645444eb4e8e04d886c7038dd0152d331d3680": {
-        "at": "2026-11-12T10:33:15Z",
-        "reason": "real_depth",
-        "symbol": "LAX",
-        "until": "2026-11-13T10:33:15Z"
-      },
       "0xe76c707be369c881642e30e526b77c832d2817f4": {
         "at": "2026-11-12T16:28:15Z",
         "reason": "goplus_timeout",
@@ -8688,12 +8710,6 @@
         "reason": "real_depth",
         "symbol": "ANTHROPIC",
         "until": "2026-11-13T16:18:18Z"
-      },
-      "0xe9f4d012a9a3946c2989cf95f42e7e649f387885": {
-        "at": "2026-11-12T10:33:15Z",
-        "reason": "real_depth",
-        "symbol": "Basecat",
-        "until": "2026-11-13T10:33:15Z"
       },
       "0xea110a3187c1c65edc08d9b48fa92e5c89eb9e2e": {
         "at": "2026-11-12T19:58:15Z",
@@ -9031,12 +9047,6 @@
         "symbol": "LOL",
         "until": "2026-11-13T16:08:16Z"
       },
-      "0xfb03def28c1aab9693158a6b298fc3262c6f9ba3": {
-        "at": "2026-11-12T10:33:15Z",
-        "reason": "real_depth",
-        "symbol": "MAXI",
-        "until": "2026-11-13T10:33:15Z"
-      },
       "0xfb4c1d9f99c183f70d1065d7b674e316f63e6a45": {
         "at": "2026-11-13T01:58:14Z",
         "reason": "real_depth",
@@ -9124,22 +9134,16 @@
         "symbol": "KITE"
       },
       "0xb3c86288f00ca2ee9de57f6cd5db1ab75c2d2222": {
-        "checks": 3,
+        "checks": 4,
         "first_seen": "2026-11-13T09:43:14Z",
-        "last_check": "2026-11-13T10:18:15Z",
+        "last_check": "2026-11-13T10:38:13Z",
         "symbol": "MARSBASE"
       },
       "0xc1556f71da85a970c07f70dcfa367960a802154a": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-13T10:23:13Z",
-        "last_check": "2026-11-13T10:23:13Z",
+        "last_check": "2026-11-13T10:38:13Z",
         "symbol": "NUCLEAR U.S RESERVE"
-      },
-      "0xdc5bb02c894d5e848d1449a5811b2b23de26f6d0": {
-        "checks": 5,
-        "first_seen": "2026-11-13T08:58:15Z",
-        "last_check": "2026-11-13T10:18:15Z",
-        "symbol": "CFD"
       }
     }
   },
