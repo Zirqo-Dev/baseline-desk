@@ -1,52 +1,29 @@
 {
   "baseline": {
-    "cash": 39.708992809809715,
+    "cash": 41.092665056838925,
     "cooldown": {
       "a:0x10c76d44ca43fdc91894f42974a190195fe2e609": "2026-11-13T23:23:13Z",
       "a:0x148d9c29cded09bf9240bb3b2c2ecca94291910d": "2026-11-13T16:33:15Z",
-      "a:0x1ffebad866b0b7f0f0e76aa644de565b49b1c080": "2026-11-14T02:13:13Z",
-      "a:0x2cb1ba2b538eb449297e7b4c8e0e3330b0e4ab07": "2026-11-13T02:58:14Z",
+      "a:0x1ffebad866b0b7f0f0e76aa644de565b49b1c080": "2026-11-14T04:38:15Z",
       "a:0x3d9210072722ea22d609540d9ba26358d016707f": "2026-11-13T20:48:15Z",
       "a:0xbb2677412ade6f649e24850167503341669afcc5": "2026-11-13T06:33:15Z",
       "a:0xd3115aa6a8565ad9434a23ef9b93be08b2a76c8e": "2026-11-13T22:23:15Z",
       "a:0xe76c707be369c881642e30e526b77c832d2817f4": "2026-11-13T14:43:14Z",
       "s:COINASAURUS": "2026-11-13T23:23:13Z",
       "s:FOTF": "2026-11-13T20:48:15Z",
-      "s:HUANG": "2026-11-14T02:13:13Z",
+      "s:HUANG": "2026-11-14T04:38:15Z",
       "s:MAX": "2026-11-13T06:33:15Z",
       "s:MEPR": "2026-11-13T22:23:15Z",
-      "s:PAPER": "2026-11-13T02:58:14Z",
       "s:PENNY": "2026-11-13T16:33:15Z",
       "s:SEPPUKU": "2026-11-13T14:43:14Z"
     },
     "day": "2026-11-13",
     "day_start_value": 43.87773239130222,
     "halted_day": "",
-    "positions": {
-      "0x1ffebad866b0b7f0f0e76aa644de565b49b1c080": {
-        "cost_usd": 3.35,
-        "entry_fill": 4.8372006904487924e-05,
-        "entry_intended": 4.695e-05,
-        "entry_liq_usd": 34758.13,
-        "entry_qliq": 17380,
-        "entry_ts": "2026-11-12T21:48:14Z",
-        "ladder_done": [
-          0
-        ],
-        "last_liq_usd": 43912.76,
-        "last_price": 7.833e-05,
-        "last_qliq": 22002,
-        "launchpad": "other",
-        "orig_qty": 103365.56864123211,
-        "pair": "0x2d253172416b06ebb703d811f0ca9a6230820f66dffa66505f24e31866af7960",
-        "peak_price": 7.999e-05,
-        "qty": 69254.93098962551,
-        "symbol": "Huang"
-      }
-    },
+    "positions": {},
     "refill_week": "2026-W46",
     "refills_usd": 47.693738985981945,
-    "ticks_since_buy": 63
+    "ticks_since_buy": 64
   },
   "desk": {
     "cash": 50.0,
@@ -1087,7 +1064,8 @@
       },
       "0x528538995fd8879599dee17744036ee87393a0f5": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 9.593e-05,
         "first_seen": "2026-11-12T22:38:14Z",
@@ -1668,6 +1646,14 @@
         "sight_pair": "0xce8e8b3e95c1b126746df727ab554fe5f3ada2d2a97b1b147a9851271f1a83e4",
         "sight_qliq": 17,
         "symbol": "FDAN"
+      },
+      "0xae6df5683a6b0738a3d00bbc3885edf57bdbc33a": {
+        "done": [],
+        "first_price": 0.515,
+        "first_seen": "2026-11-13T04:38:15Z",
+        "sight_pair": "0xa8a7e7546e4dff1f34aace29d610cca3c2951c6cde56f35d3c77177633fa9443",
+        "sight_qliq": 136516,
+        "symbol": "AOTF"
       },
       "0xaffaeaccf21cdee5c7df47680bac2d29359b3539": {
         "done": [
@@ -6659,6 +6645,12 @@
         "symbol": "ETH",
         "until": "2026-11-13T17:33:13Z"
       },
+      "0xb2000000000000000000002cd744ea6883d25bb1": {
+        "at": "2026-11-13T04:38:15Z",
+        "reason": "real_depth",
+        "symbol": "DOGGLE",
+        "until": "2026-11-14T04:38:15Z"
+      },
       "0xb2000000000000000000002eb3e6dc9738cee106": {
         "at": "2026-11-12T14:18:16Z",
         "reason": "real_depth",
@@ -8087,6 +8079,12 @@
         "symbol": "CASHCAT",
         "until": "2026-11-13T10:48:15Z"
       },
+      "0xd12f553bdd6fd82511ce92d0c298e313151392b4": {
+        "at": "2026-11-13T04:38:15Z",
+        "reason": "real_depth",
+        "symbol": "jeje",
+        "until": "2026-11-14T04:38:15Z"
+      },
       "0xd1327f8c369eb3cbfa73e222ba8afc763fd249af": {
         "at": "2026-11-12T22:58:17Z",
         "reason": "real_depth",
@@ -9068,10 +9066,16 @@
     },
     "watch": {
       "0x9dce4d734648c67194d8c7fb95354baf9ae1bed2": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-13T04:23:13Z",
-        "last_check": "2026-11-13T04:23:13Z",
+        "last_check": "2026-11-13T04:38:15Z",
         "symbol": "SI"
+      },
+      "0xae6df5683a6b0738a3d00bbc3885edf57bdbc33a": {
+        "checks": 1,
+        "first_seen": "2026-11-13T04:38:15Z",
+        "last_check": "2026-11-13T04:38:15Z",
+        "symbol": "AOTF"
       }
     }
   },
