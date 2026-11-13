@@ -44,7 +44,7 @@
     },
     "refill_week": "2026-W46",
     "refills_usd": 47.693738985981945,
-    "ticks_since_buy": 3
+    "ticks_since_buy": 4
   },
   "desk": {
     "cash": 50.0,
@@ -956,6 +956,14 @@
         "sight_pair": "0xde39c90bf0305e26bfd750a871df55b28e236cf6ca51ad5f1f43faa25f6aa6bd",
         "sight_qliq": 17,
         "symbol": "RSPU\u26a1\ufe0f"
+      },
+      "0x3c8c11032dee1e2dc7845df79b16181360fcc2e5": {
+        "done": [],
+        "first_price": 5.341e-06,
+        "first_seen": "2026-11-13T07:53:13Z",
+        "sight_pair": "0x863587d1f3a69b4949b6afcebc05253c9247ea2c",
+        "sight_qliq": 29763,
+        "symbol": "UCI"
       },
       "0x3d2028f8393948e6c1e932c5af0797aa269b5ecb": {
         "done": [
@@ -2463,7 +2471,8 @@
       },
       "0xf6377c263c814e1c7ff3af07ebc5b6fabefdd401": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 9.796e-05,
         "first_seen": "2026-11-13T01:48:15Z",
@@ -5532,6 +5541,12 @@
         "symbol": "LAPTOP",
         "until": "2026-11-13T16:53:12Z"
       },
+      "0x81c7ec3ae827601e9d0211bad68ac36475e9626f": {
+        "at": "2026-11-13T07:53:13Z",
+        "reason": "real_depth",
+        "symbol": "US RESERVE NUCLEAR",
+        "until": "2026-11-14T07:53:13Z"
+      },
       "0x81da1021a975c4f1d14a448199b2073987ab5e8f": {
         "at": "2026-11-12T19:38:15Z",
         "reason": "real_depth",
@@ -6353,6 +6368,12 @@
         "reason": "missing:liq_usd",
         "symbol": "MMRS",
         "until": "2026-11-14T03:43:22Z"
+      },
+      "0xae6df5683a6b0738a3d00bbc3885edf57bdbc33a": {
+        "at": "2026-11-13T07:53:13Z",
+        "reason": "goplus_timeout",
+        "symbol": "AOTF",
+        "until": "2026-11-14T07:53:13Z"
       },
       "0xaf3d5ac7975a770116ea8bd8ccf3664c70c80baa": {
         "at": "2026-11-12T18:53:18Z",
@@ -8937,21 +8958,21 @@
     },
     "watch": {
       "0x12ed26551c34f76f9ec0dfa22765c5e95e023546": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-13T07:33:16Z",
-        "last_check": "2026-11-13T07:33:16Z",
+        "last_check": "2026-11-13T07:53:13Z",
         "symbol": "TRUMP2028"
       },
-      "0x81c7ec3ae827601e9d0211bad68ac36475e9626f": {
-        "checks": 2,
-        "first_seen": "2026-11-13T07:18:15Z",
-        "last_check": "2026-11-13T07:33:16Z",
-        "symbol": "US RESERVE NUCLEAR"
+      "0x3c8c11032dee1e2dc7845df79b16181360fcc2e5": {
+        "checks": 1,
+        "first_seen": "2026-11-13T07:53:13Z",
+        "last_check": "2026-11-13T07:53:13Z",
+        "symbol": "UCI"
       },
       "0x8888cdad9ef66382f89e68f95ec384d89ec28888": {
-        "checks": 2,
+        "checks": 3,
         "first_seen": "2026-11-13T07:18:15Z",
-        "last_check": "2026-11-13T07:33:16Z",
+        "last_check": "2026-11-13T07:53:13Z",
         "symbol": "NAMI"
       },
       "0xa92e0f4789105f8d8234f588f466ed2f72030080": {
@@ -8959,12 +8980,6 @@
         "first_seen": "2026-11-13T05:28:15Z",
         "last_check": "2026-11-13T07:48:14Z",
         "symbol": "Huang"
-      },
-      "0xae6df5683a6b0738a3d00bbc3885edf57bdbc33a": {
-        "checks": 11,
-        "first_seen": "2026-11-13T04:38:15Z",
-        "last_check": "2026-11-13T07:33:16Z",
-        "symbol": "AOTF"
       },
       "0xb7f4185fde61b4cedd433f02a40e5c239ea187b4": {
         "checks": 6,
