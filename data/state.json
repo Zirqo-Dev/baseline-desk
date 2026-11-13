@@ -33,7 +33,7 @@
     "positions": {},
     "refill_week": "2026-W46",
     "refills_usd": 47.693738985981945,
-    "ticks_since_buy": 1
+    "ticks_since_buy": 2
   },
   "desk": {
     "cash": 50.0,
@@ -147,6 +147,14 @@
         "sight_pair": "0x99518a5c5fcdf106016e361584b618eb3d5505e7fef9287ba1aafaa509c6081b",
         "sight_qliq": 0,
         "symbol": "GDOF"
+      },
+      "0x0734f0f9d424e5b84e7ee5222bdb0d2385d09332": {
+        "done": [],
+        "first_price": 0.02828,
+        "first_seen": "2026-11-13T13:08:15Z",
+        "sight_pair": "0xcb42af2582c80146d3ea3d69251d91a63656c8a6ffe3cfa3aaef862437565c3f",
+        "sight_qliq": 45064,
+        "symbol": "GODF"
       },
       "0x079d9323033cd230dab32ab4a8842845214f9d99": {
         "done": [
@@ -4835,6 +4843,12 @@
         "symbol": "FADN",
         "until": "2026-11-13T22:38:14Z"
       },
+      "0x531aaedbcefd6029c769561466196bd5ed2113dc": {
+        "at": "2026-11-13T13:08:15Z",
+        "reason": "asset:stable",
+        "symbol": "U.S DIVIDEND ASSET",
+        "until": "2026-11-14T13:08:15Z"
+      },
       "0x53ca7ad9b2b3083b66ec3b303f545a3d8bc37494": {
         "at": "2026-11-13T04:28:13Z",
         "reason": "real_depth",
@@ -5008,6 +5022,12 @@
         "reason": "real_depth",
         "symbol": "RRR",
         "until": "2026-11-13T16:18:18Z"
+      },
+      "0x5aec43646acd74426b83fee3ef78bca18f9e796e": {
+        "at": "2026-11-13T13:08:15Z",
+        "reason": "real_depth",
+        "symbol": "PITCH",
+        "until": "2026-11-14T13:08:15Z"
       },
       "0x5af746ed7eb42dea7bf563061e0a16a77e307fbb": {
         "at": "2026-11-12T13:38:15Z",
@@ -6292,6 +6312,12 @@
         "reason": "real_depth",
         "symbol": "XCHAT",
         "until": "2026-11-14T01:28:18Z"
+      },
+      "0xa1defb3f313429db8bbbeaf8246e46aec48fcf0b": {
+        "at": "2026-11-13T13:08:15Z",
+        "reason": "goplus_timeout",
+        "symbol": "AIPF",
+        "until": "2026-11-14T13:08:15Z"
       },
       "0xa1f41998ea6f94f146d503bb050675fe019c16ba": {
         "at": "2026-11-12T14:18:16Z",
@@ -8267,6 +8293,12 @@
         "symbol": "CoinaSaurus",
         "until": "2026-11-13T15:28:15Z"
       },
+      "0xd2fb7540fecdf1f1002582e8f4dc0fc4ef356437": {
+        "at": "2026-11-13T13:08:15Z",
+        "reason": "real_depth",
+        "symbol": "NAOF",
+        "until": "2026-11-14T13:08:15Z"
+      },
       "0xd303a5f5d4a71d4d055abb504cb675e31f447faa": {
         "at": "2026-11-13T00:28:26Z",
         "reason": "real_depth",
@@ -8392,6 +8424,12 @@
         "reason": "real_depth",
         "symbol": "DFUS",
         "until": "2026-11-14T08:28:14Z"
+      },
+      "0xda486cafba678eb7fe9bbd3e65d45fd5687ebf13": {
+        "at": "2026-11-13T13:08:15Z",
+        "reason": "real_depth",
+        "symbol": "TRUMP2028",
+        "until": "2026-11-14T13:08:15Z"
       },
       "0xda89df233f4aee3fd5f95ee9da601d19ebb05f5f": {
         "at": "2026-11-13T06:28:16Z",
@@ -8783,6 +8821,12 @@
         "symbol": "ETH",
         "until": "2026-11-13T15:08:15Z"
       },
+      "0xecd89718e5a8b9b7d432bf3b35e582ca08c27b4e": {
+        "at": "2026-11-13T13:08:15Z",
+        "reason": "real_depth",
+        "symbol": ".AI",
+        "until": "2026-11-14T13:08:15Z"
+      },
       "0xed1583310ed664680edbf6b0ebdcd79c15b4488a": {
         "at": "2026-11-12T21:03:13Z",
         "reason": "real_depth",
@@ -9115,35 +9159,23 @@
       }
     },
     "watch": {
+      "0x0734f0f9d424e5b84e7ee5222bdb0d2385d09332": {
+        "checks": 1,
+        "first_seen": "2026-11-13T13:08:15Z",
+        "last_check": "2026-11-13T13:08:15Z",
+        "symbol": "GODF"
+      },
       "0x1d58617c4dd3a38ce9b4621efc2b03e42eda661a": {
         "checks": 2,
         "first_seen": "2026-11-13T12:43:13Z",
         "last_check": "2026-11-13T12:58:13Z",
         "symbol": "GODF"
       },
-      "0xa1defb3f313429db8bbbeaf8246e46aec48fcf0b": {
-        "checks": 11,
-        "first_seen": "2026-11-13T09:53:13Z",
-        "last_check": "2026-11-13T12:48:16Z",
-        "symbol": "AIPF"
-      },
       "0xb2c6d50eb8a88a9d81c4a55c340d8f886c966bf6": {
-        "checks": 9,
+        "checks": 10,
         "first_seen": "2026-11-13T10:28:15Z",
-        "last_check": "2026-11-13T12:48:16Z",
+        "last_check": "2026-11-13T13:08:15Z",
         "symbol": "KITE"
-      },
-      "0xd2fb7540fecdf1f1002582e8f4dc0fc4ef356437": {
-        "checks": 2,
-        "first_seen": "2026-11-13T12:28:16Z",
-        "last_check": "2026-11-13T12:48:16Z",
-        "symbol": "NAOF"
-      },
-      "0xda486cafba678eb7fe9bbd3e65d45fd5687ebf13": {
-        "checks": 3,
-        "first_seen": "2026-11-13T12:18:14Z",
-        "last_check": "2026-11-13T12:48:16Z",
-        "symbol": "TRUMP2028"
       },
       "0xf412ca94ce9f6d602c61cacb6eaeb86a43402b9c": {
         "checks": 1,
