@@ -29,9 +29,9 @@
         "entry_qliq": 136298,
         "entry_ts": "2026-11-13T04:58:15Z",
         "ladder_done": [],
-        "last_liq_usd": 281348.02,
-        "last_price": 0.514,
-        "last_qliq": 136297,
+        "last_liq_usd": 280789.48,
+        "last_price": 0.513,
+        "last_qliq": 136037,
         "launchpad": "other",
         "orig_qty": 9.442124189316107,
         "pair": "0xa8a7e7546e4dff1f34aace29d610cca3c2951c6cde56f35d3c77177633fa9443",
@@ -42,7 +42,7 @@
     },
     "refill_week": "2026-W46",
     "refills_usd": 47.693738985981945,
-    "ticks_since_buy": 5
+    "ticks_since_buy": 6
   },
   "desk": {
     "cash": 50.0,
@@ -744,7 +744,9 @@
         "symbol": "AO\u200aDT"
       },
       "0x30357f3de015adc5e9f4d175c38382352ad47825": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 0.004791,
         "first_seen": "2026-11-13T04:28:13Z",
         "sight_pair": "0xe0e3766a93e57d3eb41040065336290cac469e3feeb8d8058fbd2790b2f19577",
@@ -833,7 +835,9 @@
         "symbol": "USRP"
       },
       "0x382a02696f382be0c6fd6cf61ee2735a21fcdfde": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 0.03268,
         "first_seen": "2026-11-13T04:28:13Z",
         "sight_pair": "0xde255a0aa6cc491aa166d3517de492b2ece079cb75e97f4fe71027aa816430e2",
@@ -954,7 +958,8 @@
       },
       "0x42239a596deea09ef05451e287e45809da79a928": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 9.815e-05,
         "first_seen": "2026-11-12T23:28:15Z",
@@ -1344,6 +1349,14 @@
         "sight_qliq": 0,
         "symbol": "tesv4"
       },
+      "0x71a06c98910b18427e9281f27f4ce9e2e97d324b": {
+        "done": [],
+        "first_price": 1.378e-05,
+        "first_seen": "2026-11-13T05:28:15Z",
+        "sight_pair": "0xd7e55b40f1749b5cc9ae5a0a855bd34779a6cf69",
+        "sight_qliq": 78126,
+        "symbol": "BOOTR"
+      },
       "0x74885933552312c344069d7df7a8d8ca958b7cd8": {
         "done": [
           1
@@ -1353,6 +1366,14 @@
         "sight_pair": "0x41d8b1350aa30f35bb46b77e8170e3122fbd901b7e57da6326364e706fb08a3d",
         "sight_qliq": 2,
         "symbol": "OFAN"
+      },
+      "0x74ef240dfe1d5eb897fa420084db391e8ff39f97": {
+        "done": [],
+        "first_price": 4.092e-06,
+        "first_seen": "2026-11-13T05:28:15Z",
+        "sight_pair": "0xd2ec63de10110814b3c769d9f1f0b4193b9bd2be",
+        "sight_qliq": 29573,
+        "symbol": "U.S EXCHANGE OIL "
       },
       "0x78d01246b1a327eae4d90b3dcee91e15b59487cd": {
         "done": [
@@ -1639,6 +1660,14 @@
         "sight_pair": "0xce8e8b3e95c1b126746df727ab554fe5f3ada2d2a97b1b147a9851271f1a83e4",
         "sight_qliq": 17,
         "symbol": "FDAN"
+      },
+      "0xa92e0f4789105f8d8234f588f466ed2f72030080": {
+        "done": [],
+        "first_price": 1.716e-05,
+        "first_seen": "2026-11-13T05:28:15Z",
+        "sight_pair": "0xba8b430ad697bba96b603160e2af07ae51ccc6e8a88e603169e1067767ec5bad",
+        "sight_qliq": 10131,
+        "symbol": "Huang"
       },
       "0xae6df5683a6b0738a3d00bbc3885edf57bdbc33a": {
         "done": [],
@@ -5619,6 +5648,12 @@
         "symbol": "SPIKESHIELD",
         "until": "2026-11-13T15:28:15Z"
       },
+      "0x85879b19a0feb9bb57f01dc1188ba9000219cba3": {
+        "at": "2026-11-13T05:28:15Z",
+        "reason": "missing:liq_usd",
+        "symbol": "AMD",
+        "until": "2026-11-14T05:28:15Z"
+      },
       "0x861e6346b89eb47370b7fa9ec4e6dc254c5f4ace": {
         "at": "2026-11-12T06:53:13Z",
         "reason": "real_depth",
@@ -6386,6 +6421,12 @@
         "reason": "real_depth",
         "symbol": "BaseHub",
         "until": "2026-11-13T06:23:14Z"
+      },
+      "0xaf4af88c4e212f05d4e2984edc071779efee7dda": {
+        "at": "2026-11-13T05:28:15Z",
+        "reason": "real_depth",
+        "symbol": "schnoz",
+        "until": "2026-11-14T05:28:15Z"
       },
       "0xaf642958443f169e9ceaee7c76345cd36764501e": {
         "at": "2026-11-12T20:38:14Z",
@@ -9034,6 +9075,24 @@
         "first_seen": "2026-11-13T04:48:14Z",
         "last_check": "2026-11-13T05:23:16Z",
         "symbol": "FAND"
+      },
+      "0x71a06c98910b18427e9281f27f4ce9e2e97d324b": {
+        "checks": 1,
+        "first_seen": "2026-11-13T05:28:15Z",
+        "last_check": "2026-11-13T05:28:15Z",
+        "symbol": "BOOTR"
+      },
+      "0x74ef240dfe1d5eb897fa420084db391e8ff39f97": {
+        "checks": 1,
+        "first_seen": "2026-11-13T05:28:15Z",
+        "last_check": "2026-11-13T05:28:15Z",
+        "symbol": "U.S EXCHANGE OIL "
+      },
+      "0xa92e0f4789105f8d8234f588f466ed2f72030080": {
+        "checks": 1,
+        "first_seen": "2026-11-13T05:28:15Z",
+        "last_check": "2026-11-13T05:28:15Z",
+        "symbol": "Huang"
       },
       "0xae6df5683a6b0738a3d00bbc3885edf57bdbc33a": {
         "checks": 3,
