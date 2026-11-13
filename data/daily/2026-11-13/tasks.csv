@@ -814,3 +814,14 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-13T10:13:13Z,desk,VERIFY,FLSYS,0x6b1b4e53529f47e8302d0f739870eb6d40e08ba3,SKIP,real_depth,goplus=skipped until=2026-11-14T10:13:13Z
 2026-11-13T10:13:13Z,desk,VERIFY,.AI,0xb38ddb0852feb0fa99e9906e73200dcf3adfa249,SKIP,real_depth,goplus=skipped until=2026-11-14T10:13:13Z
 2026-11-13T10:13:13Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=21 rechecks=0 new=2 checked=2 passed=0 bought=0 held=0 deferred=0 dex_only=2 goplus=0 requests=7 secs=1.8 bl_positions=1 bl_due=0 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=1 labels_done=1 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-13T10:18:15Z,baseline,EXIT,CFD,0xdc5bb02c894d5e848d1449a5811b2b23de26f6d0,HOLD,,pct=-2.43
+2026-11-13T10:18:15Z,desk,VERIFY,NAMI,0x8888cdad9ef66382f89e68f95ec384d89ec28888,SKIP,goplus_timeout,first_seen=2026-11-13T07:18:15Z checks=11 until=2026-11-14T10:18:15Z b1=2 s1=0 b24=136 s24=197 liq=719747 dex=nami qliq=134675 pair_age=188 token_age=3946
+2026-11-13T10:18:15Z,desk,VERIFY,CFD,0xdc5bb02c894d5e848d1449a5811b2b23de26f6d0,WATCH,goplus_not_ready,"first_seen=2026-11-13T08:58:15Z checks=5 pending=dev_pct,top10_pct b1=21 s1=16 b24=54 s24=54 liq=87290 dex=sushiswap qliq=53645 pair_age=91 token_age=91"
+2026-11-13T10:18:15Z,desk,VERIFY,NUCLEAR RESERVE U.S,0x79c445ac94ee94607710269dda2b064d952a85fb,SKIP,real_depth,first_seen=2026-11-13T09:43:14Z checks=3 goplus=skipped until=2026-11-14T10:18:15Z
+2026-11-13T10:18:15Z,desk,VERIFY,MARSBASE,0xb3c86288f00ca2ee9de57f6cd5db1ab75c2d2222,WATCH,goplus_not_ready,"first_seen=2026-11-13T09:43:14Z checks=3 pending=mint_open,freeze_or_blacklist,honeypot,top10_pct,lp_locked_pct,risk_flags b1=1255 s1=1391 b24=1255 s24=1391 liq=58860 dex=uniswap:v4 qliq=29431 pair_age=36 token_age=36"
+2026-11-13T10:18:15Z,desk,VERIFY,CHUBBY,0xaeb66d836bc341dd8f91d5c8c5c0a16fced29cae,SKIP,real_depth,goplus=skipped until=2026-11-14T10:18:15Z
+2026-11-13T10:18:15Z,desk,VERIFY,suitdog,0xb200000000000000000000076816f8db99e4298c,SKIP,real_depth,goplus=skipped until=2026-11-14T10:18:15Z
+2026-11-13T10:18:15Z,desk,VERIFY,OPST,0xe91699fa04284c6c63b49642cb94aa5eef37f8d6,SKIP,real_depth,goplus=skipped until=2026-11-14T10:18:15Z
+2026-11-13T10:18:15Z,desk,VERIFY,Basesnake,0xc5c97424a77387253edf6dedec9bd5cb5566961d,SKIP,missing:liq_usd,goplus=skipped until=2026-11-14T10:18:15Z
+2026-11-13T10:18:15Z,desk,VERIFY,OPST,0xa740c5047d6233ec5f1b6bf38413582a5f459386,SKIP,real_depth,goplus=skipped until=2026-11-14T10:18:15Z
+2026-11-13T10:18:15Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=21 rechecks=4 new=5 checked=9 passed=0 bought=0 held=0 deferred=0 dex_only=6 goplus=3 requests=17 secs=7.9 bl_positions=1 bl_due=0 bl_eligible=1 bl_bought=0 report=none machine=none bl_error=none labels=none labels_due=0 labels_done=0 labels_calls=0 live=ok alerts=none alerts_sent=0
