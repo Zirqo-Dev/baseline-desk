@@ -368,3 +368,9 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-13T04:18:14Z,desk,VERIFY,Claudestronomy,0x5c7625684a8c6bc3a1f5bff15a8702ae20ffdba3,SKIP,missing:liq_usd,goplus=skipped until=2026-11-14T04:18:14Z
 2026-11-13T04:18:14Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
 2026-11-13T04:18:14Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=22 rechecks=2 new=1 checked=3 passed=0 bought=0 held=0 deferred=0 dex_only=3 goplus=0 requests=7 secs=2.0 bl_positions=1 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=none labels_due=0 labels_done=0 labels_calls=0 live=ok alerts=none alerts_sent=0
+2026-11-13T04:23:13Z,baseline,EXIT,Huang,0x1ffebad866b0b7f0f0e76aa644de565b49b1c080,HOLD,,pct=65.36
+2026-11-13T04:23:13Z,desk,VERIFY,SI,0x9dce4d734648c67194d8c7fb95354baf9ae1bed2,WATCH,goplus_not_ready,"first_seen=2026-11-13T04:23:13Z checks=1 pending=mint_open,freeze_or_blacklist,honeypot,buy_tax_pct,sell_tax_pct,dev_pct,top10_pct,lp_locked_pct,risk_flags b1=5 s1=0 b24=5 s24=0 liq=157260 dex=uniswap:v2 qliq=78593 pair_age=3 token_age=3"
+2026-11-13T04:23:13Z,desk,VERIFY,POKT,0x3d3a5f525ba51e1ee4c800e40418ea04fd57b22f,SKIP,missing:price,goplus=skipped until=2026-11-14T04:23:13Z
+2026-11-13T04:23:13Z,desk,VERIFY,LQTY,0x0b161bf52e236c8fc2c24c9f29147c3cb995cbb5,SKIP,missing:price,goplus=skipped until=2026-11-14T04:23:13Z
+2026-11-13T04:23:13Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
+2026-11-13T04:23:13Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=22 rechecks=0 new=3 checked=3 passed=0 bought=0 held=0 deferred=0 dex_only=2 goplus=1 requests=9 secs=2.3 bl_positions=1 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=4 labels_done=4 labels_calls=1 live=ok alerts=none alerts_sent=0
