@@ -1951,3 +1951,9 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-13T23:18:15Z,desk,VERIFY,OFI,0x5d425ca2c39932653ead5737a9e3ecfdeceeca3e,SKIP,real_depth,goplus=skipped until=2026-11-14T23:18:15Z
 2026-11-13T23:18:15Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
 2026-11-13T23:18:15Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=18 rechecks=0 new=1 checked=1 passed=0 bought=0 held=0 deferred=0 dex_only=1 goplus=0 requests=5 secs=1.4 bl_positions=0 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=1 labels_done=1 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-13T23:23:15Z,desk,VERIFY,FDOG🛢️,0x42208b49ddc24515f1d3aba964af291d133d4d4e,SKIP,real_depth,first_seen=2026-11-13T22:28:16Z checks=4 goplus=skipped until=2026-11-14T23:23:15Z
+2026-11-13T23:23:15Z,desk,VERIFY,BIDEN,0xe21eac6eb7d35bf7695b55f18a94c29ebbd38db0,WATCH,goplus_not_ready,"first_seen=2026-11-13T23:03:16Z checks=2 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct b1=42 s1=0 b24=42 s24=0 liq=176171 dex=uniswap:v2 qliq=88063 pair_age=24 token_age=24"
+2026-11-13T23:23:15Z,desk,VERIFY,LIQUIDBGT,0x401dba6d26bc2bf3b34a3256767e1fc8a300241a,SKIP,real_depth,goplus=skipped until=2026-11-14T23:23:15Z
+2026-11-13T23:23:15Z,desk,VERIFY,FOTF,0x712034338ea1ebf185b11d9b670595ea3787776b,SKIP,missing:liq_usd,goplus=skipped until=2026-11-14T23:23:15Z
+2026-11-13T23:23:15Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
+2026-11-13T23:23:15Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=18 rechecks=2 new=2 checked=4 passed=0 bought=0 held=0 deferred=0 dex_only=3 goplus=1 requests=9 secs=2.2 bl_positions=0 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=2 labels_done=2 labels_calls=1 live=ok alerts=none alerts_sent=0
