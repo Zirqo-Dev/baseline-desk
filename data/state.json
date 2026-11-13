@@ -1,6 +1,6 @@
 {
   "baseline": {
-    "cash": 41.092665056838925,
+    "cash": 36.092665056838925,
     "cooldown": {
       "a:0x10c76d44ca43fdc91894f42974a190195fe2e609": "2026-11-13T23:23:13Z",
       "a:0x148d9c29cded09bf9240bb3b2c2ecca94291910d": "2026-11-13T16:33:15Z",
@@ -20,10 +20,27 @@
     "day": "2026-11-13",
     "day_start_value": 43.87773239130222,
     "halted_day": "",
-    "positions": {},
+    "positions": {
+      "0xae6df5683a6b0738a3d00bbc3885edf57bdbc33a": {
+        "cost_usd": 5.0,
+        "entry_fill": 0.5295418594109965,
+        "entry_intended": 0.5141,
+        "entry_liq_usd": 281397.19,
+        "entry_qliq": 136298,
+        "entry_ts": "2026-11-13T04:58:15Z",
+        "ladder_done": [],
+        "last_price": 0.5141,
+        "launchpad": "other",
+        "orig_qty": 9.442124189316107,
+        "pair": "0xa8a7e7546e4dff1f34aace29d610cca3c2951c6cde56f35d3c77177633fa9443",
+        "peak_price": 0.5141,
+        "qty": 9.442124189316107,
+        "symbol": "AOTF"
+      }
+    },
     "refill_week": "2026-W46",
     "refills_usd": 47.693738985981945,
-    "ticks_since_buy": 67
+    "ticks_since_buy": 0
   },
   "desk": {
     "cash": 50.0,
@@ -544,7 +561,8 @@
       },
       "0x2332dec1865376dfb5486bdfbd50929d684b4fc0": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 0.002491,
         "first_seen": "2026-11-12T22:53:14Z",
@@ -818,6 +836,14 @@
         "sight_pair": "0xde255a0aa6cc491aa166d3517de492b2ece079cb75e97f4fe71027aa816430e2",
         "sight_qliq": 594,
         "symbol": "A\u200aO\u200aD\u200aF"
+      },
+      "0x3962b76816ba3cf49b3a46831b8898c8fdd33504": {
+        "done": [],
+        "first_price": 0.0001,
+        "first_seen": "2026-11-13T04:58:15Z",
+        "sight_pair": "0xe5b23639e4f2afa45315b95ea6eb62d574a8a1e1d1a1341fb511468234b59960",
+        "sight_qliq": 5,
+        "symbol": "WALIT"
       },
       "0x3a32894e702cd69885416de40dbecfa79a59f4ca": {
         "done": [
@@ -1371,17 +1397,6 @@
         "sight_qliq": 17,
         "symbol": "NDFA"
       },
-      "0x7f1326fc3323b798c2ce85e519bd16fab6def7e3": {
-        "done": [
-          1,
-          6
-        ],
-        "first_price": 0.000107,
-        "first_seen": "2026-11-12T04:58:13Z",
-        "sight_pair": "0x1782a81ed4e9a8c10d8e8b195f5b06c507dd37121bde7203ec03148e5498e573",
-        "sight_qliq": 25,
-        "symbol": "SAOR "
-      },
       "0x8090ec93d445d7fb87c820560a99c9283dddeb93": {
         "done": [
           1,
@@ -1655,7 +1670,8 @@
       },
       "0xb056632ff104fa981c0744fd34c2171768c33339": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 4.183e-06,
         "first_seen": "2026-11-12T22:53:14Z",
@@ -2087,6 +2103,14 @@
         "sight_pair": "0xc062799f1f236f816ee8f6a88889ffea5c324608",
         "sight_qliq": 31138,
         "symbol": "VOF"
+      },
+      "0xe30fd4592483206282c6f9a0b51943b214546d46": {
+        "done": [],
+        "first_price": 9.17e-06,
+        "first_seen": "2026-11-13T04:58:15Z",
+        "sight_pair": "0x5c7f54807c1f4922151c137d3e3b54337f123819",
+        "sight_qliq": 79174,
+        "symbol": "BIDEN"
       },
       "0xe3a51a92df89fdca03b31b035c86300f251736cc": {
         "done": [
@@ -3965,6 +3989,12 @@
         "symbol": "PITCH",
         "until": "2026-11-13T06:43:20Z"
       },
+      "0x3962b76816ba3cf49b3a46831b8898c8fdd33504": {
+        "at": "2026-11-13T04:58:15Z",
+        "reason": "real_depth",
+        "symbol": "WALIT",
+        "until": "2026-11-14T04:58:15Z"
+      },
       "0x39bc12735a34944c04425202597f82bac8d189f0": {
         "at": "2026-11-13T04:53:12Z",
         "reason": "real_depth",
@@ -4253,6 +4283,12 @@
         "symbol": "TRUMP2028",
         "until": "2026-11-13T15:23:15Z"
       },
+      "0x44b85bc3c2a05fcadf558c15e6a2716b55ccdcb9": {
+        "at": "2026-11-13T04:58:15Z",
+        "reason": "real_depth",
+        "symbol": "BTCN",
+        "until": "2026-11-14T04:58:15Z"
+      },
       "0x44c4348073f2de5f2112a9ad194c3f0edbd4fabf": {
         "at": "2026-11-12T05:08:15Z",
         "reason": "real_depth",
@@ -4354,12 +4390,6 @@
         "reason": "real_depth",
         "symbol": "LIQUIDBGT",
         "until": "2026-11-13T18:13:12Z"
-      },
-      "0x489b02b12bccda41cde1998987410c8ae19aaba1": {
-        "at": "2026-11-12T04:58:13Z",
-        "reason": "real_depth",
-        "symbol": "SUPERGEMMA",
-        "until": "2026-11-13T04:58:13Z"
       },
       "0x4917a28be9e22debb5e80a38ec06196bb4aecccc": {
         "at": "2026-11-12T23:53:14Z",
@@ -4937,6 +4967,12 @@
         "symbol": "MEOW",
         "until": "2026-11-13T22:33:14Z"
       },
+      "0x637d5ba46f9f041f5a082e201c0f455c4b5973cd": {
+        "at": "2026-11-13T04:58:15Z",
+        "reason": "real_depth",
+        "symbol": "titcoin",
+        "until": "2026-11-14T04:58:15Z"
+      },
       "0x63f4a55bae4f02b9f46a187c040374bd8674cccc": {
         "at": "2026-11-12T10:43:14Z",
         "reason": "real_depth",
@@ -5483,12 +5519,6 @@
         "symbol": "PORTALX",
         "until": "2026-11-13T12:23:14Z"
       },
-      "0x7f1326fc3323b798c2ce85e519bd16fab6def7e3": {
-        "at": "2026-11-12T04:58:13Z",
-        "reason": "real_depth",
-        "symbol": "SAOR ",
-        "until": "2026-11-13T04:58:13Z"
-      },
       "0x7f35b5bccce814d900a27d9945926eb9b03c5e7d": {
         "at": "2026-11-12T20:23:14Z",
         "reason": "real_depth",
@@ -5957,6 +5987,12 @@
         "symbol": "Gitbank",
         "until": "2026-11-13T19:58:15Z"
       },
+      "0x97f34a52d9bfb0f8b799b6ecc4929fedd314f2e3": {
+        "at": "2026-11-13T04:58:15Z",
+        "reason": "real_depth",
+        "symbol": "BTC iShares",
+        "until": "2026-11-14T04:58:15Z"
+      },
       "0x981a8a677874736505a93f3c3848f97d5d5dfa72": {
         "at": "2026-11-12T05:18:16Z",
         "reason": "real_depth",
@@ -6076,6 +6112,12 @@
         "reason": "real_depth",
         "symbol": "NADF",
         "until": "2026-11-13T20:33:16Z"
+      },
+      "0x9dce4d734648c67194d8c7fb95354baf9ae1bed2": {
+        "at": "2026-11-13T04:58:15Z",
+        "reason": "real_depth",
+        "symbol": "SI",
+        "until": "2026-11-14T04:58:15Z"
       },
       "0x9ed0b0f2048b8e29738140342ebb0e1ab29ef3dd": {
         "at": "2026-11-13T00:13:15Z",
@@ -7583,6 +7625,12 @@
         "symbol": "THINKLABS",
         "until": "2026-11-13T09:33:27Z"
       },
+      "0xbb19fae89b2f375dfbcc0ca53de965837914de7f": {
+        "at": "2026-11-13T04:58:15Z",
+        "reason": "real_depth",
+        "symbol": "BTC ProShares",
+        "until": "2026-11-14T04:58:15Z"
+      },
       "0xbb2677412ade6f649e24850167503341669afcc5": {
         "at": "2026-11-12T08:38:32Z",
         "reason": "goplus_timeout",
@@ -7780,6 +7828,12 @@
         "reason": "real_depth",
         "symbol": "CHUBBY",
         "until": "2026-11-13T19:28:15Z"
+      },
+      "0xc389742fd0742997efdd7d909e2f6e8975b1ef5a": {
+        "at": "2026-11-13T04:58:15Z",
+        "reason": "real_depth",
+        "symbol": "BTC ARK",
+        "until": "2026-11-14T04:58:15Z"
       },
       "0xc3a0e8428559b9060205c1f58c491f914ee5a2ae": {
         "at": "2026-11-12T16:18:18Z",
@@ -8753,6 +8807,12 @@
         "symbol": "NATF",
         "until": "2026-11-13T06:08:16Z"
       },
+      "0xf3d8e694e1a25289218ec561310bdedb38855728": {
+        "at": "2026-11-13T04:58:15Z",
+        "reason": "real_depth",
+        "symbol": "BTCQ",
+        "until": "2026-11-14T04:58:15Z"
+      },
       "0xf3dfbf13e9c20c12d46b15d71787ec0a53ac5b12": {
         "at": "2026-11-12T22:18:15Z",
         "reason": "real_depth",
@@ -8999,6 +9059,12 @@
         "symbol": "ANSEM",
         "until": "2026-11-13T18:58:16Z"
       },
+      "0xffde788d4afd89402a67be975a5f56f1f16a2cc4": {
+        "at": "2026-11-13T04:58:15Z",
+        "reason": "real_depth",
+        "symbol": "CHUBBY",
+        "until": "2026-11-14T04:58:15Z"
+      },
       "0xfffc8a21a271e621b9be78618aa5f592ea7041bd": {
         "at": "2026-11-12T14:38:15Z",
         "reason": "real_depth",
@@ -9013,17 +9079,17 @@
         "last_check": "2026-11-13T04:48:14Z",
         "symbol": "FAND"
       },
-      "0x9dce4d734648c67194d8c7fb95354baf9ae1bed2": {
-        "checks": 2,
-        "first_seen": "2026-11-13T04:23:13Z",
-        "last_check": "2026-11-13T04:38:15Z",
-        "symbol": "SI"
-      },
       "0xae6df5683a6b0738a3d00bbc3885edf57bdbc33a": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-13T04:38:15Z",
-        "last_check": "2026-11-13T04:38:15Z",
+        "last_check": "2026-11-13T04:58:15Z",
         "symbol": "AOTF"
+      },
+      "0xe30fd4592483206282c6f9a0b51943b214546d46": {
+        "checks": 1,
+        "first_seen": "2026-11-13T04:58:15Z",
+        "last_check": "2026-11-13T04:58:15Z",
+        "symbol": "BIDEN"
       }
     }
   },
