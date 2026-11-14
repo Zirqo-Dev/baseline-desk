@@ -1,0 +1,10 @@
+ts,book,stage,symbol,address,action,reason,detail
+2026-11-14T00:03:14Z,desk,VERIFY,RST,0x3dcf5eba588e0b8279685611192e490c54ec7a1f,WATCH,goplus_not_ready,"first_seen=2026-11-13T22:58:14Z checks=5 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct b1=115 s1=84 b24=139 s24=96 liq=3781214 dex=uniswap:v4 qliq=66463 pair_age=69 token_age=69"
+2026-11-14T00:03:14Z,desk,VERIFY,RSPU,0x3d08952812e9f9534efe746b37f676afd2281858,SKIP,real_depth,first_seen=2026-11-13T23:13:14Z checks=4 goplus=skipped until=2026-11-15T00:03:14Z
+2026-11-14T00:03:14Z,desk,VERIFY,Basefrog,0x238f08987d0077f76e2741dba20db29d4ab3f61f,SKIP,missing:liq_usd,goplus=skipped until=2026-11-15T00:03:14Z
+2026-11-14T00:03:14Z,desk,VERIFY,NFDA,0x79ea6934baa060a583c4694723f4bfcb0f93edf6,SKIP,real_depth,goplus=skipped until=2026-11-15T00:03:14Z b1=1 s1=0 b24=1 s24=0 liq=125877 dex=uniswap:v4 qliq=1 pair_age=1 token_age=1
+2026-11-14T00:03:14Z,desk,VERIFY,CAN,0xf765907ee592c5f57974c9a0c1c9d7c706de4ba3,SKIP,real_depth,goplus=skipped until=2026-11-15T00:03:14Z
+2026-11-14T00:03:14Z,desk,VERIFY,FDAN,0x11bf8b650a31db1c49296feff6f2538da2df84de,SKIP,real_depth,goplus=skipped until=2026-11-15T00:03:14Z b1=15 s1=0 b24=15 s24=0 liq=97127 dex=uniswap:v4 qliq=18 pair_age=3 token_age=3
+2026-11-14T00:03:14Z,desk,VERIFY,OFI,0xb200000000000000000000e86ccaafec4b616a9e,SKIP,real_depth,goplus=skipped until=2026-11-15T00:03:14Z
+2026-11-14T00:03:14Z,baseline,EXECUTE,RST,0x3dcf5eba588e0b8279685611192e490c54ec7a1f,SKIP,reentry_cooldown,seed=202611140003 eligible=1 pick=0 pool=3dcf5e desk=WATCH launchpad=other
+2026-11-14T00:03:14Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=2 new=5 checked=7 passed=0 bought=0 held=0 deferred=0 dex_only=6 goplus=1 requests=11 secs=2.6 bl_positions=0 bl_due=1 bl_eligible=1 bl_bought=0 report=ok machine=ok bl_error=none labels=none labels_due=0 labels_done=0 labels_calls=0 live=ok alerts=ok alerts_sent=1
