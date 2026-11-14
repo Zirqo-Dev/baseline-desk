@@ -1559,3 +1559,11 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-14T19:28:15Z,desk,VERIFY,0xMaxi,0xab7077423edd3109f234c30e4adc2e881cfeeba3,SKIP,missing:liq_usd,goplus=skipped until=2026-11-15T19:28:15Z
 2026-11-14T19:28:15Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
 2026-11-14T19:28:15Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=21 rechecks=0 new=8 checked=8 passed=0 bought=0 held=0 deferred=0 dex_only=8 goplus=0 requests=13 secs=3.2 bl_positions=1 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=1 labels_done=1 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-14T19:33:17Z,baseline,EXIT,Angel,0x630ddf73dff2708d0a04b81a34155b21fe6e1af3,HOLD,,pct=86.32
+2026-11-14T19:33:17Z,desk,VERIFY,REVVY,0x3441e8fcdd380c4e7f5c7f55ccd599b2a2afcccc,WATCH,goplus_not_ready,first_seen=2026-11-14T17:48:21Z checks=7 pending=honeypot b1=42 s1=34 b24=882 s24=727 liq=43867 dex=uniswap:v4 qliq=20158 pair_age=4522 token_age=4522
+2026-11-14T19:33:17Z,desk,VERIFY,Angel,0x630ddf73dff2708d0a04b81a34155b21fe6e1af3,WATCH,goplus_not_ready,"first_seen=2026-11-14T18:08:14Z checks=6 pending=mint_open,freeze_or_blacklist,honeypot,top10_pct,risk_flags b1=97 s1=52 b24=225 s24=87 liq=110460 dex=uniswap:v4 qliq=46061 pair_age=92 token_age=92"
+2026-11-14T19:33:17Z,desk,VERIFY,GITLAB,0x4e1035f68bfdfe1984bcc522e51b1ab62a37bed4,SKIP,real_depth,goplus=skipped until=2026-11-15T19:33:17Z
+2026-11-14T19:33:17Z,desk,VERIFY,MEOW,0x4d8a89645f27726e65fdee80439d3e7c01b48e36,SKIP,real_depth,goplus=skipped until=2026-11-15T19:33:17Z
+2026-11-14T19:33:17Z,desk,VERIFY,SR,0x402c0ddd767a6c661c6e56281ea4044018dd9ca3,SKIP,real_depth,goplus=skipped until=2026-11-15T19:33:17Z
+2026-11-14T19:33:17Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
+2026-11-14T19:33:17Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=21 rechecks=2 new=3 checked=5 passed=0 bought=0 held=0 deferred=0 dex_only=3 goplus=2 requests=12 secs=4.7 bl_positions=1 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=1 labels_done=1 labels_calls=1 live=ok alerts=none alerts_sent=0
