@@ -23,18 +23,20 @@
         "entry_qliq": 28153,
         "entry_ts": "2026-11-14T18:23:18Z",
         "ladder_done": [],
-        "last_price": 0.0001179,
+        "last_liq_usd": 75751.61,
+        "last_price": 0.0001206,
+        "last_qliq": 28695,
         "launchpad": "other",
         "orig_qty": 41166.51439033642,
         "pair": "0x9bb36fa12649672b3ef4ae220d78543ea80a90355f3bbb9ccdc34035e6cdbd42",
-        "peak_price": 0.0001179,
+        "peak_price": 0.0001206,
         "qty": 41166.51439033642,
         "symbol": "Angel"
       }
     },
     "refill_week": "2026-W46",
     "refills_usd": 47.693738985981945,
-    "ticks_since_buy": 0
+    "ticks_since_buy": 1
   },
   "desk": {
     "cash": 50.0,
@@ -1913,7 +1915,9 @@
         "symbol": "BOOTR"
       },
       "0x5e9b725fc07b32fcb1e8bd99a10de148e780e6c5": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 3.3e-06,
         "first_seen": "2026-11-14T17:23:21Z",
         "sight_pair": "0x4cfcfe62ec8e81941e555c4ed5574e36a78afbf2",
@@ -2840,6 +2844,14 @@
         "sight_qliq": 1,
         "symbol": "OGDF"
       },
+      "0xd7bc5c0e2edd817f8eb2778ad0c9fa871de84164": {
+        "done": [],
+        "first_price": 1.689e-05,
+        "first_seen": "2026-11-14T18:28:16Z",
+        "sight_pair": "0x890403026902496930967287cd8d97af4b8d8907",
+        "sight_qliq": 75361,
+        "symbol": "BOOTR"
+      },
       "0xd8a6cd658005136110816f87b774e33ca865ee0c": {
         "done": [
           1,
@@ -3392,12 +3404,6 @@
         "reason": "real_depth",
         "symbol": "SOSF",
         "until": "2026-11-15T16:28:14Z"
-      },
-      "0x05675a5e05eb1748584fa38c70f74f9a2235d001": {
-        "at": "2026-11-13T18:28:15Z",
-        "reason": "real_depth",
-        "symbol": "NEXT",
-        "until": "2026-11-14T18:28:15Z"
       },
       "0x05867dfc6bf6206ba87d6948cad6d26d6273661a": {
         "at": "2026-11-14T03:03:14Z",
@@ -5457,12 +5463,6 @@
         "symbol": "FDOG",
         "until": "2026-11-15T00:13:14Z"
       },
-      "0x4b214d878001e7e7f7c132d3f47f58bca0892c0c": {
-        "at": "2026-11-13T18:28:15Z",
-        "reason": "real_depth",
-        "symbol": "UNITED OIL DIVIDEND FUND",
-        "until": "2026-11-14T18:28:15Z"
-      },
       "0x4b90471fffa24fd128c0f179bbc53f6b3ed8d525": {
         "at": "2026-11-14T03:03:14Z",
         "reason": "real_depth",
@@ -7299,12 +7299,6 @@
         "symbol": "MORI",
         "until": "2026-11-15T10:43:13Z"
       },
-      "0xb200000000000000000000028f369a8deee61601": {
-        "at": "2026-11-13T18:28:15Z",
-        "reason": "real_depth",
-        "symbol": "Shopping",
-        "until": "2026-11-14T18:28:15Z"
-      },
       "0xb20000000000000000000004e1567640e4d346c0": {
         "at": "2026-11-14T07:53:13Z",
         "reason": "missing:liq_usd",
@@ -7532,6 +7526,12 @@
         "reason": "missing:liq_usd",
         "symbol": "LION",
         "until": "2026-11-15T01:48:13Z"
+      },
+      "0xb20000000000000000000043b90edb5a2e700de3": {
+        "at": "2026-11-14T18:28:16Z",
+        "reason": "real_depth",
+        "symbol": "AMC",
+        "until": "2026-11-15T18:28:16Z"
       },
       "0xb2000000000000000000004492c8845719ea196c": {
         "at": "2026-11-13T20:18:27Z",
@@ -9868,6 +9868,12 @@
         "first_seen": "2026-11-14T18:08:14Z",
         "last_check": "2026-11-14T18:23:18Z",
         "symbol": "USOH\ud83d\udd25"
+      },
+      "0xd7bc5c0e2edd817f8eb2778ad0c9fa871de84164": {
+        "checks": 1,
+        "first_seen": "2026-11-14T18:28:16Z",
+        "last_check": "2026-11-14T18:28:16Z",
+        "symbol": "BOOTR"
       }
     }
   },
