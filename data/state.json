@@ -39,18 +39,20 @@
         "entry_qliq": 19912,
         "entry_ts": "2026-11-14T02:28:14Z",
         "ladder_done": [],
-        "last_price": 2.298e-05,
+        "last_liq_usd": 39737.67,
+        "last_price": 2.316e-05,
+        "last_qliq": 19871,
         "launchpad": "other",
         "orig_qty": 211191.7218628408,
         "pair": "0x342acea67a6a9475d3c65141b8caadb4e726ab037d6b6faa6165629c579778ed",
-        "peak_price": 2.298e-05,
+        "peak_price": 2.316e-05,
         "qty": 211191.7218628408,
         "symbol": "PEACEFROG"
       }
     },
     "refill_week": "2026-W46",
     "refills_usd": 47.693738985981945,
-    "ticks_since_buy": 0
+    "ticks_since_buy": 1
   },
   "desk": {
     "cash": 50.0,
@@ -64,7 +66,9 @@
   "labels": {
     "pending": {
       "0x002426993ced2571a52642884979ecea11720dd9": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 0.004714,
         "first_seen": "2026-11-14T01:28:15Z",
         "sight_pair": "0xc4bd2a3913f67930bdb1356bc16b9b32bd918e93d06ced87cd02602a4b60ffb5",
@@ -320,7 +324,8 @@
       },
       "0x10e489e2c7b333901474f4f34bf0a5c9181e32c2": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 5.179e-06,
         "first_seen": "2026-11-13T20:28:15Z",
@@ -435,7 +440,9 @@
         "symbol": "NOTF"
       },
       "0x1609160df6a587b9572915d9e36844c2f7a05834": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 1.801e-05,
         "first_seen": "2026-11-14T01:28:15Z",
         "sight_pair": "0x6559c82e04741e3f01e9b20bfdd2575436aa9c73",
@@ -926,7 +933,9 @@
         "symbol": "NOTF"
       },
       "0x2d6299e1a3d2a805875ed75ec7bc22aa38c1e46b": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 0.02847,
         "first_seen": "2026-11-14T01:28:15Z",
         "sight_pair": "0x2abf159323d02745b62458bd63db959498a2e9d20489892ae466add93abbd5b3",
@@ -1124,7 +1133,9 @@
         "symbol": "GODF\ud83d\udd25"
       },
       "0x3776862152528a243880a7a2ade1e6a84bd97d5a": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 0.03274,
         "first_seen": "2026-11-14T01:28:15Z",
         "sight_pair": "0x67a183a0f809421790285f2607407c6eaa96ae1b42b95254c976e5e1b04a9531",
@@ -1424,6 +1435,14 @@
         "sight_pair": "0xb127f3968bcaac487eaf1e175b8c07efbbf71593",
         "sight_qliq": 29637,
         "symbol": "UNITED OIL DIVIDEND FUND"
+      },
+      "0x4b90471fffa24fd128c0f179bbc53f6b3ed8d525": {
+        "done": [],
+        "first_price": 1.612e-05,
+        "first_seen": "2026-11-14T02:33:13Z",
+        "sight_pair": "0xc86cea127fddd096c79a5bbd91010b794ba0fbc8",
+        "sight_qliq": 77319,
+        "symbol": "SI"
       },
       "0x4f5d88722ce0ef78a0f67edc509b4c0be7d6cb0e": {
         "done": [
@@ -2122,7 +2141,8 @@
       },
       "0xaa3daf2258579054715e08f24f9a377c75f1183a": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 1.057e-05,
         "first_seen": "2026-11-13T20:28:15Z",
@@ -2293,7 +2313,9 @@
         "symbol": "PENNY"
       },
       "0xb9ab553e6145a9609ac8ed604bc9ffe2c389be2e": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 0.0001,
         "first_seen": "2026-11-14T01:28:15Z",
         "sight_pair": "0x1eb3db1a4ef6df14090d75c90a9a55bbbb63290f8b5c5f08ecf1c6e0ee17e49e",
@@ -5754,6 +5776,12 @@
         "reason": "real_depth",
         "symbol": "MEGA MILLIONS",
         "until": "2026-11-14T02:48:16Z"
+      },
+      "0x7c2a32a571ba9ef6704442ec702d4d466cdd0601": {
+        "at": "2026-11-14T02:33:13Z",
+        "reason": "real_depth",
+        "symbol": "CLAUDIA",
+        "until": "2026-11-15T02:33:13Z"
       },
       "0x7c435d6defc5fbd8b894df113a27b53ab30ff7b0": {
         "at": "2026-11-13T13:28:14Z",
@@ -9232,10 +9260,16 @@
         "symbol": "GODF"
       },
       "0x3c573bdd88008c94f025e5023212f28e5f39744c": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-14T02:13:19Z",
-        "last_check": "2026-11-14T02:13:19Z",
+        "last_check": "2026-11-14T02:33:13Z",
         "symbol": "TE"
+      },
+      "0x4b90471fffa24fd128c0f179bbc53f6b3ed8d525": {
+        "checks": 1,
+        "first_seen": "2026-11-14T02:33:13Z",
+        "last_check": "2026-11-14T02:33:13Z",
+        "symbol": "SI"
       },
       "0x6640a560eb8586439e85ecf8132677cef8e0bca8": {
         "checks": 3,
@@ -9248,12 +9282,6 @@
         "first_seen": "2026-11-14T02:08:16Z",
         "last_check": "2026-11-14T02:28:14Z",
         "symbol": "PEACEFROG"
-      },
-      "0x7c2a32a571ba9ef6704442ec702d4d466cdd0601": {
-        "checks": 2,
-        "first_seen": "2026-11-14T01:58:16Z",
-        "last_check": "2026-11-14T02:13:19Z",
-        "symbol": "CLAUDIA"
       }
     }
   },
