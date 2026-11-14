@@ -29,7 +29,7 @@
     "positions": {},
     "refill_week": "2026-W46",
     "refills_usd": 47.693738985981945,
-    "ticks_since_buy": 115
+    "ticks_since_buy": 116
   },
   "desk": {
     "cash": 50.0,
@@ -374,7 +374,9 @@
         "symbol": "A\u200aO\u200aD\u200aF"
       },
       "0x0f90245088c84442b144b74137cf4fd8b76d5897": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 0.003884,
         "first_seen": "2026-11-14T11:08:13Z",
         "sight_pair": "0x32b495fae3d53e470e7ad8fb44d013ef55fe025da7e8b341a3d3a7223ea044e0",
@@ -1009,7 +1011,8 @@
       },
       "0x2bbb8accb9beac4d9f71cf9bc35d19a069e7d5a4": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 5.999e-05,
         "first_seen": "2026-11-14T06:03:13Z",
@@ -1504,7 +1507,8 @@
       },
       "0x40aaf75454036bed56f3266ccf18f6b7befd6aca": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 0.02073575233691828,
         "first_seen": "2026-11-14T06:03:13Z",
@@ -2905,7 +2909,9 @@
         "symbol": "Basecat"
       },
       "0xf0e9efe5955ab74bbd56e6c8e6a94779feadd46f": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 0.0001228,
         "first_seen": "2026-11-14T11:08:13Z",
         "sight_pair": "0x5b5dbbb213da13982bafbe13426a769bdb2e01da4826d441f8e0c32bf2cbb9a3",
@@ -4100,6 +4106,12 @@
         "symbol": "Bucky",
         "until": "2026-11-15T07:13:14Z"
       },
+      "0x25261f4bc93f7bc02da77af319bc9ebf02b0f80a": {
+        "at": "2026-11-14T12:08:15Z",
+        "reason": "real_depth",
+        "symbol": "bull",
+        "until": "2026-11-15T12:08:15Z"
+      },
       "0x256fd1caa03fa27e113050868f2d180a4b844a7a": {
         "at": "2026-11-14T11:13:14Z",
         "reason": "real_depth",
@@ -4939,12 +4951,6 @@
         "reason": "real_depth",
         "symbol": "MGXA",
         "until": "2026-11-15T12:03:12Z"
-      },
-      "0x437262326029038be292f67fa661964923a0cc82": {
-        "at": "2026-11-13T12:03:15Z",
-        "reason": "real_depth",
-        "symbol": "basemaxxing",
-        "until": "2026-11-14T12:03:15Z"
       },
       "0x44f14aad77020ea73069221af08f858bb90c3d4a": {
         "at": "2026-11-14T10:13:13Z",
@@ -6914,12 +6920,6 @@
         "symbol": "UOFD",
         "until": "2026-11-15T00:13:14Z"
       },
-      "0xae644f41e95bb2ef1254c6b8ec42673fa7b464d2": {
-        "at": "2026-11-13T12:03:15Z",
-        "reason": "real_depth",
-        "symbol": "SPACEX",
-        "until": "2026-11-14T12:03:15Z"
-      },
       "0xae794c25be1bf2c5f718b5e32d8a09493fdc96a4": {
         "at": "2026-11-14T01:48:13Z",
         "reason": "real_depth",
@@ -7651,6 +7651,12 @@
         "reason": "missing:liq_usd",
         "symbol": "BOUZOUKI",
         "until": "2026-11-14T14:28:16Z"
+      },
+      "0xb200000000000000000000ae8c05cdd0a52ae8fb": {
+        "at": "2026-11-14T12:08:15Z",
+        "reason": "real_depth",
+        "symbol": "VENSA",
+        "until": "2026-11-15T12:08:15Z"
       },
       "0xb200000000000000000000b0bd8841ebe80afd4b": {
         "at": "2026-11-13T13:58:13Z",
@@ -9320,12 +9326,6 @@
         "symbol": "CBI",
         "until": "2026-11-15T07:23:13Z"
       },
-      "0xf1a7bc1c077e9d45d3652b3233469264affa1f56": {
-        "at": "2026-11-13T12:03:15Z",
-        "reason": "real_depth",
-        "symbol": "SPACEX",
-        "until": "2026-11-14T12:03:15Z"
-      },
       "0xf24ee41e8c861ca72ae16f0d9d62015fb43e5a00": {
         "at": "2026-11-13T18:08:16Z",
         "reason": "real_depth",
@@ -9641,9 +9641,9 @@
         "symbol": "RST"
       },
       "0x810e7480cd7d94d913a34d5e1d9671e1efff503b": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-14T11:53:14Z",
-        "last_check": "2026-11-14T11:53:14Z",
+        "last_check": "2026-11-14T12:08:15Z",
         "symbol": "U.S NUCLEAR RESERVE "
       },
       "0xf265ee68166b65ef3dd6cf02a7a79a3e0f4ef5d4": {
