@@ -17,7 +17,7 @@
     "positions": {},
     "refill_week": "2026-W46",
     "refills_usd": 47.693738985981945,
-    "ticks_since_buy": 32
+    "ticks_since_buy": 33
   },
   "desk": {
     "cash": 50.0,
@@ -87,7 +87,8 @@
       },
       "0x029bb68c638b1d3311df87a3cc501e30b6bcad0f": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 0.0001074,
         "first_seen": "2026-11-14T10:03:12Z",
@@ -1756,6 +1757,14 @@
         "sight_qliq": 0,
         "symbol": "DIVIDEND U.S ASSET"
       },
+      "0x5a8cd3d144f7f72c36a5408d18344587ecd019cf": {
+        "done": [],
+        "first_price": 1.032e-05,
+        "first_seen": "2026-11-14T16:03:20Z",
+        "sight_pair": "0x3784e30bba1141e0d5b7b5deffabc87af31582ea",
+        "sight_qliq": 75294,
+        "symbol": "CLAUDIA"
+      },
       "0x5cac5dc10b4cdca36c6b8cfc1498b88364971ca9": {
         "done": [
           1,
@@ -2713,7 +2722,8 @@
       },
       "0xd8a6cd658005136110816f87b774e33ca865ee0c": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 8.876e-05,
         "first_seen": "2026-11-14T10:03:12Z",
@@ -2914,6 +2924,14 @@
         "sight_qliq": 29602,
         "symbol": "SOSF"
       },
+      "0xf1ca20b2a82ddf3902158e4be7ee6ea818dc8434": {
+        "done": [],
+        "first_price": 0.0001013,
+        "first_seen": "2026-11-14T16:03:20Z",
+        "sight_pair": "0x7151182159bdec2f32e93c1e54c2a460173554ce1d943e2800c3fc29dbaddc99",
+        "sight_qliq": 0,
+        "symbol": "BUBBLEINC"
+      },
       "0xf265ee68166b65ef3dd6cf02a7a79a3e0f4ef5d4": {
         "done": [
           1
@@ -2976,6 +2994,14 @@
         "sight_pair": "0xa2682459368da9c1eb93eaa673a52803940a4fb8a1c68659dc0219973b8f7f3a",
         "sight_qliq": 1,
         "symbol": "DFOG"
+      },
+      "0xf7f0809a2dfa080c70be4059a628268614d26a72": {
+        "done": [],
+        "first_price": 5.145e-06,
+        "first_seen": "2026-11-14T16:03:20Z",
+        "sight_pair": "0xe6bc9117f794fedf458902d3aaa67f66ad6a08b9",
+        "sight_qliq": 28052,
+        "symbol": "NATIONAL U.S.OIL"
       },
       "0xf8d1929b7821d338309c5d9ff812eb8177dc7e9e": {
         "done": [
@@ -5331,6 +5357,12 @@
         "symbol": "ODG",
         "until": "2026-11-14T21:08:17Z"
       },
+      "0x567e58f501d38be9e5e1607bff1a3c9a37a6df99": {
+        "at": "2026-11-14T16:03:20Z",
+        "reason": "real_depth",
+        "symbol": "USPR",
+        "until": "2026-11-15T16:03:20Z"
+      },
       "0x569754f792653b0ddc03305699a5890b27898ba3": {
         "at": "2026-11-14T07:53:13Z",
         "reason": "real_depth",
@@ -7437,6 +7469,12 @@
         "symbol": "NIDONE",
         "until": "2026-11-15T07:03:14Z"
       },
+      "0xb200000000000000000000755df012bf6bc70a5a": {
+        "at": "2026-11-14T16:03:20Z",
+        "reason": "real_depth",
+        "symbol": "BULLWISH",
+        "until": "2026-11-15T16:03:20Z"
+      },
       "0xb20000000000000000000075828e87172200b874": {
         "at": "2026-11-14T02:58:14Z",
         "reason": "real_depth",
@@ -9225,6 +9263,12 @@
         "symbol": "SOSF",
         "until": "2026-11-15T13:08:14Z"
       },
+      "0xf1ca20b2a82ddf3902158e4be7ee6ea818dc8434": {
+        "at": "2026-11-14T16:03:20Z",
+        "reason": "real_depth",
+        "symbol": "BUBBLEINC",
+        "until": "2026-11-15T16:03:20Z"
+      },
       "0xf24ee41e8c861ca72ae16f0d9d62015fb43e5a00": {
         "at": "2026-11-13T18:08:16Z",
         "reason": "real_depth",
@@ -9521,11 +9565,17 @@
       }
     },
     "watch": {
-      "0x567e58f501d38be9e5e1607bff1a3c9a37a6df99": {
-        "checks": 3,
-        "first_seen": "2026-11-14T15:13:12Z",
-        "last_check": "2026-11-14T15:48:15Z",
-        "symbol": "USPR"
+      "0x5a8cd3d144f7f72c36a5408d18344587ecd019cf": {
+        "checks": 1,
+        "first_seen": "2026-11-14T16:03:20Z",
+        "last_check": "2026-11-14T16:03:20Z",
+        "symbol": "CLAUDIA"
+      },
+      "0xf7f0809a2dfa080c70be4059a628268614d26a72": {
+        "checks": 1,
+        "first_seen": "2026-11-14T16:03:20Z",
+        "last_check": "2026-11-14T16:03:20Z",
+        "symbol": "NATIONAL U.S.OIL"
       }
     }
   },
