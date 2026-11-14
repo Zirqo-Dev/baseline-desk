@@ -1006,3 +1006,11 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-14T12:18:14Z,desk,VERIFY,RST,0x363dce2bc9fa4ccd751e0502881a3aa18012b2db,WATCH,goplus_not_ready,"first_seen=2026-11-14T10:58:14Z checks=6 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct b1=109 s1=70 b24=163 s24=104 liq=3745293 dex=uniswap:v4 qliq=65644 pair_age=85 token_age=85"
 2026-11-14T12:18:14Z,baseline,EXECUTE,GODF,0x32831b781236f6689e46c39e37b3cecdfae20064,SKIP,reentry_cooldown,"seed=202611141218 eligible=2 pick=0 pool=32831b,363dce desk=WATCH launchpad=other"
 2026-11-14T12:18:14Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=2 new=0 checked=2 passed=0 bought=0 held=0 deferred=0 dex_only=0 goplus=2 requests=8 secs=3.6 bl_positions=0 bl_due=1 bl_eligible=2 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=1 labels_done=1 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-14T12:23:13Z,desk,VERIFY,RIP POPE,0x063ea15f8533f748df7456669538bc91a88db237,SKIP,missing:liq_usd,goplus=skipped until=2026-11-15T12:23:13Z
+2026-11-14T12:23:13Z,desk,VERIFY,UASD,0x542b5084260625d5ad85574dbb080ad3c83a545e,SKIP,real_depth,goplus=skipped until=2026-11-15T12:23:13Z b1=2 s1=0 b24=2 s24=0 liq=106731 dex=uniswap:v4 qliq=25 pair_age=4 token_age=4
+2026-11-14T12:23:13Z,desk,VERIFY,RPTL,0x652ebb14d12c8f82b459ff9f34bf5c3c0bccaf51,SKIP,real_depth,goplus=skipped until=2026-11-15T12:23:13Z
+2026-11-14T12:23:13Z,desk,VERIFY,LIQUIDBGT,0x686190473d13e558fef8d846537cb7748cbc6521,SKIP,real_depth,goplus=skipped until=2026-11-15T12:23:13Z
+2026-11-14T12:23:13Z,desk,VERIFY,2Z,0xb20000000000000000000086a308dd774cb368d9,SKIP,real_depth,goplus=skipped until=2026-11-15T12:23:13Z
+2026-11-14T12:23:13Z,desk,VERIFY,AUQUEN,0xf812eb6b85edd9ab491ba24926c2d33ed15521f7,SKIP,real_depth,goplus=skipped until=2026-11-15T12:23:13Z
+2026-11-14T12:23:13Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
+2026-11-14T12:23:13Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=0 new=6 checked=6 passed=0 bought=0 held=0 deferred=0 dex_only=6 goplus=0 requests=10 secs=2.5 bl_positions=0 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=1 labels_done=1 labels_calls=1 live=ok alerts=none alerts_sent=0
