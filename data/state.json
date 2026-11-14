@@ -17,7 +17,7 @@
     "positions": {},
     "refill_week": "2026-W46",
     "refills_usd": 47.693738985981945,
-    "ticks_since_buy": 17
+    "ticks_since_buy": 18
   },
   "desk": {
     "cash": 50.0,
@@ -2445,6 +2445,14 @@
         "sight_qliq": 1,
         "symbol": "NVDA"
       },
+      "0xba27eb265efcf9a7bc6a58d382541de279f91d50": {
+        "done": [],
+        "first_price": 1.417e-05,
+        "first_seen": "2026-11-14T14:48:19Z",
+        "sight_pair": "0x7a75b25ca7bc7f4a2a88cf1019a99c0af5815fc0",
+        "sight_qliq": 75917,
+        "symbol": "Basecat"
+      },
       "0xbbf8755a55c647a806aa3c14dc1a9e0bd99559f3": {
         "done": [
           1,
@@ -2596,7 +2604,9 @@
         "symbol": "BIDEN"
       },
       "0xcb5dff78e0876a74da17fea45aa181534d9ac825": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 6.616e-06,
         "first_seen": "2026-11-14T13:43:15Z",
         "sight_pair": "0x1efdd0098e9b895105a4e1f898b7d4e92fab4a5a",
@@ -3455,6 +3465,12 @@
         "symbol": "CLAUDIA",
         "until": "2026-11-14T17:33:13Z"
       },
+      "0x0be301e90b6bbdf978860902eaa7931edd334306": {
+        "at": "2026-11-14T14:48:19Z",
+        "reason": "missing:symbol",
+        "symbol": "",
+        "until": "2026-11-15T14:48:19Z"
+      },
       "0x0bfb20050b4bfb7ae155c5472107e4abdf284da4": {
         "at": "2026-11-14T08:48:22Z",
         "reason": "real_depth",
@@ -3941,6 +3957,12 @@
         "symbol": "GODF",
         "until": "2026-11-14T15:48:15Z"
       },
+      "0x1dabcf227aa33f719d45e96ba77138762aa65ef0": {
+        "at": "2026-11-14T14:48:19Z",
+        "reason": "real_depth",
+        "symbol": "Basecat",
+        "until": "2026-11-15T14:48:19Z"
+      },
       "0x1e1d5f1b983e749735019e2e9a76681117806e4e": {
         "at": "2026-11-14T05:23:15Z",
         "reason": "real_depth",
@@ -4132,12 +4154,6 @@
         "reason": "real_depth",
         "symbol": "GODF",
         "until": "2026-11-14T22:58:14Z"
-      },
-      "0x24db337fd9052401f61b14b70423c001dd4f2fcc": {
-        "at": "2026-11-13T14:48:15Z",
-        "reason": "real_depth",
-        "symbol": "SOSF",
-        "until": "2026-11-14T14:48:15Z"
       },
       "0x2505a44eaf959cd7108a938832ce8b025cd8825e": {
         "at": "2026-11-13T18:08:16Z",
@@ -7235,6 +7251,12 @@
         "symbol": "vensa",
         "until": "2026-11-15T07:23:13Z"
       },
+      "0xb2000000000000000000003ef5e2c1a71f1279c1": {
+        "at": "2026-11-14T14:48:19Z",
+        "reason": "missing:symbol",
+        "symbol": "",
+        "until": "2026-11-15T14:48:19Z"
+      },
       "0xb2000000000000000000003fa1c32aeb73574999": {
         "at": "2026-11-14T09:33:14Z",
         "reason": "real_depth",
@@ -8285,12 +8307,6 @@
         "symbol": "LABUBU",
         "until": "2026-11-15T08:58:14Z"
       },
-      "0xc37b010ba23c8410e82a3cfe8fd55baae9fb477d": {
-        "at": "2026-11-13T14:48:15Z",
-        "reason": "real_depth",
-        "symbol": "TROLL",
-        "until": "2026-11-14T14:48:15Z"
-      },
       "0xc3a1fcf80fb8c51587e14041e2420f1eec765d57": {
         "at": "2026-11-14T10:38:13Z",
         "reason": "real_depth",
@@ -9107,6 +9123,12 @@
         "symbol": "PDOG",
         "until": "2026-11-15T10:43:13Z"
       },
+      "0xe9b4f69986359aea14734fb86479a96c2d17502e": {
+        "at": "2026-11-14T14:48:19Z",
+        "reason": "real_depth",
+        "symbol": ".AI",
+        "until": "2026-11-15T14:48:19Z"
+      },
       "0xea0357e7770158486a009f938e13550b53494740": {
         "at": "2026-11-13T22:38:16Z",
         "reason": "real_depth",
@@ -9577,17 +9599,17 @@
       }
     },
     "watch": {
-      "0x1dabcf227aa33f719d45e96ba77138762aa65ef0": {
-        "checks": 1,
-        "first_seen": "2026-11-14T14:28:16Z",
-        "last_check": "2026-11-14T14:28:16Z",
-        "symbol": "Basecat"
-      },
       "0x3fcdf667e650e9401b0f9c015a6db0dd0822e28a": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-14T14:28:16Z",
-        "last_check": "2026-11-14T14:28:16Z",
+        "last_check": "2026-11-14T14:48:19Z",
         "symbol": "WIF"
+      },
+      "0xba27eb265efcf9a7bc6a58d382541de279f91d50": {
+        "checks": 1,
+        "first_seen": "2026-11-14T14:48:19Z",
+        "last_check": "2026-11-14T14:48:19Z",
+        "symbol": "Basecat"
       }
     }
   },
