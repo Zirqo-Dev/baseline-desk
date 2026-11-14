@@ -29,7 +29,7 @@
     "positions": {},
     "refill_week": "2026-W46",
     "refills_usd": 47.693738985981945,
-    "ticks_since_buy": 88
+    "ticks_since_buy": 89
   },
   "desk": {
     "cash": 50.0,
@@ -947,6 +947,14 @@
         "sight_qliq": 1320,
         "symbol": "SOSF"
       },
+      "0x2d02cc67a3a7e39ab120f21fd8ccaae3ccc738f7": {
+        "done": [],
+        "first_price": 4.038e-06,
+        "first_seen": "2026-11-14T09:53:13Z",
+        "sight_pair": "0xcf731e76dfdea1bec87f5a337e74d03847660f79",
+        "sight_qliq": 29454,
+        "symbol": "ZWW"
+      },
       "0x2d43c08b5c1c0b93e16878a0996952e886082656": {
         "done": [
           1
@@ -1401,17 +1409,6 @@
         "sight_pair": "0x41174c5b97984614212b9523ebc32b75bbcba521",
         "sight_qliq": 29829,
         "symbol": "UIC"
-      },
-      "0x4149ba44e84cb72c8ad05aeb26db068ab93143ca": {
-        "done": [
-          1,
-          6
-        ],
-        "first_price": 1.063e-05,
-        "first_seen": "2026-11-13T09:53:13Z",
-        "sight_pair": "0xb80be6095d487af766d12ac73ca2903bbe7a1c4a",
-        "sight_qliq": 80007,
-        "symbol": "BIDEN"
       },
       "0x414cda9949684d8a4ad1299d88d7757022ddb56f": {
         "done": [
@@ -2120,17 +2117,6 @@
         "sight_qliq": 28748,
         "symbol": "GOAP"
       },
-      "0xa1defb3f313429db8bbbeaf8246e46aec48fcf0b": {
-        "done": [
-          1,
-          6
-        ],
-        "first_price": 1.755e-05,
-        "first_seen": "2026-11-13T09:53:13Z",
-        "sight_pair": "0xde8bc3f67428c6eaed10696339e5638677e82b952060749441450019138f2b1b",
-        "sight_qliq": 17483,
-        "symbol": "AIPF"
-      },
       "0xa291c0564387b4ce58da6436e1f54aec7e974de4": {
         "done": [
           1,
@@ -2713,7 +2699,9 @@
         "symbol": "NAOF"
       },
       "0xec555211475c9243b25baa552d2e8bef84a1ae53": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 9.372e-05,
         "first_seen": "2026-11-14T08:53:13Z",
         "sight_pair": "0xa6af428d25575cd3b0d60b9751f297b0f2dfbf495ed0fe20fbc1c42afdd01dcd",
@@ -5472,6 +5460,12 @@
         "symbol": "LIQUIDBGT",
         "until": "2026-11-14T22:38:16Z"
       },
+      "0x6896d58618070b73621247367f5077ecbb3235ea": {
+        "at": "2026-11-14T09:53:13Z",
+        "reason": "real_depth",
+        "symbol": "SPACEX",
+        "until": "2026-11-15T09:53:13Z"
+      },
       "0x68973cf741ed8376efcff5b621db2fd18b7691ac": {
         "at": "2026-11-13T09:58:14Z",
         "reason": "real_depth",
@@ -5933,6 +5927,12 @@
         "reason": "real_depth",
         "symbol": "CHUBBY",
         "until": "2026-11-14T17:08:15Z"
+      },
+      "0x826245bb77a53ba7ccf46485360c1a218bd63e15": {
+        "at": "2026-11-14T09:53:13Z",
+        "reason": "missing:liq_usd",
+        "symbol": "EXXON ENERGY NETWORK",
+        "until": "2026-11-15T09:53:13Z"
       },
       "0x8271f6239025ad1942d6041f7d4ba8b56c2ce66b": {
         "at": "2026-11-13T13:58:13Z",
@@ -8478,6 +8478,12 @@
         "symbol": "Basepig",
         "until": "2026-11-15T00:28:14Z"
       },
+      "0xd78283b4189fd941626b880932cd6b3feda11ba3": {
+        "at": "2026-11-14T09:53:13Z",
+        "reason": "missing:liq_usd",
+        "symbol": "VENSACHIP",
+        "until": "2026-11-15T09:53:13Z"
+      },
       "0xd7f3bad5473f27e9a99d4cc4d67d3b69751db1ef": {
         "at": "2026-11-14T01:13:14Z",
         "reason": "real_depth",
@@ -9186,6 +9192,12 @@
         "symbol": "VENSA",
         "until": "2026-11-15T05:08:15Z"
       },
+      "0xf6e6a5168e439e426421cd1a96d1f76bd4108356": {
+        "at": "2026-11-14T09:53:13Z",
+        "reason": "real_depth",
+        "symbol": "Momcoin",
+        "until": "2026-11-15T09:53:13Z"
+      },
       "0xf75f6af372674706f0808dfec324344e1dc45752": {
         "at": "2026-11-14T08:43:13Z",
         "reason": "missing:liq_usd",
@@ -9379,6 +9391,12 @@
         "first_seen": "2026-11-14T09:43:13Z",
         "last_check": "2026-11-14T09:43:13Z",
         "symbol": "RST"
+      },
+      "0x2d02cc67a3a7e39ab120f21fd8ccaae3ccc738f7": {
+        "checks": 1,
+        "first_seen": "2026-11-14T09:53:13Z",
+        "last_check": "2026-11-14T09:53:13Z",
+        "symbol": "ZWW"
       }
     }
   },
