@@ -21,9 +21,9 @@
         "entry_qliq": 61067,
         "entry_ts": "2026-11-14T21:48:15Z",
         "ladder_done": [],
-        "last_liq_usd": 3747033.86,
-        "last_price": 0.002497,
-        "last_qliq": 60512,
+        "last_liq_usd": 3700072.56,
+        "last_price": 0.002466,
+        "last_qliq": 59790,
         "launchpad": "other",
         "orig_qty": 1926.9484226893871,
         "pair": "0x3835f74d3cec51c0dfb9e6ac7f462dea1f3ca19ef632b8de56f061daf5c70716",
@@ -34,7 +34,7 @@
     },
     "refill_week": "2026-W46",
     "refills_usd": 47.693738985981945,
-    "ticks_since_buy": 4
+    "ticks_since_buy": 5
   },
   "desk": {
     "cash": 50.0,
@@ -953,6 +953,14 @@
         "sight_pair": "0x386ace305ec660dc0fb432140e55784749d71ac2f7fbf95ac6d716c875804685",
         "sight_qliq": 549,
         "symbol": "AO\u200aD\u200aF"
+      },
+      "0x25d5314691df2400bc34ce8038c800dc5689c32a": {
+        "done": [],
+        "first_price": 5.704e-06,
+        "first_seen": "2026-11-14T22:13:14Z",
+        "sight_pair": "0xca10ed6c41096e1c7a076c7fbaf154d372871c7d",
+        "sight_qliq": 27147,
+        "symbol": "MORI"
       },
       "0x262ae8de759beade24202ab8c02ec6df1f80d79c": {
         "done": [
@@ -2139,7 +2147,9 @@
         "symbol": "U.S NUCLEAR RESERVE "
       },
       "0x7e14b411b403c0d55377287d12e3890af6f46b03": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 1.586e-05,
         "first_seen": "2026-11-14T21:08:16Z",
         "sight_pair": "0x3f1d07c8969ddad8ab5283b88e862d6c84bffd7c",
@@ -3009,17 +3019,6 @@
         "sight_pair": "0xfc5dd6c42432775531aea2b91ce26044d4632001feae48e7641c575f9552cde2",
         "sight_qliq": 2282,
         "symbol": "D\u200aO\u200aT\u200aF"
-      },
-      "0xf4fdd8b4318151fd8806331cf6e57ba3b4661bf8": {
-        "done": [
-          1,
-          6
-        ],
-        "first_price": 0.0001208,
-        "first_seen": "2026-11-13T22:13:14Z",
-        "sight_pair": "0x7d051507efc16d887560f21d7847e2fe0f5633f3d938166d672fb8e8ebb82ae9",
-        "sight_qliq": 50,
-        "symbol": "NAOF"
       },
       "0xf58c6742b18a18b5fe67c5a85881e2b6563cedd2": {
         "done": [
@@ -5031,12 +5030,6 @@
         "reason": "real_depth",
         "symbol": "RugProof",
         "until": "2026-11-15T20:23:16Z"
-      },
-      "0x3f145dd83e85360b1eb78754d29f9969e97ea327": {
-        "at": "2026-11-13T22:13:14Z",
-        "reason": "real_depth",
-        "symbol": "CHUBBY",
-        "until": "2026-11-14T22:13:14Z"
       },
       "0x3f57537193e3fb2a095ba53aa8bed5fd4841eba3": {
         "at": "2026-11-14T04:58:15Z",
@@ -7156,12 +7149,6 @@
         "symbol": "REVVY",
         "until": "2026-11-15T04:23:12Z"
       },
-      "0xb200000000000000000000294259729d4f141a40": {
-        "at": "2026-11-13T22:08:16Z",
-        "reason": "real_depth",
-        "symbol": "CLANKER",
-        "until": "2026-11-14T22:08:16Z"
-      },
       "0xb2000000000000000000002a8a69df02129210a9": {
         "at": "2026-11-14T21:23:13Z",
         "reason": "real_depth",
@@ -9004,12 +8991,6 @@
         "symbol": "USRP",
         "until": "2026-11-15T08:53:13Z"
       },
-      "0xecef1e093f1e2edb2dde30d2b2815164ee272015": {
-        "at": "2026-11-13T22:13:14Z",
-        "reason": "missing:liq_usd",
-        "symbol": "AONF",
-        "until": "2026-11-14T22:13:14Z"
-      },
       "0xed2a69be98658b1b1060d567b94ab29c1ccf56bb": {
         "at": "2026-11-14T11:18:16Z",
         "reason": "real_depth",
@@ -9159,12 +9140,6 @@
         "reason": "real_depth",
         "symbol": "REVVY",
         "until": "2026-11-15T17:28:16Z"
-      },
-      "0xf4fdd8b4318151fd8806331cf6e57ba3b4661bf8": {
-        "at": "2026-11-13T22:13:14Z",
-        "reason": "real_depth",
-        "symbol": "NAOF",
-        "until": "2026-11-14T22:13:14Z"
       },
       "0xf58c6742b18a18b5fe67c5a85881e2b6563cedd2": {
         "at": "2026-11-14T13:08:14Z",
@@ -9390,6 +9365,12 @@
       }
     },
     "watch": {
+      "0x25d5314691df2400bc34ce8038c800dc5689c32a": {
+        "checks": 1,
+        "first_seen": "2026-11-14T22:13:14Z",
+        "last_check": "2026-11-14T22:13:14Z",
+        "symbol": "MORI"
+      },
       "0x3c5cd672b204ba0fc48e93b98c0922920a87912d": {
         "checks": 8,
         "first_seen": "2026-11-14T20:03:14Z",
