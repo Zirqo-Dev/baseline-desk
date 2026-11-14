@@ -1638,3 +1638,15 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-14T20:18:15Z,desk,VERIFY,EVAA,0x22fa523287af6e9d2ac77fb65714cc198edc7b3e,SKIP,missing:price,goplus=skipped until=2026-11-15T20:18:15Z
 2026-11-14T20:18:15Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
 2026-11-14T20:18:15Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=21 rechecks=2 new=6 checked=8 passed=0 bought=0 held=0 deferred=0 dex_only=6 goplus=2 requests=14 secs=5.0 bl_positions=0 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=2 labels_done=2 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-14T20:23:16Z,desk,VERIFY,REVVY,0x3441e8fcdd380c4e7f5c7f55ccd599b2a2afcccc,WATCH,goplus_not_ready,first_seen=2026-11-14T17:48:21Z checks=10 pending=honeypot b1=19 s1=14 b24=862 s24=712 liq=44161 dex=uniswap:v4 qliq=20311 pair_age=4572 token_age=4572
+2026-11-14T20:23:16Z,desk,VERIFY,Angel,0x630ddf73dff2708d0a04b81a34155b21fe6e1af3,WATCH,goplus_not_ready,"first_seen=2026-11-14T18:08:14Z checks=9 pending=mint_open,freeze_or_blacklist,honeypot,risk_flags b1=98 s1=97 b24=309 s24=174 liq=86371 dex=uniswap:v4 qliq=34056 pair_age=142 token_age=142"
+2026-11-14T20:23:16Z,desk,VERIFY,Basecat,0x4bc3cd6afec445c24e7e051954580c6c8122e43f,SKIP,real_depth,first_seen=2026-11-14T19:48:20Z checks=3 goplus=skipped until=2026-11-15T20:23:16Z
+2026-11-14T20:23:16Z,desk,VERIFY,LIQUIDBGT,0xd36db4ce94dd20ae58f0e4a081ca04179ee9735f,SKIP,real_depth,goplus=skipped until=2026-11-15T20:23:16Z
+2026-11-14T20:23:16Z,desk,VERIFY,TRUMP2028,0x97829fb63699dcc3be958b96f7b2977f3538050c,WATCH,goplus_not_ready,"first_seen=2026-11-14T20:23:16Z checks=1 pending=mint_open,freeze_or_blacklist,honeypot,buy_tax_pct,sell_tax_pct,dev_pct,top10_pct,lp_locked_pct,risk_flags b1=1 s1=0 b24=1 s24=0 liq=146040 dex=uniswap:v2 qliq=73020 pair_age=1 token_age=1"
+2026-11-14T20:23:16Z,desk,VERIFY,RugProof,0x3efa585487a75db3bfcdf94b881c403fc2a76b6a,SKIP,real_depth,goplus=skipped until=2026-11-15T20:23:16Z
+2026-11-14T20:23:16Z,desk,VERIFY,RATSH,0x86297ad9132a74fda7a72151e2da159b38fe6ba3,SKIP,missing:liq_usd,goplus=skipped until=2026-11-15T20:23:16Z
+2026-11-14T20:23:16Z,desk,VERIFY,RVYPB,0x53cc941e9b6565688f0bf336cdacdc7cf993cccc,SKIP,real_depth,goplus=skipped until=2026-11-15T20:23:16Z
+2026-11-14T20:23:16Z,desk,VERIFY,RVYPU,0x05c95b6c01dd621cdbadf9ef9d69c65083c6cccc,SKIP,real_depth,goplus=skipped until=2026-11-15T20:23:16Z
+2026-11-14T20:23:16Z,desk,VERIFY,RVYPE,0x5d5685281c00e8cd2cca39b1fed627763739cccc,SKIP,real_depth,goplus=skipped until=2026-11-15T20:23:16Z
+2026-11-14T20:23:16Z,baseline,EXECUTE,Angel,0x630ddf73dff2708d0a04b81a34155b21fe6e1af3,SKIP,reentry_cooldown,seed=202611142023 eligible=1 pick=0 pool=630ddf desk=WATCH launchpad=other
+2026-11-14T20:23:16Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=21 rechecks=3 new=7 checked=10 passed=0 bought=0 held=0 deferred=0 dex_only=7 goplus=3 requests=17 secs=6.9 bl_positions=0 bl_due=1 bl_eligible=1 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=2 labels_done=2 labels_calls=1 live=ok alerts=none alerts_sent=0
