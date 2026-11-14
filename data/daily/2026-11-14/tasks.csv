@@ -205,3 +205,8 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-14T01:53:13Z,desk,VERIFY,BTCT,0x22f4d211d65d3d8ff53ebfd1c66d06eeb09adae2,SKIP,missing:liq_usd,goplus=skipped until=2026-11-15T01:53:13Z
 2026-11-14T01:53:13Z,baseline,EXECUTE,RST,0x067ce82706807f60abecb5463357e67ac688e928,SKIP,reentry_cooldown,seed=202611140153 eligible=1 pick=0 pool=067ce8 desk=WATCH launchpad=other
 2026-11-14T01:53:13Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=19 rechecks=1 new=6 checked=7 passed=0 bought=0 held=0 deferred=0 dex_only=5 goplus=2 requests=13 secs=4.4 bl_positions=0 bl_due=1 bl_eligible=1 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=4 labels_done=4 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-14T01:58:16Z,desk,VERIFY,NFAO,0xbffc81e29dd17b3205146e1daeaee4a9c36dc99f,SKIP,real_depth,first_seen=2026-11-14T01:08:14Z checks=4 goplus=skipped until=2026-11-15T01:58:16Z
+2026-11-14T01:58:16Z,desk,VERIFY,CLAUDIA,0x7c2a32a571ba9ef6704442ec702d4d466cdd0601,WATCH,goplus_not_ready,first_seen=2026-11-14T01:58:16Z checks=1 pending=top10_pct b1=4 s1=0 b24=4 s24=0 liq=156320 dex=uniswap:v2 qliq=78131 pair_age=3 token_age=3
+2026-11-14T01:58:16Z,desk,VERIFY,BARD,0x900f091ebc4bec81738e4797ba04ea7a418062d3,SKIP,real_depth,goplus=skipped until=2026-11-15T01:58:16Z
+2026-11-14T01:58:16Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
+2026-11-14T01:58:16Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=19 rechecks=1 new=2 checked=3 passed=0 bought=0 held=0 deferred=0 dex_only=2 goplus=1 requests=8 secs=2.4 bl_positions=0 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=5 labels_done=5 labels_calls=1 live=ok alerts=none alerts_sent=0
