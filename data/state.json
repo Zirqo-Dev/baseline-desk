@@ -39,20 +39,20 @@
         "entry_qliq": 19912,
         "entry_ts": "2026-11-14T02:28:14Z",
         "ladder_done": [],
-        "last_liq_usd": 39737.67,
-        "last_price": 2.316e-05,
-        "last_qliq": 19871,
+        "last_liq_usd": 39967.9,
+        "last_price": 2.336e-05,
+        "last_qliq": 19979,
         "launchpad": "other",
         "orig_qty": 211191.7218628408,
         "pair": "0x342acea67a6a9475d3c65141b8caadb4e726ab037d6b6faa6165629c579778ed",
-        "peak_price": 2.316e-05,
+        "peak_price": 2.336e-05,
         "qty": 211191.7218628408,
         "symbol": "PEACEFROG"
       }
     },
     "refill_week": "2026-W46",
     "refills_usd": 47.693738985981945,
-    "ticks_since_buy": 1
+    "ticks_since_buy": 2
   },
   "desk": {
     "cash": 50.0,
@@ -694,7 +694,9 @@
         "symbol": "RSPU"
       },
       "0x23a2c49f5a2b907d34f220550438233449547368": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 0.0002127,
         "first_seen": "2026-11-14T01:33:16Z",
         "sight_pair": "0x345b027830231897fa4be7d7c7a7d582ac002b829b27a98ef4283febcf421627",
@@ -1741,7 +1743,9 @@
         "symbol": "U.S EXCHANGE OIL "
       },
       "0x750af92468ba3a0dbae1ba7158302f1f20801e7b": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 0.0002452,
         "first_seen": "2026-11-14T01:33:16Z",
         "sight_pair": "0x102bf67fb9d19ad220490b2869446bdf6314602d1e40c6fce56ce0b329b610d9",
@@ -1895,6 +1899,14 @@
         "sight_qliq": 0,
         "symbol": "LFI"
       },
+      "0x839c8f6ac84213fe513169ff906e4ecef24aa55d": {
+        "done": [],
+        "first_price": 4.477e-06,
+        "first_seen": "2026-11-14T02:38:15Z",
+        "sight_pair": "0x284f6dd0d644d47aaed2abd4e67084a21406adc5",
+        "sight_qliq": 29001,
+        "symbol": "OFI"
+      },
       "0x83d4b5e9eab4afed04f5f51f9ead5071f7161f80": {
         "done": [
           1,
@@ -2033,17 +2045,6 @@
         "sight_pair": "0x13e13ab9bbc131a2ca1c40014e9aacc4f15045c6ea19c0911588c71819b4630c",
         "sight_qliq": 1,
         "symbol": "FDUS"
-      },
-      "0x9a4fbc37f2e1cba3ce555ea701515c9ba63a522d": {
-        "done": [
-          1,
-          6
-        ],
-        "first_price": 9.736e-05,
-        "first_seen": "2026-11-13T02:33:14Z",
-        "sight_pair": "0x119319560a853f2e6882fff6abf67e8b40e9d905fac38015172b614651cbb756",
-        "sight_qliq": 1,
-        "symbol": "FIO"
       },
       "0x9b7bb9137a3499d7b576c04ff3247e40d7074cdb": {
         "done": [
@@ -4151,6 +4152,12 @@
         "symbol": "NOTF",
         "until": "2026-11-14T17:33:13Z"
       },
+      "0x2d6299e1a3d2a805875ed75ec7bc22aa38c1e46b": {
+        "at": "2026-11-14T02:38:15Z",
+        "reason": "real_depth",
+        "symbol": "GODF",
+        "until": "2026-11-15T02:38:15Z"
+      },
       "0x2d8bea55f01f570a491e7c7eb91f78a7deab4fda": {
         "at": "2026-11-13T13:43:12Z",
         "reason": "real_depth",
@@ -6238,12 +6245,6 @@
         "reason": "real_depth",
         "symbol": "FDUS",
         "until": "2026-11-15T00:28:14Z"
-      },
-      "0x9a4fbc37f2e1cba3ce555ea701515c9ba63a522d": {
-        "at": "2026-11-13T02:33:14Z",
-        "reason": "real_depth",
-        "symbol": "FIO",
-        "until": "2026-11-14T02:33:14Z"
       },
       "0x9acc242398689a22c1bda9e9bb760b5b40192ff2": {
         "at": "2026-11-13T19:28:13Z",
@@ -9253,12 +9254,6 @@
         "last_check": "2026-11-14T02:28:14Z",
         "symbol": "RST"
       },
-      "0x2d6299e1a3d2a805875ed75ec7bc22aa38c1e46b": {
-        "checks": 4,
-        "first_seen": "2026-11-14T01:28:15Z",
-        "last_check": "2026-11-14T02:18:16Z",
-        "symbol": "GODF"
-      },
       "0x3c573bdd88008c94f025e5023212f28e5f39744c": {
         "checks": 2,
         "first_seen": "2026-11-14T02:13:19Z",
@@ -9282,6 +9277,12 @@
         "first_seen": "2026-11-14T02:08:16Z",
         "last_check": "2026-11-14T02:28:14Z",
         "symbol": "PEACEFROG"
+      },
+      "0x839c8f6ac84213fe513169ff906e4ecef24aa55d": {
+        "checks": 1,
+        "first_seen": "2026-11-14T02:38:15Z",
+        "last_check": "2026-11-14T02:38:15Z",
+        "symbol": "OFI"
       }
     }
   },
