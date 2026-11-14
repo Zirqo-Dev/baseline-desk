@@ -17,7 +17,7 @@
     "positions": {},
     "refill_week": "2026-W46",
     "refills_usd": 47.693738985981945,
-    "ticks_since_buy": 48
+    "ticks_since_buy": 49
   },
   "desk": {
     "cash": 50.0,
@@ -212,7 +212,9 @@
         "symbol": "MEOR"
       },
       "0x06b65531d2d3edffad4e13ecd2bda57c38f0eb45": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 5.109e-06,
         "first_seen": "2026-11-14T16:23:15Z",
         "sight_pair": "0xc90a6d49f56835c61e535f9a13de2285d72683a4",
@@ -745,7 +747,8 @@
       },
       "0x1e56b9133c53a3fef5e51a807fc5eb869b085625": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 0.003797,
         "first_seen": "2026-11-14T11:18:16Z",
@@ -1825,6 +1828,14 @@
         "sight_qliq": 76307,
         "symbol": "BOOTR"
       },
+      "0x5e9b725fc07b32fcb1e8bd99a10de148e780e6c5": {
+        "done": [],
+        "first_price": 3.3e-06,
+        "first_seen": "2026-11-14T17:23:21Z",
+        "sight_pair": "0x4cfcfe62ec8e81941e555c4ed5574e36a78afbf2",
+        "sight_qliq": 27844,
+        "symbol": "GER"
+      },
       "0x60b549126c52dbc63b0d2b724bd250a73d812558": {
         "done": [
           1
@@ -2344,17 +2355,6 @@
         "sight_pair": "0x513078f8ff14494d9a373fc9ae96824a23fd36ec7b7421d96c40d6765dd4007f",
         "sight_qliq": 22,
         "symbol": "DUSF"
-      },
-      "0xa88594d404727625a9437c3f886c7643872296ae": {
-        "done": [
-          1,
-          6
-        ],
-        "first_price": 0.001484,
-        "first_seen": "2026-11-13T17:23:14Z",
-        "sight_pair": "0x89d0f320ac73dd7d9513ffc5bc58d1161452a657",
-        "sight_qliq": 33799,
-        "symbol": "WELL"
       },
       "0xa8a2594b1cc8834252b599f6bdebbc2567ca53ad": {
         "done": [],
@@ -6003,12 +6003,6 @@
         "symbol": "FOTF",
         "until": "2026-11-14T23:23:15Z"
       },
-      "0x7171737671503d4d346741d011eccb44f5bac470": {
-        "at": "2026-11-13T17:23:14Z",
-        "reason": "real_depth",
-        "symbol": "MEOW",
-        "until": "2026-11-14T17:23:14Z"
-      },
       "0x72530e033143d98ed92567fa079d493134698080": {
         "at": "2026-11-13T21:03:13Z",
         "reason": "real_depth",
@@ -7767,6 +7761,12 @@
         "symbol": "CGX",
         "until": "2026-11-15T11:38:16Z"
       },
+      "0xb200000000000000000000c09630310924263188": {
+        "at": "2026-11-14T17:23:21Z",
+        "reason": "real_depth",
+        "symbol": "PLONKA",
+        "until": "2026-11-15T17:23:21Z"
+      },
       "0xb200000000000000000000c1389bdf2486ae6401": {
         "at": "2026-11-13T23:13:14Z",
         "reason": "real_depth",
@@ -7784,12 +7784,6 @@
         "reason": "real_depth",
         "symbol": "XCV",
         "until": "2026-11-15T01:33:16Z"
-      },
-      "0xb200000000000000000000c58b6049dcf6e4301f": {
-        "at": "2026-11-13T17:23:14Z",
-        "reason": "real_depth",
-        "symbol": "AMBFN",
-        "until": "2026-11-14T17:23:14Z"
       },
       "0xb200000000000000000000c9dc97b838e2efd249": {
         "at": "2026-11-13T18:18:15Z",
@@ -8012,6 +8006,12 @@
         "reason": "real_depth",
         "symbol": "LAYA",
         "until": "2026-11-14T18:43:20Z"
+      },
+      "0xb200000000000000000000fa724911a01ea65b8b": {
+        "at": "2026-11-14T17:23:21Z",
+        "reason": "real_depth",
+        "symbol": "Chip",
+        "until": "2026-11-15T17:23:21Z"
       },
       "0xb200000000000000000000fee557771c10e1d000": {
         "at": "2026-11-14T17:08:15Z",
@@ -9303,6 +9303,12 @@
         "symbol": "",
         "until": "2026-11-15T15:08:13Z"
       },
+      "0xf0ab99e47faadd78970a541f31ac1e406d9cc5a3": {
+        "at": "2026-11-14T17:23:21Z",
+        "reason": "real_depth",
+        "symbol": "GER",
+        "until": "2026-11-15T17:23:21Z"
+      },
       "0xf0e9efe5955ab74bbd56e6c8e6a94779feadd46f": {
         "at": "2026-11-14T11:08:13Z",
         "reason": "real_depth",
@@ -9653,10 +9659,10 @@
       }
     },
     "watch": {
-      "0xf0ab99e47faadd78970a541f31ac1e406d9cc5a3": {
-        "checks": 2,
-        "first_seen": "2026-11-14T16:53:15Z",
-        "last_check": "2026-11-14T17:08:15Z",
+      "0x5e9b725fc07b32fcb1e8bd99a10de148e780e6c5": {
+        "checks": 1,
+        "first_seen": "2026-11-14T17:23:21Z",
+        "last_check": "2026-11-14T17:23:21Z",
         "symbol": "GER"
       }
     }
