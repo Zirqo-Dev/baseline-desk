@@ -71,3 +71,9 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-14T00:33:14Z,desk,VERIFY,LAPTOP,0x33920c805a5e6a855900107d99f4252cb0bd8641,SKIP,real_depth,goplus=skipped until=2026-11-15T00:33:14Z
 2026-11-14T00:33:14Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
 2026-11-14T00:33:14Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=0 new=4 checked=4 passed=0 bought=0 held=0 deferred=0 dex_only=3 goplus=1 requests=9 secs=2.2 bl_positions=0 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=8 labels_done=8 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-14T00:38:15Z,desk,VERIFY,RST,0x3dcf5eba588e0b8279685611192e490c54ec7a1f,WATCH,goplus_not_ready,"first_seen=2026-11-13T22:58:14Z checks=7 pending=honeypot,buy_tax_pct,sell_tax_pct,lp_locked_pct b1=54 s1=39 b24=145 s24=101 liq=66385 dex=uniswap:v4 qliq=66380 pair_age=104 token_age=104"
+2026-11-14T00:38:15Z,desk,VERIFY,REBOOT,0xc8dc72250acde6b1c1d1e6df6b6308ab21ea5abb,WATCH,goplus_not_ready,"first_seen=2026-11-14T00:18:15Z checks=2 pending=top10_pct,lp_locked_pct b1=44 s1=0 b24=44 s24=0 liq=181174 dex=uniswap:v2 qliq=90573 pair_age=25 token_age=25"
+2026-11-14T00:38:15Z,desk,VERIFY,Basecow,0x2fb921f4c69f445674682c3f97e5b71a4eb7233e,SKIP,real_depth,goplus=skipped until=2026-11-15T00:38:15Z
+2026-11-14T00:38:15Z,desk,VERIFY,WJA,0xe76ffdcd4fa0cd823065ba6af3650b00074d0ba3,SKIP,real_depth,goplus=skipped until=2026-11-15T00:38:15Z
+2026-11-14T00:38:15Z,baseline,EXECUTE,RST,0x3dcf5eba588e0b8279685611192e490c54ec7a1f,SKIP,reentry_cooldown,seed=202611140038 eligible=1 pick=0 pool=3dcf5e desk=WATCH launchpad=other
+2026-11-14T00:38:15Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=2 new=2 checked=4 passed=0 bought=0 held=0 deferred=0 dex_only=2 goplus=2 requests=10 secs=4.0 bl_positions=0 bl_due=1 bl_eligible=1 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=4 labels_done=4 labels_calls=1 live=ok alerts=none alerts_sent=0
