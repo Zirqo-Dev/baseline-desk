@@ -1208,3 +1208,9 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-14T15:08:13Z,desk,VERIFY,,0xf0a8b95faace4564acfab09964770c864a5bc95d,SKIP,missing:symbol,goplus=skipped until=2026-11-15T15:08:13Z
 2026-11-14T15:08:13Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
 2026-11-14T15:08:13Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=2 new=4 checked=6 passed=0 bought=0 held=0 deferred=0 dex_only=4 goplus=2 requests=12 secs=4.6 bl_positions=0 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=1 labels_done=1 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-14T15:13:12Z,desk,VERIFY,,0x6faccf3da903643dd94e061bbbeaeda4044f7a09,SKIP,missing:symbol,goplus=skipped until=2026-11-15T15:13:12Z
+2026-11-14T15:13:12Z,desk,VERIFY,USPR,0x567e58f501d38be9e5e1607bff1a3c9a37a6df99,WATCH,goplus_not_ready,"first_seen=2026-11-14T15:13:12Z checks=1 pending=mint_open,freeze_or_blacklist,honeypot,buy_tax_pct,sell_tax_pct,dev_pct,top10_pct,lp_locked_pct,risk_flags b1=2 s1=0 b24=2 s24=0 liq=55993 dex=uniswap:v2 qliq=28002 pair_age=3 token_age=3"
+2026-11-14T15:13:12Z,desk,VERIFY,,0xb200000000000000000000cc6840e492d966b7d1,SKIP,missing:symbol,goplus=skipped until=2026-11-15T15:13:12Z
+2026-11-14T15:13:12Z,desk,VERIFY,LAPTOP,0xfca143590c90ce263ebea19e806e6c7872c31bd5,SKIP,real_depth,goplus=skipped until=2026-11-15T15:13:12Z
+2026-11-14T15:13:12Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
+2026-11-14T15:13:12Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=0 new=4 checked=4 passed=0 bought=0 held=0 deferred=0 dex_only=3 goplus=1 requests=9 secs=2.4 bl_positions=0 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=1 labels_done=1 labels_calls=1 live=ok alerts=none alerts_sent=0
