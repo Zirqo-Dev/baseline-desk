@@ -29,7 +29,7 @@
     "positions": {},
     "refill_week": "2026-W46",
     "refills_usd": 47.693738985981945,
-    "ticks_since_buy": 116
+    "ticks_since_buy": 117
   },
   "desk": {
     "cash": 50.0,
@@ -276,6 +276,14 @@
         "sight_pair": "0x2df380544b88adb3ad0a94100dcc45fd705aae2d",
         "sight_qliq": 655944,
         "symbol": "XDP"
+      },
+      "0x090c014e118746fd43dcdc6b36883ab5afce46b8": {
+        "done": [],
+        "first_price": 0.0001224,
+        "first_seen": "2026-11-14T12:13:19Z",
+        "sight_pair": "0x521072435ac52a4664a8b2cc85f825dcb34350c2b237ed497f5426748a8149bf",
+        "sight_qliq": 32,
+        "symbol": "BBX"
       },
       "0x098b9dc88b5d51cdfeeea326b21d5fe431e45acc": {
         "done": [
@@ -1581,7 +1589,9 @@
         "symbol": "FDOG\ud83d\udee2\ufe0f"
       },
       "0x435b28321af377e7be6b434002feaedc4d67876e": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 3.255e-06,
         "first_seen": "2026-11-14T11:13:14Z",
         "sight_pair": "0xafeee2b5c00e3b2c01bd12752d09b2cfdb6b6228",
@@ -3332,6 +3342,12 @@
         "symbol": "bull",
         "until": "2026-11-14T20:58:17Z"
       },
+      "0x090c014e118746fd43dcdc6b36883ab5afce46b8": {
+        "at": "2026-11-14T12:13:19Z",
+        "reason": "real_depth",
+        "symbol": "BBX",
+        "until": "2026-11-15T12:13:19Z"
+      },
       "0x092115c03b128077271028e77af666edf836e310": {
         "at": "2026-11-14T05:03:13Z",
         "reason": "real_depth",
@@ -3589,6 +3605,12 @@
         "reason": "real_depth",
         "symbol": "Tit",
         "until": "2026-11-15T07:03:14Z"
+      },
+      "0x1373053fbaf6558221cc2365c95b7fd5a2d23531": {
+        "at": "2026-11-14T12:13:19Z",
+        "reason": "real_depth",
+        "symbol": "CTOA",
+        "until": "2026-11-15T12:13:19Z"
       },
       "0x13a41324906530dd227a343b0e4e2b90977211ab": {
         "at": "2026-11-14T06:18:17Z",
@@ -6056,6 +6078,12 @@
         "symbol": "NOAF",
         "until": "2026-11-14T22:23:14Z"
       },
+      "0x7b62d1630fde8f2562e167e41f75da205cfa4080": {
+        "at": "2026-11-14T12:13:19Z",
+        "reason": "real_depth",
+        "symbol": "Macca",
+        "until": "2026-11-15T12:13:19Z"
+      },
       "0x7b7df0f467df03bf87f756dfc099841bbd980e45": {
         "at": "2026-11-14T11:53:14Z",
         "reason": "real_depth",
@@ -6577,6 +6605,12 @@
         "reason": "real_depth",
         "symbol": "schnoz",
         "until": "2026-11-14T20:33:14Z"
+      },
+      "0x9cf485425593dacc4d31c1b733c7d1f7d1240f36": {
+        "at": "2026-11-14T12:13:19Z",
+        "reason": "missing:symbol",
+        "symbol": "",
+        "until": "2026-11-15T12:13:19Z"
       },
       "0x9d40145a187c2e72be0b773dc6a8aac7e803763e": {
         "at": "2026-11-13T19:28:13Z",
@@ -7603,12 +7637,6 @@
         "reason": "real_depth",
         "symbol": "BIGOT",
         "until": "2026-11-15T02:43:12Z"
-      },
-      "0xb2000000000000000000009e3282369cb6dbd1cd": {
-        "at": "2026-11-13T12:08:16Z",
-        "reason": "real_depth",
-        "symbol": "ETH",
-        "until": "2026-11-14T12:08:16Z"
       },
       "0xb200000000000000000000a1cb008d73897d11c5": {
         "at": "2026-11-13T13:33:14Z",
@@ -9647,9 +9675,9 @@
         "symbol": "U.S NUCLEAR RESERVE "
       },
       "0xf265ee68166b65ef3dd6cf02a7a79a3e0f4ef5d4": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-14T11:58:14Z",
-        "last_check": "2026-11-14T11:58:14Z",
+        "last_check": "2026-11-14T12:13:19Z",
         "symbol": "SI"
       }
     }
