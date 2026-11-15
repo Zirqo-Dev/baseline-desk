@@ -23,7 +23,7 @@
     "positions": {},
     "refill_week": "2026-W46",
     "refills_usd": 47.693738985981945,
-    "ticks_since_buy": 94
+    "ticks_since_buy": 95
   },
   "desk": {
     "cash": 50.0,
@@ -1871,7 +1871,9 @@
         "symbol": "USOF\ud83d\udee2\ufe0f"
       },
       "0x48cf30a7909eaca5ed3f8dab586615d5e5afba22": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 0.0001929,
         "first_seen": "2026-11-15T21:18:15Z",
         "sight_pair": "0x75c118b9193e19a4f430f4ab4cd965e00d423e7c04940c8084950a2636c9fc74",
@@ -2260,17 +2262,6 @@
         "sight_pair": "0xea3af838964200c7bfbfd280c943290641014a4c1748cb71212e466e34f5278b",
         "sight_qliq": 31,
         "symbol": "U.S EXCHANGE OIL "
-      },
-      "0x83020bf72b87a2cc1ca41743264b9dd6988dd074": {
-        "done": [
-          1,
-          6
-        ],
-        "first_price": 7.867e-05,
-        "first_seen": "2026-11-14T22:18:14Z",
-        "sight_pair": "0x8cccc138352e4dc8259e3289e807fd7414dd00455c8f04f2ec0f469984ae52d8",
-        "sight_qliq": 11,
-        "symbol": "DAF"
       },
       "0x83bb089a62d769517a5a0731528cc628f91d2a5c": {
         "done": [
@@ -4071,6 +4062,12 @@
         "reason": "real_depth",
         "symbol": "F.T.U",
         "until": "2026-11-16T09:53:13Z"
+      },
+      "0x2395c6bda34f70e2d7da4286e7e65548bb157e05": {
+        "at": "2026-11-15T22:18:15Z",
+        "reason": "real_depth",
+        "symbol": "UTDF",
+        "until": "2026-11-16T22:18:15Z"
       },
       "0x23caa6a7c1cf5e49ddad76c845e04e21f86686bf": {
         "at": "2026-11-15T16:48:16Z",
@@ -6052,12 +6049,6 @@
         "symbol": "Basetiger",
         "until": "2026-11-16T07:58:15Z"
       },
-      "0x78f2528147e498423f93e05c33cbe11f2e351b7a": {
-        "at": "2026-11-14T22:18:14Z",
-        "reason": "real_depth",
-        "symbol": "Tit",
-        "until": "2026-11-15T22:18:14Z"
-      },
       "0x78f77d23ae85786627c3758c5caf96628d3dbb2d": {
         "at": "2026-11-14T23:48:15Z",
         "reason": "real_depth",
@@ -6279,12 +6270,6 @@
         "reason": "real_depth",
         "symbol": "NARUZO",
         "until": "2026-11-16T11:53:12Z"
-      },
-      "0x83020bf72b87a2cc1ca41743264b9dd6988dd074": {
-        "at": "2026-11-14T22:18:14Z",
-        "reason": "real_depth",
-        "symbol": "DAF",
-        "until": "2026-11-15T22:18:14Z"
       },
       "0x8341c9d53e923267863207f4f777f032dab48a3b": {
         "at": "2026-11-15T00:23:12Z",
@@ -7576,12 +7561,6 @@
         "symbol": "ORRICKF",
         "until": "2026-11-16T01:18:15Z"
       },
-      "0xb20000000000000000000092a4b618d74a0291ab": {
-        "at": "2026-11-14T22:18:14Z",
-        "reason": "real_depth",
-        "symbol": "Encrypted",
-        "until": "2026-11-15T22:18:14Z"
-      },
       "0xb20000000000000000000093a9ed433d5fed9faf": {
         "at": "2026-11-15T06:53:12Z",
         "reason": "real_depth",
@@ -7989,6 +7968,12 @@
         "reason": "real_depth",
         "symbol": "SPCX",
         "until": "2026-11-16T17:08:16Z"
+      },
+      "0xb3978b257176126cfde4effb6abcd4da77034ba3": {
+        "at": "2026-11-15T22:18:15Z",
+        "reason": "real_depth",
+        "symbol": "BBLL",
+        "until": "2026-11-16T22:18:15Z"
       },
       "0xb3bd5ecadfd22d27c31cb7dda81c40b6a9f06005": {
         "at": "2026-11-15T21:38:13Z",
@@ -8715,12 +8700,6 @@
         "reason": "missing:liq_usd",
         "symbol": "FUND DIVIDEND UNITED OIL",
         "until": "2026-11-16T11:43:15Z"
-      },
-      "0xd664704c924e69b0206d94729a05874a1fe89135": {
-        "at": "2026-11-14T22:18:14Z",
-        "reason": "real_depth",
-        "symbol": "fanho",
-        "until": "2026-11-15T22:18:14Z"
       },
       "0xd6a82506769a1d40d11b5f16816ec573e40238ca": {
         "at": "2026-11-15T04:03:19Z",
@@ -9449,14 +9428,7 @@
         "until": "2026-11-16T19:58:13Z"
       }
     },
-    "watch": {
-      "0x2395c6bda34f70e2d7da4286e7e65548bb157e05": {
-        "checks": 2,
-        "first_seen": "2026-11-15T21:43:15Z",
-        "last_check": "2026-11-15T21:58:22Z",
-        "symbol": "UTDF"
-      }
-    }
+    "watch": {}
   },
   "report": {
     "due": "",
