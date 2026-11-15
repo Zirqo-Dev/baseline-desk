@@ -19,7 +19,7 @@
     "positions": {},
     "refill_week": "2026-W46",
     "refills_usd": 47.693738985981945,
-    "ticks_since_buy": 24
+    "ticks_since_buy": 25
   },
   "desk": {
     "cash": 50.0,
@@ -258,6 +258,14 @@
         "sight_pair": "0x07e629c2c9601c2ba1e36a7d868ed0337b54a75d464a78d22bc648b4caff8ec6",
         "sight_qliq": 87877,
         "symbol": "GODF"
+      },
+      "0x07aadde57ef23ba20a6658d8faf8ba2bf0552ab8": {
+        "done": [],
+        "first_price": 0.00479,
+        "first_seen": "2026-11-15T05:38:15Z",
+        "sight_pair": "0x569b03138ed1c41fbed64bcfb6c76d81b78b3d5276a885f75376758e91207e55",
+        "sight_qliq": 572,
+        "symbol": "SOSF"
       },
       "0x07afa86d786e95ebbb9d78997df9c906528255d0": {
         "done": [
@@ -1121,6 +1129,14 @@
         "sight_pair": "0xeb8e20a65404fa320e65838a7d019bfa39bc56d0fcadb83787ce67a693ffcaa6",
         "sight_qliq": 561,
         "symbol": "RST"
+      },
+      "0x2be919650b17f4f44c0d85408cb938f91e6a44b3": {
+        "done": [],
+        "first_price": 0.0001032,
+        "first_seen": "2026-11-15T05:38:15Z",
+        "sight_pair": "0x837615bff87a799c103bc32dee1a5948d15555db84be9d4f5ce1efe40f7e0a06",
+        "sight_qliq": 30,
+        "symbol": "ISO20022 FUND"
       },
       "0x2cbfc917e401168acbdca8f215d8f50a12063615": {
         "done": [
@@ -3185,6 +3201,12 @@
         "symbol": "MASK",
         "until": "2026-11-15T17:08:15Z"
       },
+      "0x07aadde57ef23ba20a6658d8faf8ba2bf0552ab8": {
+        "at": "2026-11-15T05:38:15Z",
+        "reason": "real_depth",
+        "symbol": "SOSF",
+        "until": "2026-11-16T05:38:15Z"
+      },
       "0x07afa86d786e95ebbb9d78997df9c906528255d0": {
         "at": "2026-11-14T09:43:13Z",
         "reason": "real_depth",
@@ -4186,6 +4208,12 @@
         "reason": "real_depth",
         "symbol": "RST",
         "until": "2026-11-16T02:23:19Z"
+      },
+      "0x2be919650b17f4f44c0d85408cb938f91e6a44b3": {
+        "at": "2026-11-15T05:38:15Z",
+        "reason": "real_depth",
+        "symbol": "ISO20022 FUND",
+        "until": "2026-11-16T05:38:15Z"
       },
       "0x2c3030bce882fd39dd0f79b232e7227ef2bb7bfc": {
         "at": "2026-11-15T03:28:14Z",
@@ -5194,6 +5222,12 @@
         "reason": "missing:liq_usd",
         "symbol": "WORD",
         "until": "2026-11-16T02:23:19Z"
+      },
+      "0x5f3d034152a60b1905fee5e76717b4b46b39226e": {
+        "at": "2026-11-15T05:38:15Z",
+        "reason": "real_depth",
+        "symbol": "Basefish",
+        "until": "2026-11-16T05:38:15Z"
       },
       "0x5f95c25cf0453796b9e6c418ea5f972407efaf7b": {
         "at": "2026-11-14T17:48:21Z",
@@ -6377,12 +6411,6 @@
         "symbol": "0xMaxi",
         "until": "2026-11-15T19:28:15Z"
       },
-      "0xab70eef80609de6f225f4f6f4da00f1cff665f9f": {
-        "at": "2026-11-14T05:33:14Z",
-        "reason": "real_depth",
-        "symbol": "AMC",
-        "until": "2026-11-15T05:33:14Z"
-      },
       "0xab7a9936849154bbd561bd4e730b7a38137a4223": {
         "at": "2026-11-14T22:03:14Z",
         "reason": "real_depth",
@@ -7457,12 +7485,6 @@
         "symbol": "NORMIE",
         "until": "2026-11-15T07:53:13Z"
       },
-      "0xb64944890e324a82b516174dd33bb7e8077cfba3": {
-        "at": "2026-11-14T05:33:14Z",
-        "reason": "real_depth",
-        "symbol": "VNSA",
-        "until": "2026-11-15T05:33:14Z"
-      },
       "0xb64ee6b19b82fb2ac9d7cd337dd3710d4f742d48": {
         "at": "2026-11-14T22:33:15Z",
         "reason": "missing:liq_usd",
@@ -7924,6 +7946,12 @@
         "reason": "real_depth",
         "symbol": "CHUBBY",
         "until": "2026-11-15T18:58:19Z"
+      },
+      "0xd247557d5cdf74e476747daea07c32dcfbfaaa5f": {
+        "at": "2026-11-15T05:38:15Z",
+        "reason": "real_depth",
+        "symbol": "SPACEX",
+        "until": "2026-11-16T05:38:15Z"
       },
       "0xd24a5446761b545c68a604ac08734a5d355740c3": {
         "at": "2026-11-15T02:43:20Z",
@@ -8768,9 +8796,9 @@
         "symbol": "RST"
       },
       "0x4d2cf572fcb2020f0942f76a96c1b49c116e986f": {
-        "checks": 8,
+        "checks": 9,
         "first_seen": "2026-11-15T03:18:14Z",
-        "last_check": "2026-11-15T05:18:16Z",
+        "last_check": "2026-11-15T05:38:15Z",
         "symbol": "Anthropic"
       },
       "0x72d3e90a5c509eb7253609a207c821fdbf56d9c5": {
