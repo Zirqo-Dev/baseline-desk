@@ -19,7 +19,7 @@
     "positions": {},
     "refill_week": "2026-W46",
     "refills_usd": 47.693738985981945,
-    "ticks_since_buy": 39
+    "ticks_since_buy": 40
   },
   "desk": {
     "cash": 50.0,
@@ -1113,6 +1113,14 @@
         "sight_qliq": 6336,
         "symbol": "AO\u200aD\u200aF"
       },
+      "0x2b6522a9ad3890f4dcb331d646ab31e4a9ebafef": {
+        "done": [],
+        "first_price": 0.0001231,
+        "first_seen": "2026-11-15T06:53:12Z",
+        "sight_pair": "0x64108656cb97ea886324a7fdf07cbedfbf4b8c590ea62ea573b90d1316b54d66",
+        "sight_qliq": 2,
+        "symbol": "USNS"
+      },
       "0x2b7e6e8435cf7fc1e925e1daac46204f8f343ef1": {
         "done": [
           1,
@@ -1155,7 +1163,9 @@
         "symbol": "TFOU"
       },
       "0x2cd814b2f4ca4e7fe6a5631ed5ce59f84c10d7a2": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 0.003886,
         "first_seen": "2026-11-15T05:48:15Z",
         "sight_pair": "0x5a04dd85c71b48075b66386d2b6b691ffa5f4c2ca4f5880b34243c3f6f18a9c4",
@@ -1530,7 +1540,9 @@
         "symbol": "RST"
       },
       "0x3f027ba37792d4bc7c1684f48243a0d211bbf93b": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 0.003793,
         "first_seen": "2026-11-15T05:48:15Z",
         "sight_pair": "0x77d2616adaaecea708da375132f047f21ff75c093191f381a75c16c2b347c372",
@@ -1549,7 +1561,9 @@
         "symbol": "AERO"
       },
       "0x3fb7a2ffd302c9152b8df0f967f609cafd89bcaf": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 0.002896,
         "first_seen": "2026-11-15T05:48:15Z",
         "sight_pair": "0xd165d9cb133438b75880d98f95d8cc099eca5bb900888a8ad5c6182ef6f30909",
@@ -1685,6 +1699,14 @@
         "sight_pair": "0xd93a9410ed69e819f0e9922113049f6a1db400b9",
         "sight_qliq": 75272,
         "symbol": "Basecat"
+      },
+      "0x4cdfa103c7362803856cdf61ea5456925d32664d": {
+        "done": [],
+        "first_price": 7.967e-06,
+        "first_seen": "2026-11-15T06:53:12Z",
+        "sight_pair": "0x3b4af9d4ca92d33d8d487ccf75328fd3231db997",
+        "sight_qliq": 74736,
+        "symbol": "CLAUDIA"
       },
       "0x4d2cf572fcb2020f0942f76a96c1b49c116e986f": {
         "done": [
@@ -4176,6 +4198,12 @@
         "symbol": "XCHAT",
         "until": "2026-11-15T21:53:12Z"
       },
+      "0x2b6522a9ad3890f4dcb331d646ab31e4a9ebafef": {
+        "at": "2026-11-15T06:53:12Z",
+        "reason": "real_depth",
+        "symbol": "USNS",
+        "until": "2026-11-16T06:53:12Z"
+      },
       "0x2b7e6e8435cf7fc1e925e1daac46204f8f343ef1": {
         "at": "2026-11-14T13:18:15Z",
         "reason": "real_depth",
@@ -5405,6 +5433,12 @@
         "reason": "missing:liq_usd",
         "symbol": "PEMBER",
         "until": "2026-11-16T01:03:14Z"
+      },
+      "0x6a6a5d8b843c1e35074b60fe27fc364142beb72d": {
+        "at": "2026-11-15T06:53:12Z",
+        "reason": "missing:symbol",
+        "symbol": "",
+        "until": "2026-11-16T06:53:12Z"
       },
       "0x6acf3c720c2cd318dc678f473450ded6ec257b84": {
         "at": "2026-11-14T08:28:15Z",
@@ -7068,6 +7102,12 @@
         "symbol": "Encrypted",
         "until": "2026-11-15T22:18:14Z"
       },
+      "0xb20000000000000000000093a9ed433d5fed9faf": {
+        "at": "2026-11-15T06:53:12Z",
+        "reason": "real_depth",
+        "symbol": "DROP",
+        "until": "2026-11-16T06:53:12Z"
+      },
       "0xb2000000000000000000009788cee5e09b51c8b1": {
         "at": "2026-11-15T02:33:12Z",
         "reason": "real_depth",
@@ -8448,6 +8488,12 @@
         "symbol": "SPACEX",
         "until": "2026-11-15T20:08:14Z"
       },
+      "0xef5c7776df39b3220d6a7060a6b65ab095b60574": {
+        "at": "2026-11-15T06:53:12Z",
+        "reason": "real_depth",
+        "symbol": "Basecow",
+        "until": "2026-11-16T06:53:12Z"
+      },
       "0xef61d800b63f92634bfdfb322addca8b993e50ab": {
         "at": "2026-11-15T01:48:15Z",
         "reason": "real_depth",
@@ -8774,6 +8820,12 @@
       }
     },
     "watch": {
+      "0x4cdfa103c7362803856cdf61ea5456925d32664d": {
+        "checks": 1,
+        "first_seen": "2026-11-15T06:53:12Z",
+        "last_check": "2026-11-15T06:53:12Z",
+        "symbol": "CLAUDIA"
+      },
       "0x7259292998db8c1423ac2a1d03c9dcf9938f1848": {
         "checks": 1,
         "first_seen": "2026-11-15T06:43:15Z",
