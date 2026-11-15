@@ -363,8 +363,11 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
   holdout = decision days 2026-11-08 .. 2026-11-21 (P = 8.0 < 30; 15.0 under the v3 fill); entry fill = open within 5 min,
   else the last close (both books); tests 2 and 4 also on the close-only path; ETH older than 10 min = missing, test 4 fails over 10% unpaired. The tool
   refuses a holdout run without every sight day's candle file, candle lines to decision + 72 h and ETH Nov 7 - 24;
-  earliest safe run 2026-11-25T00:10Z. Open: review finding 18 (old run_spec() twin); the site card still shows v2
-  (separate site story, mock first) (docs/NOTES.md "BL-34 spec v3").
+  earliest safe run 2026-11-25T00:10Z. Open: review finding 18 (old run_spec() twin) (docs/NOTES.md "BL-34 spec v3").
+  BL-47 (2026-11-15, display only, the owner's mock approval): the site's BL-34 card reads spec v3 (SPEC_URL -v3.json):
+  "One sealed 14-day test, run once.", "test window · day N of 14", verdict about 5 days after the last holdout day
+  (VERDICT_AFTER_D 5, hard-coded: v3 has no verdict-delay field), so today "Nov 8 – Nov 21", "~Nov 26"; the TESTS
+  labels unchanged (the owner, A); terminal and equity card unchanged (sha256 pins).
 - BL-45 (2026-11-12, read-only cost meter, the owner's D5 + Nov 12 answers, DECISIONS): tools/costs.py + costs.yml every
   2 h measure 5 and 25 USD held round trips (buy, sell, round trip %, shortfalls, sale-sim pass/fail + reason) in the
   deepest pool of 36 frozen liquid tokens (backtest/costs/tokens.json: survey median daily volume >= 100k USD -> 39,
@@ -388,7 +391,7 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
   - Open item, ALL GeckoTerminal use (BL-33 candles, BL-39 survey, BL-46 snapshots): the CoinGecko / GeckoTerminal API
     terms are unread (www.coingecko.com and www.geckoterminal.com outside the session network, 2026-11-13; BL-45 hit a
     bot challenge); the owner or chat reads them; if they forbid automated use, disable backtest.yml and snapshot.yml.
-- Next step: BL-46: the owner clicks Run workflow on snapshot.yml once after the commit; then automatic every Monday.
+- Next step: the owner checks the deployed BL-34 card (v3 dates, ~Nov 26). BL-46: the owner clicks Run workflow on snapshot.yml once after the commit; then automatic every Monday.
   How the sealed snapshot files (backtest/liquid/snapshots/sealed/) are opened is a later story, after BL-34's holdout
   run; until then nothing reads them.
   BL-45: 7 days of costs.yml runs from the first run (backtest/costs/window.json), then chat reads python -m
@@ -402,7 +405,7 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
   done, counts only; no return has been computed from backtest/liquid/); the execution design is researched in
   parallel (no wallet code). BL-38..BL-42 are candidates only (DECISIONS 2026-11-04). The owner checks the deployed site
   and the first Telegram daily summary with the BL-43 lines.
-- Last updated: 2026-11-13.
+- Last updated: 2026-11-15.
 
 ## 12. Glossary
 - Lead: a token the scanner found. Survivor: a lead that passed every hard skip.

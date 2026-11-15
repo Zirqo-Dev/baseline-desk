@@ -17,7 +17,7 @@ PAGE = Path(__file__).resolve().parent.parent / "site" / "index.html"
 RAW = "https://raw.githubusercontent.com/Zirqo-Dev/baseline-desk/main/data/"
 BT = "https://raw.githubusercontent.com/Zirqo-Dev/baseline-desk/main/backtest/"
 URLS = {"REPORT_URL": RAW + "report.json", "TOKENS_URL": RAW + "tokens_24h.json", "LIVE_URL": RAW + "live.json",
-        "SPEC_URL": BT + "specs/bl34-survivor-momentum-v2.json", "LOCK_URL": BT + "holdout.lock.json",
+        "SPEC_URL": BT + "specs/bl34-survivor-momentum-v3.json", "LOCK_URL": BT + "holdout.lock.json",
         "STATUS_URL": BT + "status.json"}  # BL-43: the last three
 
 

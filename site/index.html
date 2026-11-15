@@ -425,10 +425,10 @@ body { margin: 0; font-size: 14px; }
   const LIVE_URL = 'https://raw.githubusercontent.com/Zirqo-Dev/baseline-desk/main/data/live.json';
   /* BL-43: the frozen BL-34 spec (its split), the holdout lock (HTTP 404 = sealed, not run yet) and
      backtest/status.json (tools/candles.py write_status(): which candle files exist). */
-  const SPEC_URL = 'https://raw.githubusercontent.com/Zirqo-Dev/baseline-desk/main/backtest/specs/bl34-survivor-momentum-v2.json';
+  const SPEC_URL = 'https://raw.githubusercontent.com/Zirqo-Dev/baseline-desk/main/backtest/specs/bl34-survivor-momentum-v3.json';
   const LOCK_URL = 'https://raw.githubusercontent.com/Zirqo-Dev/baseline-desk/main/backtest/holdout.lock.json';
   const STATUS_URL = 'https://raw.githubusercontent.com/Zirqo-Dev/baseline-desk/main/backtest/status.json';
-  const VERDICT_AFTER_D = 3; // the verdict is read about 3 days after the last holdout day
+  const VERDICT_AFTER_D = 5; // the verdict is read about 5 days after the last holdout day
   const STALE_MIN = 15;      // live.json older than this: Stale badge, "No tick for N min" pill
   const REFETCH_MS = 300e3;  // live.json only, while the tab is visible
   const DEX = 'https://dexscreener.com/base/';
@@ -471,7 +471,7 @@ body { margin: 0; font-size: 14px; }
   const L = path => dig(lv, path);                  // live.json (BL-27)
   const LB = (o, k) => dig(o, k);                   // one live.json book: books.desk / books.baseline
   const LP = (o, k) => dig(o, k);                   // one open position in live.json
-  const SP = path => dig(spec, path);               // backtest/specs/bl34-survivor-momentum-v2.json (BL-43)
+  const SP = path => dig(spec, path);               // backtest/specs/bl34-survivor-momentum-v3.json (BL-43)
   const LK = path => dig(lock, path);               // backtest/holdout.lock.json, once it exists (BL-43)
   const ST = path => dig(st, path);                 // backtest/status.json (BL-43)
   const SD = (o, k) => dig(o, k);                   // one status.json token_days entry
@@ -950,9 +950,9 @@ body { margin: 0; font-size: 14px; }
     };
     put('bl34',
       h('p', { class: 'desc' }, 'Tokens still alive at +24 h (real depth ≥ ' + kusd(depth && depth[2]) + ', ≥ ' + n0(sells && sells[2]) +
-        ' sells in 24 h) bought when their 6 h return is positive and beats ETH. One sealed test week, run once.'),
+        ' sells in 24 h) bought when their 6 h return is positive and beats ETH. One sealed 14-day test, run once.'),
       h('div', { class: 'stats' },
-        h('div', { class: 'stat' }, h('b', {}, ok ? short(first) + ' – ' + short(last) : dash), h('span', {}, 'test week · ' + week)),
+        h('div', { class: 'stat' }, h('b', {}, ok ? short(first) + ' – ' + short(last) : dash), h('span', {}, 'test window · ' + week)),
         h('div', { class: 'stat' }, h('b', {}, ran ? (typeof v === 'string' ? v : dash) : ok ? '~' + short(verdict) : dash),
           h('span', {}, ran ? 'verdict · run ' + stamp(LK('ran_at')) : 'verdict, about ' + VERDICT_AFTER_D + ' days after')),
         h('div', { class: 'stat' }, h('b', {}, ran ? '0' : isNum(left) ? n0(left) : dash), h('span', {}, ran ? 'days left · done' : 'days left'))),

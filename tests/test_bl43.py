@@ -18,7 +18,7 @@ from tools import backtest as bt
 from tools import candles as cdl
 
 ROOT = Path(__file__).resolve().parents[1]
-SPEC = ROOT / "backtest/specs/bl34-survivor-momentum-v2.json"
+SPEC = ROOT / "backtest/specs/bl34-survivor-momentum-v3.json"
 
 
 def page():
@@ -232,11 +232,18 @@ class Bl34CardTest(unittest.TestCase):
     def test_spec_keys_exist(self):
         raw = json.loads(SPEC.read_text())
         self.assertEqual(sorted(k for k in reads("SP") if not has(raw, k)), [])
-        self.assertEqual(raw["split"]["holdout_days"], ["2026-11-08", "2026-11-14"])  # verdict ~Nov 17 = +3 days
-        self.assertIn("const VERDICT_AFTER_D = 3;", script())
+        self.assertEqual(raw["split"]["holdout_days"], ["2026-11-08", "2026-11-21"])  # verdict ~Nov 26 = +5 days
+        self.assertIn("const VERDICT_AFTER_D = 5;", script())
+        # BL-47: the card reads spec v3, a 14-day window
+        self.assertIn("backtest/specs/bl34-survivor-momentum-v3.json';", script())
+        self.assertNotIn("survivor-momentum-v2", page())
+        self.assertIn("One sealed 14-day test, run once.", fn("bl34"))
+        self.assertIn("'test window · ' + week", fn("bl34"))
+        self.assertNotIn("test week", page())
 
     def test_lock_keys_exist_and_tests_match_pass_tests(self):
-        mk = lambda p, k: {"status": "closed", "pnl": p, "ret": p / 5, "eth_ret": 0.0, "exit_t": k}
+        mk = lambda p, k: {"status": "closed", "pnl": p, "ret": p / 5, "eth_ret": 0.0, "exit_t": k,  # BL-47: v3 close-only path
+                           "pnl_close_only": p, "ret_close_only": p / 5, "eth_ret_close_only": 0.0}
         res = bt.pass_tests([mk(0.5, k) for k in range(25)], [mk(0.1, k) for k in range(20)], self.spec)
         lock = self.lock(res)
         self.assertEqual(lock["pass"]["verdict"], "pass")
