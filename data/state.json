@@ -23,7 +23,7 @@
     "positions": {},
     "refill_week": "2026-W46",
     "refills_usd": 47.693738985981945,
-    "ticks_since_buy": 83
+    "ticks_since_buy": 84
   },
   "desk": {
     "cash": 50.0,
@@ -850,17 +850,6 @@
         "sight_pair": "0x1d0c8b687cea0d7231735d53e8d52a9c8e8dc7d2a11b93d4383eb4bfb797304f",
         "sight_qliq": 607,
         "symbol": "NOTF"
-      },
-      "0x1a2bde7c9b60ddce7a94b2b90c07eff01930b718": {
-        "done": [
-          1,
-          6
-        ],
-        "first_price": 0.00484,
-        "first_seen": "2026-11-14T21:23:13Z",
-        "sight_pair": "0x0790b705589db94303f91b357d544b60bd57db034d2e6849cccf3e105720c433",
-        "sight_qliq": 597,
-        "symbol": "SOSF"
       },
       "0x1a69859033991e122da8d24063aa6703c19c78e0": {
         "done": [
@@ -2184,7 +2173,9 @@
         "symbol": "FUND DIVIDEND UNITED OIL"
       },
       "0x7ad3a21f5cc614dd822e1948166fe29213596a22": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 4.167e-06,
         "first_seen": "2026-11-15T20:23:14Z",
         "sight_pair": "0x84e297f7c0f2530ee491ae9c6ef1881054aaf617",
@@ -2445,6 +2436,14 @@
         "sight_pair": "0x0f887256a2bbfa35611fe82745eb4e7e55ed0b289a4f0d2e28ba203bdc4b4e70",
         "sight_qliq": 54,
         "symbol": "USNO"
+      },
+      "0xa67b1dac9caa9d5b8257c28c8bea9e532ff968b5": {
+        "done": [],
+        "first_price": 0.0001946,
+        "first_seen": "2026-11-15T21:23:14Z",
+        "sight_pair": "0xcb47a07ff5b4397859bf2d1ae073a09b27140ba6a75e28cd6594785f036c32fc",
+        "sight_qliq": 27,
+        "symbol": "UTDF"
       },
       "0xabe0b1dcbb0251111430ad202e4a25cb1df82e79": {
         "done": [
@@ -3816,12 +3815,6 @@
         "reason": "real_depth",
         "symbol": "NOTF",
         "until": "2026-11-16T13:58:15Z"
-      },
-      "0x1a2bde7c9b60ddce7a94b2b90c07eff01930b718": {
-        "at": "2026-11-14T21:23:13Z",
-        "reason": "real_depth",
-        "symbol": "SOSF",
-        "until": "2026-11-15T21:23:13Z"
       },
       "0x1a69859033991e122da8d24063aa6703c19c78e0": {
         "at": "2026-11-14T23:08:14Z",
@@ -6829,6 +6822,12 @@
         "symbol": "AREAR",
         "until": "2026-11-16T20:28:15Z"
       },
+      "0xa67b1dac9caa9d5b8257c28c8bea9e532ff968b5": {
+        "at": "2026-11-15T21:23:14Z",
+        "reason": "real_depth",
+        "symbol": "UTDF",
+        "until": "2026-11-16T21:23:14Z"
+      },
       "0xa68529a8116a36364f9c43b2338472b05a4d4e77": {
         "at": "2026-11-15T15:58:15Z",
         "reason": "real_depth",
@@ -7128,12 +7127,6 @@
         "reason": "real_depth",
         "symbol": "CHIPZ",
         "until": "2026-11-16T19:18:15Z"
-      },
-      "0xb2000000000000000000002a8a69df02129210a9": {
-        "at": "2026-11-14T21:23:13Z",
-        "reason": "real_depth",
-        "symbol": "MuseGlory",
-        "until": "2026-11-15T21:23:13Z"
       },
       "0xb2000000000000000000002bbef95552d8f9fda4": {
         "at": "2026-11-15T03:08:15Z",
@@ -7926,6 +7919,12 @@
         "reason": "real_depth",
         "symbol": "JACK",
         "until": "2026-11-16T05:58:16Z"
+      },
+      "0xb200000000000000000000fa20ad37cfad91515e": {
+        "at": "2026-11-15T21:23:14Z",
+        "reason": "real_depth",
+        "symbol": "SCOTT",
+        "until": "2026-11-16T21:23:14Z"
       },
       "0xb200c6aa9386ce57524bcc4adf8403cbf76e828f": {
         "at": "2026-11-15T04:13:14Z",
@@ -8923,6 +8922,12 @@
         "symbol": "CATE",
         "until": "2026-11-16T02:33:12Z"
       },
+      "0xe3673fea266ed0e79cd0e6085d2df4e0c5c99b13": {
+        "at": "2026-11-15T21:23:14Z",
+        "reason": "real_depth",
+        "symbol": "CHUBBY",
+        "until": "2026-11-16T21:23:14Z"
+      },
       "0xe39e8ae820fe0d5d389c39d72ab0db3289539ba3": {
         "at": "2026-11-15T19:08:15Z",
         "reason": "real_depth",
@@ -9406,9 +9411,9 @@
     },
     "watch": {
       "0x94dc35dff04cdc59a3906adb7b0bdf7db3d2456d": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-15T21:03:20Z",
-        "last_check": "2026-11-15T21:03:20Z",
+        "last_check": "2026-11-15T21:23:14Z",
         "symbol": "UFO"
       }
     }
