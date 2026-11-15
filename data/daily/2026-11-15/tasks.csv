@@ -929,3 +929,10 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-15T12:23:13Z,desk,VERIFY,WOC,0x1d73e58d96fda2671440430e94f6d077a7b61b07,SKIP,real_depth,goplus=skipped until=2026-11-16T12:23:13Z
 2026-11-15T12:23:13Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
 2026-11-15T12:23:13Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=0 new=4 checked=4 passed=0 bought=0 held=0 deferred=0 dex_only=4 goplus=0 requests=8 secs=2.1 bl_positions=0 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=1 labels_done=1 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-15T12:28:15Z,desk,VERIFY,Paper,0xad4bea7923b5840cae40cfd50f8d4cc94a78eb07,WATCH,goplus_not_ready,first_seen=2026-11-15T09:38:14Z checks=10 pending=honeypot b1=415 s1=415 b24=1985 s24=1936 liq=10272113 dex=aerodrome qliq=170034 pair_age=171 token_age=171
+2026-11-15T12:28:15Z,desk,VERIFY,FUND DIVIDEND UNITED OIL,0x7a82bec827f65e6d929ebd3caf588f5c12b9270a,WATCH,goplus_not_ready,"first_seen=2026-11-15T11:53:12Z checks=3 pending=dev_pct,top10_pct b1=30 s1=0 b24=30 s24=0 liq=64105 dex=uniswap:v2 qliq=32052 pair_age=37 token_age=37"
+2026-11-15T12:28:15Z,desk,VERIFY,DETECTIVE,0x489e97bc24c321036e4b1850c12daf5d9bf4bd45,SKIP,real_depth,goplus=skipped until=2026-11-16T12:28:15Z
+2026-11-15T12:28:15Z,desk,VERIFY,PEPKING,0xa7f4c17a60bf756d90030560137814c4747ef342,SKIP,real_depth,goplus=skipped until=2026-11-16T12:28:15Z
+2026-11-15T12:28:15Z,desk,VERIFY,Socks,0x0d3fb88f5017537e086b9f6f807f5be7c464d250,SKIP,real_depth,goplus=skipped until=2026-11-16T12:28:15Z
+2026-11-15T12:28:15Z,baseline,EXECUTE,Paper,0xad4bea7923b5840cae40cfd50f8d4cc94a78eb07,SKIP,reentry_cooldown,seed=202611151228 eligible=1 pick=0 pool=ad4bea desk=WATCH launchpad=other
+2026-11-15T12:28:15Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=2 new=3 checked=5 passed=0 bought=0 held=0 deferred=0 dex_only=3 goplus=2 requests=11 secs=4.8 bl_positions=0 bl_due=1 bl_eligible=1 bl_bought=0 report=none machine=none bl_error=none labels=none labels_due=0 labels_done=0 labels_calls=0 live=ok alerts=none alerts_sent=0
