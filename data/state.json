@@ -1,6 +1,6 @@
 {
   "baseline": {
-    "cash": 42.138615295794395,
+    "cash": 37.138615295794395,
     "cooldown": {
       "a:0x32831b781236f6689e46c39e37b3cecdfae20064": "2026-11-15T14:03:15Z",
       "a:0x40d9bd75fde90c98089a1564a54d2f24ce540a03": "2026-11-15T22:33:15Z",
@@ -16,10 +16,27 @@
     "day": "2026-11-15",
     "day_start_value": 39.33616187981765,
     "halted_day": "",
-    "positions": {},
+    "positions": {
+      "0x4d2cf572fcb2020f0942f76a96c1b49c116e986f": {
+        "cost_usd": 5.0,
+        "entry_fill": 0.00010287109295077542,
+        "entry_intended": 9.987e-05,
+        "entry_liq_usd": 8889040.85,
+        "entry_qliq": 100011,
+        "entry_ts": "2026-11-15T03:33:14Z",
+        "ladder_done": [],
+        "last_price": 9.987e-05,
+        "launchpad": "other",
+        "orig_qty": 48604.519078965524,
+        "pair": "0x17f3b19dd7ae504293c3f64cbd4e3f597ef28718",
+        "peak_price": 9.987e-05,
+        "qty": 48604.519078965524,
+        "symbol": "Anthropic"
+      }
+    },
     "refill_week": "2026-W46",
     "refills_usd": 47.693738985981945,
-    "ticks_since_buy": 46
+    "ticks_since_buy": 0
   },
   "desk": {
     "cash": 50.0,
@@ -88,7 +105,8 @@
       },
       "0x03cb39f0f6d7d0ebab06e2677f0dd952b065005d": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 0.003923,
         "first_seen": "2026-11-14T21:28:15Z",
@@ -185,7 +203,8 @@
       },
       "0x0695b5dfb4c53be57ce039be0a1b73fe9f2fdc0f": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 0.004841,
         "first_seen": "2026-11-14T21:28:15Z",
@@ -279,7 +298,9 @@
         "symbol": "DOTF"
       },
       "0x08cf5764aacd7fc9629e752fc3bbe0380c12cfe8": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 0.002895,
         "first_seen": "2026-11-15T02:28:15Z",
         "sight_pair": "0xb4146c8397f692e527f3104271a474d49e9e1b01f6d6690d1a4d68cbf910fa08",
@@ -407,7 +428,9 @@
         "symbol": "AO\u200aDT"
       },
       "0x0e0089d9e5b744a5fe3a102632a6308dfc11a076": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 0.003793,
         "first_seen": "2026-11-15T02:28:15Z",
         "sight_pair": "0x3ca33b70daa7034e1ba703447628a71a08977b892806edd805794579d4414ac6",
@@ -479,7 +502,8 @@
       },
       "0x1042906c0d619bdd6e3885924528e835902ff261": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 0.002906,
         "first_seen": "2026-11-14T21:28:15Z",
@@ -607,7 +631,8 @@
       },
       "0x153c90e8cc6e08c17fafa39a541f0f05345f15a7": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 0.003807,
         "first_seen": "2026-11-14T21:28:15Z",
@@ -1192,7 +1217,8 @@
       },
       "0x30267db2f1e4c2269aa2da2fbe12665241794ce1": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 0.004754,
         "first_seen": "2026-11-14T21:28:15Z",
@@ -1224,7 +1250,8 @@
       },
       "0x319b897e86d16b0f46a9da03fc08f45620424e28": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 0.02862,
         "first_seen": "2026-11-14T21:28:15Z",
@@ -1331,7 +1358,8 @@
       },
       "0x3471cffe4a68c585cb883ee26d4b7bf77dc4e842": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 0.03301,
         "first_seen": "2026-11-14T21:28:15Z",
@@ -1570,7 +1598,8 @@
       },
       "0x40d9bd75fde90c98089a1564a54d2f24ce540a03": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 0.002522,
         "first_seen": "2026-11-14T21:28:15Z",
@@ -2567,6 +2596,14 @@
         "sight_qliq": 27829,
         "symbol": "POLYMARKET"
       },
+      "0xd6a82506769a1d40d11b5f16816ec573e40238ca": {
+        "done": [],
+        "first_price": 3.657e-06,
+        "first_seen": "2026-11-15T03:33:14Z",
+        "sight_pair": "0xd8f8e926eeccd88549c8329b526dd149ef10dc20",
+        "sight_qliq": 28110,
+        "symbol": "EXTRACT"
+      },
       "0xd7bc5c0e2edd817f8eb2778ad0c9fa871de84164": {
         "done": [
           1,
@@ -2659,7 +2696,8 @@
       },
       "0xe061b93e6e964203dca673c86ac09ebcb9b4b2f8": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 3.767e-06,
         "first_seen": "2026-11-14T21:28:15Z",
@@ -4658,6 +4696,12 @@
         "symbol": "RST",
         "until": "2026-11-15T16:28:14Z"
       },
+      "0x3edfebaed9bef836c7b4b2dc30231fcf8d594608": {
+        "at": "2026-11-15T03:33:14Z",
+        "reason": "missing:liq_usd",
+        "symbol": "TRUC",
+        "until": "2026-11-16T03:33:14Z"
+      },
       "0x3efa585487a75db3bfcdf94b881c403fc2a76b6a": {
         "at": "2026-11-14T20:23:16Z",
         "reason": "real_depth",
@@ -5839,12 +5883,6 @@
         "reason": "real_depth",
         "symbol": "XCHAT",
         "until": "2026-11-16T00:23:12Z"
-      },
-      "0x839c8f6ac84213fe513169ff906e4ecef24aa55d": {
-        "at": "2026-11-14T03:28:16Z",
-        "reason": "real_depth",
-        "symbol": "OFI",
-        "until": "2026-11-15T03:28:16Z"
       },
       "0x83cd47a09bd75416b207277716fb582f2a316ba3": {
         "at": "2026-11-14T18:18:14Z",
@@ -7784,12 +7822,6 @@
         "symbol": "BIDEN",
         "until": "2026-11-15T08:08:14Z"
       },
-      "0xcae48e67251bd4f656a4d210648c5fb556196d1f": {
-        "at": "2026-11-14T03:33:14Z",
-        "reason": "real_depth",
-        "symbol": "BERA",
-        "until": "2026-11-15T03:33:14Z"
-      },
       "0xcb5dff78e0876a74da17fea45aa181534d9ac825": {
         "at": "2026-11-14T14:18:13Z",
         "reason": "real_depth",
@@ -7927,12 +7959,6 @@
         "reason": "real_depth",
         "symbol": "CHUBBY",
         "until": "2026-11-15T18:58:19Z"
-      },
-      "0xd24531f4115a85f8033c51b39c098769abedee59": {
-        "at": "2026-11-14T03:28:16Z",
-        "reason": "real_depth",
-        "symbol": "KellyClaude",
-        "until": "2026-11-15T03:28:16Z"
       },
       "0xd24a5446761b545c68a604ac08734a5d355740c3": {
         "at": "2026-11-15T02:43:20Z",
@@ -8777,10 +8803,16 @@
     },
     "watch": {
       "0x4d2cf572fcb2020f0942f76a96c1b49c116e986f": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-15T03:18:14Z",
-        "last_check": "2026-11-15T03:18:14Z",
+        "last_check": "2026-11-15T03:33:14Z",
         "symbol": "Anthropic"
+      },
+      "0xd6a82506769a1d40d11b5f16816ec573e40238ca": {
+        "checks": 1,
+        "first_seen": "2026-11-15T03:33:14Z",
+        "last_check": "2026-11-15T03:33:14Z",
+        "symbol": "EXTRACT"
       },
       "0xdbf60ae7ab686c93eb2ad67733447d80bddcb0e2": {
         "checks": 3,
