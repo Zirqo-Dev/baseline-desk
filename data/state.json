@@ -29,9 +29,9 @@
         "entry_qliq": 20891,
         "entry_ts": "2026-11-15T14:23:12Z",
         "ladder_done": [],
-        "last_liq_usd": 41891.82,
-        "last_price": 2.32e-05,
-        "last_qliq": 20929,
+        "last_liq_usd": 41884.41,
+        "last_price": 2.313e-05,
+        "last_qliq": 20969,
         "launchpad": "other",
         "orig_qty": 212395.67620476297,
         "pair": "0x42af854489e157661f3fb2234846693fdae4b5b7f9ab8ce3d36e10ad986584d2",
@@ -42,7 +42,7 @@
     },
     "refill_week": "2026-W46",
     "refills_usd": 47.693738985981945,
-    "ticks_since_buy": 4
+    "ticks_since_buy": 5
   },
   "desk": {
     "cash": 50.0,
@@ -1919,7 +1919,9 @@
         "symbol": "OUF"
       },
       "0x53611146c6b46c33d419553aaa55a7044eb69911": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 0.0001246,
         "first_seen": "2026-11-15T13:48:15Z",
         "sight_pair": "0xb14ccd76d914b6e6dac982bd14c31456e450470a7028cbcb25e780170a270f18",
@@ -2634,7 +2636,8 @@
       },
       "0xbfbaae1b073feaa3fce3077345492c4a3a3297b6": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 6.011e-06,
         "first_seen": "2026-11-15T08:48:14Z",
@@ -5735,6 +5738,12 @@
         "symbol": "FODU",
         "until": "2026-11-16T01:43:13Z"
       },
+      "0x6cbf780d893dc431c7b7b340428841f2d0741b27": {
+        "at": "2026-11-15T14:48:15Z",
+        "reason": "real_depth",
+        "symbol": "LIQUIDBGT",
+        "until": "2026-11-16T14:48:15Z"
+      },
       "0x6d1f1d63b4c93d95fb9b1b056a78762b8662bfc4": {
         "at": "2026-11-15T06:58:15Z",
         "reason": "real_depth",
@@ -6682,6 +6691,12 @@
         "reason": "real_depth",
         "symbol": "TSG",
         "until": "2026-11-15T18:08:14Z"
+      },
+      "0xa1aec9b3fc44da4111135e9e6d96742a23b63ba3": {
+        "at": "2026-11-15T14:48:15Z",
+        "reason": "missing:liq_usd",
+        "symbol": "BASECAT",
+        "until": "2026-11-16T14:48:15Z"
       },
       "0xa1c6cbe8ea36a5b17167175273bf0258c9c2c50c": {
         "at": "2026-11-15T13:28:14Z",
@@ -8021,6 +8036,12 @@
         "symbol": "LAPTOP",
         "until": "2026-11-16T08:38:14Z"
       },
+      "0xb8241092c30f2db5e50a09304e1a52ecec954933": {
+        "at": "2026-11-15T14:48:15Z",
+        "reason": "real_depth",
+        "symbol": "SPCX",
+        "until": "2026-11-16T14:48:15Z"
+      },
       "0xb82fbf41fe036836385d37f3a5d8d87cbe1f4ccb": {
         "at": "2026-11-15T12:43:16Z",
         "reason": "real_depth",
@@ -8344,6 +8365,12 @@
         "reason": "real_depth",
         "symbol": "SPCX",
         "until": "2026-11-15T20:48:15Z"
+      },
+      "0xca468a59f552887d2d291ebfa18c23d7603120bb": {
+        "at": "2026-11-15T14:48:15Z",
+        "reason": "real_depth",
+        "symbol": "MASK",
+        "until": "2026-11-16T14:48:15Z"
       },
       "0xca6e268cfe603cf84e0c58e0e0beecec0ac92e75": {
         "at": "2026-11-15T13:13:12Z",
@@ -8855,6 +8882,12 @@
         "symbol": "TRUMP2028",
         "until": "2026-11-16T06:58:15Z"
       },
+      "0xe677cbf5cae8677ff856af562a970a1fce5bcccc": {
+        "at": "2026-11-15T14:48:15Z",
+        "reason": "real_depth",
+        "symbol": "QUANTUM",
+        "until": "2026-11-16T14:48:15Z"
+      },
       "0xe67edf3820aae1fd3bf4533363c264b9a7703e49": {
         "at": "2026-11-14T18:53:13Z",
         "reason": "real_depth",
@@ -8920,6 +8953,12 @@
         "reason": "real_depth",
         "symbol": ".AI",
         "until": "2026-11-15T14:48:19Z"
+      },
+      "0xe9dc6278c7a015791a9fa2b9e6110553545ecccc": {
+        "at": "2026-11-15T14:48:15Z",
+        "reason": "real_depth",
+        "symbol": "VOUCH",
+        "until": "2026-11-16T14:48:15Z"
       },
       "0xea31940d6d4e423e64648db9229e9453cce7cccc": {
         "at": "2026-11-15T11:23:15Z",
@@ -9302,9 +9341,9 @@
     },
     "watch": {
       "0x977785a9bf1d818b639ee06fe958fa7e8859bbf4": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-15T14:33:14Z",
-        "last_check": "2026-11-15T14:33:14Z",
+        "last_check": "2026-11-15T14:48:15Z",
         "symbol": "BRAVE"
       },
       "0xf723da62221b033d7502cb6c28218a3a41e8e176": {
