@@ -19,7 +19,7 @@
     "positions": {},
     "refill_week": "2026-W46",
     "refills_usd": 47.693738985981945,
-    "ticks_since_buy": 37
+    "ticks_since_buy": 38
   },
   "desk": {
     "cash": 50.0,
@@ -1716,17 +1716,6 @@
         "sight_qliq": 29393,
         "symbol": "USRP"
       },
-      "0x5a2e70731f2c9aaa899fa819f5c608081941e086": {
-        "done": [
-          1,
-          6
-        ],
-        "first_price": 0.0001698,
-        "first_seen": "2026-11-14T02:48:14Z",
-        "sight_pair": "0xf46f37fe00181d34122349cf8a48330a990bb1cf918a99a50dfb9ff07fd910db",
-        "sight_qliq": 0,
-        "symbol": "DIVIDEND U.S ASSET"
-      },
       "0x5a8cd3d144f7f72c36a5408d18344587ecd019cf": {
         "done": [
           1,
@@ -1740,7 +1729,8 @@
       },
       "0x5c1e8179264a23ab27a100a40bbb34bf36682d4c": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 3.267e-06,
         "first_seen": "2026-11-14T20:48:15Z",
@@ -2380,7 +2370,9 @@
         "symbol": "FRONG"
       },
       "0xc293436cc1dc6d5d355d32b85b3a5cc5ea334d28": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 9.763e-05,
         "first_seen": "2026-11-15T01:48:15Z",
         "sight_pair": "0x5cd04e9f6caa537eb179431546e034aace5613476ee1a9ef675fa9bbe5dd3529",
@@ -2621,6 +2613,14 @@
         "sight_pair": "0x09469fbec0110d21eebda222a148906f44b6ce24",
         "sight_qliq": 76390,
         "symbol": "REBOOT"
+      },
+      "0xdd8d1b4c3598dcae9c72005f1928ef55c681c379": {
+        "done": [],
+        "first_price": 3.022e-06,
+        "first_seen": "2026-11-15T02:48:15Z",
+        "sight_pair": "0xd238b454f98c4ad18c336bc7bae2deb4f159ced6",
+        "sight_qliq": 28004,
+        "symbol": "WWZ"
       },
       "0xde0dfa93d2dfc908d85b7a148f172c572d7a5832": {
         "done": [
@@ -5012,12 +5012,6 @@
         "symbol": "Basepig",
         "until": "2026-11-15T15:38:16Z"
       },
-      "0x5a2e70731f2c9aaa899fa819f5c608081941e086": {
-        "at": "2026-11-14T02:48:14Z",
-        "reason": "real_depth",
-        "symbol": "DIVIDEND U.S ASSET",
-        "until": "2026-11-15T02:48:14Z"
-      },
       "0x5a5c8f1190732577cc2a1e5441c6a67bd755787d": {
         "at": "2026-11-14T21:38:13Z",
         "reason": "real_depth",
@@ -5270,23 +5264,11 @@
         "symbol": "REBOOT",
         "until": "2026-11-15T19:43:13Z"
       },
-      "0x6640a560eb8586439e85ecf8132677cef8e0bca8": {
-        "at": "2026-11-14T02:48:14Z",
-        "reason": "real_depth",
-        "symbol": "NOAF",
-        "until": "2026-11-15T02:48:14Z"
-      },
       "0x66a7cdb83db61e5bf5b8803ce84a25e58c0555cb": {
         "at": "2026-11-14T12:48:17Z",
         "reason": "missing:symbol",
         "symbol": "",
         "until": "2026-11-15T12:48:17Z"
-      },
-      "0x66b7a9d18f23226c9d0ede0c89a7ac62292229c2": {
-        "at": "2026-11-14T02:48:14Z",
-        "reason": "real_depth",
-        "symbol": "SPCX",
-        "until": "2026-11-15T02:48:14Z"
       },
       "0x66bbd35b97f1cfbcf5a0f2a75b4b6b33d12634a5": {
         "at": "2026-11-14T13:33:14Z",
@@ -5485,6 +5467,12 @@
         "reason": "real_depth",
         "symbol": "BIDEN",
         "until": "2026-11-15T03:43:12Z"
+      },
+      "0x745c5d47530ffd150dc36a82f75c475ae44f8ba3": {
+        "at": "2026-11-15T02:48:15Z",
+        "reason": "missing:liq_usd",
+        "symbol": "VENSA",
+        "until": "2026-11-16T02:48:15Z"
       },
       "0x7492fad994d7b360290effdd45ad5cec59489a96": {
         "at": "2026-11-14T13:08:14Z",
@@ -6386,6 +6374,12 @@
         "symbol": "CHUBBY",
         "until": "2026-11-15T18:23:18Z"
       },
+      "0xabb45c93b8437644ad50904541f625dd6ee518c5": {
+        "at": "2026-11-15T02:48:15Z",
+        "reason": "real_depth",
+        "symbol": "CHUBBY",
+        "until": "2026-11-16T02:48:15Z"
+      },
       "0xabbb88183647b56ef989eb510443efc152d6902e": {
         "at": "2026-11-14T18:53:13Z",
         "reason": "real_depth",
@@ -7214,6 +7208,12 @@
         "symbol": "VENSA",
         "until": "2026-11-15T06:18:17Z"
       },
+      "0xb200000000000000000000e33bddfc02f1d214cc": {
+        "at": "2026-11-15T02:48:15Z",
+        "reason": "missing:liq_usd",
+        "symbol": "CATE",
+        "until": "2026-11-16T02:48:15Z"
+      },
       "0xb200000000000000000000e3e9cb022d358dc3fd": {
         "at": "2026-11-14T13:23:14Z",
         "reason": "real_depth",
@@ -7543,12 +7543,6 @@
         "reason": "missing:liq_usd",
         "symbol": "Basesheep",
         "until": "2026-11-15T15:58:14Z"
-      },
-      "0xc01b44578b9cd4af2f680b50dd4f7628dc6f7064": {
-        "at": "2026-11-14T02:48:14Z",
-        "reason": "real_depth",
-        "symbol": "VVV",
-        "until": "2026-11-15T02:48:14Z"
       },
       "0xc0931c902efd5a676a1153872a1853c83577044f": {
         "at": "2026-11-15T02:33:12Z",
@@ -8420,6 +8414,12 @@
         "symbol": "SPACEX",
         "until": "2026-11-15T02:58:14Z"
       },
+      "0xf11d64dfc96b62e67decad8d19dcf7c89d632cd3": {
+        "at": "2026-11-15T02:48:15Z",
+        "reason": "real_depth",
+        "symbol": "ANTHROPIC",
+        "until": "2026-11-16T02:48:15Z"
+      },
       "0xf196fc57fa2997cd4ecc59bec39482019ebb347b": {
         "at": "2026-11-14T07:23:13Z",
         "reason": "real_depth",
@@ -8739,6 +8739,12 @@
         "first_seen": "2026-11-15T02:18:15Z",
         "last_check": "2026-11-15T02:38:15Z",
         "symbol": "SI"
+      },
+      "0xdd8d1b4c3598dcae9c72005f1928ef55c681c379": {
+        "checks": 1,
+        "first_seen": "2026-11-15T02:48:15Z",
+        "last_check": "2026-11-15T02:48:15Z",
+        "symbol": "WWZ"
       }
     }
   },
