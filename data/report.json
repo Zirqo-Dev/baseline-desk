@@ -1,16 +1,16 @@
 {
-  "as_of": "2026-11-14T00:03:14Z",
-  "day": "2026-11-13",
+  "as_of": "2026-11-15T00:03:13Z",
+  "day": "2026-11-14",
   "start_balance": 50.0,
-  "desk_lead_usd": 58.42,
+  "desk_lead_usd": 56.17,
   "gate_b": {
     "since": "2026-11-06T20:33:15Z",
     "desk_closes": 0,
-    "baseline_closes": 63,
+    "baseline_closes": 67,
     "target": 100,
     "kill": 200
   },
-  "summary": "2026-11-13: desk 50.00 USD (1 closes, 0 open), baseline 36.89 USD (170 closes, 0 open), desk lead +58.42 USD. Gate B: 0/100 desk closes since 2026-11-06T20:33:15Z (per trade: desk +0.00, baseline -0.21 USD; kill at 200 without beating the baseline).",
+  "summary": "2026-11-14: desk 50.00 USD (1 closes, 0 open), baseline 39.13 USD (174 closes, 1 open), desk lead +56.17 USD. Gate B: 0/100 desk closes since 2026-11-06T20:33:15Z (per trade: desk +0.00, baseline -0.19 USD; kill at 200 without beating the baseline).",
   "desk": {
     "value_usd": 50.0,
     "cash_usd": 50.0,
@@ -81,6 +81,10 @@
       {
         "day": "2026-11-13",
         "value_usd": 50.0
+      },
+      {
+        "day": "2026-11-14",
+        "value_usd": 50.0
       }
     ],
     "open": 0,
@@ -109,11 +113,11 @@
     }
   },
   "baseline": {
-    "value_usd": 36.89,
-    "cash_usd": 36.89,
-    "net_pnl_usd": -60.81,
-    "net_pnl_pct": -62.24,
-    "multiple": 0.3776,
+    "value_usd": 39.13,
+    "cash_usd": 32.52,
+    "net_pnl_usd": -58.56,
+    "net_pnl_pct": -59.95,
+    "multiple": 0.4005,
     "equity_daily": [
       {
         "day": "2026-10-29",
@@ -178,166 +182,167 @@
       {
         "day": "2026-11-13",
         "value_usd": 36.89
+      },
+      {
+        "day": "2026-11-14",
+        "value_usd": 39.13
       }
     ],
-    "open": 0,
+    "open": 1,
     "max_dd_pct": 120.77,
-    "closes": 170,
-    "closes_day": 9,
-    "win_rate": 11.76,
-    "avg_win_pct": 67.92,
-    "avg_loss_pct": -17.09,
-    "stop_slip_pct": -14.03,
+    "closes": 174,
+    "closes_day": 4,
+    "win_rate": 12.07,
+    "avg_win_pct": 65.97,
+    "avg_loss_pct": -16.85,
+    "stop_slip_pct": -13.83,
     "exits_by_rule": {
       "liq_pull": 25,
       "hard_stop": 4,
-      "ladder_1": 17,
+      "ladder_1": 18,
       "ladder_2": 10,
-      "trail": 8,
-      "time_stop": 133
+      "trail": 9,
+      "time_stop": 136
     },
     "refills_usd": 47.69,
     "per_trade": {
       "since": "2026-11-06T20:33:15Z",
-      "n": 63,
-      "net_usd": -13.1,
-      "net_per_trade_usd": -0.2079,
-      "net_per_trade_pct": -4.16
+      "n": 67,
+      "net_usd": -12.46,
+      "net_per_trade_usd": -0.186,
+      "net_per_trade_pct": -3.72
     }
   },
   "machine": {
-    "day": "2026-11-13",
-    "as_of": "2026-11-14T00:03:14Z",
+    "day": "2026-11-14",
+    "as_of": "2026-11-15T00:03:13Z",
     "last_tick": {
-      "ts": "2026-11-13T23:58:14Z",
-      "seen": 20,
-      "new": 8,
-      "checked": 8,
-      "dex_only": 7,
+      "ts": "2026-11-14T23:58:14Z",
+      "seen": 19,
+      "new": 2,
+      "checked": 3,
+      "dex_only": 2,
       "goplus": 1,
       "passed": 0,
       "bought": 0,
-      "requests": 13,
-      "secs": 3.1
+      "requests": 9,
+      "secs": 2.2
     },
     "funnel": {
-      "from": "2026-11-13",
-      "to": "2026-11-13",
-      "scan": 1023,
-      "gate": 26,
+      "from": "2026-11-14",
+      "to": "2026-11-14",
+      "scan": 1000,
+      "gate": 18,
       "safety": 0,
       "buy": 0,
       "exits_open": 0
     },
     "funnel_since": {
       "from": "2026-10-29",
-      "to": "2026-11-13",
+      "to": "2026-11-14",
       "buy": 1,
-      "gate": 1488,
+      "gate": 1506,
       "safety": 1,
-      "scan": 18604
+      "scan": 19604
     },
     "kills": {
-      "from": "2026-11-13",
-      "to": "2026-11-13",
+      "from": "2026-11-14",
+      "to": "2026-11-14",
       "gate": {
-        "real_depth": 900,
-        "missing:liq_usd": 60,
-        "missing:symbol": 15,
+        "real_depth": 883,
+        "missing:liq_usd": 58,
+        "missing:symbol": 27,
         "missing:price": 13,
-        "asset:stable": 3,
-        "asset:wrapped": 6
+        "asset:stable": 1
       },
       "safety": {
-        "goplus_timeout": 13,
-        "nobody_can_sell": 1,
-        "mint_open": 3,
-        "top10_pct": 3,
-        "lp_locked": 2
+        "goplus_timeout": 12,
+        "top10_pct": 1,
+        "nobody_can_sell": 1
       }
     },
     "kills_since": {
       "from": "2026-10-29",
-      "to": "2026-11-13",
+      "to": "2026-11-14",
       "gate": {
         "asset:quote": 2,
-        "asset:stable": 19,
+        "asset:stable": 20,
         "asset:wrapped": 15,
         "liquidity": 8614,
         "missing:age_min": 3,
-        "missing:liq_usd": 1439,
-        "missing:price": 134,
-        "missing:symbol": 227,
-        "real_depth": 6663
+        "missing:liq_usd": 1497,
+        "missing:price": 147,
+        "missing:symbol": 254,
+        "real_depth": 7546
       },
       "safety": {
         "goplus_partial": 20,
-        "goplus_timeout": 1188,
+        "goplus_timeout": 1200,
+        "lp_locked": 2,
         "mint_open": 46,
-        "nobody_can_sell": 11,
+        "nobody_can_sell": 12,
         "too_old": 4,
-        "top10_pct": 19,
-        "lp_locked": 2
+        "top10_pct": 20
       }
     },
     "kill_log": [
       {
-        "ts": "2026-11-13T23:58:14Z",
-        "symbol": "Baseduck",
+        "ts": "2026-11-14T23:58:14Z",
+        "symbol": "JFF",
         "stage": "gate",
         "reason": "real_depth"
       },
       {
-        "ts": "2026-11-13T23:58:14Z",
-        "symbol": "GDOF",
-        "stage": "gate",
-        "reason": "missing:liq_usd"
-      },
-      {
-        "ts": "2026-11-13T23:58:14Z",
-        "symbol": "FDOG",
+        "ts": "2026-11-14T23:58:14Z",
+        "symbol": "BANKRK",
         "stage": "gate",
         "reason": "real_depth"
       },
       {
-        "ts": "2026-11-13T23:58:14Z",
-        "symbol": "DEGENR",
+        "ts": "2026-11-14T23:53:13Z",
+        "symbol": "LIQUIDBGT",
         "stage": "gate",
         "reason": "real_depth"
       },
       {
-        "ts": "2026-11-13T23:58:14Z",
+        "ts": "2026-11-14T23:53:13Z",
         "symbol": "CHUBBY",
         "stage": "gate",
         "reason": "real_depth"
       },
       {
-        "ts": "2026-11-13T23:58:14Z",
-        "symbol": "CHUBBY",
+        "ts": "2026-11-14T23:53:13Z",
+        "symbol": "vensa",
         "stage": "gate",
         "reason": "real_depth"
       },
       {
-        "ts": "2026-11-13T23:58:14Z",
-        "symbol": "TICKER",
+        "ts": "2026-11-14T23:48:15Z",
+        "symbol": "777",
+        "stage": "gate",
+        "reason": "real_depth"
+      },
+      {
+        "ts": "2026-11-14T23:43:14Z",
+        "symbol": "LIQUID",
         "stage": "gate",
         "reason": "missing:liq_usd"
       },
       {
-        "ts": "2026-11-13T23:53:23Z",
-        "symbol": "BLACKOUT",
+        "ts": "2026-11-14T23:43:14Z",
+        "symbol": "BANKRK",
         "stage": "gate",
         "reason": "real_depth"
       },
       {
-        "ts": "2026-11-13T23:53:23Z",
-        "symbol": "CAT",
+        "ts": "2026-11-14T23:43:14Z",
+        "symbol": "BOOTR",
         "stage": "gate",
         "reason": "real_depth"
       },
       {
-        "ts": "2026-11-13T23:53:23Z",
-        "symbol": "GODF\ud83d\udd25",
+        "ts": "2026-11-14T23:33:13Z",
+        "symbol": "SPACEX",
         "stage": "gate",
         "reason": "real_depth"
       }
@@ -348,106 +353,10 @@
       "rate": 100.0
     },
     "tick_secs": {
-      "median": 2.9,
-      "max": 10.6
+      "median": 2.4,
+      "max": 13.4
     },
     "ticks_per_hour": [
-      {
-        "hour": "2026-11-12T00",
-        "n": 12
-      },
-      {
-        "hour": "2026-11-12T01",
-        "n": 12
-      },
-      {
-        "hour": "2026-11-12T02",
-        "n": 12
-      },
-      {
-        "hour": "2026-11-12T03",
-        "n": 12
-      },
-      {
-        "hour": "2026-11-12T04",
-        "n": 12
-      },
-      {
-        "hour": "2026-11-12T05",
-        "n": 12
-      },
-      {
-        "hour": "2026-11-12T06",
-        "n": 12
-      },
-      {
-        "hour": "2026-11-12T07",
-        "n": 12
-      },
-      {
-        "hour": "2026-11-12T08",
-        "n": 12
-      },
-      {
-        "hour": "2026-11-12T09",
-        "n": 12
-      },
-      {
-        "hour": "2026-11-12T10",
-        "n": 12
-      },
-      {
-        "hour": "2026-11-12T11",
-        "n": 12
-      },
-      {
-        "hour": "2026-11-12T12",
-        "n": 12
-      },
-      {
-        "hour": "2026-11-12T13",
-        "n": 12
-      },
-      {
-        "hour": "2026-11-12T14",
-        "n": 12
-      },
-      {
-        "hour": "2026-11-12T15",
-        "n": 12
-      },
-      {
-        "hour": "2026-11-12T16",
-        "n": 12
-      },
-      {
-        "hour": "2026-11-12T17",
-        "n": 12
-      },
-      {
-        "hour": "2026-11-12T18",
-        "n": 12
-      },
-      {
-        "hour": "2026-11-12T19",
-        "n": 12
-      },
-      {
-        "hour": "2026-11-12T20",
-        "n": 12
-      },
-      {
-        "hour": "2026-11-12T21",
-        "n": 12
-      },
-      {
-        "hour": "2026-11-12T22",
-        "n": 12
-      },
-      {
-        "hour": "2026-11-12T23",
-        "n": 12
-      },
       {
         "hour": "2026-11-13T00",
         "n": 12
@@ -542,6 +451,102 @@
       },
       {
         "hour": "2026-11-13T23",
+        "n": 12
+      },
+      {
+        "hour": "2026-11-14T00",
+        "n": 12
+      },
+      {
+        "hour": "2026-11-14T01",
+        "n": 12
+      },
+      {
+        "hour": "2026-11-14T02",
+        "n": 12
+      },
+      {
+        "hour": "2026-11-14T03",
+        "n": 12
+      },
+      {
+        "hour": "2026-11-14T04",
+        "n": 12
+      },
+      {
+        "hour": "2026-11-14T05",
+        "n": 12
+      },
+      {
+        "hour": "2026-11-14T06",
+        "n": 12
+      },
+      {
+        "hour": "2026-11-14T07",
+        "n": 12
+      },
+      {
+        "hour": "2026-11-14T08",
+        "n": 12
+      },
+      {
+        "hour": "2026-11-14T09",
+        "n": 12
+      },
+      {
+        "hour": "2026-11-14T10",
+        "n": 12
+      },
+      {
+        "hour": "2026-11-14T11",
+        "n": 12
+      },
+      {
+        "hour": "2026-11-14T12",
+        "n": 12
+      },
+      {
+        "hour": "2026-11-14T13",
+        "n": 12
+      },
+      {
+        "hour": "2026-11-14T14",
+        "n": 12
+      },
+      {
+        "hour": "2026-11-14T15",
+        "n": 12
+      },
+      {
+        "hour": "2026-11-14T16",
+        "n": 12
+      },
+      {
+        "hour": "2026-11-14T17",
+        "n": 12
+      },
+      {
+        "hour": "2026-11-14T18",
+        "n": 12
+      },
+      {
+        "hour": "2026-11-14T19",
+        "n": 12
+      },
+      {
+        "hour": "2026-11-14T20",
+        "n": 12
+      },
+      {
+        "hour": "2026-11-14T21",
+        "n": 12
+      },
+      {
+        "hour": "2026-11-14T22",
+        "n": 12
+      },
+      {
+        "hour": "2026-11-14T23",
         "n": 12
       }
     ]
