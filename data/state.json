@@ -1,6 +1,6 @@
 {
   "baseline": {
-    "cash": 41.871975350101934,
+    "cash": 36.871975350101934,
     "cooldown": {
       "a:0x32831b781236f6689e46c39e37b3cecdfae20064": "2026-11-15T14:03:15Z",
       "a:0x40d9bd75fde90c98089a1564a54d2f24ce540a03": "2026-11-15T22:33:15Z",
@@ -16,10 +16,27 @@
     "day": "2026-11-15",
     "day_start_value": 39.33616187981765,
     "halted_day": "",
-    "positions": {},
+    "positions": {
+      "0xad4bea7923b5840cae40cfd50f8d4cc94a78eb07": {
+        "cost_usd": 5.0,
+        "entry_fill": 0.00010516809013680054,
+        "entry_intended": 0.0001021,
+        "entry_liq_usd": 10214140.98,
+        "entry_qliq": 100292,
+        "entry_ts": "2026-11-15T09:58:14Z",
+        "ladder_done": [],
+        "last_price": 0.0001021,
+        "launchpad": "other",
+        "orig_qty": 47542.93810504784,
+        "pair": "0xc687cf07daecbcb3163f7e4d7fe214ede19fe0c7",
+        "peak_price": 0.0001021,
+        "qty": 47542.93810504784,
+        "symbol": "Paper"
+      }
+    },
     "refill_week": "2026-W46",
     "refills_usd": 47.693738985981945,
-    "ticks_since_buy": 76
+    "ticks_since_buy": 0
   },
   "desk": {
     "cash": 50.0,
@@ -2361,6 +2378,14 @@
         "sight_qliq": 4,
         "symbol": "USOE"
       },
+      "0xa5c5a146f824c181faa814470bc32209be0bcb97": {
+        "done": [],
+        "first_price": 2.927e-06,
+        "first_seen": "2026-11-15T09:58:14Z",
+        "sight_pair": "0x6534cd5875dc52398795c5da6616a6ae2b2b3333",
+        "sight_qliq": 27458,
+        "symbol": "F.T.U"
+      },
       "0xa748b5b66bf1b4d65b105f28876ecccfc414d21f": {
         "done": [
           1,
@@ -3779,12 +3804,6 @@
         "symbol": "USOH\ud83d\udd25",
         "until": "2026-11-15T17:38:14Z"
       },
-      "0x16eea32da3838cda007aa3d0574fce4b4eacf080": {
-        "at": "2026-11-14T09:58:13Z",
-        "reason": "real_depth",
-        "symbol": "ANTHROPIC",
-        "until": "2026-11-15T09:58:13Z"
-      },
       "0x171e91daa90beba99a9d170033689ce66ec8b503": {
         "at": "2026-11-15T04:08:14Z",
         "reason": "real_depth",
@@ -3934,6 +3953,12 @@
         "reason": "real_depth",
         "symbol": "CAP",
         "until": "2026-11-15T16:18:14Z"
+      },
+      "0x1c92c3bc6cb958506f512ffae4d5838300276d37": {
+        "at": "2026-11-15T09:58:14Z",
+        "reason": "real_depth",
+        "symbol": "SPCX",
+        "until": "2026-11-16T09:58:14Z"
       },
       "0x1d3a3ef97810947660d1f163f36ba06325ca49d8": {
         "at": "2026-11-14T23:33:13Z",
@@ -5291,6 +5316,12 @@
         "symbol": "CLAUDIA",
         "until": "2026-11-15T16:38:24Z"
       },
+      "0x5b1f4e0d6a2d04979f8e2b6242f24990fbb2c5e9": {
+        "at": "2026-11-15T09:58:14Z",
+        "reason": "real_depth",
+        "symbol": "Slock",
+        "until": "2026-11-16T09:58:14Z"
+      },
       "0x5b88456be6b46ce8974383331804a17c11d21f1b": {
         "at": "2026-11-14T20:33:13Z",
         "reason": "real_depth",
@@ -5464,6 +5495,12 @@
         "reason": "real_depth",
         "symbol": "gork",
         "until": "2026-11-15T11:53:14Z"
+      },
+      "0x637087636b30fc0a0557c0c0e92b06e9d93cc911": {
+        "at": "2026-11-15T09:58:14Z",
+        "reason": "real_depth",
+        "symbol": "WWAR",
+        "until": "2026-11-16T09:58:14Z"
       },
       "0x637b3a2027d054e8b9391ab97fad40c449d2af75": {
         "at": "2026-11-15T08:18:13Z",
@@ -8959,22 +8996,22 @@
       }
     },
     "watch": {
-      "0x637087636b30fc0a0557c0c0e92b06e9d93cc911": {
-        "checks": 2,
-        "first_seen": "2026-11-15T09:23:12Z",
-        "last_check": "2026-11-15T09:38:14Z",
-        "symbol": "WWAR"
+      "0xa5c5a146f824c181faa814470bc32209be0bcb97": {
+        "checks": 1,
+        "first_seen": "2026-11-15T09:58:14Z",
+        "last_check": "2026-11-15T09:58:14Z",
+        "symbol": "F.T.U"
       },
       "0xad4bea7923b5840cae40cfd50f8d4cc94a78eb07": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-15T09:38:14Z",
-        "last_check": "2026-11-15T09:38:14Z",
+        "last_check": "2026-11-15T09:58:14Z",
         "symbol": "Paper"
       },
       "0xc2fa984588d7624a201822044a2e7e55228861ba": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-15T09:38:14Z",
-        "last_check": "2026-11-15T09:38:14Z",
+        "last_check": "2026-11-15T09:58:14Z",
         "symbol": "Basecat"
       }
     }
