@@ -681,3 +681,9 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-15T09:08:14Z,desk,VERIFY,WCFINAL,0xe9430944a516b6bb0dac712fdd250faa8af5cccc,SKIP,real_depth,goplus=skipped until=2026-11-16T09:08:14Z
 2026-11-15T09:08:14Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
 2026-11-15T09:08:14Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=1 new=2 checked=3 passed=0 bought=0 held=0 deferred=0 dex_only=3 goplus=0 requests=7 secs=1.8 bl_positions=0 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=2 labels_done=2 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-15T09:13:14Z,desk,VERIFY,MEOW,0x76c5d9df3aefc6375f43a228d0566eaee5d098b1,SKIP,real_depth,goplus=skipped until=2026-11-16T09:13:14Z
+2026-11-15T09:13:14Z,desk,VERIFY,PHISH,0xdb62ce3c2e7d23d9b1c4e4a1022565c9b123cccc,SKIP,real_depth,goplus=skipped until=2026-11-16T09:13:14Z
+2026-11-15T09:13:14Z,desk,VERIFY,REBOOT,0x8ab41271735e2ac051fc48dbda5011a58d3a18d2,WATCH,goplus_not_ready,"first_seen=2026-11-15T09:13:14Z checks=1 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct b1=14 s1=0 b24=14 s24=0 liq=154665 dex=uniswap:v2 qliq=77337 pair_age=8 token_age=8"
+2026-11-15T09:13:14Z,desk,VERIFY,LIQUIDBGT,0x929d050d91d48d480f838726075862dd53553319,SKIP,real_depth,goplus=skipped until=2026-11-16T09:13:14Z
+2026-11-15T09:13:14Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
+2026-11-15T09:13:14Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=0 new=4 checked=4 passed=0 bought=0 held=0 deferred=0 dex_only=3 goplus=1 requests=9 secs=2.2 bl_positions=0 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=3 labels_done=3 labels_calls=1 live=ok alerts=none alerts_sent=0
