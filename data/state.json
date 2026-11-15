@@ -23,7 +23,7 @@
     "positions": {},
     "refill_week": "2026-W46",
     "refills_usd": 47.693738985981945,
-    "ticks_since_buy": 21
+    "ticks_since_buy": 22
   },
   "desk": {
     "cash": 50.0,
@@ -551,7 +551,9 @@
         "symbol": "AO\u200aDT"
       },
       "0x0f0a396905db22bf45aff41905031e2f795154d8": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 0.0001808,
         "first_seen": "2026-11-15T15:13:13Z",
         "sight_pair": "0x4b5d1d0311d6a630dd5897d87658522aa56ebc5f77208ee81fcdfc0f8943a2b5",
@@ -3909,6 +3911,12 @@
         "symbol": "SOSF",
         "until": "2026-11-16T04:08:14Z"
       },
+      "0x17772a1ab16ba0e2c011e296ace87f1d69be9101": {
+        "at": "2026-11-15T16:13:13Z",
+        "reason": "missing:liq_usd",
+        "symbol": "RIFT",
+        "until": "2026-11-16T16:13:13Z"
+      },
       "0x1782bf5e46d70f0dda409d30c4cf05c218eb60e0": {
         "at": "2026-11-14T19:28:15Z",
         "reason": "missing:liq_usd",
@@ -5811,6 +5819,12 @@
         "symbol": "REBOOT",
         "until": "2026-11-15T19:43:13Z"
       },
+      "0x66607296802c596708e0a6b2919c54d366a84f12": {
+        "at": "2026-11-15T16:13:13Z",
+        "reason": "real_depth",
+        "symbol": "PEPKING",
+        "until": "2026-11-16T16:13:13Z"
+      },
       "0x6700f4ffdabe5399469845dd252f4382418bcccc": {
         "at": "2026-11-15T10:48:15Z",
         "reason": "real_depth",
@@ -7545,6 +7559,12 @@
         "symbol": "BANKRK",
         "until": "2026-11-16T00:58:14Z"
       },
+      "0xb200000000000000000000685525562aebd4e776": {
+        "at": "2026-11-15T16:13:13Z",
+        "reason": "real_depth",
+        "symbol": "HARDDEATH",
+        "until": "2026-11-16T16:13:13Z"
+      },
       "0xb2000000000000000000006856a9ac8f833ee0bb": {
         "at": "2026-11-15T06:13:13Z",
         "reason": "real_depth",
@@ -8042,6 +8062,12 @@
         "reason": "real_depth",
         "symbol": "PENNY",
         "until": "2026-11-16T06:43:15Z"
+      },
+      "0xb200000000000000000000eeccf6e12131b15bdd": {
+        "at": "2026-11-15T16:13:13Z",
+        "reason": "real_depth",
+        "symbol": "GOTCHI",
+        "until": "2026-11-16T16:13:13Z"
       },
       "0xb200000000000000000000f1065d9b23918333f6": {
         "at": "2026-11-14T23:53:13Z",
@@ -9051,6 +9077,12 @@
         "symbol": "WWZ",
         "until": "2026-11-16T03:43:17Z"
       },
+      "0xddaae91bcfd11a29710cf5173105df0a0e4a0639": {
+        "at": "2026-11-15T16:13:13Z",
+        "reason": "real_depth",
+        "symbol": "Momcoin",
+        "until": "2026-11-16T16:13:13Z"
+      },
       "0xddcc081063cd2a192a00ae098d6101e1b615646e": {
         "at": "2026-11-15T08:18:13Z",
         "reason": "real_depth",
@@ -9260,12 +9292,6 @@
         "reason": "real_depth",
         "symbol": "Launchpad",
         "until": "2026-11-16T11:43:15Z"
-      },
-      "0xeadf28e718014f57672cded705696aac5530d7b7": {
-        "at": "2026-11-14T16:08:16Z",
-        "reason": "real_depth",
-        "symbol": "CHUBBY",
-        "until": "2026-11-15T16:08:16Z"
       },
       "0xeb8fb3fb2a79d8322e7322852385c4a9464df512": {
         "at": "2026-11-15T02:53:20Z",
@@ -9555,12 +9581,6 @@
         "symbol": "1KTO100M",
         "until": "2026-11-16T15:53:15Z"
       },
-      "0xf97fba5d8a6047001379fba9623900e9a3db7a1f": {
-        "at": "2026-11-14T16:08:16Z",
-        "reason": "real_depth",
-        "symbol": "Basegoat",
-        "until": "2026-11-15T16:08:16Z"
-      },
       "0xf98afca09c37f99260d0e09b4dd3a5ba23a0cc99": {
         "at": "2026-11-15T02:28:15Z",
         "reason": "real_depth",
@@ -9642,9 +9662,9 @@
     },
     "watch": {
       "0x23caa6a7c1cf5e49ddad76c845e04e21f86686bf": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-15T15:53:15Z",
-        "last_check": "2026-11-15T15:53:15Z",
+        "last_check": "2026-11-15T16:13:13Z",
         "symbol": "GODF"
       },
       "0xf723da62221b033d7502cb6c28218a3a41e8e176": {
