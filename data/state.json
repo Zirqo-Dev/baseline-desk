@@ -19,7 +19,7 @@
     "positions": {},
     "refill_week": "2026-W47",
     "refills_usd": 56.55720719365456,
-    "ticks_since_buy": 19
+    "ticks_since_buy": 20
   },
   "desk": {
     "cash": 50.0,
@@ -1057,7 +1057,9 @@
         "symbol": "DOTF"
       },
       "0x28e03c90512064c86ae94904f018d5b7123e9dc7": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 1.642e-05,
         "first_seen": "2026-11-16T10:13:14Z",
         "sight_pair": "0x08eed34e0ac5cf1124d64f54163484c11b2da45d",
@@ -1786,6 +1788,14 @@
         "sight_pair": "0x8523d3e337f16b3de7585aa56f2f37c3fc127a2c",
         "sight_qliq": 27550,
         "symbol": "USOE"
+      },
+      "0x5bb693c471d2709e432a1e55ea4cab36cb3bd810": {
+        "done": [],
+        "first_price": 7.908e-05,
+        "first_seen": "2026-11-16T11:13:14Z",
+        "sight_pair": "0x150355c3ec5e3acf31f2a7ba014b5a366a39e1a9fea8dfd61c69c0535706de55",
+        "sight_qliq": 8,
+        "symbol": "DUNE"
       },
       "0x5c8f65019960920b7bac9af1241f0b2c47e75a70": {
         "done": [
@@ -5371,6 +5381,12 @@
         "symbol": "PEPKING",
         "until": "2026-11-17T07:13:15Z"
       },
+      "0x5bb693c471d2709e432a1e55ea4cab36cb3bd810": {
+        "at": "2026-11-16T11:13:14Z",
+        "reason": "real_depth",
+        "symbol": "DUNE",
+        "until": "2026-11-17T11:13:14Z"
+      },
       "0x5c25c514de3db117f1818ee266b57649dcb7cccc": {
         "at": "2026-11-15T23:33:12Z",
         "reason": "real_depth",
@@ -7825,6 +7841,12 @@
         "symbol": "CHIP",
         "until": "2026-11-17T04:18:14Z"
       },
+      "0xb200000000000000000000f38dc6471f1e4cf673": {
+        "at": "2026-11-16T11:13:14Z",
+        "reason": "real_depth",
+        "symbol": "BTC",
+        "until": "2026-11-17T11:13:14Z"
+      },
       "0xb200000000000000000000f3fcbcaeda16afd401": {
         "at": "2026-11-16T00:38:20Z",
         "reason": "missing:liq_usd",
@@ -9364,9 +9386,9 @@
         "symbol": "Anthropic"
       },
       "0xbfab4a2da2be62ea9ac7077fa173f854c7bb20ee": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-16T10:58:14Z",
-        "last_check": "2026-11-16T10:58:14Z",
+        "last_check": "2026-11-16T11:13:14Z",
         "symbol": "BBX"
       }
     }
