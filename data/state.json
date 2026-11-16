@@ -54,9 +54,9 @@
         "ladder_done": [
           0
         ],
-        "last_liq_usd": 58458.7,
-        "last_price": 0.0002465,
-        "last_qliq": 27251,
+        "last_liq_usd": 58179.85,
+        "last_price": 0.0002428,
+        "last_qliq": 27094,
         "launchpad": "other",
         "orig_qty": 32397.972415908192,
         "pair": "0x3c01d63bec8ea9611e449ccbbb4f5bad6e1f2abaac23dc2d1eb33700c236ce8e",
@@ -85,7 +85,7 @@
     },
     "refill_week": "2026-W47",
     "refills_usd": 56.55720719365456,
-    "ticks_since_buy": 24
+    "ticks_since_buy": 25
   },
   "desk": {
     "cash": 50.0,
@@ -256,6 +256,14 @@
         "sight_pair": "0xe2ee44868677b8996e827c9706ae8c1ea0f77e1fcbf306948acc139827c6d205",
         "sight_qliq": 547,
         "symbol": "AO\u200aD\u200aF"
+      },
+      "0x0532d4ab0237f824d96c518b605c16069225e495": {
+        "done": [],
+        "first_price": 1.322e-05,
+        "first_seen": "2026-11-16T22:53:13Z",
+        "sight_pair": "0x6a94477ebc3bbc23521f070a11535e5adc6c525c",
+        "sight_qliq": 74584,
+        "symbol": "BIDEN"
       },
       "0x0599a1e885439bbdd1429587c71f59dbbfe283bd": {
         "done": [
@@ -1130,7 +1138,8 @@
       },
       "0x22237d68afd6d982be65c881c440cee39162045e": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 0.009477,
         "first_seen": "2026-11-16T16:48:16Z",
@@ -6627,12 +6636,6 @@
         "symbol": "VET",
         "until": "2026-11-17T05:53:13Z"
       },
-      "0x7233519973ecb12218bd7e7c3b0496382cf3cccc": {
-        "at": "2026-11-15T22:53:13Z",
-        "reason": "missing:liq_usd",
-        "symbol": "NEST",
-        "until": "2026-11-16T22:53:13Z"
-      },
       "0x72989a9946f0b29d06d3e365082eae5538a073dd": {
         "at": "2026-11-16T15:03:16Z",
         "reason": "real_depth",
@@ -6692,12 +6695,6 @@
         "reason": "real_depth",
         "symbol": "USOI",
         "until": "2026-11-17T01:28:14Z"
-      },
-      "0x752fe26263cee6227b129b58adbb5fe694f85aaa": {
-        "at": "2026-11-15T22:53:13Z",
-        "reason": "missing:liq_usd",
-        "symbol": "Basesnake",
-        "until": "2026-11-16T22:53:13Z"
       },
       "0x755aadf75fc9f6654478bf470d2c02f98b53eba3": {
         "at": "2026-11-16T14:43:13Z",
@@ -6807,12 +6804,6 @@
         "symbol": "MASK",
         "until": "2026-11-17T21:13:14Z"
       },
-      "0x7c3a25dc38ce63a8227d181e305a79675a72cccc": {
-        "at": "2026-11-15T22:48:17Z",
-        "reason": "real_depth",
-        "symbol": "HWARC",
-        "until": "2026-11-16T22:48:17Z"
-      },
       "0x7c9c92f446fe638238a0773cbdc009b0e2312151": {
         "at": "2026-11-16T03:48:14Z",
         "reason": "real_depth",
@@ -6854,6 +6845,12 @@
         "reason": "missing:liq_usd",
         "symbol": "Momcoin",
         "until": "2026-11-17T22:43:13Z"
+      },
+      "0x7f1bdd6a0dd32a8448f4f43754bc9987fc53cccc": {
+        "at": "2026-11-16T22:53:13Z",
+        "reason": "real_depth",
+        "symbol": "WHATSINYOURWALLET",
+        "until": "2026-11-17T22:53:13Z"
       },
       "0x7f5f6b0ec7af3b0c969af8070a289f6c85c759e6": {
         "at": "2026-11-16T18:58:15Z",
@@ -8258,12 +8255,6 @@
         "reason": "real_depth",
         "symbol": "FDC",
         "until": "2026-11-17T12:53:16Z"
-      },
-      "0xb2000000000000000000007b3f65ab9e9e0c2c26": {
-        "at": "2026-11-15T22:53:13Z",
-        "reason": "real_depth",
-        "symbol": "SpaceX",
-        "until": "2026-11-16T22:53:13Z"
       },
       "0xb2000000000000000000007c69fb5d1eec598001": {
         "at": "2026-11-16T14:28:15Z",
@@ -9837,12 +9828,6 @@
         "symbol": "USFO",
         "until": "2026-11-17T10:58:14Z"
       },
-      "0xf1470a882ab0cd7caa4076031256c569a5ff8c3a": {
-        "at": "2026-11-15T22:53:13Z",
-        "reason": "real_depth",
-        "symbol": "ANTHROPIC",
-        "until": "2026-11-16T22:53:13Z"
-      },
       "0xf1515caf424d1681bd69c1977d3f03b652c6a178": {
         "at": "2026-11-16T22:18:15Z",
         "reason": "real_depth",
@@ -10157,6 +10142,12 @@
       }
     },
     "watch": {
+      "0x0532d4ab0237f824d96c518b605c16069225e495": {
+        "checks": 1,
+        "first_seen": "2026-11-16T22:53:13Z",
+        "last_check": "2026-11-16T22:53:13Z",
+        "symbol": "BIDEN"
+      },
       "0xa4ccdeaeb02e574aaf89eb39bca73169327dcccc": {
         "checks": 9,
         "first_seen": "2026-11-16T20:08:14Z",
