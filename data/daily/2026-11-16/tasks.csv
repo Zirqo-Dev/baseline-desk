@@ -245,3 +245,11 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-16T03:23:13Z,desk,VERIFY,ZILLOW,0x2425e58f86560a02bb41e3f2c4961ff26cacaed6,SKIP,real_depth,goplus=skipped until=2026-11-17T03:23:13Z
 2026-11-16T03:23:13Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
 2026-11-16T03:23:13Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=0 new=6 checked=6 passed=0 bought=0 held=0 deferred=0 dex_only=5 goplus=1 requests=13 secs=4.4 bl_positions=0 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=1 labels_done=1 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-16T03:28:15Z,desk,VERIFY,WIO,0x06c85b9da388b3bb54d60d6f8c00325a94f624bf,SKIP,real_depth,first_seen=2026-11-16T02:48:15Z checks=3 goplus=skipped until=2026-11-17T03:28:15Z
+2026-11-16T03:28:15Z,desk,VERIFY,CHUBBY,0x197eb728344bc13b80000f700b33d41755b9d967,SKIP,real_depth,goplus=skipped until=2026-11-17T03:28:15Z
+2026-11-16T03:28:15Z,desk,VERIFY,,0xd9dd02d7a408b762b75b2dbfd6915bbf2b44dd0e,SKIP,missing:symbol,goplus=skipped until=2026-11-17T03:28:15Z
+2026-11-16T03:28:15Z,desk,VERIFY,Claude,0xe777f0534f5ed764577828482e778d373939c346,SKIP,missing:liq_usd,goplus=skipped until=2026-11-17T03:28:15Z
+2026-11-16T03:28:15Z,desk,VERIFY,Claude,0x99ed43c0c089618e2a688f8e8a487a45cc0b35d4,SKIP,missing:liq_usd,goplus=skipped until=2026-11-17T03:28:15Z
+2026-11-16T03:28:15Z,desk,VERIFY,RR,0x80f21a18a546d1044f8c873cb6ddc9f1956c1426,WATCH,goplus_not_ready,"first_seen=2026-11-16T03:28:15Z checks=1 pending=honeypot,buy_tax_pct,sell_tax_pct,dev_pct,top10_pct,lp_locked_pct b1=4 s1=0 b24=4 s24=0 liq=56187 dex=uniswap:v2 qliq=28099 pair_age=4 token_age=4"
+2026-11-16T03:28:15Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
+2026-11-16T03:28:15Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=1 new=5 checked=6 passed=0 bought=0 held=0 deferred=0 dex_only=5 goplus=1 requests=11 secs=2.7 bl_positions=0 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=1 labels_done=1 labels_calls=1 live=ok alerts=none alerts_sent=0
