@@ -54,9 +54,9 @@
         "ladder_done": [
           0
         ],
-        "last_liq_usd": 58989.28,
-        "last_price": 0.0002485,
-        "last_qliq": 27685,
+        "last_liq_usd": 58629.25,
+        "last_price": 0.0002456,
+        "last_qliq": 27675,
         "launchpad": "other",
         "orig_qty": 32397.972415908192,
         "pair": "0x3c01d63bec8ea9611e449ccbbb4f5bad6e1f2abaac23dc2d1eb33700c236ce8e",
@@ -85,7 +85,7 @@
     },
     "refill_week": "2026-W47",
     "refills_usd": 56.55720719365456,
-    "ticks_since_buy": 21
+    "ticks_since_buy": 22
   },
   "desk": {
     "cash": 50.0,
@@ -1162,7 +1162,8 @@
       },
       "0x22d5d5050c7c5381980646ea84fdb43b280ecd49": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 0.0001305,
         "first_seen": "2026-11-16T16:33:15Z",
@@ -2544,7 +2545,9 @@
         "symbol": "OIL U.S EXCHANGE"
       },
       "0x8a65f2be294305dc679e6aa88c543a29291b6a3e": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 0.004361,
         "first_seen": "2026-11-16T21:33:19Z",
         "sight_pair": "0x6a4563824962fefbd0a86707080690f94d7e7758188218a77cffb81a070d4966",
@@ -2649,7 +2652,8 @@
       },
       "0x98539d3390a6a4c8924a4a9e2da38ab1caf6187f": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 0.0001434,
         "first_seen": "2026-11-16T16:33:15Z",
@@ -3095,6 +3099,14 @@
         "sight_pair": "0x1b9561c748809f2db978f3b5b6be4bf454d16410a075d14541c80deafea1a911",
         "sight_qliq": 13,
         "symbol": "CLANKDEXER"
+      },
+      "0xd6a422f45e89f9293b7c677d59aa123722f7abb7": {
+        "done": [],
+        "first_price": 9.889e-05,
+        "first_seen": "2026-11-16T22:38:15Z",
+        "sight_pair": "0x37e63f0f4808c5d3780b2bcd23c053da7f29d804cdba336b749f0697f046aedd",
+        "sight_qliq": 18,
+        "symbol": "DFOU"
       },
       "0xd77c27b8d7198956e72e5497dbe3af3e61fbff84": {
         "done": [
@@ -5499,6 +5511,12 @@
         "symbol": "MORFI",
         "until": "2026-11-16T23:23:15Z"
       },
+      "0x3b24ff724337eda5b13718f7ac822f47694b570a": {
+        "at": "2026-11-16T22:38:15Z",
+        "reason": "real_depth",
+        "symbol": "UGOS",
+        "until": "2026-11-17T22:38:15Z"
+      },
       "0x3b3941d35fddcedcf4213f239260f0c22d394819": {
         "at": "2026-11-16T15:03:16Z",
         "reason": "real_depth",
@@ -7887,6 +7905,12 @@
         "symbol": "HAS",
         "until": "2026-11-17T11:08:15Z"
       },
+      "0xb2000000000000000000001c717438266bdb42b1": {
+        "at": "2026-11-16T22:38:15Z",
+        "reason": "real_depth",
+        "symbol": "HZERO",
+        "until": "2026-11-17T22:38:15Z"
+      },
       "0xb2000000000000000000001f56c5a3fb836b3cff": {
         "at": "2026-11-16T20:38:15Z",
         "reason": "real_depth",
@@ -9315,6 +9339,12 @@
         "symbol": "EARTH INC.",
         "until": "2026-11-17T03:13:13Z"
       },
+      "0xd6a422f45e89f9293b7c677d59aa123722f7abb7": {
+        "at": "2026-11-16T22:38:15Z",
+        "reason": "real_depth",
+        "symbol": "DFOU",
+        "until": "2026-11-17T22:38:15Z"
+      },
       "0xd6d57f7fb43406b67fffe9dc52c86df3ea88cccc": {
         "at": "2026-11-16T07:33:21Z",
         "reason": "real_depth",
@@ -10115,22 +10145,16 @@
       }
     },
     "watch": {
-      "0x3b24ff724337eda5b13718f7ac822f47694b570a": {
-        "checks": 2,
-        "first_seen": "2026-11-16T22:03:14Z",
-        "last_check": "2026-11-16T22:18:15Z",
-        "symbol": "UGOS"
-      },
       "0xa4ccdeaeb02e574aaf89eb39bca73169327dcccc": {
-        "checks": 8,
+        "checks": 9,
         "first_seen": "2026-11-16T20:08:14Z",
-        "last_check": "2026-11-16T22:18:15Z",
+        "last_check": "2026-11-16T22:38:15Z",
         "symbol": "TE"
       },
       "0xda5162efbff0d5c816b84a4170caee3c80342d95": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-16T22:18:15Z",
-        "last_check": "2026-11-16T22:18:15Z",
+        "last_check": "2026-11-16T22:38:15Z",
         "symbol": "SI"
       }
     }
