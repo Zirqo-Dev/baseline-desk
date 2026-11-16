@@ -1,6 +1,6 @@
 {
   "baseline": {
-    "cash": 49.58428332990525,
+    "cash": 44.58428332990525,
     "cooldown": {
       "a:0x22525ea8c18d5f1e47dc3519fe40f272b6619cae": "2026-11-16T11:48:15Z",
       "a:0x39cf821c01aba99f36f5da79c44f7e04983b0b47": "2026-11-17T05:58:14Z",
@@ -14,10 +14,27 @@
     "day": "2026-11-16",
     "day_start_value": 50.0,
     "halted_day": "",
-    "positions": {},
+    "positions": {
+      "0x5c8f65019960920b7bac9af1241f0b2c47e75a70": {
+        "cost_usd": 5.0,
+        "entry_fill": 0.00010300287338156785,
+        "entry_intended": 0.0001,
+        "entry_liq_usd": 9302816.91,
+        "entry_qliq": 174011,
+        "entry_ts": "2026-11-16T09:33:15Z",
+        "ladder_done": [],
+        "last_price": 0.0001,
+        "launchpad": "other",
+        "orig_qty": 48542.3351393102,
+        "pair": "0x9d2dfa4e372d0519683f55752701c32ab92253ea",
+        "peak_price": 0.0001,
+        "qty": 48542.3351393102,
+        "symbol": "Anthropic"
+      }
+    },
     "refill_week": "2026-W47",
     "refills_usd": 56.55720719365456,
-    "ticks_since_buy": 51
+    "ticks_since_buy": 0
   },
   "desk": {
     "cash": 50.0,
@@ -2756,7 +2773,9 @@
         "symbol": "PAD"
       },
       "0xea7450a91b9dc7458a47dc3164d2d3e4a55e5d92": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 9.922e-05,
         "first_seen": "2026-11-16T08:28:18Z",
         "sight_pair": "0xc250a48a0f2cd11c8a4fd731a6a1ef9872c448262d98de072b718f5a5a3f2077",
@@ -2817,6 +2836,14 @@
         "sight_pair": "0x42af854489e157661f3fb2234846693fdae4b5b7f9ab8ce3d36e10ad986584d2",
         "sight_qliq": 20794,
         "symbol": "Socks"
+      },
+      "0xfa4df12dcedf8a7b1c61494b3c75ebf569fddb4a": {
+        "done": [],
+        "first_price": 7.739e-06,
+        "first_seen": "2026-11-16T09:33:15Z",
+        "sight_pair": "0x86f41b53a3e73f563d7cda4bf5ac4d997371699f",
+        "sight_qliq": 73791,
+        "symbol": "SI"
       },
       "0xfbe9313ce9b08ec77368a756c3d4c3a21cf59583": {
         "done": [
@@ -5383,6 +5410,12 @@
         "symbol": "ANTHROPIC",
         "until": "2026-11-17T02:33:13Z"
       },
+      "0x5845ee03c1f2a1a2aa381ad9198b7a4ec4d3941b": {
+        "at": "2026-11-16T09:33:15Z",
+        "reason": "real_depth",
+        "symbol": "bull",
+        "until": "2026-11-17T09:33:15Z"
+      },
       "0x58675da8f4523f12327948a8f870b2c062bf55c6": {
         "at": "2026-11-16T02:58:15Z",
         "reason": "real_depth",
@@ -6307,6 +6340,12 @@
         "symbol": "AF",
         "until": "2026-11-17T07:43:13Z"
       },
+      "0x8d04024beed1b59978fee867fa92db8aecdb125c": {
+        "at": "2026-11-16T09:33:15Z",
+        "reason": "real_depth",
+        "symbol": "CLAUDIA",
+        "until": "2026-11-17T09:33:15Z"
+      },
       "0x8d57f9466c74137ca33b076bbf911c5d9bababf8": {
         "at": "2026-11-16T07:28:15Z",
         "reason": "real_depth",
@@ -6390,12 +6429,6 @@
         "reason": "real_depth",
         "symbol": "EVAA",
         "until": "2026-11-17T06:08:15Z"
-      },
-      "0x919f12a4c8c5c8bedd4cfaa86ef32c44a1b1dcdf": {
-        "at": "2026-11-15T09:33:13Z",
-        "reason": "real_depth",
-        "symbol": "LIQUIDBGT",
-        "until": "2026-11-16T09:33:13Z"
       },
       "0x91ac634b00a09e69c3bfd7ed33b4ea860ab28b07": {
         "at": "2026-11-15T12:18:14Z",
@@ -7381,6 +7414,12 @@
         "symbol": "TRNWK",
         "until": "2026-11-17T03:18:16Z"
       },
+      "0xb2000000000000000000005176a66efee1406e5f": {
+        "at": "2026-11-16T09:33:15Z",
+        "reason": "real_depth",
+        "symbol": "CASHCAT",
+        "until": "2026-11-17T09:33:15Z"
+      },
       "0xb200000000000000000000538cd32fdba9088c64": {
         "at": "2026-11-16T02:08:16Z",
         "reason": "real_depth",
@@ -7668,6 +7707,12 @@
         "reason": "real_depth",
         "symbol": "INTELLIGEN",
         "until": "2026-11-16T14:08:23Z"
+      },
+      "0xb200000000000000000000a214d9f053d3dfca85": {
+        "at": "2026-11-16T09:33:15Z",
+        "reason": "real_depth",
+        "symbol": "AF",
+        "until": "2026-11-17T09:33:15Z"
       },
       "0xb200000000000000000000a302912c3799455a6c": {
         "at": "2026-11-16T01:33:13Z",
@@ -8130,6 +8175,12 @@
         "reason": "real_depth",
         "symbol": "SSV",
         "until": "2026-11-17T06:43:13Z"
+      },
+      "0xb9926b3fbc5873db0182016d55727d5ae89e5efd": {
+        "at": "2026-11-16T09:33:15Z",
+        "reason": "real_depth",
+        "symbol": "APU",
+        "until": "2026-11-17T09:33:15Z"
       },
       "0xb9fe6115a09d84bbd1379b34eeef4baa3e0c4efd": {
         "at": "2026-11-16T01:58:17Z",
@@ -9403,6 +9454,12 @@
         "symbol": "INFEREX",
         "until": "2026-11-16T19:58:13Z"
       },
+      "0xff72312ad6e043ed300d8ad5ebe2a8b61e6709e5": {
+        "at": "2026-11-16T09:33:15Z",
+        "reason": "missing:price",
+        "symbol": "POPO",
+        "until": "2026-11-17T09:33:15Z"
+      },
       "0xffc710032de747a64592e8131fa04d091f7714bd": {
         "at": "2026-11-16T02:23:13Z",
         "reason": "real_depth",
@@ -9418,22 +9475,22 @@
     },
     "watch": {
       "0x5c8f65019960920b7bac9af1241f0b2c47e75a70": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-16T09:18:13Z",
-        "last_check": "2026-11-16T09:18:13Z",
+        "last_check": "2026-11-16T09:33:15Z",
         "symbol": "Anthropic"
       },
-      "0x8d04024beed1b59978fee867fa92db8aecdb125c": {
-        "checks": 2,
-        "first_seen": "2026-11-16T08:58:14Z",
-        "last_check": "2026-11-16T09:18:13Z",
-        "symbol": "CLAUDIA"
-      },
       "0xbf21507ff23fb18808dec25c22d77fbbc32f4163": {
-        "checks": 2,
+        "checks": 3,
         "first_seen": "2026-11-16T08:58:14Z",
-        "last_check": "2026-11-16T09:18:13Z",
+        "last_check": "2026-11-16T09:33:15Z",
         "symbol": "25 ERO"
+      },
+      "0xfa4df12dcedf8a7b1c61494b3c75ebf569fddb4a": {
+        "checks": 1,
+        "first_seen": "2026-11-16T09:33:15Z",
+        "last_check": "2026-11-16T09:33:15Z",
+        "symbol": "SI"
       }
     }
   },
