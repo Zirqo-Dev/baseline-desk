@@ -1388,3 +1388,10 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-16T18:28:18Z,desk,VERIFY,AMS,0x61691614bbd4b0dc32254c6914d67b7c61f28670,SKIP,missing:liq_usd,goplus=skipped until=2026-11-17T18:28:18Z
 2026-11-16T18:28:18Z,baseline,EXECUTE,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,BUY,,"usd=5.00 fill=5.648233995e-05 seed=202611161828 eligible=2 pick=1 pool=7acec6,a97d85 desk=WATCH launchpad=other b1=251 s1=77 b24=251 s24=77 liq=30921 dex=uniswap:v4 qliq=15451 pair_age=42 token_age=42"
 2026-11-16T18:28:18Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=2 new=7 checked=9 passed=0 bought=0 held=0 deferred=0 dex_only=7 goplus=2 requests=16 secs=4.6 bl_positions=1 bl_due=1 bl_eligible=2 bl_bought=1 report=none machine=none bl_error=none labels=ok labels_due=7 labels_done=7 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-16T18:33:13Z,baseline,EXIT,MARSBASE,0x0b455a80139f9642bb47f2cb5afabbd8809a24af,HOLD,,pct=117.51
+2026-11-16T18:33:13Z,baseline,EXIT,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,HOLD,,pct=0.31
+2026-11-16T18:33:13Z,desk,VERIFY,AVNT,0x82a468e9df86846f800789c71abafd212c4704cf,WATCH,goplus_not_ready,first_seen=2026-11-16T18:33:13Z checks=1 pending=top10_pct b1=21 s1=0 b24=21 s24=0 liq=60242 dex=uniswap:v2 qliq=30209 pair_age=24 token_age=24
+2026-11-16T18:33:13Z,desk,VERIFY,AVNT,0x0ff44885386c2d42899b4a6eddbaf54b1073134c,SKIP,real_depth,goplus=skipped until=2026-11-17T18:33:13Z b1=5 s1=0 b24=5 s24=0 liq=97282 dex=uniswap:v4 qliq=1 pair_age=25 token_age=25
+2026-11-16T18:33:13Z,desk,VERIFY,STRAT,0xb20000000000000000000050d0d3df4f08d96d99,SKIP,real_depth,goplus=skipped until=2026-11-17T18:33:13Z
+2026-11-16T18:33:13Z,desk,VERIFY,CAT,0x014f3f8b4e459b9487ae3d3793bd4860b5ca38f8,SKIP,real_depth,goplus=skipped until=2026-11-17T18:33:13Z
+2026-11-16T18:33:13Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=0 new=4 checked=4 passed=0 bought=0 held=0 deferred=0 dex_only=3 goplus=1 requests=10 secs=2.5 bl_positions=2 bl_due=0 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=none labels_due=0 labels_done=0 labels_calls=0 live=ok alerts=none alerts_sent=0
