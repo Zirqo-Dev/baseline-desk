@@ -29,18 +29,20 @@
         "entry_qliq": 22142,
         "entry_ts": "2026-11-16T05:08:55Z",
         "ladder_done": [],
-        "last_price": 3e-08,
+        "last_liq_usd": 46741.6,
+        "last_price": 3.341e-08,
+        "last_qliq": 23370,
         "launchpad": "other",
         "orig_qty": 161776830.0976506,
         "pair": "0x033ab6efe0a223e5d17844e569d11bfe591a376b",
-        "peak_price": 3e-08,
+        "peak_price": 3.341e-08,
         "qty": 161776830.0976506,
         "symbol": "WASTED"
       }
     },
     "refill_week": "2026-W47",
     "refills_usd": 56.55720719365456,
-    "ticks_since_buy": 0
+    "ticks_since_buy": 1
   },
   "desk": {
     "cash": 50.0,
@@ -721,17 +723,6 @@
         "sight_pair": "0x31cbc20c3f5ddbec8cf2619fe719e3f473c99ca4701ca5eebe6d22fafaace2ab",
         "sight_qliq": 572,
         "symbol": "SOSF"
-      },
-      "0x15bd00f166aea09cc1b880b97bf011643dd23245": {
-        "done": [
-          1,
-          6
-        ],
-        "first_price": 0.0001024,
-        "first_seen": "2026-11-15T05:13:13Z",
-        "sight_pair": "0xf42d642739df66993032cc50e87c582279fdfc99c5da71e3933cebab8a470954",
-        "sight_qliq": 26,
-        "symbol": "USON"
       },
       "0x15cee239dea725aee3903abd15b0056c97e99ba6": {
         "done": [
@@ -2513,7 +2504,9 @@
         "symbol": "USOE"
       },
       "0xb6e7f3fe862e9e40e171c3d09cab2ee6ba95fff2": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 1.136e-05,
         "first_seen": "2026-11-16T04:13:13Z",
         "sight_pair": "0x5210e3a93c0c923292490eded163453b48b4615d",
@@ -3713,12 +3706,6 @@
         "reason": "real_depth",
         "symbol": "SOSF",
         "until": "2026-11-17T01:28:14Z"
-      },
-      "0x15bd00f166aea09cc1b880b97bf011643dd23245": {
-        "at": "2026-11-15T05:13:13Z",
-        "reason": "real_depth",
-        "symbol": "USON",
-        "until": "2026-11-16T05:13:13Z"
       },
       "0x15cee239dea725aee3903abd15b0056c97e99ba6": {
         "at": "2026-11-15T15:33:14Z",
@@ -6000,12 +5987,6 @@
         "symbol": "LIQUIDBGT",
         "until": "2026-11-16T07:48:14Z"
       },
-      "0x7591b2b6e8863a724c5ea982562bd2488e8ffbf3": {
-        "at": "2026-11-15T05:13:13Z",
-        "reason": "real_depth",
-        "symbol": "Basedog",
-        "until": "2026-11-16T05:13:13Z"
-      },
       "0x7594990990ee4249449dd5c8837a700b8402747b": {
         "at": "2026-11-15T14:03:15Z",
         "reason": "missing:liq_usd",
@@ -6803,12 +6784,6 @@
         "reason": "real_depth",
         "symbol": "Milady",
         "until": "2026-11-16T16:43:14Z"
-      },
-      "0xa0afd4d67a4b99fbbb3a84f5d9017c974bc88f1d": {
-        "at": "2026-11-15T05:13:13Z",
-        "reason": "real_depth",
-        "symbol": "LIQUIDBGT",
-        "until": "2026-11-16T05:13:13Z"
       },
       "0xa0ca47df76316d9164f22eb44dbfa85ac10acf89": {
         "at": "2026-11-15T23:23:15Z",
@@ -7614,12 +7589,6 @@
         "symbol": "PTC",
         "until": "2026-11-16T19:13:13Z"
       },
-      "0xb2000000000000000000007da52c88fb7e33f7e8": {
-        "at": "2026-11-15T05:13:13Z",
-        "reason": "real_depth",
-        "symbol": "CHRISTMAX",
-        "until": "2026-11-16T05:13:13Z"
-      },
       "0xb2000000000000000000007e4bdbd7a52f995328": {
         "at": "2026-11-15T18:48:15Z",
         "reason": "real_depth",
@@ -7919,12 +7888,6 @@
         "reason": "real_depth",
         "symbol": "RYZE",
         "until": "2026-11-16T09:23:12Z"
-      },
-      "0xb200000000000000000000de2df7c348e698bb1a": {
-        "at": "2026-11-15T05:13:13Z",
-        "reason": "real_depth",
-        "symbol": "vensa",
-        "until": "2026-11-16T05:13:13Z"
       },
       "0xb200000000000000000000dea9baf64b5dab77b0": {
         "at": "2026-11-15T08:23:17Z",
@@ -9543,9 +9506,9 @@
     },
     "watch": {
       "0x2e4206a1b1287687a66729aac4a44b7773a7cc82": {
-        "checks": 2,
+        "checks": 3,
         "first_seen": "2026-11-16T04:43:14Z",
-        "last_check": "2026-11-16T04:58:14Z",
+        "last_check": "2026-11-16T05:13:19Z",
         "symbol": "Chillz"
       },
       "0x39cf821c01aba99f36f5da79c44f7e04983b0b47": {
