@@ -50,7 +50,9 @@
         "entry_qliq": 20439,
         "entry_ts": "2026-11-16T20:48:16Z",
         "ladder_done": [],
-        "last_price": 0.0001498,
+        "last_liq_usd": 44039.53,
+        "last_price": 0.0001447,
+        "last_qliq": 20431,
         "launchpad": "other",
         "orig_qty": 32397.972415908192,
         "pair": "0x3c01d63bec8ea9611e449ccbbb4f5bad6e1f2abaac23dc2d1eb33700c236ce8e",
@@ -79,7 +81,7 @@
     },
     "refill_week": "2026-W47",
     "refills_usd": 56.55720719365456,
-    "ticks_since_buy": 0
+    "ticks_since_buy": 1
   },
   "desk": {
     "cash": 50.0,
@@ -1475,7 +1477,8 @@
       },
       "0x2c64d4f6dedd1fb1a9db1a43d3461a7c1ae27137": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 0.0001606,
         "first_seen": "2026-11-16T14:48:17Z",
@@ -2305,7 +2308,8 @@
       },
       "0x714c612684e102e1a4a26cdf57deac4165dcd29c": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 0.0001807,
         "first_seen": "2026-11-16T14:48:17Z",
@@ -4704,12 +4708,6 @@
         "symbol": "CGAI",
         "until": "2026-11-17T02:58:15Z"
       },
-      "0x276e54b99ec1e6a6cded92f2f455c658bcacb38b": {
-        "at": "2026-11-15T20:53:14Z",
-        "reason": "real_depth",
-        "symbol": "Basebear",
-        "until": "2026-11-16T20:53:14Z"
-      },
       "0x278619af3e95d73fe8c84a22d3c1371ff0a8b548": {
         "at": "2026-11-16T03:08:23Z",
         "reason": "real_depth",
@@ -5417,12 +5415,6 @@
         "reason": "real_depth",
         "symbol": "TE",
         "until": "2026-11-17T20:08:14Z"
-      },
-      "0x3c627f8af51474c45b8d37ffece9f4bd7d8f0ba3": {
-        "at": "2026-11-15T20:53:14Z",
-        "reason": "missing:liq_usd",
-        "symbol": "ANTHROZ",
-        "until": "2026-11-16T20:53:14Z"
       },
       "0x3c9f6b906121722d873935506e9e76c454586732": {
         "at": "2026-11-16T15:08:20Z",
@@ -8352,12 +8344,6 @@
         "symbol": "ROCKSTAR",
         "until": "2026-11-17T15:33:13Z"
       },
-      "0xb200000000000000000000adcfcfb9b544d085e1": {
-        "at": "2026-11-15T20:53:14Z",
-        "reason": "real_depth",
-        "symbol": "GROUNDZ",
-        "until": "2026-11-16T20:53:14Z"
-      },
       "0xb200000000000000000000b6a8048b62545da573": {
         "at": "2026-11-16T11:08:15Z",
         "reason": "real_depth",
@@ -10029,21 +10015,21 @@
     },
     "watch": {
       "0x198bdade787377a5c05617d00d09e5f6e943f0b6": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-16T20:38:15Z",
-        "last_check": "2026-11-16T20:38:15Z",
+        "last_check": "2026-11-16T20:53:20Z",
         "symbol": "Basecat"
       },
       "0x20a90873e6f05f024a7d04710da5242cff35a311": {
-        "checks": 8,
+        "checks": 9,
         "first_seen": "2026-11-16T18:18:15Z",
-        "last_check": "2026-11-16T20:38:15Z",
+        "last_check": "2026-11-16T20:53:20Z",
         "symbol": "GODF"
       },
       "0x7acec667e809f1b1387b00d606111865a0744080": {
-        "checks": 8,
+        "checks": 9,
         "first_seen": "2026-11-16T18:28:18Z",
-        "last_check": "2026-11-16T20:38:15Z",
+        "last_check": "2026-11-16T20:53:20Z",
         "symbol": "COGE"
       },
       "0xa4ccdeaeb02e574aaf89eb39bca73169327dcccc": {
@@ -10053,9 +10039,9 @@
         "symbol": "TE"
       },
       "0xa97d8577fef865b9717b7bc4102df9a24c940080": {
-        "checks": 9,
+        "checks": 10,
         "first_seen": "2026-11-16T18:13:14Z",
-        "last_check": "2026-11-16T20:38:15Z",
+        "last_check": "2026-11-16T20:53:20Z",
         "symbol": "Zelleinu"
       },
       "0xd7f4e0e00cf9510dab22def9cd4f4b767e3167ab": {
