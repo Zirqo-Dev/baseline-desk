@@ -1549,3 +1549,12 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-16T19:38:17Z,desk,VERIFY,QFE,0xdf23e19dd037c5d611b9f04fa5b23c30546a6d50,SKIP,real_depth,goplus=skipped until=2026-11-17T19:38:17Z
 2026-11-16T19:38:17Z,desk,VERIFY,VICECAT,0x23bd901f8ee33999e43d19c4860ee022858eeba3,SKIP,missing:liq_usd,goplus=skipped until=2026-11-17T19:38:17Z
 2026-11-16T19:38:17Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=3 new=3 checked=6 passed=0 bought=0 held=0 deferred=0 dex_only=4 goplus=2 requests=15 secs=4.8 bl_positions=3 bl_due=0 bl_eligible=1 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=2 labels_done=2 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-16T19:43:20Z,baseline,EXIT,MARSBASE,0x0b455a80139f9642bb47f2cb5afabbd8809a24af,HOLD,,pct=179.82
+2026-11-16T19:43:20Z,baseline,EXIT,COGE,0x7acec667e809f1b1387b00d606111865a0744080,HOLD,,pct=-2.95
+2026-11-16T19:43:20Z,baseline,EXIT,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,HOLD,,pct=36.73
+2026-11-16T19:43:20Z,desk,VERIFY,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,WATCH,goplus_not_ready,"first_seen=2026-11-16T18:13:14Z checks=6 pending=mint_open,freeze_or_blacklist,honeypot,risk_flags b1=298 s1=91 b24=668 s24=205 liq=36730 dex=uniswap:v4 qliq=18326 pair_age=117 token_age=117"
+2026-11-16T19:43:20Z,desk,VERIFY,COGE,0x7acec667e809f1b1387b00d606111865a0744080,WATCH,goplus_not_ready,"first_seen=2026-11-16T18:28:18Z checks=5 pending=mint_open,freeze_or_blacklist,honeypot,buy_tax_pct,sell_tax_pct,lp_locked_pct,risk_flags b1=0 s1=0 b24=325 s24=164 liq=28619 dex=uniswap:v4 qliq=14296 pair_age=101 token_age=101"
+2026-11-16T19:43:20Z,desk,VERIFY,C2FO,0x3b3b006900b16f4a7fa3490918db687933dd8780,SKIP,real_depth,first_seen=2026-11-16T18:53:14Z checks=4 goplus=skipped until=2026-11-17T19:43:20Z
+2026-11-16T19:43:20Z,desk,VERIFY,ZEC,0x74380775c073b3a3cb236b0c42cb47c9f8b18b19,SKIP,missing:liq_usd,goplus=skipped until=2026-11-17T19:43:20Z
+2026-11-16T19:43:20Z,desk,VERIFY,Trader,0x2dcb29cf2d595563d88dc20d055a60de095b8080,SKIP,real_depth,goplus=skipped until=2026-11-17T19:43:20Z
+2026-11-16T19:43:20Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=3 new=2 checked=5 passed=0 bought=0 held=0 deferred=0 dex_only=3 goplus=2 requests=14 secs=4.6 bl_positions=3 bl_due=0 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=6 labels_done=6 labels_calls=1 live=ok alerts=none alerts_sent=0
