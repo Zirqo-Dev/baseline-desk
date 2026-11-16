@@ -1,6 +1,6 @@
 {
   "baseline": {
-    "cash": 41.13653179232738,
+    "cash": 50.0,
     "cooldown": {
       "a:0x22525ea8c18d5f1e47dc3519fe40f272b6619cae": "2026-11-16T11:48:15Z",
       "a:0x40d9bd75fde90c98089a1564a54d2f24ce540a03": "2026-11-15T22:33:15Z",
@@ -17,21 +17,21 @@
       "s:SOCKS": "2026-11-16T15:08:12Z",
       "s:TRUMP2028": "2026-11-16T11:48:15Z"
     },
-    "day": "2026-11-15",
-    "day_start_value": 39.33616187981765,
-    "halted_day": "",
-    "positions": {},
-    "refill_week": "2026-W46",
-    "refills_usd": 47.693738985981945,
-    "ticks_since_buy": 115
-  },
-  "desk": {
-    "cash": 50.0,
-    "day": "2026-11-15",
+    "day": "2026-11-16",
     "day_start_value": 50.0,
     "halted_day": "",
     "positions": {},
-    "refill_week": "2026-W46",
+    "refill_week": "2026-W47",
+    "refills_usd": 56.55720719365456,
+    "ticks_since_buy": 116
+  },
+  "desk": {
+    "cash": 50.0,
+    "day": "2026-11-16",
+    "day_start_value": 50.0,
+    "halted_day": "",
+    "positions": {},
+    "refill_week": "2026-W47",
     "refills_usd": 2.3922314211277893
   },
   "labels": {
@@ -2987,7 +2987,9 @@
         "symbol": "REBOOT"
       },
       "0xebfe37285b2ce92c129784e780e69b8f7b16cc87": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 5.924e-06,
         "first_seen": "2026-11-15T22:58:15Z",
         "sight_pair": "0x5565ceb6012755f3c520edd585818a65e2a6bb31",
@@ -3879,12 +3881,6 @@
         "reason": "real_depth",
         "symbol": "AO\u200aD\u200aF",
         "until": "2026-11-16T05:43:16Z"
-      },
-      "0x198d07dc255a0f0fe3f84e4c11beaca391673efc": {
-        "at": "2026-11-15T00:03:13Z",
-        "reason": "real_depth",
-        "symbol": "jaydogg",
-        "until": "2026-11-16T00:03:13Z"
       },
       "0x19ae63e37a4ff9ed3f396286ff6a38163c77331e": {
         "at": "2026-11-15T12:18:14Z",
@@ -4815,6 +4811,12 @@
         "reason": "real_depth",
         "symbol": "CHUBBY",
         "until": "2026-11-16T09:48:15Z"
+      },
+      "0x35f721837168d96692c7102cce0a45b206ab7769": {
+        "at": "2026-11-16T00:03:14Z",
+        "reason": "real_depth",
+        "symbol": "GITLY",
+        "until": "2026-11-17T00:03:14Z"
       },
       "0x3627c82cf9fc9fd1f2afb6372df4427361158c35": {
         "at": "2026-11-15T19:28:23Z",
@@ -7084,12 +7086,6 @@
         "symbol": "RRR",
         "until": "2026-11-16T20:08:15Z"
       },
-      "0xa9f2eca814e38ea7972ef776d4738bc3b745e522": {
-        "at": "2026-11-15T00:03:13Z",
-        "reason": "real_depth",
-        "symbol": "CLAIM",
-        "until": "2026-11-16T00:03:13Z"
-      },
       "0xaa79c2c6d6d33666f3efe123cb90bb20303f191c": {
         "at": "2026-11-15T11:33:13Z",
         "reason": "real_depth",
@@ -8013,6 +8009,12 @@
         "reason": "real_depth",
         "symbol": "te",
         "until": "2026-11-16T00:28:16Z"
+      },
+      "0xb200000000000000000000e2c94a251f93076e18": {
+        "at": "2026-11-16T00:03:14Z",
+        "reason": "real_depth",
+        "symbol": "SOCKS",
+        "until": "2026-11-17T00:03:14Z"
       },
       "0xb200000000000000000000e33bddfc02f1d214cc": {
         "at": "2026-11-15T02:48:15Z",
@@ -9758,6 +9760,13 @@
           "open": 1,
           "refills_usd": 47.693739,
           "value_usd": 39.12984
+        },
+        {
+          "cash_usd": 41.136532,
+          "day": "2026-11-15",
+          "open": 0,
+          "refills_usd": 47.693739,
+          "value_usd": 41.136532
         }
       ],
       "desk": [
@@ -9871,6 +9880,13 @@
           "open": 0,
           "refills_usd": 2.392231,
           "value_usd": 50.0
+        },
+        {
+          "cash_usd": 50.0,
+          "day": "2026-11-15",
+          "open": 0,
+          "refills_usd": 2.392231,
+          "value_usd": 50.0
         }
       ]
     },
@@ -9889,33 +9905,33 @@
     "totals": {
       "funnel": {
         "buy": 1,
-        "gate": 1506,
+        "gate": 1515,
         "safety": 1,
-        "scan": 19604
+        "scan": 20700
       },
       "kills": {
         "gate": {
-          "asset:quote": 2,
+          "asset:quote": 3,
           "asset:stable": 20,
           "asset:wrapped": 15,
           "liquidity": 8614,
           "missing:age_min": 3,
-          "missing:liq_usd": 1497,
-          "missing:price": 147,
-          "missing:symbol": 254,
-          "real_depth": 7546
+          "missing:liq_usd": 1583,
+          "missing:price": 155,
+          "missing:symbol": 265,
+          "real_depth": 8527
         },
         "safety": {
           "goplus_partial": 20,
-          "goplus_timeout": 1200,
+          "goplus_timeout": 1205,
           "lp_locked": 2,
           "mint_open": 46,
-          "nobody_can_sell": 12,
+          "nobody_can_sell": 14,
           "too_old": 4,
-          "top10_pct": 20
+          "top10_pct": 21
         }
       },
-      "through": "2026-11-14"
+      "through": "2026-11-15"
     }
   }
 }
