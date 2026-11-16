@@ -25,9 +25,9 @@
         "entry_qliq": 16352,
         "entry_ts": "2026-11-16T17:23:16Z",
         "ladder_done": [],
-        "last_liq_usd": 50127.98,
-        "last_price": 0.0001035,
-        "last_qliq": 20725,
+        "last_liq_usd": 45887.84,
+        "last_price": 8.886e-05,
+        "last_qliq": 18440,
         "launchpad": "other",
         "orig_qty": 66152.23906570999,
         "pair": "0x4062991708f05e76ce7ed89bd82a03bcf482e21ccd4ef48b6dd886d8c73ea8f6",
@@ -38,7 +38,7 @@
     },
     "refill_week": "2026-W47",
     "refills_usd": 56.55720719365456,
-    "ticks_since_buy": 3
+    "ticks_since_buy": 4
   },
   "desk": {
     "cash": 50.0,
@@ -802,7 +802,8 @@
       },
       "0x1ac7c9b34342bb60cc2230a52edad1bb98726b98": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 0.002398,
         "first_seen": "2026-11-16T11:43:14Z",
@@ -1869,7 +1870,9 @@
         "symbol": "UODF"
       },
       "0x48558cb68a2e00791046c3234ddf4c590bd49122": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 0.0001003,
         "first_seen": "2026-11-16T16:43:15Z",
         "sight_pair": "0x8aa3a46856e8c355013120ad303d422f6225cbb59b9c0b737a8ce38e85e9d820",
@@ -3040,7 +3043,9 @@
         "symbol": "AKE"
       },
       "0xf4b9c046194cbcaed1ba9d613f1c7fcbe4034b2d": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 0.0002161,
         "first_seen": "2026-11-16T16:38:16Z",
         "sight_pair": "0xd5987be6d29e5c0034050c327285f9a8c56cd25adc0dfd4411337f8947d63c1a",
@@ -7110,6 +7115,12 @@
         "symbol": "USFT",
         "until": "2026-11-17T01:03:15Z"
       },
+      "0xa9c92e1e7b78f5c15a03e22a455d598fcb8d0080": {
+        "at": "2026-11-16T17:43:24Z",
+        "reason": "real_depth",
+        "symbol": "Lemon",
+        "until": "2026-11-17T17:43:24Z"
+      },
       "0xa9eeaa53c7f88eaccf4867288e6a4e9efb617bb3": {
         "at": "2026-11-15T20:08:15Z",
         "reason": "real_depth",
@@ -7572,12 +7583,6 @@
         "symbol": "BTC",
         "until": "2026-11-17T10:08:16Z"
       },
-      "0xb20000000000000000000046aee58295c13821a9": {
-        "at": "2026-11-15T17:43:14Z",
-        "reason": "real_depth",
-        "symbol": "CLANKDEX",
-        "until": "2026-11-16T17:43:14Z"
-      },
       "0xb200000000000000000000470075e349b1e28017": {
         "at": "2026-11-16T10:03:14Z",
         "reason": "real_depth",
@@ -7985,12 +7990,6 @@
         "reason": "real_depth",
         "symbol": "GROUNDZ",
         "until": "2026-11-16T20:53:14Z"
-      },
-      "0xb200000000000000000000ae196a07ca737a4742": {
-        "at": "2026-11-15T17:43:14Z",
-        "reason": "real_depth",
-        "symbol": "SHRIMPX",
-        "until": "2026-11-16T17:43:14Z"
       },
       "0xb200000000000000000000b6a8048b62545da573": {
         "at": "2026-11-16T11:08:15Z",
@@ -8940,12 +8939,6 @@
         "symbol": "ALIS",
         "until": "2026-11-16T22:13:21Z"
       },
-      "0xdd34b1f5876d508a7508f781b19cb2d43efa5774": {
-        "at": "2026-11-15T17:43:14Z",
-        "reason": "real_depth",
-        "symbol": "XCHAT",
-        "until": "2026-11-16T17:43:14Z"
-      },
       "0xddd8769b2e9042f68fc41c1a70477742395ae480": {
         "at": "2026-11-16T07:28:15Z",
         "reason": "real_depth",
@@ -9041,6 +9034,12 @@
         "reason": "real_depth",
         "symbol": "Basefish",
         "until": "2026-11-16T20:43:14Z"
+      },
+      "0xe4fc58e36d55d79707b4023f60d9641fdb192817": {
+        "at": "2026-11-16T17:43:24Z",
+        "reason": "real_depth",
+        "symbol": "VTC",
+        "until": "2026-11-17T17:43:24Z"
       },
       "0xe595494e58c005f90eb9b51aab7f385869d3fa9c": {
         "at": "2026-11-16T01:38:15Z",
@@ -9227,6 +9226,12 @@
         "reason": "real_depth",
         "symbol": "ANTHROPIC",
         "until": "2026-11-16T22:53:13Z"
+      },
+      "0xf2435cd192e27a1401e291a4925b6ba779b977f5": {
+        "at": "2026-11-16T17:43:24Z",
+        "reason": "goplus_timeout",
+        "symbol": "RIGHTS",
+        "until": "2026-11-17T17:43:24Z"
       },
       "0xf26c28dad0664c5ebcf5c8c6f6286493132b8153": {
         "at": "2026-11-16T00:53:13Z",
@@ -9519,34 +9524,16 @@
     },
     "watch": {
       "0x0b455a80139f9642bb47f2cb5afabbd8809a24af": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-16T17:23:16Z",
-        "last_check": "2026-11-16T17:23:16Z",
+        "last_check": "2026-11-16T17:43:24Z",
         "symbol": "MARSBASE"
       },
-      "0xa9c92e1e7b78f5c15a03e22a455d598fcb8d0080": {
-        "checks": 1,
-        "first_seen": "2026-11-16T17:28:17Z",
-        "last_check": "2026-11-16T17:28:17Z",
-        "symbol": "Lemon"
-      },
       "0xca1fc3d3ad37d5e80959af47b89652be41b827e1": {
-        "checks": 1,
-        "first_seen": "2026-11-16T17:28:17Z",
-        "last_check": "2026-11-16T17:28:17Z",
-        "symbol": "TRUMP2028"
-      },
-      "0xe4fc58e36d55d79707b4023f60d9641fdb192817": {
         "checks": 2,
-        "first_seen": "2026-11-16T16:58:16Z",
-        "last_check": "2026-11-16T17:23:16Z",
-        "symbol": "VTC"
-      },
-      "0xf2435cd192e27a1401e291a4925b6ba779b977f5": {
-        "checks": 10,
-        "first_seen": "2026-11-16T14:43:13Z",
-        "last_check": "2026-11-16T17:23:16Z",
-        "symbol": "RIGHTS"
+        "first_seen": "2026-11-16T17:28:17Z",
+        "last_check": "2026-11-16T17:43:24Z",
+        "symbol": "TRUMP2028"
       }
     }
   },
