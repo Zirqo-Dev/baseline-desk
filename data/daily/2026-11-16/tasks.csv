@@ -557,3 +557,11 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-16T07:43:13Z,desk,VERIFY,AF,0x8c29fef94d3dae6b655a57043e3da3c822a207dc,SKIP,real_depth,goplus=skipped until=2026-11-17T07:43:13Z
 2026-11-16T07:43:13Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
 2026-11-16T07:43:13Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=0 new=2 checked=2 passed=0 bought=0 held=0 deferred=0 dex_only=2 goplus=0 requests=6 secs=1.6 bl_positions=0 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=2 labels_done=2 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-16T07:48:17Z,desk,VERIFY,WASTED,0x39cf821c01aba99f36f5da79c44f7e04983b0b47,WATCH,goplus_not_ready,"first_seen=2026-11-16T04:53:13Z checks=11 pending=mint_open,freeze_or_blacklist,honeypot,risk_flags b1=12 s1=10 b24=45 s24=30 liq=57985 dex=uniswap:v2 qliq=28991 pair_age=185 token_age=185"
+2026-11-16T07:48:17Z,desk,VERIFY,TAO,0xaa8ded366234f9f77d224a9443ac1d60004d05fc,SKIP,real_depth,first_seen=2026-11-16T07:13:15Z checks=3 goplus=skipped until=2026-11-17T07:48:17Z
+2026-11-16T07:48:17Z,desk,VERIFY,WAB,0x35a8d38fe96cb1fa5f583b071ee32f4ecbdccccc,SKIP,real_depth,goplus=skipped until=2026-11-17T07:48:17Z
+2026-11-16T07:48:17Z,desk,VERIFY,SBLA,0xd78626b4fecfaa84b9c1d27cb6a190859be7961b,SKIP,real_depth,goplus=skipped until=2026-11-17T07:48:17Z
+2026-11-16T07:48:17Z,desk,VERIFY,ADA,0x20b1f7ca5024ba4f4b626a6358a9adcc398f6bc6,WATCH,goplus_not_ready,"first_seen=2026-11-16T07:48:17Z checks=1 pending=honeypot,buy_tax_pct,sell_tax_pct,dev_pct,top10_pct,lp_locked_pct b1=4 s1=0 b24=4 s24=0 liq=56096 dex=uniswap:v2 qliq=28050 pair_age=4 token_age=4"
+2026-11-16T07:48:17Z,desk,VERIFY,LAPTOP,0x44f55373f5929cdc5cfa90684b619402096d0566,SKIP,real_depth,goplus=skipped until=2026-11-17T07:48:17Z
+2026-11-16T07:48:17Z,baseline,EXECUTE,WASTED,0x39cf821c01aba99f36f5da79c44f7e04983b0b47,SKIP,reentry_cooldown,seed=202611160748 eligible=1 pick=0 pool=39cf82 desk=WATCH launchpad=other
+2026-11-16T07:48:17Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=2 new=4 checked=6 passed=0 bought=0 held=0 deferred=0 dex_only=4 goplus=2 requests=12 secs=3.9 bl_positions=0 bl_due=1 bl_eligible=1 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=1 labels_done=1 labels_calls=1 live=ok alerts=none alerts_sent=0
