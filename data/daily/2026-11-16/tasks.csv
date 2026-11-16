@@ -1499,3 +1499,21 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-16T19:13:14Z,baseline,EXIT,MARSBASE,0x0b455a80139f9642bb47f2cb5afabbd8809a24af,HOLD,,pct=155.61
 2026-11-16T19:13:14Z,baseline,EXIT,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,HOLD,,pct=27.70
 2026-11-16T19:13:14Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=0 new=0 checked=0 passed=0 bought=0 held=0 deferred=0 dex_only=0 goplus=0 requests=6 secs=1.7 bl_positions=2 bl_due=0 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=12 labels_done=12 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-16T19:18:15Z,baseline,EXIT,MARSBASE,0x0b455a80139f9642bb47f2cb5afabbd8809a24af,HOLD,,pct=167.12
+2026-11-16T19:18:15Z,baseline,EXIT,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,HOLD,,pct=31.32
+2026-11-16T19:18:15Z,desk,VERIFY,MARSBASE,0x0b455a80139f9642bb47f2cb5afabbd8809a24af,WATCH,goplus_not_ready,"first_seen=2026-11-16T17:23:16Z checks=7 pending=mint_open,freeze_or_blacklist,honeypot,risk_flags b1=117 s1=88 b24=518 s24=347 liq=73068 dex=uniswap:v4 qliq=32452 pair_age=134 token_age=134"
+2026-11-16T19:18:15Z,desk,VERIFY,RST,0x061a3c94c62ccaa409098c4adf5899df17286e8b,WATCH,goplus_not_ready,"first_seen=2026-11-16T18:18:15Z checks=4 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct b1=51 s1=33 b24=76 s24=48 liq=3743428 dex=uniswap:v4 qliq=56905 pair_age=84 token_age=84"
+2026-11-16T19:18:15Z,desk,VERIFY,GODF,0x20a90873e6f05f024a7d04710da5242cff35a311,WATCH,goplus_not_ready,"first_seen=2026-11-16T18:18:15Z checks=4 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct b1=50 s1=33 b24=72 s24=48 liq=42367522 dex=uniswap:v4 qliq=136225 pair_age=84 token_age=84"
+2026-11-16T19:18:15Z,desk,VERIFY,Bubble,0xd14e4a15581d15461506dd45c63290bbf2b1be55,SKIP,real_depth,goplus=skipped until=2026-11-17T19:18:15Z
+2026-11-16T19:18:15Z,desk,VERIFY,BTC,0x0a28b1d1cdbac62cea4619b39a5cce641ffa5f66,SKIP,real_depth,goplus=skipped until=2026-11-17T19:18:15Z
+2026-11-16T19:18:15Z,desk,VERIFY,BTC,0x41377ad7e7f0e234a2f366d0197a0c159f6b43df,SKIP,real_depth,goplus=skipped until=2026-11-17T19:18:15Z
+2026-11-16T19:18:15Z,desk,VERIFY,SOL,0x894a392aac60443e226796cb4a9b29f350be4ccd,SKIP,real_depth,goplus=skipped until=2026-11-17T19:18:15Z
+2026-11-16T19:18:15Z,desk,VERIFY,SOL,0x08b0fc88cdac48bdc0e645c808336988c6581c1c,SKIP,real_depth,goplus=skipped until=2026-11-17T19:18:15Z
+2026-11-16T19:18:15Z,desk,VERIFY,BTC,0xbba1d6568b68960726ae8aff35ddc41525aa88b3,SKIP,real_depth,goplus=skipped until=2026-11-17T19:18:15Z
+2026-11-16T19:18:15Z,desk,VERIFY,BTC,0xc3ecf632661e72b60e3204aa9e0d3615b15851e9,SKIP,real_depth,goplus=skipped until=2026-11-17T19:18:15Z
+2026-11-16T19:18:15Z,desk,VERIFY,SOL,0x1932622d18412f039736dcb0655a1898c12a518c,SKIP,real_depth,goplus=skipped until=2026-11-17T19:18:15Z
+2026-11-16T19:18:15Z,desk,VERIFY,SOL,0x101a2e59d9a9194a73d5489c0e12f458f018221b,SKIP,real_depth,goplus=skipped until=2026-11-17T19:18:15Z
+2026-11-16T19:18:15Z,desk,VERIFY,BTC,0x7a537c14a066795e6bfe3deb52e583743b8aed20,SKIP,real_depth,goplus=skipped until=2026-11-17T19:18:15Z
+2026-11-16T19:18:15Z,desk,VERIFY,BTC,0xa59b18276504bdd7efad3c880af47e09222054a4,SKIP,real_depth,goplus=skipped until=2026-11-17T19:18:15Z
+2026-11-16T19:18:15Z,desk,VERIFY,ICP,0xb20000000000000000000038e77dc3551bd9f985,SKIP,real_depth,goplus=skipped until=2026-11-17T19:18:15Z
+2026-11-16T19:18:15Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=3 new=12 checked=15 passed=0 bought=0 held=0 deferred=0 dex_only=12 goplus=3 requests=24 secs=8.5 bl_positions=2 bl_due=0 bl_eligible=2 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=6 labels_done=6 labels_calls=1 live=ok alerts=none alerts_sent=0
