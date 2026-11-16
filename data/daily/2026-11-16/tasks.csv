@@ -532,3 +532,13 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-16T07:23:14Z,desk,VERIFY,40shades,0xa289436e267735072bccf1748848974d96bb002a,SKIP,missing:price,goplus=skipped until=2026-11-17T07:23:14Z
 2026-11-16T07:23:14Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
 2026-11-16T07:23:14Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=1 new=2 checked=3 passed=0 bought=0 held=0 deferred=0 dex_only=3 goplus=0 requests=7 secs=1.8 bl_positions=0 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=12 labels_done=12 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-16T07:28:15Z,desk,VERIFY,WASTED,0x39cf821c01aba99f36f5da79c44f7e04983b0b47,WATCH,goplus_not_ready,"first_seen=2026-11-16T04:53:13Z checks=10 pending=mint_open,freeze_or_blacklist,honeypot,risk_flags b1=14 s1=8 b24=43 s24=26 liq=60131 dex=uniswap:v2 qliq=30066 pair_age=165 token_age=165"
+2026-11-16T07:28:15Z,desk,VERIFY,TAO,0xaa8ded366234f9f77d224a9443ac1d60004d05fc,WATCH,goplus_not_ready,first_seen=2026-11-16T07:13:15Z checks=2 pending=top10_pct b1=22 s1=0 b24=22 s24=0 liq=61474 dex=uniswap:v2 qliq=30742 pair_age=23 token_age=23
+2026-11-16T07:28:15Z,desk,VERIFY,MASK,0x32879885da86475cebd0d9c5030d3fbf20cb4ba3,SKIP,real_depth,goplus=skipped until=2026-11-17T07:28:15Z
+2026-11-16T07:28:15Z,desk,VERIFY,MEOW,0xddd8769b2e9042f68fc41c1a70477742395ae480,SKIP,real_depth,goplus=skipped until=2026-11-17T07:28:15Z
+2026-11-16T07:28:15Z,desk,VERIFY,MOON,0xb200000000000000000000b72bff9e1b4e1e6a9b,SKIP,real_depth,goplus=skipped until=2026-11-17T07:28:15Z
+2026-11-16T07:28:15Z,desk,VERIFY,EIP8037,0xdc053b10de152fb1904ffe51433332a8a27ccccc,SKIP,real_depth,goplus=skipped until=2026-11-17T07:28:15Z
+2026-11-16T07:28:15Z,desk,VERIFY,NHL,0xb20000000000000000000006d4da1f6d31d40da0,SKIP,real_depth,goplus=skipped until=2026-11-17T07:28:15Z
+2026-11-16T07:28:15Z,desk,VERIFY,Momcoin,0x8d57f9466c74137ca33b076bbf911c5d9bababf8,SKIP,real_depth,goplus=skipped until=2026-11-17T07:28:15Z
+2026-11-16T07:28:15Z,baseline,EXECUTE,WASTED,0x39cf821c01aba99f36f5da79c44f7e04983b0b47,SKIP,reentry_cooldown,seed=202611160728 eligible=1 pick=0 pool=39cf82 desk=WATCH launchpad=other
+2026-11-16T07:28:15Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=2 new=6 checked=8 passed=0 bought=0 held=0 deferred=0 dex_only=6 goplus=2 requests=14 secs=4.9 bl_positions=0 bl_due=1 bl_eligible=1 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=16 labels_done=16 labels_calls=1 live=ok alerts=none alerts_sent=0
