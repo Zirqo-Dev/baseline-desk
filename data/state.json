@@ -38,7 +38,7 @@
     },
     "refill_week": "2026-W47",
     "refills_usd": 56.55720719365456,
-    "ticks_since_buy": 6
+    "ticks_since_buy": 7
   },
   "desk": {
     "cash": 50.0,
@@ -976,7 +976,9 @@
         "symbol": "NAOF"
       },
       "0x24efa18a7114c6d3f60828b4891da5b256dfa12b": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 0.0001701,
         "first_seen": "2026-11-16T14:53:25Z",
         "sight_pair": "0x1e7bfc04a8326e8503e60cad887dd266c9950ff11f1197fa3f001437939a089d",
@@ -2635,6 +2637,14 @@
         "sight_qliq": 0,
         "symbol": "OIL U.S INDEX"
       },
+      "0xc72eecf4beb651d167b664834e2b3500c6e85c2f": {
+        "done": [],
+        "first_price": 0.0002135,
+        "first_seen": "2026-11-16T15:58:14Z",
+        "sight_pair": "0xa1d21048368831fe57e14fe3beb43c137a6a6fa79de01934816eb9ec3fea4945",
+        "sight_qliq": 0,
+        "symbol": "UDTF"
+      },
       "0xc8dfd9b79689c340a2b11329773a94753a629a4a": {
         "done": [
           1,
@@ -3528,6 +3538,12 @@
         "reason": "real_depth",
         "symbol": "SOCKS",
         "until": "2026-11-16T22:43:14Z"
+      },
+      "0x11344d551b2797d58b55c6174c4b7ccd2a3c10f9": {
+        "at": "2026-11-16T15:58:14Z",
+        "reason": "real_depth",
+        "symbol": "QUILL",
+        "until": "2026-11-17T15:58:14Z"
       },
       "0x114eaa963bf7b04941ac142377ae99093662c040": {
         "at": "2026-11-16T05:43:14Z",
@@ -5347,6 +5363,12 @@
         "symbol": "1KTO100M",
         "until": "2026-11-17T07:03:14Z"
       },
+      "0x510d40620a75d4789f6450bbd6dfeb4018d6a38a": {
+        "at": "2026-11-16T15:58:14Z",
+        "reason": "real_depth",
+        "symbol": "CHUBBY",
+        "until": "2026-11-17T15:58:14Z"
+      },
       "0x51928055df396f0484e9460ecd315a13adef6552": {
         "at": "2026-11-16T03:58:14Z",
         "reason": "missing:liq_usd",
@@ -6127,6 +6149,12 @@
         "symbol": "U.S OIL FUND",
         "until": "2026-11-16T23:28:21Z"
       },
+      "0x798c820fe177a57485238331eedb03dfae01cccc": {
+        "at": "2026-11-16T15:58:14Z",
+        "reason": "real_depth",
+        "symbol": "007",
+        "until": "2026-11-17T15:58:14Z"
+      },
       "0x79aa6eb355b0c27cf0af7d7b78b9ba6a177bcccc": {
         "at": "2026-11-15T20:13:15Z",
         "reason": "real_depth",
@@ -6480,6 +6508,12 @@
         "reason": "real_depth",
         "symbol": "USC",
         "until": "2026-11-16T17:08:16Z"
+      },
+      "0x8edcd32c5192120a2dca7871d481c7d2273774ea": {
+        "at": "2026-11-16T15:58:14Z",
+        "reason": "real_depth",
+        "symbol": "BOOTR",
+        "until": "2026-11-17T15:58:14Z"
       },
       "0x8ef6736070cc83373922748156e91d22c57faba3": {
         "at": "2026-11-15T23:48:15Z",
@@ -8509,6 +8543,12 @@
         "symbol": "jeje",
         "until": "2026-11-16T17:18:14Z"
       },
+      "0xc72eecf4beb651d167b664834e2b3500c6e85c2f": {
+        "at": "2026-11-16T15:58:14Z",
+        "reason": "real_depth",
+        "symbol": "UDTF",
+        "until": "2026-11-17T15:58:14Z"
+      },
       "0xc799547a1eac080da396fdfaea2602442ab24efa": {
         "at": "2026-11-15T19:43:14Z",
         "reason": "real_depth",
@@ -9442,27 +9482,21 @@
     },
     "watch": {
       "0x1071643cb02ba33f1ef7012a72cd85d782c4cb01": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-16T15:43:14Z",
-        "last_check": "2026-11-16T15:43:14Z",
+        "last_check": "2026-11-16T15:58:14Z",
         "symbol": "REBOOT"
       },
-      "0x8edcd32c5192120a2dca7871d481c7d2273774ea": {
-        "checks": 3,
-        "first_seen": "2026-11-16T15:03:16Z",
-        "last_check": "2026-11-16T15:38:17Z",
-        "symbol": "BOOTR"
-      },
       "0xdc4c5557943f86fca3ed9293f03b7546093fc2ac": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-16T15:38:17Z",
-        "last_check": "2026-11-16T15:38:17Z",
+        "last_check": "2026-11-16T15:58:14Z",
         "symbol": "AKE"
       },
       "0xf2435cd192e27a1401e291a4925b6ba779b977f5": {
-        "checks": 4,
+        "checks": 5,
         "first_seen": "2026-11-16T14:43:13Z",
-        "last_check": "2026-11-16T15:38:17Z",
+        "last_check": "2026-11-16T15:58:14Z",
         "symbol": "RIGHTS"
       }
     }
