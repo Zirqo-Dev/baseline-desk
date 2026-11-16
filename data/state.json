@@ -17,7 +17,7 @@
     "positions": {},
     "refill_week": "2026-W47",
     "refills_usd": 56.55720719365456,
-    "ticks_since_buy": 9
+    "ticks_since_buy": 10
   },
   "desk": {
     "cash": 50.0,
@@ -861,7 +861,8 @@
       },
       "0x20b1f7ca5024ba4f4b626a6358a9adcc398f6bc6": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 3.001e-06,
         "first_seen": "2026-11-16T07:48:17Z",
@@ -1914,17 +1915,6 @@
         "sight_qliq": 1,
         "symbol": "ASTER"
       },
-      "0x53611146c6b46c33d419553aaa55a7044eb69911": {
-        "done": [
-          1,
-          6
-        ],
-        "first_price": 0.0001246,
-        "first_seen": "2026-11-15T13:48:15Z",
-        "sight_pair": "0xb14ccd76d914b6e6dac982bd14c31456e450470a7028cbcb25e780170a270f18",
-        "sight_qliq": 4,
-        "symbol": "USOF\ud83c\uddfa\ud83c\uddf8"
-      },
       "0x53923a556c47a88c503bed3c676b05bd77aa8b67": {
         "done": [
           1,
@@ -2796,6 +2786,14 @@
         "sight_pair": "0x42036f61a2eb23509940bef0c1c0ef763dcabb0ed5dd9e3b93708602156c582a",
         "sight_qliq": 0,
         "symbol": "SNDKc"
+      },
+      "0xd7f37809d5f27096e376b3a5f0db82a19a9a501d": {
+        "done": [],
+        "first_price": 3.7e-06,
+        "first_seen": "2026-11-16T13:48:17Z",
+        "sight_pair": "0x64f0df3e01b3966b7f76a60819b0f47d918196f5",
+        "sight_qliq": 27506,
+        "symbol": "OIL U.S EXCHANGE"
       },
       "0xd9b59d2ca87b16831cc0d540f466fcd51d8873a6": {
         "done": [
@@ -4248,6 +4246,12 @@
         "symbol": "SPACEX",
         "until": "2026-11-16T23:08:15Z"
       },
+      "0x259becfc84b2382fdc7a6a3a39c5f52bc5f1dccf": {
+        "at": "2026-11-16T13:48:17Z",
+        "reason": "real_depth",
+        "symbol": "UDOF",
+        "until": "2026-11-17T13:48:17Z"
+      },
       "0x25d9c62f35d41dfec4266d4a71a94ced210ac080": {
         "at": "2026-11-15T20:08:15Z",
         "reason": "real_depth",
@@ -5525,12 +5529,6 @@
         "reason": "real_depth",
         "symbol": "LAPTOP",
         "until": "2026-11-16T16:28:15Z"
-      },
-      "0x53611146c6b46c33d419553aaa55a7044eb69911": {
-        "at": "2026-11-15T13:48:15Z",
-        "reason": "real_depth",
-        "symbol": "USOF\ud83c\uddfa\ud83c\uddf8",
-        "until": "2026-11-16T13:48:15Z"
       },
       "0x536668bd5be9eb15086e28442a17c1748605aacd": {
         "at": "2026-11-16T12:53:16Z",
@@ -7302,6 +7300,12 @@
         "symbol": "CHIP",
         "until": "2026-11-17T03:53:12Z"
       },
+      "0xb200000000000000000000039c6467c6faec91a2": {
+        "at": "2026-11-16T13:48:17Z",
+        "reason": "real_depth",
+        "symbol": "RESTOCK",
+        "until": "2026-11-17T13:48:17Z"
+      },
       "0xb20000000000000000000004e413991be0ddd747": {
         "at": "2026-11-16T09:08:16Z",
         "reason": "real_depth",
@@ -8784,6 +8788,12 @@
         "symbol": "TRNWK",
         "until": "2026-11-17T01:28:14Z"
       },
+      "0xcff1d09fa685457c16ff6df4e979d7f13b6fbf74": {
+        "at": "2026-11-16T13:48:17Z",
+        "reason": "real_depth",
+        "symbol": "CLAUDIA",
+        "until": "2026-11-17T13:48:17Z"
+      },
       "0xcffd6ce024a196e58db4609f541bc3d18b4ccccc": {
         "at": "2026-11-15T18:48:15Z",
         "reason": "missing:liq_usd",
@@ -9668,17 +9678,11 @@
       }
     },
     "watch": {
-      "0x259becfc84b2382fdc7a6a3a39c5f52bc5f1dccf": {
-        "checks": 2,
-        "first_seen": "2026-11-16T13:13:14Z",
-        "last_check": "2026-11-16T13:28:16Z",
-        "symbol": "UDOF"
-      },
-      "0xcff1d09fa685457c16ff6df4e979d7f13b6fbf74": {
-        "checks": 2,
-        "first_seen": "2026-11-16T13:08:16Z",
-        "last_check": "2026-11-16T13:28:16Z",
-        "symbol": "CLAUDIA"
+      "0xd7f37809d5f27096e376b3a5f0db82a19a9a501d": {
+        "checks": 1,
+        "first_seen": "2026-11-16T13:48:17Z",
+        "last_check": "2026-11-16T13:48:17Z",
+        "symbol": "OIL U.S EXCHANGE"
       },
       "0xf578b552ce446e6bb9cdec9d796816ddafdfa8c6": {
         "checks": 1,
