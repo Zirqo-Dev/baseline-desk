@@ -2750,3 +2750,12 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-17T23:28:15Z,desk,VERIFY,PITCH,0x026e1abfc0423fa311b73ace4b85d4260526f7e9,SKIP,real_depth,goplus=skipped until=2026-11-18T23:28:15Z
 2026-11-17T23:28:15Z,desk,VERIFY,CALLOUT,0x6cc54909c5a9b59eebd096701548eb07c716cccc,SKIP,real_depth,goplus=skipped until=2026-11-18T23:28:15Z
 2026-11-17T23:28:15Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=19 rechecks=2 new=4 checked=6 passed=0 bought=0 held=0 deferred=0 dex_only=5 goplus=1 requests=16 secs=3.4 bl_positions=2 bl_due=0 bl_eligible=1 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=2 labels_done=2 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-17T23:33:23Z,baseline,EXIT,MARSBASE,0x0b455a80139f9642bb47f2cb5afabbd8809a24af,HOLD,no_quote,
+2026-11-17T23:33:23Z,baseline,EXIT,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,HOLD,no_quote,
+2026-11-17T23:33:23Z,desk,VERIFY,AERO,0x3f5bf3edac59d650d8fdf9657a71f2f904a3a4ee,WATCH,goplus_not_ready,"first_seen=2026-11-17T22:43:25Z checks=4 pending=honeypot,buy_tax_pct,sell_tax_pct,lp_locked_pct b1=536 s1=1170 b24=11136 s24=24491 liq=3775463 dex=aero qliq=1269822 pair_age=38680 token_age=38811"
+2026-11-17T23:33:23Z,desk,VERIFY,US RESERVE POWER,0x3bef45ccd3abc04e0d9153b23b04a54f3615ba39,WATCH,goplus_not_ready,"first_seen=2026-11-17T23:18:23Z checks=2 pending=mint_open,freeze_or_blacklist,honeypot,buy_tax_pct,sell_tax_pct,dev_pct,top10_pct,lp_locked_pct,risk_flags b1=15 s1=0 b24=15 s24=0 liq=59119 dex=uniswap:v2 qliq=29559 pair_age=16 token_age=16"
+2026-11-17T23:33:23Z,desk,VERIFY,LAPTOP,0x796a3489c3f6ad431d4748f33b48138e42042bb1,SKIP,real_depth,goplus=skipped until=2026-11-18T23:33:23Z
+2026-11-17T23:33:23Z,desk,VERIFY,worth,0xb200000000000000000000585fd80c20af698f01,SKIP,goplus_partial,until=2026-11-18T23:33:23Z b1=128 s1=113 b24=2476 s24=1862 liq=49375 dex=uniswap:v4 qliq=22471 pair_age=135621 token_age=135621
+2026-11-17T23:33:23Z,desk,VERIFY,DGZ,0x07cf7dddc88004478cb89ae723f2d307b0d7e761,SKIP,missing:price,goplus=skipped until=2026-11-18T23:33:23Z
+2026-11-17T23:33:23Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
+2026-11-17T23:33:23Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=2 new=3 checked=5 passed=0 bought=0 held=0 deferred=0 dex_only=2 goplus=3 requests=17 secs=7.7 bl_positions=2 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=2 labels_done=2 labels_calls=1 live=ok alerts=none alerts_sent=0

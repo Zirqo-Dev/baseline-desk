@@ -67,7 +67,7 @@
     },
     "refill_week": "2026-W47",
     "refills_usd": 56.55720719365456,
-    "ticks_since_buy": 11
+    "ticks_since_buy": 12
   },
   "desk": {
     "cash": 50.0,
@@ -3777,7 +3777,8 @@
       },
       "0xababaf80ca9772a494de6c1f5ebd112b718bdf3b": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 9.478e-05,
         "first_seen": "2026-11-17T17:28:24Z",
@@ -3837,6 +3838,14 @@
         "sight_pair": "0x790731a4332b090d07476d3b8312b0427a882e7d6462edbb81a1aadb0570fb71",
         "sight_qliq": 13701,
         "symbol": "BASE"
+      },
+      "0xb200000000000000000000585fd80c20af698f01": {
+        "done": [],
+        "first_price": 0.0001751,
+        "first_seen": "2026-11-17T23:33:23Z",
+        "sight_pair": "0x6cf637a82362d304dfa56a6387fc8f909ec0008ec520ee5fb999506d9b1f3514",
+        "sight_qliq": 22471,
+        "symbol": "worth"
       },
       "0xb3c86288f00ca2ee9de57f6cd5db1ab75c2d2222": {
         "done": [
@@ -4574,7 +4583,8 @@
       },
       "0xfee75af4153adf49af535e2231b8dbc8a25ab307": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 9.759e-05,
         "first_seen": "2026-11-17T17:33:14Z",
@@ -4891,6 +4901,12 @@
         "reason": "real_depth",
         "symbol": "OPENAI",
         "until": "2026-11-18T19:03:15Z"
+      },
+      "0x07cf7dddc88004478cb89ae723f2d307b0d7e761": {
+        "at": "2026-11-17T23:33:23Z",
+        "reason": "missing:price",
+        "symbol": "DGZ",
+        "until": "2026-11-18T23:33:23Z"
       },
       "0x07d9acd68d197702a0aaa04ebc60be095cbf7aae": {
         "at": "2026-11-17T07:33:19Z",
@@ -7208,12 +7224,6 @@
         "symbol": "U.S INDEX OIL",
         "until": "2026-11-18T09:18:14Z"
       },
-      "0x422451242e0fa28a4619ad33fbb72ff4d313cccc": {
-        "at": "2026-11-16T23:33:14Z",
-        "reason": "real_depth",
-        "symbol": "MICRON",
-        "until": "2026-11-17T23:33:14Z"
-      },
       "0x42a4aed73865d63780e3956838b55fc3d2ee9e01": {
         "at": "2026-11-17T21:38:16Z",
         "reason": "real_depth",
@@ -8551,6 +8561,12 @@
         "reason": "real_depth",
         "symbol": "ATFO",
         "until": "2026-11-18T04:28:14Z"
+      },
+      "0x796a3489c3f6ad431d4748f33b48138e42042bb1": {
+        "at": "2026-11-17T23:33:23Z",
+        "reason": "real_depth",
+        "symbol": "LAPTOP",
+        "until": "2026-11-18T23:33:23Z"
       },
       "0x79a983e76485014a1dadb43162eb110c0d25cccc": {
         "at": "2026-11-17T16:43:16Z",
@@ -10207,6 +10223,12 @@
         "reason": "missing:liq_usd",
         "symbol": "BASEINU",
         "until": "2026-11-18T18:53:19Z"
+      },
+      "0xb200000000000000000000585fd80c20af698f01": {
+        "at": "2026-11-17T23:33:23Z",
+        "reason": "goplus_partial",
+        "symbol": "worth",
+        "until": "2026-11-18T23:33:23Z"
       },
       "0xb200000000000000000000595608678715549cbd": {
         "at": "2026-11-17T18:43:14Z",
@@ -12380,12 +12402,6 @@
         "symbol": "Basewhale",
         "until": "2026-11-18T20:58:14Z"
       },
-      "0xf30b36aff2a68fdbdaf6ea49cadf5755fd845857": {
-        "at": "2026-11-16T23:33:14Z",
-        "reason": "real_depth",
-        "symbol": "BIDEN",
-        "until": "2026-11-17T23:33:14Z"
-      },
       "0xf365149d9daf8d3d0976607a5afc4838ee392701": {
         "at": "2026-11-17T06:53:14Z",
         "reason": "real_depth",
@@ -12659,15 +12675,15 @@
         "symbol": "FCAT"
       },
       "0x3bef45ccd3abc04e0d9153b23b04a54f3615ba39": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-17T23:18:23Z",
-        "last_check": "2026-11-17T23:18:23Z",
+        "last_check": "2026-11-17T23:33:23Z",
         "symbol": "US RESERVE POWER"
       },
       "0x3f5bf3edac59d650d8fdf9657a71f2f904a3a4ee": {
-        "checks": 3,
+        "checks": 4,
         "first_seen": "2026-11-17T22:43:25Z",
-        "last_check": "2026-11-17T23:18:23Z",
+        "last_check": "2026-11-17T23:33:23Z",
         "symbol": "AERO"
       }
     }
