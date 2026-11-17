@@ -67,7 +67,7 @@
     },
     "refill_week": "2026-W47",
     "refills_usd": 56.55720719365456,
-    "ticks_since_buy": 8
+    "ticks_since_buy": 9
   },
   "desk": {
     "cash": 50.0,
@@ -319,7 +319,9 @@
         "symbol": "D.U.S"
       },
       "0x07a143c18ca06ed41507d745e2a62525e30ccd91": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 7.4e-07,
         "first_seen": "2026-11-17T22:18:14Z",
         "sight_pair": "0x0d0f8ad75746515789faa316f13abd4883d6ec23241a96a84e91dfcd2a7737a6",
@@ -1219,7 +1221,8 @@
       },
       "0x1f12f94e9854618ce3c22e2817dcdd9d96230765": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 9.817e-05,
         "first_seen": "2026-11-17T17:13:15Z",
@@ -2258,6 +2261,14 @@
         "sight_pair": "0xa189906dab2450bbacacca980487d354d4ca18a9f1a93bcf6a4135ff44694f6d",
         "sight_qliq": 189,
         "symbol": "OFDC"
+      },
+      "0x3bef45ccd3abc04e0d9153b23b04a54f3615ba39": {
+        "done": [],
+        "first_price": 5.98e-06,
+        "first_seen": "2026-11-17T23:18:23Z",
+        "sight_pair": "0xa6512976abbe5dbc2beff6bece143d1982221a31",
+        "sight_qliq": 27557,
+        "symbol": "US RESERVE POWER"
       },
       "0x3c34f4b5b7321daee39a04930dde1997257b077f": {
         "done": [
@@ -3407,17 +3418,6 @@
         "sight_qliq": 21761,
         "symbol": "AX1"
       },
-      "0x8f6ad36c22d0700b34f82b26e27aa504ed605590": {
-        "done": [
-          1,
-          6
-        ],
-        "first_price": 0.0001825,
-        "first_seen": "2026-11-16T23:18:14Z",
-        "sight_pair": "0x888f8bbe2ed14d6a4ea58beb00f195fc8b800bb8ec30fc7f66fba38d8d2327a2",
-        "sight_qliq": 28,
-        "symbol": "INDEX U.S OIL"
-      },
       "0x91d6f13ce1c94f8352c226ffc6165ba808668c0b": {
         "done": [
           1,
@@ -3708,6 +3708,14 @@
         "sight_qliq": 1,
         "symbol": "XTO"
       },
+      "0xa9fb367819011632c7b0070362a65670f47a01c4": {
+        "done": [],
+        "first_price": 2.51,
+        "first_seen": "2026-11-17T23:18:23Z",
+        "sight_pair": "0xb00ada7810eed6b24dd5c7d1d208bda507f3d938ad3f325978e180c5b7eafff5",
+        "sight_qliq": 2286,
+        "symbol": "AOTF"
+      },
       "0xab27e25b934a56ed144cccf9dcd4ac9a4c24f2f6": {
         "done": [
           1,
@@ -3815,7 +3823,9 @@
         "symbol": "UOTF"
       },
       "0xb62d150e181f879f3689077bd773cab212483566": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 81.81,
         "first_seen": "2026-11-17T22:18:14Z",
         "sight_pair": "0x77d44d3adada5603bb561d282956a38d8231e590e507c3a3f4c6b0023ef6e8a0",
@@ -3965,7 +3975,9 @@
         "symbol": "UOTF"
       },
       "0xc0227d0817b81bf7bedf58c8465425b9c6556ad7": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 2.984e-06,
         "first_seen": "2026-11-17T22:18:14Z",
         "sight_pair": "0xf299ed1b9e97c1b42404b96470e28d4074340000",
@@ -5847,6 +5859,12 @@
         "reason": "real_depth",
         "symbol": "GODF",
         "until": "2026-11-18T17:18:26Z"
+      },
+      "0x20979e1682b7f679c410e2c936d1b77a01e3950f": {
+        "at": "2026-11-17T23:18:23Z",
+        "reason": "real_depth",
+        "symbol": "FBCAT",
+        "until": "2026-11-18T23:18:23Z"
       },
       "0x20e5179d034b51b2ee6656753b21a62c18530724": {
         "at": "2026-11-17T17:58:15Z",
@@ -8110,6 +8128,12 @@
         "symbol": "DONTBUY",
         "until": "2026-11-18T05:13:15Z"
       },
+      "0x68a6bdfbd4e119c8d2d93195045ad3f2e8ddcccc": {
+        "at": "2026-11-17T23:18:23Z",
+        "reason": "missing:liq_usd",
+        "symbol": "MERCATUS",
+        "until": "2026-11-18T23:18:23Z"
+      },
       "0x695931f5a9caae6d4f99bd14eb324e22b1db2bea": {
         "at": "2026-11-17T13:53:13Z",
         "reason": "real_depth",
@@ -8319,6 +8343,12 @@
         "reason": "real_depth",
         "symbol": "#0000FF",
         "until": "2026-11-18T19:38:14Z"
+      },
+      "0x72ef4841db361ee3a0260e6b406455677cc0ddca": {
+        "at": "2026-11-17T23:18:23Z",
+        "reason": "real_depth",
+        "symbol": "LAPTOP",
+        "until": "2026-11-18T23:18:23Z"
       },
       "0x7322130b7b751cd8188b1ad207e519fc9dc90439": {
         "at": "2026-11-17T06:48:19Z",
@@ -9118,12 +9148,6 @@
         "symbol": "AX1",
         "until": "2026-11-18T19:58:18Z"
       },
-      "0x8f6ad36c22d0700b34f82b26e27aa504ed605590": {
-        "at": "2026-11-16T23:18:14Z",
-        "reason": "real_depth",
-        "symbol": "INDEX U.S OIL",
-        "until": "2026-11-17T23:18:14Z"
-      },
       "0x8fcc2eba28ee947cffacb9d84503f068d8becccc": {
         "at": "2026-11-17T19:03:15Z",
         "reason": "missing:liq_usd",
@@ -9574,12 +9598,6 @@
         "symbol": "MEY",
         "until": "2026-11-18T15:08:25Z"
       },
-      "0xa4ccdeaeb02e574aaf89eb39bca73169327dcccc": {
-        "at": "2026-11-16T23:18:14Z",
-        "reason": "goplus_timeout",
-        "symbol": "TE",
-        "until": "2026-11-17T23:18:14Z"
-      },
       "0xa61c4cebf532edcbe1cf32f609456d4440d7149d": {
         "at": "2026-11-17T16:33:19Z",
         "reason": "missing:liq_usd",
@@ -9693,6 +9711,12 @@
         "reason": "real_depth",
         "symbol": "XTO",
         "until": "2026-11-18T14:38:16Z"
+      },
+      "0xa9fb367819011632c7b0070362a65670f47a01c4": {
+        "at": "2026-11-17T23:18:23Z",
+        "reason": "real_depth",
+        "symbol": "AOTF",
+        "until": "2026-11-18T23:18:23Z"
       },
       "0xab1269f13db13ceede395036f4a1aaded16acb01": {
         "at": "2026-11-17T21:43:14Z",
@@ -9951,6 +9975,12 @@
         "reason": "real_depth",
         "symbol": "DONTBUY",
         "until": "2026-11-18T09:13:15Z"
+      },
+      "0xb20000000000000000000028b4e5e18d08cdced2": {
+        "at": "2026-11-17T23:18:23Z",
+        "reason": "missing:liq_usd",
+        "symbol": "FCAT",
+        "until": "2026-11-18T23:18:23Z"
       },
       "0xb200000000000000000000299930ecb241b7f8d0": {
         "at": "2026-11-17T19:13:14Z",
@@ -11452,6 +11482,12 @@
         "symbol": "LC",
         "until": "2026-11-18T13:18:16Z"
       },
+      "0xc9e96742f49b474a064f7a88be3714e12a63e501": {
+        "at": "2026-11-17T23:18:23Z",
+        "reason": "real_depth",
+        "symbol": "musck",
+        "until": "2026-11-18T23:18:23Z"
+      },
       "0xca1c3411e8e78ab3558f94c95d4f4cf84b421e88": {
         "at": "2026-11-17T16:23:15Z",
         "reason": "missing:price",
@@ -11535,12 +11571,6 @@
         "reason": "real_depth",
         "symbol": "REXIS",
         "until": "2026-11-18T04:13:12Z"
-      },
-      "0xcdfa58ea26290f5a69095e65210a8802ab56435a": {
-        "at": "2026-11-16T23:18:14Z",
-        "reason": "real_depth",
-        "symbol": "WLDCT",
-        "until": "2026-11-17T23:18:14Z"
       },
       "0xce09938fc9a03fb098069a0037f40b2510a632fb": {
         "at": "2026-11-17T10:38:14Z",
@@ -11752,6 +11782,12 @@
         "symbol": "Claude",
         "until": "2026-11-18T11:03:13Z"
       },
+      "0xd99fdcc8b0ebe253458ea9cf4218dfd55972404d": {
+        "at": "2026-11-17T23:18:23Z",
+        "reason": "real_depth",
+        "symbol": "USOR OIL",
+        "until": "2026-11-18T23:18:23Z"
+      },
       "0xd9de289091d4b63f8beca33e1649ee02716f06b1": {
         "at": "2026-11-17T21:48:15Z",
         "reason": "real_depth",
@@ -11787,12 +11823,6 @@
         "reason": "real_depth",
         "symbol": "AMJR",
         "until": "2026-11-18T05:48:14Z"
-      },
-      "0xdabd6924f6d8c731979d61a7b01dbf76247f5112": {
-        "at": "2026-11-16T23:18:14Z",
-        "reason": "real_depth",
-        "symbol": "DFOU",
-        "until": "2026-11-17T23:18:14Z"
       },
       "0xdac81f6eff03eb3d2f8b1adf8931e3a69eceea68": {
         "at": "2026-11-17T02:58:15Z",
@@ -11847,6 +11877,12 @@
         "reason": "real_depth",
         "symbol": "GROKIA",
         "until": "2026-11-18T19:08:15Z"
+      },
+      "0xdcbb671aa746b26473d28178d6db7af86653488e": {
+        "at": "2026-11-17T23:18:23Z",
+        "reason": "real_depth",
+        "symbol": "aeon",
+        "until": "2026-11-18T23:18:23Z"
       },
       "0xdd4b45b3e92c4f020de3cedb64e25201bbc4d401": {
         "at": "2026-11-17T18:48:20Z",
@@ -12612,10 +12648,16 @@
         "last_check": "2026-11-17T23:08:22Z",
         "symbol": "FCAT"
       },
+      "0x3bef45ccd3abc04e0d9153b23b04a54f3615ba39": {
+        "checks": 1,
+        "first_seen": "2026-11-17T23:18:23Z",
+        "last_check": "2026-11-17T23:18:23Z",
+        "symbol": "US RESERVE POWER"
+      },
       "0x3f5bf3edac59d650d8fdf9657a71f2f904a3a4ee": {
-        "checks": 2,
+        "checks": 3,
         "first_seen": "2026-11-17T22:43:25Z",
-        "last_check": "2026-11-17T23:03:14Z",
+        "last_check": "2026-11-17T23:18:23Z",
         "symbol": "AERO"
       },
       "0x65427b781a50fce40bedfa5cd1feb3f8d7b5d4dc": {
