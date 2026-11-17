@@ -1,9 +1,9 @@
 {
   "baseline": {
-    "cash": 28.170112337514148,
+    "cash": 32.50453467535971,
     "cooldown": {
       "a:0x07618c9f34a537196a08855d563b1b37c3d012f1": "2026-11-18T07:03:15Z",
-      "a:0x07a143c18ca06ed41507d745e2a62525e30ccd91": "2026-11-18T22:38:15Z",
+      "a:0x07a143c18ca06ed41507d745e2a62525e30ccd91": "2026-11-18T22:53:13Z",
       "a:0x19d6ac9a0506e90437f78e24618773aebf01da6f": "2026-11-18T08:38:14Z",
       "a:0x2cfde775a6d9a6f9c260973b7ca32de05f3463d4": "2026-11-18T15:58:17Z",
       "a:0x630ac59b34ebbf7e6b479b8a08bb945718094c45": "2026-11-18T20:53:14Z",
@@ -14,7 +14,7 @@
       "s:AX1": "2026-11-18T17:13:15Z",
       "s:BASE": "2026-11-18T20:08:24Z",
       "s:BAWSAQ": "2026-11-18T13:28:26Z",
-      "s:FCAT": "2026-11-18T22:38:15Z",
+      "s:FCAT": "2026-11-18T22:53:13Z",
       "s:GODF": "2026-11-18T07:03:15Z",
       "s:RST": "2026-11-18T08:38:14Z",
       "s:TE": "2026-11-18T00:53:13Z",
@@ -25,26 +25,6 @@
     "day_start_value": 47.331412838741244,
     "halted_day": "",
     "positions": {
-      "0x07a143c18ca06ed41507d745e2a62525e30ccd91": {
-        "cost_usd": 3.3499999999999996,
-        "entry_fill": 1.485615785837651e-06,
-        "entry_intended": 1.442e-06,
-        "entry_liq_usd": 44239.79,
-        "entry_qliq": 20265,
-        "entry_ts": "2026-11-17T22:33:14Z",
-        "ladder_done": [
-          0
-        ],
-        "last_liq_usd": 55658.41,
-        "last_price": 2.2e-06,
-        "last_qliq": 26531,
-        "launchpad": "other",
-        "orig_qty": 3365607.7484265524,
-        "pair": "0x0d0f8ad75746515789faa316f13abd4883d6ec23241a96a84e91dfcd2a7737a6",
-        "peak_price": 2.647e-06,
-        "qty": 2254957.19144579,
-        "symbol": "FCAT"
-      },
       "0x0b455a80139f9642bb47f2cb5afabbd8809a24af": {
         "cost_usd": 1.6999999999999997,
         "entry_fill": 7.558323150684932e-05,
@@ -87,7 +67,7 @@
     },
     "refill_week": "2026-W47",
     "refills_usd": 56.55720719365456,
-    "ticks_since_buy": 3
+    "ticks_since_buy": 4
   },
   "desk": {
     "cash": 50.0,
@@ -254,17 +234,6 @@
         "sight_pair": "0x964891b2044a9a877f7371ccc301460cd5d3b103d737bc174d2251ae68be63b8",
         "sight_qliq": 180,
         "symbol": "OFDC"
-      },
-      "0x0532d4ab0237f824d96c518b605c16069225e495": {
-        "done": [
-          1,
-          6
-        ],
-        "first_price": 1.322e-05,
-        "first_seen": "2026-11-16T22:53:13Z",
-        "sight_pair": "0x6a94477ebc3bbc23521f070a11535e5adc6c525c",
-        "sight_qliq": 74584,
-        "symbol": "BIDEN"
       },
       "0x053a93e3b972dae0e2321c3d9ce781b99b8fcc63": {
         "done": [
@@ -2921,6 +2890,14 @@
         "sight_pair": "0xf5c138ae1c462ccb4b2b95ce090338e7a1f6204b04f64f9d611508c985d9e115",
         "sight_qliq": 16,
         "symbol": "USOI"
+      },
+      "0x65427b781a50fce40bedfa5cd1feb3f8d7b5d4dc": {
+        "done": [],
+        "first_price": 1.368e-06,
+        "first_seen": "2026-11-17T22:53:13Z",
+        "sight_pair": "0x60a20da41a0dc7c77d0c1085b2de2a26623814e484be8c87c1b1bbb88e280c57",
+        "sight_qliq": 25953,
+        "symbol": "ZB"
       },
       "0x695931f5a9caae6d4f99bd14eb324e22b1db2bea": {
         "done": [
@@ -7280,6 +7257,12 @@
         "symbol": "N1",
         "until": "2026-11-18T19:13:14Z"
       },
+      "0x43a333811f1f9bf9698a97e9bcddcc9316d30af1": {
+        "at": "2026-11-17T22:53:13Z",
+        "reason": "real_depth",
+        "symbol": "UniBase",
+        "until": "2026-11-18T22:53:13Z"
+      },
       "0x43aae5ae912ab8010dc1aa267f41b2ef85ee4301": {
         "at": "2026-11-17T18:48:20Z",
         "reason": "missing:liq_usd",
@@ -8683,12 +8666,6 @@
         "reason": "real_depth",
         "symbol": "CHUBBY",
         "until": "2026-11-17T23:38:15Z"
-      },
-      "0x7f1bdd6a0dd32a8448f4f43754bc9987fc53cccc": {
-        "at": "2026-11-16T22:53:13Z",
-        "reason": "real_depth",
-        "symbol": "WHATSINYOURWALLET",
-        "until": "2026-11-17T22:53:13Z"
       },
       "0x7f2f00e54dcaa8b248bdfd75da2ae859d4d8ff3e": {
         "at": "2026-11-17T20:38:15Z",
@@ -10232,6 +10209,12 @@
         "symbol": "ARTEX",
         "until": "2026-11-18T17:53:20Z"
       },
+      "0xb20000000000000000000063dce9667d7ac26a13": {
+        "at": "2026-11-17T22:53:13Z",
+        "reason": "real_depth",
+        "symbol": "FACE",
+        "until": "2026-11-18T22:53:13Z"
+      },
       "0xb200000000000000000000643a24514dc6cbbd01": {
         "at": "2026-11-17T18:53:19Z",
         "reason": "real_depth",
@@ -11162,6 +11145,12 @@
         "symbol": "SPACEX",
         "until": "2026-11-18T12:48:17Z"
       },
+      "0xbe02af13a21afc6ec9cd245412b63568833ad5e9": {
+        "at": "2026-11-17T22:53:13Z",
+        "reason": "real_depth",
+        "symbol": "NEAR",
+        "until": "2026-11-18T22:53:13Z"
+      },
       "0xbe90d851707d1717a7178cdd9320e78ecb3f34b7": {
         "at": "2026-11-17T11:28:13Z",
         "reason": "real_depth",
@@ -12044,6 +12033,12 @@
         "symbol": "gork",
         "until": "2026-11-18T00:48:16Z"
       },
+      "0xe29f89d42a7cf53dbc35f2eafe545f8c1e7acccc": {
+        "at": "2026-11-17T22:53:13Z",
+        "reason": "missing:symbol",
+        "symbol": "",
+        "until": "2026-11-18T22:53:13Z"
+      },
       "0xe2ef1a69bba8bf4056db62790cac49b16a51c17d": {
         "at": "2026-11-17T19:38:14Z",
         "reason": "real_depth",
@@ -12651,6 +12646,12 @@
         "first_seen": "2026-11-17T22:43:25Z",
         "last_check": "2026-11-17T22:43:25Z",
         "symbol": "AERO"
+      },
+      "0x65427b781a50fce40bedfa5cd1feb3f8d7b5d4dc": {
+        "checks": 1,
+        "first_seen": "2026-11-17T22:53:13Z",
+        "last_check": "2026-11-17T22:53:13Z",
+        "symbol": "ZB"
       },
       "0xc0227d0817b81bf7bedf58c8465425b9c6556ad7": {
         "checks": 3,
