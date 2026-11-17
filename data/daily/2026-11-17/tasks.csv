@@ -1993,3 +1993,20 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-17T18:03:14Z,desk,VERIFY,USPR,0xb095c4cce64e904e11e576f816cb0df558a404be,SKIP,real_depth,goplus=skipped until=2026-11-18T18:03:14Z
 2026-11-17T18:03:14Z,desk,VERIFY,AX2,0xb20000000000000000000048b79bed6e42bb1e5e,SKIP,real_depth,goplus=skipped until=2026-11-18T18:03:14Z
 2026-11-17T18:03:14Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=21 rechecks=0 new=3 checked=3 passed=0 bought=0 held=0 deferred=0 dex_only=2 goplus=1 requests=10 secs=2.4 bl_positions=2 bl_due=0 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=1 labels_done=1 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-17T18:08:17Z,baseline,EXIT,MARSBASE,0x0b455a80139f9642bb47f2cb5afabbd8809a24af,HOLD,,pct=138.94
+2026-11-17T18:08:17Z,baseline,EXIT,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,HOLD,,pct=36.73
+2026-11-17T18:08:17Z,desk,VERIFY,INFI,0x9f4c76f421f47b3c234f841f477897f1d895177d,WATCH,goplus_not_ready,first_seen=2026-11-17T15:38:18Z checks=9 pending=honeypot b1=104 s1=147 b24=232 s24=606 liq=350378 dex=aero qliq=289223 pair_age=1275 token_age=1275
+2026-11-17T18:08:17Z,desk,VERIFY,AX1,0x0947fb7076bfa307796f8fd533055f6016c6cccc,WATCH,goplus_not_ready,first_seen=2026-11-17T15:43:14Z checks=9 pending=honeypot b1=198 s1=115 b24=1952 s24=1367 liq=428353 dex=uniswap:v4 qliq=212117 pair_age=151 token_age=151
+2026-11-17T18:08:17Z,desk,VERIFY,BAWSAQ,0x4f34c18c707ae6240b507661f38524f1d3667da8,WATCH,goplus_not_ready,"first_seen=2026-11-17T15:43:14Z checks=9 pending=honeypot,buy_tax_pct,sell_tax_pct,lp_locked_pct b1=0 s1=0 b24=20 s24=4 liq=35230 dex=uniswap:v4 qliq=17605 pair_age=153 token_age=153"
+2026-11-17T18:08:17Z,desk,VERIFY,BAWSAQ,0x45e582aaa0256e014e117b08eea3a824320b7229,WATCH,goplus_not_ready,first_seen=2026-11-17T15:48:18Z checks=9 pending=honeypot b1=86 s1=52 b24=198 s24=114 liq=36284 dex=uniswap:v4 qliq=18161 pair_age=145 token_age=145
+2026-11-17T18:08:17Z,desk,VERIFY,AX1,0xcc9b87738d9d8abd3294df6f1e4262b3de413496,WATCH,goplus_not_ready,"first_seen=2026-11-17T16:13:18Z checks=7 pending=mint_open,freeze_or_blacklist,honeypot,risk_flags b1=337 s1=221 b24=942 s24=607 liq=115914 dex=uniswap:v4 qliq=50592 pair_age=118 token_age=118"
+2026-11-17T18:08:17Z,desk,VERIFY,AX1,0x8f56ee93a2e42b7595e52bfe9e2c9b254e053ce1,WATCH,goplus_not_ready,"first_seen=2026-11-17T16:53:14Z checks=5 pending=honeypot,top10_pct b1=420 s1=303 b24=657 s24=454 liq=83709 dex=uniswap:v4 qliq=37842 pair_age=80 token_age=80"
+2026-11-17T18:08:17Z,desk,VERIFY,INFBURN,0xb200000000000000000000055e6a8c9e15ed7f2e,SKIP,real_depth,goplus=skipped until=2026-11-18T18:08:17Z
+2026-11-17T18:08:17Z,desk,VERIFY,US POWER RESERVE⚡️,0xd065553fbe667798cb92a7193244168cba5a6a30,WATCH,goplus_not_ready,first_seen=2026-11-17T18:08:17Z checks=1 pending=top10_pct b1=2 s1=0 b24=2 s24=0 liq=54256 dex=uniswap:v2 qliq=27021 pair_age=2 token_age=2
+2026-11-17T18:08:17Z,desk,VERIFY,DRS,0x2a30123c89c536cdd37d038d729bbc51e150cccc,SKIP,real_depth,goplus=skipped until=2026-11-18T18:08:17Z
+2026-11-17T18:08:17Z,desk,VERIFY,GIGATENEV,0xa6b0dded57f07256983a8d1e99335aaf505247fe,SKIP,real_depth,goplus=skipped until=2026-11-18T18:08:17Z
+2026-11-17T18:08:17Z,desk,VERIFY,MMT,0x1eeba34a8b93b8e77f7380276b28f21506b66e05,SKIP,real_depth,goplus=skipped until=2026-11-18T18:08:17Z
+2026-11-17T18:08:17Z,desk,VERIFY,BLOB,0xfd08ea3050636ed4ecca4e42b6c6c275992e5bfb,SKIP,real_depth,goplus=skipped until=2026-11-18T18:08:17Z
+2026-11-17T18:08:17Z,desk,VERIFY,Basedog,0x0579c0b86b6bce6ecfc9e377f0e33f04ec569e4e,SKIP,real_depth,goplus=skipped until=2026-11-18T18:08:17Z
+2026-11-17T18:08:17Z,baseline,EXECUTE,AX1,0x8f56ee93a2e42b7595e52bfe9e2c9b254e053ce1,SKIP,reentry_cooldown,"seed=202611171808 eligible=5 pick=2 pool=0947fb,45e582,8f56ee,9f4c76,cc9b87 desk=WATCH launchpad=other"
+2026-11-17T18:08:17Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=21 rechecks=6 new=7 checked=13 passed=0 bought=0 held=0 deferred=0 dex_only=6 goplus=7 requests=27 secs=16.2 bl_positions=2 bl_due=1 bl_eligible=5 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=6 labels_done=6 labels_calls=1 live=ok alerts=none alerts_sent=0
