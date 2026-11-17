@@ -1390,3 +1390,12 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-17T13:23:13Z,desk,VERIFY,UNITED OIL FUND DIVIDEND,0x9c21f4c9189b372a8a149bf62ac5b1d91c31a549,SKIP,real_depth,goplus=skipped until=2026-11-18T13:23:13Z b1=6 s1=0 b24=6 s24=0 liq=183808 dex=uniswap:v4 qliq=28 pair_age=4 token_age=4
 2026-11-17T13:23:13Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
 2026-11-17T13:23:13Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=0 new=2 checked=2 passed=0 bought=0 held=0 deferred=0 dex_only=2 goplus=0 requests=9 secs=2.1 bl_positions=3 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=4 labels_done=4 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-17T13:28:26Z,baseline,EXIT,MARSBASE,0x0b455a80139f9642bb47f2cb5afabbd8809a24af,HOLD,,pct=138.94
+2026-11-17T13:28:26Z,baseline,EXIT,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,HOLD,,pct=36.73
+2026-11-17T13:28:26Z,baseline,EXIT,BAWSAQ,0xb86befaa9048ab123f263770b34fba88a11556a5,SELL,trail,pct=36.26 intended=4.1145e-08 quote=3.608e-08
+2026-11-17T13:28:26Z,desk,VERIFY,REBOOT,0x7b830e1b9af3f903dd84cd8dc2d99b71aab9b418,WATCH,goplus_not_ready,"first_seen=2026-11-17T13:08:16Z checks=2 pending=top10_pct,lp_locked_pct b1=46 s1=0 b24=46 s24=0 liq=173967 dex=uniswap:v2 qliq=87389 pair_age=26 token_age=26"
+2026-11-17T13:28:26Z,desk,VERIFY,USOI,0xba364053164e0f3551609b411ea3009fd4cdf64a,SKIP,real_depth,goplus=skipped until=2026-11-18T13:28:26Z b1=5 s1=0 b24=5 s24=0 liq=67746 dex=uniswap:v4 qliq=0 pair_age=4 token_age=4
+2026-11-17T13:28:26Z,desk,VERIFY,SWEATER,0xb7afefb9db54cc55d7735931a29b8796711c864c,SKIP,real_depth,goplus=skipped until=2026-11-18T13:28:26Z
+2026-11-17T13:28:26Z,desk,VERIFY,UNITED OIL DIVIDEND FUND,0x3c34f4b5b7321daee39a04930dde1997257b077f,WATCH,goplus_not_ready,"first_seen=2026-11-17T13:28:26Z checks=1 pending=mint_open,freeze_or_blacklist,honeypot,buy_tax_pct,sell_tax_pct,dev_pct,top10_pct,lp_locked_pct,risk_flags b1=8 s1=0 b24=8 s24=0 liq=57561 dex=uniswap:v2 qliq=28786 pair_age=8 token_age=8"
+2026-11-17T13:28:26Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
+2026-11-17T13:28:26Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=1 new=3 checked=4 passed=0 bought=0 held=0 deferred=0 dex_only=2 goplus=2 requests=13 secs=4.0 bl_positions=3 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=2 labels_done=2 labels_calls=1 live=ok alerts=none alerts_sent=0

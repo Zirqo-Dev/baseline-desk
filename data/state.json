@@ -1,16 +1,16 @@
 {
   "baseline": {
-    "cash": 36.04447561471021,
+    "cash": 38.29114119907991,
     "cooldown": {
       "a:0x07618c9f34a537196a08855d563b1b37c3d012f1": "2026-11-18T07:03:15Z",
       "a:0x0b455a80139f9642bb47f2cb5afabbd8809a24af": "2026-11-17T18:08:15Z",
       "a:0x19d6ac9a0506e90437f78e24618773aebf01da6f": "2026-11-18T08:38:14Z",
       "a:0x7acec667e809f1b1387b00d606111865a0744080": "2026-11-17T20:18:14Z",
       "a:0xa4ccdeaeb02e574aaf89eb39bca73169327dcccc": "2026-11-18T00:53:13Z",
-      "a:0xb86befaa9048ab123f263770b34fba88a11556a5": "2026-11-18T13:08:16Z",
+      "a:0xb86befaa9048ab123f263770b34fba88a11556a5": "2026-11-18T13:28:26Z",
       "a:0xf2435cd192e27a1401e291a4925b6ba779b977f5": "2026-11-17T16:08:16Z",
       "a:0xf578b552ce446e6bb9cdec9d796816ddafdfa8c6": "2026-11-17T14:23:14Z",
-      "s:BAWSAQ": "2026-11-18T13:08:16Z",
+      "s:BAWSAQ": "2026-11-18T13:28:26Z",
       "s:COGE": "2026-11-17T20:18:14Z",
       "s:GODF": "2026-11-18T07:03:15Z",
       "s:MARSBASE": "2026-11-17T18:08:15Z",
@@ -61,32 +61,11 @@
         "peak_price": 7.723e-05,
         "qty": 88523.24468567828,
         "symbol": "Zelleinu"
-      },
-      "0xb86befaa9048ab123f263770b34fba88a11556a5": {
-        "cost_usd": 1.6999999999999997,
-        "entry_fill": 2.6478706146926534e-08,
-        "entry_intended": 2.57e-08,
-        "entry_liq_usd": 33349.25,
-        "entry_qliq": 16675,
-        "entry_ts": "2026-11-17T11:18:14Z",
-        "ladder_done": [
-          0,
-          1
-        ],
-        "last_liq_usd": 43230.42,
-        "last_price": 4.232e-08,
-        "last_qliq": 21616,
-        "launchpad": "other",
-        "orig_qty": 188830978.83468017,
-        "pair": "0xe81cb57eed2c2f2b3e220da15d09a55fb9fb2d21",
-        "peak_price": 5.486e-08,
-        "qty": 64202532.803791255,
-        "symbol": "BAWSAQ"
       }
     },
     "refill_week": "2026-W47",
     "refills_usd": 56.55720719365456,
-    "ticks_since_buy": 25
+    "ticks_since_buy": 26
   },
   "desk": {
     "cash": 50.0,
@@ -2061,6 +2040,14 @@
         "sight_qliq": 27961,
         "symbol": "C2FO"
       },
+      "0x3c34f4b5b7321daee39a04930dde1997257b077f": {
+        "done": [],
+        "first_price": 5.15e-06,
+        "first_seen": "2026-11-17T13:28:26Z",
+        "sight_pair": "0x3a4523989062d4b527e97987222440513fd7d6cb",
+        "sight_qliq": 28786,
+        "symbol": "UNITED OIL DIVIDEND FUND"
+      },
       "0x3c6fad06541c5db4331d70406f226342755919ab": {
         "done": [
           1,
@@ -3098,7 +3085,8 @@
       },
       "0xa35685380302d60429245db5d1f697d2751f5e60": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 3.837e-06,
         "first_seen": "2026-11-17T07:23:17Z",
@@ -3299,6 +3287,14 @@
         "sight_pair": "0x2b493640a58f1d323419c51e75e268b355640c8bef7cc2cd845978a95ae536d5",
         "sight_qliq": 1,
         "symbol": "FAOD"
+      },
+      "0xba364053164e0f3551609b411ea3009fd4cdf64a": {
+        "done": [],
+        "first_price": 6.843e-05,
+        "first_seen": "2026-11-17T13:28:26Z",
+        "sight_pair": "0x64b9f9dae6e3efa1b8980c99e5316a3f77690c804e9988ee4a1795d793c172d6",
+        "sight_qliq": 0,
+        "symbol": "USOI"
       },
       "0xbdbc9b318b46d63fe60bee8ad52161f37af449df": {
         "done": [
@@ -3724,7 +3720,8 @@
       },
       "0xec91b76eddab64da30600410445cb9c17b52e571": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 0.0001049,
         "first_seen": "2026-11-17T07:23:17Z",
@@ -7596,12 +7593,6 @@
         "symbol": "USRP",
         "until": "2026-11-18T08:18:23Z"
       },
-      "0x8d66df49440d743abf2dacca5c5c010de49c0fb5": {
-        "at": "2026-11-16T13:23:15Z",
-        "reason": "real_depth",
-        "symbol": "HOOKR",
-        "until": "2026-11-17T13:23:15Z"
-      },
       "0x8d7bfd3b9542d4097d7871eacbfede531e34f2c1": {
         "at": "2026-11-17T04:38:16Z",
         "reason": "real_depth",
@@ -7679,12 +7670,6 @@
         "reason": "real_depth",
         "symbol": "PEPKING",
         "until": "2026-11-18T08:23:13Z"
-      },
-      "0x9139aaa860da997aace670de999d78626164446d": {
-        "at": "2026-11-16T13:23:15Z",
-        "reason": "real_depth",
-        "symbol": "POPO",
-        "until": "2026-11-17T13:23:15Z"
       },
       "0x916d4dfaecd0971861e470b29af6a522f5820c8d": {
         "at": "2026-11-17T11:58:14Z",
@@ -9126,12 +9111,6 @@
         "symbol": "TORCH",
         "until": "2026-11-17T14:18:16Z"
       },
-      "0xb200000000000000000000ff156f9095230e1838": {
-        "at": "2026-11-16T13:23:15Z",
-        "reason": "real_depth",
-        "symbol": "CIPAD",
-        "until": "2026-11-17T13:23:15Z"
-      },
       "0xb200000000000000000000ff289d0116ab6ca4b9": {
         "at": "2026-11-17T11:03:13Z",
         "reason": "real_depth",
@@ -9161,12 +9140,6 @@
         "reason": "goplus_timeout",
         "symbol": "MARSBASE",
         "until": "2026-11-18T11:58:14Z"
-      },
-      "0xb51a768230979cf16e6af19c0001182095b8f598": {
-        "at": "2026-11-16T13:23:15Z",
-        "reason": "real_depth",
-        "symbol": "JAGENT",
-        "until": "2026-11-17T13:23:15Z"
       },
       "0xb542eac7de0fb738fbcd8fc8cb00d2f1690ed765": {
         "at": "2026-11-16T18:58:15Z",
@@ -9228,6 +9201,12 @@
         "symbol": "LIQUIDBGT",
         "until": "2026-11-18T11:18:14Z"
       },
+      "0xb7afefb9db54cc55d7735931a29b8796711c864c": {
+        "at": "2026-11-17T13:28:26Z",
+        "reason": "real_depth",
+        "symbol": "SWEATER",
+        "until": "2026-11-18T13:28:26Z"
+      },
       "0xb7c363eefcfd53b84a3b89b28e34daea5ca24264": {
         "at": "2026-11-17T06:33:13Z",
         "reason": "real_depth",
@@ -9257,6 +9236,12 @@
         "reason": "real_depth",
         "symbol": "FAOD",
         "until": "2026-11-17T22:18:15Z"
+      },
+      "0xba364053164e0f3551609b411ea3009fd4cdf64a": {
+        "at": "2026-11-17T13:28:26Z",
+        "reason": "real_depth",
+        "symbol": "USOI",
+        "until": "2026-11-18T13:28:26Z"
       },
       "0xbba1d6568b68960726ae8aff35ddc41525aa88b3": {
         "at": "2026-11-16T19:18:15Z",
@@ -9311,12 +9296,6 @@
         "reason": "real_depth",
         "symbol": "TEST3",
         "until": "2026-11-18T11:28:13Z"
-      },
-      "0xbea041d0e111194b236e34e8e65ee528260a8ca5": {
-        "at": "2026-11-16T13:23:15Z",
-        "reason": "real_depth",
-        "symbol": "LAPTOP",
-        "until": "2026-11-17T13:23:15Z"
       },
       "0xbeb2cef1bef88db2c16a52b1af7de1b75f1b8fe0": {
         "at": "2026-11-17T00:23:14Z",
@@ -10478,6 +10457,12 @@
       }
     },
     "watch": {
+      "0x3c34f4b5b7321daee39a04930dde1997257b077f": {
+        "checks": 1,
+        "first_seen": "2026-11-17T13:28:26Z",
+        "last_check": "2026-11-17T13:28:26Z",
+        "symbol": "UNITED OIL DIVIDEND FUND"
+      },
       "0x7a2057f5a4e03b4f81416413ba958754d63a33b5": {
         "checks": 3,
         "first_seen": "2026-11-17T12:38:17Z",
@@ -10485,9 +10470,9 @@
         "symbol": "UDOF"
       },
       "0x7b830e1b9af3f903dd84cd8dc2d99b71aab9b418": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-17T13:08:16Z",
-        "last_check": "2026-11-17T13:08:16Z",
+        "last_check": "2026-11-17T13:28:26Z",
         "symbol": "REBOOT"
       },
       "0xb86befaa9048ab123f263770b34fba88a11556a5": {
