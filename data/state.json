@@ -72,9 +72,9 @@
         "entry_qliq": 16675,
         "entry_ts": "2026-11-17T11:18:14Z",
         "ladder_done": [],
-        "last_liq_usd": 35401.53,
-        "last_price": 2.853e-08,
-        "last_qliq": 17702,
+        "last_liq_usd": 34145.05,
+        "last_price": 2.654e-08,
+        "last_qliq": 17077,
         "launchpad": "other",
         "orig_qty": 188830978.83468017,
         "pair": "0xe81cb57eed2c2f2b3e220da15d09a55fb9fb2d21",
@@ -85,7 +85,7 @@
     },
     "refill_week": "2026-W47",
     "refills_usd": 56.55720719365456,
-    "ticks_since_buy": 7
+    "ticks_since_buy": 8
   },
   "desk": {
     "cash": 50.0,
@@ -2236,6 +2236,14 @@
         "sight_qliq": 55,
         "symbol": "UFDO"
       },
+      "0x431bd51605e0a9d72a49a50061bb1d6b06ee95fa": {
+        "done": [],
+        "first_price": 3.118e-06,
+        "first_seen": "2026-11-17T11:58:14Z",
+        "sight_pair": "0xf58532e5e18d525232e7f729319c19b449193f98",
+        "sight_qliq": 28432,
+        "symbol": "USODF"
+      },
       "0x43b08151eec769a925c587ce0f40e609d2378d0e": {
         "done": [
           1,
@@ -3892,6 +3900,12 @@
         "symbol": "RIGHTS",
         "until": "2026-11-18T07:38:15Z"
       },
+      "0x013c6eb7aa5461f4033df0100df11164eeb98e40": {
+        "at": "2026-11-17T11:58:14Z",
+        "reason": "real_depth",
+        "symbol": "SI",
+        "until": "2026-11-18T11:58:14Z"
+      },
       "0x014f3f8b4e459b9487ae3d3793bd4860b5ca38f8": {
         "at": "2026-11-16T18:33:13Z",
         "reason": "real_depth",
@@ -4515,6 +4529,12 @@
         "reason": "real_depth",
         "symbol": "QUILL",
         "until": "2026-11-17T15:58:14Z"
+      },
+      "0x1151492cab5734a4be71d2893d7110268f6da488": {
+        "at": "2026-11-17T11:58:14Z",
+        "reason": "real_depth",
+        "symbol": "OIL U.S INDEX",
+        "until": "2026-11-18T11:58:14Z"
       },
       "0x115c0e8942835ba75e21016af8b8cc74c4248f25": {
         "at": "2026-11-17T09:28:14Z",
@@ -7576,6 +7596,12 @@
         "symbol": "POPO",
         "until": "2026-11-17T13:23:15Z"
       },
+      "0x916d4dfaecd0971861e470b29af6a522f5820c8d": {
+        "at": "2026-11-17T11:58:14Z",
+        "reason": "real_depth",
+        "symbol": "NORMIE",
+        "until": "2026-11-18T11:58:14Z"
+      },
       "0x9178cd8457367bbe38a47e98edb81858c6226288": {
         "at": "2026-11-16T19:03:15Z",
         "reason": "real_depth",
@@ -9052,6 +9078,12 @@
         "symbol": "LAPTOP",
         "until": "2026-11-18T08:38:14Z"
       },
+      "0xb3c86288f00ca2ee9de57f6cd5db1ab75c2d2222": {
+        "at": "2026-11-17T11:58:14Z",
+        "reason": "goplus_timeout",
+        "symbol": "MARSBASE",
+        "until": "2026-11-18T11:58:14Z"
+      },
       "0xb51a768230979cf16e6af19c0001182095b8f598": {
         "at": "2026-11-16T13:23:15Z",
         "reason": "real_depth",
@@ -9447,6 +9479,12 @@
         "reason": "real_depth",
         "symbol": "NXT",
         "until": "2026-11-18T11:28:13Z"
+      },
+      "0xcb88a66e6a98400b6b41b8cbf30cf298d8074d68": {
+        "at": "2026-11-17T11:58:14Z",
+        "reason": "real_depth",
+        "symbol": "CHUBBY",
+        "until": "2026-11-18T11:58:14Z"
       },
       "0xcba1e89200d1cc91a5c92922a441c38d63283aae": {
         "at": "2026-11-17T10:48:15Z",
@@ -10234,6 +10272,12 @@
         "symbol": "Baselion",
         "until": "2026-11-18T03:38:24Z"
       },
+      "0xf8a55b4f170af83ff64e56e6daa65aee06c254df": {
+        "at": "2026-11-17T11:58:14Z",
+        "reason": "real_depth",
+        "symbol": "TEST9",
+        "until": "2026-11-18T11:58:14Z"
+      },
       "0xf8be7e487db2e53b0a9458bbe5e3257e72341a75": {
         "at": "2026-11-17T09:08:21Z",
         "reason": "real_depth",
@@ -10356,28 +10400,16 @@
       }
     },
     "watch": {
-      "0x013c6eb7aa5461f4033df0100df11164eeb98e40": {
-        "checks": 2,
-        "first_seen": "2026-11-17T11:23:24Z",
-        "last_check": "2026-11-17T11:43:13Z",
-        "symbol": "SI"
-      },
-      "0x1151492cab5734a4be71d2893d7110268f6da488": {
-        "checks": 2,
-        "first_seen": "2026-11-17T11:18:14Z",
-        "last_check": "2026-11-17T11:38:15Z",
-        "symbol": "OIL U.S INDEX"
-      },
-      "0xb3c86288f00ca2ee9de57f6cd5db1ab75c2d2222": {
-        "checks": 10,
-        "first_seen": "2026-11-17T08:48:18Z",
-        "last_check": "2026-11-17T11:38:15Z",
-        "symbol": "MARSBASE"
+      "0x431bd51605e0a9d72a49a50061bb1d6b06ee95fa": {
+        "checks": 1,
+        "first_seen": "2026-11-17T11:58:14Z",
+        "last_check": "2026-11-17T11:58:14Z",
+        "symbol": "USODF"
       },
       "0xb86befaa9048ab123f263770b34fba88a11556a5": {
-        "checks": 3,
+        "checks": 4,
         "first_seen": "2026-11-17T10:58:17Z",
-        "last_check": "2026-11-17T11:38:15Z",
+        "last_check": "2026-11-17T11:58:14Z",
         "symbol": "BAWSAQ"
       }
     }
