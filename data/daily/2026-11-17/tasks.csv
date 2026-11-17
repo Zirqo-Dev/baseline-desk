@@ -1175,3 +1175,12 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-17T11:33:13Z,desk,VERIFY,MRX,0x6366fefd84a066f81ed801b95bbb4ec581e02b36,SKIP,real_depth,goplus=skipped until=2026-11-18T11:33:13Z
 2026-11-17T11:33:13Z,desk,VERIFY,TEST4,0xd591afb1c3943345cc152495985901aafbe3dba7,SKIP,real_depth,goplus=skipped until=2026-11-18T11:33:13Z
 2026-11-17T11:33:13Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=21 rechecks=0 new=6 checked=6 passed=0 bought=0 held=0 deferred=0 dex_only=6 goplus=0 requests=13 secs=3.0 bl_positions=3 bl_due=0 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=14 labels_done=14 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-17T11:38:15Z,baseline,EXIT,MARSBASE,0x0b455a80139f9642bb47f2cb5afabbd8809a24af,HOLD,,pct=138.94
+2026-11-17T11:38:15Z,baseline,EXIT,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,HOLD,,pct=36.73
+2026-11-17T11:38:15Z,baseline,EXIT,BAWSAQ,0xb86befaa9048ab123f263770b34fba88a11556a5,HOLD,,pct=-0.56
+2026-11-17T11:38:15Z,desk,VERIFY,MARSBASE,0xb3c86288f00ca2ee9de57f6cd5db1ab75c2d2222,WATCH,goplus_not_ready,"first_seen=2026-11-17T08:48:18Z checks=10 pending=mint_open,freeze_or_blacklist,honeypot,risk_flags b1=4 s1=3 b24=1994 s24=2283 liq=212964 dex=uniswap:v4 qliq=89539 pair_age=5876 token_age=5876"
+2026-11-17T11:38:15Z,desk,VERIFY,BAWSAQ,0xb86befaa9048ab123f263770b34fba88a11556a5,WATCH,goplus_not_ready,"first_seen=2026-11-17T10:58:17Z checks=3 pending=mint_open,freeze_or_blacklist,honeypot,dev_pct,top10_pct,risk_flags b1=26 s1=15 b24=26 s24=15 liq=33892 dex=uniswap:v2 qliq=16952 pair_age=48 token_age=48"
+2026-11-17T11:38:15Z,desk,VERIFY,OIL U.S INDEX,0x1151492cab5734a4be71d2893d7110268f6da488,WATCH,goplus_not_ready,"first_seen=2026-11-17T11:18:14Z checks=2 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct b1=26 s1=0 b24=26 s24=0 liq=61961 dex=uniswap:v2 qliq=30984 pair_age=27 token_age=27"
+2026-11-17T11:38:15Z,desk,VERIFY,ANTHROPIC,0x1986ab2a1e4cb3c8d25f6403f71b211ad2e0bf26,SKIP,real_depth,goplus=skipped until=2026-11-18T11:38:15Z
+2026-11-17T11:38:15Z,desk,VERIFY,Uranus,0x808773cf51f5428e962d92d8d65a4790f56a3b4d,SKIP,missing:liq_usd,goplus=skipped until=2026-11-18T11:38:15Z
+2026-11-17T11:38:15Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=21 rechecks=3 new=2 checked=5 passed=0 bought=0 held=0 deferred=0 dex_only=2 goplus=3 requests=15 secs=7.0 bl_positions=3 bl_due=0 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=7 labels_done=7 labels_calls=1 live=ok alerts=none alerts_sent=0
