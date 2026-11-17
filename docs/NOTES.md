@@ -2185,3 +2185,22 @@ Moved from CLAUDE.md section 11 on 2026-10-23 (BL-2 process cleanup). Wording is
   rate-limit code (write it in section 11). The owner decides on the "GoPlus wasted on DexScreener-only skips" card.
   After 2026-10-24 15:28 UTC count TICK rows since 15:28 (expect 288) and runs in the Actions tab; if green with one
   TICK row per run, mark BL-7 done, then BL-8 (report.py + report.yml).
+
+## BL-50
+- Display and docs only (the owner's choice A and mock approval, 2026-11-16/17). Changed: site/index.html (one added line),
+  README.md (one added line), tests/test_bl50.py (new), tests/test_site.py (one string added to the expected URL set), docs.
+  No core/, tools/, adapters/, prompts/, data/, .github/, schedule or backtest/ change; nothing under backtest/ was opened.
+- Site: `<p class="foot" id="attrib"><a href="https://www.geckoterminal.com" target="_blank" rel="noopener">On-chain data
+  provided by GeckoTerminal</a></p>` right after #foot (which the script rewrites), reusing the muted .foot style; no CSS or JS
+  change, outside every BL-43 pinned segment. README: "Data sources: [On-chain data provided by GeckoTerminal](https://www.geckoterminal.com)."
+- test_site.py test_no_other_url_or_override: "https://www.geckoterminal.com" added to the expected set and nothing else
+  (a visible link required by CoinGecko API Terms 4.3, same kind as the DexScreener link; not a fetch, the six-URL fetch tests unchanged).
+- Terms points (chat, 2026-11-17 ~01:45Z, web reader summary, asserted, not legal advice): keyless CoinGecko and GeckoTerminal
+  endpoints are governed by the CoinGecko API Terms (www.coingecko.com/en/api_terms, latest version 5 Sept 2025);
+  www.geckoterminal.com/terms-conditions still failed to load. Automated use is allowed within plan limits (Terms A's disable
+  trigger is not met); keyless GeckoTerminal is about 10 calls/min per the docs, tools/ wait 7.5 s per call (about 8/min).
+  4.3 attribution required (done here). 6.1 storing data is discouraged, refresh at least every 24 h if cached. 6.2 no copying
+  or storing except as the terms permit. 4.1.6 no redistribution. Candles and snapshots in the public repo conflict with 6.1,
+  6.2 and 4.1.6. The owner reads sections 4 and 6 and decides storage by 2026-11-24, before BL-34's run.
+- Rejected: B accept the risk and log it; C move GeckoTerminal-derived files out of the public repo after the run; D stop now.
+- Suite: 557 tests on Python 3.13.18.

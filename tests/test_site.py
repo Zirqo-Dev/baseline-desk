@@ -172,7 +172,8 @@ class PageFetchTest(unittest.TestCase):
     def test_no_other_url_or_override(self):
         page = PAGE.read_text(encoding="utf-8")
         urls = set(re.findall(r"https?://[^'\"\s)<>]+", page))
-        self.assertEqual(urls - set(URLS.values()), {"https://dexscreener.com/base/", "http://www.w3.org/2000/svg"})
+        self.assertEqual(urls - set(URLS.values()), {"https://dexscreener.com/base/", "http://www.w3.org/2000/svg",
+                                             "https://www.geckoterminal.com"})
         for bad in ["XMLHttpRequest", "import(", "location", "URLSearchParams", "localStorage", "sessionStorage",
                     "EventSource", "WebSocket", "sendBeacon", "<script src", "<link", "@import", "<iframe",
                     "url(", "eval(", "document.cookie"]:

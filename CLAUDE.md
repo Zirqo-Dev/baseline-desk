@@ -391,10 +391,19 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
   - BL-46 Done (closed by the owner 2026-11-16, after the first automatic run). Runs: by hand 4c462656, committed
     2026-11-13 03:27Z; first automatic 9b53dee2, committed 2026-11-16 07:40Z, about 7 h after the Monday 00:37Z slot
     (GitHub schedule delay, asserted). Sizes from git only: main 106,291 B, sealed 101,496 B (docs/NOTES.md "BL-46").
-  - Open item, ALL GeckoTerminal use (BL-33 candles, BL-39 survey, BL-46 snapshots): the CoinGecko / GeckoTerminal API
-    terms are unread (www.coingecko.com and www.geckoterminal.com outside the session network, 2026-11-13; BL-45 hit a
-    bot challenge); the owner or chat reads them; if they forbid automated use, disable backtest.yml and snapshot.yml.
-- Next step: the owner checks the deployed BL-34 card (v3 dates, ~Nov 26). BL-46: snapshot.yml runs automatic every Monday 00:37 UTC; next run Nov 23.
+  - BL-50 (2026-11-16, display and docs only, the owner's choice A): the site footer and README.md show "On-chain data
+    provided by GeckoTerminal" linked to https://www.geckoterminal.com (CoinGecko API Terms 4.3), pinned by tests/test_bl50.py.
+    Open item, ALL GeckoTerminal use (BL-33 candles, BL-39 survey, BL-46 snapshots), read by chat 2026-11-17 with a web
+    reader (a summary, asserted, not legal advice): the keyless CoinGecko and GeckoTerminal endpoints fall under the CoinGecko
+    API Terms (www.coingecko.com/en/api_terms, latest version 5 Sept 2025); www.geckoterminal.com/terms-conditions still
+    failed to load. Automated use is allowed within plan limits, so the disable trigger (terms forbid automated use) is not met;
+    keyless GeckoTerminal is about 10 calls/min (tools/ wait 7.5 s per call). 4.3: attribution required (done, BL-50).
+    6.1: storing data is discouraged, refresh at least every 24 h if cached. 6.2: no copying or storing except as the terms
+    permit. 4.1.6: no redistribution. Candles and snapshots in the public repo conflict with 6.1, 6.2 and 4.1.6. The owner reads
+    sections 4 and 6 and decides storage by 2026-11-24, before BL-34's run (options B accept the risk, C move the files out
+    of the public repo after the run, D stop now were rejected, DECISIONS 2026-11-16).
+- Next step: the owner reads CoinGecko API Terms sections 4 and 6 and decides where GeckoTerminal-derived files (backtest/candles/,
+  backtest/liquid/) may be stored by 2026-11-24, before BL-34's run; the owner checks the deployed site footer (BL-50) and the BL-34 card (v3 dates, ~Nov 26). BL-46: snapshot.yml runs automatic every Monday 00:37 UTC; next run Nov 23.
   How the sealed snapshot files (backtest/liquid/snapshots/sealed/) are opened is a later story, after BL-34's holdout
   run; until then nothing reads them.
   BL-45: 7 days of costs.yml runs from the first run (backtest/costs/window.json), then chat reads python -m
