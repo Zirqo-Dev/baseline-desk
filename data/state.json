@@ -65,7 +65,7 @@
     },
     "refill_week": "2026-W47",
     "refills_usd": 56.55720719365456,
-    "ticks_since_buy": 4
+    "ticks_since_buy": 5
   },
   "desk": {
     "cash": 50.0,
@@ -2248,7 +2248,9 @@
         "symbol": "OFDC"
       },
       "0x3b882c9ff68078c17341a2acdc7cd321f19eacaf": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 8.704e-05,
         "first_seen": "2026-11-17T20:03:15Z",
         "sight_pair": "0xc4771f3d36411ef2ff30582e34b4ed6bff0b856d2773873773cc941b820d9607",
@@ -2715,17 +2717,6 @@
         "sight_pair": "0x051ebb8d46200afab7c42044cb637bd3c304e0c3b1cae2db672b1642a3f8fdcd",
         "sight_qliq": 1,
         "symbol": "USFO"
-      },
-      "0x58adbfd309bce755704d2332e46470d0d682b8da": {
-        "done": [
-          1,
-          6
-        ],
-        "first_price": 3.069,
-        "first_seen": "2026-11-16T21:03:15Z",
-        "sight_pair": "0x5b6351f2d95488c06fa0d484b917fcd01429063d5859883bad8d75b57f209f85",
-        "sight_qliq": 2281,
-        "symbol": "NOTF"
       },
       "0x5a443d17ccd9c2816eafb79ff534281e0182742e": {
         "done": [
@@ -3920,7 +3911,8 @@
       },
       "0xbdbfd9721405c3d866f065592804dbc6ad5e8dd3": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 0.0001208,
         "first_seen": "2026-11-17T14:58:15Z",
@@ -5281,12 +5273,6 @@
         "reason": "real_depth",
         "symbol": "UFDO",
         "until": "2026-11-18T02:38:13Z"
-      },
-      "0x0f6e8431e88a4a72c5ea79c2c7908f8aec345973": {
-        "at": "2026-11-16T20:58:15Z",
-        "reason": "real_depth",
-        "symbol": "BALL",
-        "until": "2026-11-17T20:58:15Z"
       },
       "0x0f71d3b5f7909ddce3da4b3e51162549abb23f38": {
         "at": "2026-11-17T18:13:15Z",
@@ -7754,12 +7740,6 @@
         "symbol": "Sahur",
         "until": "2026-11-18T00:28:15Z"
       },
-      "0x58adbfd309bce755704d2332e46470d0d682b8da": {
-        "at": "2026-11-16T21:03:15Z",
-        "reason": "real_depth",
-        "symbol": "NOTF",
-        "until": "2026-11-17T21:03:15Z"
-      },
       "0x591f823d74745caed2ed925b4d91f7d448eb672b": {
         "at": "2026-11-16T23:23:15Z",
         "reason": "real_depth",
@@ -8233,12 +8213,6 @@
         "reason": "real_depth",
         "symbol": "CONIC",
         "until": "2026-11-18T11:43:13Z"
-      },
-      "0x6ef1a5b99e4c778ddcbeb0fecafe218596059ba3": {
-        "at": "2026-11-16T21:03:15Z",
-        "reason": "real_depth",
-        "symbol": "APRONS",
-        "until": "2026-11-17T21:03:15Z"
       },
       "0x6f50aff3ccc06ea05eb049277dd55be79e65cccc": {
         "at": "2026-11-17T14:38:16Z",
@@ -9842,12 +9816,6 @@
         "symbol": "PLAYHONE",
         "until": "2026-11-18T14:53:14Z"
       },
-      "0xb200000000000000000000153ef89d91b9fe6363": {
-        "at": "2026-11-16T21:03:15Z",
-        "reason": "real_depth",
-        "symbol": "RIGHTS",
-        "until": "2026-11-17T21:03:15Z"
-      },
       "0xb200000000000000000000188e7c265b58e3fcc1": {
         "at": "2026-11-17T05:03:21Z",
         "reason": "real_depth",
@@ -10141,6 +10109,12 @@
         "reason": "real_depth",
         "symbol": "NOCAT",
         "until": "2026-11-18T03:28:14Z"
+      },
+      "0xb20000000000000000000069afea8ac040cdf1f4": {
+        "at": "2026-11-17T21:03:15Z",
+        "reason": "real_depth",
+        "symbol": "CALLING",
+        "until": "2026-11-18T21:03:15Z"
       },
       "0xb20000000000000000000069cc7c7f5e435f9c9e": {
         "at": "2026-11-17T12:08:16Z",
@@ -11504,12 +11478,6 @@
         "symbol": "RugProof",
         "until": "2026-11-18T09:13:15Z"
       },
-      "0xd32cd6b867e082bdaac8b43af95e0718e6212987": {
-        "at": "2026-11-16T20:58:15Z",
-        "reason": "real_depth",
-        "symbol": "SPACEX",
-        "until": "2026-11-17T20:58:15Z"
-      },
       "0xd340b57ff3d7e2ef223fa6962a7a195d5351ef01": {
         "at": "2026-11-17T18:48:20Z",
         "reason": "real_depth",
@@ -12449,9 +12417,9 @@
         "symbol": "USOI\ud83c\uddfa\ud83c\uddf8"
       },
       "0xc533a9f7b456c3031a0e63726dfb3775db291240": {
-        "checks": 7,
+        "checks": 8,
         "first_seen": "2026-11-17T19:03:15Z",
-        "last_check": "2026-11-17T20:43:17Z",
+        "last_check": "2026-11-17T21:03:15Z",
         "symbol": "BASE"
       }
     }
