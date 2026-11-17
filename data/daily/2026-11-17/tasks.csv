@@ -1365,3 +1365,9 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-17T13:08:16Z,desk,VERIFY,REBOOT,0x7b830e1b9af3f903dd84cd8dc2d99b71aab9b418,WATCH,goplus_not_ready,"first_seen=2026-11-17T13:08:16Z checks=1 pending=mint_open,freeze_or_blacklist,honeypot,buy_tax_pct,sell_tax_pct,dev_pct,top10_pct,lp_locked_pct,risk_flags b1=13 s1=0 b24=13 s24=0 liq=151665 dex=uniswap:v2 qliq=75831 pair_age=6 token_age=6"
 2026-11-17T13:08:16Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
 2026-11-17T13:08:16Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=1 new=3 checked=4 passed=0 bought=0 held=0 deferred=0 dex_only=3 goplus=1 requests=12 secs=3.0 bl_positions=3 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=4 labels_done=4 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-17T13:13:14Z,baseline,EXIT,MARSBASE,0x0b455a80139f9642bb47f2cb5afabbd8809a24af,HOLD,,pct=138.94
+2026-11-17T13:13:14Z,baseline,EXIT,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,HOLD,,pct=36.73
+2026-11-17T13:13:14Z,baseline,EXIT,BAWSAQ,0xb86befaa9048ab123f263770b34fba88a11556a5,HOLD,,pct=76.48
+2026-11-17T13:13:14Z,desk,VERIFY,USOR,0x71258378a05391f8ee69c08fc960c51b7200781c,SKIP,real_depth,goplus=skipped until=2026-11-18T13:13:14Z b1=7 s1=0 b24=7 s24=0 liq=110771 dex=uniswap:v4 qliq=10 pair_age=5 token_age=5
+2026-11-17T13:13:14Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
+2026-11-17T13:13:14Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=0 new=1 checked=1 passed=0 bought=0 held=0 deferred=0 dex_only=1 goplus=0 requests=8 secs=1.9 bl_positions=3 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=23 labels_done=23 labels_calls=1 live=ok alerts=none alerts_sent=0
