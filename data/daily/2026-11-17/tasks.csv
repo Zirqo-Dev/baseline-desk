@@ -794,3 +794,9 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-17T08:03:15Z,baseline,EXIT,RST,0x19d6ac9a0506e90437f78e24618773aebf01da6f,HOLD,,pct=-2.73
 2026-11-17T08:03:15Z,baseline,EXIT,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,HOLD,,pct=36.73
 2026-11-17T08:03:15Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=0 new=0 checked=0 passed=0 bought=0 held=0 deferred=0 dex_only=0 goplus=0 requests=7 secs=1.6 bl_positions=3 bl_due=0 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=1 labels_done=1 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-17T08:08:16Z,baseline,EXIT,MARSBASE,0x0b455a80139f9642bb47f2cb5afabbd8809a24af,HOLD,,pct=138.94
+2026-11-17T08:08:16Z,baseline,EXIT,RST,0x19d6ac9a0506e90437f78e24618773aebf01da6f,HOLD,,pct=-2.73
+2026-11-17T08:08:16Z,baseline,EXIT,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,HOLD,,pct=36.73
+2026-11-17T08:08:16Z,desk,VERIFY,RST,0x19d6ac9a0506e90437f78e24618773aebf01da6f,WATCH,goplus_not_ready,"first_seen=2026-11-17T07:33:19Z checks=3 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct b1=32 s1=23 b24=32 s24=23 liq=3778099 dex=uniswap:v4 qliq=57322 pair_age=41 token_age=41"
+2026-11-17T08:08:16Z,desk,VERIFY,test2,0x067d21898cc782ee1aa6b06c66a6e2e0cfbf6101,SKIP,missing:liq_usd,goplus=skipped until=2026-11-18T08:08:16Z
+2026-11-17T08:08:16Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=1 new=1 checked=2 passed=0 bought=0 held=0 deferred=0 dex_only=1 goplus=1 requests=10 secs=2.3 bl_positions=3 bl_due=0 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=9 labels_done=9 labels_calls=1 live=ok alerts=none alerts_sent=0
