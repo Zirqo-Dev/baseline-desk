@@ -2153,6 +2153,11 @@ Moved from CLAUDE.md section 11 on 2026-10-23 (BL-2 process cleanup). Wording is
   pages.yml, alert-test.yml untouched; the workflow (schedule, group, Python 3.13, no secret, no env, staged path,
   commit message, 5-try push). The whole-word forbidden-word scan is BL-45's
   tests/test_costs.py ReadOnly, which covers every *.py / *.yml file, these included.
+- First runs: by hand, commit 4c462656, "backtest: snapshot 2026-11-13", committed 2026-11-13 03:27Z. First automatic
+  run, commit 9b53dee2, "backtest: snapshot 2026-11-16", committed 2026-11-16 07:40Z; the slot is Monday 00:37Z, so it
+  ran about 7 h late (GitHub schedule delay, asserted, not verified). Sizes from git only (git show --stat 9b53dee2),
+  no file opened: main 106,291 B, sealed 101,496 B. The owner closed BL-46 on 2026-11-16 after seeing the automatic
+  run. Next automatic run: Monday 2026-11-23.
 - Open items: GeckoTerminal terms unread (above); top-200 views per list (quiet pools outside every list are not in a
   snapshot, as in the survey); reserve is total both sides, not real depth; 24 h volume can include wash or bot volume;
   the first snapshot is the first point-in-time list, so no earlier week can ever be reconstructed this way.

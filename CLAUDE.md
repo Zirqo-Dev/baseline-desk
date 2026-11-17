@@ -306,7 +306,7 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
   terminal and Paper equity card byte-identical (screenshots and sha256 pins). Telegram daily adds "<book> refilled +$x
   (not P&L)" (from state.json report.equity), "Gate B since ... · random N closes · kill at 200" and a per-trade line per
   book; every BL-3 line stays; no BL-34 line (core/ never reads backtest/, test) (docs/NOTES.md "BL-43").
-  Tests: stdlib unittest, `python -m unittest` (528 pass on 3.13).
+  Tests: stdlib unittest, `python -m unittest` (555 pass on 3.13.18).
 - cron-job.org token "baseline-desk cron" EXPIRES Thu 2027-01-21: renew by early January or the desk stops silently.
 - Technical detail per card, GoPlus diagnosis, BL-20 budget and full open items: docs/NOTES.md.
 - Open items:
@@ -388,10 +388,13 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
   complete), which nothing reads (read() refuses it; test) and the run reports as counts and bytes only. Survey
   files untouched (sha256 test). Smoke 2: 139 calls, 18.3 min, complete; main 1,020 pools and 526 tokens, 119 KB gz;
   sealed 730 pools and 380 tokens, 87 KB gz (docs/NOTES.md "BL-46").
+  - BL-46 Done (closed by the owner 2026-11-16, after the first automatic run). Runs: by hand 4c462656, committed
+    2026-11-13 03:27Z; first automatic 9b53dee2, committed 2026-11-16 07:40Z, about 7 h after the Monday 00:37Z slot
+    (GitHub schedule delay, asserted). Sizes from git only: main 106,291 B, sealed 101,496 B (docs/NOTES.md "BL-46").
   - Open item, ALL GeckoTerminal use (BL-33 candles, BL-39 survey, BL-46 snapshots): the CoinGecko / GeckoTerminal API
     terms are unread (www.coingecko.com and www.geckoterminal.com outside the session network, 2026-11-13; BL-45 hit a
     bot challenge); the owner or chat reads them; if they forbid automated use, disable backtest.yml and snapshot.yml.
-- Next step: the owner checks the deployed BL-34 card (v3 dates, ~Nov 26). BL-46: the owner clicks Run workflow on snapshot.yml once after the commit; then automatic every Monday.
+- Next step: the owner checks the deployed BL-34 card (v3 dates, ~Nov 26). BL-46: snapshot.yml runs automatic every Monday 00:37 UTC; next run Nov 23.
   How the sealed snapshot files (backtest/liquid/snapshots/sealed/) are opened is a later story, after BL-34's holdout
   run; until then nothing reads them.
   BL-45: 7 days of costs.yml runs from the first run (backtest/costs/window.json), then chat reads python -m
@@ -405,7 +408,7 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
   done, counts only; no return has been computed from backtest/liquid/); the execution design is researched in
   parallel (no wallet code). BL-38..BL-42 are candidates only (DECISIONS 2026-11-04). The owner checks the deployed site
   and the first Telegram daily summary with the BL-43 lines.
-- Last updated: 2026-11-15.
+- Last updated: 2026-11-16.
 
 ## 12. Glossary
 - Lead: a token the scanner found. Survivor: a lead that passed every hard skip.
