@@ -614,3 +614,9 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-17T06:13:16Z,desk,VERIFY,AFOD,0xe7caf25aeb43bc066174c1f5e84829ff55c750c7,WATCH,goplus_not_ready,"first_seen=2026-11-17T06:13:16Z checks=1 pending=mint_open,freeze_or_blacklist,honeypot,buy_tax_pct,sell_tax_pct,dev_pct,top10_pct,lp_locked_pct,risk_flags b1=4 s1=0 b24=4 s24=0 liq=56094 dex=uniswap:v2 qliq=28048 pair_age=4 token_age=4"
 2026-11-17T06:13:16Z,baseline,EXECUTE,GODF,0x07618c9f34a537196a08855d563b1b37c3d012f1,BUY,,"usd=5.00 fill=0.0292015307 seed=202611170613 eligible=2 pick=0 pool=07618c,2e91ae desk=WATCH launchpad=other b1=17 s1=11 b24=17 s24=11 liq=42536270 dex=uniswap:v4 qliq=137528 pair_age=23 token_age=23"
 2026-11-17T06:13:16Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=3 new=1 checked=4 passed=0 bought=0 held=0 deferred=0 dex_only=0 goplus=4 requests=14 secs=8.2 bl_positions=2 bl_due=1 bl_eligible=2 bl_bought=1 report=none machine=none bl_error=none labels=ok labels_due=2 labels_done=2 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-17T06:18:14Z,baseline,EXIT,GODF,0x07618c9f34a537196a08855d563b1b37c3d012f1,HOLD,,pct=-3.05
+2026-11-17T06:18:14Z,baseline,EXIT,MARSBASE,0x0b455a80139f9642bb47f2cb5afabbd8809a24af,HOLD,,pct=138.94
+2026-11-17T06:18:14Z,baseline,EXIT,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,HOLD,,pct=36.73
+2026-11-17T06:18:14Z,desk,VERIFY,GHST,0xb200000000000000000000edde87206cd1ec92c6,SKIP,real_depth,goplus=skipped until=2026-11-18T06:18:14Z
+2026-11-17T06:18:14Z,desk,VERIFY,Gitbank,0xf2e795d5f2f1f77e00df1fbf6c93ede3d9dbe00f,SKIP,real_depth,goplus=skipped until=2026-11-18T06:18:14Z
+2026-11-17T06:18:14Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=0 new=2 checked=2 passed=0 bought=0 held=0 deferred=0 dex_only=2 goplus=0 requests=8 secs=1.9 bl_positions=3 bl_due=0 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=none labels_due=0 labels_done=0 labels_calls=0 live=ok alerts=none alerts_sent=0
