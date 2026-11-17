@@ -2776,3 +2776,13 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-17T23:43:14Z,desk,VERIFY,GLYPH,0xac840c870d925384c3298d8ce9b0e4442348cccc,SKIP,real_depth,goplus=skipped until=2026-11-18T23:43:14Z
 2026-11-17T23:43:14Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
 2026-11-17T23:43:14Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=0 new=2 checked=2 passed=0 bought=0 held=0 deferred=0 dex_only=2 goplus=0 requests=10 secs=2.4 bl_positions=2 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=2 labels_done=2 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-17T23:48:25Z,baseline,EXIT,MARSBASE,0x0b455a80139f9642bb47f2cb5afabbd8809a24af,HOLD,no_quote,
+2026-11-17T23:48:25Z,baseline,EXIT,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,HOLD,no_quote,
+2026-11-17T23:48:25Z,desk,VERIFY,FCAT,0x07a143c18ca06ed41507d745e2a62525e30ccd91,WATCH,goplus_not_ready,"first_seen=2026-11-17T22:18:14Z checks=6 pending=honeypot,lp_locked_pct b1=1627 s1=1419 b24=5787 s24=4894 liq=51911 dex=uniswap:v4 qliq=23616 pair_age=99 token_age=99"
+2026-11-17T23:48:25Z,desk,VERIFY,AERO,0x3f5bf3edac59d650d8fdf9657a71f2f904a3a4ee,WATCH,goplus_not_ready,"first_seen=2026-11-17T22:43:25Z checks=5 pending=honeypot,buy_tax_pct,sell_tax_pct,lp_locked_pct b1=539 s1=1080 b24=11132 s24=24498 liq=3795133 dex=aero qliq=1261351 pair_age=38695 token_age=38826"
+2026-11-17T23:48:25Z,desk,VERIFY,US RESERVE POWER,0x3bef45ccd3abc04e0d9153b23b04a54f3615ba39,WATCH,goplus_not_ready,"first_seen=2026-11-17T23:18:23Z checks=3 pending=mint_open,freeze_or_blacklist,honeypot,dev_pct,top10_pct,risk_flags b1=29 s1=0 b24=29 s24=0 liq=63242 dex=uniswap:v2 qliq=31623 pair_age=31 token_age=31"
+2026-11-17T23:48:25Z,desk,VERIFY,DELVTOWN,0xaf89b19297d995d01572ddc7bd285033aecf9ba3,SKIP,real_depth,goplus=skipped until=2026-11-18T23:48:25Z
+2026-11-17T23:48:25Z,desk,VERIFY,GNULL,0x186ba02a5a0f218fbdf55adb740d1c95473ad119,SKIP,real_depth,goplus=skipped until=2026-11-18T23:48:25Z
+2026-11-17T23:48:25Z,desk,VERIFY,SPACEX,0x12fd092c435b8d1639f19c49c6d9857d1eabf1be,SKIP,real_depth,goplus=skipped until=2026-11-18T23:48:25Z
+2026-11-17T23:48:25Z,baseline,EXECUTE,FCAT,0x07a143c18ca06ed41507d745e2a62525e30ccd91,SKIP,reentry_cooldown,seed=202611172348 eligible=1 pick=0 pool=07a143 desk=WATCH launchpad=other
+2026-11-17T23:48:25Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=21 rechecks=3 new=3 checked=6 passed=0 bought=0 held=0 deferred=0 dex_only=3 goplus=3 requests=18 secs=7.1 bl_positions=2 bl_due=1 bl_eligible=1 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=3 labels_done=3 labels_calls=1 live=ok alerts=none alerts_sent=0
