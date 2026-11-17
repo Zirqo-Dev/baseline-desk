@@ -85,7 +85,7 @@
     },
     "refill_week": "2026-W47",
     "refills_usd": 56.55720719365456,
-    "ticks_since_buy": 43
+    "ticks_since_buy": 44
   },
   "desk": {
     "cash": 50.0,
@@ -929,7 +929,9 @@
         "symbol": "NUCLEAR U.S RESERVE"
       },
       "0x1a1eb0419cced92938ad641fb4c405a43d6b48ff": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 0.0001897,
         "first_seen": "2026-11-16T23:23:15Z",
         "sight_pair": "0x239359210435f22ecc1d8cd97164da98d9faa52d45e2e906a58d39fc1538daf8",
@@ -2124,6 +2126,14 @@
         "sight_qliq": 74505,
         "symbol": "REBOOT"
       },
+      "0x614ebc8154b13509c69e2a1a4c20afbac809eb80": {
+        "done": [],
+        "first_price": 3.19e-06,
+        "first_seen": "2026-11-17T00:28:15Z",
+        "sight_pair": "0x483711aabf2b422f1d3f7937ad9a95d87bee84cf",
+        "sight_qliq": 28849,
+        "symbol": "[USOF]U.S Fund Oil "
+      },
       "0x61e80b97255d0df4e847406aef3a5a0228902f7a": {
         "done": [
           1,
@@ -2295,6 +2305,14 @@
         "sight_pair": "0xaef2b2e65999034eddd2b56823f7d87390c212445c3b9c0f8c7ae50ebe0825a9",
         "sight_qliq": 0,
         "symbol": "UDOF"
+      },
+      "0x74252199eaf63d4866511dad4ac57a8f60aadb41": {
+        "done": [],
+        "first_price": 1.792e-05,
+        "first_seen": "2026-11-17T00:28:15Z",
+        "sight_pair": "0x019ee04fc5439318dfbe1647311c7c3341536515",
+        "sight_qliq": 77987,
+        "symbol": "REBOOT"
       },
       "0x74fa7cefec693ac032e8475f503c5cc2c074f5a9": {
         "done": [
@@ -2961,7 +2979,9 @@
         "symbol": "CLAUDIA"
       },
       "0xd2873a6a1bb9cf7ab2ba4ce850e2f2c2515b9302": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 7.66e-06,
         "first_seen": "2026-11-16T23:28:15Z",
         "sight_pair": "0x415abec5e0ac0bbf87297c633ae2e9d5852f3319",
@@ -3117,7 +3137,9 @@
         "symbol": "INDEX OIL U.S"
       },
       "0xdfacfae55c5f36ec181e3a11a3d51eb00db43849": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 0.0002004,
         "first_seen": "2026-11-16T23:28:15Z",
         "sight_pair": "0x7ae89e3e5d75aba4126e0ec4510c3ad715bf2ea711e19bc08cdcd7b4de0f272c",
@@ -5942,6 +5964,12 @@
         "symbol": "VVV",
         "until": "2026-11-17T10:18:23Z"
       },
+      "0x58a834a5642e6f3ab47179ad6b443423377658e3": {
+        "at": "2026-11-17T00:28:15Z",
+        "reason": "real_depth",
+        "symbol": "Sahur",
+        "until": "2026-11-18T00:28:15Z"
+      },
       "0x58adbfd309bce755704d2332e46470d0d682b8da": {
         "at": "2026-11-16T21:03:15Z",
         "reason": "real_depth",
@@ -7700,6 +7728,12 @@
         "symbol": "TRX",
         "until": "2026-11-17T06:33:14Z"
       },
+      "0xb20000000000000000000010cfeb21a232c69f01": {
+        "at": "2026-11-17T00:28:15Z",
+        "reason": "real_depth",
+        "symbol": "MEMO",
+        "until": "2026-11-18T00:28:15Z"
+      },
       "0xb2000000000000000000001204e680fc53d21b3a": {
         "at": "2026-11-16T05:58:14Z",
         "reason": "real_depth",
@@ -8437,6 +8471,12 @@
         "reason": "real_depth",
         "symbol": "PLKT",
         "until": "2026-11-17T20:48:16Z"
+      },
+      "0xb200000000000000000000e6a97541bf9129ab01": {
+        "at": "2026-11-17T00:28:15Z",
+        "reason": "real_depth",
+        "symbol": "OFA",
+        "until": "2026-11-18T00:28:15Z"
       },
       "0xb200000000000000000000e6ca80ec86096d05ea": {
         "at": "2026-11-16T01:08:21Z",
@@ -9969,7 +10009,20 @@
         "until": "2026-11-17T02:23:13Z"
       }
     },
-    "watch": {}
+    "watch": {
+      "0x614ebc8154b13509c69e2a1a4c20afbac809eb80": {
+        "checks": 1,
+        "first_seen": "2026-11-17T00:28:15Z",
+        "last_check": "2026-11-17T00:28:15Z",
+        "symbol": "[USOF]U.S Fund Oil "
+      },
+      "0x74252199eaf63d4866511dad4ac57a8f60aadb41": {
+        "checks": 1,
+        "first_seen": "2026-11-17T00:28:15Z",
+        "last_check": "2026-11-17T00:28:15Z",
+        "symbol": "REBOOT"
+      }
+    }
   },
   "report": {
     "due": "",
