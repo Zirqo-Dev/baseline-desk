@@ -1016,3 +1016,9 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-17T10:18:14Z,desk,VERIFY,DONTBUY,0xb200000000000000000000e3249f7540d267a9c5,SKIP,real_depth,goplus=skipped until=2026-11-18T10:18:14Z
 2026-11-17T10:18:14Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
 2026-11-17T10:18:14Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=0 new=3 checked=3 passed=0 bought=0 held=0 deferred=0 dex_only=3 goplus=0 requests=9 secs=2.1 bl_positions=2 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=18 labels_done=18 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-17T10:23:22Z,baseline,EXIT,MARSBASE,0x0b455a80139f9642bb47f2cb5afabbd8809a24af,HOLD,,pct=138.94
+2026-11-17T10:23:22Z,baseline,EXIT,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,HOLD,,pct=36.73
+2026-11-17T10:23:22Z,desk,VERIFY,RST,0x19d6ac9a0506e90437f78e24618773aebf01da6f,WATCH,goplus_not_ready,"first_seen=2026-11-17T07:33:19Z checks=10 pending=honeypot,buy_tax_pct,sell_tax_pct,lp_locked_pct b1=0 s1=0 b24=72 s24=52 liq=56905 dex=uniswap:v4 qliq=56911 pair_age=176 token_age=176"
+2026-11-17T10:23:22Z,desk,VERIFY,MARSBASE,0xb3c86288f00ca2ee9de57f6cd5db1ab75c2d2222,WATCH,goplus_not_ready,"first_seen=2026-11-17T08:48:18Z checks=6 pending=mint_open,freeze_or_blacklist,honeypot,risk_flags b1=11 s1=11 b24=2168 s24=2710 liq=216980 dex=uniswap:v4 qliq=88781 pair_age=5801 token_age=5801"
+2026-11-17T10:23:22Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
+2026-11-17T10:23:22Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=2 new=0 checked=2 passed=0 bought=0 held=0 deferred=0 dex_only=0 goplus=2 requests=10 secs=3.8 bl_positions=2 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=3 labels_done=3 labels_calls=1 live=ok alerts=none alerts_sent=0
