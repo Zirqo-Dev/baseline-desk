@@ -54,13 +54,13 @@
         "entry_qliq": 150003,
         "entry_ts": "2026-11-18T07:23:15Z",
         "ladder_done": [],
-        "last_liq_usd": 276208.05,
-        "last_price": 0.5278,
-        "last_qliq": 149686,
+        "last_liq_usd": 276906.08,
+        "last_price": 0.5292,
+        "last_qliq": 150089,
         "launchpad": "other",
         "orig_qty": 9.17620385812159,
         "pair": "0x0eb6a82c7becad0b21965063494c1511608ba74ca21bd311c4791733074071e1",
-        "peak_price": 0.529,
+        "peak_price": 0.5292,
         "qty": 9.17620385812159,
         "symbol": "Anthropic"
       },
@@ -85,7 +85,7 @@
     },
     "refill_week": "2026-W47",
     "refills_usd": 56.55720719365456,
-    "ticks_since_buy": 5
+    "ticks_since_buy": 6
   },
   "desk": {
     "cash": 50.0,
@@ -3353,6 +3353,14 @@
         "sight_qliq": 2,
         "symbol": "UISO"
       },
+      "0x7321d3106be37134bafb4b4ebabb5bf0107cb172": {
+        "done": [],
+        "first_price": 9.201e-05,
+        "first_seen": "2026-11-18T07:53:19Z",
+        "sight_pair": "0x6575951f3790e3ec09116eff262ed613c2abd2bb596b47158557218efa60537c",
+        "sight_qliq": 28,
+        "symbol": "US OIL INDEX"
+      },
       "0x74a1b8a29bec6b735d3c684e3233fe65e224f79b": {
         "done": [
           1,
@@ -4551,17 +4559,6 @@
         "sight_qliq": 2,
         "symbol": "IOF\ud83d\udd25"
       },
-      "0xdb0fd2454351f459502e7e269a655eb63c5ba4d6": {
-        "done": [
-          1,
-          6
-        ],
-        "first_price": 0.0001058,
-        "first_seen": "2026-11-17T07:53:13Z",
-        "sight_pair": "0x0b9df3bb17578abc3aa1008868fb909f4f3c13628ce76df956dfe7cd32a41d45",
-        "sight_qliq": 1,
-        "symbol": "AVAX"
-      },
       "0xdf28e479cb675e3672801bd2e4c6ee42617b2d5c": {
         "done": [
           1,
@@ -5725,12 +5722,6 @@
         "symbol": "GPACK",
         "until": "2026-11-19T04:53:18Z"
       },
-      "0x12b61ae04fc7a85b8616a5d0346b7431bb6996d5": {
-        "at": "2026-11-17T07:53:13Z",
-        "reason": "real_depth",
-        "symbol": "AO\u200aD\u200aF",
-        "until": "2026-11-18T07:53:13Z"
-      },
       "0x12fd092c435b8d1639f19c49c6d9857d1eabf1be": {
         "at": "2026-11-17T23:48:25Z",
         "reason": "real_depth",
@@ -6084,12 +6075,6 @@
         "reason": "real_depth",
         "symbol": "AOKUMA",
         "until": "2026-11-18T12:13:13Z"
-      },
-      "0x1a500ad3738ac00caa8e42fa218962fa78c5c971": {
-        "at": "2026-11-17T07:53:13Z",
-        "reason": "real_depth",
-        "symbol": "NUCLEAR U.S RESERVE",
-        "until": "2026-11-18T07:53:13Z"
       },
       "0x1a9c5824a3c83c0bc0825918bea8778c79550f82": {
         "at": "2026-11-17T22:23:15Z",
@@ -7098,12 +7083,6 @@
         "reason": "real_depth",
         "symbol": "XTruth Oil",
         "until": "2026-11-18T22:23:15Z"
-      },
-      "0x32892d5072e8d23614cd7e048f1c3bef691cd8a6": {
-        "at": "2026-11-17T07:53:13Z",
-        "reason": "real_depth",
-        "symbol": "NOTF",
-        "until": "2026-11-18T07:53:13Z"
       },
       "0x329105c15ac753c8d23a9105abe2c63578f6002a": {
         "at": "2026-11-17T21:53:15Z",
@@ -9030,6 +9009,12 @@
         "reason": "real_depth",
         "symbol": "LAPTOP",
         "until": "2026-11-18T23:18:23Z"
+      },
+      "0x7321d3106be37134bafb4b4ebabb5bf0107cb172": {
+        "at": "2026-11-18T07:53:19Z",
+        "reason": "real_depth",
+        "symbol": "US OIL INDEX",
+        "until": "2026-11-19T07:53:19Z"
       },
       "0x739f3833df07fa0d1e981edd556931a02a5d4b01": {
         "at": "2026-11-17T19:28:16Z",
@@ -12745,12 +12730,6 @@
         "symbol": "Bank",
         "until": "2026-11-18T20:28:15Z"
       },
-      "0xdb0fd2454351f459502e7e269a655eb63c5ba4d6": {
-        "at": "2026-11-17T07:53:13Z",
-        "reason": "real_depth",
-        "symbol": "AVAX",
-        "until": "2026-11-18T07:53:13Z"
-      },
       "0xdb802ebc8ebde0b64438371679bb13abd985bed3": {
         "at": "2026-11-18T04:08:14Z",
         "reason": "real_depth",
@@ -13522,9 +13501,9 @@
     },
     "watch": {
       "0x7fc1a29e6c4571507de930d4606451a9bc6bb954": {
-        "checks": 3,
+        "checks": 4,
         "first_seen": "2026-11-18T07:03:17Z",
-        "last_check": "2026-11-18T07:38:15Z",
+        "last_check": "2026-11-18T07:53:19Z",
         "symbol": "Anthropic"
       }
     }
