@@ -578,3 +578,12 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-18T05:18:14Z,baseline,EXIT,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,HOLD,no_quote,
 2026-11-18T05:18:14Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
 2026-11-18T05:18:14Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=21 rechecks=0 new=0 checked=0 passed=0 bought=0 held=0 deferred=0 dex_only=0 goplus=0 requests=7 secs=2.0 bl_positions=2 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=none labels_due=0 labels_done=0 labels_calls=0 live=ok alerts=none alerts_sent=0
+2026-11-18T05:23:14Z,baseline,EXIT,MARSBASE,0x0b455a80139f9642bb47f2cb5afabbd8809a24af,HOLD,no_quote,
+2026-11-18T05:23:14Z,baseline,EXIT,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,HOLD,no_quote,
+2026-11-18T05:23:14Z,desk,VERIFY,callmebaby,0x01925d563e097e2d86d09690b39425593b570155,SKIP,real_depth,goplus=skipped until=2026-11-19T05:23:14Z
+2026-11-18T05:23:14Z,desk,VERIFY,REBOOT,0xc0d2ac10952d75d9b20435da5c3a5669ba774057,WATCH,goplus_not_ready,"first_seen=2026-11-18T05:23:14Z checks=1 pending=honeypot,buy_tax_pct,sell_tax_pct,dev_pct,top10_pct,lp_locked_pct b1=4 s1=0 b24=4 s24=0 liq=146039 dex=uniswap:v2 qliq=73012 pair_age=3 token_age=3"
+2026-11-18T05:23:14Z,desk,VERIFY,SESAMECOIN,0xa09505540de3858d2e8c513c833adc51100359d1,SKIP,real_depth,goplus=skipped until=2026-11-19T05:23:14Z
+2026-11-18T05:23:14Z,desk,VERIFY,TDF,0x047bcd20234d3f8f4fb7c1d836b3c7fa7bd34178,WATCH,goplus_not_ready,first_seen=2026-11-18T05:23:14Z checks=1 pending=top10_pct b1=6 s1=0 b24=6 s24=0 liq=56045 dex=uniswap:v2 qliq=28022 pair_age=7 token_age=7
+2026-11-18T05:23:14Z,desk,VERIFY,weETH,0x9ec006240ce8c4f4316e42d1a2d62d453f875d07,SKIP,missing:price,goplus=skipped until=2026-11-19T05:23:14Z
+2026-11-18T05:23:14Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
+2026-11-18T05:23:14Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=21 rechecks=0 new=5 checked=5 passed=0 bought=0 held=0 deferred=0 dex_only=3 goplus=2 requests=15 secs=5.3 bl_positions=2 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=4 labels_done=4 labels_calls=1 live=ok alerts=none alerts_sent=0
