@@ -2201,6 +2201,14 @@ Moved from CLAUDE.md section 11 on 2026-10-23 (BL-2 process cleanup). Wording is
   trigger is not met); keyless GeckoTerminal is about 10 calls/min per the docs, tools/ wait 7.5 s per call (about 8/min).
   4.3 attribution required (done here). 6.1 storing data is discouraged, refresh at least every 24 h if cached. 6.2 no copying
   or storing except as the terms permit. 4.1.6 no redistribution. Candles and snapshots in the public repo conflict with 6.1,
-  6.2 and 4.1.6. The owner reads sections 4 and 6 and decides storage by 2026-11-24, before BL-34's run.
-- Rejected: B accept the risk and log it; C move GeckoTerminal-derived files out of the public repo after the run; D stop now.
+  6.2 and 4.1.6. Storage was left to the owner.
+- On 2026-11-16 the options were B accept the risk and log it; C move GeckoTerminal-derived files out of the public repo
+  after the run; D stop now; B, C and D were rejected then.
+- Close-out, storage decided 2026-11-18 (the owner, docs only, DECISIONS): option B is now chosen; choice A (attribution)
+  still stands. Keep the free keyless API; backtest/candles/ and
+  backtest/liquid/ stay in the public repo; the residual risk against 6.1, 6.2 and 4.1.6 is accepted and logged; same policy
+  for Scout Raw Data and HoodScout (HS-129). Review item before real-money trading, not a Gate C blocker: a paid plan, and
+  whether new raw data stays public. End goal: if the desk makes money the tool goes private for the owner, possibly off
+  public GitHub Actions; until then, no new design that depends on staying public. Rejected: private data repos now, moving
+  files after BL-34's run, stopping GeckoTerminal. No code, tool, workflow, site or test change.
 - Suite: 557 tests on Python 3.13.18.

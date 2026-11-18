@@ -306,7 +306,7 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
   terminal and Paper equity card byte-identical (screenshots and sha256 pins). Telegram daily adds "<book> refilled +$x
   (not P&L)" (from state.json report.equity), "Gate B since ... · random N closes · kill at 200" and a per-trade line per
   book; every BL-3 line stays; no BL-34 line (core/ never reads backtest/, test) (docs/NOTES.md "BL-43").
-  Tests: stdlib unittest, `python -m unittest` (555 pass on 3.13.18).
+  Tests: stdlib unittest, `python -m unittest` (557 pass on 3.13.18).
 - cron-job.org token "baseline-desk cron" EXPIRES Thu 2027-01-21: renew by early January or the desk stops silently.
 - Technical detail per card, GoPlus diagnosis, BL-20 budget and full open items: docs/NOTES.md.
 - Open items:
@@ -399,11 +399,15 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
     failed to load. Automated use is allowed within plan limits, so the disable trigger (terms forbid automated use) is not met;
     keyless GeckoTerminal is about 10 calls/min (tools/ wait 7.5 s per call). 4.3: attribution required (done, BL-50).
     6.1: storing data is discouraged, refresh at least every 24 h if cached. 6.2: no copying or storing except as the terms
-    permit. 4.1.6: no redistribution. Candles and snapshots in the public repo conflict with 6.1, 6.2 and 4.1.6. The owner reads
-    sections 4 and 6 and decides storage by 2026-11-24, before BL-34's run (options B accept the risk, C move the files out
-    of the public repo after the run, D stop now were rejected, DECISIONS 2026-11-16).
-- Next step: the owner reads CoinGecko API Terms sections 4 and 6 and decides where GeckoTerminal-derived files (backtest/candles/,
-  backtest/liquid/) may be stored by 2026-11-24, before BL-34's run; the owner checks the deployed site footer (BL-50) and the BL-34 card (v3 dates, ~Nov 26). BL-46: snapshot.yml runs automatic every Monday 00:37 UTC; next run Nov 23.
+    permit. 4.1.6: no redistribution. Candles and snapshots in the public repo conflict with 6.1, 6.2 and 4.1.6.
+    DECIDED 2026-11-18 (the owner, DECISIONS; BL-50 closed): keep the free keyless GeckoTerminal API; GeckoTerminal-derived
+    files (backtest/candles/, backtest/liquid/) stay in the public repo; the residual risk against 6.1, 6.2 and 4.1.6 is
+    accepted and logged; attribution is done (BL-50). Same policy for Scout Raw Data and HoodScout (HS-129 credit line).
+    Review item, not a Gate C blocker: before real-money trading reassess a paid plan and whether new raw data stays public.
+    End goal: if the desk makes money the tool goes private for the owner, possibly off public GitHub Actions; until then
+    avoid new designs that depend on staying public. Rejected: private data repos now, moving files after BL-34's run,
+    stopping GeckoTerminal.
+- Next step: the owner checks the deployed site footer (BL-50) and the BL-34 card (v3 dates, ~Nov 26). BL-46: snapshot.yml runs automatic every Monday 00:37 UTC; next run Nov 23.
   How the sealed snapshot files (backtest/liquid/snapshots/sealed/) are opened is a later story, after BL-34's holdout
   run; until then nothing reads them.
   BL-45: 7 days of costs.yml runs from the first run (backtest/costs/window.json), then chat reads python -m
@@ -417,7 +421,7 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
   done, counts only; no return has been computed from backtest/liquid/); the execution design is researched in
   parallel (no wallet code). BL-38..BL-42 are candidates only (DECISIONS 2026-11-04). The owner checks the deployed site
   and the first Telegram daily summary with the BL-43 lines.
-- Last updated: 2026-11-16.
+- Last updated: 2026-11-18.
 
 ## 12. Glossary
 - Lead: a token the scanner found. Survivor: a lead that passed every hard skip.
