@@ -65,7 +65,7 @@
     },
     "refill_week": "2026-W47",
     "refills_usd": 56.55720719365456,
-    "ticks_since_buy": 10
+    "ticks_since_buy": 11
   },
   "desk": {
     "cash": 50.0,
@@ -1635,7 +1635,9 @@
         "symbol": "OFDC"
       },
       "0x243f73ba99b72a0a6ea3b962d5ffa638b9a0bd1b": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 9.262e-06,
         "first_seen": "2026-11-18T07:13:15Z",
         "sight_pair": "0x0fd053529310cc564efb6b3fb73020650499c0c4",
@@ -2603,7 +2605,8 @@
       },
       "0x3a0272b13f4f66511daf22cbb221d4ec14132c69": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 0.0001649,
         "first_seen": "2026-11-18T02:13:15Z",
@@ -3138,6 +3141,14 @@
         "sight_pair": "0x2c5882c291c09f2b63ed287f1eb21bdac2c28b0c6c5faa6d69be198526bbf874",
         "sight_qliq": 1,
         "symbol": "USEF"
+      },
+      "0x58e516009506a8ac0e91b0613b02a54a29529541": {
+        "done": [],
+        "first_price": 1.668e-05,
+        "first_seen": "2026-11-18T08:18:14Z",
+        "sight_pair": "0x5c184798d3aca361b158eb3c2c4a195480d38a69",
+        "sight_qliq": 72705,
+        "symbol": "BIDEN"
       },
       "0x5b662037c522fe74cf4939f2f00aa7e30c89c926": {
         "done": [
@@ -3880,7 +3891,9 @@
         "symbol": "CODF"
       },
       "0x9b0c3312dcb242bae448d9809d57acf712da90e1": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 9.193e-05,
         "first_seen": "2026-11-18T07:13:15Z",
         "sight_pair": "0xb481f0d391a992a07294d7713019fb4c4b50380c1746fc87ba38aee6ce62a2d7",
@@ -4522,6 +4535,14 @@
         "sight_qliq": 28,
         "symbol": "OIL U.S INDEX\ud83d\udee2\ufe0f"
       },
+      "0xd05579fa05da7d9d5e1ebfaf66b79388f6ebe9f2": {
+        "done": [],
+        "first_price": 8.024e-05,
+        "first_seen": "2026-11-18T08:18:14Z",
+        "sight_pair": "0x48becdedb703b0ea37fe58666b85d351f692fa4a802aa81dfeb0f55bfdfabfcf",
+        "sight_qliq": 1,
+        "symbol": "UFES"
+      },
       "0xd065553fbe667798cb92a7193244168cba5a6a30": {
         "done": [
           1,
@@ -4640,6 +4661,14 @@
         "sight_pair": "0x86e43019c8373c6155a916472c605e74aea505dcada01fd7278ba0d1210775f5",
         "sight_qliq": 25,
         "symbol": "GTA6"
+      },
+      "0xe551dbc5e7c61536314032490c1f1f88ca105e77": {
+        "done": [],
+        "first_price": 8.059e-05,
+        "first_seen": "2026-11-18T08:18:14Z",
+        "sight_pair": "0x01b9576fc2fc3fe7d60b1bb62f56bc049c9cd2d573eb0d327a106ddfe3d157aa",
+        "sight_qliq": 23,
+        "symbol": "XTO"
       },
       "0xe7f25f4088e322c45274eeea125bd7db5a391ec3": {
         "done": [
@@ -6656,6 +6685,12 @@
         "reason": "missing:liq_usd",
         "symbol": "Cobiecoinbase",
         "until": "2026-11-18T12:48:17Z"
+      },
+      "0x27ebb62c1dca3389e51dbd94a29b18c0bf9ad799": {
+        "at": "2026-11-18T08:18:14Z",
+        "reason": "real_depth",
+        "symbol": "Wizard",
+        "until": "2026-11-19T08:18:14Z"
       },
       "0x280f39d4badf6d3ea0cc8164229cd15ded628934": {
         "at": "2026-11-17T23:58:14Z",
@@ -11571,6 +11606,12 @@
         "symbol": "PLX",
         "until": "2026-11-18T21:43:14Z"
       },
+      "0xb200000000000000000000eb91d422d2e9b86fca": {
+        "at": "2026-11-18T08:18:14Z",
+        "reason": "real_depth",
+        "symbol": "DACITY",
+        "until": "2026-11-19T08:18:14Z"
+      },
       "0xb200000000000000000000ed6f2a156f20f901af": {
         "at": "2026-11-17T19:43:15Z",
         "reason": "real_depth",
@@ -12501,6 +12542,12 @@
         "symbol": "SPACEX",
         "until": "2026-11-18T14:33:18Z"
       },
+      "0xd05579fa05da7d9d5e1ebfaf66b79388f6ebe9f2": {
+        "at": "2026-11-18T08:18:14Z",
+        "reason": "real_depth",
+        "symbol": "UFES",
+        "until": "2026-11-19T08:18:14Z"
+      },
       "0xd065553fbe667798cb92a7193244168cba5a6a30": {
         "at": "2026-11-17T18:28:17Z",
         "reason": "real_depth",
@@ -12986,6 +13033,12 @@
         "reason": "real_depth",
         "symbol": "GTA6",
         "until": "2026-11-18T16:53:14Z"
+      },
+      "0xe551dbc5e7c61536314032490c1f1f88ca105e77": {
+        "at": "2026-11-18T08:18:14Z",
+        "reason": "real_depth",
+        "symbol": "XTO",
+        "until": "2026-11-19T08:18:14Z"
       },
       "0xe64ebf009566ede4d014925021d25da02e0fbe68": {
         "at": "2026-11-18T00:23:13Z",
@@ -13540,6 +13593,12 @@
         "first_seen": "2026-11-18T08:03:16Z",
         "last_check": "2026-11-18T08:03:16Z",
         "symbol": "US OIL INDEX"
+      },
+      "0x58e516009506a8ac0e91b0613b02a54a29529541": {
+        "checks": 1,
+        "first_seen": "2026-11-18T08:18:14Z",
+        "last_check": "2026-11-18T08:18:14Z",
+        "symbol": "BIDEN"
       },
       "0x7fc1a29e6c4571507de930d4606451a9bc6bb954": {
         "checks": 5,
