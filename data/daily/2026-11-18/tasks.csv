@@ -64,3 +64,12 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-18T00:23:13Z,desk,VERIFY,CLIPS,0x3467d96367d16f8f46a977172a5e934f05226038,SKIP,real_depth,goplus=skipped until=2026-11-19T00:23:13Z
 2026-11-18T00:23:13Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
 2026-11-18T00:23:13Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=22 rechecks=0 new=12 checked=12 passed=0 bought=0 held=0 deferred=0 dex_only=12 goplus=0 requests=20 secs=4.6 bl_positions=2 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=3 labels_done=3 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-18T00:28:17Z,baseline,EXIT,MARSBASE,0x0b455a80139f9642bb47f2cb5afabbd8809a24af,HOLD,no_quote,
+2026-11-18T00:28:17Z,baseline,EXIT,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,HOLD,no_quote,
+2026-11-18T00:28:17Z,desk,VERIFY,FCAT,0x07a143c18ca06ed41507d745e2a62525e30ccd91,WATCH,goplus_not_ready,first_seen=2026-11-17T22:18:14Z checks=8 pending=honeypot b1=477 s1=474 b24=6016 s24=5119 liq=50856 dex=uniswap:v4 qliq=23412 pair_age=139 token_age=139
+2026-11-18T00:28:17Z,desk,VERIFY,AERO,0x3f5bf3edac59d650d8fdf9657a71f2f904a3a4ee,WATCH,goplus_not_ready,"first_seen=2026-11-17T22:43:25Z checks=7 pending=honeypot,buy_tax_pct,sell_tax_pct,lp_locked_pct b1=322 s1=919 b24=11080 s24=24470 liq=2800323 dex=aero qliq=895486 pair_age=38735 token_age=38866"
+2026-11-18T00:28:17Z,desk,VERIFY,OUSI,0x8b704025b9e8df392569d14f00d48783f435af0b,WATCH,goplus_not_ready,first_seen=2026-11-18T00:08:24Z checks=2 pending=top10_pct b1=22 s1=0 b24=22 s24=0 liq=62044 dex=uniswap:v2 qliq=31023 pair_age=26 token_age=26
+2026-11-18T00:28:17Z,desk,VERIFY,SPACEX,0x3751f50ce208618518dccc1760e157768e4bb66d,SKIP,real_depth,goplus=skipped until=2026-11-19T00:28:17Z
+2026-11-18T00:28:17Z,desk,VERIFY,FACE,0xb2000000000000000000007b00e180414d7115cf,SKIP,real_depth,goplus=skipped until=2026-11-19T00:28:17Z
+2026-11-18T00:28:17Z,baseline,EXECUTE,FCAT,0x07a143c18ca06ed41507d745e2a62525e30ccd91,SKIP,reentry_cooldown,seed=202611180028 eligible=1 pick=0 pool=07a143 desk=WATCH launchpad=other
+2026-11-18T00:28:17Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=22 rechecks=3 new=2 checked=5 passed=0 bought=0 held=0 deferred=0 dex_only=2 goplus=3 requests=17 secs=6.8 bl_positions=2 bl_due=1 bl_eligible=1 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=3 labels_done=3 labels_calls=1 live=ok alerts=none alerts_sent=0
