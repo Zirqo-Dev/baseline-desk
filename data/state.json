@@ -67,7 +67,7 @@
     },
     "refill_week": "2026-W47",
     "refills_usd": 56.55720719365456,
-    "ticks_since_buy": 34
+    "ticks_since_buy": 35
   },
   "desk": {
     "cash": 50.0,
@@ -3201,6 +3201,14 @@
         "sight_qliq": 0,
         "symbol": "SENTIS"
       },
+      "0x77989d1a8fd35cbba2bb72aae9d11dd40927ee95": {
+        "done": [],
+        "first_price": 5.958e-06,
+        "first_seen": "2026-11-18T01:28:14Z",
+        "sight_pair": "0x07538ee624ed7108d15258a0c4c91bd2f2b96953",
+        "sight_qliq": 27869,
+        "symbol": "OIL U.S INDEX 2.0"
+      },
       "0x77e5a8199911a64a7fdc3d9790f56ff7f281be26": {
         "done": [
           1,
@@ -4394,7 +4402,8 @@
       },
       "0xd9faaa1cd6ec0c4aa276ee6fedb9d4e0a1ff247c": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 0.000182,
         "first_seen": "2026-11-17T19:23:28Z",
@@ -5078,6 +5087,12 @@
         "reason": "real_depth",
         "symbol": "D.U.S",
         "until": "2026-11-18T20:43:17Z"
+      },
+      "0x07a143c18ca06ed41507d745e2a62525e30ccd91": {
+        "at": "2026-11-18T01:28:14Z",
+        "reason": "real_depth",
+        "symbol": "FCAT",
+        "until": "2026-11-19T01:28:14Z"
       },
       "0x07a8906465807e8cd26cbab64f665eca02d4957c": {
         "at": "2026-11-17T17:58:15Z",
@@ -7184,6 +7199,12 @@
         "reason": "real_depth",
         "symbol": "AO\u200aDT",
         "until": "2026-11-18T13:53:13Z"
+      },
+      "0x38e3dc860456d40a3a19d96c5130098bbe5c745b": {
+        "at": "2026-11-18T01:28:14Z",
+        "reason": "real_depth",
+        "symbol": "OIL U.S INDEX\ud83d\udee2\ufe0f",
+        "until": "2026-11-19T01:28:14Z"
       },
       "0x38f08cc1c6b96d45dd7b75c5dcf5f28cd7f1f6aa": {
         "at": "2026-11-17T09:48:17Z",
@@ -12897,6 +12918,12 @@
         "symbol": "LUCE",
         "until": "2026-11-18T16:48:16Z"
       },
+      "0xf5c476cba8fe752f62f3a1b101bcbe2e69117dce": {
+        "at": "2026-11-18T01:28:14Z",
+        "reason": "real_depth",
+        "symbol": "KAI",
+        "until": "2026-11-19T01:28:14Z"
+      },
       "0xf5defed862efda003baf56a1abfd5fff44e5485e": {
         "at": "2026-11-17T11:08:16Z",
         "reason": "real_depth",
@@ -13115,23 +13142,17 @@
       }
     },
     "watch": {
-      "0x07a143c18ca06ed41507d745e2a62525e30ccd91": {
-        "checks": 10,
-        "first_seen": "2026-11-17T22:18:14Z",
-        "last_check": "2026-11-18T01:08:14Z",
-        "symbol": "FCAT"
-      },
-      "0x38e3dc860456d40a3a19d96c5130098bbe5c745b": {
-        "checks": 2,
-        "first_seen": "2026-11-18T00:48:16Z",
-        "last_check": "2026-11-18T01:08:14Z",
-        "symbol": "OIL U.S INDEX\ud83d\udee2\ufe0f"
-      },
       "0x3f5bf3edac59d650d8fdf9657a71f2f904a3a4ee": {
-        "checks": 9,
+        "checks": 10,
         "first_seen": "2026-11-17T22:43:25Z",
-        "last_check": "2026-11-18T01:08:14Z",
+        "last_check": "2026-11-18T01:28:14Z",
         "symbol": "AERO"
+      },
+      "0x77989d1a8fd35cbba2bb72aae9d11dd40927ee95": {
+        "checks": 1,
+        "first_seen": "2026-11-18T01:28:14Z",
+        "last_check": "2026-11-18T01:28:14Z",
+        "symbol": "OIL U.S INDEX 2.0"
       }
     }
   },
