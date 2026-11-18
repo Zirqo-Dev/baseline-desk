@@ -1116,3 +1116,15 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-18T10:03:15Z,desk,VERIFY,DTCC SOLANA SOL,0xceadec5a02e75648dc8ffabf34d0c7926d0d97c3,SKIP,real_depth,goplus=skipped until=2026-11-19T10:03:15Z b1=1 s1=0 b24=1 s24=0 liq=1787142 dex=uniswap:v4 qliq=1 pair_age=16 token_age=16
 2026-11-18T10:03:15Z,desk,VERIFY,USPR,0x51089f3d4b992c395e39dcbec0b22bad73da8309,SKIP,real_depth,goplus=skipped until=2026-11-19T10:03:15Z b1=1 s1=0 b24=1 s24=0 liq=1787981 dex=uniswap:v4 qliq=1 pair_age=17 token_age=17
 2026-11-18T10:03:15Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=21 rechecks=0 new=8 checked=8 passed=0 bought=0 held=0 deferred=0 dex_only=6 goplus=2 requests=19 secs=5.9 bl_positions=3 bl_due=0 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=3 labels_done=3 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-18T10:08:15Z,baseline,EXIT,MZG,0x0018b7e238dbfb210645b88072f32a77bd00c66e,HOLD,,pct=-3.13
+2026-11-18T10:08:15Z,baseline,EXIT,MARSBASE,0x0b455a80139f9642bb47f2cb5afabbd8809a24af,HOLD,no_quote,
+2026-11-18T10:08:15Z,baseline,EXIT,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,HOLD,no_quote,
+2026-11-18T10:08:15Z,desk,VERIFY,Anthropic,0x7fc1a29e6c4571507de930d4606451a9bc6bb954,SKIP,goplus_timeout,first_seen=2026-11-18T07:03:17Z checks=11 until=2026-11-19T10:08:15Z b1=179 s1=118 b24=561 s24=371 liq=276333 dex=uniswap:v4 qliq=149886 pair_age=187 token_age=187
+2026-11-18T10:08:15Z,desk,VERIFY,MZG,0x0018b7e238dbfb210645b88072f32a77bd00c66e,WATCH,goplus_not_ready,first_seen=2026-11-18T08:28:16Z checks=6 pending=honeypot b1=236 s1=234 b24=1172 s24=1333 liq=139654 dex=uniswap:v4 qliq=54642 pair_age=1120 token_age=1120
+2026-11-18T10:08:15Z,desk,VERIFY,REBOOT,0x3f451f04e5a4f7d51ad3eb07849c6b3dc2a261f4,SKIP,real_depth,first_seen=2026-11-18T09:33:14Z checks=3 goplus=skipped until=2026-11-19T10:08:15Z
+2026-11-18T10:08:15Z,desk,VERIFY,Xtruth Oil,0x1ffba6cdfee1d56c37154521dd61a95a1be163b5,WATCH,goplus_not_ready,first_seen=2026-11-18T09:48:16Z checks=2 pending=top10_pct b1=22 s1=0 b24=22 s24=0 liq=62146 dex=uniswap:v2 qliq=31070 pair_age=25 token_age=25
+2026-11-18T10:08:15Z,desk,VERIFY,UGOS,0x544c056aab086398cfe2532aac35e4381b5bd238,SKIP,real_depth,goplus=skipped until=2026-11-19T10:08:15Z
+2026-11-18T10:08:15Z,desk,VERIFY,MEOW,0x4e43cfb670796b2f1522845e2fbfda735ddbcccc,SKIP,real_depth,goplus=skipped until=2026-11-19T10:08:15Z
+2026-11-18T10:08:15Z,desk,VERIFY,NOBUY,0x7fa23be69362471ca686105bf2846aa767183333,SKIP,real_depth,goplus=skipped until=2026-11-19T10:08:15Z
+2026-11-18T10:08:15Z,desk,VERIFY,Basewolf,0xd6a0e4cdafd5b294b1352aa085e7a2782c7d7575,SKIP,real_depth,goplus=skipped until=2026-11-19T10:08:15Z
+2026-11-18T10:08:15Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=21 rechecks=4 new=4 checked=8 passed=0 bought=0 held=0 deferred=0 dex_only=5 goplus=3 requests=20 secs=7.3 bl_positions=3 bl_due=0 bl_eligible=1 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=4 labels_done=4 labels_calls=1 live=ok alerts=none alerts_sent=0
