@@ -21,8 +21,8 @@
       "s:TRUMP2028": "2026-11-18T15:58:17Z",
       "s:USOI": "2026-11-18T20:53:14Z"
     },
-    "day": "2026-11-17",
-    "day_start_value": 47.331412838741244,
+    "day": "2026-11-18",
+    "day_start_value": 43.403196950025496,
     "halted_day": "",
     "positions": {
       "0x0b455a80139f9642bb47f2cb5afabbd8809a24af": {
@@ -67,11 +67,11 @@
     },
     "refill_week": "2026-W47",
     "refills_usd": 56.55720719365456,
-    "ticks_since_buy": 17
+    "ticks_since_buy": 18
   },
   "desk": {
     "cash": 50.0,
-    "day": "2026-11-17",
+    "day": "2026-11-18",
     "day_start_value": 50.0,
     "halted_day": "",
     "positions": {},
@@ -8179,6 +8179,12 @@
         "symbol": "MERCATUS",
         "until": "2026-11-18T23:18:23Z"
       },
+      "0x68e900369be3c3aece3428866f8dcac78650ffed": {
+        "at": "2026-11-18T00:03:13Z",
+        "reason": "real_depth",
+        "symbol": "OUSI",
+        "until": "2026-11-19T00:03:13Z"
+      },
       "0x695931f5a9caae6d4f99bd14eb324e22b1db2bea": {
         "at": "2026-11-17T13:53:13Z",
         "reason": "real_depth",
@@ -10069,6 +10075,12 @@
         "symbol": "SHARES",
         "until": "2026-11-18T03:53:14Z"
       },
+      "0xb2000000000000000000002ffde59c319b599201": {
+        "at": "2026-11-18T00:03:13Z",
+        "reason": "missing:liq_usd",
+        "symbol": "AHR",
+        "until": "2026-11-19T00:03:13Z"
+      },
       "0xb200000000000000000000300326f3d3541f90df": {
         "at": "2026-11-17T22:48:17Z",
         "reason": "real_depth",
@@ -11611,6 +11623,12 @@
         "symbol": "NXT",
         "until": "2026-11-18T11:28:13Z"
       },
+      "0xcb7e13ffff1c8c1f6f4b0ff480b598ac12eab99e": {
+        "at": "2026-11-18T00:03:13Z",
+        "reason": "real_depth",
+        "symbol": "FCAT",
+        "until": "2026-11-19T00:03:13Z"
+      },
       "0xcb88a66e6a98400b6b41b8cbf30cf298d8074d68": {
         "at": "2026-11-17T11:58:14Z",
         "reason": "real_depth",
@@ -12853,6 +12871,13 @@
           "open": 3,
           "refills_usd": 56.557207,
           "value_usd": 46.86089
+        },
+        {
+          "cash_usd": 32.504535,
+          "day": "2026-11-17",
+          "open": 2,
+          "refills_usd": 56.557207,
+          "value_usd": 43.073151
         }
       ],
       "desk": [
@@ -12980,6 +13005,13 @@
           "open": 0,
           "refills_usd": 2.392231,
           "value_usd": 50.0
+        },
+        {
+          "cash_usd": 50.0,
+          "day": "2026-11-17",
+          "open": 0,
+          "refills_usd": 2.392231,
+          "value_usd": 50.0
         }
       ]
     },
@@ -12998,33 +13030,33 @@
     "totals": {
       "funnel": {
         "buy": 1,
-        "gate": 1527,
+        "gate": 1549,
         "safety": 1,
-        "scan": 21796
+        "scan": 23149
       },
       "kills": {
         "gate": {
           "asset:quote": 3,
-          "asset:stable": 21,
-          "asset:wrapped": 18,
+          "asset:stable": 22,
+          "asset:wrapped": 21,
           "liquidity": 8614,
           "missing:age_min": 3,
-          "missing:liq_usd": 1658,
-          "missing:price": 165,
-          "missing:symbol": 275,
-          "real_depth": 9512
+          "missing:liq_usd": 1764,
+          "missing:price": 178,
+          "missing:symbol": 279,
+          "real_depth": 10716
         },
         "safety": {
-          "goplus_partial": 20,
-          "goplus_timeout": 1213,
+          "goplus_partial": 22,
+          "goplus_timeout": 1225,
           "lp_locked": 2,
           "mint_open": 46,
-          "nobody_can_sell": 16,
+          "nobody_can_sell": 21,
           "too_old": 4,
           "top10_pct": 21
         }
       },
-      "through": "2026-11-16"
+      "through": "2026-11-17"
     }
   }
 }
