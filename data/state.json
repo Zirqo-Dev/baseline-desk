@@ -31,9 +31,9 @@
         "entry_qliq": 55002,
         "entry_ts": "2026-11-18T09:28:18Z",
         "ladder_done": [],
-        "last_liq_usd": 139682.21,
-        "last_price": 0.002752,
-        "last_qliq": 54840,
+        "last_liq_usd": 139354.99,
+        "last_price": 0.002743,
+        "last_qliq": 54812,
         "launchpad": "other",
         "orig_qty": 1760.5877884447157,
         "pair": "0xf5e6c4a4a5f8910df78c35a049470d44ee112445c5ec84a36feec3c5bd21de7a",
@@ -83,7 +83,7 @@
     },
     "refill_week": "2026-W47",
     "refills_usd": 56.55720719365456,
-    "ticks_since_buy": 3
+    "ticks_since_buy": 4
   },
   "desk": {
     "cash": 50.0,
@@ -1473,6 +1473,14 @@
         "sight_pair": "0x53432b8bd01bc453ab030135e7f0c39570097cd6dd788c7e64be77eb9ad03978",
         "sight_qliq": 548,
         "symbol": "NOTF"
+      },
+      "0x1ffba6cdfee1d56c37154521dd61a95a1be163b5": {
+        "done": [],
+        "first_price": 2.918e-06,
+        "first_seen": "2026-11-18T09:48:16Z",
+        "sight_pair": "0x11b5049d7c2c88bdcff4a838514d071d7d596c7f",
+        "sight_qliq": 27891,
+        "symbol": "Xtruth Oil"
       },
       "0x200af83f191854dae9869378b5ff48ccaf8f5bc4": {
         "done": [
@@ -5752,6 +5760,12 @@
         "symbol": "OIL U.S INDEX",
         "until": "2026-11-18T11:58:14Z"
       },
+      "0x1167d48bd1b233c583269f333ce0168c8d6a661b": {
+        "at": "2026-11-18T09:48:16Z",
+        "reason": "missing:liq_usd",
+        "symbol": "Basebear",
+        "until": "2026-11-19T09:48:16Z"
+      },
       "0x116da60fc7c2d51d52effb83d5e17a311cb564e5": {
         "at": "2026-11-17T20:48:14Z",
         "reason": "real_depth",
@@ -5847,6 +5861,12 @@
         "reason": "real_depth",
         "symbol": "OFDC",
         "until": "2026-11-19T00:13:15Z"
+      },
+      "0x1379fd215bd20cfbd212e78ba67cc3374b15d1d5": {
+        "at": "2026-11-18T09:48:16Z",
+        "reason": "missing:price",
+        "symbol": "XRP + RLUSD + BNY + XRPL",
+        "until": "2026-11-19T09:48:16Z"
       },
       "0x13887cf3e3d29a2628ec899eeb8053668cec9b1f": {
         "at": "2026-11-17T21:23:15Z",
@@ -6063,6 +6083,12 @@
         "reason": "real_depth",
         "symbol": "XTruth Oil",
         "until": "2026-11-19T07:23:15Z"
+      },
+      "0x17db15b7f1ecdd91f1dba5797ec034160f80fee1": {
+        "at": "2026-11-18T09:48:16Z",
+        "reason": "missing:liq_usd",
+        "symbol": "FUZZYCAT",
+        "until": "2026-11-19T09:48:16Z"
       },
       "0x1827be7eb5a2824ca007409c887abac5dcd25523": {
         "at": "2026-11-17T12:13:13Z",
@@ -8272,12 +8298,6 @@
         "symbol": "ORBYTE",
         "until": "2026-11-18T20:28:15Z"
       },
-      "0x4e2b91996e81a27684e0da5e5499e7660f11b91b": {
-        "at": "2026-11-17T09:43:13Z",
-        "reason": "real_depth",
-        "symbol": "NARUZO",
-        "until": "2026-11-18T09:43:13Z"
-      },
       "0x4e5baa23b0ea84f6d0db4820e85c43251fcdcccc": {
         "at": "2026-11-17T13:18:16Z",
         "reason": "missing:liq_usd",
@@ -8607,6 +8627,12 @@
         "reason": "missing:liq_usd",
         "symbol": "PVE",
         "until": "2026-11-18T14:28:15Z"
+      },
+      "0x5ab3d11669bda32d9aa35ce4d3ef38113a404785": {
+        "at": "2026-11-18T09:48:16Z",
+        "reason": "real_depth",
+        "symbol": "DTCCS",
+        "until": "2026-11-19T09:48:16Z"
       },
       "0x5ad15bdfec7168e868d87de5e72629603a429710": {
         "at": "2026-11-18T08:38:15Z",
@@ -11698,12 +11724,6 @@
         "symbol": "BASEINU",
         "until": "2026-11-18T18:38:15Z"
       },
-      "0xb200000000000000000000c7d2bef359fe8be5b6": {
-        "at": "2026-11-17T09:43:13Z",
-        "reason": "real_depth",
-        "symbol": "BTW",
-        "until": "2026-11-18T09:43:13Z"
-      },
       "0xb200000000000000000000c951806efe358a3cdb": {
         "at": "2026-11-18T06:13:16Z",
         "reason": "real_depth",
@@ -13831,27 +13851,27 @@
     },
     "watch": {
       "0x0018b7e238dbfb210645b88072f32a77bd00c66e": {
-        "checks": 4,
+        "checks": 5,
         "first_seen": "2026-11-18T08:28:16Z",
-        "last_check": "2026-11-18T09:28:18Z",
+        "last_check": "2026-11-18T09:48:16Z",
         "symbol": "MZG"
       },
-      "0x3f451f04e5a4f7d51ad3eb07849c6b3dc2a261f4": {
+      "0x1ffba6cdfee1d56c37154521dd61a95a1be163b5": {
         "checks": 1,
+        "first_seen": "2026-11-18T09:48:16Z",
+        "last_check": "2026-11-18T09:48:16Z",
+        "symbol": "Xtruth Oil"
+      },
+      "0x3f451f04e5a4f7d51ad3eb07849c6b3dc2a261f4": {
+        "checks": 2,
         "first_seen": "2026-11-18T09:33:14Z",
-        "last_check": "2026-11-18T09:33:14Z",
+        "last_check": "2026-11-18T09:48:16Z",
         "symbol": "REBOOT"
       },
-      "0x5ab3d11669bda32d9aa35ce4d3ef38113a404785": {
-        "checks": 2,
-        "first_seen": "2026-11-18T09:08:17Z",
-        "last_check": "2026-11-18T09:28:18Z",
-        "symbol": "DTCCS"
-      },
       "0x7fc1a29e6c4571507de930d4606451a9bc6bb954": {
-        "checks": 9,
+        "checks": 10,
         "first_seen": "2026-11-18T07:03:17Z",
-        "last_check": "2026-11-18T09:28:18Z",
+        "last_check": "2026-11-18T09:48:16Z",
         "symbol": "Anthropic"
       }
     }
