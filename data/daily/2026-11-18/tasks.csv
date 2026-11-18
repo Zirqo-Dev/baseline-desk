@@ -1169,3 +1169,13 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-18T10:33:13Z,desk,VERIFY,cost,0xb2000000000000000000008b355e3bd6ab589301,SKIP,real_depth,goplus=skipped until=2026-11-19T10:33:13Z
 2026-11-18T10:33:13Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
 2026-11-18T10:33:13Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=21 rechecks=0 new=7 checked=7 passed=0 bought=0 held=0 deferred=0 dex_only=7 goplus=0 requests=14 secs=3.2 bl_positions=2 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=none labels_due=0 labels_done=0 labels_calls=0 live=ok alerts=none alerts_sent=0
+2026-11-18T10:38:15Z,baseline,EXIT,MARSBASE,0x0b455a80139f9642bb47f2cb5afabbd8809a24af,HOLD,no_quote,
+2026-11-18T10:38:15Z,baseline,EXIT,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,HOLD,no_quote,
+2026-11-18T10:38:15Z,desk,VERIFY,Basecat,0xfb57515620a3abf6e9610597f0d85c42b7516f1e,WATCH,goplus_not_ready,first_seen=2026-11-18T10:03:15Z checks=3 pending=top10_pct b1=69 s1=1 b24=69 s24=1 liq=176633 dex=uniswap:v2 qliq=87992 pair_age=39 token_age=39
+2026-11-18T10:38:15Z,desk,VERIFY,IRYS,0x5a8b8d5b7ea4864ad56faa6da1090115cae8c009,SKIP,real_depth,goplus=skipped until=2026-11-19T10:38:15Z
+2026-11-18T10:38:15Z,desk,VERIFY,SCT,0xb200000000000000000000871e2831012f43f143,SKIP,goplus_partial,until=2026-11-19T10:38:15Z b1=166 s1=93 b24=166 s24=93 liq=40790 dex=uniswap:v4 qliq=11477 pair_age=5 token_age=5
+2026-11-18T10:38:15Z,desk,VERIFY,M,0x81c374fe10b2933f6e80422f89e5ff8204141101,SKIP,real_depth,goplus=skipped until=2026-11-19T10:38:15Z
+2026-11-18T10:38:15Z,desk,VERIFY,Basehorse,0x54de64aab0c0a2b5b30470c52948451a62b4a588,SKIP,real_depth,goplus=skipped until=2026-11-19T10:38:15Z
+2026-11-18T10:38:15Z,desk,VERIFY,PAD,0x1ac9f0830afebfbe315dd27f15c5b2b73df8354e,SKIP,real_depth,goplus=skipped until=2026-11-19T10:38:15Z b1=3 s1=0 b24=3 s24=0 liq=81092 dex=uniswap:v4 qliq=22 pair_age=7 token_age=7
+2026-11-18T10:38:15Z,baseline,EXECUTE,Basecat,0xfb57515620a3abf6e9610597f0d85c42b7516f1e,BUY,,usd=5.00 fill=1.434869155e-05 seed=202611181038 eligible=1 pick=0 pool=fb5751 desk=WATCH launchpad=other b1=69 s1=1 b24=69 s24=1 liq=176633 dex=uniswap:v2 qliq=87992 pair_age=39 token_age=39
+2026-11-18T10:38:15Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=21 rechecks=1 new=5 checked=6 passed=0 bought=0 held=0 deferred=0 dex_only=4 goplus=2 requests=16 secs=4.8 bl_positions=2 bl_due=1 bl_eligible=1 bl_bought=1 report=none machine=none bl_error=none labels=ok labels_due=2 labels_done=2 labels_calls=1 live=ok alerts=none alerts_sent=0
