@@ -67,7 +67,7 @@
     },
     "refill_week": "2026-W47",
     "refills_usd": 56.55720719365456,
-    "ticks_since_buy": 19
+    "ticks_since_buy": 20
   },
   "desk": {
     "cash": 50.0,
@@ -375,6 +375,14 @@
         "sight_pair": "0x5f3000555728b1bf462ad6022db81aa37ab6cbd61dfe57a9cba0708e6c245bc1",
         "sight_qliq": 14927,
         "symbol": "AO\u200aDT"
+      },
+      "0x065ef07a71118104e9adbd331d2dcdc85add01b9": {
+        "done": [],
+        "first_price": 1.309e-05,
+        "first_seen": "2026-11-18T12:18:14Z",
+        "sight_pair": "0xaeea5801d7b26941e476e50381125da15a321a6e",
+        "sight_qliq": 73170,
+        "symbol": "CLAUDIA"
       },
       "0x07478402918542ad4755a5e057c4cc208349d086": {
         "done": [
@@ -1151,7 +1159,9 @@
         "symbol": "NODF"
       },
       "0x1668cd48f31d869fca21eb826ca60e94cffc018c": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 8.115e-05,
         "first_seen": "2026-11-18T11:18:14Z",
         "sight_pair": "0x2a92201229df27e24c041d81ff33d1615884bd4090c28cd4026ce54bcea59a39",
@@ -3684,6 +3694,14 @@
         "sight_pair": "0xa84679a373506c5366b6aa97c2d93994584684e6f555e7140518ad670a8f5deb",
         "sight_qliq": 2282,
         "symbol": "USRP"
+      },
+      "0x85464206701cb9fe9fb37635f12e83e42c7de09e": {
+        "done": [],
+        "first_price": 0.0001071,
+        "first_seen": "2026-11-18T12:18:14Z",
+        "sight_pair": "0x1a51e3c2a6c28d74a62dbc2b26bfe7ccc3216deb71ed010efccbb65d4647fae1",
+        "sight_qliq": 1,
+        "symbol": "PIEVERSE"
       },
       "0x85cdb48bfe8cdc9efcc75837c2416c830cead69a": {
         "done": [
@@ -9917,6 +9935,12 @@
         "symbol": "USRP",
         "until": "2026-11-19T11:48:15Z"
       },
+      "0x85464206701cb9fe9fb37635f12e83e42c7de09e": {
+        "at": "2026-11-18T12:18:14Z",
+        "reason": "real_depth",
+        "symbol": "PIEVERSE",
+        "until": "2026-11-19T12:18:14Z"
+      },
       "0x855fdd51076e44dcc53979242ac1f6a50d327b01": {
         "at": "2026-11-17T19:43:15Z",
         "reason": "real_depth",
@@ -11164,6 +11188,12 @@
         "reason": "real_depth",
         "symbol": "GTA6",
         "until": "2026-11-19T09:18:26Z"
+      },
+      "0xb2000000000000000000001729a9ad454996a077": {
+        "at": "2026-11-18T12:18:14Z",
+        "reason": "real_depth",
+        "symbol": "SANC",
+        "until": "2026-11-19T12:18:14Z"
       },
       "0xb200000000000000000000187f7071d6e321a7d2": {
         "at": "2026-11-17T23:28:15Z",
@@ -14197,6 +14227,12 @@
       }
     },
     "watch": {
+      "0x065ef07a71118104e9adbd331d2dcdc85add01b9": {
+        "checks": 1,
+        "first_seen": "2026-11-18T12:18:14Z",
+        "last_check": "2026-11-18T12:18:14Z",
+        "symbol": "CLAUDIA"
+      },
       "0x7be31af8b76beeded03c373f2d5032c4b5d2d6a2": {
         "checks": 2,
         "first_seen": "2026-11-18T11:53:18Z",
