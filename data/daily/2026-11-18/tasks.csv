@@ -1658,3 +1658,16 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-18T14:43:14Z,baseline,EXIT,CBB,0xf09f274ec8aee1de0d9be858c31a1bb09445c267,HOLD,,pct=-17.82
 2026-11-18T14:43:14Z,desk,VERIFY,XSHAZ,0xb212a4c9bbf545466b175ee7ef39a9cff5672b44,SKIP,real_depth,goplus=skipped until=2026-11-19T14:43:14Z
 2026-11-18T14:43:14Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=21 rechecks=0 new=1 checked=1 passed=0 bought=0 held=0 deferred=0 dex_only=1 goplus=0 requests=9 secs=2.2 bl_positions=3 bl_due=0 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=none labels_due=0 labels_done=0 labels_calls=0 live=ok alerts=none alerts_sent=0
+2026-11-18T14:48:17Z,baseline,EXIT,MARSBASE,0x0b455a80139f9642bb47f2cb5afabbd8809a24af,HOLD,no_quote,
+2026-11-18T14:48:17Z,baseline,EXIT,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,HOLD,no_quote,
+2026-11-18T14:48:17Z,baseline,EXIT,CBB,0xf09f274ec8aee1de0d9be858c31a1bb09445c267,SELL,hard_stop,pct=-26.00 intended=0.0001238500285 quote=0.0001222
+2026-11-18T14:48:17Z,desk,VERIFY,U0DF,0xbbb12343e191f06c52267bce86c998b4c9405a2c,WATCH,goplus_not_ready,"first_seen=2026-11-18T12:58:22Z checks=7 pending=honeypot,buy_tax_pct,sell_tax_pct,lp_locked_pct b1=177 s1=118 b24=344 s24=226 liq=267411 dex=uniswap:v4 qliq=143647 pair_age=115 token_age=115"
+2026-11-18T14:48:17Z,desk,VERIFY,SI,0x1899687c2211b47bef4bc16a4d3100f562114bed,WATCH,goplus_not_ready,first_seen=2026-11-18T14:13:16Z checks=3 pending=top10_pct b1=41 s1=1 b24=41 s24=1 liq=160847 dex=uniswap:v2 qliq=80425 pair_age=36 token_age=36
+2026-11-18T14:48:17Z,desk,VERIFY,INDEX OIL UNITED STATES,0x08b1ae8b3c056dd8a3572aae153d44c8bbcca605,WATCH,goplus_not_ready,first_seen=2026-11-18T14:33:15Z checks=2 pending=top10_pct b1=17 s1=0 b24=17 s24=0 liq=58533 dex=uniswap:v2 qliq=29265 pair_age=21 token_age=21
+2026-11-18T14:48:17Z,desk,VERIFY,JALU,0x14032097c10795f796c0dbf73b8f6783a5cfd115,WATCH,goplus_not_ready,"first_seen=2026-11-18T14:33:15Z checks=2 pending=honeypot,top10_pct b1=32 s1=20 b24=32 s24=20 liq=36102 dex=uniswap:v4 qliq=18033 pair_age=21 token_age=21"
+2026-11-18T14:48:17Z,desk,VERIFY,GITLAB,0xdedf44ab8ee55c936cc6be38493f91f706652674,SKIP,real_depth,goplus=skipped until=2026-11-19T14:48:17Z
+2026-11-18T14:48:17Z,desk,VERIFY,FEATHER,0xad415254a1c0dffba466db05a4ee2f6ad7e4df01,SKIP,missing:liq_usd,goplus=skipped until=2026-11-19T14:48:17Z
+2026-11-18T14:48:17Z,desk,VERIFY,Asian,0xb2000000000000000000005d97c7638b4a104401,SKIP,real_depth,goplus=skipped until=2026-11-19T14:48:17Z
+2026-11-18T14:48:17Z,desk,VERIFY,IOTY,0xb200000000000000000000afda2124b01f125cad,SKIP,real_depth,goplus=skipped until=2026-11-19T14:48:17Z
+2026-11-18T14:48:17Z,desk,VERIFY,SOS,0xf6127b1c8b26c5d139fcf7e2900f22c51cf830c1,SKIP,real_depth,goplus=skipped until=2026-11-19T14:48:17Z b1=1 s1=0 b24=1 s24=0 liq=76588 dex=uniswap:v4 qliq=0 pair_age=21 token_age=21
+2026-11-18T14:48:17Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=21 rechecks=4 new=5 checked=9 passed=0 bought=0 held=0 deferred=0 dex_only=5 goplus=4 requests=22 secs=9.5 bl_positions=3 bl_due=0 bl_eligible=3 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=3 labels_done=3 labels_calls=1 live=ok alerts=none alerts_sent=0
