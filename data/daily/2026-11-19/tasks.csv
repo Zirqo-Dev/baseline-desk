@@ -704,3 +704,11 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-19T05:58:15Z,desk,VERIFY,SOUPEXPERIMENT,0x51e8932d7d58c6f7cb432f7d02439cc788e9cccc,SKIP,missing:liq_usd,goplus=skipped until=2026-11-20T05:58:15Z
 2026-11-19T05:58:15Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
 2026-11-19T05:58:15Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=0 new=3 checked=3 passed=0 bought=0 held=0 deferred=0 dex_only=3 goplus=0 requests=11 secs=2.5 bl_positions=2 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=2 labels_done=2 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-19T06:03:14Z,baseline,EXIT,MARSBASE,0x0b455a80139f9642bb47f2cb5afabbd8809a24af,HOLD,no_quote,
+2026-11-19T06:03:14Z,baseline,EXIT,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,HOLD,no_quote,
+2026-11-19T06:03:14Z,desk,VERIFY,VTC,0xc8377eda15d2f3cfe159b049821de1a433401c28,WATCH,goplus_not_ready,"first_seen=2026-11-19T04:13:18Z checks=7 pending=honeypot,buy_tax_pct,sell_tax_pct,lp_locked_pct b1=36 s1=11 b24=73 s24=23 liq=36803 dex=uniswap:v4 qliq=11002 pair_age=114 token_age=114"
+2026-11-19T06:03:14Z,desk,VERIFY,VICE 6,0xd69d733cff7717d03b43b24d2c2d64adfc7ce98a,WATCH,goplus_not_ready,"first_seen=2026-11-19T04:28:15Z checks=6 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct b1=35 s1=12 b24=63 s24=21 liq=36828 dex=uniswap:v4 qliq=10944 pair_age=101 token_age=101"
+2026-11-19T06:03:14Z,desk,VERIFY,Fluxora,0x24cb1568ce7459ed0308107899de1984cffdaba3,SKIP,real_depth,goplus=skipped until=2026-11-20T06:03:14Z
+2026-11-19T06:03:14Z,desk,VERIFY,SOUP,0xb200000000000000000000c57d8ab865135fab0f,SKIP,real_depth,goplus=skipped until=2026-11-20T06:03:14Z
+2026-11-19T06:03:14Z,baseline,EXECUTE,VICE 6,0xd69d733cff7717d03b43b24d2c2d64adfc7ce98a,SKIP,reentry_cooldown,"seed=202611190603 eligible=2 pick=1 pool=c8377e,d69d73 desk=WATCH launchpad=other"
+2026-11-19T06:03:14Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=19 rechecks=2 new=2 checked=4 passed=0 bought=0 held=0 deferred=0 dex_only=2 goplus=2 requests=13 secs=4.7 bl_positions=2 bl_due=1 bl_eligible=2 bl_bought=0 report=none machine=none bl_error=none labels=none labels_due=0 labels_done=0 labels_calls=0 live=ok alerts=none alerts_sent=0
