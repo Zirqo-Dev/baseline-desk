@@ -52,13 +52,13 @@
         "entry_qliq": 48767,
         "entry_ts": "2026-11-19T01:03:14Z",
         "ladder_done": [],
-        "last_liq_usd": 121302.47,
-        "last_price": 0.0004057,
-        "last_qliq": 60045,
+        "last_liq_usd": 130269.1,
+        "last_price": 0.0004601,
+        "last_qliq": 59185,
         "launchpad": "other",
         "orig_qty": 14446.088589649027,
         "pair": "0xce957a148291fa8f524afb7c0a74917504c5b472",
-        "peak_price": 0.0004057,
+        "peak_price": 0.0004601,
         "qty": 14446.088589649027,
         "symbol": "SEED"
       },
@@ -83,7 +83,7 @@
     },
     "refill_week": "2026-W47",
     "refills_usd": 56.55720719365456,
-    "ticks_since_buy": 1
+    "ticks_since_buy": 2
   },
   "desk": {
     "cash": 50.0,
@@ -3812,7 +3812,9 @@
         "symbol": "ZBTC"
       },
       "0x844f62667e7883d7bcf0c5526eaa2b9fba0cf2ab": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 0.0001039,
         "first_seen": "2026-11-19T00:08:18Z",
         "sight_pair": "0xb19ab2c8a0bd5ab73de6a4fd31cf8cbccc3437406ce0eb0abd7838570755d110",
@@ -4160,17 +4162,6 @@
         "sight_pair": "0xd127c351ca59cbef3a5551378a8d559ac1b5bb1477eae7e5ae221b2627f4c553",
         "sight_qliq": 0,
         "symbol": "MMT"
-      },
-      "0x9c4d7be1424318f21401847204bfb5665a106606": {
-        "done": [
-          1,
-          6
-        ],
-        "first_price": 0.0001925,
-        "first_seen": "2026-11-18T01:13:13Z",
-        "sight_pair": "0xef58d83155bda355366e453ede331a290f04c3261123f2e0f9ced1326666aada",
-        "sight_qliq": 28,
-        "symbol": "OIL U.S INDEX 2.0"
       },
       "0x9cba55af4240a34c796374d807ba653d4f505ebf": {
         "done": [
@@ -5051,7 +5042,8 @@
       },
       "0xee96963496f3bf032518f4b7702b675a573b385b": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 9.848e-05,
         "first_seen": "2026-11-18T19:08:26Z",
@@ -5214,17 +5206,6 @@
         "sight_pair": "0x18e6320b5142e1b6a56d021e7e9de4ef7a9593d6",
         "sight_qliq": 26672,
         "symbol": "\u054d\u054fD\ud81b\udf0a "
-      },
-      "0xfa7755df8c30e3cf0c10ad54a790b8f83d1ad4e3": {
-        "done": [
-          1,
-          6
-        ],
-        "first_price": 8.866e-05,
-        "first_seen": "2026-11-18T01:13:13Z",
-        "sight_pair": "0x304b1f074c921448dfefabe782ad8bc1c205c7dd5ba6be0de88622961f8df80e",
-        "sight_qliq": 41,
-        "symbol": "USOR"
       },
       "0xfada4708e587964c9b70b1b8738064ce752dd310": {
         "done": [
@@ -5620,6 +5601,12 @@
         "reason": "missing:symbol",
         "symbol": "",
         "until": "2026-11-19T20:08:15Z"
+      },
+      "0x05fb5175353301cbf41374e7adf1679d2b4cdd54": {
+        "at": "2026-11-19T01:13:13Z",
+        "reason": "missing:liq_usd",
+        "symbol": "VTC",
+        "until": "2026-11-20T01:13:13Z"
       },
       "0x0636661cc1135e431e97cb0af6b8c4ea68beb663": {
         "at": "2026-11-18T17:18:17Z",
@@ -7451,6 +7438,12 @@
         "symbol": "SCT",
         "until": "2026-11-19T10:33:13Z"
       },
+      "0x2f17878f8bc40656c4ef39c7688b39e183d37b07": {
+        "at": "2026-11-19T01:13:13Z",
+        "reason": "goplus_timeout",
+        "symbol": "OpenAI",
+        "until": "2026-11-20T01:13:13Z"
+      },
       "0x2f4946ec049b8bb9acccc2f6992b2f00476b40fe": {
         "at": "2026-11-18T20:48:16Z",
         "reason": "real_depth",
@@ -9119,6 +9112,12 @@
         "symbol": "MAMO",
         "until": "2026-11-19T19:38:14Z"
       },
+      "0x5f61cdcaaa167c8ea92728e564953494cca2df8d": {
+        "at": "2026-11-19T01:13:13Z",
+        "reason": "real_depth",
+        "symbol": "DCTY",
+        "until": "2026-11-20T01:13:13Z"
+      },
       "0x5fe9f0499c97f2c72d31554f15b13de1b79ccccc": {
         "at": "2026-11-18T20:58:17Z",
         "reason": "missing:liq_usd",
@@ -10589,12 +10588,6 @@
         "symbol": "KNTQ",
         "until": "2026-11-19T16:53:13Z"
       },
-      "0x9717323dc30c25d753afc40c74a47bb58a78db30": {
-        "at": "2026-11-18T01:13:13Z",
-        "reason": "real_depth",
-        "symbol": "PEPKING",
-        "until": "2026-11-19T01:13:13Z"
-      },
       "0x9724109b592de5c575b4b9df18963b086a7c131a": {
         "at": "2026-11-18T20:13:13Z",
         "reason": "real_depth",
@@ -10792,12 +10785,6 @@
         "reason": "real_depth",
         "symbol": "ID",
         "until": "2026-11-19T21:43:14Z"
-      },
-      "0x9c4d7be1424318f21401847204bfb5665a106606": {
-        "at": "2026-11-18T01:13:13Z",
-        "reason": "real_depth",
-        "symbol": "OIL U.S INDEX 2.0",
-        "until": "2026-11-19T01:13:13Z"
       },
       "0x9c6a985b9202338e8418f73046d3547e2fcfcccc": {
         "at": "2026-11-19T00:18:16Z",
@@ -11140,6 +11127,12 @@
         "reason": "real_depth",
         "symbol": "BETR",
         "until": "2026-11-19T20:53:15Z"
+      },
+      "0xa9729b7e4dd25c1050912d1c861ed1c15dc0804e": {
+        "at": "2026-11-19T01:13:13Z",
+        "reason": "real_depth",
+        "symbol": "ANTHROPIC",
+        "until": "2026-11-20T01:13:13Z"
       },
       "0xa991471be6ca90925d6e98d7c1ffc721a8b91abc": {
         "at": "2026-11-18T07:43:25Z",
@@ -12479,6 +12472,12 @@
         "symbol": "FHE",
         "until": "2026-11-19T09:33:14Z"
       },
+      "0xb3b71bacfb2ed78f1af36bd1ef7084db4cd3dba3": {
+        "at": "2026-11-19T01:13:13Z",
+        "reason": "missing:liq_usd",
+        "symbol": "MOES",
+        "until": "2026-11-20T01:13:13Z"
+      },
       "0xb3eb378ed6e078f23c89d3f8dd9050d8f1f664c6": {
         "at": "2026-11-18T06:13:16Z",
         "reason": "real_depth",
@@ -12928,12 +12927,6 @@
         "reason": "real_depth",
         "symbol": "VICE 6",
         "until": "2026-11-20T00:48:14Z"
-      },
-      "0xc9d59520a4e0d2a9e4baa1a4ce5adb732507cccc": {
-        "at": "2026-11-18T01:13:13Z",
-        "reason": "missing:liq_usd",
-        "symbol": "TONKER",
-        "until": "2026-11-19T01:13:13Z"
       },
       "0xc9dedaa4c02cfb55a04d80ec330c9199f861cccc": {
         "at": "2026-11-18T20:13:13Z",
@@ -14153,12 +14146,6 @@
         "symbol": "AX1",
         "until": "2026-11-19T15:58:19Z"
       },
-      "0xfa7755df8c30e3cf0c10ad54a790b8f83d1ad4e3": {
-        "at": "2026-11-18T01:13:13Z",
-        "reason": "real_depth",
-        "symbol": "USOR",
-        "until": "2026-11-19T01:13:13Z"
-      },
       "0xfa7e202cc99b719695a4174302a96555ec76383c": {
         "at": "2026-11-18T16:33:14Z",
         "reason": "real_depth",
@@ -14297,6 +14284,12 @@
         "symbol": "ID",
         "until": "2026-11-19T22:58:15Z"
       },
+      "0xff627d2715efe2ee49c25ff80a71293bdb2a0319": {
+        "at": "2026-11-19T01:13:13Z",
+        "reason": "real_depth",
+        "symbol": "URPS\ud83d\udd25",
+        "until": "2026-11-20T01:13:13Z"
+      },
       "0xff9268ee95e7078c95804439e77b53f0910310cb": {
         "at": "2026-11-18T17:23:17Z",
         "reason": "real_depth",
@@ -14305,23 +14298,11 @@
       }
     },
     "watch": {
-      "0x2f17878f8bc40656c4ef39c7688b39e183d37b07": {
-        "checks": 11,
-        "first_seen": "2026-11-18T21:58:15Z",
-        "last_check": "2026-11-19T00:53:26Z",
-        "symbol": "OpenAI"
-      },
       "0x43141a1a3516e84be79f222ffe4dcac687289d01": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-19T00:53:26Z",
-        "last_check": "2026-11-19T00:53:26Z",
+        "last_check": "2026-11-19T01:13:13Z",
         "symbol": "SI"
-      },
-      "0x5f61cdcaaa167c8ea92728e564953494cca2df8d": {
-        "checks": 3,
-        "first_seen": "2026-11-19T00:18:16Z",
-        "last_check": "2026-11-19T00:53:26Z",
-        "symbol": "DCTY"
       },
       "0x89a0a44100628b1011ee69783ce867f26c32d07a": {
         "checks": 2,
@@ -14340,12 +14321,6 @@
         "first_seen": "2026-11-19T01:03:14Z",
         "last_check": "2026-11-19T01:03:14Z",
         "symbol": "VI"
-      },
-      "0xff627d2715efe2ee49c25ff80a71293bdb2a0319": {
-        "checks": 2,
-        "first_seen": "2026-11-19T00:38:17Z",
-        "last_check": "2026-11-19T00:53:26Z",
-        "symbol": "URPS\ud83d\udd25"
       }
     }
   },
