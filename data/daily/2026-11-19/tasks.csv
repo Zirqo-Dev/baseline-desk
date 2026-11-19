@@ -2882,3 +2882,11 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-19T22:08:16Z,desk,VERIFY,NYXEN,0x7bce736f48fe5001b44a7f251e7202ca4945cccc,SKIP,real_depth,goplus=skipped until=2026-11-20T22:08:16Z
 2026-11-19T22:08:16Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
 2026-11-19T22:08:16Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=21 rechecks=0 new=4 checked=4 passed=0 bought=0 held=0 deferred=0 dex_only=4 goplus=0 requests=12 secs=2.8 bl_positions=2 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=19 labels_done=19 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-19T22:13:14Z,baseline,EXIT,MARSBASE,0x0b455a80139f9642bb47f2cb5afabbd8809a24af,HOLD,no_quote,
+2026-11-19T22:13:14Z,baseline,EXIT,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,HOLD,no_quote,
+2026-11-19T22:13:14Z,desk,VERIFY,BOOTR,0xa1fe5fdaa9d42b627dfddc0c046815abb95b2b03,WATCH,goplus_not_ready,"first_seen=2026-11-19T21:53:25Z checks=2 pending=honeypot,buy_tax_pct,sell_tax_pct,dev_pct,top10_pct,lp_locked_pct b1=38 s1=1 b24=38 s24=1 liq=157956 dex=uniswap:v2 qliq=78983 pair_age=22 token_age=22"
+2026-11-19T22:13:14Z,desk,VERIFY,NARUZO,0x9176d0137e90df7712ec266d7791960f2a895c04,SKIP,missing:liq_usd,goplus=skipped until=2026-11-20T22:13:14Z
+2026-11-19T22:13:14Z,desk,VERIFY,WSTDIEM,0x19967ebe64b82a61db34447d5dcfdc1a2a90cccc,SKIP,real_depth,goplus=skipped until=2026-11-20T22:13:14Z
+2026-11-19T22:13:14Z,desk,VERIFY,BOOSTED,0x0c421845a8832996911eb4f04e09ba5fa0428dc9,SKIP,missing:liq_usd,goplus=skipped until=2026-11-20T22:13:14Z
+2026-11-19T22:13:14Z,baseline,EXECUTE,BOOTR,0xa1fe5fdaa9d42b627dfddc0c046815abb95b2b03,SKIP,loss_halt,seed=202611192213 eligible=1 pick=0 pool=a1fe5f desk=WATCH launchpad=other
+2026-11-19T22:13:14Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=21 rechecks=1 new=3 checked=4 passed=0 bought=0 held=0 deferred=0 dex_only=3 goplus=1 requests=13 secs=3.4 bl_positions=2 bl_due=1 bl_eligible=1 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=9 labels_done=9 labels_calls=1 live=ok alerts=none alerts_sent=0
