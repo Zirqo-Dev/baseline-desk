@@ -71,7 +71,7 @@
     },
     "refill_week": "2026-W47",
     "refills_usd": 56.55720719365456,
-    "ticks_since_buy": 8
+    "ticks_since_buy": 9
   },
   "desk": {
     "cash": 50.0,
@@ -2842,17 +2842,6 @@
         "sight_qliq": 1,
         "symbol": "FLUID"
       },
-      "0x40d824e0d2486c069a3395f121180f12871a3bbd": {
-        "done": [
-          1,
-          6
-        ],
-        "first_price": 0.0001918,
-        "first_seen": "2026-11-18T04:03:13Z",
-        "sight_pair": "0x5f1b15f3f7050d21385da4cf4e3cac79c439c4ce1e84a425db54e34757e8c781",
-        "sight_qliq": 28,
-        "symbol": "UOSDF"
-      },
       "0x410aa8f44f13398acdf6a473faa5b70108b4658f": {
         "done": [
           1,
@@ -3061,6 +3050,14 @@
         "sight_pair": "0xce296e83a63cfd10e2ec6cf81e69811df86f5004",
         "sight_qliq": 27087,
         "symbol": "VTC"
+      },
+      "0x4fa9e91939b09d0b6e90eefc8e5111e0363c9cc2": {
+        "done": [],
+        "first_price": 0.0002144,
+        "first_seen": "2026-11-19T04:03:15Z",
+        "sight_pair": "0x6780d9e60132b526c11371a66dffe841c7705b8c6a40e5c823044236eea9ccda",
+        "sight_qliq": 0,
+        "symbol": "VCT"
       },
       "0x4fe70b7bab657f23fffa5788dee9db3ca9865de8": {
         "done": [
@@ -3597,7 +3594,9 @@
         "symbol": "USRP"
       },
       "0x76991c9b22f74e87cb1f00ea776a7ead1733d868": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 0.0001029,
         "first_seen": "2026-11-19T02:58:25Z",
         "sight_pair": "0x52744c98ef85a7b9be964bf9831688db70a3d7fdf8ec595bcbd7bd3f32dabdd6",
@@ -3954,7 +3953,9 @@
         "symbol": "FUND UNITED OIL DIVIDEND"
       },
       "0x9145ac58527f458d064050e003fce6683ece4f7d": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 0.02121,
         "first_seen": "2026-11-19T03:03:13Z",
         "sight_pair": "0xa8a61ce7b72c944dabfcc48fe4a14b66688a511fa20cb7cc373fe1ac029cf0c8",
@@ -5512,6 +5513,12 @@
         "symbol": "PEAS",
         "until": "2026-11-19T17:43:14Z"
       },
+      "0x02fb4a798a81dfeff27b4c15594f7a209356023b": {
+        "at": "2026-11-19T04:03:15Z",
+        "reason": "real_depth",
+        "symbol": "VTCC",
+        "until": "2026-11-20T04:03:15Z"
+      },
       "0x0343e0feec212385278a4adb9ad400ca9ed9d69c": {
         "at": "2026-11-19T01:18:16Z",
         "reason": "real_depth",
@@ -6148,12 +6155,6 @@
         "symbol": "RUGCLI",
         "until": "2026-11-20T00:48:14Z"
       },
-      "0x128b149cdb3b21ded722295f309161c1a8dd03af": {
-        "at": "2026-11-18T04:03:13Z",
-        "reason": "missing:liq_usd",
-        "symbol": "CNO",
-        "until": "2026-11-19T04:03:13Z"
-      },
       "0x1297e6c2c501bdacb3fdcf39e527bd23c8b542f9": {
         "at": "2026-11-18T04:53:18Z",
         "reason": "real_depth",
@@ -6441,12 +6442,6 @@
         "reason": "real_depth",
         "symbol": "BERA",
         "until": "2026-11-19T16:03:15Z"
-      },
-      "0x179a33afd6316b227145b47f7b13fbd907530b35": {
-        "at": "2026-11-18T04:03:13Z",
-        "reason": "missing:liq_usd",
-        "symbol": "GIG",
-        "until": "2026-11-19T04:03:13Z"
       },
       "0x17b89e63a36c6d9987cdebb4fc2cbde1d4497a80": {
         "at": "2026-11-18T07:23:15Z",
@@ -8140,12 +8135,6 @@
         "symbol": "FLUID",
         "until": "2026-11-19T12:33:19Z"
       },
-      "0x40d824e0d2486c069a3395f121180f12871a3bbd": {
-        "at": "2026-11-18T04:03:13Z",
-        "reason": "real_depth",
-        "symbol": "UOSDF",
-        "until": "2026-11-19T04:03:13Z"
-      },
       "0x410aa8f44f13398acdf6a473faa5b70108b4658f": {
         "at": "2026-11-18T20:43:15Z",
         "reason": "real_depth",
@@ -8392,6 +8381,12 @@
         "symbol": "UIZZE",
         "until": "2026-11-19T19:53:14Z"
       },
+      "0x49ed40418a3e4e4c2a5f76a2c25232f02335342b": {
+        "at": "2026-11-19T04:03:15Z",
+        "reason": "missing:liq_usd",
+        "symbol": "OILD",
+        "until": "2026-11-20T04:03:15Z"
+      },
       "0x4a37584045cc36695f00feaead2da49f9740a14d": {
         "at": "2026-11-18T23:38:14Z",
         "reason": "real_depth",
@@ -8535,6 +8530,12 @@
         "reason": "real_depth",
         "symbol": "DCTY",
         "until": "2026-11-19T16:28:23Z"
+      },
+      "0x4fa9e91939b09d0b6e90eefc8e5111e0363c9cc2": {
+        "at": "2026-11-19T04:03:15Z",
+        "reason": "real_depth",
+        "symbol": "VCT",
+        "until": "2026-11-20T04:03:15Z"
       },
       "0x4fd5dccd5d617592f5d7a6f4a78ce6b3ba9deae2": {
         "at": "2026-11-18T12:43:13Z",
@@ -12094,12 +12095,6 @@
         "symbol": "SJL",
         "until": "2026-11-20T02:13:14Z"
       },
-      "0xb200000000000000000000c126f67e9d9092666d": {
-        "at": "2026-11-18T04:03:13Z",
-        "reason": "missing:liq_usd",
-        "symbol": "FCAT",
-        "until": "2026-11-19T04:03:13Z"
-      },
       "0xb200000000000000000000c1573b6219e1a77656": {
         "at": "2026-11-18T11:58:18Z",
         "reason": "real_depth",
@@ -13192,12 +13187,6 @@
         "symbol": "GTA5",
         "until": "2026-11-19T06:13:16Z"
       },
-      "0xd6350818bbc277a71708d63298d48eb7a5a64fab": {
-        "at": "2026-11-18T04:03:13Z",
-        "reason": "real_depth",
-        "symbol": "PEPKING",
-        "until": "2026-11-19T04:03:13Z"
-      },
       "0xd6364c26fe70cccab3b9e0307077ad431de41644": {
         "at": "2026-11-18T18:58:17Z",
         "reason": "real_depth",
@@ -13425,6 +13414,12 @@
         "reason": "real_depth",
         "symbol": "GTA6",
         "until": "2026-11-19T10:03:15Z"
+      },
+      "0xdebe6026d6bdb44dfaef9c0f2eaa5931a4aacccc": {
+        "at": "2026-11-19T04:03:15Z",
+        "reason": "missing:liq_usd",
+        "symbol": "BALLCHI",
+        "until": "2026-11-20T04:03:15Z"
       },
       "0xdec19c5b1340aaa47a72d3b17d4aeb76a821de45": {
         "at": "2026-11-18T13:08:22Z",
@@ -14238,16 +14233,10 @@
       }
     },
     "watch": {
-      "0x02fb4a798a81dfeff27b4c15594f7a209356023b": {
-        "checks": 3,
-        "first_seen": "2026-11-19T03:08:16Z",
-        "last_check": "2026-11-19T03:43:24Z",
-        "symbol": "VTCC"
-      },
       "0x3a59bd576f4f6460bd4701c4f1c2097e03eabb07": {
-        "checks": 5,
+        "checks": 6,
         "first_seen": "2026-11-19T02:28:19Z",
-        "last_check": "2026-11-19T03:43:24Z",
+        "last_check": "2026-11-19T04:03:15Z",
         "symbol": "OpenAI"
       },
       "0x65132a5a7783003c0a6063daa011e6028ac246b3": {
@@ -14257,9 +14246,9 @@
         "symbol": "GOV"
       },
       "0x707eda247a710f67da22b07734138c475431e61b": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-19T03:48:15Z",
-        "last_check": "2026-11-19T03:48:15Z",
+        "last_check": "2026-11-19T04:03:15Z",
         "symbol": "TRUMP2028"
       },
       "0x7c2fa04d40ef2c0203e6975ced381220e4fef02a": {
@@ -14269,9 +14258,9 @@
         "symbol": "NOTF"
       },
       "0xa62bab68605d78ae3eaa5d3abd3495ed3a410b59": {
-        "checks": 2,
+        "checks": 3,
         "first_seen": "2026-11-19T03:33:14Z",
-        "last_check": "2026-11-19T03:48:15Z",
+        "last_check": "2026-11-19T04:03:15Z",
         "symbol": "VICE 6"
       },
       "0xbd1c268f1d1eefcd45c824388e8fc5fb07f89752": {
