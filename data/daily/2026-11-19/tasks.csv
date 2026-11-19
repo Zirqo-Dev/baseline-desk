@@ -1540,3 +1540,27 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-19T12:13:18Z,desk,VERIFY,EXXEN,0x677165e60fdf06c1e216eae6cdbcc8c4d2d6814d,SKIP,real_depth,goplus=skipped until=2026-11-20T12:13:18Z b1=9 s1=0 b24=9 s24=0 liq=3442723 dex=uniswap:v4 qliq=2 pair_age=3 token_age=3
 2026-11-19T12:13:18Z,baseline,EXECUTE,VICE 6,0x9d6fb2cbef766dccd936d31e15f32101b1f55665,SKIP,loss_halt,"seed=202611191213 eligible=2 pick=1 pool=61ac85,9d6fb2 desk=WATCH launchpad=other"
 2026-11-19T12:13:18Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=2 new=20 checked=20 passed=0 bought=0 held=0 deferred=2 dex_only=18 goplus=2 requests=30 secs=8.2 bl_positions=2 bl_due=1 bl_eligible=2 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=3 labels_done=3 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-19T12:18:16Z,baseline,EXIT,MARSBASE,0x0b455a80139f9642bb47f2cb5afabbd8809a24af,HOLD,no_quote,
+2026-11-19T12:18:16Z,baseline,EXIT,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,HOLD,no_quote,
+2026-11-19T12:18:16Z,desk,VERIFY,VCT,0xc2e6a19c4c863be8b2b98be5381985a8c07ca135,SKIP,goplus_timeout,first_seen=2026-11-19T09:03:26Z checks=12 until=2026-11-20T12:18:16Z b1=37 s1=11 b24=123 s24=40 liq=37021 dex=uniswap:v4 qliq=12929 pair_age=200 token_age=200
+2026-11-19T12:18:16Z,desk,VERIFY,OMN,0x14b1d4adf9355e57a5c297022aeb5889b1a035bf,WATCH,goplus_not_ready,"first_seen=2026-11-19T10:38:17Z checks=7 pending=mint_open,freeze_or_blacklist,honeypot,risk_flags b1=339 s1=67 b24=465 s24=85 liq=139323 dex=uniswap:v2 qliq=69650 pair_age=111 token_age=111"
+2026-11-19T12:18:16Z,desk,VERIFY,USAR,0x53b8208235e39d09390392d9ead3e2c38f5befb8,WATCH,goplus_not_ready,"first_seen=2026-11-19T10:58:18Z checks=6 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct b1=34 s1=12 b24=52 s24=20 liq=60963 dex=uniswap:v4 qliq=24348 pair_age=84 token_age=84"
+2026-11-19T12:18:16Z,desk,VERIFY,DCTY,0xd2118926979c42cc71e7fd48142c5adf928d7558,SKIP,real_depth,first_seen=2026-11-19T11:13:14Z checks=5 goplus=skipped until=2026-11-20T12:18:16Z
+2026-11-19T12:18:16Z,desk,VERIFY,OIL U.S INDEX,0xaa6a583b5b5d5253bc60338e2d275025409f5241,WATCH,goplus_not_ready,"first_seen=2026-11-19T11:48:16Z checks=3 pending=dev_pct,top10_pct b1=28 s1=1 b24=28 s24=1 liq=62970 dex=uniswap:v2 qliq=31484 pair_age=31 token_age=31"
+2026-11-19T12:18:16Z,desk,VERIFY,REBOOT,0xf95e526f8681841c7a878bd593525a5a0a9bf929,WATCH,goplus_not_ready,"first_seen=2026-11-19T12:03:16Z checks=2 pending=mint_open,freeze_or_blacklist,honeypot,buy_tax_pct,sell_tax_pct,dev_pct,top10_pct,lp_locked_pct,risk_flags b1=37 s1=1 b24=37 s24=1 liq=163507 dex=uniswap:v2 qliq=81761 pair_age=19 token_age=19"
+2026-11-19T12:18:16Z,desk,VERIFY,UDTF,0x563496800b43339fde7ccf8713872f8d7638d917,WATCH,goplus_not_ready,"first_seen=2026-11-19T12:18:16Z checks=1 pending=honeypot,buy_tax_pct,sell_tax_pct,dev_pct,top10_pct,lp_locked_pct b1=3 s1=0 b24=3 s24=0 liq=127129 dex=uniswap:v4 qliq=15337 pair_age=1 token_age=1"
+2026-11-19T12:18:16Z,desk,VERIFY,HOGE,0xb200000000000000000000a00ef27452027f4442,SKIP,real_depth,goplus=skipped until=2026-11-20T12:18:16Z
+2026-11-19T12:18:16Z,desk,VERIFY,,0xcec0db47ac33734e5958f5b538bb64baf34df20c,SKIP,missing:symbol,goplus=skipped until=2026-11-20T12:18:16Z
+2026-11-19T12:18:16Z,desk,VERIFY,PAD,0x2450d4e3254f064ebb7258b8d57775eb6c5e2684,SKIP,missing:liq_usd,goplus=skipped until=2026-11-20T12:18:16Z
+2026-11-19T12:18:16Z,desk,VERIFY,,0xf8d812e1a15459b5edcd549acb10e4d83eb2815a,SKIP,missing:symbol,goplus=skipped until=2026-11-20T12:18:16Z
+2026-11-19T12:18:16Z,desk,VERIFY,,0xa5090434493f84ecbb27db6f0ca2b2114fbe745e,SKIP,missing:symbol,goplus=skipped until=2026-11-20T12:18:16Z
+2026-11-19T12:18:16Z,desk,VERIFY,,0x9036e28006d92426bee63ca45088b3860e5b947e,SKIP,missing:symbol,goplus=skipped until=2026-11-20T12:18:16Z
+2026-11-19T12:18:16Z,desk,VERIFY,OTFF,0x0f5b8ad2713bfea7a545e73a106eed94050473da,SKIP,missing:liq_usd,goplus=skipped until=2026-11-20T12:18:16Z
+2026-11-19T12:18:16Z,desk,VERIFY,,0xd1ddf930f192ee84ae0f148dcd00361f679b4fc0,SKIP,missing:symbol,goplus=skipped until=2026-11-20T12:18:16Z
+2026-11-19T12:18:16Z,desk,VERIFY,,0xe8c29335104362f50312bb1bcbc4854713d2380e,SKIP,missing:symbol,goplus=skipped until=2026-11-20T12:18:16Z
+2026-11-19T12:18:16Z,desk,VERIFY,AOFD,0xd4006ce4c430d683a9f23a005fd31622ec3612c8,SKIP,real_depth,goplus=skipped until=2026-11-20T12:18:16Z b1=9 s1=0 b24=9 s24=0 liq=2356211 dex=uniswap:v4 qliq=2 pair_age=4 token_age=4
+2026-11-19T12:18:16Z,desk,VERIFY,NAFF,0x1bf4a8d181a00eda4422b1b47389c895681daf93,SKIP,missing:liq_usd,goplus=skipped until=2026-11-20T12:18:16Z
+2026-11-19T12:18:16Z,desk,VERIFY,USPD,0xdfc4ef24a44e7b5d26cbaf18c352d4877bb0e934,SKIP,missing:liq_usd,goplus=skipped until=2026-11-20T12:18:16Z
+2026-11-19T12:18:16Z,desk,VERIFY,XOT,0x2d8e49d7a69332cd3f085409b8c665de017ccd6b,SKIP,real_depth,goplus=skipped until=2026-11-20T12:18:16Z b1=9 s1=0 b24=9 s24=0 liq=4468162 dex=uniswap:v4 qliq=2 pair_age=4 token_age=4
+2026-11-19T12:18:16Z,baseline,EXECUTE,VCT,0xc2e6a19c4c863be8b2b98be5381985a8c07ca135,SKIP,loss_halt,"seed=202611191218 eligible=5 pick=3 pool=14b1d4,53b820,aa6a58,c2e6a1,f95e52 desk=goplus_timeout launchpad=other"
+2026-11-19T12:18:16Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=6 new=20 checked=20 passed=0 bought=0 held=0 deferred=6 dex_only=14 goplus=6 requests=34 secs=15.0 bl_positions=2 bl_due=1 bl_eligible=5 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=5 labels_done=5 labels_calls=1 live=ok alerts=none alerts_sent=0
