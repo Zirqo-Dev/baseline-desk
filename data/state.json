@@ -73,7 +73,7 @@
     },
     "refill_week": "2026-W47",
     "refills_usd": 56.55720719365456,
-    "ticks_since_buy": 21
+    "ticks_since_buy": 22
   },
   "desk": {
     "cash": 50.0,
@@ -3491,6 +3491,14 @@
         "sight_qliq": 27745,
         "symbol": "OMI"
       },
+      "0x5e87fe032a8f97c6a5d37855bbd5a6b895be645d": {
+        "done": [],
+        "first_price": 8.117e-05,
+        "first_seen": "2026-11-19T06:13:14Z",
+        "sight_pair": "0x1aeeace73b45e1074533945ddad28b235649b4bcb875eda635a7171103ea5ea2",
+        "sight_qliq": 20,
+        "symbol": "VHSD"
+      },
       "0x5f61cdcaaa167c8ea92728e564953494cca2df8d": {
         "done": [
           1
@@ -3888,6 +3896,14 @@
         "sight_qliq": 72625,
         "symbol": "Basecat"
       },
+      "0x7d8075a5539b9e7e1408523f1c464dd0c24d0f62": {
+        "done": [],
+        "first_price": 5.074e-06,
+        "first_seen": "2026-11-19T06:13:14Z",
+        "sight_pair": "0x4c8f010c073139022bd1eaa7126067f3d147c369",
+        "sight_qliq": 27702,
+        "symbol": "VCT"
+      },
       "0x7e0b3b743d00dfc40189ee1c7f71de418fbeb1e4": {
         "done": [
           1,
@@ -3944,7 +3960,8 @@
       },
       "0x844f62667e7883d7bcf0c5526eaa2b9fba0cf2ab": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 0.0001039,
         "first_seen": "2026-11-19T00:08:18Z",
@@ -8469,6 +8486,12 @@
         "symbol": "SI",
         "until": "2026-11-19T14:23:14Z"
       },
+      "0x3eb9a43af2495639e3243a100f8f4226a0856864": {
+        "at": "2026-11-19T06:13:14Z",
+        "reason": "real_depth",
+        "symbol": "DCTY",
+        "until": "2026-11-20T06:13:14Z"
+      },
       "0x3ec88127b443810609891a0b9fbb490518257f63": {
         "at": "2026-11-19T06:08:15Z",
         "reason": "real_depth",
@@ -9398,6 +9421,12 @@
         "reason": "real_depth",
         "symbol": ".AI",
         "until": "2026-11-19T14:13:16Z"
+      },
+      "0x5e87fe032a8f97c6a5d37855bbd5a6b895be645d": {
+        "at": "2026-11-19T06:13:14Z",
+        "reason": "real_depth",
+        "symbol": "VHSD",
+        "until": "2026-11-20T06:13:14Z"
       },
       "0x5ebcfd751b2f059d91d9df454839b328f46acccc": {
         "at": "2026-11-18T12:53:14Z",
@@ -13233,6 +13262,12 @@
         "symbol": "VICE 6",
         "until": "2026-11-20T00:48:14Z"
       },
+      "0xc9dc5629db39b2209b18a5b46d89a654a66edf3d": {
+        "at": "2026-11-19T06:13:14Z",
+        "reason": "real_depth",
+        "symbol": "SI",
+        "until": "2026-11-20T06:13:14Z"
+      },
       "0xc9dedaa4c02cfb55a04d80ec330c9199f861cccc": {
         "at": "2026-11-18T20:13:13Z",
         "reason": "real_depth",
@@ -14603,28 +14638,28 @@
       }
     },
     "watch": {
-      "0x3eb9a43af2495639e3243a100f8f4226a0856864": {
-        "checks": 2,
-        "first_seen": "2026-11-19T05:33:15Z",
-        "last_check": "2026-11-19T05:53:23Z",
-        "symbol": "DCTY"
-      },
       "0x65132a5a7783003c0a6063daa011e6028ac246b3": {
-        "checks": 8,
+        "checks": 9,
         "first_seen": "2026-11-19T03:53:14Z",
-        "last_check": "2026-11-19T05:53:23Z",
+        "last_check": "2026-11-19T06:13:14Z",
         "symbol": "GOV"
       },
+      "0x7d8075a5539b9e7e1408523f1c464dd0c24d0f62": {
+        "checks": 1,
+        "first_seen": "2026-11-19T06:13:14Z",
+        "last_check": "2026-11-19T06:13:14Z",
+        "symbol": "VCT"
+      },
       "0x8492b880711847083975c9bab993aeafb21303cd": {
-        "checks": 3,
+        "checks": 4,
         "first_seen": "2026-11-19T05:18:15Z",
-        "last_check": "2026-11-19T05:53:23Z",
+        "last_check": "2026-11-19T06:13:14Z",
         "symbol": "NOTF"
       },
       "0xa62bab68605d78ae3eaa5d3abd3495ed3a410b59": {
-        "checks": 9,
+        "checks": 10,
         "first_seen": "2026-11-19T03:33:14Z",
-        "last_check": "2026-11-19T05:53:23Z",
+        "last_check": "2026-11-19T06:13:14Z",
         "symbol": "VICE 6"
       },
       "0xc8377eda15d2f3cfe159b049821de1a433401c28": {
@@ -14632,12 +14667,6 @@
         "first_seen": "2026-11-19T04:13:18Z",
         "last_check": "2026-11-19T06:03:14Z",
         "symbol": "VTC"
-      },
-      "0xc9dc5629db39b2209b18a5b46d89a654a66edf3d": {
-        "checks": 2,
-        "first_seen": "2026-11-19T05:38:22Z",
-        "last_check": "2026-11-19T05:53:23Z",
-        "symbol": "SI"
       },
       "0xd69d733cff7717d03b43b24d2c2d64adfc7ce98a": {
         "checks": 6,
