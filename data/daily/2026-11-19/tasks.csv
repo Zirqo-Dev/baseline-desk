@@ -2967,3 +2967,8 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-19T22:58:16Z,desk,VERIFY,RST,0x416f48b6e30cfb5634326e8757ed553fa0259ff5,SKIP,real_depth,goplus=skipped until=2026-11-20T22:58:16Z b1=2 s1=0 b24=2 s24=0 liq=3759144 dex=uniswap:v4 qliq=176 pair_age=4 token_age=4
 2026-11-19T22:58:16Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
 2026-11-19T22:58:16Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=21 rechecks=0 new=20 checked=20 passed=0 bought=0 held=0 deferred=0 dex_only=20 goplus=0 requests=28 secs=6.0 bl_positions=2 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=1 labels_done=1 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-19T23:03:20Z,baseline,EXIT,MARSBASE,0x0b455a80139f9642bb47f2cb5afabbd8809a24af,HOLD,no_quote,
+2026-11-19T23:03:20Z,baseline,EXIT,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,HOLD,no_quote,
+2026-11-19T23:03:20Z,desk,VERIFY,REBOOT,0xa63380eaf608b446b66d654e64dd846bbfd64a9b,WATCH,goplus_not_ready,"first_seen=2026-11-19T22:28:18Z checks=3 pending=dev_pct,top10_pct b1=63 s1=1 b24=63 s24=1 liq=172959 dex=uniswap:v2 qliq=86461 pair_age=37 token_age=37"
+2026-11-19T23:03:20Z,baseline,EXECUTE,REBOOT,0xa63380eaf608b446b66d654e64dd846bbfd64a9b,SKIP,loss_halt,seed=202611192303 eligible=1 pick=0 pool=a63380 desk=WATCH launchpad=other
+2026-11-19T23:03:20Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=1 rechecks=1 new=0 checked=1 passed=0 bought=0 held=0 deferred=0 dex_only=0 goplus=1 requests=10 secs=2.3 bl_positions=2 bl_due=1 bl_eligible=1 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=1 labels_done=1 labels_calls=1 live=ok alerts=none alerts_sent=0
