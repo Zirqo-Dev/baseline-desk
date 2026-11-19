@@ -1109,3 +1109,13 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-19T09:13:14Z,desk,VERIFY,DUNK,0x163d11c3fa80e819cfdf8df55494a6f241966bdf,SKIP,real_depth,goplus=skipped until=2026-11-20T09:13:14Z
 2026-11-19T09:13:14Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
 2026-11-19T09:13:14Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=0 new=1 checked=1 passed=0 bought=0 held=0 deferred=0 dex_only=1 goplus=0 requests=9 secs=2.4 bl_positions=2 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=20 labels_done=20 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-19T09:18:14Z,baseline,EXIT,MARSBASE,0x0b455a80139f9642bb47f2cb5afabbd8809a24af,HOLD,no_quote,
+2026-11-19T09:18:14Z,baseline,EXIT,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,HOLD,no_quote,
+2026-11-19T09:18:14Z,desk,VERIFY,USOI,0x88ec809fbbe668fe8ec6d8add7c1f9fe4ebfd4ab,WATCH,goplus_not_ready,first_seen=2026-11-19T08:58:16Z checks=2 pending=honeypot b1=16 s1=5 b24=16 s24=5 liq=117126 dex=uniswap:v4 qliq=12652 pair_age=24 token_age=24
+2026-11-19T09:18:14Z,desk,VERIFY,CLAUDIA,0x6956c783de8de5e6a36048b28bf955128398b6dd,WATCH,goplus_not_ready,"first_seen=2026-11-19T09:18:14Z checks=1 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct b1=5 s1=0 b24=5 s24=0 liq=145796 dex=uniswap:v2 qliq=72893 pair_age=3 token_age=3"
+2026-11-19T09:18:14Z,desk,VERIFY,VDC-Inc,0x34d8f44fdcf0d4223b539b32acfda5f6a10988ac,SKIP,real_depth,goplus=skipped until=2026-11-20T09:18:14Z
+2026-11-19T09:18:14Z,desk,VERIFY,WORTH,0x1fbf9435217bf29e48793091f4f56de5a629cccc,SKIP,real_depth,goplus=skipped until=2026-11-20T09:18:14Z
+2026-11-19T09:18:14Z,desk,VERIFY,MEOW,0xe603228e6d97133706d96ee5ce71bb9afe7d419b,SKIP,real_depth,goplus=skipped until=2026-11-20T09:18:14Z
+2026-11-19T09:18:14Z,desk,VERIFY,E91,0xde946d731ba1d215128204dadf2632f239fa806b,SKIP,real_depth,goplus=skipped until=2026-11-20T09:18:14Z
+2026-11-19T09:18:14Z,baseline,EXECUTE,USOI,0x88ec809fbbe668fe8ec6d8add7c1f9fe4ebfd4ab,SKIP,loss_halt,seed=202611190918 eligible=1 pick=0 pool=88ec80 desk=WATCH launchpad=other
+2026-11-19T09:18:14Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=1 new=5 checked=6 passed=0 bought=0 held=0 deferred=0 dex_only=4 goplus=2 requests=16 secs=5.0 bl_positions=2 bl_due=1 bl_eligible=1 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=7 labels_done=7 labels_calls=1 live=ok alerts=none alerts_sent=0
