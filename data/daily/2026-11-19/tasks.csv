@@ -594,3 +594,14 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-19T04:53:14Z,baseline,EXIT,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,HOLD,no_quote,
 2026-11-19T04:53:14Z,desk,VERIFY,SOUP,0xd81fb0711ff7b35b4ccc516de6a128c17697cccc,SKIP,missing:liq_usd,goplus=skipped until=2026-11-20T04:53:14Z
 2026-11-19T04:53:14Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=21 rechecks=0 new=1 checked=1 passed=0 bought=0 held=0 deferred=0 dex_only=1 goplus=0 requests=9 secs=2.2 bl_positions=2 bl_due=0 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=3 labels_done=3 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-19T04:58:15Z,baseline,EXIT,MARSBASE,0x0b455a80139f9642bb47f2cb5afabbd8809a24af,HOLD,no_quote,
+2026-11-19T04:58:15Z,baseline,EXIT,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,HOLD,no_quote,
+2026-11-19T04:58:15Z,desk,VERIFY,OpenAI,0x3a59bd576f4f6460bd4701c4f1c2097e03eabb07,WATCH,goplus_not_ready,first_seen=2026-11-19T02:28:19Z checks=9 pending=honeypot b1=347 s1=345 b24=1764 s24=1714 liq=10272166 dex=aerodrome qliq=170058 pair_age=155 token_age=155
+2026-11-19T04:58:15Z,desk,VERIFY,VICE 6,0xa62bab68605d78ae3eaa5d3abd3495ed3a410b59,WATCH,goplus_not_ready,"first_seen=2026-11-19T03:33:14Z checks=6 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct b1=36 s1=12 b24=62 s24=23 liq=475495 dex=uniswap:v4 qliq=197484 pair_age=87 token_age=87"
+2026-11-19T04:58:15Z,desk,VERIFY,GOV,0x65132a5a7783003c0a6063daa011e6028ac246b3,WATCH,goplus_not_ready,"first_seen=2026-11-19T03:53:14Z checks=5 pending=mint_open,freeze_or_blacklist,honeypot,top10_pct,risk_flags b1=353 s1=266 b24=514 s24=329 liq=111810 dex=uniswap:v4 qliq=49135 pair_age=69 token_age=69"
+2026-11-19T04:58:15Z,desk,VERIFY,NOTF,0x7c2fa04d40ef2c0203e6975ced381220e4fef02a,WATCH,goplus_not_ready,"first_seen=2026-11-19T03:53:14Z checks=5 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct b1=38 s1=13 b24=51 s24=20 liq=70218 dex=uniswap:v4 qliq=27342 pair_age=69 token_age=69"
+2026-11-19T04:58:15Z,desk,VERIFY,SOUP,0xb2000000000000000000009f3ba4a6c992f9cfa6,SKIP,real_depth,goplus=skipped until=2026-11-20T04:58:15Z
+2026-11-19T04:58:15Z,desk,VERIFY,,0x019979f299d9ffd225fe780022dcfd9df9dbd789,SKIP,missing:symbol,goplus=skipped until=2026-11-20T04:58:15Z
+2026-11-19T04:58:15Z,desk,VERIFY,KellyClaude,0xf204181f4ef6cd2ba5682d822cf4d7b0b68b6fdf,SKIP,real_depth,goplus=skipped until=2026-11-20T04:58:15Z
+2026-11-19T04:58:15Z,desk,VERIFY,GTA6,0xb42420babf7304a2fc90160f8ec54edc115acccc,SKIP,real_depth,goplus=skipped until=2026-11-20T04:58:15Z
+2026-11-19T04:58:15Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=21 rechecks=4 new=4 checked=8 passed=0 bought=0 held=0 deferred=0 dex_only=4 goplus=4 requests=21 secs=10.2 bl_positions=2 bl_due=0 bl_eligible=4 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=1 labels_done=1 labels_calls=1 live=ok alerts=none alerts_sent=0
