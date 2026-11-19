@@ -407,7 +407,8 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
     End goal: if the desk makes money the tool goes private for the owner, possibly off public GitHub Actions; until then
     avoid new designs that depend on staying public. Rejected: private data repos now, moving files after BL-34's run,
     stopping GeckoTerminal.
-- Next step: the owner checks the deployed site footer (BL-50) and the BL-34 card (v3 dates, ~Nov 26). BL-46: snapshot.yml runs automatic every Monday 00:37 UTC; next run Nov 23.
+  - BL-50 Done (closed by the owner 2026-11-19); docs/NOTES.md "BL-50".
+- Next step: the owner checks the BL-34 card on the site (BL-47; v3 dates, ~Nov 26). BL-46: snapshot.yml runs automatic every Monday 00:37 UTC; next run Nov 23.
   How the sealed snapshot files (backtest/liquid/snapshots/sealed/) are opened is a later story, after BL-34's holdout
   run; until then nothing reads them.
   BL-45: 7 days of costs.yml runs from the first run (backtest/costs/window.json), then chat reads python -m
@@ -421,7 +422,7 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
   done, counts only; no return has been computed from backtest/liquid/); the execution design is researched in
   parallel (no wallet code). BL-38..BL-42 are candidates only (DECISIONS 2026-11-04). The owner checks the deployed site
   and the first Telegram daily summary with the BL-43 lines.
-- Last updated: 2026-11-18.
+- Last updated: 2026-11-19.
 
 ## 12. Glossary
 - Lead: a token the scanner found. Survivor: a lead that passed every hard skip.

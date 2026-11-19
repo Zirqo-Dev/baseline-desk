@@ -2212,3 +2212,4 @@ Moved from CLAUDE.md section 11 on 2026-10-23 (BL-2 process cleanup). Wording is
   public GitHub Actions; until then, no new design that depends on staying public. Rejected: private data repos now, moving
   files after BL-34's run, stopping GeckoTerminal. No code, tool, workflow, site or test change.
 - Suite: 557 tests on Python 3.13.18.
+- Closed by the owner 2026-11-19 (docs only). No code, tool, workflow, site or test change.
