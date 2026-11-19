@@ -368,6 +368,8 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
   "One sealed 14-day test, run once.", "test window · day N of 14", verdict about 5 days after the last holdout day
   (VERDICT_AFTER_D 5, hard-coded: v3 has no verdict-delay field), so today "Nov 8 – Nov 21", "~Nov 26"; the TESTS
   labels unchanged (the owner, A); terminal and equity card unchanged (sha256 pins).
+  BL-47 Done (closed by the owner 2026-11-19 after the deployed card was checked: sealed, Nov 8 – Nov 21, ~Nov 26);
+  docs/NOTES.md "BL-47".
 - BL-45 (2026-11-12, read-only cost meter, the owner's D5 + Nov 12 answers, DECISIONS): tools/costs.py + costs.yml every
   2 h measure 5 and 25 USD held round trips (buy, sell, round trip %, shortfalls, sale-sim pass/fail + reason) in the
   deepest pool of 36 frozen liquid tokens (backtest/costs/tokens.json: survey median daily volume >= 100k USD -> 39,
@@ -408,7 +410,7 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
     avoid new designs that depend on staying public. Rejected: private data repos now, moving files after BL-34's run,
     stopping GeckoTerminal.
   - BL-50 Done (closed by the owner 2026-11-19); docs/NOTES.md "BL-50".
-- Next step: the owner checks the BL-34 card on the site (BL-47; v3 dates, ~Nov 26). BL-46: snapshot.yml runs automatic every Monday 00:37 UTC; next run Nov 23.
+- Next step: BL-46: snapshot.yml runs automatic every Monday 00:37 UTC; next run Nov 23.
   How the sealed snapshot files (backtest/liquid/snapshots/sealed/) are opened is a later story, after BL-34's holdout
   run; until then nothing reads them.
   BL-45: 7 days of costs.yml runs from the first run (backtest/costs/window.json), then chat reads python -m

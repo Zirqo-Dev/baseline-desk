@@ -2213,3 +2213,11 @@ Moved from CLAUDE.md section 11 on 2026-10-23 (BL-2 process cleanup). Wording is
   files after BL-34's run, stopping GeckoTerminal. No code, tool, workflow, site or test change.
 - Suite: 557 tests on Python 3.13.18.
 - Closed by the owner 2026-11-19 (docs only). No code, tool, workflow, site or test change.
+
+## BL-47
+- Display only, shipped 2026-11-15 (the owner's mock approval): site/index.html SPEC_URL -> backtest/specs/bl34-survivor-momentum-v3.json,
+  VERDICT_AFTER_D 3 -> 5 (hard-coded: v3 has no verdict-delay field), copy "One sealed 14-day test, run once." and
+  "test window · day N of 14"; tests/test_bl43.py pins on v3; terminal and equity card unchanged (sha256 pins).
+- Deployed check 2026-11-19 (chat, live tick 19:08 UTC): the card shows SEALED, Nov 8 – Nov 21, day 12 of 14, verdict ~Nov 26
+  (about 5 days after), 7 days left, all five tests waiting, no trades or P&L. Closed by the owner 2026-11-19 (docs only).
+  No code, tool, workflow, site or test change.
