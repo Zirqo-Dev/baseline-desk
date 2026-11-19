@@ -1906,3 +1906,8 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-19T14:33:15Z,desk,VERIFY,AO DT,0x159d781956d943e4f76955055b3c85337d98edc4,SKIP,real_depth,goplus=skipped until=2026-11-20T14:33:15Z b1=11 s1=4 b24=11 s24=4 liq=7206026 dex=uniswap:v4 qliq=2025 pair_age=12 token_age=12
 2026-11-19T14:33:15Z,baseline,EXECUTE,PAD,0xc3e594497571cdee63e1e93c0b838ba979826ae5,SKIP,loss_halt,"seed=202611191433 eligible=3 pick=1 pool=50c41d,c3e594,c8c812 desk=WATCH launchpad=other"
 2026-11-19T14:33:15Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=21 rechecks=3 new=8 checked=11 passed=0 bought=0 held=0 deferred=0 dex_only=8 goplus=3 requests=22 secs=9.0 bl_positions=2 bl_due=1 bl_eligible=3 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=7 labels_done=7 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-19T14:38:21Z,baseline,EXIT,MARSBASE,0x0b455a80139f9642bb47f2cb5afabbd8809a24af,HOLD,no_quote,
+2026-11-19T14:38:21Z,baseline,EXIT,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,HOLD,no_quote,
+2026-11-19T14:38:21Z,desk,VERIFY,Wizard,0x055a911f654730c906ccadb0d50904aa1c17fe1b,SKIP,real_depth,goplus=skipped until=2026-11-20T14:38:21Z
+2026-11-19T14:38:21Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
+2026-11-19T14:38:21Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=21 rechecks=0 new=1 checked=1 passed=0 bought=0 held=0 deferred=0 dex_only=1 goplus=0 requests=9 secs=2.9 bl_positions=2 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=1 labels_done=1 labels_calls=1 live=ok alerts=none alerts_sent=0
