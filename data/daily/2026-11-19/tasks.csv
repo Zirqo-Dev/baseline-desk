@@ -2265,3 +2265,17 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-19T17:18:16Z,desk,VERIFY,Basecow,0xc21cb443973e6a81ebfcaf6ffac832cd63703c74,SKIP,real_depth,goplus=skipped until=2026-11-20T17:18:16Z
 2026-11-19T17:18:16Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
 2026-11-19T17:18:16Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=0 new=7 checked=7 passed=0 bought=0 held=0 deferred=0 dex_only=6 goplus=1 requests=16 secs=3.7 bl_positions=2 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=1 labels_done=1 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-19T17:23:16Z,baseline,EXIT,MARSBASE,0x0b455a80139f9642bb47f2cb5afabbd8809a24af,HOLD,no_quote,
+2026-11-19T17:23:16Z,baseline,EXIT,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,HOLD,no_quote,
+2026-11-19T17:23:16Z,desk,VERIFY,GTASZN,0x0d21fcb3b0d8a8d4e7754fadaeb4fd48c28983c3,SKIP,goplus_timeout,first_seen=2026-11-19T14:08:26Z checks=11 until=2026-11-20T17:23:16Z b1=80 s1=56 b24=270 s24=188 liq=38236 dex=uniswap:v4 qliq=19129 pair_age=200 token_age=200
+2026-11-19T17:23:16Z,desk,VERIFY,RST,0x50c41d81dbc1749d0d82c4f3e199ab6eea392970,SKIP,goplus_timeout,first_seen=2026-11-19T14:18:15Z checks=11 until=2026-11-20T17:23:16Z b1=35 s1=12 b24=120 s24=39 liq=143413 dex=uniswap:v4 qliq=19996 pair_age=189 token_age=189
+2026-11-19T17:23:16Z,desk,VERIFY,NOTF,0x4e65f8b66c07018b167b2ce60b4f8d86d9b56985,SKIP,real_depth,first_seen=2026-11-19T15:03:16Z checks=9 goplus=skipped until=2026-11-20T17:23:16Z
+2026-11-19T17:23:16Z,desk,VERIFY,VTC6⚡️,0xfe6fa24c11a588f6299093b31420f3e99ee0be86,WATCH,goplus_not_ready,first_seen=2026-11-19T15:13:15Z checks=8 pending=honeypot b1=36 s1=12 b24=84 s24=27 liq=121945 dex=uniswap:v4 qliq=14362 pair_age=137 token_age=137
+2026-11-19T17:23:16Z,desk,VERIFY,USAR,0xca1e551fed64537339ac502a044d1ebaf1a3403c,WATCH,goplus_not_ready,first_seen=2026-11-19T16:08:27Z checks=5 pending=honeypot b1=36 s1=11 b24=48 s24=15 liq=155423 dex=uniswap:v4 qliq=23070 pair_age=78 token_age=78
+2026-11-19T17:23:16Z,desk,VERIFY,BIDEN,0x9aaacfbeeebd98fc8e61c558b6ada05f79d1c68b,SKIP,real_depth,first_seen=2026-11-19T16:28:16Z checks=4 goplus=skipped until=2026-11-20T17:23:16Z
+2026-11-19T17:23:16Z,desk,VERIFY,VICE 6,0x2b23572e052711092d4f117ac857875b9831c4e2,SKIP,real_depth,first_seen=2026-11-19T17:03:17Z checks=2 goplus=skipped until=2026-11-20T17:23:16Z
+2026-11-19T17:23:16Z,desk,VERIFY,MONTRA,0xb2000000000000000000005bbde1957ef0268a91,SKIP,real_depth,goplus=skipped until=2026-11-20T17:23:16Z
+2026-11-19T17:23:16Z,desk,VERIFY,MONTRA,0xb200000000000000000000547dc21da059175870,SKIP,real_depth,goplus=skipped until=2026-11-20T17:23:16Z
+2026-11-19T17:23:16Z,desk,VERIFY,Brian,0xb2000000000000000000006b83c495bfd91ce101,SKIP,real_depth,goplus=skipped until=2026-11-20T17:23:16Z
+2026-11-19T17:23:16Z,baseline,EXECUTE,USAR,0xca1e551fed64537339ac502a044d1ebaf1a3403c,SKIP,loss_halt,"seed=202611191723 eligible=4 pick=2 pool=0d21fc,50c41d,ca1e55,fe6fa2 desk=WATCH launchpad=other"
+2026-11-19T17:23:16Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=7 new=3 checked=10 passed=0 bought=0 held=0 deferred=0 dex_only=6 goplus=4 requests=22 secs=9.5 bl_positions=2 bl_due=1 bl_eligible=4 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=4 labels_done=4 labels_calls=1 live=ok alerts=none alerts_sent=0
