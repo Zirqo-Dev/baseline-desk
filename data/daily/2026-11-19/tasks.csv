@@ -13,3 +13,10 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-19T00:03:15Z,desk,VERIFY,GDOG,0x75ba5833d650c9923847c8999f924c83680daba3,SKIP,real_depth,goplus=skipped until=2026-11-20T00:03:15Z
 2026-11-19T00:03:15Z,baseline,EXECUTE,OpenAI,0x2f17878f8bc40656c4ef39c7688b39e183d37b07,BUY,,usd=5.00 fill=2.16615185e-05 seed=202611190003 eligible=1 pick=0 pool=2f1787 desk=WATCH launchpad=other b1=52 s1=51 b24=3066 s24=2979 liq=2252748 dex=aerodrome qliq=170007 pair_age=1309 token_age=104469
 2026-11-19T00:03:15Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=5 new=5 checked=10 passed=0 bought=0 held=0 deferred=0 dex_only=8 goplus=2 requests=21 secs=6.4 bl_positions=2 bl_due=1 bl_eligible=1 bl_bought=1 report=ok machine=ok bl_error=none labels=ok labels_due=1 labels_done=1 labels_calls=1 live=ok alerts=ok alerts_sent=1
+2026-11-19T00:08:18Z,baseline,EXIT,MARSBASE,0x0b455a80139f9642bb47f2cb5afabbd8809a24af,HOLD,no_quote,
+2026-11-19T00:08:18Z,baseline,EXIT,OpenAI,0x2f17878f8bc40656c4ef39c7688b39e183d37b07,HOLD,,pct=-2.92
+2026-11-19T00:08:18Z,baseline,EXIT,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,HOLD,no_quote,
+2026-11-19T00:08:18Z,desk,VERIFY,,0xb2000000000000000000006c4ee8293994d1e801,SKIP,missing:symbol,goplus=skipped until=2026-11-20T00:08:18Z
+2026-11-19T00:08:18Z,desk,VERIFY,DCTY,0x844f62667e7883d7bcf0c5526eaa2b9fba0cf2ab,SKIP,real_depth,goplus=skipped until=2026-11-20T00:08:18Z b1=1 s1=0 b24=1 s24=0 liq=103943 dex=uniswap:v4 qliq=240 pair_age=1 token_age=1
+2026-11-19T00:08:18Z,desk,VERIFY,RRR,0x2c0d09a2238a8ea40ca6a434bff3176b6f65cc46,SKIP,real_depth,goplus=skipped until=2026-11-20T00:08:18Z
+2026-11-19T00:08:18Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=0 new=3 checked=3 passed=0 bought=0 held=0 deferred=0 dex_only=3 goplus=0 requests=12 secs=2.9 bl_positions=3 bl_due=0 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=1 labels_done=1 labels_calls=1 live=ok alerts=none alerts_sent=0
