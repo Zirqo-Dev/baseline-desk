@@ -1945,3 +1945,12 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-19T14:53:14Z,desk,VERIFY,AKAM,0x1252230193c0aaa10eb8b59a31ed8ec92e27a081,SKIP,real_depth,goplus=skipped until=2026-11-20T14:53:14Z
 2026-11-19T14:53:14Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
 2026-11-19T14:53:14Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=0 new=2 checked=2 passed=0 bought=0 held=0 deferred=0 dex_only=2 goplus=0 requests=10 secs=2.3 bl_positions=2 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=2 labels_done=2 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-19T14:58:18Z,baseline,EXIT,MARSBASE,0x0b455a80139f9642bb47f2cb5afabbd8809a24af,HOLD,no_quote,
+2026-11-19T14:58:18Z,baseline,EXIT,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,HOLD,no_quote,
+2026-11-19T14:58:18Z,desk,VERIFY,NOTF,0x3f03c22960816abb5a49b09a58116349a1cab88c,WATCH,goplus_not_ready,"first_seen=2026-11-19T14:58:18Z checks=1 pending=honeypot,buy_tax_pct,sell_tax_pct,dev_pct,top10_pct,lp_locked_pct b1=8 s1=6 b24=8 s24=6 liq=134280 dex=uniswap:v4 qliq=62545 pair_age=3 token_age=3"
+2026-11-19T14:58:18Z,desk,VERIFY,SPACEX,0x8748e281257e89f1f49e92e6776ed7555e0ce845,SKIP,real_depth,goplus=skipped until=2026-11-20T14:58:18Z
+2026-11-19T14:58:18Z,desk,VERIFY,GS,0xb20000000000000000000063e588dc4d55875869,SKIP,real_depth,goplus=skipped until=2026-11-20T14:58:18Z
+2026-11-19T14:58:18Z,desk,VERIFY,Francis,0x7bfc728083c477552ee32e639926f57677cf0279,SKIP,real_depth,goplus=skipped until=2026-11-20T14:58:18Z
+2026-11-19T14:58:18Z,desk,VERIFY,FV,0xabfd92ea19c9a407783eefe61405d1a52293cccc,SKIP,missing:liq_usd,goplus=skipped until=2026-11-20T14:58:18Z
+2026-11-19T14:58:18Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
+2026-11-19T14:58:18Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=0 new=5 checked=5 passed=0 bought=0 held=0 deferred=0 dex_only=4 goplus=1 requests=14 secs=3.2 bl_positions=2 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=3 labels_done=3 labels_calls=1 live=ok alerts=none alerts_sent=0
