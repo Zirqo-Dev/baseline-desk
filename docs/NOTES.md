@@ -2221,3 +2221,193 @@ Moved from CLAUDE.md section 11 on 2026-10-23 (BL-2 process cleanup). Wording is
 - Deployed check 2026-11-19 (chat, live tick 19:08 UTC): the card shows SEALED, Nov 8 – Nov 21, day 12 of 14, verdict ~Nov 26
   (about 5 days after), 7 days left, all five tests waiting, no trades or P&L. Closed by the owner 2026-11-19 (docs only).
   No code, tool, workflow, site or test change.
+
+## BL-48
+- ADS cluster check, evidence only, counts only (the owner's BL-48 prompt and plan answers, 2026-11-20). Subject: the 22
+  ADS-paired tokens of backtest/costs/tokens.json (BL-45) and ADS itself (0xb20a…b7df). Docs only: no code, tool, test,
+  workflow, schedule, config or rule change; the helper script stayed in the session scratchpad and is not in the repo.
+  Observations only; no recommendation (chat proposes exclude, cap or keep, the owner decides).
+- Tags: CHECKABLE-pinned = re-running the named call at the named block gives the same number; CHECKABLE-file = recomputed
+  from a committed file; CHECKABLE-live = re-running the named call gives today's value (it moves; method reproducible);
+  ASSERTED = a reading or a source's own claim, not reproduced here. Addresses are shortened 0x1234…abcd; the full token and
+  pool addresses are in backtest/costs/tokens.json.
+- Sources and limits (checked first): Base public RPC https://mainnet.base.org (docs.base.org: free, rate limited, best
+  effort, not for production; no published number); GoPlus token_security chain 8453 (keyless, the tick's own source; terms
+  page not reachable from the session, ASSERTED); GeckoTerminal API v2 (CoinGecko API Terms, the owner's 2026-11-18
+  decision; about 10 calls/min keyless, paced 7.5 s); DexScreener (300/min for pairs). No block explorer: the session's
+  network allows none (Blockscout refused by the proxy; Basescan needs a key). On mainnet.base.org eth_getLogs was refused
+  ("request limit reached" or HTTP 429) at 10,000, 50,000, 1,000, 3,000 and 10 blocks, so no swap log comes from the RPC;
+  eth_getCode, eth_getBalance, eth_getTransactionCount, eth_getBlockByNumber, eth_getBlockReceipts and
+  eth_getTransactionReceipt answered at old blocks.
+- Requests: 298 of the 400 cap (the 11 probes included): Base RPC 242 (10 probes), GeckoTerminal 30 (24 trade lists + 2
+  retries + 4 token info), GoPlus 23, DexScreener 2, Blockscout 1 (refused by the session proxy, never reached the host).
+  Refused or failed: 2 eth_getLogs probes (429), 4 eth_call that reverted (name() / factory() on two unlabelled contracts),
+  2 GeckoTerminal trade calls (retried). No key, secret, wallet, signature or transaction.
+- Seals kept: backtest/liquid/snapshots/sealed/, outcomes.csv, backtest/candles/, backtest/specs/ and tasks.csv were not
+  opened; nothing about BL-34 candidates was read. From backtest/liquid/ only identity, reserve and volume fields were
+  read (daily.jsonl.gz by column position 5, tools/liquid.py V = 5, no row printed after the slip below). Price fields in
+  GeckoTerminal trades (price_from/to in USD and in currency token), token amounts, and DexScreener price, price change,
+  liquidity, volume, FDV and market cap were dropped at parse time; never printed, stored or used. Raw responses were never
+  written to disk. No price, price change or return was computed.
+- Seal slip: while listing field names before the plan, one row of backtest/liquid/daily.jsonl.gz was printed to the
+  session terminal: the file's first token, one daily candle on a May 2026 day, all six columns (time, the four price
+  columns, volume). Nothing was computed from it and nothing was kept or written; the row, the token and its values are
+  not repeated here. The owner accepted it as low risk (DECISIONS 2026-11-20); from then on the file was read by column
+  position 5 (volume) only, without printing any row.
+
+### Deployer and first funder
+- The 22 tokens (CHECKABLE-live, GoPlus token_security creator_address, owner_address, is_open_source, is_mintable,
+  is_proxy; CHECKABLE-pinned, eth_getCode at block 59,931,730):
+  - creator: one address for all 22, 0xd95a…9db9; eth_getCode empty (an EOA, i.e. a plain wallet);
+    eth_getTransactionCount 8,477 at block 59,931,730.
+  - code: all 22 byte-identical (2,474 bytes, same sha256); not an EIP-1167 clone; owner_address empty, open source 1,
+    mintable 0, proxy 0 (GoPlus).
+  - address prefix: all 22 start 0xadf (CHECKABLE-file, tokens.json). In the main snapshot files every ADS-quoted pool's
+    other token also starts 0xadf: 62 of 62 (2026-11-13) and 76 of 76 (2026-11-16) (CHECKABLE-file). The 14 other metered
+    tokens share no prefix.
+  - creation (3 sampled, CHECKABLE-pinned: binary search of eth_getCode non-empty, then eth_getBlockByNumber for the tx sent
+    by the creator): CODEFORMER block 43,191,340 (2026-03-10 19:47Z, creator nonce 6,857), INFLUXDB 43,250,704 (2026-03-12
+    04:45Z, nonce 7,307), TOBETOPJAVAER 43,832,082 (2026-03-25 15:45Z, nonce 8,146); each a call to the same contract
+    0x13c9…1d70 with the same selector 0xbfe8b349. The other 19 were not searched; that they came the same way is ASSERTED
+    from the identical code and creator. All 22 deepest pools were created 2026-03-10 .. 2026-03-25 (CHECKABLE-file,
+    universe.json pool_created_at).
+  - first funder (CHECKABLE-pinned: binary search of balance > 0 or nonce > 0 up to the first creation block, then the
+    block's receipts): first funded at block 31,728,493 (2025-06-18 11:32Z) by a type 0x7e deposit (Ethereum -> Base, the
+    standard bridge: L2CrossDomainMessenger 0x4200…0007, ETHBridgeFinalized emitted by 0x4200…0010). The bridge event's L1
+    sender is the same address as the creator. Funding chain: Ethereum, self-bridged; who funded it on Ethereum is not
+    reachable from this session (no Ethereum source).
+- ADS (0xb20a…b7df):
+  - creator 0xb6fe…ae1f (GoPlus, CHECKABLE-live): an EOA (eth_getCode empty); eth_getTransactionCount 1 at block 59,931,730
+    (CHECKABLE-pinned): its one transaction created ADS.
+  - creation block 27,409,664 (2025-03-10 12:11Z): a call to 0x7f46…1015 (selector 0x111e4159), creator nonce 0
+    (CHECKABLE-pinned). ADS's code is a 45-byte EIP-1167 clone of 0x50fc…e70c (CHECKABLE-pinned).
+  - GoPlus: owner_address 0x4200…0010 (Base's standard bridge predeploy, ASSERTED reading of the address), open source 1,
+    mintable 0, proxy 0, creator balance 0 (CHECKABLE-live).
+  - first funded at block 27,408,324 (2025-03-10 11:26Z, 45 min before the creation) by a type 0x7e bridge deposit whose L1
+    sender is the same address (CHECKABLE-pinned, same method as above).
+- Overlap: the 22 share one creator; ADS's creator, its creation contract and its funding wallet differ from the family's.
+  Neither creator nor ADS's creator appears as a trader in any trade sample below, nor in any top-10 holder list except
+  the family creator in 5 (CHECKABLE-live). No Base-side link between the two creators was found; a link on Ethereum is
+  not checked.
+
+### Holders
+- GoPlus holder_count (CHECKABLE-live, 2026-11-20 12:09-12:11Z): the 22 tokens median 3,259 (2,768 .. 4,232); ADS 8,258.
+  GeckoTerminal token info holders as a cross-check (CHECKABLE-live, 12:22Z, 4 tokens): ADS 8,151; INFLUXDB 3,293 (GoPlus 3,298);
+  TOBETOPJAVAER 3,916 (3,918); WHISPER 2,950 (2,938).
+- Top 10 holders (GoPlus holders, the first 10; percent of supply): the 22 tokens median 22.8% (11.3% .. 35.8%), top 1
+  median 8.7%; the token's own deepest pool is in its top 10 for 21 of 22 (median 1.5% of supply). Creator balance > 0 in 8
+  of 22 (0.16% .. 5.93%); the creator is in the top 10 of 5 (EXO, INFLUXDB, LUX, ODOO, WHISPER).
+- Across tokens: 170 distinct top-10 wallets over the 22; 14 in two or more tokens' top 10. 0x5234…dd91 is in all 22 (median
+  2.0% each) and 0x1d5a…6c36 in 15 (median 12.4% each); both are contracts (16,845 and 20,458 bytes; name() and factory()
+  revert), unlabelled by GoPlus; neither traded in the samples (CHECKABLE-live GoPlus; CHECKABLE-pinned eth_getCode).
+- ADS top 10 (CHECKABLE-live): 26.6% of supply; 9 of the 10 are ADS pools (family pools and ADS/USDC; identity from the
+  snapshot files and DexScreener), holding 23.1% of ADS supply between them.
+
+### 24 h volume vs reserve (backtest/liquid/ only)
+- CHECKABLE-file: universe.json reserve_usd (fetched 2026-11-09) and pool_created_at; daily.jsonl.gz column 5 (USD
+  volume), median of the 30 daily volumes Oct 9 - Nov 7 (a missing day = 0, the survey's rule); the main snapshot files
+  2026-11-13 and 2026-11-16 (reserve_usd, volume_h24_usd of the same pool). "ratio" = volume / reserve; reserve is the pool's
+  total value, both sides (not qliq).
+
+  | token | address | deepest pool created | reserve Nov 9 | median daily vol, 30 d to CUT | ratio | Nov 13 24 h ratio | Nov 16 24 h ratio |
+  |---|---|---|---|---|---|---|---|
+  | INFLUXDB | 0xadf1…5418 | 2026-03-12 | 301k | 185k | 0.61 | 0.55 | 0.50 |
+  | TOBETOPJAVAER | 0xadf1…f046 | 2026-03-25 | 305k | 187k | 0.61 | 0.58 | 0.47 |
+  | WHISPER | 0xadf1…ee1c | 2026-03-12 | 114k | 169k | 1.48 | 0.57 | 0.53 |
+  | FISH-SPEECH | 0xadf2…42d3 | 2026-03-11 | 294k | 166k | 0.56 | 0.56 | 0.40 |
+  | JAN | 0xadf2…38f6 | 2026-03-11 | 397k | 135k | 0.34 | 0.53 | 0.51 |
+  | KOTAEMON | 0xadf2…d04a | 2026-03-13 | 349k | 222k | 0.64 | 0.57 | 0.51 |
+  | ADGUARDHOME | 0xadf3…b575 | 2026-03-11 | 128k | 123k | 0.96 | 0.44 | 0.35 |
+  | UNION | 0xadf5…a6e8 | 2026-03-13 | 430k | 128k | 0.30 | 0.47 | 0.47 |
+  | YESPLAYMUSIC | 0xadf5…1e15 | 2026-03-12 | 315k | 116k | 0.37 | 0.78 | 0.44 |
+  | SOCIAL-APP | 0xadf9…6442 | 2026-03-13 | 230k | 121k | 0.53 | 0.35 | 0.31 |
+  | LUX | 0xadf9…5da1 | 2026-03-12 | 300k | 125k | 0.42 | 0.38 | 0.44 |
+  | CODEFORMER | 0xadfa…1918 | 2026-03-10 | 163k | 106k | 0.65 | 0.47 | 0.27 |
+  | EXO | 0xadfc…f3a6 | 2026-03-12 | 174k | 125k | 0.72 | 0.39 | 0.39 |
+  | ESBUILD | 0xadfc…c697 | 2026-03-24 | 193k | 150k | 0.78 | 0.39 | 0.46 |
+  | CHEAT.SH | 0xadfd…b99c | 2026-03-11 | 159k | 184k | 1.16 | 0.32 | 0.28 |
+  | ODOO | 0xadfd…dbef | 2026-03-12 | 151k | 192k | 1.28 | 0.38 | 0.44 |
+  | COMPOSE | 0xadfd…22a5 | 2026-03-23 | 452k | 205k | 0.45 | 0.47 | 0.69 |
+  | SPOTUBE | 0xadfe…4908 | 2026-03-12 | 342k | 119k | 0.35 | 0.47 | 0.51 |
+  | BACKGROUNDMUSIC | 0xadfe…4155 | 2026-03-12 | 415k | 169k | 0.41 | 0.49 | 0.59 |
+  | UBLOCK | 0xadff…311e | 2026-03-10 | 178k | 145k | 0.82 | 0.46 | 0.42 |
+  | THE-ALGORITHM | 0xadff…d463 | 2026-03-11 | 349k | 197k | 0.57 | 0.53 | 0.56 |
+  | GPT-SOVITS | 0xadff…2efb | 2026-03-10 | 465k | 147k | 0.32 | 0.38 | 0.33 |
+
+  | group | n | median ratio, 30 d to CUT (range) | Nov 13 (range) | Nov 16 (range) |
+  |---|---|---|---|---|
+  | the 22 ADS-paired | 22 | 0.59 (0.30 .. 1.48) | 0.47 (0.32 .. 0.78) | 0.45 (0.27 .. 0.69) |
+  | the other 14 metered tokens | 14 | 0.60 (0.05 .. 7.57) | 0.48 (0.04 .. 7.94) | 0.42 (0.06 .. 6.83) |
+
+- ADS's own pools in the main snapshot files (CHECKABLE-file; all uniswap-v3-base): 2026-11-13: 62 ADS-quoted pools, 24 h
+  volume 4,304,608 USD, reserve 12.46M; 2 ADS-base pools (ADS/WETH 0x1679…3d94, ADS/USDC 0x70b1…f396), 24 h volume 23,410
+  USD, reserve 0.56M. 2026-11-16: 76 ADS-quoted, 3,588,975 USD, reserve 11.54M; 1 ADS-base (ADS/WETH), 11,292 USD, reserve
+  0.30M. ADS itself is not in universe.json (it is a quote token there), so it has no 30-day volume row.
+- DexScreener /token-pairs/v1/base/ADS (CHECKABLE-live, identity only): 30 pairs, all uniswap v3; 28 ADS-quoted (all with an
+  0xadf… token), 2 ADS-base; pair creation months 2025-04 2, 2025-09 1, 2025-11 3, 2025-12 4, 2026-03 20. 30 may be the
+  endpoint's own cap (ASSERTED). 85 distinct ADS pools across both snapshot files and that list.
+
+### Trades (GeckoTerminal, one 24 h sample)
+- Sample limits: GeckoTerminal /networks/base/pools/{pool}/trades, the last 24 h, at most 300 trades per pool, fetched
+  2026-11-20 12:16:37Z .. 12:21:22Z UTC; trades seen 2026-11-19 12:17Z .. 2026-11-20 12:18Z. 6 of 22 family pools hit the
+  300 cap (span 20.5 .. 23.7 h). One day is not a pattern. CHECKABLE-live (re-running gives a later day). Kept per trade:
+  block, tx hash, tx sender (tx_from_address), kind (buy/sell of the pool's base token), USD trade value (volume_in_usd);
+  sizes below are that value. Cross-check DexScreener txns h24 (CHECKABLE-live): 6,058 (3,502 buys / 2,556 sells) vs the
+  sample's 5,909 (3,396 / 2,513).
+- Checks per pool: "both <= 5 blocks" = wallets with a buy and a sell at most 5 blocks apart; "round trips 2%" = same-wallet
+  buy and sell whose USD values are within 2% of the larger, each trade used once, anywhere in the window (in brackets:
+  within 5 blocks); "flagged" = wallets in either check, and their share of the pool's sample volume.
+
+  | pool | address | trades | span h | buys / sells | wallets | top 1 / top 10 wallets, % of volume | size buckets USD <10 / 10-100 / 100-1k / 1k-10k / >=10k | both <= 5 blocks | round trips 2% (<= 5 blocks) | flagged wallets | flagged % of volume |
+  |---|---|---|---|---|---|---|---|---|---|---|---|
+  | INFLUXDB | 0xfcd1…90a3 | 300* | 21.7 | 211 / 89 | 239 | 5.7 / 35.0 | 31 / 148 / 82 / 39 / 0 | 0 | 3 (0) | 3 | 0.7 |
+  | TOBETOPJAVAER | 0x3aab…2dac | 299 | 23.6 | 208 / 91 | 224 | 7.9 / 34.8 | 37 / 120 / 86 / 56 / 0 | 0 | 1 (0) | 1 | 0.1 |
+  | WHISPER | 0xc055…0479 | 227 | 23.8 | 136 / 91 | 174 | 5.5 / 38.9 | 29 / 107 / 72 / 19 / 0 | 0 | 2 (0) | 2 | 0.5 |
+  | FISH-SPEECH | 0xab05…d1e5 | 255 | 23.9 | 173 / 82 | 212 | 6.0 / 40.1 | 33 / 109 / 84 / 29 / 0 | 0 | 3 (0) | 3 | 5.8 |
+  | JAN | 0xb52e…c292 | 255 | 24.0 | 158 / 97 | 204 | 5.0 / 38.1 | 23 / 112 / 76 / 44 / 0 | 0 | 3 (0) | 3 | 0.2 |
+  | KOTAEMON | 0x0b18…3139 | 298 | 24.0 | 145 / 153 | 222 | 4.4 / 34.5 | 35 / 132 / 96 / 35 / 0 | 0 | 6 (0) | 6 | 2.8 |
+  | ADGUARDHOME | 0x3620…bdaf | 240 | 23.7 | 120 / 120 | 165 | 5.7 / 36.7 | 30 / 110 / 92 / 8 / 0 | 0 | 10 (0) | 10 | 14.5 |
+  | UNION | 0xe216…8e97 | 286 | 23.9 | 154 / 132 | 225 | 5.2 / 33.5 | 32 / 139 / 80 / 35 / 0 | 0 | 5 (0) | 5 | 7.1 |
+  | YESPLAYMUSIC | 0xb82f…5ac0 | 288 | 23.8 | 184 / 104 | 213 | 6.4 / 37.2 | 39 / 121 / 96 / 32 / 0 | 0 | 3 (0) | 3 | 1.5 |
+  | SOCIAL-APP | 0x40b7…f3f5 | 275 | 23.9 | 179 / 96 | 223 | 5.8 / 39.5 | 23 / 135 / 82 / 35 / 0 | 0 | 2 (0) | 2 | 3.5 |
+  | LUX | 0xeecc…e1a2 | 300* | 23.4 | 207 / 93 | 235 | 5.1 / 33.6 | 31 / 132 / 97 / 40 / 0 | 0 | 3 (0) | 3 | 1.6 |
+  | CODEFORMER | 0x8593…ce18 | 218 | 23.8 | 69 / 149 | 166 | 6.5 / 39.1 | 22 / 123 / 58 / 15 / 0 | 0 | 18 (0) | 18 | 15.3 |
+  | EXO | 0xebcd…3599 | 260 | 23.9 | 139 / 121 | 194 | 5.8 / 38.6 | 25 / 124 / 85 / 26 / 0 | 0 | 2 (0) | 2 | 1.4 |
+  | ESBUILD | 0xb0cb…d567 | 300* | 23.7 | 212 / 88 | 234 | 5.6 / 39.2 | 44 / 128 / 96 / 32 / 0 | 0 | 1 (0) | 1 | 0.1 |
+  | CHEAT.SH | 0x9e94…ba03 | 228 | 23.9 | 101 / 127 | 161 | 5.2 / 35.5 | 21 / 107 / 92 / 8 / 0 | 0 | 7 (0) | 7 | 13.6 |
+  | ODOO | 0x911c…99bd | 280 | 23.9 | 172 / 108 | 224 | 5.6 / 38.5 | 34 / 122 / 92 / 32 / 0 | 0 | 1 (0) | 1 | 3.5 |
+  | COMPOSE | 0xd18e…b34a | 228 | 23.9 | 92 / 136 | 151 | 5.8 / 40.2 | 31 / 107 / 88 / 2 / 0 | 0 | 11 (0) | 11 | 9.2 |
+  | SPOTUBE | 0x6697…11df | 300* | 23.1 | 159 / 141 | 225 | 4.5 / 29.8 | 45 / 129 / 81 / 45 / 0 | 0 | 1 (0) | 1 | 0.1 |
+  | BACKGROUNDMUSIC | 0x4aff…3897 | 283 | 23.8 | 119 / 164 | 228 | 4.5 / 30.6 | 29 / 136 / 84 / 34 / 0 | 0 | 1 (0) | 1 | 4.5 |
+  | UBLOCK | 0x3368…aa7f | 189 | 23.6 | 58 / 131 | 138 | 8.1 / 44.1 | 26 / 95 / 59 / 9 / 0 | 0 | 8 (0) | 8 | 9.2 |
+  | THE-ALGORITHM | 0x5b74…2854 | 300* | 22.9 | 194 / 106 | 237 | 4.5 / 31.6 | 39 / 137 / 77 / 47 / 0 | 0 | 1 (0) | 1 | 0.0 |
+  | GPT-SOVITS | 0xa311…1f57 | 300* | 20.5 | 206 / 94 | 236 | 4.5 / 36.0 | 38 / 121 / 97 / 44 / 0 | 0 | 0 (0) | 0 | 0.0 |
+  | ADS/WETH | 0x1679…3d94 | 300* | 23.7 | 155 / 145 | 135 | 44.7 / 84.7 | 194 / 87 / 19 / 0 / 0 | 0 | 4 (0) | 3 | 5.6 |
+  | ADS/USDC | 0x70b1…f396 | 56 | 19.8 | 24 / 32 | 44 | 21.8 / 72.1 | 56 / 0 / 0 / 0 / 0 | 0 | 0 (0) | 0 | 0.0 |
+
+  (* = hit the 300-trade cap.)
+- The 22 family pools together: 5,909 trades, 2.50M USD of trade value (ADS/WETH 10,291 USD; ADS/USDC about 1 USD over 56
+  trades); sizes 697 / 2,694 / 1,852 / 666 / 0 (none at or above 10k USD); wallets per pool 138 .. 239, top 1 wallet 4.4% ..
+  8.1% of a pool's volume, top 10 29.8% .. 44.1%. No transaction holds two trades in the same family pool (ADS/WETH: 9).
+- Wash checks over the 22: wallets with a buy and a sell within 5 blocks 0 in every pool; size-matched round trips 92 pairs
+  (per pool 0 .. 18, median 3), none within 5 blocks; flagged wallets' share of volume 0.0% .. 15.3% per pool (median 2.2%).
+- Trader overlap across pools (CHECKABLE-live, same sample): 1,952 distinct tx senders over the 22 family pools; 852 traded
+  in two or more of them and carry 90.6% of the family sample volume; 207 in five or more (64.3%); 67 in eleven or more
+  (30.7%); none in all 22 (max 16). Family-wide, the top 1 / 5 / 10 senders carry 1.3% / 5.6% / 10.1% of volume. 71 of the
+  135 ADS/WETH senders and 40 of the 44 ADS/USDC senders also traded a family pool.
+- Caveats: the sample's sender is the transaction's sender (a router contract never shows as sender, but a bot contract
+  called by many keys would split into many senders); USD values are GeckoTerminal's; the 2% match ignores time order
+  inside the window; a 24 h sample says nothing about other days; the top-300 cap cuts the busiest pools' earliest hours.
+
+### Observations (no verdict)
+- Deployer: the 22 come from one wallet through one contract, with identical code and a shared 0xadf address prefix, all
+  pools created over 16 days in March 2026; that wallet has sent 8,477 transactions and its first funding was a bridge deposit
+  from its own Ethereum address. ADS has its own creator (one transaction ever), created 2025-03-10 as a clone.
+- Volume: by the backtest/liquid/ fields, the 22 trade about 0.3 .. 1.5 times their reserve a day, inside the range of the
+  other 14 metered tokens (median 0.59 vs 0.60). In the snapshots the ADS-quoted pools trade about 3.6 .. 4.3M USD a day,
+  the ADS-base pools 11 .. 23k USD a day.
+- Trades: many senders per pool (138 .. 239 a day), no single sender above 8.1% of a pool, no fast same-wallet buy and sell,
+  few size-matched round trips; about nine in ten USD of family volume comes from senders active in two or more family
+  pools.
+- Not checked: Ethereum-side funding, the other 19 creation transactions, what the two shared holder contracts are, who
+  sends through them, any day other than Nov 19-20.

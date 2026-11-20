@@ -410,7 +410,21 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
     avoid new designs that depend on staying public. Rejected: private data repos now, moving files after BL-34's run,
     stopping GeckoTerminal.
   - BL-50 Done (closed by the owner 2026-11-19); docs/NOTES.md "BL-50".
-- Next step: BL-46: snapshot.yml runs automatic every Monday 00:37 UTC; next run Nov 23.
+- BL-48 (2026-11-20, evidence only, docs only, counts only): ADS cluster check on the 22 ADS-paired tokens of
+  backtest/costs/tokens.json and ADS 0xb20a…b7df. 298 public keyless requests (cap 400): Base RPC 242, GeckoTerminal 30,
+  GoPlus 23, DexScreener 2, Blockscout 1 refused by the proxy; eth_getLogs refused by the public RPC at every range. The 22:
+  one creator wallet 0xd95a…9db9 (8,477 txs; first funded by a bridge deposit from its own Ethereum address), one
+  creation contract (3 sampled), byte-identical code, a shared 0xadf address prefix, pools created Mar 10-25 2026;
+  holders median 3,259, top-10 median 22.8%; two unlabelled contracts in the top 10 of 22 and 15 of them. ADS: its own
+  creator (one tx ever), an EIP-1167 clone created 2025-03-10, 8,258 holders, 9 of its top 10 holders are ADS pools.
+  Volume / reserve from backtest/liquid/ only: median 0.59 a day (the other 14 metered tokens 0.60); ADS-quoted pools
+  3.6-4.3M USD a day vs ADS-base pools 11-23k. One 24 h trade sample (Nov 19-20, at most 300 per pool): 5,909 trades,
+  none >= 10k USD, 138-239 senders a pool, top sender <= 8.1%, 0 same-wallet buy and sell within 5 blocks, 92
+  size-matched round trips; senders active in two or more family pools carry 90.6% of the volume. Seal slip: one
+  daily.jsonl.gz row printed, nothing computed or kept (the owner accepted it, DECISIONS 2026-11-20). Observations only,
+  no recommendation (docs/NOTES.md "BL-48").
+- Next step: BL-48: chat reads docs/NOTES.md "BL-48" and proposes exclude, cap or keep for the 22 ADS-paired tokens;
+  the owner decides (any change to the frozen cost-meter list is a later story). BL-46: snapshot.yml runs automatic every Monday 00:37 UTC; next run Nov 23.
   How the sealed snapshot files (backtest/liquid/snapshots/sealed/) are opened is a later story, after BL-34's holdout
   run; until then nothing reads them.
   BL-45: 7 days of costs.yml runs from the first run (backtest/costs/window.json), then chat reads python -m
@@ -424,7 +438,7 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
   done, counts only; no return has been computed from backtest/liquid/); the execution design is researched in
   parallel (no wallet code). BL-38..BL-42 are candidates only (DECISIONS 2026-11-04). The owner checks the deployed site
   and the first Telegram daily summary with the BL-43 lines.
-- Last updated: 2026-11-19.
+- Last updated: 2026-11-20.
 
 ## 12. Glossary
 - Lead: a token the scanner found. Survivor: a lead that passed every hard skip.
