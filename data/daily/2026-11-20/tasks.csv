@@ -212,3 +212,10 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-20T02:03:20Z,desk,VERIFY,IAGENT,0xeba3bf97a80af9c7d6d907f530f44d188405c026,SKIP,real_depth,goplus=skipped until=2026-11-21T02:03:20Z b1=19 s1=2 b24=19 s24=2 liq=190133 dex=uniswap:v4 qliq=1 pair_age=12 token_age=12
 2026-11-20T02:03:20Z,desk,VERIFY,AMDAI,0x932244955cfab81fa952f770bcdbd393b556857e,SKIP,real_depth,goplus=skipped until=2026-11-21T02:03:20Z b1=15 s1=2 b24=15 s24=2 liq=117497 dex=uniswap:v4 qliq=10 pair_age=16 token_age=16
 2026-11-20T02:03:20Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=0 new=5 checked=5 passed=0 bought=0 held=0 deferred=0 dex_only=4 goplus=1 requests=13 secs=2.9 bl_positions=2 bl_due=0 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=none labels_due=0 labels_done=0 labels_calls=0 live=ok alerts=none alerts_sent=0
+2026-11-20T02:08:15Z,baseline,EXIT,MARSBASE,0x0b455a80139f9642bb47f2cb5afabbd8809a24af,HOLD,no_quote,
+2026-11-20T02:08:15Z,baseline,EXIT,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,HOLD,no_quote,
+2026-11-20T02:08:15Z,desk,VERIFY,HOOKR,0x608cd62bf47acc72380235b684484b958462399e,SKIP,real_depth,goplus=skipped until=2026-11-21T02:08:15Z
+2026-11-20T02:08:15Z,desk,VERIFY,IAGENT,0xb073da09450159875b940227a057ff2773186f0a,WATCH,goplus_not_ready,"first_seen=2026-11-20T02:08:15Z checks=1 pending=honeypot,buy_tax_pct,sell_tax_pct,dev_pct,top10_pct,lp_locked_pct b1=5 s1=0 b24=5 s24=0 liq=53737 dex=uniswap:v2 qliq=26866 pair_age=5 token_age=5"
+2026-11-20T02:08:15Z,desk,VERIFY,LC,0xad89b307727f41f47799d6382f0c9225a9a5f565,SKIP,real_depth,goplus=skipped until=2026-11-21T02:08:15Z
+2026-11-20T02:08:15Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
+2026-11-20T02:08:15Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=0 new=3 checked=3 passed=0 bought=0 held=0 deferred=0 dex_only=2 goplus=1 requests=12 secs=2.8 bl_positions=2 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=3 labels_done=3 labels_calls=1 live=ok alerts=none alerts_sent=0
