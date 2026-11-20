@@ -80,9 +80,9 @@
         "entry_qliq": 13218,
         "entry_ts": "2026-11-20T00:08:26Z",
         "ladder_done": [],
-        "last_liq_usd": 30578.57,
-        "last_price": 0.02939,
-        "last_qliq": 13226,
+        "last_liq_usd": 30488.61,
+        "last_price": 0.02932,
+        "last_qliq": 13185,
         "launchpad": "other",
         "orig_qty": 165.5043246277521,
         "pair": "0x5e57fd096071198ede21447d3a6fdf2a89ff531bfadb3c53d86d81da54e9748f",
@@ -93,7 +93,7 @@
     },
     "refill_week": "2026-W47",
     "refills_usd": 56.55720719365456,
-    "ticks_since_buy": 4
+    "ticks_since_buy": 5
   },
   "desk": {
     "cash": 50.0,
@@ -808,6 +808,14 @@
         "sight_pair": "0x3d7c8dd87a036d647a07480325b76dfeb7ad6183d167740744a5a866fee7f0e3",
         "sight_qliq": 23,
         "symbol": "ISO"
+      },
+      "0x0e99b716e5db18eb3edd4d971d33515ee35ff6a4": {
+        "done": [],
+        "first_price": 1.66e-05,
+        "first_seen": "2026-11-20T00:33:13Z",
+        "sight_pair": "0xb8a6a8a7820a09e2fdd0240742aa4a7531893c83",
+        "sight_qliq": 72275,
+        "symbol": "CLAUDIA"
       },
       "0x0e9dbbaa5be5eb48743a666fe908abd91c75b804": {
         "done": [
@@ -2640,17 +2648,6 @@
         "sight_pair": "0x70711c4391b4e424761bce288d3f03c499a4207fcc7041204006668f9151cd1d",
         "sight_qliq": 180,
         "symbol": "SOS\u200aF"
-      },
-      "0x3a3c13aed283d7ae0a0fa4c1858e21dfe9a2c564": {
-        "done": [
-          1,
-          6
-        ],
-        "first_price": 5.034,
-        "first_seen": "2026-11-19T00:28:16Z",
-        "sight_pair": "0x8ba037aac9124aad8520360e56e0059d19af3169",
-        "sight_qliq": 2002,
-        "symbol": "BBD"
       },
       "0x3a513b9b642cd5c3f53b84419a9bdcb3f95336c0": {
         "done": [
@@ -4768,7 +4765,9 @@
         "symbol": "NOTF"
       },
       "0xc1343c72773e8dc1ebf4e0be5afebb8d5f6469a5": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 3.825e-06,
         "first_seen": "2026-11-19T23:28:16Z",
         "sight_pair": "0xf3f8de4d23d7dbd6988f080bfb3db5dcd9411046",
@@ -5843,12 +5842,6 @@
         "reason": "missing:liq_usd",
         "symbol": "Basewhale",
         "until": "2026-11-20T03:18:16Z"
-      },
-      "0x067086cde15f6526ed1da6c28035df296974f5d3": {
-        "at": "2026-11-19T00:28:16Z",
-        "reason": "real_depth",
-        "symbol": "Basedog",
-        "until": "2026-11-20T00:28:16Z"
       },
       "0x069eb5a06904f17d086589c6a408737f59fdf446": {
         "at": "2026-11-19T21:28:15Z",
@@ -8028,12 +8021,6 @@
         "symbol": "SOS\u200aF",
         "until": "2026-11-20T07:48:16Z"
       },
-      "0x3a3c13aed283d7ae0a0fa4c1858e21dfe9a2c564": {
-        "at": "2026-11-19T00:28:16Z",
-        "reason": "real_depth",
-        "symbol": "BBD",
-        "until": "2026-11-20T00:28:16Z"
-      },
       "0x3a513b9b642cd5c3f53b84419a9bdcb3f95336c0": {
         "at": "2026-11-19T06:08:15Z",
         "reason": "real_depth",
@@ -8460,6 +8447,12 @@
         "symbol": "1KTO100M",
         "until": "2026-11-20T08:48:15Z"
       },
+      "0x43ed1dd48b34e71343b74d69e4519c09b29ec9c0": {
+        "at": "2026-11-20T00:33:13Z",
+        "reason": "missing:liq_usd",
+        "symbol": "E91",
+        "until": "2026-11-21T00:33:13Z"
+      },
       "0x44945fa2d07715066d18e10831eccb51a187b1d3": {
         "at": "2026-11-19T02:33:15Z",
         "reason": "real_depth",
@@ -8825,6 +8818,12 @@
         "reason": "real_depth",
         "symbol": "NOVA",
         "until": "2026-11-20T09:58:15Z"
+      },
+      "0x56d50e9da34702c813021d2852022c452fc722f4": {
+        "at": "2026-11-20T00:33:13Z",
+        "reason": "real_depth",
+        "symbol": "AAG",
+        "until": "2026-11-21T00:33:13Z"
       },
       "0x5717a20cac1113e253f014560e3430d2b16fd47f": {
         "at": "2026-11-19T19:08:16Z",
@@ -10277,12 +10276,6 @@
         "reason": "real_depth",
         "symbol": "GZLL",
         "until": "2026-11-20T08:28:18Z"
-      },
-      "0x9499e7e65f2f87ee67f97214af0d5c4607dfaba3": {
-        "at": "2026-11-19T00:28:16Z",
-        "reason": "real_depth",
-        "symbol": "ID",
-        "until": "2026-11-20T00:28:16Z"
       },
       "0x94ba8789a016882c71025f87dbcdefebbf76603d": {
         "at": "2026-11-19T12:08:16Z",
@@ -13880,6 +13873,12 @@
       }
     },
     "watch": {
+      "0x0e99b716e5db18eb3edd4d971d33515ee35ff6a4": {
+        "checks": 1,
+        "first_seen": "2026-11-20T00:33:13Z",
+        "last_check": "2026-11-20T00:33:13Z",
+        "symbol": "CLAUDIA"
+      },
       "0xa71064c09bb1aafa55ba19b13e1bc1b82de696bd": {
         "checks": 2,
         "first_seen": "2026-11-20T00:08:26Z",
@@ -14203,7 +14202,7 @@
     "gate_restart": "BL-32",
     "machine_due": "",
     "max_dd_pct": {
-      "baseline": 167.86143481410772,
+      "baseline": 167.8614422829456,
       "desk": 9.811123120222184
     },
     "peak": {
