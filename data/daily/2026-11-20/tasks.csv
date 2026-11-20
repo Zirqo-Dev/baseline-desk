@@ -2430,3 +2430,8 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-20T21:03:19Z,desk,VERIFY,National Oil Truts Fund,0x24a370d509e3d9c173e5d17ece2643feb3b04f5a,WATCH,goplus_not_ready,"first_seen=2026-11-20T21:03:19Z checks=1 pending=honeypot,buy_tax_pct,sell_tax_pct,dev_pct,top10_pct,lp_locked_pct b1=6 s1=1 b24=6 s24=1 liq=226043643 dex=uniswap:v4 qliq=174186 pair_age=5 token_age=5"
 2026-11-20T21:03:19Z,baseline,EXECUTE,NOTF,0xa996f7b73cbc6ce2482cbd55e7dfd6968c2ec2e6,SKIP,loss_halt,"seed=202611202103 eligible=2 pick=1 pool=526762,a996f7 desk=WATCH launchpad=other"
 2026-11-20T21:03:19Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=22 rechecks=3 new=2 checked=5 passed=0 bought=0 held=0 deferred=0 dex_only=0 goplus=5 requests=19 secs=11.5 bl_positions=2 bl_due=1 bl_eligible=2 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=1 labels_done=1 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-20T21:08:17Z,baseline,EXIT,MARSBASE,0x0b455a80139f9642bb47f2cb5afabbd8809a24af,HOLD,no_quote,
+2026-11-20T21:08:17Z,baseline,EXIT,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,HOLD,no_quote,
+2026-11-20T21:08:17Z,desk,VERIFY,RIP POPE,0x0eeb8ca55c5b2e86a6669788fd84cbc7cfed70c3,SKIP,missing:liq_usd,goplus=skipped until=2026-11-21T21:08:17Z
+2026-11-20T21:08:17Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
+2026-11-20T21:08:17Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=22 rechecks=0 new=1 checked=1 passed=0 bought=0 held=0 deferred=0 dex_only=1 goplus=0 requests=9 secs=2.8 bl_positions=2 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=1 labels_done=1 labels_calls=1 live=ok alerts=none alerts_sent=0
