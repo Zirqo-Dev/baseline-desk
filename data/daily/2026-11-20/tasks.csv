@@ -1207,3 +1207,10 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-20T10:58:18Z,desk,VERIFY,DRMS,0x27fb114f1826aa3bcd91c04e47f8cc06531a7271,SKIP,missing:liq_usd,goplus=skipped until=2026-11-21T10:58:18Z
 2026-11-20T10:58:18Z,baseline,EXECUTE,BOOTR,0x1357671a1efc77b9ad713bc7053bcf25cc7be967,SKIP,loss_halt,seed=202611201058 eligible=1 pick=0 pool=135767 desk=WATCH launchpad=other
 2026-11-20T10:58:18Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=2 new=3 checked=5 passed=0 bought=0 held=0 deferred=0 dex_only=3 goplus=2 requests=15 secs=5.0 bl_positions=2 bl_due=1 bl_eligible=1 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=3 labels_done=3 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-20T11:03:17Z,baseline,EXIT,MARSBASE,0x0b455a80139f9642bb47f2cb5afabbd8809a24af,HOLD,no_quote,
+2026-11-20T11:03:17Z,baseline,EXIT,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,HOLD,no_quote,
+2026-11-20T11:03:17Z,desk,VERIFY,AX1,0xf4d8df7c94497d5564a38c55da241640c8a35640,WATCH,goplus_not_ready,"first_seen=2026-11-20T10:13:16Z checks=4 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct b1=191 s1=119 b24=191 s24=119 liq=49341 dex=uniswap:v4 qliq=21157 pair_age=54 token_age=54"
+2026-11-20T11:03:17Z,desk,VERIFY,LUMIO,0xb200000000000000000000e883cd7ce1c5cfd1fa,SKIP,real_depth,goplus=skipped until=2026-11-21T11:03:17Z
+2026-11-20T11:03:17Z,desk,VERIFY,CHUBBY,0xa372c9672a966ea55e970fc55b285e54d6fa1b14,SKIP,real_depth,goplus=skipped until=2026-11-21T11:03:17Z
+2026-11-20T11:03:17Z,baseline,EXECUTE,AX1,0xf4d8df7c94497d5564a38c55da241640c8a35640,SKIP,loss_halt,seed=202611201103 eligible=1 pick=0 pool=f4d8df desk=WATCH launchpad=other
+2026-11-20T11:03:17Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=1 new=2 checked=3 passed=0 bought=0 held=0 deferred=0 dex_only=2 goplus=1 requests=12 secs=3.0 bl_positions=2 bl_due=1 bl_eligible=1 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=22 labels_done=22 labels_calls=1 live=ok alerts=none alerts_sent=0
