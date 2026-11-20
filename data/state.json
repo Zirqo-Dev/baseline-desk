@@ -63,7 +63,7 @@
     },
     "refill_week": "2026-W47",
     "refills_usd": 56.55720719365456,
-    "ticks_since_buy": 264
+    "ticks_since_buy": 265
   },
   "desk": {
     "cash": 50.0,
@@ -121,7 +121,8 @@
       },
       "0x0226fe4de88a225e71506fb5bc98e03fd96d8bb6": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 0.02383,
         "first_seen": "2026-11-20T17:08:22Z",
@@ -3251,7 +3252,8 @@
       },
       "0x681716cb620da68984c9d3d027bf2dc8e6b7ab68": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 0.0001454,
         "first_seen": "2026-11-20T17:08:22Z",
@@ -7476,6 +7478,12 @@
         "symbol": "GI",
         "until": "2026-11-21T08:08:22Z"
       },
+      "0x5267625a537c89cdb257b4a5d372d204f0329376": {
+        "at": "2026-11-20T23:13:20Z",
+        "reason": "real_depth",
+        "symbol": "NOTF",
+        "until": "2026-11-21T23:13:20Z"
+      },
       "0x5285dfb293960d8f890a4654984ab21270dfb316": {
         "at": "2026-11-20T16:53:13Z",
         "reason": "real_depth",
@@ -8093,12 +8101,6 @@
         "reason": "real_depth",
         "symbol": "GITLY",
         "until": "2026-11-21T10:38:18Z"
-      },
-      "0x6e866899ac930c824b1f3d3743305f4a9cc87d2a": {
-        "at": "2026-11-19T23:08:26Z",
-        "reason": "real_depth",
-        "symbol": "UGOS",
-        "until": "2026-11-20T23:08:26Z"
       },
       "0x6ea335ebcaad085a130de50ba97d8fc9c01b5d89": {
         "at": "2026-11-20T07:48:22Z",
@@ -8909,12 +8911,6 @@
         "reason": "real_depth",
         "symbol": "NWT",
         "until": "2026-11-21T10:53:14Z"
-      },
-      "0x9cef4d81daadcfccdd8d6f341211d8d0de8e762f": {
-        "at": "2026-11-19T23:08:26Z",
-        "reason": "missing:liq_usd",
-        "symbol": "TEST",
-        "until": "2026-11-20T23:08:26Z"
       },
       "0x9d02d7281cf44b998cd782635d6352fbb017c2bf": {
         "at": "2026-11-20T05:48:14Z",
@@ -10794,12 +10790,6 @@
         "symbol": "NOTF",
         "until": "2026-11-21T06:23:15Z"
       },
-      "0xe242991125472b15678baa8c63425f9461d566a5": {
-        "at": "2026-11-19T23:08:26Z",
-        "reason": "real_depth",
-        "symbol": "100",
-        "until": "2026-11-20T23:08:26Z"
-      },
       "0xe33470df02b473f1ef9d93063bdb4afbacdba4bd": {
         "at": "2026-11-20T00:08:26Z",
         "reason": "real_depth",
@@ -10811,12 +10801,6 @@
         "reason": "missing:liq_usd",
         "symbol": "SCAMPIC",
         "until": "2026-11-21T01:03:15Z"
-      },
-      "0xe37e3a4c25c557a43eb8b06ce4053e8eb0187323": {
-        "at": "2026-11-19T23:08:26Z",
-        "reason": "real_depth",
-        "symbol": "PEPKING",
-        "until": "2026-11-20T23:08:26Z"
       },
       "0xe3c43b7b3bfeb55c6cc38e1b9a1a094a703bda8e": {
         "at": "2026-11-20T17:18:16Z",
@@ -11160,12 +11144,6 @@
         "symbol": "joobi",
         "until": "2026-11-21T18:48:23Z"
       },
-      "0xf26083da420801badd0f29e4a76ff335a665cd8b": {
-        "at": "2026-11-19T23:08:26Z",
-        "reason": "real_depth",
-        "symbol": "KAI",
-        "until": "2026-11-20T23:08:26Z"
-      },
       "0xf27bee814fbd4a083a628cd04a99e2dce01bcccc": {
         "at": "2026-11-20T17:18:16Z",
         "reason": "real_depth",
@@ -11397,27 +11375,21 @@
     },
     "watch": {
       "0x1526099fe924ec93a180228770983025d99417b6": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-20T22:58:17Z",
-        "last_check": "2026-11-20T22:58:17Z",
+        "last_check": "2026-11-20T23:13:20Z",
         "symbol": "Basecat"
       },
       "0x37dc144a488b040ae435636b35b2e7bc30eb063c": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-20T22:58:17Z",
-        "last_check": "2026-11-20T22:58:17Z",
-        "symbol": "NOTF"
-      },
-      "0x5267625a537c89cdb257b4a5d372d204f0329376": {
-        "checks": 10,
-        "first_seen": "2026-11-20T20:13:16Z",
-        "last_check": "2026-11-20T22:58:17Z",
+        "last_check": "2026-11-20T23:13:20Z",
         "symbol": "NOTF"
       },
       "0x8635ef9bc84f8d8efcec3bb66a1e816e3cf59cd8": {
-        "checks": 2,
+        "checks": 3,
         "first_seen": "2026-11-20T22:43:15Z",
-        "last_check": "2026-11-20T22:58:17Z",
+        "last_check": "2026-11-20T23:13:20Z",
         "symbol": "GAP"
       },
       "0xcd5bd98ecef7b0f22b822a2fa64c4feb9f96791e": {
