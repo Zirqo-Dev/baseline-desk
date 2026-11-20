@@ -446,14 +446,17 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
   unknown by the owner's seal choice; other quote tokens' hops "no hop found by rule"). Stage 1 = Mondays Jun 15 .. Aug 31
   (42 picks vs the 40-leg bar), stage 2 = Sep 7 .. Oct 26 (33 vs 30), upper bounds. 114 public keyless requests (Base RPC
   11, GoPlus 103). No return computed, no run (docs/NOTES.md "BL-39 freeze").
-  - Open item (2026-11-20): daily ETH candles back to 2026-06-08 (the spec's ETH source) must be fetched once, nothing
-    after CUT, stored unread, before 2026-12-01: the free API keeps about 184 daily candles, so later those days are
-    lost and pass test 4 (hold-ETH) cannot run. The fetch belongs to the run-tool story or a small story before it; the
-    owner decides which.
+  - BL-39 ETH daily (2026-11-20, data only, the owner's choice B; closes the open item "daily ETH before 2026-12-01"):
+    backtest/liquid/eth-daily.jsonl.gz (sha256 82bc487a78a2...), the spec's ETH source fetched once, 1 GeckoTerminal call
+    through tools.liquid.daily() on the spec's pool with token=WETH, keep() on arrival (the CUT-day candle dropped):
+    183 daily candles 2026-05-09 .. 2026-11-07, 0 missing; BL-39's window Jun 8 .. Nov 7 153 of 153. Stored unread: no
+    price printed, no return computed; BL-39 reads only the days its spec names, older days kept unread for a later,
+    separately frozen spec (docs/NOTES.md "BL-39 ETH daily").
   - Open item (2026-11-20): section 4's backtest/specs/ list does not yet name the BL-39 v2.1 files
-    (bl39-max-momentum-v2.1.md, -family.json, -fees.json); a later docs touch.
-- Next step: BL-39: a later story builds the BL-39 run tool (it refuses any spec sha256 other than the frozen .md's),
-  after the daily ETH fetch above; stage 1 runs once; stage 2 only after a DECISIONS "stage 1 pass" line. BL-38's spec is
+    (bl39-max-momentum-v2.1.md, -family.json, -fees.json), and its backtest/liquid/ list does not name eth-daily.jsonl.gz;
+    a later docs touch.
+- Next step: BL-39: a later story builds the BL-39 run tool (it refuses any spec sha256 other than the frozen .md's);
+  the daily ETH file is in place; stage 1 runs once; stage 2 only after a DECISIONS "stage 1 pass" line. BL-38's spec is
   frozen before BL-39 stage 1 is read, or BL-38 tests only data after CUT.
   BL-46: snapshot.yml runs automatic every Monday 00:37 UTC; next run Nov 23.
   How the sealed snapshot files (backtest/liquid/snapshots/sealed/) are opened is a later story, after BL-34's holdout

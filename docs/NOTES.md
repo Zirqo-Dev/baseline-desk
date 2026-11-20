@@ -2684,3 +2684,28 @@ Moved from CLAUDE.md section 11 on 2026-10-23 (BL-2 process cleanup). Wording is
 - Caveats: the GoPlus creator is today's answer (CHECKABLE-live); fees are as of Nov 20 (the spec's KNOWN BIASES);
   "unknown = 1%" can sit below a hook's real fee; the hop pool is the BL-45 deepest pool, not the cheapest route
   (pessimistic).
+
+## BL-39 ETH daily
+- The ETH series of BL-39 spec v2.1 (its DATA line: "GeckoTerminal daily candles (token=WETH) of the deepest WETH/USDC
+  pool on Base, Uniswap v3 0x6c56…1372"), fetched once and stored unread (the owner's BL-39 daily ETH prompt and plan
+  answer B, 2026-11-20). Data only: no code, tool, test, workflow or config change; the helper stayed in the session
+  scratchpad and called the survey's own tools.liquid.daily() (keep() on arrival, compact() rounding) with
+  tools/candles.py Client (7.5 s pace). No eth_pool() lookup: the pool is the one the spec names.
+- File: backtest/liquid/eth-daily.jsonl.gz (4,631 bytes), sha256 82bc487a78a2f0306e56b1b1780b4bdab91b3d1588328c4edd3ece0f79828ac8.
+  Format as daily.jsonl.gz (tools/candles.py write()): line 1 a meta header (card, source, spec, call, pool, token,
+  currency usd, before_timestamp, cut, fetched_at 2026-11-20T16:51:47Z, count, first_day, last_day, missing_days,
+  bl39_window, dropped_on_arrival, calls, refused, kept, columns), line 2 one token line (WETH, the pool, candles
+  [t, o, h, l, c, v_usd]).
+- Call: GET /networks/base/pools/0x6c56…1372/ohlcv/day?aggregate=1&limit=1000&before_timestamp=1762560000 (CUT
+  2026-11-08T00:00Z)&currency=usd&token=WETH. Requests: 1 GeckoTerminal (cap 10), 0 refused. No key, secret, wallet,
+  signature or transaction.
+- Counts (timestamps only): the answer had 184 rows; 1 dropped on arrival by keep() (the candle starting at CUT,
+  2026-11-08); 183 kept, first day start 2026-05-09, last 2026-11-07 (its day ends at CUT), 0 missing days between them;
+  every start a UTC midnight, no duplicate, nothing at or after CUT (checked in the helper and again on the re-read file).
+  BL-39's window 2026-06-08 .. 2026-11-07: 153 of 153 candles, 0 missing days (none filled).
+- Kept by the owner's choice B: every daily candle that ended before CUT, not only BL-39's window (same single call;
+  the older days soon fall off the free API, about 184 daily candles). BL-39 reads only the days its frozen spec names;
+  the older days (2026-05-09 .. 06-07, 30 candles) are kept unread for any later, separately frozen spec.
+- Seals kept: no candle row and no price value printed; no return, price change, MAX or P&L computed; only start times
+  and counts were read from the answer. backtest/liquid/snapshots/sealed/, backtest/candles/, outcomes.csv, tasks.csv and
+  every BL-34 result or candidate file were not opened. Nothing from BL-39's spec was run (no run tool exists).
