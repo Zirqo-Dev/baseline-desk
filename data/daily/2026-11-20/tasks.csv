@@ -123,3 +123,9 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-20T01:03:15Z,desk,VERIFY,SCAMPIC,0xe3361a33feb5ecd451fed8d0061fa9906d1bcccc,SKIP,missing:liq_usd,goplus=skipped until=2026-11-21T01:03:15Z
 2026-11-20T01:03:15Z,desk,VERIFY,LUCIA,0xfe715693a1bd567668702e36dd1212efee075aaf,SKIP,missing:liq_usd,goplus=skipped until=2026-11-21T01:03:15Z
 2026-11-20T01:03:15Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=3 new=6 checked=9 passed=0 bought=0 held=0 deferred=0 dex_only=6 goplus=3 requests=20 secs=8.2 bl_positions=2 bl_due=0 bl_eligible=3 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=10 labels_done=10 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-20T01:08:26Z,baseline,EXIT,MARSBASE,0x0b455a80139f9642bb47f2cb5afabbd8809a24af,HOLD,no_quote,
+2026-11-20T01:08:26Z,baseline,EXIT,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,HOLD,no_quote,
+2026-11-20T01:08:26Z,desk,VERIFY,CLAUDIA,0xe8107aef8d457bb5c294ffc0d0aed2b771eec388,WATCH,goplus_not_ready,"first_seen=2026-11-20T00:38:14Z checks=3 pending=dev_pct,top10_pct b1=52 s1=1 b24=52 s24=1 liq=169282 dex=uniswap:v2 qliq=84675 pair_age=31 token_age=31"
+2026-11-20T01:08:26Z,desk,VERIFY,AOKUMA,0x4e7db6e358de1e1fcd761560f63b45899996396a,SKIP,real_depth,goplus=skipped until=2026-11-21T01:08:26Z
+2026-11-20T01:08:26Z,baseline,EXECUTE,CLAUDIA,0xe8107aef8d457bb5c294ffc0d0aed2b771eec388,BUY,,usd=5.00 fill=1.94990178e-05 seed=202611200108 eligible=1 pick=0 pool=e8107a desk=WATCH launchpad=other b1=52 s1=1 b24=52 s24=1 liq=169282 dex=uniswap:v2 qliq=84675 pair_age=31 token_age=31
+2026-11-20T01:08:26Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=19 rechecks=1 new=1 checked=2 passed=0 bought=0 held=0 deferred=0 dex_only=1 goplus=1 requests=11 secs=2.7 bl_positions=2 bl_due=1 bl_eligible=1 bl_bought=1 report=none machine=none bl_error=none labels=ok labels_due=3 labels_done=3 labels_calls=1 live=ok alerts=none alerts_sent=0

@@ -1,6 +1,6 @@
 {
   "baseline": {
-    "cash": 5.506978968868259,
+    "cash": 0.5069789688682587,
     "cooldown": {
       "a:0x22d1223b6ffe267c11ad2acdd2799e69498dada3": "2026-11-20T07:43:15Z",
       "a:0x4fe70b7bab657f23fffa5788dee9db3ca9865de8": "2026-11-20T03:28:14Z",
@@ -57,11 +57,27 @@
         "peak_price": 7.723e-05,
         "qty": 88523.24468567828,
         "symbol": "Zelleinu"
+      },
+      "0xe8107aef8d457bb5c294ffc0d0aed2b771eec388": {
+        "cost_usd": 5.0,
+        "entry_fill": 1.949901780336581e-05,
+        "entry_intended": 1.893e-05,
+        "entry_liq_usd": 169281.65,
+        "entry_qliq": 84675,
+        "entry_ts": "2026-11-20T01:08:26Z",
+        "ladder_done": [],
+        "last_price": 1.893e-05,
+        "launchpad": "other",
+        "orig_qty": 256423.17220393164,
+        "pair": "0x086e71b716e650dc1b46adaa1180cd63ffe9406b",
+        "peak_price": 1.893e-05,
+        "qty": 256423.17220393164,
+        "symbol": "CLAUDIA"
       }
     },
     "refill_week": "2026-W47",
     "refills_usd": 56.55720719365456,
-    "ticks_since_buy": 11
+    "ticks_since_buy": 0
   },
   "desk": {
     "cash": 50.0,
@@ -3566,7 +3582,9 @@
         "symbol": "TRUMP2028"
       },
       "0x58e64b4363bf676c7e69505a6bdc6c1148302270": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 8.1e-05,
         "first_seen": "2026-11-20T00:08:26Z",
         "sight_pair": "0x6a1aff1aa36f302dfffa1f974974b7ba4a826f1b358138f5e75435b25be8b5f9",
@@ -3778,7 +3796,8 @@
       },
       "0x681d0668308c92733bdbdb19d86c5fe848f604fe": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 9.958e-06,
         "first_seen": "2026-11-19T19:08:16Z",
@@ -4619,7 +4638,9 @@
         "symbol": "RST"
       },
       "0xa71064c09bb1aafa55ba19b13e1bc1b82de696bd": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 3.783e-06,
         "first_seen": "2026-11-20T00:08:26Z",
         "sight_pair": "0x54d72fb488b0d7c1bf2f400051aa7c515cf23789",
@@ -6255,12 +6276,6 @@
         "symbol": "KILN",
         "until": "2026-11-20T18:03:15Z"
       },
-      "0x0dbed4ad0aaa8576f81e96ba7adde961741de504": {
-        "at": "2026-11-19T01:08:16Z",
-        "reason": "real_depth",
-        "symbol": "Baselion",
-        "until": "2026-11-20T01:08:16Z"
-      },
       "0x0ddd8051c1f30fb581b816fe80907b9e8feaed3c": {
         "at": "2026-11-19T18:38:15Z",
         "reason": "real_depth",
@@ -7280,12 +7295,6 @@
         "reason": "real_depth",
         "symbol": "LAPTOP",
         "until": "2026-11-20T04:28:15Z"
-      },
-      "0x247f8df519f4515249421688c045876d91a7492c": {
-        "at": "2026-11-19T01:08:16Z",
-        "reason": "real_depth",
-        "symbol": "BBB",
-        "until": "2026-11-20T01:08:16Z"
       },
       "0x24959374603c23f4cbb2fc07e2e30f8356b3f994": {
         "at": "2026-11-19T23:38:14Z",
@@ -8751,6 +8760,12 @@
         "symbol": "NOTF",
         "until": "2026-11-20T17:23:16Z"
       },
+      "0x4e7db6e358de1e1fcd761560f63b45899996396a": {
+        "at": "2026-11-20T01:08:26Z",
+        "reason": "real_depth",
+        "symbol": "AOKUMA",
+        "until": "2026-11-21T01:08:26Z"
+      },
       "0x4eb8901cc3d82f9691fbfe4845b113dfcbd0240d": {
         "at": "2026-11-19T15:48:24Z",
         "reason": "real_depth",
@@ -9230,12 +9245,6 @@
         "reason": "goplus_timeout",
         "symbol": "NOTF",
         "until": "2026-11-20T14:48:22Z"
-      },
-      "0x620de1df943b9d1057cb208a33b89129ecfedc68": {
-        "at": "2026-11-19T01:08:16Z",
-        "reason": "real_depth",
-        "symbol": "LAPTOP",
-        "until": "2026-11-20T01:08:16Z"
       },
       "0x6212cdf9b4b22b15fa74450ee60f43947e5a02c8": {
         "at": "2026-11-19T19:03:14Z",
@@ -11841,12 +11850,6 @@
         "symbol": "FLOOR24",
         "until": "2026-11-20T07:38:16Z"
       },
-      "0xb200000000000000000000a4114c5a1bdccace85": {
-        "at": "2026-11-19T01:08:16Z",
-        "reason": "real_depth",
-        "symbol": "ANTc",
-        "until": "2026-11-20T01:08:16Z"
-      },
       "0xb200000000000000000000a4beeecd4c7fe96801": {
         "at": "2026-11-19T13:18:15Z",
         "reason": "missing:liq_usd",
@@ -13950,9 +13953,9 @@
         "symbol": "IOF"
       },
       "0xe8107aef8d457bb5c294ffc0d0aed2b771eec388": {
-        "checks": 2,
+        "checks": 3,
         "first_seen": "2026-11-20T00:38:14Z",
-        "last_check": "2026-11-20T00:53:14Z",
+        "last_check": "2026-11-20T01:08:26Z",
         "symbol": "CLAUDIA"
       }
     }
@@ -14260,7 +14263,7 @@
     "gate_restart": "BL-32",
     "machine_due": "",
     "max_dd_pct": {
-      "baseline": 167.8614422829456,
+      "baseline": 168.29918416796704,
       "desk": 9.811123120222184
     },
     "peak": {
