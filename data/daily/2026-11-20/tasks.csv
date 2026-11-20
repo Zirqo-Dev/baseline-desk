@@ -1418,3 +1418,15 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-20T12:48:16Z,desk,VERIFY,SANT,0xb20000000000000000000018d58916a270330401,SKIP,missing:liq_usd,goplus=skipped until=2026-11-21T12:48:16Z
 2026-11-20T12:48:16Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
 2026-11-20T12:48:16Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=1 new=5 checked=6 passed=0 bought=0 held=0 deferred=0 dex_only=4 goplus=2 requests=16 secs=5.1 bl_positions=2 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=20 labels_done=20 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-20T12:53:15Z,baseline,EXIT,MARSBASE,0x0b455a80139f9642bb47f2cb5afabbd8809a24af,HOLD,no_quote,
+2026-11-20T12:53:15Z,baseline,EXIT,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,HOLD,no_quote,
+2026-11-20T12:53:15Z,desk,VERIFY,Anthropic,0x9a7a6946b519218be522ddba3ea48e14b0c8ab49,WATCH,goplus_not_ready,"first_seen=2026-11-20T11:18:15Z checks=7 pending=honeypot,buy_tax_pct b1=766 s1=767 b24=1304 s24=1257 liq=10282140 dex=aerodrome qliq=180046 pair_age=102 token_age=102"
+2026-11-20T12:53:15Z,desk,VERIFY,UNITED GLOBAL SUPPLY OIL,0x153bb5a1810f203e2206a353ae235f4a3eb9fd57,SKIP,real_depth,first_seen=2026-11-20T12:03:21Z checks=4 goplus=skipped until=2026-11-21T12:53:15Z
+2026-11-20T12:53:15Z,desk,VERIFY,TRUMP2028,0x2e03900079ed5412a670f658ea2be6ef816ac71b,SKIP,lp_locked,first_seen=2026-11-20T12:38:15Z checks=2 goplus_ready_at=2026-11-20T12:53:15Z until=2026-11-21T12:53:15Z b1=39 s1=1 b24=39 s24=1 liq=158471 dex=uniswap:v2 qliq=79204 pair_age=21 token_age=21
+2026-11-20T12:53:15Z,desk,VERIFY,NOTF,0xcc029f5fcc8af3b4f96a8663ce761e0fbe5559ce,WATCH,goplus_not_ready,"first_seen=2026-11-20T12:38:15Z checks=2 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct b1=17 s1=7 b24=17 s24=7 liq=402816 dex=uniswap:v4 qliq=170490 pair_age=21 token_age=21"
+2026-11-20T12:53:15Z,desk,VERIFY,,0xface8ada519c38e1f6e1ba97789b6c62d656437b,SKIP,missing:symbol,goplus=skipped until=2026-11-21T12:53:15Z
+2026-11-20T12:53:15Z,desk,VERIFY,USIO,0x60712515b55b07240bdd4e373835d5f31126bfc1,SKIP,real_depth,goplus=skipped until=2026-11-21T12:53:15Z b1=14 s1=0 b24=14 s24=0 liq=114747 dex=uniswap:v4 qliq=5 pair_age=4 token_age=4
+2026-11-20T12:53:15Z,desk,VERIFY,.AI,0xa9ce8f2eba31da45d8bd2f8115c4061f92026f31,SKIP,real_depth,goplus=skipped until=2026-11-21T12:53:15Z
+2026-11-20T12:53:15Z,desk,VERIFY,Water + xrp,0xbb1f0373d509fcc3f245c5bdb744f8eb5970c660,SKIP,missing:price,goplus=skipped until=2026-11-21T12:53:15Z
+2026-11-20T12:53:15Z,baseline,EXECUTE,NOTF,0xcc029f5fcc8af3b4f96a8663ce761e0fbe5559ce,SKIP,loss_halt,"seed=202611201253 eligible=3 pick=2 pool=2e0390,9a7a69,cc029f desk=WATCH launchpad=other"
+2026-11-20T12:53:15Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=4 new=4 checked=8 passed=0 bought=0 held=0 deferred=0 dex_only=5 goplus=3 requests=20 secs=7.9 bl_positions=2 bl_due=1 bl_eligible=3 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=1 labels_done=1 labels_calls=1 live=ok alerts=none alerts_sent=0

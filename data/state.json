@@ -63,7 +63,7 @@
     },
     "refill_week": "2026-W47",
     "refills_usd": 56.55720719365456,
-    "ticks_since_buy": 140
+    "ticks_since_buy": 141
   },
   "desk": {
     "cash": 50.0,
@@ -588,7 +588,8 @@
       },
       "0x0cba84cda0d1ccf389c3ace564e66722a0c220d1": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 4.678e-05,
         "first_seen": "2026-11-20T06:53:13Z",
@@ -2833,6 +2834,14 @@
         "sight_pair": "0x62911c41aebba09c8e74736021aa8d4708e4d9e6",
         "sight_qliq": 27601,
         "symbol": "USOC"
+      },
+      "0x60712515b55b07240bdd4e373835d5f31126bfc1": {
+        "done": [],
+        "first_price": 0.0001159,
+        "first_seen": "2026-11-20T12:53:15Z",
+        "sight_pair": "0x49339f6259a0aec09cffcd6f1bd45b48aca0bcca8928eff3523ba039b15edcf8",
+        "sight_qliq": 5,
+        "symbol": "USIO"
       },
       "0x6094f41e192e0cb93118fad557bc61ce8703b10d": {
         "done": [
@@ -5557,6 +5566,12 @@
         "symbol": "MOCHI",
         "until": "2026-11-20T20:28:17Z"
       },
+      "0x153bb5a1810f203e2206a353ae235f4a3eb9fd57": {
+        "at": "2026-11-20T12:53:15Z",
+        "reason": "real_depth",
+        "symbol": "UNITED GLOBAL SUPPLY OIL",
+        "until": "2026-11-21T12:53:15Z"
+      },
       "0x155467138f641acd35b3bd41b58244c389a81b27": {
         "at": "2026-11-19T22:08:16Z",
         "reason": "real_depth",
@@ -6456,6 +6471,12 @@
         "reason": "real_depth",
         "symbol": "Basetiger",
         "until": "2026-11-20T18:23:15Z"
+      },
+      "0x2e03900079ed5412a670f658ea2be6ef816ac71b": {
+        "at": "2026-11-20T12:53:15Z",
+        "reason": "lp_locked",
+        "symbol": "TRUMP2028",
+        "until": "2026-11-21T12:53:15Z"
       },
       "0x2e0d4be4f9a49573a42542380fe71ee046b8abb8": {
         "at": "2026-11-20T06:23:15Z",
@@ -7722,6 +7743,12 @@
         "reason": "real_depth",
         "symbol": "ANTHROPIC",
         "until": "2026-11-21T01:33:13Z"
+      },
+      "0x60712515b55b07240bdd4e373835d5f31126bfc1": {
+        "at": "2026-11-20T12:53:15Z",
+        "reason": "real_depth",
+        "symbol": "USIO",
+        "until": "2026-11-21T12:53:15Z"
       },
       "0x608cd62bf47acc72380235b684484b958462399e": {
         "at": "2026-11-20T02:08:15Z",
@@ -9397,6 +9424,12 @@
         "symbol": "MMIX",
         "until": "2026-11-20T18:33:14Z"
       },
+      "0xa9ce8f2eba31da45d8bd2f8115c4061f92026f31": {
+        "at": "2026-11-20T12:53:15Z",
+        "reason": "real_depth",
+        "symbol": ".AI",
+        "until": "2026-11-21T12:53:15Z"
+      },
       "0xaa9684c1615e5513d540c1a6715291b4831207ae": {
         "at": "2026-11-20T06:03:15Z",
         "reason": "real_depth",
@@ -10747,6 +10780,12 @@
         "symbol": "NEKOMARIO",
         "until": "2026-11-20T17:13:16Z"
       },
+      "0xbb1f0373d509fcc3f245c5bdb744f8eb5970c660": {
+        "at": "2026-11-20T12:53:15Z",
+        "reason": "missing:price",
+        "symbol": "Water + xrp",
+        "until": "2026-11-21T12:53:15Z"
+      },
       "0xbbd603d1c0342096bf54ee8d5e3c5b07a9da9382": {
         "at": "2026-11-19T21:03:15Z",
         "reason": "real_depth",
@@ -12019,6 +12058,12 @@
         "symbol": "KILN",
         "until": "2026-11-20T16:33:15Z"
       },
+      "0xface8ada519c38e1f6e1ba97789b6c62d656437b": {
+        "at": "2026-11-20T12:53:15Z",
+        "reason": "missing:symbol",
+        "symbol": "",
+        "until": "2026-11-21T12:53:15Z"
+      },
       "0xfada20a8896d2a85d89b0f1f063efee8463dd6ea": {
         "at": "2026-11-19T17:53:15Z",
         "reason": "real_depth",
@@ -12159,18 +12204,6 @@
       }
     },
     "watch": {
-      "0x153bb5a1810f203e2206a353ae235f4a3eb9fd57": {
-        "checks": 3,
-        "first_seen": "2026-11-20T12:03:21Z",
-        "last_check": "2026-11-20T12:38:15Z",
-        "symbol": "UNITED GLOBAL SUPPLY OIL"
-      },
-      "0x2e03900079ed5412a670f658ea2be6ef816ac71b": {
-        "checks": 1,
-        "first_seen": "2026-11-20T12:38:15Z",
-        "last_check": "2026-11-20T12:38:15Z",
-        "symbol": "TRUMP2028"
-      },
       "0x4ac88fb7402e0d6580f37110e9848593400a86ae": {
         "checks": 1,
         "first_seen": "2026-11-20T12:48:16Z",
@@ -12184,15 +12217,15 @@
         "symbol": "AX1"
       },
       "0x9a7a6946b519218be522ddba3ea48e14b0c8ab49": {
-        "checks": 6,
+        "checks": 7,
         "first_seen": "2026-11-20T11:18:15Z",
-        "last_check": "2026-11-20T12:38:15Z",
+        "last_check": "2026-11-20T12:53:15Z",
         "symbol": "Anthropic"
       },
       "0xcc029f5fcc8af3b4f96a8663ce761e0fbe5559ce": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-20T12:38:15Z",
-        "last_check": "2026-11-20T12:38:15Z",
+        "last_check": "2026-11-20T12:53:15Z",
         "symbol": "NOTF"
       },
       "0xf4d8df7c94497d5564a38c55da241640c8a35640": {
