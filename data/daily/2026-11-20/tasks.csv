@@ -1180,3 +1180,13 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-20T10:43:17Z,desk,VERIFY,pPOLY,0x711cd14053f3f9a04bd05cd355711fd7459ecb07,SKIP,real_depth,goplus=skipped until=2026-11-21T10:43:17Z
 2026-11-20T10:43:17Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
 2026-11-20T10:43:17Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=0 new=9 checked=9 passed=0 bought=0 held=0 deferred=0 dex_only=7 goplus=2 requests=19 secs=5.6 bl_positions=2 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=4 labels_done=4 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-20T10:48:14Z,baseline,EXIT,MARSBASE,0x0b455a80139f9642bb47f2cb5afabbd8809a24af,HOLD,no_quote,
+2026-11-20T10:48:14Z,baseline,EXIT,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,HOLD,no_quote,
+2026-11-20T10:48:14Z,desk,VERIFY,AX1,0xf4d8df7c94497d5564a38c55da241640c8a35640,WATCH,goplus_not_ready,"first_seen=2026-11-20T10:13:16Z checks=3 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct b1=191 s1=119 b24=191 s24=119 liq=49341 dex=uniswap:v4 qliq=21157 pair_age=39 token_age=39"
+2026-11-20T10:48:14Z,desk,VERIFY,MNK,0x9450a004f2bac1c73d444a1d74e7ec104445f256,SKIP,real_depth,goplus=skipped until=2026-11-21T10:48:14Z
+2026-11-20T10:48:14Z,desk,VERIFY,FEEINTEL,0xb2000000000000000000009c26c10fbc66db6cd5,SKIP,real_depth,goplus=skipped until=2026-11-21T10:48:14Z
+2026-11-20T10:48:14Z,desk,VERIFY,LPN,0x27c4362e481ea616ea6342c0ed17abf2404c32f6,SKIP,real_depth,goplus=skipped until=2026-11-21T10:48:14Z
+2026-11-20T10:48:14Z,desk,VERIFY,ARAD,0x6cc4c4dcd495cedd7c980c21e52a85014e5bd77c,SKIP,real_depth,goplus=skipped until=2026-11-21T10:48:14Z b1=3 s1=0 b24=3 s24=0 liq=80325 dex=uniswap:v4 qliq=27 pair_age=3 token_age=3
+2026-11-20T10:48:14Z,desk,VERIFY,,0xa5d0bb33c5ae82d2314de8c0329f12dc9555a1a5,SKIP,missing:symbol,goplus=skipped until=2026-11-21T10:48:14Z
+2026-11-20T10:48:14Z,baseline,EXECUTE,AX1,0xf4d8df7c94497d5564a38c55da241640c8a35640,SKIP,loss_halt,seed=202611201048 eligible=1 pick=0 pool=f4d8df desk=WATCH launchpad=other
+2026-11-20T10:48:14Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=1 new=5 checked=6 passed=0 bought=0 held=0 deferred=0 dex_only=5 goplus=1 requests=15 secs=3.6 bl_positions=2 bl_due=1 bl_eligible=1 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=1 labels_done=1 labels_calls=1 live=ok alerts=none alerts_sent=0
