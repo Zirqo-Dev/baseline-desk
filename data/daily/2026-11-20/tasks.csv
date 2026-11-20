@@ -684,3 +684,13 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-20T06:43:13Z,desk,VERIFY,UODF,0x649fc67f5fc4baad619ad4e4181cf0c509a38a36,SKIP,real_depth,goplus=skipped until=2026-11-21T06:43:13Z
 2026-11-20T06:43:13Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
 2026-11-20T06:43:13Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=0 new=6 checked=6 passed=0 bought=0 held=0 deferred=0 dex_only=6 goplus=0 requests=13 secs=2.9 bl_positions=2 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=none labels_due=0 labels_done=0 labels_calls=0 live=ok alerts=none alerts_sent=0
+2026-11-20T06:48:22Z,baseline,EXIT,MARSBASE,0x0b455a80139f9642bb47f2cb5afabbd8809a24af,HOLD,no_quote,
+2026-11-20T06:48:22Z,baseline,EXIT,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,HOLD,no_quote,
+2026-11-20T06:48:22Z,desk,VERIFY,DCTY,0x67f30131512ae8244d64b4432dba7c29b226d03f,WATCH,goplus_not_ready,"first_seen=2026-11-20T05:13:14Z checks=7 pending=mint_open,freeze_or_blacklist,honeypot,risk_flags b1=12 s1=14 b24=32 s24=25 liq=34792 dex=uniswap:v2 qliq=18143 pair_age=101 token_age=101"
+2026-11-20T06:48:22Z,desk,VERIFY,BOOTR,0x5a46e973f798611acf16a8fe7c360abfb303f9fe,SKIP,real_depth,first_seen=2026-11-20T06:28:22Z checks=2 goplus=skipped until=2026-11-21T06:48:22Z
+2026-11-20T06:48:22Z,desk,VERIFY,NVIDIA,0xee2912f171b5d7a22befc64d89c2b1126acacc4c,WATCH,goplus_not_ready,"first_seen=2026-11-20T06:33:15Z checks=2 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct b1=20 s1=1 b24=20 s24=1 liq=58688 dex=uniswap:v2 qliq=29347 pair_age=20 token_age=20"
+2026-11-20T06:48:22Z,desk,VERIFY,PEPKING,0x741b341c9b261d18e6a5e66c618e626ae2282432,SKIP,real_depth,goplus=skipped until=2026-11-21T06:48:22Z
+2026-11-20T06:48:22Z,desk,VERIFY,TRENCHORS,0x63347237b06d53d96e9769e9ba3954d10b11cba3,SKIP,real_depth,goplus=skipped until=2026-11-21T06:48:22Z
+2026-11-20T06:48:22Z,desk,VERIFY,CFG,0xb2000000000000000000003096ca1cb7b79558d3,SKIP,real_depth,goplus=skipped until=2026-11-21T06:48:22Z
+2026-11-20T06:48:22Z,baseline,EXECUTE,DCTY,0x67f30131512ae8244d64b4432dba7c29b226d03f,SKIP,loss_halt,"seed=202611200648 eligible=2 pick=0 pool=67f301,ee2912 desk=WATCH launchpad=other"
+2026-11-20T06:48:22Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=3 new=3 checked=6 passed=0 bought=0 held=0 deferred=0 dex_only=4 goplus=2 requests=16 secs=5.0 bl_positions=2 bl_due=1 bl_eligible=2 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=6 labels_done=6 labels_calls=1 live=ok alerts=none alerts_sent=0
