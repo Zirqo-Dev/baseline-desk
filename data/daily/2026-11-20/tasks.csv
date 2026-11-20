@@ -1554,3 +1554,10 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-20T13:48:15Z,desk,VERIFY,Catnomics,0xb200000000000000000000bb8e4c294efc72a0ce,SKIP,real_depth,goplus=skipped until=2026-11-21T13:48:15Z
 2026-11-20T13:48:15Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
 2026-11-20T13:48:15Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=1 new=2 checked=3 passed=0 bought=0 held=0 deferred=0 dex_only=3 goplus=0 requests=10 secs=2.4 bl_positions=2 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=none labels_due=0 labels_done=0 labels_calls=0 live=ok alerts=none alerts_sent=0
+2026-11-20T13:53:24Z,baseline,EXIT,MARSBASE,0x0b455a80139f9642bb47f2cb5afabbd8809a24af,HOLD,no_quote,
+2026-11-20T13:53:24Z,baseline,EXIT,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,HOLD,no_quote,
+2026-11-20T13:53:24Z,desk,VERIFY,AX1,0x6cf4e3892872e95e7cd5244de22bc8a98f7d9566,WATCH,goplus_not_ready,"first_seen=2026-11-20T12:43:15Z checks=5 pending=mint_open,freeze_or_blacklist,honeypot,top10_pct,risk_flags b1=237 s1=174 b24=362 s24=244 liq=69446 dex=uniswap:v4 qliq=27741 pair_age=74 token_age=74"
+2026-11-20T13:53:24Z,desk,VERIFY,UOGS,0xb0439f547cfb2175aa35495a726aeabb5e7995f4,WATCH,goplus_not_ready,"first_seen=2026-11-20T13:23:13Z checks=3 pending=dev_pct,top10_pct b1=31 s1=1 b24=31 s24=1 liq=61256 dex=uniswap:v2 qliq=30633 pair_age=33 token_age=33"
+2026-11-20T13:53:24Z,desk,VERIFY,USEF,0x04b3d5027da4d94b6194da03df141e01ad2f3b13,SKIP,real_depth,goplus=skipped until=2026-11-21T13:53:24Z
+2026-11-20T13:53:24Z,baseline,EXECUTE,UOGS,0xb0439f547cfb2175aa35495a726aeabb5e7995f4,SKIP,loss_halt,"seed=202611201353 eligible=2 pick=1 pool=6cf4e3,b0439f desk=WATCH launchpad=other"
+2026-11-20T13:53:24Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=2 new=1 checked=3 passed=0 bought=0 held=0 deferred=0 dex_only=1 goplus=2 requests=13 secs=4.7 bl_positions=2 bl_due=1 bl_eligible=2 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=11 labels_done=11 labels_calls=1 live=ok alerts=none alerts_sent=0
