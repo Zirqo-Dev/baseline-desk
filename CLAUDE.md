@@ -436,8 +436,25 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
   change marked "may differ in Jun-Oct, ASSERTED". The 14 non-family metered tokens: measured extra per side over the
   route fees -0.002 .. +0.046% (BL-45 window), next to the draft's +0.5%; the 8 low-cost tokens are direct USDC pools
   at 0.01% / 0.05% with no hop. No recommendation (docs/NOTES.md "BL-39 pre-freeze").
-- Next step: BL-39: the owner's friction call on the draft rule (fee tier, 1% when unknown, + 0.5% per real buy or
-  sell) from docs/NOTES.md "BL-39 pre-freeze"; then a fresh-context review; then the BL-39 freeze story.
+- BL-39 spec v2.1 "MAX momentum" frozen (2026-11-20, the owner's decisions (a)-(f) and plan answers Q1-Q4, all A,
+  after a fresh-context review: GO WITH FIXES, all 17 fixes applied; DECISIONS): backtest/specs/bl39-max-momentum-v2.1.md
+  (the owner's text verbatim, placeholders only; sha256 5202982dbe90...; the .md alone is the frozen file, no JSON twin),
+  with its two data files locked by hash inside the text: -family.json (the ADS family as 39 full addresses, the creator
+  and ADS; the rule re-checked: 39 ADS-quoted on-chain, 39 by GoPlus creator, 0 mismatches) and -fees.json (103 union
+  tokens: pool, identity, fee tier at block 59,957,430, may_differ, unknown, route hops to USDC; no price or balance word
+  read). Friction per real buy or sell = the sum of the route's fee tiers + 0.5%, unknown = 1% (v4 dynamic-fee pools
+  unknown by the owner's seal choice; other quote tokens' hops "no hop found by rule"). Stage 1 = Mondays Jun 15 .. Aug 31
+  (42 picks vs the 40-leg bar), stage 2 = Sep 7 .. Oct 26 (33 vs 30), upper bounds. 114 public keyless requests (Base RPC
+  11, GoPlus 103). No return computed, no run (docs/NOTES.md "BL-39 freeze").
+  - Open item (2026-11-20): daily ETH candles back to 2026-06-08 (the spec's ETH source) must be fetched once, nothing
+    after CUT, stored unread, before 2026-12-01: the free API keeps about 184 daily candles, so later those days are
+    lost and pass test 4 (hold-ETH) cannot run. The fetch belongs to the run-tool story or a small story before it; the
+    owner decides which.
+  - Open item (2026-11-20): section 4's backtest/specs/ list does not yet name the BL-39 v2.1 files
+    (bl39-max-momentum-v2.1.md, -family.json, -fees.json); a later docs touch.
+- Next step: BL-39: a later story builds the BL-39 run tool (it refuses any spec sha256 other than the frozen .md's),
+  after the daily ETH fetch above; stage 1 runs once; stage 2 only after a DECISIONS "stage 1 pass" line. BL-38's spec is
+  frozen before BL-39 stage 1 is read, or BL-38 tests only data after CUT.
   BL-46: snapshot.yml runs automatic every Monday 00:37 UTC; next run Nov 23.
   How the sealed snapshot files (backtest/liquid/snapshots/sealed/) are opened is a later story, after BL-34's holdout
   run; until then nothing reads them.

@@ -2596,3 +2596,91 @@ Moved from CLAUDE.md section 11 on 2026-10-23 (BL-2 process cleanup). Wording is
 ### (3) Records
 - DECISIONS 2026-11-20 BL-39: the ADS family exclusion rule. BL-48 is decided by it (its Next step) and closes when this
   commit is verified.
+
+## BL-39 freeze
+- BL-39 spec v2.1 "MAX momentum" frozen (the owner's BL-39 freeze prompt, decisions (a)-(f) and plan answers Q1-Q4, all
+  A, 2026-11-20, DECISIONS). Docs and data files only: no code, tool, test, workflow, schedule, config or rule change; no
+  return, price change, MAX, P&L or pick by signal computed; no backtest run. The helper stayed in the session
+  scratchpad and is not in the repo. Addresses shortened here; full addresses only in the two data files and the spec.
+- Files (backtest/specs/; sha256 of the file bytes):
+
+  | file | what | sha256 |
+  |---|---|---|
+  | bl39-max-momentum-v2.1.md | the spec, the owner's BEGIN/END text verbatim, only the 7 placeholders filled; THE frozen file (no JSON twin) | 5202982dbe901b5fc7b77956ef322ef5770cc05f863acd1d878d749c9a2b53ba |
+  | bl39-max-momentum-v2.1-family.json | FAMILY LIST: the 39 family tokens (full address, symbol, deepest pool, source), the creator, ADS, the checks | 374b70eaf450e03d6a2bc208708fa1d3afcdaad77d080c2639aa39a00becc9ab |
+  | bl39-max-momentum-v2.1-fees.json | per union token (103): pool, dex, pool type, identity (token0/token1/factory, or the v4 PoolKey), fee_raw + unit, fee_pct (exact decimal string), may_differ, unknown + reason, route hops to USDC with each hop's fee; no total | 4a7318c95a9650f5fa533ba0f9ac552db0b0449d7a9e8e22bca6797b16991180 |
+
+  The spec text carries both data-file hashes, so its own sha256 locks all three. No JSON twin: no run tool exists yet;
+  the run-tool story encodes the text and refuses any other .md hash.
+- Placeholders filled: FAMILY_FILE, FAMILY_SHA, FEE_FILE, FEE_SHA (above); CREATOR 0xd95a…9db9 (GoPlus creator_address
+  of INFLUXDB); ADS 0xb20a…b7df (backtest/costs/tokens.json hops); ETH_SOURCE = the owner's Q4 A words: GeckoTerminal
+  daily candles (token=WETH) of the deepest WETH/USDC pool on Base, Uniswap v3 0x6c56…1372, the pool of BL-33's
+  eth-<day> files (tools/candles.py eth_pool()). NOTES "BL-33 part 2" names that pool as of 2026-11-06; later eth-<day>
+  files were not opened (backtest/candles/ sealed for this story). No daily ETH candle exists in the repo yet: see the
+  open item in CLAUDE.md section 11 (fetch before 2026-12-01).
+- Requests: 114 of the 400 cap, 0 refused or failed. Base public RPC https://mainnet.base.org 11 (1 eth_getBlockByNumber
+  for the block identity, 10 eth_call to Multicall3 0xca11…ca11 aggregate3 at block 59,957,430, each a batch of view
+  calls); GoPlus token_security chain 8453 103 (INFLUXDB first for the creator, then the other 102, one address per call);
+  GeckoTerminal 0. No key, secret, wallet, signature or transaction.
+- Block 59,957,430: hash 0x7f76…15e4, time 2026-11-20T13:37:41Z (CHECKABLE-pinned).
+- Seals kept: the only views called were token0(), token1(), factory(), fee(), stable(), getFee(address,bool) (Aerodrome
+  v2 factory) and poolKeys(bytes25) (Uniswap v4 PositionManager 0x7c5f…9bdc), checked against an allowlist before each
+  batch; no slot0 / getSlot0 / globalState / getReserves / balanceOf / price view; no sqrtPriceX96 or balance word was
+  read. GoPlus answers were cut to creator_address at parse. Raw answers were never written to disk; parsed identity and
+  fee fields (and the creator answers) were cached in the session scratchpad only, so a rerun spent no request. From
+  daily.jsonl.gz only candle index 0 (start) and 5 (USD volume) were used, no row printed. backtest/liquid/snapshots/
+  sealed/, backtest/candles/, outcomes.csv, tasks.csv and every BL-34 result or candidate file were not opened. The
+  committed main snapshot files were read for other-token symbols only.
+- Family check (CHECKABLE-pinned on-chain pair, CHECKABLE-live GoPlus): the list = the 22 ADS-paired tokens of
+  backtest/costs/tokens.json (their pools equal universe.json's) + the 17 of NOTES "BL-39 pre-freeze", each found in
+  universe.json by symbol with the 0xadf prefix and its shortened address matching NOTES: 39 distinct, all in the 103.
+  On-chain token0/token1 at the block: all 39 ADS-quoted, no other union token ADS-quoted. GoPlus: all 39 have the
+  creator 0xd95a…9db9, no other union token has it; 1 no creator answer (Basecat, its pool's pair unreadable on-chain,
+  not ADS-quoted; the main snapshot file shows native ETH). The rule gives exactly the list: 0 mismatches.
+- Recount, the final UNIVERSE rule (pool created at or before m - 31 d; 31 candles; 30-day median >= 50k; 7 days >= 10k),
+  counts only. It gives the same 103 union tokens and the same numbers as the pre-freeze draft rule:
+
+  | Monday | n | family removed | n after | picks |
+  |---|---|---|---|---|
+  | Jun 15 | 66 | 29 | 37 | 4 |
+  | Jun 22 | 59 | 27 | 32 | 4 |
+  | Jun 29 | 63 | 29 | 34 | 4 |
+  | Jul 6 | 62 | 29 | 33 | 4 |
+  | Jul 13 | 62 | 28 | 34 | 4 |
+  | Jul 20 | 59 | 28 | 31 | 4 |
+  | Jul 27 | 61 | 33 | 28 | 3 |
+  | Aug 3 | 64 | 37 | 27 | 3 |
+  | Aug 10 | 65 | 37 | 28 | 3 |
+  | Aug 17 | 61 | 37 | 24 | 3 |
+  | Aug 24 | 64 | 38 | 26 | 3 |
+  | Aug 31 | 66 | 37 | 29 | 3 |
+  | Sep 7 | 70 | 36 | 34 | 4 |
+  | Sep 14 | 71 | 36 | 35 | 4 |
+  | Sep 21 | 75 | 36 | 39 | 4 |
+  | Sep 28 | 75 | 37 | 38 | 4 |
+  | Oct 5 | 74 | 35 | 39 | 4 |
+  | Oct 12 | 76 | 35 | 41 | 5 |
+  | Oct 19 | 73 | 35 | 38 | 4 |
+  | Oct 26 | 67 | 34 | 33 | 4 |
+
+  Stage 1 (Jun 15 .. Aug 31): 42 picks vs the test-1 bar of 40 legs; stage 2 (Sep 7 .. Oct 26): 33 vs 30. Upper bounds
+  (one leg per pick at most; rolls, no_fill and exit_gap only remove legs).
+- Fee file (CHECKABLE-pinned), 103 tokens. Pool types: Uniswap v3 56, Aerodrome Slipstream CL 17, Uniswap v2 8 (factory
+  0x8909…8ec6, 0.3% fixed in code), Aerodrome v2 volatile 8 (factory getFee), PancakeSwap v3 4, Uniswap v4 dynamic fee 5,
+  Uniswap v4 static fee 3 (DOT 1%, POD 1%, CRV 0.3%; no hook), Algebra Integral (Hydrex) 1, v4-style with no PoolKey 1.
+  Every PoolKey found hashes back to its pool id (8 of 8); Basecat has none, so its pool is not shown to exist that way
+  (unknown fee, unknown hop). Fee tiers: 0.01% 49 (the 39 family, all Uniswap v3), 0.05% 2, 0.15% 1, 0.25% 1, 0.3% 29,
+  0.37% 1 (BRETT), 0.45% 1, 0.7% 1, 0.802% 1, 1% 11, unknown 6. may_differ: 32, all non-family (32 of 64, as the spec).
+- v4 dynamic-fee pools (the owner's addition 1): BSW, GITLAWB, LFI, Surplus, aeon (5) are "unknown" in the fee file by
+  the owner's seal choice Q1 A (no slot0 read), so the spec's "unreadable" covers them (1%). This differs from the
+  pre-freeze fee table, which read their slot0 lpFee: 1.02% (1), 1.2% (3) and 0 = hook-set (BSW, unknown there too). For
+  those four pools 1% is up to 0.2% per side below the slot0 fee read on Nov 20 (ASSERTED from the pre-freeze counts;
+  which pool had which fee was not kept). Unknown pool fee now 6 = these 5 + Basecat (pre-freeze 2).
+- Routes to USDC: other token USDC 30 (no hop); WETH 24 (WETH -> USDC 0x6c56…1372, Uniswap v3 0.3%); ADS 39, all family
+  (ADS -> WETH 0x1679…3d94 0.3%, then WETH -> USDC 0.3%; the BL-45 frozen hops, identity re-read at the block); native
+  ETH 2 (DOT, POD: one hop as WETH, Q2 A); "no hop found by rule", unknown = 1% (Q3 A) 8: 0x0b3e…7e1b 5 (DEUS, ETHY,
+  GAME, PRXVT, TIBBIR; no symbol in the committed main snapshot files), USAD 0x3d66…5151 1 (BSW), cbBTC 0xcbb7…33bf 1
+  (EDGE), Basecat 1 (pair not readable on-chain).
+- Caveats: the GoPlus creator is today's answer (CHECKABLE-live); fees are as of Nov 20 (the spec's KNOWN BIASES);
+  "unknown = 1%" can sit below a hook's real fee; the hop pool is the BL-45 deepest pool, not the cheapest route
+  (pessimistic).
