@@ -2495,3 +2495,10 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-20T21:33:15Z,desk,VERIFY,LAPTOP,0x85367469ee3c4851b70bc4e07e0c49d053641436,SKIP,real_depth,goplus=skipped until=2026-11-21T21:33:15Z
 2026-11-20T21:33:15Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
 2026-11-20T21:33:15Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=21 rechecks=0 new=1 checked=1 passed=0 bought=0 held=0 deferred=0 dex_only=1 goplus=0 requests=9 secs=3.5 bl_positions=2 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=9 labels_done=9 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-20T21:38:15Z,baseline,EXIT,MARSBASE,0x0b455a80139f9642bb47f2cb5afabbd8809a24af,HOLD,no_quote,
+2026-11-20T21:38:15Z,baseline,EXIT,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,HOLD,no_quote,
+2026-11-20T21:38:15Z,desk,VERIFY,BOOTR,0x087fa3ff93ec0d2031b73552815934a5e31880ac,WATCH,goplus_not_ready,"first_seen=2026-11-20T21:38:15Z checks=1 pending=honeypot,buy_tax_pct,sell_tax_pct,dev_pct,top10_pct,lp_locked_pct b1=4 s1=0 b24=4 s24=0 liq=129474 dex=uniswap:v2 qliq=64740 pair_age=2 token_age=2"
+2026-11-20T21:38:15Z,desk,VERIFY,wtf,0xe4439e593afaee33ada553906e550098e265d0b2,SKIP,real_depth,goplus=skipped until=2026-11-21T21:38:15Z
+2026-11-20T21:38:15Z,desk,VERIFY,PRYTUSDT,0xc19ba831503201f66c19ae9a877e0b0695a02e8c,SKIP,real_depth,goplus=skipped until=2026-11-21T21:38:15Z
+2026-11-20T21:38:15Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
+2026-11-20T21:38:15Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=21 rechecks=0 new=3 checked=3 passed=0 bought=0 held=0 deferred=0 dex_only=2 goplus=1 requests=11 secs=2.7 bl_positions=2 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=none labels_due=0 labels_done=0 labels_calls=0 live=ok alerts=none alerts_sent=0
