@@ -2411,3 +2411,188 @@ Moved from CLAUDE.md section 11 on 2026-10-23 (BL-2 process cleanup). Wording is
   pools.
 - Not checked: Ethereum-side funding, the other 19 creation transactions, what the two shared holder contracts are, who
   sends through them, any day other than Nov 19-20.
+
+## BL-39 pre-freeze
+- Counts and costs only, evidence only (the owner's BL-39 pre-freeze prompt and plan answers, 2026-11-20). Docs only: no
+  code, tool, test, workflow, schedule, config, spec or rule change; no backtest run; the helper scripts stayed in the
+  session scratchpad and are not in the repo. No recommendation: the owner makes the friction call. The BL-39 freeze is a
+  later story, after that call and a fresh-context review.
+- Tags (as BL-48): CHECKABLE-file = recomputed from a committed file; CHECKABLE-pinned = re-running the named eth_call at
+  block 59,957,430 (2026-11-20 13:37:41Z) gives the same answer; CHECKABLE-live = re-running the named call gives
+  today's answer (it can move); ASSERTED = a reading or a source's own claim, not reproduced here. Addresses shortened
+  0x1234…abcd; full token and pool addresses are in backtest/liquid/universe.json and backtest/costs/tokens.json.
+- Requests: 116 of the 400 cap. Base public RPC https://mainnet.base.org 13 (1 eth_blockNumber, 1 eth_getBlockByNumber,
+  11 eth_call to Multicall3 0xca11…ca11 aggregate3 at the pinned block, each a batch of view calls); GoPlus
+  token_security chain 8453 103 (1 two-address batch test, which answered only the first address, then 1 address per
+  call); GeckoTerminal 0 (the chain answered every fee it could). 0 refused or failed. No key, secret, wallet, signature
+  or transaction.
+- Seals kept: no return, price change, MAX, P&L or pick by signal was computed. From daily.jsonl.gz only candle index 0
+  (start time, presence) and index 5 (USD volume, tools/liquid.py V = 5) were read; no row was printed.
+  backtest/liquid/snapshots/sealed/, backtest/candles/, backtest/specs/, outcomes.csv and tasks.csv were not opened;
+  nothing about BL-34 candidates was read. The main snapshot files (2026-11-13, 2026-11-16) were read for pool base /
+  quote identity only. On-chain answers were cut to identity and fee at parse: StateView getSlot0's sqrtPriceX96 word
+  was tested for non-zero (pool initialized) and dropped, the Vault getPoolTokens balances were dropped. GoPlus answers
+  were read for creator_address only. Raw answers were never written to disk.
+- Seal point (a), accepted by the owner (2026-11-20, A): one current Uniswap v4 sqrtPriceX96 word per v4 pool id
+  (StateView getSlot0 at the pinned block) was read in memory only, as a non-zero check that the pool exists, then
+  dropped; no history was read and no return was computed.
+- Seal point (b), accepted by the owner (2026-11-20, A), the one exception to "raw answers were never written to disk"
+  above: the batched call answers of the identity and fee views (token0, token1, factory, fee and stable; no price
+  view) were held briefly in one session scratchpad file, deleted after parsing; only the parsed identity and fee
+  fields were kept.
+
+### (1) Universe counts per Monday
+- Draft rule (the owner's prompt), per Monday m, over backtest/liquid/universe.json (355 tokens, asset kind "" for all)
+  and daily.jsonl.gz: deepest pool created >= 30 days before m (universe.json pool_created_at); all 31 daily candles
+  present in [m - 31 d, m); median daily volume over [m - 30 d, m) >= 50,000 USD; every day in [m - 7 d, m) >= 10,000
+  USD. picks = ceil(10% of n after the family removal). CHECKABLE-file.
+- Sanity check (CHECKABLE-file): with only the 31-candle condition the count reproduces the survey's "BL-39 eligible"
+  column exactly, Jun 15 .. Oct 26 = 227, 228, 231, 238, 235, 234, 231, 230, 226, 224, 220, 225, 227, 234, 247, 251, 253,
+  248, 252, 252 (docs/NOTES.md "BL-39 survey").
+- Family rule (the owner, 2026-11-20, DECISIONS): a token is an ADS family member if its GoPlus creator_address is the
+  family creator 0xd95a…9db9 (full address from GoPlus for INFLUXDB, CHECKABLE-live), or its deepest pool's other token is
+  ADS 0xb20a…b7df (on-chain token0 / token1 or v4 PoolKey at the pinned block, CHECKABLE-pinned; one union pool, Basecat's,
+  from the main snapshot file, CHECKABLE-file), plus ADS itself. ADS is not in universe.json (the survey dropped it as a
+  quote token), so it removes nothing here. GoPlus was asked only for the 103 tokens that enter at least one Monday
+  universe (the owner's choice); a token outside every Monday universe cannot change a count.
+
+  | Monday | universe n | family removed | n after | picks | (picks before removal) |
+  |---|---|---|---|---|---|
+  | Jun 15 | 66 | 29 | 37 | 4 | 7 |
+  | Jun 22 | 59 | 27 | 32 | 4 | 6 |
+  | Jun 29 | 63 | 29 | 34 | 4 | 7 |
+  | Jul 6 | 62 | 29 | 33 | 4 | 7 |
+  | Jul 13 | 62 | 28 | 34 | 4 | 7 |
+  | Jul 20 | 59 | 28 | 31 | 4 | 6 |
+  | Jul 27 | 61 | 33 | 28 | 3 | 7 |
+  | Aug 3 | 64 | 37 | 27 | 3 | 7 |
+  | Aug 10 | 65 | 37 | 28 | 3 | 7 |
+  | Aug 17 | 61 | 37 | 24 | 3 | 7 |
+  | Aug 24 | 64 | 38 | 26 | 3 | 7 |
+  | Aug 31 | 66 | 37 | 29 | 3 | 7 |
+  | Sep 7 | 70 | 36 | 34 | 4 | 7 |
+  | Sep 14 | 71 | 36 | 35 | 4 | 8 |
+  | Sep 21 | 75 | 36 | 39 | 4 | 8 |
+  | Sep 28 | 75 | 37 | 38 | 4 | 8 |
+  | Oct 5 | 74 | 35 | 39 | 4 | 8 |
+  | Oct 12 | 76 | 35 | 41 | 5 | 8 |
+  | Oct 19 | 73 | 35 | 38 | 4 | 8 |
+  | Oct 26 | 67 | 34 | 33 | 4 | 7 |
+
+  | stage | Mondays | n after (range) | sum of picks | test-1 bar | (sum before removal) |
+  |---|---|---|---|---|---|
+  | 1: Jun 15 .. Aug 31 | 12 | 24 .. 37 | 42 | >= 40 legs | 82 |
+  | 2: Sep 7 .. Oct 26 | 8 | 33 .. 41 | 33 | >= 30 legs | 62 |
+
+- Why the sum is an upper bound: one Monday pick gives at most one leg (one entry held to the next rebalance). Nothing
+  in the counts can add a leg; anything a spec adds can only remove one: an entry that does not fill, a missing candle
+  at entry or exit, a pick held over from the week before counted as one leg, a last-Monday leg that runs past the
+  stage end, or any later filter. Stage 1 clears its bar by 2 legs at most, stage 2 by 3.
+- Family members (CHECKABLE-live creator, CHECKABLE-pinned pair): 39 of the 103 union tokens; the two tests agree token
+  for token (39 by creator, 39 ADS-quoted, 0 by one test only). All 22 ADS-paired tokens of tokens.json are members.
+  Beyond the 22: 17, every one ADS-quoted (quote token ADS 17 of 17), with the 0xadf address prefix, in a Uniswap v3 pool
+  at 0.01%: AI-HEDGE-FUND 0xadf4…b821, ETCHER 0xadfd…cecb, FLUX 0xadff…bb5e, FONT-AWESOME 0xadf0…07db, GFPGAN
+  0xadf4…fefb, GRAFANA 0xadf2…98be, INSTAPY 0xadfd…4bc1, ITCHAT 0xadfb…21b5, MONGO 0xadf9…2860, MONITORCONTROL
+  0xadfa…4dc6, MUSICFREE 0xadf0…597b, NANOGPT 0xadf4…652a, PRISMA 0xadf0…0c25, PYSCRIPT 0xadfc…6eee, SERVER 0xadf5…8d34,
+  SPLEETER 0xadf4…789e, VEGETA 0xadfa…be19. Across all 355 survey tokens (no GoPlus call, CHECKABLE-pinned): 55 are
+  ADS-quoted and all 55 have the 0xadf prefix; 16 of them never enter a Monday universe.
+- GoPlus gaps (the owner's addition 3, CHECKABLE-live): 1 of the 103 has no creator_address answer (GoPlus code 3):
+  Basecat 0xb200…1d01, deepest pool an o1-launchpad Uniswap-v4-style pool paired with native ETH, not ADS-quoted, so not
+  a member. It sits in 6 Monday universes (Sep 21 .. Oct 26, stage 2 only); if it were also removed, Oct 12's picks
+  would fall from 5 to 4 and stage 2's sum from 33 to 32; stage 1 unchanged.
+- Other creators (counts only): among the 64 non-family union tokens no creator has more than 3 tokens (one has 3, one
+  has 2).
+- Caveats: pool_created_at and the deepest pool are as fetched on 2026-11-09 (the survey), not point in time; the token
+  list is the Nov 9 lists' survivors (the survey's survivorship note applies); volume is the deepest pool's only and can
+  include wash or bot volume; the creator is GoPlus's today.
+
+### (2) Friction evidence
+- Fee tier of each token's deepest pool, as of block 59,957,430 (CHECKABLE-pinned), identity and fee views only:
+  Uniswap v3, PancakeSwap v3, SushiSwap v3 fee() (immutable); Aerodrome Slipstream fee(); Aerodrome v2 factory
+  0x420d…40da getFee(pool, stable); Algebra (Hydrex Integral, QuickSwap v4) fee(); Balancer getSwapFeePercentage();
+  Curve fee(); Uniswap v4 and v4-style ids: PoolKey from PositionManager 0x7c5f…9bdc poolKeys (keccak of the key
+  equals the pool id for all 24 keys found, CHECKABLE-pinned) and lpFee from StateView 0xa3c0…7a71 getSlot0 (contract
+  addresses ASSERTED as Uniswap's Base deployments; the id match makes the keys CHECKABLE). Uniswap v2 0.3%, SushiSwap
+  v2 0.3% and PancakeSwap v2 0.25% are the forks' fees fixed in code, applied when the pool's factory() is that fork's
+  Base factory (0x8909…8ec6, 0x7152…2859, 0x02a8…749e; the factory read is CHECKABLE-pinned, the mapping ASSERTED).
+- "may differ in Jun-Oct, ASSERTED" (the owner's addition 2) marks every pool whose fee can change after creation:
+  Aerodrome Slipstream (factory / fee module), Aerodrome v2 (factory-set), Algebra (dynamic plugin), Balancer and Curve
+  (settable), Uniswap v4 with the dynamic-fee flag or a hook, and v4-style pools with no PoolKey found. Uniswap v3,
+  PancakeSwap v3, SushiSwap v3 and the v2 forks cannot change. Unknown = no fee readable (v4 dynamic pool whose slot0
+  lpFee is 0, i.e. hook-set per swap; o1-launchpad pool with no PoolKey and lpFee 0; DeltaSwap; v4 static 0% with a
+  hook, whose hook fee is unknown).
+
+  | fee tier | union 103 | of which may differ | family (39) | non-family union (64) | all 355 |
+  |---|---|---|---|---|---|
+  | 0.01% | 49 | 5 | 39 | 10 | 61 |
+  | 0.05% | 2 | 1 | 0 | 2 | 11 |
+  | 0.15% | 1 | 1 | 0 | 1 | 1 |
+  | 0.25% | 1 | 1 | 0 | 1 | 9 |
+  | 0.3% | 29 | 10 | 0 | 29 | 156 |
+  | 0.37% | 1 | 1 | 0 | 1 | 1 |
+  | 0.45% | 1 | 1 | 0 | 1 | 1 |
+  | 0.7% | 1 | 1 | 0 | 1 | 4 |
+  | 0.802% | 1 | 1 | 0 | 1 | 1 |
+  | 1% | 11 | 4 | 0 | 11 | 77 |
+  | 1.02% | 1 | 1 | 0 | 1 | 1 |
+  | 1.2% | 3 | 3 | 0 | 3 | 3 |
+  | other tiers (0.0102, 0.03, 0.04, 0.1, 0.27, 0.35, 0.6, 0.75, 0.8, 0.9, 1.99, 2, 3, 45%) | 0 | 0 | 0 | 0 | 24 |
+  | unknown | 2 (BSW v4 dynamic, Basecat o1-launchpad) | 2 | 0 | 2 | 5 |
+
+  Union pool types: v3 fee() 60, Slipstream 17, v2 forks 8, Aerodrome v2 8, v4 dynamic 5, v4 static 3, Algebra 1,
+  v4-style without PoolKey 1. Non-family union with a fee that may differ: 32 of 64. All 355: 174 may differ.
+- The 14 non-family metered tokens (backtest/costs/, BL-45 window 2026-11-13T03:01:41Z .. 2026-11-20T03:01:41Z, 21 runs,
+  1,596 rows; python -m tools.costs --summary; CHECKABLE-file). rt = median usdc_rt_pct (round trip from USDC through
+  every hop). Route fees = the deepest pool's fee at the pinned block + the hop fee (WETH -> USDC 0x6c56…1372, fee()
+  3000 = 0.3% at the pinned block). Extra round trip = rt - 2 x route fees; extra per side = that / 2 (the owner's
+  definition). The draft rule adds +0.5% per side on top of the fee.
+
+  | token | pool type | quote | hops | fee at freeze -> pinned % | route fees % | rt 5 USD % | extra rt / per side, 5 USD % | rt 25 USD % | extra rt / per side, 25 USD % | draft extra per side |
+  |---|---|---|---|---|---|---|---|---|---|---|
+  | CTR | Slipstream CL | USDC | 0 | 0.01 -> 0.01 | 0.01 | 0.022 | 0.002 / 0.001 | 0.029 | 0.009 / 0.005 | 0.5 |
+  | QUID | PancakeSwap v3 | USDC | 0 | 0.01 -> 0.01 | 0.01 | 0.022 | 0.002 / 0.001 | 0.030 | 0.010 / 0.005 | 0.5 |
+  | ELSA | PancakeSwap v3 | USDC | 0 | 0.01 -> 0.01 | 0.01 | 0.022 | 0.002 / 0.001 | 0.031 | 0.011 / 0.005 | 0.5 |
+  | BRETT | Slipstream CL | WETH | 1 | 0.2102 -> 0.37 | 0.67 | 1.337 | -0.003 / -0.002 | 1.352 | 0.012 / 0.006 | 0.5 |
+  | SOSO | Uniswap v3 | USDC | 0 | 0.01 -> 0.01 | 0.01 | 0.024 | 0.004 / 0.002 | 0.038 | 0.018 / 0.009 | 0.5 |
+  | PLAY | PancakeSwap v3 | USDC | 0 | 0.01 -> 0.01 | 0.01 | 0.030 | 0.010 / 0.005 | 0.070 | 0.050 / 0.025 | 0.5 |
+  | PROS | Slipstream CL | USDC | 0 | 0.01 -> 0.01 | 0.01 | 0.021 | 0.001 / 0.001 | 0.025 | 0.005 / 0.002 | 0.5 |
+  | NOCK | Aerodrome v2 volatile | USDC | 0 | 0.3 -> 0.3 | 0.3 | 0.602 | 0.002 / 0.001 | 0.612 | 0.012 / 0.006 | 0.5 |
+  | MAG7.ssi | Uniswap v3 | USDC | 0 | 0.3 -> 0.3 | 0.3 | 0.599 | -0.001 / -0.000 | 0.600 | -0.000 / -0.000 | 0.5 |
+  | VELVET | Slipstream CL | USDC | 0 | 0.01 -> 0.01 | 0.01 | 0.038 | 0.018 / 0.009 | 0.112 | 0.092 / 0.046 | 0.5 |
+  | KTA | Aerodrome v2 volatile | WETH | 1 | 0.3 -> 0.3 | 0.6 | 1.195 | -0.005 / -0.002 | 1.198 | -0.002 / -0.001 | 0.5 |
+  | VCNT | Uniswap v3 | USDC | 0 | 0.3 -> 0.3 | 0.3 | 0.599 | -0.001 / -0.000 | 0.600 | -0.000 / -0.000 | 0.5 |
+  | ICNT | Uniswap v3 | USDC | 0 | 0.05 -> 0.05 | 0.05 | 0.105 | 0.005 / 0.003 | 0.127 | 0.027 / 0.014 | 0.5 |
+  | ZEN | Slipstream CL | WETH | 1 | 0.15 -> 0.15 | 0.45 | 0.898 | -0.002 / -0.001 | 0.900 | 0.000 / 0.000 | 0.5 |
+
+  Measured extra per side over the 14: -0.002 .. +0.006% at 5 USD and -0.001 .. +0.046% at 25 USD (largest VELVET, then
+  PLAY 0.025, ICNT 0.014). The small negatives are second order: a fee f costs 1 - (1 - f)^2 per round trip, a little
+  less than 2f, and a hop compounds the same way. BRETT's fee moved from 0.2102% at the freeze to 0.37% at the pinned
+  block (Slipstream); its window median token-leg round trip 0.742% is 2 x 0.371%, so the pinned fee matches the window.
+  One week, sizes 5 and 25 USD only, liquid established pools only; one sale simulation per run cannot prove a later
+  clean exit (BL-45 caveats).
+- The low-cost tokens (the owner's addition 1). The BL-45 summary shows 8 tokens with round trips in 0.021 .. 0.127%, one
+  more than the prompt's 7: CTR, ELSA, ICNT, PLAY, PROS, QUID, SOSO, VELVET (CHECKABLE-file). Explained from identity
+  and fee only:
+
+  | token | pool type | fee tier (pinned) | may differ | quote | hop route | metered pool = deepest pool |
+  |---|---|---|---|---|---|---|
+  | CTR | Aerodrome Slipstream CL (factory 0xf8f2…61ef) | 0.01% | yes | USDC | none | yes |
+  | PROS | Aerodrome Slipstream CL (factory 0xf8f2…61ef) | 0.01% | yes | USDC | none | yes |
+  | VELVET | Aerodrome Slipstream CL (factory 0x5e7b…809a) | 0.01% | yes | USDC | none | yes |
+  | QUID | PancakeSwap v3 (factory 0x0bfb…1865) | 0.01% | no | USDC | none | yes |
+  | ELSA | PancakeSwap v3 (factory 0x0bfb…1865) | 0.01% | no | USDC | none | yes |
+  | PLAY | PancakeSwap v3 (factory 0x0bfb…1865) | 0.01% | no | USDC | none | yes |
+  | SOSO | Uniswap v3 (factory 0x3312…fdfd) | 0.01% | no | USDC | none | yes |
+  | ICNT | Uniswap v3 (factory 0x3312…fdfd) | 0.05% | no | USDC | none | yes |
+
+  All 8 trade directly against USDC in a concentrated-liquidity pool at the lowest fee tiers, so the round trip is two
+  fees (0.02%, or 0.10% for ICNT) plus a little price impact (0.001 .. 0.046% per side), with no hop. For all 36
+  metered tokens the metered pool is the universe deepest pool (36 of 36, CHECKABLE-file). The other 6 non-family tokens
+  pay a 0.3%-class pool fee (NOCK, MAG7.ssi, VCNT) or a WETH hop (BRETT, KTA, ZEN). The 22 family tokens' 0.01% token/ADS
+  pools are cheap per se; their ~1.2% round trips are the two 0.3% hops ADS -> WETH -> USDC (NOTES "BL-45").
+- Draft rule per real buy or sell (the owner's draft): the fee tier (1% when unknown) + 0.5%. Evidence above only; no
+  recommendation. The owner decides.
+
+### (3) Records
+- DECISIONS 2026-11-20 BL-39: the ADS family exclusion rule. BL-48 is decided by it (its Next step) and closes when this
+  commit is verified.

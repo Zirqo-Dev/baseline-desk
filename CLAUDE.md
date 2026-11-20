@@ -423,18 +423,32 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
   size-matched round trips; senders active in two or more family pools carry 90.6% of the volume. Seal slip: one
   daily.jsonl.gz row printed, nothing computed or kept (the owner accepted it, DECISIONS 2026-11-20). Observations only,
   no recommendation (docs/NOTES.md "BL-48").
-- Next step: BL-48: chat reads docs/NOTES.md "BL-48" and proposes exclude, cap or keep for the 22 ADS-paired tokens;
-  the owner decides (any change to the frozen cost-meter list is a later story). BL-46: snapshot.yml runs automatic every Monday 00:37 UTC; next run Nov 23.
+  BL-48 decided (the owner, 2026-11-20, choice A, DECISIONS): BL-39's universe excludes the ADS family by rule (GoPlus
+  creator = the family creator 0xd95a…9db9, or the deepest pool quoted in ADS, plus ADS itself); the frozen cost-meter
+  list is unchanged. BL-48 closes when this commit is verified.
+- BL-39 pre-freeze (2026-11-20, evidence only, docs only, counts and costs only, no returns; 116 public keyless
+  requests of the 400 cap: Base RPC 13, GoPlus 103, GeckoTerminal 0). Draft rule per Monday (pool >= 30 days, 31
+  candles, 30-day median volume >= 50k USD, every day of the last 7 >= 10k USD), family removed, picks = ceil(10%):
+  stage 1 (Jun 15 .. Aug 31, 12 Mondays) 42 picks vs the test-1 bar of 40 legs, stage 2 (Sep 7 .. Oct 26, 8 Mondays) 33
+  vs 30; upper bounds (one leg per pick at most). Family: 39 of the 103 union tokens (both tests agree), 17 beyond the 22,
+  all ADS-quoted 0xadf tokens; 1 GoPlus gap (Basecat, not ADS-quoted, kept; at most 1 pick in stage 2). Fee tiers at
+  block 59,957,430 over the 103: 0.01% 49 (the 39 family), 0.3% 29, 1% 11, unknown 2, others 12; pools whose fee can
+  change marked "may differ in Jun-Oct, ASSERTED". The 14 non-family metered tokens: measured extra per side over the
+  route fees -0.002 .. +0.046% (BL-45 window), next to the draft's +0.5%; the 8 low-cost tokens are direct USDC pools
+  at 0.01% / 0.05% with no hop. No recommendation (docs/NOTES.md "BL-39 pre-freeze").
+- Next step: BL-39: the owner's friction call on the draft rule (fee tier, 1% when unknown, + 0.5% per real buy or
+  sell) from docs/NOTES.md "BL-39 pre-freeze"; then a fresh-context review; then the BL-39 freeze story.
+  BL-46: snapshot.yml runs automatic every Monday 00:37 UTC; next run Nov 23.
   How the sealed snapshot files (backtest/liquid/snapshots/sealed/) are opened is a later story, after BL-34's holdout
   run; until then nothing reads them.
-  BL-45: 7 days of costs.yml runs from the first run (backtest/costs/window.json), then chat reads python -m
-  tools.costs --summary; the BL-39 freeze after that; launch tokens join the meter only after BL-34's holdout run
+  BL-45: the 7-day window (backtest/costs/window.json) is read (python -m tools.costs --summary, in "BL-39 pre-freeze");
+  costs.yml keeps running with the same frozen list; launch tokens join the meter only after BL-34's holdout run
   (a later story); Uniswap v4 a later story. BL-34's one v3 holdout run, after 2026-11-25T00:10Z. First the owner clicks Run workflow on backtest.yml
   (--eth for eth-2026-11-07 .. 11-24, then the token sight days 2026-11-06 .. 2026-11-20 listed in "days"; ~44 min a
   day, so 2-3 runs inside the 340 min timeout); then a fresh-context review; then, in a session: python -m
   tools.backtest --spec backtest/specs/bl34-survivor-momentum-v3.json --holdout --write (the tool refuses until the
   files reach), lock and result committed; chat reads the verdict. No look at BL-34 candidates' outcomes from Nov 8 on
-  before that. Also check the BL-32 deploy tick (one BOOK RESTART gate_b row). BL-38, BL-39 wait (BL-39 part 1 survey
+  before that. Also check the BL-32 deploy tick (one BOOK RESTART gate_b row). BL-38 waits; BL-39 as above (BL-39 part 1 survey
   done, counts only; no return has been computed from backtest/liquid/); the execution design is researched in
   parallel (no wallet code). BL-38..BL-42 are candidates only (DECISIONS 2026-11-04). The owner checks the deployed site
   and the first Telegram daily summary with the BL-43 lines.
