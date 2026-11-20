@@ -245,3 +245,14 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-20T02:23:14Z,desk,VERIFY,IOF,0x6094f41e192e0cb93118fad557bc61ce8703b10d,SKIP,real_depth,goplus=skipped until=2026-11-21T02:23:14Z b1=2 s1=0 b24=2 s24=0 liq=96973 dex=uniswap:v4 qliq=27 pair_age=4 token_age=4
 2026-11-20T02:23:14Z,baseline,EXECUTE,BOOTR,0xd36ba35c9a59b38219d63a10f9d8709b6b16a3e5,SKIP,loss_halt,seed=202611200223 eligible=1 pick=0 pool=d36ba3 desk=WATCH launchpad=other
 2026-11-20T02:23:14Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=19 rechecks=1 new=1 checked=2 passed=0 bought=0 held=0 deferred=0 dex_only=1 goplus=1 requests=10 secs=2.7 bl_positions=2 bl_due=1 bl_eligible=1 bl_bought=0 report=none machine=none bl_error=none labels=none labels_due=0 labels_done=0 labels_calls=0 live=ok alerts=none alerts_sent=0
+2026-11-20T02:28:15Z,baseline,EXIT,MARSBASE,0x0b455a80139f9642bb47f2cb5afabbd8809a24af,HOLD,no_quote,
+2026-11-20T02:28:15Z,baseline,EXIT,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,HOLD,no_quote,
+2026-11-20T02:28:15Z,desk,VERIFY,IAGENT,0xb073da09450159875b940227a057ff2773186f0a,WATCH,goplus_not_ready,"first_seen=2026-11-20T02:08:15Z checks=2 pending=honeypot,buy_tax_pct,sell_tax_pct,dev_pct,top10_pct,lp_locked_pct b1=24 s1=2 b24=24 s24=2 liq=58740 dex=uniswap:v2 qliq=29368 pair_age=25 token_age=25"
+2026-11-20T02:28:15Z,desk,VERIFY,USDP,0x1102f1a88ce4bab73b12a8bca89f0214334a2ed9,SKIP,asset:stable,goplus=skipped until=2026-11-21T02:28:15Z
+2026-11-20T02:28:15Z,desk,VERIFY,.AI,0x57c7f25b5495b3ec1e5f5a24bf9b4aa83c16b6fd,SKIP,real_depth,goplus=skipped until=2026-11-21T02:28:15Z
+2026-11-20T02:28:15Z,desk,VERIFY,OIL UNITED TRUST FUND,0x1f79bd847de351e62e3e1e16562d55bdcfe59626,SKIP,real_depth,goplus=skipped until=2026-11-21T02:28:15Z b1=7 s1=0 b24=7 s24=0 liq=195636 dex=uniswap:v4 qliq=28 pair_age=3 token_age=3
+2026-11-20T02:28:15Z,desk,VERIFY,TBA,0x21f4dec1810a7ac6c5957c0576f0d3d5a5fecba3,SKIP,real_depth,goplus=skipped until=2026-11-21T02:28:15Z
+2026-11-20T02:28:15Z,desk,VERIFY,genius,0xbef16b33f01eac2392ce7ad80ff3ccaddee5c7c0,SKIP,missing:liq_usd,goplus=skipped until=2026-11-21T02:28:15Z
+2026-11-20T02:28:15Z,desk,VERIFY,abkcoin,0x8ebffe695c48f1c2f444b5d34036326f298b9027,SKIP,missing:liq_usd,goplus=skipped until=2026-11-21T02:28:15Z
+2026-11-20T02:28:15Z,baseline,EXECUTE,IAGENT,0xb073da09450159875b940227a057ff2773186f0a,SKIP,loss_halt,seed=202611200228 eligible=1 pick=0 pool=b073da desk=WATCH launchpad=other
+2026-11-20T02:28:15Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=19 rechecks=1 new=6 checked=7 passed=0 bought=0 held=0 deferred=0 dex_only=6 goplus=1 requests=16 secs=3.7 bl_positions=2 bl_due=1 bl_eligible=1 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=4 labels_done=4 labels_calls=1 live=ok alerts=none alerts_sent=0
