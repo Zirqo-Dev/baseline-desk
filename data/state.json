@@ -63,7 +63,7 @@
     },
     "refill_week": "2026-W47",
     "refills_usd": 56.55720719365456,
-    "ticks_since_buy": 541
+    "ticks_since_buy": 542
   },
   "desk": {
     "cash": 50.0,
@@ -639,6 +639,14 @@
         "sight_qliq": 185028,
         "symbol": "National Oil Truts Fund"
       },
+      "0x0895de476ade9f83dfade22dfdd0f1d7c1f8b9a1": {
+        "done": [],
+        "first_price": 0.6407,
+        "first_seen": "2026-11-21T22:18:17Z",
+        "sight_pair": "0x334aaac9057bd4358d3c1fa8f1041900a2f7133c7b0b0942ee089bb10dcf01e3",
+        "sight_qliq": 217992,
+        "symbol": "NOTF"
+      },
       "0x08a33459d035a0bf048a956012a780ec82a22eb6": {
         "done": [
           1,
@@ -1162,7 +1170,8 @@
       },
       "0x116178fcaef0891372bb58762571a66b4053e87f": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 8.348e-06,
         "first_seen": "2026-11-21T16:18:15Z",
@@ -4183,6 +4192,14 @@
         "sight_qliq": 197,
         "symbol": "Antropic"
       },
+      "0x43dcd329286898bd9a3529021c6ad3bf2fde585f": {
+        "done": [],
+        "first_price": 4.105e-06,
+        "first_seen": "2026-11-21T22:18:17Z",
+        "sight_pair": "0x8e9410fa16910a8fd935d7496a9b8884d3dab027",
+        "sight_qliq": 25738,
+        "symbol": "GSIR"
+      },
       "0x4699daa904680f98edbdc15118ec1608757c0b24": {
         "done": [
           1
@@ -5159,6 +5176,14 @@
         "sight_pair": "0x310990f1190e3df138eac76dcc74f6bf2e362ed3f4311eba6407b8f17e30cb89",
         "sight_qliq": 30,
         "symbol": "BCOP"
+      },
+      "0xc3da6c2dabc00f00aa4989aa44c8182626b67ff9": {
+        "done": [],
+        "first_price": 9.236e-05,
+        "first_seen": "2026-11-21T22:18:17Z",
+        "sight_pair": "0xf3cd28002f4359220de86d563bc20b59839cda203383c984c5f56b37431afcf9",
+        "sight_qliq": 28,
+        "symbol": "GRIS"
       },
       "0xc4b61a505bca7314b3fc1b1ae503956803b6e62a": {
         "done": [
@@ -9689,6 +9714,12 @@
         "symbol": "MEOW",
         "until": "2026-11-22T14:08:15Z"
       },
+      "0x6ccaa6958d7cf101b969b58aff208b7d15dccba3": {
+        "at": "2026-11-21T22:18:17Z",
+        "reason": "real_depth",
+        "symbol": "Uranus",
+        "until": "2026-11-22T22:18:17Z"
+      },
       "0x6d062f4daeae25548dace142534194bf3b763b62": {
         "at": "2026-11-21T18:33:14Z",
         "reason": "goplus_timeout",
@@ -12203,6 +12234,12 @@
         "symbol": "GTAB",
         "until": "2026-11-22T22:03:15Z"
       },
+      "0xc3da6c2dabc00f00aa4989aa44c8182626b67ff9": {
+        "at": "2026-11-21T22:18:17Z",
+        "reason": "real_depth",
+        "symbol": "GRIS",
+        "until": "2026-11-22T22:18:17Z"
+      },
       "0xc4246a07315de81a3c95fc8c5282222794e7d3f0": {
         "at": "2026-11-21T14:53:20Z",
         "reason": "real_depth",
@@ -13303,29 +13340,41 @@
       }
     },
     "watch": {
+      "0x0895de476ade9f83dfade22dfdd0f1d7c1f8b9a1": {
+        "checks": 1,
+        "first_seen": "2026-11-21T22:18:17Z",
+        "last_check": "2026-11-21T22:18:17Z",
+        "symbol": "NOTF"
+      },
       "0x135f561d274440bcf4384ef79b7addee8eafe78b": {
-        "checks": 6,
+        "checks": 7,
         "first_seen": "2026-11-21T20:33:13Z",
-        "last_check": "2026-11-21T22:03:15Z",
+        "last_check": "2026-11-21T22:18:17Z",
         "symbol": "National Oil Truts Fund"
       },
       "0x232413ab7e4483029f7ba2e5a5b0ce5568f47140": {
-        "checks": 6,
+        "checks": 7,
         "first_seen": "2026-11-21T20:33:13Z",
-        "last_check": "2026-11-21T22:03:15Z",
+        "last_check": "2026-11-21T22:18:17Z",
         "symbol": "Antropic"
       },
       "0x3f42b2c57915ab9db7ff50aa9da15e4b0d7ec872": {
-        "checks": 6,
+        "checks": 7,
         "first_seen": "2026-11-21T20:33:13Z",
-        "last_check": "2026-11-21T22:03:15Z",
+        "last_check": "2026-11-21T22:18:17Z",
         "symbol": "U\u200aS\u200aO\u200aE"
       },
       "0x3f5bf3edac59d650d8fdf9657a71f2f904a3a4ee": {
-        "checks": 9,
+        "checks": 10,
         "first_seen": "2026-11-21T19:33:14Z",
-        "last_check": "2026-11-21T22:03:15Z",
+        "last_check": "2026-11-21T22:18:17Z",
         "symbol": "AERO"
+      },
+      "0x43dcd329286898bd9a3529021c6ad3bf2fde585f": {
+        "checks": 1,
+        "first_seen": "2026-11-21T22:18:17Z",
+        "last_check": "2026-11-21T22:18:17Z",
+        "symbol": "GSIR"
       },
       "0x7eb7c1c108a42c019606187a805147fc8b43a61b": {
         "checks": 2,
