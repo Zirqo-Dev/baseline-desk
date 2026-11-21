@@ -63,7 +63,7 @@
     },
     "refill_week": "2026-W47",
     "refills_usd": 56.55720719365456,
-    "ticks_since_buy": 546
+    "ticks_since_buy": 547
   },
   "desk": {
     "cash": 50.0,
@@ -2851,6 +2851,14 @@
         "sight_qliq": 196,
         "symbol": "OFDC"
       },
+      "0x2bf30ff72c95f0f53bfc8e45b86496586791dfe2": {
+        "done": [],
+        "first_price": 0.002895,
+        "first_seen": "2026-11-21T22:43:18Z",
+        "sight_pair": "0xc4d3ac2b0e472b565d755424b8005ad84ea11635e81d2f5a4db9b65e580332a6",
+        "sight_qliq": 255,
+        "symbol": "DOTF"
+      },
       "0x2c15eed02647e1d497ed46ca8d3bc66d1e20c7db": {
         "done": [
           1,
@@ -4647,17 +4655,6 @@
         "sight_qliq": 23,
         "symbol": "AORS"
       },
-      "0x8635ef9bc84f8d8efcec3bb66a1e816e3cf59cd8": {
-        "done": [
-          1,
-          6
-        ],
-        "first_price": 2.616e-06,
-        "first_seen": "2026-11-20T22:43:15Z",
-        "sight_pair": "0x39e771fe1fa1623b5e2c1ab4f8c4775be1de400e",
-        "sight_qliq": 24727,
-        "symbol": "GAP"
-      },
       "0x89bea287c915883b2ecf90aef2d73ef2dde81568": {
         "done": [
           1,
@@ -5270,7 +5267,8 @@
       },
       "0xcc931d378199f080c92050ade0098a8a94c0d6bb": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 2.752e-06,
         "first_seen": "2026-11-21T16:43:14Z",
@@ -7772,6 +7770,12 @@
         "symbol": "OFDC",
         "until": "2026-11-22T09:18:16Z"
       },
+      "0x2bf30ff72c95f0f53bfc8e45b86496586791dfe2": {
+        "at": "2026-11-21T22:43:18Z",
+        "reason": "real_depth",
+        "symbol": "DOTF",
+        "until": "2026-11-22T22:43:18Z"
+      },
       "0x2c15eed02647e1d497ed46ca8d3bc66d1e20c7db": {
         "at": "2026-11-21T04:18:14Z",
         "reason": "real_depth",
@@ -9085,12 +9089,6 @@
         "reason": "real_depth",
         "symbol": "US ENERGY FUND",
         "until": "2026-11-22T06:33:15Z"
-      },
-      "0x501cceb791c14de5b73dc30274b426f823bd2df5": {
-        "at": "2026-11-20T22:43:15Z",
-        "reason": "missing:liq_usd",
-        "symbol": "Basedog",
-        "until": "2026-11-21T22:43:15Z"
       },
       "0x5091ca914730389faaec0ec45bdb625c45becccc": {
         "at": "2026-11-21T15:13:13Z",
@@ -13349,9 +13347,9 @@
         "symbol": "Basecat"
       },
       "0xb2236379e3342caad5d857d2f9eef42dbaa4eb87": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-21T22:28:16Z",
-        "last_check": "2026-11-21T22:28:16Z",
+        "last_check": "2026-11-21T22:43:18Z",
         "symbol": "NOTF"
       }
     }
