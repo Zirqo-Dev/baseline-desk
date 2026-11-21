@@ -700,3 +700,13 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-21T06:13:15Z,baseline,EXIT,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,HOLD,no_quote,
 2026-11-21T06:13:15Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
 2026-11-21T06:13:15Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=0 new=0 checked=0 passed=0 bought=0 held=0 deferred=0 dex_only=0 goplus=0 requests=7 secs=1.9 bl_positions=2 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=none labels_due=0 labels_done=0 labels_calls=0 live=ok alerts=none alerts_sent=0
+2026-11-21T06:18:14Z,baseline,EXIT,MARSBASE,0x0b455a80139f9642bb47f2cb5afabbd8809a24af,HOLD,no_quote,
+2026-11-21T06:18:14Z,baseline,EXIT,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,HOLD,no_quote,
+2026-11-21T06:18:14Z,desk,VERIFY,Antropic,0xb02cdedb61188a0981245d9228623e77209151e0,WATCH,goplus_not_ready,first_seen=2026-11-21T04:53:14Z checks=6 pending=honeypot b1=35 s1=12 b24=58 s24=18 liq=129732 dex=uniswap:v4 qliq=18480 pair_age=91 token_age=91
+2026-11-21T06:18:14Z,desk,VERIFY,US ENERGY FUND,0x4ff8d9b531da6eb5e411187046e544639b461451,WATCH,goplus_not_ready,"first_seen=2026-11-21T05:43:13Z checks=3 pending=dev_pct,top10_pct b1=35 s1=1 b24=35 s24=1 liq=56193 dex=uniswap:v2 qliq=28102 pair_age=39 token_age=39"
+2026-11-21T06:18:14Z,desk,VERIFY,ANTHROPIC,0x9de73a3c2051b0bccb1afc050e6144d96ab1814c,SKIP,real_depth,goplus=skipped until=2026-11-22T06:18:14Z
+2026-11-21T06:18:14Z,desk,VERIFY,MANDY,0xbbafb0943685ab3498adc904cdd488f56d57288c,SKIP,real_depth,goplus=skipped until=2026-11-22T06:18:14Z
+2026-11-21T06:18:14Z,desk,VERIFY,CHUBBY,0xac61cacef8a8c5fafaf3152db44fae779d228675,SKIP,real_depth,goplus=skipped until=2026-11-22T06:18:14Z
+2026-11-21T06:18:14Z,desk,VERIFY,KAI,0x298e4ba8be542d8f5c6395d74d9b675bbb43ae8f,SKIP,real_depth,goplus=skipped until=2026-11-22T06:18:14Z
+2026-11-21T06:18:14Z,baseline,EXECUTE,US ENERGY FUND,0x4ff8d9b531da6eb5e411187046e544639b461451,SKIP,size,"seed=202611210618 eligible=2 pick=0 pool=4ff8d9,b02cde desk=WATCH launchpad=other"
+2026-11-21T06:18:14Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=2 new=4 checked=6 passed=0 bought=0 held=0 deferred=0 dex_only=4 goplus=2 requests=16 secs=5.1 bl_positions=2 bl_due=1 bl_eligible=2 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=2 labels_done=2 labels_calls=1 live=ok alerts=none alerts_sent=0
