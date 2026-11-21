@@ -63,7 +63,7 @@
     },
     "refill_week": "2026-W47",
     "refills_usd": 56.55720719365456,
-    "ticks_since_buy": 404
+    "ticks_since_buy": 405
   },
   "desk": {
     "cash": 50.0,
@@ -4999,7 +4999,8 @@
       },
       "0xb02cdedb61188a0981245d9228623e77209151e0": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 1.465e-06,
         "first_seen": "2026-11-21T04:53:14Z",
@@ -5736,12 +5737,6 @@
         "reason": "real_depth",
         "symbol": "TRDR",
         "until": "2026-11-21T21:13:22Z"
-      },
-      "0x02da71c28538c5b922caafdee77caa71377eee2f": {
-        "at": "2026-11-20T10:53:14Z",
-        "reason": "real_depth",
-        "symbol": "BNB",
-        "until": "2026-11-21T10:53:14Z"
       },
       "0x02ea725481f070ec42f4fb563a857b7ba86a6a1b": {
         "at": "2026-11-20T21:48:16Z",
@@ -8071,6 +8066,12 @@
         "symbol": "AOTF",
         "until": "2026-11-22T00:38:16Z"
       },
+      "0x34ac52af84d257f4262f2b6bf210fbc0a2b36985": {
+        "at": "2026-11-21T10:53:15Z",
+        "reason": "real_depth",
+        "symbol": "CDXR",
+        "until": "2026-11-22T10:53:15Z"
+      },
       "0x34c048a7cc454a3ed74f0999f82b198ef1ee464b": {
         "at": "2026-11-21T02:08:18Z",
         "reason": "real_depth",
@@ -8760,6 +8761,12 @@
         "reason": "real_depth",
         "symbol": "USOI",
         "until": "2026-11-22T07:58:16Z"
+      },
+      "0x4c3ebfdf4a52c5558ae337598de548cb1c03415c": {
+        "at": "2026-11-21T10:53:15Z",
+        "reason": "real_depth",
+        "symbol": "BCOP",
+        "until": "2026-11-22T10:53:15Z"
       },
       "0x4c6ccf3d97d9249642111c6438354bd91e0e22e4": {
         "at": "2026-11-21T04:38:14Z",
@@ -10099,12 +10106,6 @@
         "symbol": "SLCN",
         "until": "2026-11-21T21:28:25Z"
       },
-      "0x9cd79e2071602006d9a8b51d5eb31d62ac0e29f5": {
-        "at": "2026-11-20T10:53:14Z",
-        "reason": "real_depth",
-        "symbol": "NWT",
-        "until": "2026-11-21T10:53:14Z"
-      },
       "0x9d0e8f5b25384c7310cb8c6ae32c8fbeb645d083": {
         "at": "2026-11-20T12:38:15Z",
         "reason": "real_depth",
@@ -10284,12 +10285,6 @@
         "reason": "real_depth",
         "symbol": "Basefrog",
         "until": "2026-11-21T23:58:19Z"
-      },
-      "0xa7069d9a81e2f60df7b67f064b8f5c5e57479716": {
-        "at": "2026-11-20T10:53:14Z",
-        "reason": "real_depth",
-        "symbol": "BIDEN",
-        "until": "2026-11-21T10:53:14Z"
       },
       "0xa73c7b1b893b474647a750e316c6b76c97151914": {
         "at": "2026-11-21T07:23:18Z",
@@ -12283,12 +12278,6 @@
         "symbol": "",
         "until": "2026-11-21T12:53:15Z"
       },
-      "0xfb992dd67bb0bcdd00cfe753b7fbe1be3a28fda3": {
-        "at": "2026-11-20T10:53:14Z",
-        "reason": "real_depth",
-        "symbol": "USOIL INDEX",
-        "until": "2026-11-21T10:53:14Z"
-      },
       "0xfbbf42a9ccc664607eba78c0a44edbf265f98c14": {
         "at": "2026-11-21T06:48:16Z",
         "reason": "goplus_timeout",
@@ -12358,22 +12347,16 @@
     },
     "watch": {
       "0x05f574405406936f3ddbc5286feefc7090dba44c": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-21T10:33:21Z",
-        "last_check": "2026-11-21T10:33:21Z",
+        "last_check": "2026-11-21T10:53:15Z",
         "symbol": "National Oil Truts Fund"
       },
       "0x17cfe799e69be632244b804500b5999e1f20edac": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-21T10:33:21Z",
-        "last_check": "2026-11-21T10:33:21Z",
+        "last_check": "2026-11-21T10:53:15Z",
         "symbol": "U\u200aS\u200aO\u200aE"
-      },
-      "0x4c3ebfdf4a52c5558ae337598de548cb1c03415c": {
-        "checks": 1,
-        "first_seen": "2026-11-21T10:33:21Z",
-        "last_check": "2026-11-21T10:33:21Z",
-        "symbol": "BCOP"
       },
       "0x7a3e98af442936368e7cf3b284a79a89d1155b90": {
         "checks": 5,
@@ -12394,9 +12377,9 @@
         "symbol": "OTG"
       },
       "0xc941cdf9e32454ee7cb83870d940abe6eb0712d7": {
-        "checks": 4,
+        "checks": 5,
         "first_seen": "2026-11-21T09:43:14Z",
-        "last_check": "2026-11-21T10:33:21Z",
+        "last_check": "2026-11-21T10:53:15Z",
         "symbol": "NOTF"
       },
       "0xddb809d57d74432c6f8f7aeb17d67a56be9c5cd3": {
