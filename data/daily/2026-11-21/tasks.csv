@@ -541,3 +541,11 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-21T04:48:17Z,desk,VERIFY,SNP500,0x03ec7a6ae2057c3cb5f2887dd32949e117e5b240,SKIP,real_depth,goplus=skipped until=2026-11-22T04:48:17Z
 2026-11-21T04:48:17Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
 2026-11-21T04:48:17Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=22 rechecks=0 new=2 checked=2 passed=0 bought=0 held=0 deferred=0 dex_only=2 goplus=0 requests=10 secs=2.6 bl_positions=2 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=1 labels_done=1 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-21T04:53:14Z,baseline,EXIT,MARSBASE,0x0b455a80139f9642bb47f2cb5afabbd8809a24af,HOLD,no_quote,
+2026-11-21T04:53:14Z,baseline,EXIT,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,HOLD,no_quote,
+2026-11-21T04:53:14Z,desk,VERIFY,SI,0x361b943770be181d0f7b374f8a831c543e9e7e4f,WATCH,goplus_not_ready,"first_seen=2026-11-21T04:38:14Z checks=2 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct b1=39 s1=0 b24=39 s24=0 liq=142694 dex=uniswap:v2 qliq=71366 pair_age=22 token_age=22"
+2026-11-21T04:53:14Z,desk,VERIFY,COMET,0x844cf291abd865ee42f68a7c3cfe14d620f5064f,SKIP,real_depth,goplus=skipped until=2026-11-22T04:53:14Z
+2026-11-21T04:53:14Z,desk,VERIFY,MARSBASE,0x37eeb566c25cf44c04626bd1af572be1c36c7806,SKIP,real_depth,goplus=skipped until=2026-11-22T04:53:14Z
+2026-11-21T04:53:14Z,desk,VERIFY,Antropic,0xb02cdedb61188a0981245d9228623e77209151e0,WATCH,goplus_not_ready,"first_seen=2026-11-21T04:53:14Z checks=1 pending=honeypot,buy_tax_pct,sell_tax_pct,dev_pct,top10_pct,lp_locked_pct b1=6 s1=1 b24=6 s24=1 liq=130093 dex=uniswap:v4 qliq=18481 pair_age=6 token_age=6"
+2026-11-21T04:53:14Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
+2026-11-21T04:53:14Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=22 rechecks=1 new=3 checked=4 passed=0 bought=0 held=0 deferred=0 dex_only=2 goplus=2 requests=13 secs=4.2 bl_positions=2 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=none labels_due=0 labels_done=0 labels_calls=0 live=ok alerts=none alerts_sent=0
