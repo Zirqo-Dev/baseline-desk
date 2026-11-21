@@ -1129,3 +1129,17 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-21T10:18:16Z,desk,VERIFY,callmebaby,0xb647612d0448f0b2b28485130805303f6b0b472e,SKIP,real_depth,goplus=skipped until=2026-11-22T10:18:16Z
 2026-11-21T10:18:16Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
 2026-11-21T10:18:16Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=0 new=2 checked=2 passed=0 bought=0 held=0 deferred=0 dex_only=2 goplus=0 requests=11 secs=2.9 bl_positions=2 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=33 labels_done=33 labels_calls=2 live=ok alerts=none alerts_sent=0
+2026-11-21T10:23:17Z,baseline,EXIT,MARSBASE,0x0b455a80139f9642bb47f2cb5afabbd8809a24af,HOLD,no_quote,
+2026-11-21T10:23:17Z,baseline,EXIT,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,HOLD,no_quote,
+2026-11-21T10:23:17Z,desk,VERIFY,Travix,0x7a3e98af442936368e7cf3b284a79a89d1155b90,WATCH,goplus_not_ready,"first_seen=2026-11-21T09:38:14Z checks=4 pending=mint_open,freeze_or_blacklist,honeypot,dev_pct,top10_pct,risk_flags b1=96 s1=1 b24=96 s24=1 liq=65903 dex=uniswap:v2 qliq=32951 pair_age=59 token_age=59"
+2026-11-21T10:23:17Z,desk,VERIFY,QUANT,0xacc90048487ce7721784da18f02ac52921f7e35b,WATCH,goplus_not_ready,first_seen=2026-11-21T09:53:17Z checks=3 pending=top10_pct b1=32 s1=1 b24=32 s24=1 liq=57668 dex=uniswap:v2 qliq=28835 pair_age=34 token_age=34
+2026-11-21T10:23:17Z,desk,VERIFY,TBURN,0xd0dcf0b40f90a7927eac8720dd10028ded7cb9c0,SKIP,real_depth,goplus=skipped until=2026-11-22T10:23:17Z
+2026-11-21T10:23:17Z,desk,VERIFY,Milady,0xb80df913f4a34dbc29a8bea1d49962ffaf147e9f,SKIP,missing:liq_usd,goplus=skipped until=2026-11-22T10:23:17Z
+2026-11-21T10:23:17Z,desk,VERIFY,BLUMI,0xb20000000000000000000082302bfcc265cdaa0a,SKIP,real_depth,goplus=skipped until=2026-11-22T10:23:17Z
+2026-11-21T10:23:17Z,desk,VERIFY,1KTO100M,0xc0281a1edb66441b75f59b91fda81725ad843227,SKIP,real_depth,goplus=skipped until=2026-11-22T10:23:17Z
+2026-11-21T10:23:17Z,desk,VERIFY,BLUEDESK,0xb200000000000000000000d65598fc09bf708fce,SKIP,real_depth,goplus=skipped until=2026-11-22T10:23:17Z
+2026-11-21T10:23:17Z,desk,VERIFY,PUNANI,0xfb44556f98589d20f93a7225656bb923ca9ce055,WATCH,goplus_not_ready,"first_seen=2026-11-21T10:23:17Z checks=1 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct b1=8 s1=3 b24=8 s24=3 liq=33168 dex=uniswap:v4 qliq=16590 pair_age=4 token_age=4"
+2026-11-21T10:23:17Z,desk,VERIFY,BLUEDESK,0xb2000000000000000000001ac5b99e3a73fc2baa,SKIP,real_depth,goplus=skipped until=2026-11-22T10:23:17Z
+2026-11-21T10:23:17Z,desk,VERIFY,WORTH,0x9842815067ff88cb7f818467a2794c8c2734cccc,SKIP,real_depth,goplus=skipped until=2026-11-22T10:23:17Z
+2026-11-21T10:23:17Z,baseline,EXECUTE,QUANT,0xacc90048487ce7721784da18f02ac52921f7e35b,SKIP,size,"seed=202611211023 eligible=2 pick=1 pool=7a3e98,acc900 desk=WATCH launchpad=other"
+2026-11-21T10:23:17Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=2 new=8 checked=10 passed=0 bought=0 held=0 deferred=0 dex_only=7 goplus=3 requests=20 secs=6.6 bl_positions=2 bl_due=1 bl_eligible=2 bl_bought=0 report=none machine=none bl_error=none labels=none labels_due=0 labels_done=0 labels_calls=0 live=ok alerts=none alerts_sent=0
