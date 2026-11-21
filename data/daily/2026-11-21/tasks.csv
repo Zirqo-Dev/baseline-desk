@@ -276,3 +276,14 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-21T02:23:15Z,baseline,EXIT,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,HOLD,no_quote,
 2026-11-21T02:23:15Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
 2026-11-21T02:23:15Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=21 rechecks=0 new=0 checked=0 passed=0 bought=0 held=0 deferred=0 dex_only=0 goplus=0 requests=8 secs=2.2 bl_positions=2 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=1 labels_done=1 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-21T02:28:16Z,baseline,EXIT,MARSBASE,0x0b455a80139f9642bb47f2cb5afabbd8809a24af,HOLD,no_quote,
+2026-11-21T02:28:16Z,baseline,EXIT,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,HOLD,no_quote,
+2026-11-21T02:28:16Z,desk,VERIFY,NOTF,0x0737d66ab5b73aba8a24f45ad01bfafd54d65909,WATCH,goplus_not_ready,"first_seen=2026-11-21T01:03:17Z checks=6 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct b1=36 s1=12 b24=57 s24=22 liq=429252 dex=uniswap:v4 qliq=178288 pair_age=86 token_age=86"
+2026-11-21T02:28:16Z,desk,VERIFY,NOTF,0x5b200516f72f22cd8bea1abe95ece3b06cecc9e9,WATCH,goplus_not_ready,"first_seen=2026-11-21T01:13:15Z checks=5 pending=honeypot,top10_pct b1=36 s1=12 b24=54 s24=20 liq=476513 dex=uniswap:v4 qliq=150411 pair_age=79 token_age=79"
+2026-11-21T02:28:16Z,desk,VERIFY,REBOOT,0x176490ce7ba11a7c5c52fcd726b086c1e9ce65ec,SKIP,real_depth,first_seen=2026-11-21T01:43:14Z checks=4 goplus=skipped until=2026-11-22T02:28:16Z
+2026-11-21T02:28:16Z,desk,VERIFY,Rizzmas,0x5233ac8962fc65922c1e7782637b607760f73f20,WATCH,goplus_not_ready,"first_seen=2026-11-21T02:08:18Z checks=2 pending=honeypot,buy_tax_pct,sell_tax_pct,dev_pct,top10_pct,lp_locked_pct b1=66 s1=43 b24=66 s24=43 liq=246730 dex=uniswap:v4 qliq=132561 pair_age=22 token_age=22"
+2026-11-21T02:28:16Z,desk,VERIFY,U.S fund Energy ,0xd1e297f7be8b9327177cf49ed635f3333d480035,WATCH,goplus_not_ready,first_seen=2026-11-21T02:08:18Z checks=2 pending=top10_pct b1=26 s1=0 b24=26 s24=0 liq=56256 dex=uniswap:v2 qliq=28132 pair_age=25 token_age=25
+2026-11-21T02:28:16Z,desk,VERIFY,SUPERGEMMA,0x3167f5622d95e3bf015b760dae66684d32ddf399,SKIP,real_depth,goplus=skipped until=2026-11-22T02:28:16Z
+2026-11-21T02:28:16Z,desk,VERIFY,COFFEE,0xb2000000000000000000005951a3cad266f0ed29,SKIP,real_depth,goplus=skipped until=2026-11-22T02:28:16Z
+2026-11-21T02:28:16Z,baseline,EXECUTE,Rizzmas,0x5233ac8962fc65922c1e7782637b607760f73f20,SKIP,size,"seed=202611210228 eligible=3 pick=1 pool=0737d6,5233ac,5b2005 desk=WATCH launchpad=other"
+2026-11-21T02:28:16Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=21 rechecks=5 new=2 checked=7 passed=0 bought=0 held=0 deferred=0 dex_only=3 goplus=4 requests=19 secs=8.9 bl_positions=2 bl_due=1 bl_eligible=3 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=12 labels_done=12 labels_calls=1 live=ok alerts=none alerts_sent=0
