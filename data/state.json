@@ -63,7 +63,7 @@
     },
     "refill_week": "2026-W47",
     "refills_usd": 56.55720719365456,
-    "ticks_since_buy": 300
+    "ticks_since_buy": 301
   },
   "desk": {
     "cash": 50.0,
@@ -445,6 +445,14 @@
         "sight_pair": "0xa643beb1aa0b8c3b0cb962ebe7d78d1cfd1e0ece216a72330fad1138a1839bb1",
         "sight_qliq": 13214,
         "symbol": "SOS\u200aF"
+      },
+      "0x080268307dd849469bdd296629c6e1a4ea5b7353": {
+        "done": [],
+        "first_price": 8.158e-05,
+        "first_seen": "2026-11-21T02:13:15Z",
+        "sight_pair": "0xd100704298752d5e1e179be3261b2fc1f010d05a3909b0a64505956055116db0",
+        "sight_qliq": 22,
+        "symbol": "GDOL"
       },
       "0x08174a8b267e24c1b2b7015fadc9e63fe9e97824": {
         "done": [
@@ -2220,6 +2228,14 @@
         "sight_qliq": 2,
         "symbol": "USOC"
       },
+      "0x27dfa3f02e020b5be36471ac245b89ad05366c61": {
+        "done": [],
+        "first_price": 8.607e-05,
+        "first_seen": "2026-11-21T02:13:15Z",
+        "sight_pair": "0x9b01b4836dc6437a780feca8101b29c25109380d36f723f73e218ac1e61f6847",
+        "sight_qliq": 3,
+        "symbol": "MIDNIGHT"
+      },
       "0x27e3e3c26409ac049a3b8237c8753615e463e4ca": {
         "done": [
           1
@@ -3574,7 +3590,9 @@
         "symbol": "CITY"
       },
       "0x5b200516f72f22cd8bea1abe95ece3b06cecc9e9": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 1.3,
         "first_seen": "2026-11-21T01:13:15Z",
         "sight_pair": "0x9cd7343eedcfffc39afcbadf74c94648da3967c4bd00bdc700667984f0fbaae7",
@@ -5666,6 +5684,12 @@
         "symbol": "SOS\u200aF",
         "until": "2026-11-22T00:58:16Z"
       },
+      "0x080268307dd849469bdd296629c6e1a4ea5b7353": {
+        "at": "2026-11-21T02:13:15Z",
+        "reason": "real_depth",
+        "symbol": "GDOL",
+        "until": "2026-11-22T02:13:15Z"
+      },
       "0x08174a8b267e24c1b2b7015fadc9e63fe9e97824": {
         "at": "2026-11-20T23:23:13Z",
         "reason": "real_depth",
@@ -6992,12 +7016,6 @@
         "symbol": "UDO\u200aF",
         "until": "2026-11-21T17:33:19Z"
       },
-      "0x24fa09f585355269ca7ce79a8cf0225c89ccc99b": {
-        "at": "2026-11-20T02:13:15Z",
-        "reason": "real_depth",
-        "symbol": "XCHAT",
-        "until": "2026-11-21T02:13:15Z"
-      },
       "0x25634dbeac6fef32317e55014720012614327c08": {
         "at": "2026-11-20T04:43:14Z",
         "reason": "real_depth",
@@ -7105,6 +7123,12 @@
         "reason": "real_depth",
         "symbol": "LPN",
         "until": "2026-11-21T10:48:14Z"
+      },
+      "0x27dfa3f02e020b5be36471ac245b89ad05366c61": {
+        "at": "2026-11-21T02:13:15Z",
+        "reason": "real_depth",
+        "symbol": "MIDNIGHT",
+        "until": "2026-11-22T02:13:15Z"
       },
       "0x27e3e3c26409ac049a3b8237c8753615e463e4ca": {
         "at": "2026-11-20T22:33:16Z",
@@ -9266,6 +9290,12 @@
         "symbol": "SPACEX",
         "until": "2026-11-21T17:23:19Z"
       },
+      "0x83815dd8c0a72bd2989071fac8fa9cd49ff67be7": {
+        "at": "2026-11-21T02:13:15Z",
+        "reason": "real_depth",
+        "symbol": "Gitbank",
+        "until": "2026-11-22T02:13:15Z"
+      },
       "0x83c55cc39c28e45d04f2106988e591000f7bcccc": {
         "at": "2026-11-20T14:53:14Z",
         "reason": "real_depth",
@@ -10075,6 +10105,12 @@
         "reason": "real_depth",
         "symbol": "UODF",
         "until": "2026-11-21T12:13:23Z"
+      },
+      "0xb02c73ce392b890c8ce255c78a6321bbe1af35a5": {
+        "at": "2026-11-21T02:13:15Z",
+        "reason": "real_depth",
+        "symbol": "USEF",
+        "until": "2026-11-22T02:13:15Z"
       },
       "0xb0438243be17818f98c5dba63e2ef279c038cccc": {
         "at": "2026-11-20T22:23:15Z",
@@ -11246,6 +11282,12 @@
         "symbol": "ISO 20022",
         "until": "2026-11-21T04:33:16Z"
       },
+      "0xd24988f7777c4fb26920d926c396ed1a3a75f32b": {
+        "at": "2026-11-21T02:13:15Z",
+        "reason": "missing:liq_usd",
+        "symbol": "QUANT",
+        "until": "2026-11-22T02:13:15Z"
+      },
       "0xd262846b2aea9d8355e0e8ce88ff19ce6572cccc": {
         "at": "2026-11-20T14:33:22Z",
         "reason": "real_depth",
@@ -12065,15 +12107,15 @@
     },
     "watch": {
       "0x0737d66ab5b73aba8a24f45ad01bfafd54d65909": {
-        "checks": 4,
+        "checks": 5,
         "first_seen": "2026-11-21T01:03:17Z",
-        "last_check": "2026-11-21T01:58:15Z",
+        "last_check": "2026-11-21T02:13:15Z",
         "symbol": "NOTF"
       },
       "0x176490ce7ba11a7c5c52fcd726b086c1e9ce65ec": {
-        "checks": 2,
+        "checks": 3,
         "first_seen": "2026-11-21T01:43:14Z",
-        "last_check": "2026-11-21T01:58:15Z",
+        "last_check": "2026-11-21T02:13:15Z",
         "symbol": "REBOOT"
       },
       "0x5233ac8962fc65922c1e7782637b607760f73f20": {
@@ -12087,12 +12129,6 @@
         "first_seen": "2026-11-21T01:13:15Z",
         "last_check": "2026-11-21T02:08:18Z",
         "symbol": "NOTF"
-      },
-      "0xb02c73ce392b890c8ce255c78a6321bbe1af35a5": {
-        "checks": 1,
-        "first_seen": "2026-11-21T01:58:15Z",
-        "last_check": "2026-11-21T01:58:15Z",
-        "symbol": "USEF"
       },
       "0xd1e297f7be8b9327177cf49ed635f3333d480035": {
         "checks": 1,
