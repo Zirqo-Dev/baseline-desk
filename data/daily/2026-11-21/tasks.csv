@@ -1269,3 +1269,16 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-21T11:23:15Z,desk,VERIFY,DRV,0x0a4cae2f75ce826fb88802cbece47fbffb63e53b,SKIP,missing:liq_usd,goplus=skipped until=2026-11-22T11:23:15Z
 2026-11-21T11:23:15Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
 2026-11-21T11:23:15Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=0 new=4 checked=4 passed=0 bought=0 held=0 deferred=0 dex_only=4 goplus=0 requests=12 secs=2.8 bl_positions=2 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=1 labels_done=1 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-21T11:28:15Z,baseline,EXIT,MARSBASE,0x0b455a80139f9642bb47f2cb5afabbd8809a24af,HOLD,no_quote,
+2026-11-21T11:28:15Z,baseline,EXIT,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,HOLD,no_quote,
+2026-11-21T11:28:15Z,desk,VERIFY,NOTF,0xc941cdf9e32454ee7cb83870d940abe6eb0712d7,WATCH,goplus_not_ready,"first_seen=2026-11-21T09:43:14Z checks=7 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct b1=38 s1=12 b24=73 s24=24 liq=457201 dex=uniswap:v4 qliq=188360 pair_age=113 token_age=113"
+2026-11-21T11:28:15Z,desk,VERIFY,National Oil Truts Fund,0x05f574405406936f3ddbc5286feefc7090dba44c,WATCH,goplus_not_ready,"first_seen=2026-11-21T10:33:21Z checks=4 pending=honeypot,buy_tax_pct,sell_tax_pct,dev_pct,top10_pct,lp_locked_pct b1=37 s1=23 b24=37 s24=23 liq=1161844540 dex=uniswap:v4 qliq=180680 pair_age=59 token_age=59"
+2026-11-21T11:28:15Z,desk,VERIFY,U S O E,0x17cfe799e69be632244b804500b5999e1f20edac,WATCH,goplus_not_ready,"first_seen=2026-11-21T10:33:21Z checks=4 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct b1=36 s1=23 b24=36 s24=23 liq=38134514 dex=uniswap:v4 qliq=11776 pair_age=60 token_age=60"
+2026-11-21T11:28:15Z,desk,VERIFY,BLUEDESK,0xb200000000000000000000701fea5cc85768cbab,SKIP,real_depth,goplus=skipped until=2026-11-22T11:28:15Z
+2026-11-21T11:28:15Z,desk,VERIFY,FRAX,0x8afbe676e5266089330bdf3393372c6ae899014d,SKIP,real_depth,goplus=skipped until=2026-11-22T11:28:15Z
+2026-11-21T11:28:15Z,desk,VERIFY,DCTY,0x2fe13c071015aa5160dd152e39a48bda95cff437,SKIP,real_depth,goplus=skipped until=2026-11-22T11:28:15Z
+2026-11-21T11:28:15Z,desk,VERIFY,BLUMI,0xb200000000000000000000d7fd50db7f8600eb1e,SKIP,real_depth,goplus=skipped until=2026-11-22T11:28:15Z
+2026-11-21T11:28:15Z,desk,VERIFY,House,0xe5fb1c52ae90a45a74678500e3cbefd38a38518c,SKIP,real_depth,goplus=skipped until=2026-11-22T11:28:15Z
+2026-11-21T11:28:15Z,desk,VERIFY,KAIR,0xbbdcce0746828b6ad33cb81a2eb1820ae58345ba,SKIP,real_depth,goplus=skipped until=2026-11-22T11:28:15Z
+2026-11-21T11:28:15Z,baseline,EXECUTE,U S O E,0x17cfe799e69be632244b804500b5999e1f20edac,SKIP,size,"seed=202611211128 eligible=3 pick=1 pool=05f574,17cfe7,c941cd desk=WATCH launchpad=other"
+2026-11-21T11:28:15Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=3 new=6 checked=9 passed=0 bought=0 held=0 deferred=0 dex_only=6 goplus=3 requests=20 secs=7.4 bl_positions=2 bl_due=1 bl_eligible=3 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=16 labels_done=16 labels_calls=1 live=ok alerts=none alerts_sent=0
