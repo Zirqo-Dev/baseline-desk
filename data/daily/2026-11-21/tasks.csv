@@ -390,3 +390,10 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-21T03:23:14Z,desk,VERIFY,QANX,0x347bfa34f26685fae043004080a0c78c0a22f316,WATCH,goplus_not_ready,"first_seen=2026-11-21T03:23:14Z checks=1 pending=honeypot,buy_tax_pct,sell_tax_pct,dev_pct,top10_pct,lp_locked_pct b1=5 s1=0 b24=5 s24=0 liq=49237 dex=uniswap:v2 qliq=24616 pair_age=5 token_age=5"
 2026-11-21T03:23:14Z,baseline,EXECUTE,NOTF,0x0737d66ab5b73aba8a24f45ad01bfafd54d65909,SKIP,size,"seed=202611210323 eligible=3 pick=0 pool=0737d6,5233ac,5b2005 desk=WATCH launchpad=other"
 2026-11-21T03:23:14Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=22 rechecks=3 new=5 checked=8 passed=0 bought=0 held=0 deferred=0 dex_only=4 goplus=4 requests=20 secs=8.9 bl_positions=2 bl_due=1 bl_eligible=3 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=1 labels_done=1 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-21T03:28:28Z,baseline,EXIT,MARSBASE,0x0b455a80139f9642bb47f2cb5afabbd8809a24af,HOLD,no_quote,
+2026-11-21T03:28:28Z,baseline,EXIT,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,HOLD,no_quote,
+2026-11-21T03:28:28Z,desk,VERIFY,QUANT,0x900ffe9d02a81c831bfafa2de91c26db2dd773b0,WATCH,goplus_not_ready,"first_seen=2026-11-21T03:28:28Z checks=1 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct b1=3 s1=0 b24=3 s24=0 liq=48527 dex=uniswap:v2 qliq=24480 pair_age=3 token_age=3"
+2026-11-21T03:28:28Z,desk,VERIFY,MIGGLY,0xb200000000000000000000397fd3df303f6a4b14,SKIP,real_depth,goplus=skipped until=2026-11-22T03:28:28Z
+2026-11-21T03:28:28Z,desk,VERIFY,LIQUIDBGT,0xb3e8cd1d0761d3fc09c6a96b0b7035a02bfdde8e,SKIP,real_depth,goplus=skipped until=2026-11-22T03:28:28Z
+2026-11-21T03:28:28Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
+2026-11-21T03:28:28Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=22 rechecks=0 new=3 checked=3 passed=0 bought=0 held=0 deferred=0 dex_only=2 goplus=1 requests=12 secs=3.2 bl_positions=2 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=18 labels_done=18 labels_calls=1 live=ok alerts=none alerts_sent=0
