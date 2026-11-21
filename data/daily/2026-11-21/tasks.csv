@@ -1107,3 +1107,10 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-21T10:03:15Z,desk,VERIFY,XCHAT,0x103ba2bf09a7c8a3c3ee95a89ada40bd145fe8ef,SKIP,real_depth,goplus=skipped until=2026-11-22T10:03:15Z
 2026-11-21T10:03:15Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
 2026-11-21T10:03:15Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=0 new=4 checked=4 passed=0 bought=0 held=0 deferred=0 dex_only=4 goplus=0 requests=12 secs=2.9 bl_positions=2 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=21 labels_done=21 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-21T10:08:17Z,baseline,EXIT,MARSBASE,0x0b455a80139f9642bb47f2cb5afabbd8809a24af,HOLD,no_quote,
+2026-11-21T10:08:17Z,baseline,EXIT,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,HOLD,no_quote,
+2026-11-21T10:08:17Z,desk,VERIFY,Travix,0x7a3e98af442936368e7cf3b284a79a89d1155b90,WATCH,goplus_not_ready,"first_seen=2026-11-21T09:38:14Z checks=3 pending=mint_open,freeze_or_blacklist,honeypot,dev_pct,top10_pct,lp_locked_pct,risk_flags b1=70 s1=1 b24=70 s24=1 liq=64603 dex=uniswap:v2 qliq=32301 pair_age=44 token_age=44"
+2026-11-21T10:08:17Z,desk,VERIFY,QUANT,0xacc90048487ce7721784da18f02ac52921f7e35b,WATCH,goplus_not_ready,"first_seen=2026-11-21T09:53:17Z checks=2 pending=top10_pct,lp_locked_pct b1=19 s1=0 b24=19 s24=0 liq=53732 dex=uniswap:v2 qliq=26867 pair_age=19 token_age=19"
+2026-11-21T10:08:17Z,desk,VERIFY,FCR,0x5abbd699db66eb4a4a19b3de904f2495d58b5eb6,SKIP,real_depth,goplus=skipped until=2026-11-22T10:08:17Z
+2026-11-21T10:08:17Z,baseline,EXECUTE,Travix,0x7a3e98af442936368e7cf3b284a79a89d1155b90,SKIP,size,seed=202611211008 eligible=1 pick=0 pool=7a3e98 desk=WATCH launchpad=other
+2026-11-21T10:08:17Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=2 new=1 checked=3 passed=0 bought=0 held=0 deferred=0 dex_only=1 goplus=2 requests=13 secs=4.4 bl_positions=2 bl_due=1 bl_eligible=1 bl_bought=0 report=none machine=none bl_error=none labels=none labels_due=0 labels_done=0 labels_calls=0 live=ok alerts=none alerts_sent=0
