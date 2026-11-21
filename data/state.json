@@ -63,7 +63,7 @@
     },
     "refill_week": "2026-W47",
     "refills_usd": 56.55720719365456,
-    "ticks_since_buy": 309
+    "ticks_since_buy": 310
   },
   "desk": {
     "cash": 50.0,
@@ -837,17 +837,6 @@
         "sight_pair": "0x19f34d25229164fd8171fa8f81531b66e7413521c4955bf922eb5b89a7c8beaf",
         "sight_qliq": 2502,
         "symbol": "DOTF"
-      },
-      "0x0e586784327c44ce83a3c9a69cbc0ca08945fcec": {
-        "done": [
-          1,
-          6
-        ],
-        "first_price": 5.678e-06,
-        "first_seen": "2026-11-20T02:58:16Z",
-        "sight_pair": "0xc3d619cd385f6c2ce57419eb1f94fb94b1f4e70c",
-        "sight_qliq": 26925,
-        "symbol": "IOF"
       },
       "0x0e5d528575a53401f7ab4cdeb5abdd845b269df8": {
         "done": [
@@ -2688,7 +2677,9 @@
         "symbol": "USOR OIL"
       },
       "0x31af6f95531544f3805a78332b06ba72c52ecf8a": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 3.069,
         "first_seen": "2026-11-21T01:58:15Z",
         "sight_pair": "0x714c1aa9bc8f3ddbb23ffed82e64a010b936ec850dac91da41a9d412b5981a35",
@@ -4645,7 +4636,9 @@
         "symbol": "UODF"
       },
       "0xb02c73ce392b890c8ce255c78a6321bbe1af35a5": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 3.266e-06,
         "first_seen": "2026-11-21T01:58:15Z",
         "sight_pair": "0x0f72e4763d5daf5bd36abbf1b857107629719d4a",
@@ -8583,12 +8576,6 @@
         "symbol": "USCO",
         "until": "2026-11-21T11:08:17Z"
       },
-      "0x61efb8658b3f5643231c3bf7b90668e1886a42fb": {
-        "at": "2026-11-20T02:58:16Z",
-        "reason": "real_depth",
-        "symbol": "joobi",
-        "until": "2026-11-21T02:58:16Z"
-      },
       "0x62060e711864b215107446ca9886e4dc3711e3ab": {
         "at": "2026-11-20T08:38:15Z",
         "reason": "real_depth",
@@ -10431,6 +10418,12 @@
         "symbol": "NTA",
         "until": "2026-11-21T21:48:16Z"
       },
+      "0xb2000000000000000000008dfb344c5c9396b70e": {
+        "at": "2026-11-21T02:58:16Z",
+        "reason": "real_depth",
+        "symbol": "WHUFY",
+        "until": "2026-11-22T02:58:16Z"
+      },
       "0xb2000000000000000000008e818ccd6e3d88efd7": {
         "at": "2026-11-20T08:43:14Z",
         "reason": "real_depth",
@@ -10659,12 +10652,6 @@
         "symbol": "KMD",
         "until": "2026-11-21T05:28:21Z"
       },
-      "0xb200000000000000000000f720c26062bc3067da": {
-        "at": "2026-11-20T02:58:16Z",
-        "reason": "asset:wrapped",
-        "symbol": "TTWOc",
-        "until": "2026-11-21T02:58:16Z"
-      },
       "0xb21455c2d64a474511ad9aa7eb5379f46425a4cc": {
         "at": "2026-11-20T07:48:22Z",
         "reason": "missing:liq_usd",
@@ -10772,6 +10759,12 @@
         "reason": "real_depth",
         "symbol": "Basehorse",
         "until": "2026-11-21T08:18:17Z"
+      },
+      "0xb911cff7b810875b08db4d681b083aab3d4d059c": {
+        "at": "2026-11-21T02:58:16Z",
+        "reason": "real_depth",
+        "symbol": "Basecat",
+        "until": "2026-11-22T02:58:16Z"
       },
       "0xb9447667dc94a33aede4bba1f45ef25452ec9ac5": {
         "at": "2026-11-20T20:58:17Z",
@@ -11907,12 +11900,6 @@
         "symbol": "NOTF",
         "until": "2026-11-21T04:38:23Z"
       },
-      "0xfc481ea3282baddf5e382637d953b3ad73639d31": {
-        "at": "2026-11-20T02:58:16Z",
-        "reason": "real_depth",
-        "symbol": "OIL UNITED FUND TRUST",
-        "until": "2026-11-21T02:58:16Z"
-      },
       "0xfc4872d86e94accd5caefb4bc39d58faf40878f5": {
         "at": "2026-11-20T05:03:14Z",
         "reason": "real_depth",
@@ -12000,16 +11987,10 @@
         "symbol": "NOTF"
       },
       "0x80af5393c40a4cde69ea347e77229de391685482": {
-        "checks": 1,
-        "first_seen": "2026-11-21T02:38:22Z",
-        "last_check": "2026-11-21T02:38:22Z",
-        "symbol": "XMR"
-      },
-      "0xb911cff7b810875b08db4d681b083aab3d4d059c": {
         "checks": 2,
-        "first_seen": "2026-11-21T02:18:21Z",
-        "last_check": "2026-11-21T02:38:22Z",
-        "symbol": "Basecat"
+        "first_seen": "2026-11-21T02:38:22Z",
+        "last_check": "2026-11-21T02:58:16Z",
+        "symbol": "XMR"
       }
     }
   },
