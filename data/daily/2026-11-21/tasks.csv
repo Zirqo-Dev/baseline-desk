@@ -1063,3 +1063,13 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-21T09:38:14Z,desk,VERIFY,Travix,0x7a3e98af442936368e7cf3b284a79a89d1155b90,WATCH,goplus_not_ready,"first_seen=2026-11-21T09:38:14Z checks=1 pending=mint_open,freeze_or_blacklist,honeypot,buy_tax_pct,sell_tax_pct,dev_pct,top10_pct,lp_locked_pct,risk_flags b1=13 s1=1 b24=13 s24=1 liq=61455 dex=uniswap:v2 qliq=30727 pair_age=14 token_age=14"
 2026-11-21T09:38:14Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
 2026-11-21T09:38:14Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=1 new=3 checked=4 passed=0 bought=0 held=0 deferred=0 dex_only=3 goplus=1 requests=13 secs=3.1 bl_positions=2 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=1 labels_done=1 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-21T09:43:14Z,baseline,EXIT,MARSBASE,0x0b455a80139f9642bb47f2cb5afabbd8809a24af,HOLD,no_quote,
+2026-11-21T09:43:14Z,baseline,EXIT,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,HOLD,no_quote,
+2026-11-21T09:43:14Z,desk,VERIFY,BIDEN,0x73041c9aa406664364f515b071e72b43ad1f4607,WATCH,goplus_not_ready,"first_seen=2026-11-21T08:53:14Z checks=4 pending=top10_pct,lp_locked_pct b1=51 s1=2 b24=51 s24=2 liq=155533 dex=uniswap:v2 qliq=77766 pair_age=54 token_age=54"
+2026-11-21T09:43:14Z,desk,VERIFY,FIRE,0x16ae6b4577361b09b97b2b1783148d7ab83d6638,SKIP,real_depth,goplus=skipped until=2026-11-22T09:43:14Z
+2026-11-21T09:43:14Z,desk,VERIFY,ANTHROPIC,0x2780c5ac6a37f7ea5016c456cf7301b6bdeb8c90,SKIP,real_depth,goplus=skipped until=2026-11-22T09:43:14Z
+2026-11-21T09:43:14Z,desk,VERIFY,AGO,0xe43896812d35279637adefb02f2e2956e02349d2,SKIP,missing:price,goplus=skipped until=2026-11-22T09:43:14Z
+2026-11-21T09:43:14Z,desk,VERIFY,BLUMI,0x5640cb8be25d266cbbc1683ea642e729a4bccccc,SKIP,missing:liq_usd,goplus=skipped until=2026-11-22T09:43:14Z
+2026-11-21T09:43:14Z,desk,VERIFY,NOTF,0xc941cdf9e32454ee7cb83870d940abe6eb0712d7,WATCH,goplus_not_ready,"first_seen=2026-11-21T09:43:14Z checks=1 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct b1=8 s1=3 b24=8 s24=3 liq=455480 dex=uniswap:v4 qliq=187771 pair_age=8 token_age=8"
+2026-11-21T09:43:14Z,baseline,EXECUTE,BIDEN,0x73041c9aa406664364f515b071e72b43ad1f4607,SKIP,size,seed=202611210943 eligible=1 pick=0 pool=73041c desk=WATCH launchpad=other
+2026-11-21T09:43:14Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=1 new=5 checked=6 passed=0 bought=0 held=0 deferred=0 dex_only=4 goplus=2 requests=16 secs=4.6 bl_positions=2 bl_due=1 bl_eligible=1 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=4 labels_done=4 labels_calls=1 live=ok alerts=none alerts_sent=0
