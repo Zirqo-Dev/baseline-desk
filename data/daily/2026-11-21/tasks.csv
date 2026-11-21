@@ -1114,3 +1114,12 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-21T10:08:17Z,desk,VERIFY,FCR,0x5abbd699db66eb4a4a19b3de904f2495d58b5eb6,SKIP,real_depth,goplus=skipped until=2026-11-22T10:08:17Z
 2026-11-21T10:08:17Z,baseline,EXECUTE,Travix,0x7a3e98af442936368e7cf3b284a79a89d1155b90,SKIP,size,seed=202611211008 eligible=1 pick=0 pool=7a3e98 desk=WATCH launchpad=other
 2026-11-21T10:08:17Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=2 new=1 checked=3 passed=0 bought=0 held=0 deferred=0 dex_only=1 goplus=2 requests=13 secs=4.4 bl_positions=2 bl_due=1 bl_eligible=1 bl_bought=0 report=none machine=none bl_error=none labels=none labels_due=0 labels_done=0 labels_calls=0 live=ok alerts=none alerts_sent=0
+2026-11-21T10:13:19Z,baseline,EXIT,MARSBASE,0x0b455a80139f9642bb47f2cb5afabbd8809a24af,HOLD,no_quote,
+2026-11-21T10:13:19Z,baseline,EXIT,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,HOLD,no_quote,
+2026-11-21T10:13:19Z,desk,VERIFY,BIDEN,0x73041c9aa406664364f515b071e72b43ad1f4607,WATCH,goplus_not_ready,first_seen=2026-11-21T08:53:14Z checks=6 pending=top10_pct b1=5 s1=1 b24=51 s24=2 liq=155533 dex=uniswap:v2 qliq=77766 pair_age=84 token_age=84
+2026-11-21T10:13:19Z,desk,VERIFY,NOTF,0xc941cdf9e32454ee7cb83870d940abe6eb0712d7,WATCH,goplus_not_ready,"first_seen=2026-11-21T09:43:14Z checks=3 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct b1=26 s1=9 b24=26 s24=9 liq=455501 dex=uniswap:v4 qliq=187742 pair_age=38 token_age=38"
+2026-11-21T10:13:19Z,desk,VERIFY,LAPTOP,0xe1073252af464c8f04977e86761ee66f110627ea,SKIP,real_depth,goplus=skipped until=2026-11-22T10:13:19Z
+2026-11-21T10:13:19Z,desk,VERIFY,PIPEDOG,0xde2b3d68b593c1c9e0cb6e55cbf289cdf5a5cb07,SKIP,missing:liq_usd,goplus=skipped until=2026-11-22T10:13:19Z
+2026-11-21T10:13:19Z,desk,VERIFY,UNSS,0xc0f82687eb6ce801b7daed43221079604a966956,SKIP,real_depth,goplus=skipped until=2026-11-22T10:13:19Z b1=3 s1=0 b24=3 s24=0 liq=101784 dex=uniswap:v4 qliq=22 pair_age=5 token_age=5
+2026-11-21T10:13:19Z,baseline,EXECUTE,BIDEN,0x73041c9aa406664364f515b071e72b43ad1f4607,SKIP,size,"seed=202611211013 eligible=2 pick=0 pool=73041c,c941cd desk=WATCH launchpad=other"
+2026-11-21T10:13:19Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=2 new=3 checked=5 passed=0 bought=0 held=0 deferred=0 dex_only=3 goplus=2 requests=15 secs=4.8 bl_positions=2 bl_due=1 bl_eligible=2 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=2 labels_done=2 labels_calls=1 live=ok alerts=none alerts_sent=0
