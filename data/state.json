@@ -63,7 +63,7 @@
     },
     "refill_week": "2026-W47",
     "refills_usd": 56.55720719365456,
-    "ticks_since_buy": 324
+    "ticks_since_buy": 325
   },
   "desk": {
     "cash": 50.0,
@@ -1493,7 +1493,9 @@
         "symbol": "USIO"
       },
       "0x1adb20bb4b5818adb54f4350a5d2267207316667": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 0.001099,
         "first_seen": "2026-11-21T03:08:21Z",
         "sight_pair": "0x53a0b638375386c1376f90ec6823c95bccd46714b567a91ad932f620dcc7d8cb",
@@ -5680,6 +5682,12 @@
         "symbol": "openhuman",
         "until": "2026-11-21T09:58:15Z"
       },
+      "0x0737d66ab5b73aba8a24f45ad01bfafd54d65909": {
+        "at": "2026-11-21T04:13:15Z",
+        "reason": "goplus_timeout",
+        "symbol": "NOTF",
+        "until": "2026-11-22T04:13:15Z"
+      },
       "0x07491e4f60e3e584d4719c59c117a38f7f04e3eb": {
         "at": "2026-11-21T04:03:17Z",
         "reason": "real_depth",
@@ -8578,6 +8586,12 @@
         "symbol": "CITY",
         "until": "2026-11-21T22:38:17Z"
       },
+      "0x5b200516f72f22cd8bea1abe95ece3b06cecc9e9": {
+        "at": "2026-11-21T04:13:15Z",
+        "reason": "goplus_timeout",
+        "symbol": "NOTF",
+        "until": "2026-11-22T04:13:15Z"
+      },
       "0x5b227e53d99b7e3c328dae1b73bbbc5d996c1659": {
         "at": "2026-11-20T16:53:13Z",
         "reason": "real_depth",
@@ -10143,6 +10157,12 @@
         "reason": "real_depth",
         "symbol": "UDOE",
         "until": "2026-11-21T07:18:14Z"
+      },
+      "0xae81e45b9cff6bc9ec7bbf8d6bc46b4bc6a16ba3": {
+        "at": "2026-11-21T04:13:15Z",
+        "reason": "real_depth",
+        "symbol": "WFH",
+        "until": "2026-11-22T04:13:15Z"
       },
       "0xaeaa359bac873db9d1416abf64942f151555aeb5": {
         "at": "2026-11-20T20:18:16Z",
@@ -12144,23 +12164,11 @@
       }
     },
     "watch": {
-      "0x0737d66ab5b73aba8a24f45ad01bfafd54d65909": {
-        "checks": 11,
-        "first_seen": "2026-11-21T01:03:17Z",
-        "last_check": "2026-11-21T03:53:20Z",
-        "symbol": "NOTF"
-      },
       "0x5233ac8962fc65922c1e7782637b607760f73f20": {
-        "checks": 7,
+        "checks": 8,
         "first_seen": "2026-11-21T02:08:18Z",
-        "last_check": "2026-11-21T03:53:20Z",
+        "last_check": "2026-11-21T04:13:15Z",
         "symbol": "Rizzmas"
-      },
-      "0x5b200516f72f22cd8bea1abe95ece3b06cecc9e9": {
-        "checks": 10,
-        "first_seen": "2026-11-21T01:13:15Z",
-        "last_check": "2026-11-21T03:53:20Z",
-        "symbol": "NOTF"
       },
       "0x60f5bc206241dd546078a59ecd8c3f57a9da9e2f": {
         "checks": 2,
@@ -12175,9 +12183,9 @@
         "symbol": "UOSFD"
       },
       "0xfbbf42a9ccc664607eba78c0a44edbf265f98c14": {
-        "checks": 2,
+        "checks": 3,
         "first_seen": "2026-11-21T03:33:24Z",
-        "last_check": "2026-11-21T03:53:20Z",
+        "last_check": "2026-11-21T04:13:15Z",
         "symbol": "Anthropic"
       }
     }
