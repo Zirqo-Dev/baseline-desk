@@ -17,9 +17,9 @@
       "s:VI": "2026-11-20T03:08:16Z",
       "s:VICE6": "2026-11-20T03:28:14Z"
     },
-    "day": "2026-11-20",
-    "day_start_value": 16.66993192760804,
-    "halted_day": "2026-11-20",
+    "day": "2026-11-21",
+    "day_start_value": 11.405641243534047,
+    "halted_day": "",
     "positions": {
       "0x0b455a80139f9642bb47f2cb5afabbd8809a24af": {
         "cost_usd": 1.6999999999999997,
@@ -63,11 +63,11 @@
     },
     "refill_week": "2026-W47",
     "refills_usd": 56.55720719365456,
-    "ticks_since_buy": 274
+    "ticks_since_buy": 275
   },
   "desk": {
     "cash": 50.0,
-    "day": "2026-11-20",
+    "day": "2026-11-21",
     "day_start_value": 50.0,
     "halted_day": "",
     "positions": {},
@@ -4393,7 +4393,8 @@
       },
       "0xb783f2d2e031a7c4aa48aedac4c58be85bfa04d3": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 6.09,
         "first_seen": "2026-11-20T18:03:15Z",
@@ -4577,7 +4578,9 @@
         "symbol": "NOTF"
       },
       "0xcd5bd98ecef7b0f22b822a2fa64c4feb9f96791e": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 6.477e-07,
         "first_seen": "2026-11-20T23:03:14Z",
         "sight_pair": "0xae31c9291b99a343c4ad6dfa815575985d7fe8e09e9ed6efafba5ac96c822f52",
@@ -11875,6 +11878,13 @@
           "open": 2,
           "refills_usd": 56.557207,
           "value_usd": 16.339886
+        },
+        {
+          "cash_usd": 0.506979,
+          "day": "2026-11-20",
+          "open": 2,
+          "refills_usd": 56.557207,
+          "value_usd": 11.075595
         }
       ],
       "desk": [
@@ -12023,6 +12033,13 @@
           "open": 0,
           "refills_usd": 2.392231,
           "value_usd": 50.0
+        },
+        {
+          "cash_usd": 50.0,
+          "day": "2026-11-20",
+          "open": 0,
+          "refills_usd": 2.392231,
+          "value_usd": 50.0
         }
       ]
     },
@@ -12041,33 +12058,33 @@
     "totals": {
       "funnel": {
         "buy": 1,
-        "gate": 1608,
+        "gate": 1641,
         "safety": 1,
-        "scan": 26068
+        "scan": 27182
       },
       "kills": {
         "gate": {
-          "asset:quote": 4,
-          "asset:stable": 23,
-          "asset:wrapped": 23,
+          "asset:quote": 5,
+          "asset:stable": 27,
+          "asset:wrapped": 24,
           "liquidity": 8614,
           "missing:age_min": 3,
-          "missing:liq_usd": 2012,
-          "missing:price": 200,
-          "missing:symbol": 325,
-          "real_depth": 13256
+          "missing:liq_usd": 2090,
+          "missing:price": 207,
+          "missing:symbol": 334,
+          "real_depth": 14237
         },
         "safety": {
-          "goplus_partial": 24,
-          "goplus_timeout": 1261,
-          "lp_locked": 2,
-          "mint_open": 50,
+          "goplus_partial": 25,
+          "goplus_timeout": 1283,
+          "lp_locked": 3,
+          "mint_open": 52,
           "nobody_can_sell": 24,
-          "too_old": 4,
+          "too_old": 5,
           "top10_pct": 23
         }
       },
-      "through": "2026-11-19"
+      "through": "2026-11-20"
     }
   }
 }
