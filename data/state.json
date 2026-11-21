@@ -63,7 +63,7 @@
     },
     "refill_week": "2026-W47",
     "refills_usd": 56.55720719365456,
-    "ticks_since_buy": 456
+    "ticks_since_buy": 457
   },
   "desk": {
     "cash": 50.0,
@@ -1804,6 +1804,14 @@
         "sight_pair": "0xb3c8cd5d44b03a3395db1f3eced17edf8d1d39eaeef4d00410c1041c4fa5ceb1",
         "sight_qliq": 192,
         "symbol": "NUCLEAR U.S RESERVE"
+      },
+      "0x1bbacccc4008a23b62f17134a4080fb523d59afb": {
+        "done": [],
+        "first_price": 0.0001112,
+        "first_seen": "2026-11-21T15:13:13Z",
+        "sight_pair": "0x72b3d22dad84af8b4e57e39937738823d72506eeeb4a10c219d9a50b54096f3d",
+        "sight_qliq": 2,
+        "symbol": "ACH"
       },
       "0x1bd6aa3fd3ec00ca847a829e62283e43b2ad1d05": {
         "done": [
@@ -4091,17 +4099,6 @@
         "sight_qliq": 23896,
         "symbol": "US ENERGY FUND"
       },
-      "0x510e3c3f277158cc69139eada4291bcb3172482a": {
-        "done": [
-          1,
-          6
-        ],
-        "first_price": 9.754e-05,
-        "first_seen": "2026-11-20T15:08:21Z",
-        "sight_pair": "0xdf15b85ffbddddde9463d80d8e8cfd2905e41d5cba3f4c79930ee75b666cb25b",
-        "sight_qliq": 31,
-        "symbol": "QP"
-      },
       "0x5233ac8962fc65922c1e7782637b607760f73f20": {
         "done": [
           1,
@@ -4392,6 +4389,14 @@
         "sight_pair": "0xb00026e7de14b04b9dd7883e4255f1328f23d9cd",
         "sight_qliq": 25040,
         "symbol": "ATND"
+      },
+      "0x779db619eb8044191b78edf28fddfa6db94093a8": {
+        "done": [],
+        "first_price": 0.0002164,
+        "first_seen": "2026-11-21T15:13:13Z",
+        "sight_pair": "0x8c3d408ba55dc96790280b53d128ccd24550985a846003280b2a29828d100e3c",
+        "sight_qliq": 2,
+        "symbol": "USOI"
       },
       "0x7a3e98af442936368e7cf3b284a79a89d1155b90": {
         "done": [
@@ -5354,17 +5359,6 @@
         "sight_qliq": 2,
         "symbol": "XMR"
       },
-      "0xf3cfc64eb4fa52d3bab49e808b29d9d8eff9e9ae": {
-        "done": [
-          1,
-          6
-        ],
-        "first_price": 0.0004513,
-        "first_seen": "2026-11-20T15:08:21Z",
-        "sight_pair": "0x88a979fc2b918d96d2d08bef70d54fe0cfae96d46e3486d41fe6138fe98eab6a",
-        "sight_qliq": 1,
-        "symbol": "ADAR"
-      },
       "0xf47e885ffab62345ee9d75e682e3a33555f7e246": {
         "done": [
           1,
@@ -5869,12 +5863,6 @@
         "reason": "real_depth",
         "symbol": "ANTHROPIC",
         "until": "2026-11-22T09:03:16Z"
-      },
-      "0x08c05efab881bf5c1a704d0e05bea2605834ce0f": {
-        "at": "2026-11-20T15:08:21Z",
-        "reason": "real_depth",
-        "symbol": "maggiieemae12345",
-        "until": "2026-11-21T15:08:21Z"
       },
       "0x08d3296b3b8aedcdba19fe358df0be1adce677c0": {
         "at": "2026-11-21T10:28:14Z",
@@ -6788,6 +6776,12 @@
         "symbol": "NUCLEAR U.S RESERVE",
         "until": "2026-11-22T06:48:16Z"
       },
+      "0x1bbacccc4008a23b62f17134a4080fb523d59afb": {
+        "at": "2026-11-21T15:13:13Z",
+        "reason": "real_depth",
+        "symbol": "ACH",
+        "until": "2026-11-22T15:13:13Z"
+      },
       "0x1bd6aa3fd3ec00ca847a829e62283e43b2ad1d05": {
         "at": "2026-11-20T17:38:16Z",
         "reason": "real_depth",
@@ -7543,6 +7537,12 @@
         "reason": "real_depth",
         "symbol": "USAR",
         "until": "2026-11-22T10:33:21Z"
+      },
+      "0x2aeb23f0d245c766500338919b60239b53b7a2df": {
+        "at": "2026-11-21T15:13:13Z",
+        "reason": "missing:liq_usd",
+        "symbol": "NXPC",
+        "until": "2026-11-22T15:13:13Z"
       },
       "0x2afacc66addeacdbd7570adbe8e73b8df5d16dbb": {
         "at": "2026-11-20T21:23:20Z",
@@ -8654,12 +8654,6 @@
         "symbol": "SATWA",
         "until": "2026-11-22T01:28:21Z"
       },
-      "0x4bbad8206f04f34f00fbd775b605022b97facccc": {
-        "at": "2026-11-20T15:08:21Z",
-        "reason": "real_depth",
-        "symbol": "STFIT",
-        "until": "2026-11-21T15:08:21Z"
-      },
       "0x4bee2a20e73d22b2ffd4e53df09eba310ad43664": {
         "at": "2026-11-21T07:58:16Z",
         "reason": "real_depth",
@@ -8720,11 +8714,11 @@
         "symbol": "Basedog",
         "until": "2026-11-21T22:43:15Z"
       },
-      "0x510e3c3f277158cc69139eada4291bcb3172482a": {
-        "at": "2026-11-20T15:08:21Z",
-        "reason": "real_depth",
-        "symbol": "QP",
-        "until": "2026-11-21T15:08:21Z"
+      "0x5091ca914730389faaec0ec45bdb625c45becccc": {
+        "at": "2026-11-21T15:13:13Z",
+        "reason": "missing:liq_usd",
+        "symbol": "YEW",
+        "until": "2026-11-22T15:13:13Z"
       },
       "0x51e66d910bd1356c554b02af7ba45837d1cf35bb": {
         "at": "2026-11-21T03:58:17Z",
@@ -9362,6 +9356,12 @@
         "symbol": "CLANKER",
         "until": "2026-11-22T04:33:14Z"
       },
+      "0x779db619eb8044191b78edf28fddfa6db94093a8": {
+        "at": "2026-11-21T15:13:13Z",
+        "reason": "real_depth",
+        "symbol": "USOI",
+        "until": "2026-11-22T15:13:13Z"
+      },
       "0x77a90b3635ab304b37f13935e6349133309f5202": {
         "at": "2026-11-20T16:03:16Z",
         "reason": "real_depth",
@@ -9415,6 +9415,12 @@
         "reason": "real_depth",
         "symbol": ".AI",
         "until": "2026-11-22T13:33:14Z"
+      },
+      "0x7aec159743d9133f88a931751bd7b648b9eebffd": {
+        "at": "2026-11-21T15:13:13Z",
+        "reason": "real_depth",
+        "symbol": "SPACEX",
+        "until": "2026-11-22T15:13:13Z"
       },
       "0x7b447f395f48bf7b70922c221cb923a4a0e5fd95": {
         "at": "2026-11-21T14:43:15Z",
@@ -10112,6 +10118,12 @@
         "symbol": "MEPIXEL",
         "until": "2026-11-21T19:58:16Z"
       },
+      "0xa4610f8176ea792c31f9ec489d1e5199b2726aa9": {
+        "at": "2026-11-21T15:13:13Z",
+        "reason": "real_depth",
+        "symbol": "Basefrog",
+        "until": "2026-11-22T15:13:13Z"
+      },
       "0xa4898847584ae89b3b2cd41a8df313d4712e1b80": {
         "at": "2026-11-21T00:13:23Z",
         "reason": "real_depth",
@@ -10292,6 +10304,12 @@
         "symbol": "NERBY",
         "until": "2026-11-21T16:28:15Z"
       },
+      "0xae280d0bb7af7b40e812ff47bcabb9a2adee0c0d": {
+        "at": "2026-11-21T15:13:13Z",
+        "reason": "missing:price",
+        "symbol": "UGOS",
+        "until": "2026-11-22T15:13:13Z"
+      },
       "0xae81e45b9cff6bc9ec7bbf8d6bc46b4bc6a16ba3": {
         "at": "2026-11-21T04:13:15Z",
         "reason": "real_depth",
@@ -10471,12 +10489,6 @@
         "reason": "real_depth",
         "symbol": "LFIA",
         "until": "2026-11-22T09:18:16Z"
-      },
-      "0xb200000000000000000000270a6edcc75182436a": {
-        "at": "2026-11-20T15:08:21Z",
-        "reason": "real_depth",
-        "symbol": "NERBY",
-        "until": "2026-11-21T15:08:21Z"
       },
       "0xb200000000000000000000273e597f87b082dae9": {
         "at": "2026-11-21T04:03:17Z",
@@ -10682,12 +10694,6 @@
         "symbol": "BLUMI",
         "until": "2026-11-22T10:23:17Z"
       },
-      "0xb20000000000000000000082d4f6ea6288c8a5b4": {
-        "at": "2026-11-20T15:08:21Z",
-        "reason": "real_depth",
-        "symbol": "CLANKPASS",
-        "until": "2026-11-21T15:08:21Z"
-      },
       "0xb2000000000000000000008c50366afaafa8fef8": {
         "at": "2026-11-21T06:43:14Z",
         "reason": "real_depth",
@@ -10819,12 +10825,6 @@
         "reason": "missing:liq_usd",
         "symbol": "SAVE6",
         "until": "2026-11-21T16:53:13Z"
-      },
-      "0xb200000000000000000000c8302ee7e9b6106401": {
-        "at": "2026-11-20T15:08:21Z",
-        "reason": "missing:liq_usd",
-        "symbol": "CATMARIO",
-        "until": "2026-11-21T15:08:21Z"
       },
       "0xb200000000000000000000cdf8ebc0d7825eda35": {
         "at": "2026-11-21T03:23:14Z",
@@ -11113,6 +11113,12 @@
         "reason": "goplus_timeout",
         "symbol": "Anthropic",
         "until": "2026-11-21T22:38:17Z"
+      },
+      "0xbd820cb3f0dc02f92eae35305ec4794d261acccc": {
+        "at": "2026-11-21T15:13:13Z",
+        "reason": "missing:liq_usd",
+        "symbol": "BGA",
+        "until": "2026-11-22T15:13:13Z"
       },
       "0xbd85203be1333cc8e00992012ddf078a86830acb": {
         "at": "2026-11-21T12:33:15Z",
@@ -11942,12 +11948,6 @@
         "symbol": "NOTF",
         "until": "2026-11-22T00:48:24Z"
       },
-      "0xed857edad2a9e5ad8e898c9048c00f3722fccb59": {
-        "at": "2026-11-20T15:08:21Z",
-        "reason": "real_depth",
-        "symbol": "nothing",
-        "until": "2026-11-21T15:08:21Z"
-      },
       "0xee691b42a14367dc6e05e5493b34eee7ede7ecbc": {
         "at": "2026-11-21T02:08:18Z",
         "reason": "real_depth",
@@ -12037,12 +12037,6 @@
         "reason": "real_depth",
         "symbol": "nothing",
         "until": "2026-11-22T06:58:24Z"
-      },
-      "0xf3cfc64eb4fa52d3bab49e808b29d9d8eff9e9ae": {
-        "at": "2026-11-20T15:08:21Z",
-        "reason": "real_depth",
-        "symbol": "ADAR",
-        "until": "2026-11-21T15:08:21Z"
       },
       "0xf47a9d53e43abbee3cafc8adfa9daa4602cdef13": {
         "at": "2026-11-21T07:08:20Z",
@@ -12251,21 +12245,21 @@
     },
     "watch": {
       "0x09ba9166a3c252818ace1f6fa28e3160245ca7be": {
-        "checks": 8,
+        "checks": 9,
         "first_seen": "2026-11-21T12:48:15Z",
-        "last_check": "2026-11-21T14:53:20Z",
+        "last_check": "2026-11-21T15:13:13Z",
         "symbol": "Antropic"
       },
       "0x30d9fce8e21d6dd01a16b13995b1383c927b54b8": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-21T14:53:20Z",
-        "last_check": "2026-11-21T14:53:20Z",
+        "last_check": "2026-11-21T15:13:13Z",
         "symbol": "U\u200aS\u200aO\u200aE"
       },
       "0x3c266393e34dcd08e45fb4bbade5acab12563fd6": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-21T14:53:20Z",
-        "last_check": "2026-11-21T14:53:20Z",
+        "last_check": "2026-11-21T15:13:13Z",
         "symbol": "Antropic"
       },
       "0xd61f43d4871fb2f54fbe6a243312d3abb9bac1ea": {
@@ -12275,9 +12269,9 @@
         "symbol": "BINT"
       },
       "0xd79ab03de1130d13e537530a1d9eb15e4485db07": {
-        "checks": 8,
+        "checks": 9,
         "first_seen": "2026-11-21T12:43:20Z",
-        "last_check": "2026-11-21T14:53:20Z",
+        "last_check": "2026-11-21T15:13:13Z",
         "symbol": "OpenAI"
       }
     }
