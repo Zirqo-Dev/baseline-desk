@@ -63,7 +63,7 @@
     },
     "refill_week": "2026-W47",
     "refills_usd": 56.55720719365456,
-    "ticks_since_buy": 802
+    "ticks_since_buy": 803
   },
   "desk": {
     "cash": 50.0,
@@ -2276,7 +2276,9 @@
         "symbol": "National Oil Truts Fund"
       },
       "0x2e060a0df89ce327ead6995a96b1e0f13173c0b0": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 1.331e-05,
         "first_seen": "2026-11-22T18:58:15Z",
         "sight_pair": "0x51afb6d80303fb7b5baf83aa8bb6368a97fc00d9",
@@ -3763,6 +3765,14 @@
         "sight_qliq": 68319,
         "symbol": "REBOOT"
       },
+      "0x7f506aac1fa56d9f521c5799e14279e0d19cb981": {
+        "done": [],
+        "first_price": 0.0001796,
+        "first_seen": "2026-11-22T20:03:15Z",
+        "sight_pair": "0x26a8c539e662a1e5b88f6df83d86849b113aa457a59ff5e7dec62bf884e026ff",
+        "sight_qliq": 16,
+        "symbol": "ATOF"
+      },
       "0x806d35dcf7768e3255096be18bce9ac04d9b5c9e": {
         "done": [
           1,
@@ -4033,6 +4043,14 @@
         "sight_pair": "0x33cf009a710896be5d75f347dc3466f6ecf55a4e",
         "sight_qliq": 68755,
         "symbol": "CLAUDIA"
+      },
+      "0x94c99868cf15ad3c586fe21a0b35a5d0b1c5ed1f": {
+        "done": [],
+        "first_price": 0.0001832,
+        "first_seen": "2026-11-22T20:03:15Z",
+        "sight_pair": "0x62d7c26059e9e802f286617f052c476a376bf4e035079c50704d31bd1ffd9da7",
+        "sight_qliq": 1,
+        "symbol": "OATF"
       },
       "0x951eac32ba7a4f5f52e62e1f167bc69940bab99f": {
         "done": [
@@ -4348,7 +4366,8 @@
       },
       "0xa91b1405443e596863b3e35e605589aab080f8e1": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 0.0001642,
         "first_seen": "2026-11-22T13:58:20Z",
@@ -4702,6 +4721,14 @@
         "sight_pair": "0x410d3aee52f2008eabee9f9286de876039558cff47324aa60532167082354205",
         "sight_qliq": 12,
         "symbol": "NAFO"
+      },
+      "0xc069d007dceae04e7eb7b97f3a93de2ad555b846": {
+        "done": [],
+        "first_price": 2.51,
+        "first_seen": "2026-11-22T20:03:15Z",
+        "sight_pair": "0xd58ab8f43f5ba457206ce6d4ba6c1ca176d9320d893fe83b80651d2e67efbf46",
+        "sight_qliq": 2281,
+        "symbol": "GODF"
       },
       "0xc0f714012200f07909f3d4cac3ef15499e943882": {
         "done": [
@@ -8012,12 +8039,6 @@
         "symbol": "USIO",
         "until": "2026-11-23T15:08:22Z"
       },
-      "0x371589d6ce8cbf659408a7771f77826a3005f071": {
-        "at": "2026-11-21T19:58:16Z",
-        "reason": "real_depth",
-        "symbol": "SNP500",
-        "until": "2026-11-22T19:58:16Z"
-      },
       "0x373ee474d8d13edd88e2ba5d51fa9960f7901863": {
         "at": "2026-11-22T19:18:20Z",
         "reason": "real_depth",
@@ -8131,12 +8152,6 @@
         "reason": "real_depth",
         "symbol": "LOL",
         "until": "2026-11-23T04:48:14Z"
-      },
-      "0x3a42822dd120c3c0f564fd27635a5e6dc295ed33": {
-        "at": "2026-11-21T19:58:16Z",
-        "reason": "goplus_timeout",
-        "symbol": "National Oil Truts Fund",
-        "until": "2026-11-22T19:58:16Z"
       },
       "0x3a6167761fbc38fbc04505e8d12015ce59d397a0": {
         "at": "2026-11-21T20:33:13Z",
@@ -8509,12 +8524,6 @@
         "reason": "real_depth",
         "symbol": "GSIR",
         "until": "2026-11-22T22:53:14Z"
-      },
-      "0x44535e1fd8d5bd9f47d3bfcf78705fde34d5e22f": {
-        "at": "2026-11-21T19:58:16Z",
-        "reason": "real_depth",
-        "symbol": ".AI",
-        "until": "2026-11-22T19:58:16Z"
       },
       "0x44840fa5dc16478e6ba1765c1238cafa95563984": {
         "at": "2026-11-22T17:58:15Z",
@@ -9668,6 +9677,12 @@
         "symbol": "INTEL",
         "until": "2026-11-23T18:08:50Z"
       },
+      "0x7f506aac1fa56d9f521c5799e14279e0d19cb981": {
+        "at": "2026-11-22T20:03:15Z",
+        "reason": "real_depth",
+        "symbol": "ATOF",
+        "until": "2026-11-23T20:03:15Z"
+      },
       "0x8023f1530452d207bb0d2641886cdafc901b04a4": {
         "at": "2026-11-22T17:48:23Z",
         "reason": "missing:liq_usd",
@@ -10135,6 +10150,12 @@
         "reason": "real_depth",
         "symbol": "SSQ",
         "until": "2026-11-23T18:48:20Z"
+      },
+      "0x94c99868cf15ad3c586fe21a0b35a5d0b1c5ed1f": {
+        "at": "2026-11-22T20:03:15Z",
+        "reason": "real_depth",
+        "symbol": "OATF",
+        "until": "2026-11-23T20:03:15Z"
       },
       "0x951eac32ba7a4f5f52e62e1f167bc69940bab99f": {
         "at": "2026-11-22T17:23:24Z",
@@ -11366,6 +11387,12 @@
         "symbol": "UGOS",
         "until": "2026-11-23T06:23:15Z"
       },
+      "0xb200000000000000000000859e1d34e98863ca20": {
+        "at": "2026-11-22T20:03:15Z",
+        "reason": "real_depth",
+        "symbol": "VVVWork",
+        "until": "2026-11-23T20:03:15Z"
+      },
       "0xb2000000000000000000008605bba1127daa39d8": {
         "at": "2026-11-21T21:53:13Z",
         "reason": "real_depth",
@@ -12176,6 +12203,12 @@
         "symbol": "DIGITAL ALPHA",
         "until": "2026-11-23T14:03:15Z"
       },
+      "0xc069d007dceae04e7eb7b97f3a93de2ad555b846": {
+        "at": "2026-11-22T20:03:15Z",
+        "reason": "real_depth",
+        "symbol": "GODF",
+        "until": "2026-11-23T20:03:15Z"
+      },
       "0xc0f714012200f07909f3d4cac3ef15499e943882": {
         "at": "2026-11-22T01:03:15Z",
         "reason": "real_depth",
@@ -12187,6 +12220,12 @@
         "reason": "real_depth",
         "symbol": "jeje",
         "until": "2026-11-23T02:18:16Z"
+      },
+      "0xc17b313240ddde5c14ee7dd27f2939c59c27ebf4": {
+        "at": "2026-11-22T20:03:15Z",
+        "reason": "real_depth",
+        "symbol": "RRR",
+        "until": "2026-11-23T20:03:15Z"
       },
       "0xc1af3dfc3edfc000b041c4668b3c2a6558a82e00": {
         "at": "2026-11-22T10:28:17Z",
@@ -12403,12 +12442,6 @@
         "reason": "real_depth",
         "symbol": "OREN",
         "until": "2026-11-23T15:53:14Z"
-      },
-      "0xc87b9a4039ac2b85ff418dec6eaaa998dd827859": {
-        "at": "2026-11-21T19:58:16Z",
-        "reason": "real_depth",
-        "symbol": "SINGULARITY",
-        "until": "2026-11-22T19:58:16Z"
       },
       "0xc987a4bf9273bc1e45189355556dc2a45e7675e2": {
         "at": "2026-11-22T00:28:15Z",
@@ -13691,9 +13724,9 @@
     },
     "watch": {
       "0x0bed7ad3afe3fa7c0b63c0ea9f1a8215adb49145": {
-        "checks": 10,
+        "checks": 11,
         "first_seen": "2026-11-22T17:18:14Z",
-        "last_check": "2026-11-22T19:48:15Z",
+        "last_check": "2026-11-22T20:03:15Z",
         "symbol": "National Oil Truts Fund"
       },
       "0x0d179ab490ee087700c29161499ef85039a09574": {
@@ -13709,21 +13742,21 @@
         "symbol": "Antropic"
       },
       "0x3667c99d2f8ad42911114162a49029942d094ba6": {
-        "checks": 10,
+        "checks": 11,
         "first_seen": "2026-11-22T17:18:14Z",
-        "last_check": "2026-11-22T19:48:15Z",
+        "last_check": "2026-11-22T20:03:15Z",
         "symbol": "Antropic"
       },
       "0x983661c01124e13cdeb56568d8f1b7cf4c9cdfb0": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-22T19:48:15Z",
-        "last_check": "2026-11-22T19:48:15Z",
+        "last_check": "2026-11-22T20:03:15Z",
         "symbol": "Basecat"
       },
       "0xd7cb2d04b28083410dc73b420f7959ef47fe1575": {
-        "checks": 2,
+        "checks": 3,
         "first_seen": "2026-11-22T19:33:14Z",
-        "last_check": "2026-11-22T19:48:15Z",
+        "last_check": "2026-11-22T20:03:15Z",
         "symbol": "URSP"
       }
     }
