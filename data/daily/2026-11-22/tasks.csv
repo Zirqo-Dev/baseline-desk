@@ -1356,3 +1356,14 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-22T11:23:13Z,desk,VERIFY,SPX,0x396895cdc537b068340f795c08b28b0ecf906dbb,SKIP,real_depth,goplus=skipped until=2026-11-23T11:23:13Z b1=7 s1=0 b24=7 s24=0 liq=109012 dex=uniswap:v4 qliq=2 pair_age=4 token_age=4
 2026-11-22T11:23:13Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
 2026-11-22T11:23:13Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=0 new=1 checked=1 passed=0 bought=0 held=0 deferred=0 dex_only=1 goplus=0 requests=9 secs=2.4 bl_positions=2 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=3 labels_done=3 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-22T11:28:15Z,baseline,EXIT,MARSBASE,0x0b455a80139f9642bb47f2cb5afabbd8809a24af,HOLD,no_quote,
+2026-11-22T11:28:15Z,baseline,EXIT,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,HOLD,no_quote,
+2026-11-22T11:28:15Z,desk,VERIFY,REBOOT,0xa0d10c62ffdc372062b02fbac5d483c828605394,SKIP,real_depth,first_seen=2026-11-22T10:53:15Z checks=3 goplus=skipped until=2026-11-23T11:28:15Z
+2026-11-22T11:28:15Z,desk,VERIFY,1KTO100M,0xaed7fcba6fdeeb16de2c81084caaa73627ebd88f,SKIP,real_depth,goplus=skipped until=2026-11-23T11:28:15Z
+2026-11-22T11:28:15Z,desk,VERIFY,QANX,0x33a9a7a4828a825c0201a832981e4a675650dd1e,SKIP,missing:liq_usd,goplus=skipped until=2026-11-23T11:28:15Z
+2026-11-22T11:28:15Z,desk,VERIFY,Basecat,0x9f2464edb013ba7734d0c73c2165d0e5f00ded9e,WATCH,goplus_not_ready,"first_seen=2026-11-22T11:28:15Z checks=1 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct b1=7 s1=1 b24=7 s24=1 liq=138416 dex=uniswap:v2 qliq=69214 pair_age=3 token_age=3"
+2026-11-22T11:28:15Z,desk,VERIFY,DYDX,0x755c95b0044d166fcbb1dc15216e46333f6663d4,SKIP,real_depth,goplus=skipped until=2026-11-23T11:28:15Z b1=7 s1=0 b24=7 s24=0 liq=109084 dex=uniswap:v4 qliq=1 pair_age=5 token_age=5
+2026-11-22T11:28:15Z,desk,VERIFY,BALL,0x6190bcf67953a872dc98b3c82bb1fce0a1a6b3e2,SKIP,real_depth,goplus=skipped until=2026-11-23T11:28:15Z
+2026-11-22T11:28:15Z,desk,VERIFY,GREATEST,0xa05f3a70c925bcdaa0f7c6ac017891f9d606cc18,SKIP,real_depth,goplus=skipped until=2026-11-23T11:28:15Z
+2026-11-22T11:28:15Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
+2026-11-22T11:28:15Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=1 new=6 checked=7 passed=0 bought=0 held=0 deferred=0 dex_only=6 goplus=1 requests=16 secs=3.7 bl_positions=2 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=4 labels_done=4 labels_calls=1 live=ok alerts=none alerts_sent=0
