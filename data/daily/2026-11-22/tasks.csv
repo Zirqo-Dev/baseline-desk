@@ -1461,3 +1461,17 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-22T12:13:16Z,desk,VERIFY,NAFO,0xbffa8aa09ea1aa02f23fae211622bee89a3750d9,SKIP,real_depth,goplus=skipped until=2026-11-23T12:13:16Z b1=3 s1=0 b24=3 s24=0 liq=88512 dex=uniswap:v4 qliq=12 pair_age=8 token_age=8
 2026-11-22T12:13:16Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
 2026-11-22T12:13:16Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=0 new=7 checked=7 passed=0 bought=0 held=0 deferred=0 dex_only=7 goplus=0 requests=15 secs=3.6 bl_positions=2 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=4 labels_done=4 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-22T12:18:15Z,baseline,EXIT,MARSBASE,0x0b455a80139f9642bb47f2cb5afabbd8809a24af,HOLD,no_quote,
+2026-11-22T12:18:15Z,baseline,EXIT,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,HOLD,no_quote,
+2026-11-22T12:18:15Z,desk,VERIFY,Basecat,0x9f2464edb013ba7734d0c73c2165d0e5f00ded9e,SKIP,real_depth,first_seen=2026-11-22T11:28:15Z checks=4 goplus=skipped until=2026-11-23T12:18:15Z
+2026-11-22T12:18:15Z,desk,VERIFY,XYO,0x4073910f2789cba952953100cae424a5dd6b1f20,SKIP,real_depth,first_seen=2026-11-22T11:38:16Z checks=3 goplus=skipped until=2026-11-23T12:18:15Z
+2026-11-22T12:18:15Z,desk,VERIFY,National Oil Truts Fund,0x29d989ca43bd1dc78580d92efafb4383ee0c1274,WATCH,goplus_not_ready,"first_seen=2026-11-22T11:43:15Z checks=3 pending=honeypot,buy_tax_pct,sell_tax_pct,dev_pct,top10_pct,lp_locked_pct b1=14 s1=1 b24=14 s24=1 liq=1167761735 dex=uniswap:v4 qliq=194343 pair_age=41 token_age=41"
+2026-11-22T12:18:15Z,desk,VERIFY,ANX,0x24ecfb89f647dd4db9b1014995489fd54aa25e01,WATCH,goplus_not_ready,"first_seen=2026-11-22T12:18:15Z checks=1 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct b1=3 s1=0 b24=3 s24=0 liq=52063 dex=uniswap:v2 qliq=26038 pair_age=2 token_age=2"
+2026-11-22T12:18:15Z,desk,VERIFY,FIONA,0xd58bd1682912d600939eb8203f048d6eecb1132c,SKIP,real_depth,goplus=skipped until=2026-11-23T12:18:15Z
+2026-11-22T12:18:15Z,desk,VERIFY,SPCX,0x4d7870f8d5d8b14533b4c0aebc90056c473ef995,SKIP,real_depth,goplus=skipped until=2026-11-23T12:18:15Z
+2026-11-22T12:18:15Z,desk,VERIFY,GROKBOT,0xee54b4aa0a433d2a804319e4be8d898f1a949701,SKIP,real_depth,goplus=skipped until=2026-11-23T12:18:15Z
+2026-11-22T12:18:15Z,desk,VERIFY,ANX,0x07d098374a67a215dbb4524f7ec117a58494bca3,SKIP,real_depth,goplus=skipped until=2026-11-23T12:18:15Z b1=2 s1=0 b24=2 s24=0 liq=96338 dex=uniswap:v4 qliq=30 pair_age=6 token_age=6
+2026-11-22T12:18:15Z,desk,VERIFY,TROLL,0x3e8f6ed63e002e0cf16ab504f9b6cd99886cf72b,SKIP,real_depth,goplus=skipped until=2026-11-23T12:18:15Z
+2026-11-22T12:18:15Z,desk,VERIFY,gnosisgno,0xdca4af10450187b789e19721e31df15e8043114c,SKIP,real_depth,goplus=skipped until=2026-11-23T12:18:15Z
+2026-11-22T12:18:15Z,baseline,EXECUTE,National Oil Truts Fund,0x29d989ca43bd1dc78580d92efafb4383ee0c1274,SKIP,size,seed=202611221218 eligible=1 pick=0 pool=29d989 desk=WATCH launchpad=other
+2026-11-22T12:18:15Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=3 new=7 checked=10 passed=0 bought=0 held=0 deferred=0 dex_only=8 goplus=2 requests=20 secs=6.1 bl_positions=2 bl_due=1 bl_eligible=1 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=4 labels_done=4 labels_calls=1 live=ok alerts=none alerts_sent=0
