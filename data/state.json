@@ -63,7 +63,7 @@
     },
     "refill_week": "2026-W47",
     "refills_usd": 56.55720719365456,
-    "ticks_since_buy": 665
+    "ticks_since_buy": 666
   },
   "desk": {
     "cash": 50.0,
@@ -665,7 +665,8 @@
       },
       "0x0a9e48a630d2696ddbf4077188cd508be01408e7": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 7.613e-06,
         "first_seen": "2026-11-22T02:33:15Z",
@@ -2246,17 +2247,6 @@
         "sight_pair": "0x28ecdf7726b2ae365685ca93db7e91e9e17f3bbf377f7b3670c50c02a1e92fe6",
         "sight_qliq": 164,
         "symbol": "UDO\u200aF"
-      },
-      "0x285e7f934515373f3bd1a69aa64a52f4bc1aa104": {
-        "done": [
-          1,
-          6
-        ],
-        "first_price": 2.933e-06,
-        "first_seen": "2026-11-21T08:38:15Z",
-        "sight_pair": "0x9cc110d8809e3e3236bbe63a8c7ada641559d627",
-        "sight_qliq": 25038,
-        "symbol": "FLOAT"
       },
       "0x285e92a95985c2af6928a7c0cc90da2d95225de1": {
         "done": [
@@ -5082,6 +5072,14 @@
         "sight_qliq": 2284,
         "symbol": "USTF"
       },
+      "0xe2feb718e065c759f55c42378c202f3621c29480": {
+        "done": [],
+        "first_price": 9.849e-05,
+        "first_seen": "2026-11-22T08:38:15Z",
+        "sight_pair": "0x3ac3433b2966bd2ead950b0612d7b05e0546d3d19dac5a1e7379b6d8a3c63e47",
+        "sight_qliq": 24,
+        "symbol": "USMS"
+      },
       "0xe517e1bdaed8f464370941f2755516456b6a1e48": {
         "done": [
           1,
@@ -6613,6 +6611,12 @@
         "reason": "real_depth",
         "symbol": "USAR",
         "until": "2026-11-23T06:58:15Z"
+      },
+      "0x1d8b342ae51bc264bb4c4c4c73225cdcb3db43e3": {
+        "at": "2026-11-22T08:38:15Z",
+        "reason": "goplus_timeout",
+        "symbol": "NOTF",
+        "until": "2026-11-23T08:38:15Z"
       },
       "0x1d906be7972a4b06decf551d4503d8b6d24914cd": {
         "at": "2026-11-21T13:53:15Z",
@@ -11822,12 +11826,6 @@
         "symbol": "SU",
         "until": "2026-11-22T13:38:17Z"
       },
-      "0xc9d6eade65e02e3957fc733e78178c671f0ae543": {
-        "at": "2026-11-21T08:38:15Z",
-        "reason": "real_depth",
-        "symbol": "777",
-        "until": "2026-11-22T08:38:15Z"
-      },
       "0xca394c034b18f382809d918ff1ce33138c13bf25": {
         "at": "2026-11-21T12:53:19Z",
         "reason": "real_depth",
@@ -12307,6 +12305,12 @@
         "reason": "real_depth",
         "symbol": "openhuman",
         "until": "2026-11-22T17:03:15Z"
+      },
+      "0xe2feb718e065c759f55c42378c202f3621c29480": {
+        "at": "2026-11-22T08:38:15Z",
+        "reason": "real_depth",
+        "symbol": "USMS",
+        "until": "2026-11-23T08:38:15Z"
       },
       "0xe33ca83cdababf8c3d01924253572d842c2d9431": {
         "at": "2026-11-21T11:43:15Z",
@@ -12886,12 +12890,6 @@
       }
     },
     "watch": {
-      "0x1d8b342ae51bc264bb4c4c4c73225cdcb3db43e3": {
-        "checks": 11,
-        "first_seen": "2026-11-22T05:23:15Z",
-        "last_check": "2026-11-22T08:23:14Z",
-        "symbol": "NOTF"
-      },
       "0x3e98ad29776b85f9e6ff9040c2e14a23e235057b": {
         "checks": 6,
         "first_seen": "2026-11-22T06:58:15Z",
@@ -12899,15 +12897,15 @@
         "symbol": "National Oil Truts Fund"
       },
       "0x40da76d8276b8f9d97f91833c98c89b7e2419875": {
-        "checks": 10,
+        "checks": 11,
         "first_seen": "2026-11-22T05:38:16Z",
-        "last_check": "2026-11-22T08:23:14Z",
+        "last_check": "2026-11-22T08:38:15Z",
         "symbol": "UGOS"
       },
       "0x5eaa448471337907e1ad83fcc4640a157da04b07": {
-        "checks": 10,
+        "checks": 11,
         "first_seen": "2026-11-22T05:43:15Z",
-        "last_check": "2026-11-22T08:23:14Z",
+        "last_check": "2026-11-22T08:38:15Z",
         "symbol": "Base"
       },
       "0x93d63f9b15eb42f6c3f0efbb60ebbed95af8de13": {
@@ -12923,9 +12921,9 @@
         "symbol": "CLAUDIA"
       },
       "0xa65e27db8b3c83676cb8d99119eca882f2c2b526": {
-        "checks": 2,
+        "checks": 3,
         "first_seen": "2026-11-22T08:03:15Z",
-        "last_check": "2026-11-22T08:23:14Z",
+        "last_check": "2026-11-22T08:38:15Z",
         "symbol": "LUNCS"
       },
       "0xaaa843fb2916c0b57454270418e121c626402aaa": {
