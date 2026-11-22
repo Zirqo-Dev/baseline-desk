@@ -1647,3 +1647,15 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-22T13:48:15Z,desk,VERIFY,COQ,0x420fca0121dc28039145009570975747295f2329,SKIP,real_depth,goplus=skipped until=2026-11-23T13:48:15Z
 2026-11-22T13:48:15Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
 2026-11-22T13:48:15Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=0 new=6 checked=6 passed=0 bought=0 held=0 deferred=0 dex_only=4 goplus=2 requests=16 secs=5.3 bl_positions=2 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=2 labels_done=2 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-22T13:53:19Z,baseline,EXIT,MARSBASE,0x0b455a80139f9642bb47f2cb5afabbd8809a24af,HOLD,no_quote,
+2026-11-22T13:53:19Z,baseline,EXIT,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,HOLD,no_quote,
+2026-11-22T13:53:19Z,desk,VERIFY,National Oil Truts Fund,0x29d989ca43bd1dc78580d92efafb4383ee0c1274,WATCH,goplus_not_ready,"first_seen=2026-11-22T11:43:15Z checks=9 pending=honeypot,buy_tax_pct,sell_tax_pct,lp_locked_pct b1=16 s1=0 b24=39 s24=1 liq=1155852793 dex=uniswap:v4 qliq=192429 pair_age=137 token_age=137"
+2026-11-22T13:53:19Z,desk,VERIFY,UNITED OIL SUPPLY GLOBAL,0xbf9d4484f717e0ed83500aba6166e85fa1eb76c7,SKIP,real_depth,first_seen=2026-11-22T13:03:18Z checks=4 goplus=skipped until=2026-11-23T13:53:19Z
+2026-11-22T13:53:19Z,desk,VERIFY,SI,0xa64ec0c852bc10fc0084d56ba1a4704961093b62,SKIP,real_depth,first_seen=2026-11-22T13:18:20Z checks=3 goplus=skipped until=2026-11-23T13:53:19Z
+2026-11-22T13:53:19Z,desk,VERIFY,FIONA,0xc244cfeda78d80fd0361f9fcdf95fcb77bc5f946,WATCH,goplus_not_ready,"first_seen=2026-11-22T13:38:16Z checks=2 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct b1=15 s1=1 b24=15 s24=1 liq=37175 dex=uniswap:v4 qliq=18478 pair_age=20 token_age=20"
+2026-11-22T13:53:19Z,desk,VERIFY,SPCX,0xd2e2095df071da1658c96abdc47178747a6a4c7c,SKIP,real_depth,goplus=skipped until=2026-11-23T13:53:19Z
+2026-11-22T13:53:19Z,desk,VERIFY,FINT,0xb01d178545d251e1ebef9a945784f15ae060cccc,SKIP,real_depth,goplus=skipped until=2026-11-23T13:53:19Z
+2026-11-22T13:53:19Z,desk,VERIFY,DUMB,0x77cda8d4b922137d23a4c04665ce597f72be0bad,SKIP,real_depth,goplus=skipped until=2026-11-23T13:53:19Z
+2026-11-22T13:53:19Z,desk,VERIFY,UODH,0x05f81007bd2e42b79fb1c6e015956763541d18a8,SKIP,missing:liq_usd,goplus=skipped until=2026-11-23T13:53:19Z
+2026-11-22T13:53:19Z,baseline,EXECUTE,FIONA,0xc244cfeda78d80fd0361f9fcdf95fcb77bc5f946,SKIP,size,seed=202611221353 eligible=1 pick=0 pool=c244cf desk=WATCH launchpad=other
+2026-11-22T13:53:19Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=4 new=4 checked=8 passed=0 bought=0 held=0 deferred=0 dex_only=6 goplus=2 requests=18 secs=5.1 bl_positions=2 bl_due=1 bl_eligible=1 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=24 labels_done=24 labels_calls=1 live=ok alerts=none alerts_sent=0
