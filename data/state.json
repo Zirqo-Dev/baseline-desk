@@ -63,7 +63,7 @@
     },
     "refill_week": "2026-W47",
     "refills_usd": 56.55720719365456,
-    "ticks_since_buy": 737
+    "ticks_since_buy": 738
   },
   "desk": {
     "cash": 50.0,
@@ -4459,7 +4459,9 @@
         "symbol": "AVAX"
       },
       "0xc244cfeda78d80fd0361f9fcdf95fcb77bc5f946": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 2.022e-05,
         "first_seen": "2026-11-22T13:38:16Z",
         "sight_pair": "0x101451f24135d99274b36e012fbaa9db5bac85b2a9c5e6ddf9bbb09be1fc2ee4",
@@ -4963,7 +4965,8 @@
       },
       "0xe2feb718e065c759f55c42378c202f3621c29480": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 9.849e-05,
         "first_seen": "2026-11-22T08:38:15Z",
@@ -5013,7 +5016,9 @@
         "symbol": "ATX"
       },
       "0xe98eab315dc58ab3db28ca122ff6e2d37916df19": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 0.0001532,
         "first_seen": "2026-11-22T13:38:16Z",
         "sight_pair": "0xb1eed59219d22091e959f9b836e2e620f95482701e5ffe762bacaa235c581098",
@@ -6739,6 +6744,12 @@
         "symbol": "USOR OIL",
         "until": "2026-11-23T05:08:16Z"
       },
+      "0x2456d74b59f1047265d59c472beb42cfa382dac7": {
+        "at": "2026-11-22T14:38:16Z",
+        "reason": "real_depth",
+        "symbol": "USGOS",
+        "until": "2026-11-23T14:38:16Z"
+      },
       "0x24c2900c925539b078db338b1d7bd64e0f545b01": {
         "at": "2026-11-22T14:18:22Z",
         "reason": "real_depth",
@@ -6822,6 +6833,12 @@
         "reason": "real_depth",
         "symbol": "SOS\u200aF",
         "until": "2026-11-22T22:38:22Z"
+      },
+      "0x261bdaa54188dae4d6efd28c4507b4ffc121e7ec": {
+        "at": "2026-11-22T14:38:16Z",
+        "reason": "real_depth",
+        "symbol": "ASOL",
+        "until": "2026-11-23T14:38:16Z"
       },
       "0x261d3e33aea54e3fe4dfbfbc59c3a3a99a2a202a": {
         "at": "2026-11-22T09:18:20Z",
@@ -7993,6 +8010,12 @@
         "symbol": "CHUBBY",
         "until": "2026-11-23T03:28:16Z"
       },
+      "0x4598b3011a12876ea93f682e7b53187688b0a66f": {
+        "at": "2026-11-22T14:38:16Z",
+        "reason": "real_depth",
+        "symbol": "BIDEN",
+        "until": "2026-11-23T14:38:16Z"
+      },
       "0x45a9175a04cdf29338b4cb5de244f80ce53f6b44": {
         "at": "2026-11-22T11:13:14Z",
         "reason": "real_depth",
@@ -9096,6 +9119,12 @@
         "reason": "real_depth",
         "symbol": "XCHAT",
         "until": "2026-11-23T13:23:14Z"
+      },
+      "0x7cba6e8ebdc84f5182cf73ed52682916e3a24813": {
+        "at": "2026-11-22T14:38:16Z",
+        "reason": "real_depth",
+        "symbol": "SPACEX",
+        "until": "2026-11-23T14:38:16Z"
       },
       "0x7cbc63623708f528b78232a85aa36f2c1b390203": {
         "at": "2026-11-21T15:38:16Z",
@@ -10242,6 +10271,12 @@
         "reason": "real_depth",
         "symbol": "DCTY",
         "until": "2026-11-23T10:08:17Z"
+      },
+      "0xb20000000000000000000018db7b127cf2d27b61": {
+        "at": "2026-11-22T14:38:16Z",
+        "reason": "real_depth",
+        "symbol": "PEA",
+        "until": "2026-11-23T14:38:16Z"
       },
       "0xb20000000000000000000019577a368cde2dfb89": {
         "at": "2026-11-22T13:48:15Z",
@@ -12867,29 +12902,11 @@
       }
     },
     "watch": {
-      "0x2456d74b59f1047265d59c472beb42cfa382dac7": {
-        "checks": 3,
-        "first_seen": "2026-11-22T13:48:15Z",
-        "last_check": "2026-11-22T14:18:22Z",
-        "symbol": "USGOS"
-      },
-      "0x261bdaa54188dae4d6efd28c4507b4ffc121e7ec": {
-        "checks": 1,
-        "first_seen": "2026-11-22T14:23:14Z",
-        "last_check": "2026-11-22T14:23:14Z",
-        "symbol": "ASOL"
-      },
       "0x29d989ca43bd1dc78580d92efafb4383ee0c1274": {
         "checks": 11,
         "first_seen": "2026-11-22T11:43:15Z",
         "last_check": "2026-11-22T14:28:15Z",
         "symbol": "National Oil Truts Fund"
-      },
-      "0x4598b3011a12876ea93f682e7b53187688b0a66f": {
-        "checks": 3,
-        "first_seen": "2026-11-22T13:48:15Z",
-        "last_check": "2026-11-22T14:18:22Z",
-        "symbol": "BIDEN"
       },
       "0x570b14964d68c8a0e3eb76769a630b1a211af8f0": {
         "checks": 1,
