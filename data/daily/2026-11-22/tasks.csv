@@ -1666,3 +1666,15 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-22T13:58:20Z,desk,VERIFY,INJB,0xa91b1405443e596863b3e35e605589aab080f8e1,SKIP,real_depth,goplus=skipped until=2026-11-23T13:58:20Z b1=15 s1=2 b24=15 s24=2 liq=162596 dex=uniswap:v4 qliq=0 pair_age=6 token_age=6
 2026-11-22T13:58:20Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
 2026-11-22T13:58:20Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=1 new=2 checked=3 passed=0 bought=0 held=0 deferred=0 dex_only=3 goplus=0 requests=11 secs=2.4 bl_positions=2 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=2 labels_done=2 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-22T14:03:15Z,baseline,EXIT,MARSBASE,0x0b455a80139f9642bb47f2cb5afabbd8809a24af,HOLD,no_quote,
+2026-11-22T14:03:15Z,baseline,EXIT,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,HOLD,no_quote,
+2026-11-22T14:03:15Z,desk,VERIFY,USGOS,0x2456d74b59f1047265d59c472beb42cfa382dac7,WATCH,goplus_not_ready,first_seen=2026-11-22T13:48:15Z checks=2 pending=top10_pct b1=15 s1=0 b24=15 s24=0 liq=55211 dex=uniswap:v2 qliq=27608 pair_age=15 token_age=15
+2026-11-22T14:03:15Z,desk,VERIFY,BIDEN,0x4598b3011a12876ea93f682e7b53187688b0a66f,WATCH,goplus_not_ready,"first_seen=2026-11-22T13:48:15Z checks=2 pending=honeypot,buy_tax_pct,sell_tax_pct,dev_pct,top10_pct,lp_locked_pct b1=34 s1=2 b24=34 s24=2 liq=152463 dex=uniswap:v2 qliq=76217 pair_age=18 token_age=18"
+2026-11-22T14:03:15Z,desk,VERIFY,E91,0x16ca68493c5965c30429a691699771381d539a48,SKIP,real_depth,goplus=skipped until=2026-11-23T14:03:15Z
+2026-11-22T14:03:15Z,desk,VERIFY,XCHAT,0x15496e3d62e9351512d3fda87e01d1e9f57d2d4d,SKIP,real_depth,goplus=skipped until=2026-11-23T14:03:15Z
+2026-11-22T14:03:15Z,desk,VERIFY,CATc,0xb2000f21707e7b172f21fe344dbb9c612a867e79,SKIP,real_depth,goplus=skipped until=2026-11-23T14:03:15Z
+2026-11-22T14:03:15Z,desk,VERIFY,1KTO100M,0x5e32f0ccb4560ab5e5a76b59c2d88d04a1b70274,SKIP,real_depth,goplus=skipped until=2026-11-23T14:03:15Z
+2026-11-22T14:03:15Z,desk,VERIFY,DIGITAL ALPHA,0xc02c5eb081909f810f4161a9ff926e80f35a716c,SKIP,missing:price,goplus=skipped until=2026-11-23T14:03:15Z
+2026-11-22T14:03:15Z,desk,VERIFY,VERICOM,0x259340088cf979fc344a2316b0f0014c59ff0ba3,SKIP,real_depth,goplus=skipped until=2026-11-23T14:03:15Z
+2026-11-22T14:03:15Z,baseline,EXECUTE,BIDEN,0x4598b3011a12876ea93f682e7b53187688b0a66f,SKIP,size,seed=202611221403 eligible=1 pick=0 pool=4598b3 desk=WATCH launchpad=other
+2026-11-22T14:03:15Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=2 new=6 checked=8 passed=0 bought=0 held=0 deferred=0 dex_only=6 goplus=2 requests=18 secs=5.3 bl_positions=2 bl_due=1 bl_eligible=1 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=1 labels_done=1 labels_calls=1 live=ok alerts=none alerts_sent=0
