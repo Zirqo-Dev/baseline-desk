@@ -1031,3 +1031,14 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-22T08:28:20Z,desk,VERIFY,grantr,0x0ac913b5455587d1c217347e93c7266326607ba2,SKIP,real_depth,goplus=skipped until=2026-11-23T08:28:20Z
 2026-11-22T08:28:20Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
 2026-11-22T08:28:20Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=0 new=4 checked=4 passed=0 bought=0 held=0 deferred=0 dex_only=3 goplus=1 requests=13 secs=2.8 bl_positions=2 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=3 labels_done=3 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-22T08:33:14Z,baseline,EXIT,MARSBASE,0x0b455a80139f9642bb47f2cb5afabbd8809a24af,HOLD,no_quote,
+2026-11-22T08:33:14Z,baseline,EXIT,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,HOLD,no_quote,
+2026-11-22T08:33:14Z,desk,VERIFY,USOI,0x93d63f9b15eb42f6c3f0efbb60ebbed95af8de13,WATCH,goplus_not_ready,first_seen=2026-11-22T06:08:16Z checks=9 pending=honeypot b1=35 s1=12 b24=92 s24=31 liq=50520 dex=uniswap:v4 qliq=17056 pair_age=150 token_age=150
+2026-11-22T08:33:14Z,desk,VERIFY,AAA,0xaaa843fb2916c0b57454270418e121c626402aaa,WATCH,goplus_not_ready,first_seen=2026-11-22T06:28:16Z checks=8 pending=honeypot b1=0 s1=0 b24=50 s24=35 liq=83904 dex=aero qliq=19176 pair_age=44973 token_age=850722
+2026-11-22T08:33:14Z,desk,VERIFY,National Oil Truts Fund,0x3e98ad29776b85f9e6ff9040c2e14a23e235057b,WATCH,goplus_not_ready,"first_seen=2026-11-22T06:58:15Z checks=6 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct b1=15 s1=0 b24=28 s24=1 liq=1177447701 dex=uniswap:v4 qliq=190209 pair_age=97 token_age=97"
+2026-11-22T08:33:14Z,desk,VERIFY,Gitbank,0xf7a355555a3d95213e614101a67d6769f024ec84,SKIP,real_depth,goplus=skipped until=2026-11-23T08:33:14Z
+2026-11-22T08:33:14Z,desk,VERIFY,SPACEX,0xed0ab2a2b5c15c0547516efd799d8cff37a9d7b2,SKIP,real_depth,goplus=skipped until=2026-11-23T08:33:14Z
+2026-11-22T08:33:14Z,desk,VERIFY,PEF,0x45b616051fbce52db63a178599cb590a8ee090b9,SKIP,real_depth,goplus=skipped until=2026-11-23T08:33:14Z
+2026-11-22T08:33:14Z,desk,VERIFY,XMONEY,0xb200000000000000000000a047e8743f9066ffa0,SKIP,real_depth,goplus=skipped until=2026-11-23T08:33:14Z
+2026-11-22T08:33:14Z,baseline,EXECUTE,USOI,0x93d63f9b15eb42f6c3f0efbb60ebbed95af8de13,SKIP,size,seed=202611220833 eligible=1 pick=0 pool=93d63f desk=WATCH launchpad=other
+2026-11-22T08:33:14Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=3 new=4 checked=7 passed=0 bought=0 held=0 deferred=0 dex_only=4 goplus=3 requests=18 secs=6.8 bl_positions=2 bl_due=1 bl_eligible=1 bl_bought=0 report=none machine=none bl_error=none labels=none labels_due=0 labels_done=0 labels_calls=0 live=ok alerts=none alerts_sent=0
