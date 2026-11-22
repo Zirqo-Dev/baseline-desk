@@ -1078,3 +1078,17 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-22T08:53:13Z,desk,VERIFY,ROBOSS,0xb200000000000000000000b75b229aaef692b401,SKIP,real_depth,goplus=skipped until=2026-11-23T08:53:13Z
 2026-11-22T08:53:13Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
 2026-11-22T08:53:13Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=0 new=3 checked=3 passed=0 bought=0 held=0 deferred=0 dex_only=3 goplus=0 requests=10 secs=2.4 bl_positions=2 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=none labels_due=0 labels_done=0 labels_calls=0 live=ok alerts=none alerts_sent=0
+2026-11-22T08:58:15Z,baseline,EXIT,MARSBASE,0x0b455a80139f9642bb47f2cb5afabbd8809a24af,HOLD,no_quote,
+2026-11-22T08:58:15Z,baseline,EXIT,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,HOLD,no_quote,
+2026-11-22T08:58:15Z,desk,VERIFY,UGOS,0x40da76d8276b8f9d97f91833c98c89b7e2419875,SKIP,goplus_timeout,first_seen=2026-11-22T05:38:16Z checks=12 until=2026-11-23T08:58:15Z b1=35 s1=12 b24=124 s24=40 liq=198030 dex=uniswap:v4 qliq=33967 pair_age=203 token_age=203
+2026-11-22T08:58:15Z,desk,VERIFY,Base,0x5eaa448471337907e1ad83fcc4640a157da04b07,SKIP,goplus_timeout,first_seen=2026-11-22T05:43:15Z checks=12 until=2026-11-23T08:58:15Z b1=492 s1=489 b24=2144 s24=2085 liq=10292175 dex=aerodrome qliq=190062 pair_age=200 token_age=200
+2026-11-22T08:58:15Z,desk,VERIFY,LUNCS,0xa65e27db8b3c83676cb8d99119eca882f2c2b526,SKIP,real_depth,first_seen=2026-11-22T08:03:15Z checks=4 goplus=skipped until=2026-11-23T08:58:15Z
+2026-11-22T08:58:15Z,desk,VERIFY,USMS,0x994ecebe01d48d2a306d60639ead52a83bb66b9a,WATCH,goplus_not_ready,"first_seen=2026-11-22T08:43:15Z checks=2 pending=top10_pct,lp_locked_pct b1=17 s1=0 b24=17 s24=0 liq=54972 dex=uniswap:v2 qliq=27485 pair_age=17 token_age=17"
+2026-11-22T08:58:15Z,desk,VERIFY,GOAT,0xb2000000000000000000009a52bb85ae2bb83501,SKIP,real_depth,goplus=skipped until=2026-11-23T08:58:15Z
+2026-11-22T08:58:15Z,desk,VERIFY,TEMU,0xb2000000000000000000007885d8c6044c23df82,SKIP,real_depth,goplus=skipped until=2026-11-23T08:58:15Z
+2026-11-22T08:58:15Z,desk,VERIFY,MEOW,0xa0c48c03ec9ff04747f7a0b9a0602f67fc8efaf3,SKIP,real_depth,goplus=skipped until=2026-11-23T08:58:15Z
+2026-11-22T08:58:15Z,desk,VERIFY,GITLY,0x4548c62a4aef68411a3fa22adfa2f02926454ceb,SKIP,real_depth,goplus=skipped until=2026-11-23T08:58:15Z
+2026-11-22T08:58:15Z,desk,VERIFY,ZIL,0x7c4160be91beb899e555e68ae05be162e4a89adb,SKIP,missing:liq_usd,goplus=skipped until=2026-11-23T08:58:15Z
+2026-11-22T08:58:15Z,desk,VERIFY,PCAT,0x9fedb4926c09e471911e30f66b4f465135654485,SKIP,missing:liq_usd,goplus=skipped until=2026-11-23T08:58:15Z
+2026-11-22T08:58:15Z,baseline,EXECUTE,Base,0x5eaa448471337907e1ad83fcc4640a157da04b07,SKIP,size,"seed=202611220858 eligible=2 pick=1 pool=40da76,5eaa44 desk=goplus_timeout launchpad=other"
+2026-11-22T08:58:15Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=4 new=6 checked=10 passed=0 bought=0 held=0 deferred=0 dex_only=7 goplus=3 requests=22 secs=7.8 bl_positions=2 bl_due=1 bl_eligible=2 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=1 labels_done=1 labels_calls=1 live=ok alerts=none alerts_sent=0
