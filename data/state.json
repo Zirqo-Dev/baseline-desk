@@ -63,7 +63,7 @@
     },
     "refill_week": "2026-W47",
     "refills_usd": 56.55720719365456,
-    "ticks_since_buy": 647
+    "ticks_since_buy": 648
   },
   "desk": {
     "cash": 50.0,
@@ -458,7 +458,9 @@
         "symbol": "BIDEN"
       },
       "0x069fddfe0e39650eb4ac3bb2125a22591c9d6830": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 8.374e-05,
         "first_seen": "2026-11-22T06:08:16Z",
         "sight_pair": "0x46c4336461075b1921ee44dd78227576ef481e2732ac35dfbcfc0cbb8f9f058a",
@@ -515,6 +517,14 @@
         "sight_pair": "0xe194caafcfc53526504b806216ed7edf7d43a5b7d6f81cdc5d93b60e6dfb0469",
         "sight_qliq": 169,
         "symbol": "Antropic"
+      },
+      "0x085507fcd88c7ad96d764f39078245c89fe958fa": {
+        "done": [],
+        "first_price": 2.67e-06,
+        "first_seen": "2026-11-22T07:08:16Z",
+        "sight_pair": "0x6fd26092716d393310d11c7012d0191140839789",
+        "sight_qliq": 25525,
+        "symbol": "U.S OIL INDEX"
       },
       "0x088d21437a6c36a97e7feae679a45dba5ff757b4": {
         "done": [
@@ -4390,7 +4400,9 @@
         "symbol": "XMONEY"
       },
       "0x93d63f9b15eb42f6c3f0efbb60ebbed95af8de13": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 6.63e-07,
         "first_seen": "2026-11-22T06:08:16Z",
         "sight_pair": "0xcded4faa0691c8a2db5de80193526c0009bec0b8873db9cbb333de3c04c15eee",
@@ -4728,7 +4740,8 @@
       },
       "0xb9258d9480d71aa5a634818a7342dfe9e2378e03": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 9.67e-05,
         "first_seen": "2026-11-22T01:03:15Z",
@@ -4787,7 +4800,8 @@
       },
       "0xc0f714012200f07909f3d4cac3ef15499e943882": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 9.094e-05,
         "first_seen": "2026-11-22T01:03:15Z",
@@ -8117,12 +8131,6 @@
         "symbol": "DRB",
         "until": "2026-11-22T21:03:13Z"
       },
-      "0x3b53c61260d5a4878c357a9712b0f98062d3cfb5": {
-        "at": "2026-11-21T07:03:16Z",
-        "reason": "real_depth",
-        "symbol": "AO\u200aD\u200aF",
-        "until": "2026-11-22T07:03:16Z"
-      },
       "0x3b81c025553fd78a29b7fc2b9f8743bb08bc3a4f": {
         "at": "2026-11-21T23:48:16Z",
         "reason": "real_depth",
@@ -9034,6 +9042,12 @@
         "reason": "real_depth",
         "symbol": "ANTHROPIC",
         "until": "2026-11-22T13:23:16Z"
+      },
+      "0x63146ae5624cbc835262c4edcdc94b8b2b32482c": {
+        "at": "2026-11-22T07:08:16Z",
+        "reason": "real_depth",
+        "symbol": "Basesheep",
+        "until": "2026-11-23T07:08:16Z"
       },
       "0x63284b5c768ce911a8ab4895cc9b2f1d641418d4": {
         "at": "2026-11-21T18:38:16Z",
@@ -10204,12 +10218,6 @@
         "reason": "real_depth",
         "symbol": "SOF",
         "until": "2026-11-22T08:28:17Z"
-      },
-      "0xa0c897538a005b1cb26f14d76385ac5348299863": {
-        "at": "2026-11-21T07:03:16Z",
-        "reason": "real_depth",
-        "symbol": "ANTHROPIC",
-        "until": "2026-11-22T07:03:16Z"
       },
       "0xa0edd1487a8c7d3e0d12a414b834095a4fc5bb4d": {
         "at": "2026-11-21T14:13:14Z",
@@ -13201,6 +13209,12 @@
         "last_check": "2026-11-22T06:58:15Z",
         "symbol": "USOR OIL"
       },
+      "0x085507fcd88c7ad96d764f39078245c89fe958fa": {
+        "checks": 1,
+        "first_seen": "2026-11-22T07:08:16Z",
+        "last_check": "2026-11-22T07:08:16Z",
+        "symbol": "U.S OIL INDEX"
+      },
       "0x1bc61ed8544db13c8317904ffa71f22125c43baf": {
         "checks": 1,
         "first_seen": "2026-11-22T06:58:15Z",
@@ -13208,9 +13222,9 @@
         "symbol": "SOS\u200aF"
       },
       "0x1d8b342ae51bc264bb4c4c4c73225cdcb3db43e3": {
-        "checks": 6,
+        "checks": 7,
         "first_seen": "2026-11-22T05:23:15Z",
-        "last_check": "2026-11-22T06:48:20Z",
+        "last_check": "2026-11-22T07:08:16Z",
         "symbol": "NOTF"
       },
       "0x30de17285cd2ebe6da7409ea8229b514492b1a60": {
@@ -13226,15 +13240,15 @@
         "symbol": "National Oil Truts Fund"
       },
       "0x40da76d8276b8f9d97f91833c98c89b7e2419875": {
-        "checks": 5,
+        "checks": 6,
         "first_seen": "2026-11-22T05:38:16Z",
-        "last_check": "2026-11-22T06:48:20Z",
+        "last_check": "2026-11-22T07:08:16Z",
         "symbol": "UGOS"
       },
       "0x5eaa448471337907e1ad83fcc4640a157da04b07": {
-        "checks": 5,
+        "checks": 6,
         "first_seen": "2026-11-22T05:43:15Z",
-        "last_check": "2026-11-22T06:48:20Z",
+        "last_check": "2026-11-22T07:08:16Z",
         "symbol": "Base"
       },
       "0x93d63f9b15eb42f6c3f0efbb60ebbed95af8de13": {
