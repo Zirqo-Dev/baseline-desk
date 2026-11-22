@@ -63,7 +63,7 @@
     },
     "refill_week": "2026-W47",
     "refills_usd": 56.55720719365456,
-    "ticks_since_buy": 804
+    "ticks_since_buy": 805
   },
   "desk": {
     "cash": 50.0,
@@ -2026,7 +2026,8 @@
       },
       "0x2995f6df660ab8556cbf228f17afebf2e4fac50c": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 0.0002123,
         "first_seen": "2026-11-22T14:08:18Z",
@@ -4225,8 +4226,18 @@
         "sight_qliq": 69689,
         "symbol": "REBOOT"
       },
-      "0xa1306c14dd5c826f2979270b0341048a4299849b": {
+      "0xa0ec413dfc19e13e58d07c48c5b3c0099331e364": {
         "done": [],
+        "first_price": 3.523e-06,
+        "first_seen": "2026-11-22T20:13:14Z",
+        "sight_pair": "0x07f79ee42cb5c45d96981c679e2ed59b24afc638",
+        "sight_qliq": 26565,
+        "symbol": "UOSI"
+      },
+      "0xa1306c14dd5c826f2979270b0341048a4299849b": {
+        "done": [
+          1
+        ],
         "first_price": 5.603e-06,
         "first_seen": "2026-11-22T19:08:21Z",
         "sight_pair": "0x90b1c5b287a19886dffc3cd6f90e4377227f0ccf",
@@ -4622,6 +4633,14 @@
         "sight_qliq": 67828,
         "symbol": "TRUMP2028"
       },
+      "0xb891bfb8ca9f198d5b185f86b9a55eff73cffd26": {
+        "done": [],
+        "first_price": 0.0001821,
+        "first_seen": "2026-11-22T20:13:14Z",
+        "sight_pair": "0x5d618ae792292b1a5b13968627a10c418414232a5ecf4d7308dbdb730bf8c588",
+        "sight_qliq": 2,
+        "symbol": "USGO"
+      },
       "0xb8a051f1f2baab1ec3be1d7b6e05b0931c932e50": {
         "done": [
           1
@@ -5005,6 +5024,14 @@
         "sight_pair": "0xde3a717e07db56ed79a21308e492c5519113c5a58c8df43c8efc931895af5d95",
         "sight_qliq": 2292,
         "symbol": "USAR"
+      },
+      "0xd0d2db7240542379ff353dc8531aec10b3b56fa1": {
+        "done": [],
+        "first_price": 0.0001799,
+        "first_seen": "2026-11-22T20:13:14Z",
+        "sight_pair": "0x161243988b8e6ce31dcf7b6fc90776f6dcc60a15b5dbc3dd385ea423e3e44210",
+        "sight_qliq": 16,
+        "symbol": "USIO"
       },
       "0xd0f0d4c97f8aae3703d047ffe0453eb121da8ff4": {
         "done": [
@@ -10072,6 +10099,12 @@
         "symbol": "GOUS",
         "until": "2026-11-23T19:23:15Z"
       },
+      "0x913d79354fbafc65ba750c0c4dace829d88db833": {
+        "at": "2026-11-22T20:13:14Z",
+        "reason": "real_depth",
+        "symbol": "UOSI",
+        "until": "2026-11-23T20:13:14Z"
+      },
       "0x913f1f3563446d300273b79e1fc9d4a19d626a13": {
         "at": "2026-11-22T17:18:14Z",
         "reason": "real_depth",
@@ -10395,6 +10428,12 @@
         "reason": "real_depth",
         "symbol": "REBOOT",
         "until": "2026-11-23T11:28:15Z"
+      },
+      "0xa0ec413dfc19e13e58d07c48c5b3c0099331e364": {
+        "at": "2026-11-22T20:13:14Z",
+        "reason": "nobody_can_sell",
+        "symbol": "UOSI",
+        "until": "2026-11-23T20:13:14Z"
       },
       "0xa0f90ac270d22f42f47a94ca53bd79d81c385359": {
         "at": "2026-11-22T13:28:16Z",
@@ -12028,6 +12067,12 @@
         "symbol": "wstDIEM",
         "until": "2026-11-23T01:28:19Z"
       },
+      "0xb891bfb8ca9f198d5b185f86b9a55eff73cffd26": {
+        "at": "2026-11-22T20:13:14Z",
+        "reason": "real_depth",
+        "symbol": "USGO",
+        "until": "2026-11-23T20:13:14Z"
+      },
       "0xb8a051f1f2baab1ec3be1d7b6e05b0931c932e50": {
         "at": "2026-11-22T15:28:17Z",
         "reason": "real_depth",
@@ -12609,6 +12654,12 @@
         "reason": "real_depth",
         "symbol": "CHUBBY",
         "until": "2026-11-23T11:43:15Z"
+      },
+      "0xd0d2db7240542379ff353dc8531aec10b3b56fa1": {
+        "at": "2026-11-22T20:13:14Z",
+        "reason": "real_depth",
+        "symbol": "USIO",
+        "until": "2026-11-23T20:13:14Z"
       },
       "0xd0e400616dfd27a6b87fdd8693eaf2617c31eaa9": {
         "at": "2026-11-22T02:28:14Z",
@@ -13717,15 +13768,15 @@
         "symbol": "National Oil Truts Fund"
       },
       "0x0d179ab490ee087700c29161499ef85039a09574": {
-        "checks": 3,
+        "checks": 4,
         "first_seen": "2026-11-22T19:23:15Z",
-        "last_check": "2026-11-22T19:58:14Z",
+        "last_check": "2026-11-22T20:13:14Z",
         "symbol": "U\u200aS\u200aO\u200aE"
       },
       "0x2163768d16fa3253206ee1ceebb00b1a524df231": {
-        "checks": 3,
+        "checks": 4,
         "first_seen": "2026-11-22T19:23:15Z",
-        "last_check": "2026-11-22T19:58:14Z",
+        "last_check": "2026-11-22T20:13:14Z",
         "symbol": "Antropic"
       },
       "0x3667c99d2f8ad42911114162a49029942d094ba6": {
