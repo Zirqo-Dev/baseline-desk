@@ -3,7 +3,9 @@
     "cash": 44.69507958716856,
     "cooldown": {
       "a:0x53f6d580b50c03e2a27d230d98e8b2ef6254aeac": "2026-11-24T00:48:16Z",
-      "s:NOTF": "2026-11-24T00:48:16Z"
+      "a:0x758d07e99c3aa37ffb781024cceed1c2150f8451": "2026-11-24T01:18:14Z",
+      "s:NOTF": "2026-11-24T00:48:16Z",
+      "s:UOGS": "2026-11-24T01:18:14Z"
     },
     "day": "2026-11-23",
     "day_start_value": 60.89866227466579,
@@ -30,22 +32,6 @@
         "qty": 22491.761282341395,
         "symbol": "MARSBASE"
       },
-      "0x758d07e99c3aa37ffb781024cceed1c2150f8451": {
-        "cost_usd": 5.0,
-        "entry_fill": 4.330813775166677e-06,
-        "entry_intended": 4.204e-06,
-        "entry_liq_usd": 60600.86,
-        "entry_qliq": 30298,
-        "entry_ts": "2026-11-23T01:13:14Z",
-        "ladder_done": [],
-        "last_price": 4.204e-06,
-        "launchpad": "other",
-        "orig_qty": 1154517.432421247,
-        "pair": "0x13b03ef99c8f6209cdd27d315306094861fc1d88",
-        "peak_price": 4.204e-06,
-        "qty": 1154517.432421247,
-        "symbol": "UOGS"
-      },
       "0xa97d8577fef865b9717b7bc4102df9a24c940080": {
         "cost_usd": 5.0,
         "entry_fill": 5.6482339952106666e-05,
@@ -67,7 +53,7 @@
     },
     "refill_week": "2026-W48",
     "refills_usd": 106.05022822478631,
-    "ticks_since_buy": 0
+    "ticks_since_buy": 1
   },
   "desk": {
     "cash": 50.0,
@@ -82,7 +68,8 @@
     "pending": {
       "0x0013b56b0b06e1a35df32c1b70c69a7228a8831e": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 9.813e-05,
         "first_seen": "2026-11-22T19:13:17Z",
@@ -6191,12 +6178,6 @@
         "symbol": ".AI",
         "until": "2026-11-23T08:43:15Z"
       },
-      "0x0b598e0393a0a0981781781e99450a84ff2ab28e": {
-        "at": "2026-11-22T01:13:15Z",
-        "reason": "real_depth",
-        "symbol": "FIRE",
-        "until": "2026-11-23T01:13:15Z"
-      },
       "0x0b75d8a29925bda1ce29e9fe9ab5c3044224c67e": {
         "at": "2026-11-22T15:33:14Z",
         "reason": "real_depth",
@@ -9035,6 +9016,12 @@
         "symbol": "SOMETHING",
         "until": "2026-11-23T15:53:14Z"
       },
+      "0x6c53815e3ce846d60209e865775dab6638638049": {
+        "at": "2026-11-23T01:18:14Z",
+        "reason": "real_depth",
+        "symbol": "UniBase",
+        "until": "2026-11-24T01:18:14Z"
+      },
       "0x6d02d8206033a731c4a677751f613e9d7332e529": {
         "at": "2026-11-22T17:53:14Z",
         "reason": "real_depth",
@@ -11158,6 +11145,12 @@
         "reason": "real_depth",
         "symbol": "NEURON",
         "until": "2026-11-23T18:53:14Z"
+      },
+      "0xb200000000000000000000aad4138e2453b69233": {
+        "at": "2026-11-23T01:18:14Z",
+        "reason": "real_depth",
+        "symbol": "PRIVI",
+        "until": "2026-11-24T01:18:14Z"
       },
       "0xb200000000000000000000accd1b95462cfb03ed": {
         "at": "2026-11-22T11:43:15Z",
@@ -13704,7 +13697,7 @@
     "gate_restart": "BL-32",
     "machine_due": "",
     "max_dd_pct": {
-      "baseline": 177.1870551279785,
+      "baseline": 185.07205254518055,
       "desk": 9.811123120222184
     },
     "peak": {
