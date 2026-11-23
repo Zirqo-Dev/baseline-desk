@@ -65,7 +65,7 @@
     },
     "refill_week": "2026-W48",
     "refills_usd": 106.05022822478631,
-    "ticks_since_buy": 185
+    "ticks_since_buy": 186
   },
   "desk": {
     "cash": 50.0,
@@ -1181,7 +1181,9 @@
         "symbol": "VTC6\u26a1\ufe0f"
       },
       "0x15edbf165e45f269e4ea93d67a81b3177151f034": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 0.0001877,
         "first_seen": "2026-11-23T22:28:15Z",
         "sight_pair": "0xc996c464b21d2f579f5e073be8d665f067291792e867c5ba9aeed61ef2fc448b",
@@ -3671,17 +3673,6 @@
         "sight_qliq": 0,
         "symbol": "XRP Blue Phoenix "
       },
-      "0x7afe438411ee3959c7de6f7fb76bf9c769320ba3": {
-        "done": [
-          1,
-          6
-        ],
-        "first_price": 2.34e-06,
-        "first_seen": "2026-11-22T23:28:15Z",
-        "sight_pair": "0x7f36b7889aaf2268e8a39865f02451c102bf9070d94569034fc011d6349d9dd8",
-        "sight_qliq": 43998,
-        "symbol": "BLOCKTRONICS"
-      },
       "0x7b67d63bdca34fded70e3cb6ef08af7e87073f95": {
         "done": [
           1,
@@ -4926,17 +4917,6 @@
         "sight_pair": "0xb2e32d0418da4f22e51cd98257c72e6de4cdae502d9b271c2107f00f734797e9",
         "sight_qliq": 27,
         "symbol": "UOSI"
-      },
-      "0xf39e758e866d3234feaf21a3483567635d6feb0c": {
-        "done": [
-          1,
-          6
-        ],
-        "first_price": 4.776e-06,
-        "first_seen": "2026-11-22T23:28:15Z",
-        "sight_pair": "0x236aa7e49420f3633a6400ad426436dbd1e6b30d",
-        "sight_qliq": 26262,
-        "symbol": "UFSE"
       },
       "0xf4407912b3e0861428782d4fa4ffffe14409e6de": {
         "done": [
@@ -7006,6 +6986,12 @@
         "symbol": "AOTF",
         "until": "2026-11-23T23:33:14Z"
       },
+      "0x2e61064d52d254984be64b84222fa91f90f9ee69": {
+        "at": "2026-11-23T23:28:15Z",
+        "reason": "real_depth",
+        "symbol": "ANTHROPIC",
+        "until": "2026-11-24T23:28:15Z"
+      },
       "0x2ea063122e256882114c6fde5208dd75d504c3a1": {
         "at": "2026-11-23T12:08:16Z",
         "reason": "real_depth",
@@ -7803,12 +7789,6 @@
         "reason": "real_depth",
         "symbol": "USAR",
         "until": "2026-11-24T05:18:18Z"
-      },
-      "0x43631b28512f1cce3c97b1675c86c218e7f13ca1": {
-        "at": "2026-11-22T23:28:15Z",
-        "reason": "real_depth",
-        "symbol": "openhuman",
-        "until": "2026-11-23T23:28:15Z"
       },
       "0x437d53808c15d8b71f547dafa4b067626443dbeb": {
         "at": "2026-11-23T22:03:21Z",
@@ -8776,12 +8756,6 @@
         "symbol": "UOGS",
         "until": "2026-11-24T01:28:15Z"
       },
-      "0x7599e84df8a0f20a11c676129db2a7a41aba5bd4": {
-        "at": "2026-11-22T23:28:15Z",
-        "reason": "real_depth",
-        "symbol": "UEFS",
-        "until": "2026-11-23T23:28:15Z"
-      },
       "0x7601e4c9d8408c716869474e9a55597599d5060f": {
         "at": "2026-11-23T05:53:16Z",
         "reason": "real_depth",
@@ -9447,6 +9421,12 @@
         "reason": "real_depth",
         "symbol": "PUBLIC",
         "until": "2026-11-24T06:13:13Z"
+      },
+      "0x91c170a318d6557fd9ce91c70c9856c6e11d38be": {
+        "at": "2026-11-23T23:28:15Z",
+        "reason": "missing:price",
+        "symbol": "CORPORATE EXTENSION",
+        "until": "2026-11-24T23:28:15Z"
       },
       "0x92017586f56e64b62ed341d362910ea43fee4433": {
         "at": "2026-11-23T01:43:15Z",
@@ -11704,12 +11684,6 @@
         "symbol": "CFLE",
         "until": "2026-11-24T18:28:15Z"
       },
-      "0xd97683aac44cc7bf61e5288a85951e9f0d90e52b": {
-        "at": "2026-11-22T23:28:15Z",
-        "reason": "real_depth",
-        "symbol": "VIOR",
-        "until": "2026-11-23T23:28:15Z"
-      },
       "0xd99454139454d243c0255d792c27d28d08e21477": {
         "at": "2026-11-22T23:43:19Z",
         "reason": "real_depth",
@@ -12469,9 +12443,9 @@
         "symbol": "CMC20"
       },
       "0xa948213ce2d0bc8eb5006aedf6e23e69066eb4af": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-23T23:08:16Z",
-        "last_check": "2026-11-23T23:08:16Z",
+        "last_check": "2026-11-23T23:28:15Z",
         "symbol": "DRV"
       },
       "0xb783f2d2e031a7c4aa48aedac4c58be85bfa04d3": {
@@ -12481,9 +12455,9 @@
         "symbol": "INJ"
       },
       "0xb7d7e7a47fb9b85950bd4fb4bad9dec3c17e358f": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-23T23:08:16Z",
-        "last_check": "2026-11-23T23:08:16Z",
+        "last_check": "2026-11-23T23:28:15Z",
         "symbol": "NADF"
       },
       "0xc2d936f36f1ddf65f8b02fcecd288e9bab46d7ca": {
