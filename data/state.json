@@ -1,6 +1,6 @@
 {
   "baseline": {
-    "cash": 38.72902518703677,
+    "cash": 33.72902518703677,
     "cooldown": {
       "a:0x0fa77385c26bcfde9249902610bbf9c0f3c8d36a": "2026-11-24T05:08:14Z",
       "a:0x24860d593dee8e36ee53d049f19080c7d75105bb": "2026-11-24T03:08:16Z",
@@ -40,6 +40,22 @@
         "qty": 22491.761282341395,
         "symbol": "MARSBASE"
       },
+      "0x7a70bb2637fb903c62d22aa5f3b7816560d431db": {
+        "cost_usd": 5.0,
+        "entry_fill": 8.732676156325544e-06,
+        "entry_intended": 8.477e-06,
+        "entry_liq_usd": 62039.81,
+        "entry_qliq": 31025,
+        "entry_ts": "2026-11-23T06:43:15Z",
+        "ladder_done": [],
+        "last_price": 8.477e-06,
+        "launchpad": "other",
+        "orig_qty": 572562.1688579661,
+        "pair": "0x92816019feaddbb9aa4f881782a3ca336c2f769e",
+        "peak_price": 8.477e-06,
+        "qty": 572562.1688579661,
+        "symbol": "PUBLIC"
+      },
       "0xa97d8577fef865b9717b7bc4102df9a24c940080": {
         "cost_usd": 5.0,
         "entry_fill": 5.6482339952106666e-05,
@@ -61,7 +77,7 @@
     },
     "refill_week": "2026-W48",
     "refills_usd": 106.05022822478631,
-    "ticks_since_buy": 12
+    "ticks_since_buy": 0
   },
   "desk": {
     "cash": 50.0,
@@ -701,7 +717,9 @@
         "symbol": "GODF"
       },
       "0x0dbf17467cb67ba2506626070f8c44aed6479d68": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 9.393e-06,
         "first_seen": "2026-11-23T05:43:14Z",
         "sight_pair": "0x24a696391621960ca5253a4c4d5db9091485a2ae",
@@ -3697,7 +3715,8 @@
       },
       "0x758d07e99c3aa37ffb781024cceed1c2150f8451": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 3.16e-06,
         "first_seen": "2026-11-23T00:43:13Z",
@@ -9473,6 +9492,12 @@
         "symbol": "DUMB",
         "until": "2026-11-23T13:53:19Z"
       },
+      "0x77faa17c3aad3da1f3a24c5f8f3a1a42fe18aafc": {
+        "at": "2026-11-23T06:43:15Z",
+        "reason": "real_depth",
+        "symbol": "CHUBBY",
+        "until": "2026-11-24T06:43:15Z"
+      },
       "0x7896d8bc7f4ca3a2ff09e9a072046f3ccee4b61a": {
         "at": "2026-11-23T06:13:13Z",
         "reason": "real_depth",
@@ -12665,6 +12690,12 @@
         "symbol": "Gitbank",
         "until": "2026-11-23T23:43:19Z"
       },
+      "0xd9ce59ac55e6fe376d74ff5dae059838534e6228": {
+        "at": "2026-11-23T06:43:15Z",
+        "reason": "real_depth",
+        "symbol": "LC",
+        "until": "2026-11-24T06:43:15Z"
+      },
       "0xda48b11943eff6ea4e5d6fae08f851bdd32ba006": {
         "at": "2026-11-22T13:38:16Z",
         "reason": "real_depth",
@@ -13556,9 +13587,9 @@
         "symbol": "VDINO"
       },
       "0x7a70bb2637fb903c62d22aa5f3b7816560d431db": {
-        "checks": 2,
+        "checks": 3,
         "first_seen": "2026-11-23T06:08:14Z",
-        "last_check": "2026-11-23T06:23:22Z",
+        "last_check": "2026-11-23T06:43:15Z",
         "symbol": "PUBLIC"
       },
       "0xc4c6c2422ce264bb41f2974eadceaea6bfcfb8be": {
@@ -13914,7 +13945,7 @@
     "gate_restart": "BL-32",
     "machine_due": "",
     "max_dd_pct": {
-      "baseline": 195.06573526875738,
+      "baseline": 195.55613164227037,
       "desk": 9.811123120222184
     },
     "peak": {
