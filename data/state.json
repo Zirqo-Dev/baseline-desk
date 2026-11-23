@@ -1,6 +1,6 @@
 {
   "baseline": {
-    "cash": 39.431257703447336,
+    "cash": 34.431257703447336,
     "cooldown": {
       "a:0x24860d593dee8e36ee53d049f19080c7d75105bb": "2026-11-24T03:08:16Z",
       "a:0x53f6d580b50c03e2a27d230d98e8b2ef6254aeac": "2026-11-24T00:48:16Z",
@@ -36,6 +36,22 @@
         "qty": 22491.761282341395,
         "symbol": "MARSBASE"
       },
+      "0x0fa77385c26bcfde9249902610bbf9c0f3c8d36a": {
+        "cost_usd": 5.0,
+        "entry_fill": 0.026017763393220063,
+        "entry_intended": 0.02525,
+        "entry_liq_usd": 37880697.76,
+        "entry_qliq": 12301,
+        "entry_ts": "2026-11-23T04:18:16Z",
+        "ladder_done": [],
+        "last_price": 0.02525,
+        "launchpad": "other",
+        "orig_qty": 192.17639596580173,
+        "pair": "0x831a8740b366ef04e011bf8a758b02db9eeede9dbb53ca3b40fde74e2f574252",
+        "peak_price": 0.02525,
+        "qty": 192.17639596580173,
+        "symbol": "U\u200aS\u200aO\u200aE"
+      },
       "0xa97d8577fef865b9717b7bc4102df9a24c940080": {
         "cost_usd": 5.0,
         "entry_fill": 5.6482339952106666e-05,
@@ -57,7 +73,7 @@
     },
     "refill_week": "2026-W48",
     "refills_usd": 106.05022822478631,
-    "ticks_since_buy": 11
+    "ticks_since_buy": 0
   },
   "desk": {
     "cash": 50.0,
@@ -3044,7 +3060,8 @@
       },
       "0x3f7f163853255b56efcaa96d805dabfac5ee1ecf": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 0.0005137,
         "first_seen": "2026-11-22T22:18:14Z",
@@ -4104,7 +4121,8 @@
       },
       "0x975431925736c7f6ae84651a6359435442af66ea": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 1.113e-05,
         "first_seen": "2026-11-22T22:18:14Z",
@@ -4124,7 +4142,9 @@
         "symbol": "Basecat"
       },
       "0x9869c9bfbfd88bca1e86e6dcf48bc1999272fca3": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 4.843e-06,
         "first_seen": "2026-11-23T03:18:15Z",
         "sight_pair": "0x8b2f4e20617bc28cb9f7deca7531ec7dfa823963",
@@ -8115,6 +8135,12 @@
         "symbol": "Antropic",
         "until": "2026-11-23T11:38:16Z"
       },
+      "0x38b31f56e5769708cd25cdb6ba32505d015d7ab3": {
+        "at": "2026-11-23T04:18:16Z",
+        "reason": "missing:liq_usd",
+        "symbol": "PUBLIC",
+        "until": "2026-11-24T04:18:16Z"
+      },
       "0x391f56f34dc6bbc5a9c32a20c411c52cb9c6d043": {
         "at": "2026-11-22T17:48:23Z",
         "reason": "missing:liq_usd",
@@ -11295,6 +11321,12 @@
         "symbol": "VVVCAT",
         "until": "2026-11-23T18:23:14Z"
       },
+      "0xb2000000000000000000006f393ea255a5b417b6": {
+        "at": "2026-11-23T04:18:16Z",
+        "reason": "missing:liq_usd",
+        "symbol": "MACCA",
+        "until": "2026-11-24T04:18:16Z"
+      },
       "0xb200000000000000000000705e623cf3a7383cd4": {
         "at": "2026-11-22T16:23:15Z",
         "reason": "real_depth",
@@ -13299,6 +13331,12 @@
         "symbol": "Basebird",
         "until": "2026-11-23T05:28:22Z"
       },
+      "0xf16d91707da8ee16588e96dd9f6d50b017d7d187": {
+        "at": "2026-11-23T04:18:16Z",
+        "reason": "real_depth",
+        "symbol": "SPACEX",
+        "until": "2026-11-24T04:18:16Z"
+      },
       "0xf1b550feb15fd2a516fd9b63a1e894341547cccc": {
         "at": "2026-11-22T15:53:14Z",
         "reason": "real_depth",
@@ -13626,21 +13664,21 @@
     },
     "watch": {
       "0x0ea31b71d123c4c340036b9cba777f5894ad89d9": {
-        "checks": 2,
+        "checks": 3,
         "first_seen": "2026-11-23T03:48:14Z",
-        "last_check": "2026-11-23T04:03:14Z",
+        "last_check": "2026-11-23T04:18:16Z",
         "symbol": "Antropic"
       },
       "0x0fa77385c26bcfde9249902610bbf9c0f3c8d36a": {
-        "checks": 2,
+        "checks": 3,
         "first_seen": "2026-11-23T03:48:14Z",
-        "last_check": "2026-11-23T04:03:14Z",
+        "last_check": "2026-11-23T04:18:16Z",
         "symbol": "U\u200aS\u200aO\u200aE"
       },
       "0x3960a0f5436a4f56a75efca95d3ae4943212549f": {
-        "checks": 2,
+        "checks": 3,
         "first_seen": "2026-11-23T03:48:14Z",
-        "last_check": "2026-11-23T04:03:14Z",
+        "last_check": "2026-11-23T04:18:16Z",
         "symbol": "National Oil Truts Fund"
       },
       "0x408362a405d6d72c9b6e3993dde7a01cbd51ee57": {
@@ -13662,9 +13700,9 @@
         "symbol": "REBOOT"
       },
       "0xffaa5b5ab330d7cf8237db9a06e67f07e97dabf4": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-23T04:03:14Z",
-        "last_check": "2026-11-23T04:03:14Z",
+        "last_check": "2026-11-23T04:18:16Z",
         "symbol": "BLESS"
       }
     }
@@ -14014,7 +14052,7 @@
     "gate_restart": "BL-32",
     "machine_due": "",
     "max_dd_pct": {
-      "baseline": 193.88943205452068,
+      "baseline": 194.38364045345875,
       "desk": 9.811123120222184
     },
     "peak": {
