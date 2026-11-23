@@ -1955,3 +1955,10 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-23T17:18:16Z,desk,VERIFY,BOOTR,0x870d683449843d3a832f5f9cbb67b220b9976e86,SKIP,real_depth,goplus=skipped until=2026-11-24T17:18:16Z
 2026-11-23T17:18:16Z,baseline,EXECUTE,NOTF,0x1b8cdfc6da92657fd65cba0d49413c11a8e4c35e,SKIP,loss_halt,seed=202611231718 eligible=1 pick=0 pool=1b8cdf desk=WATCH launchpad=other
 2026-11-23T17:18:16Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=21 rechecks=1 new=4 checked=5 passed=0 bought=0 held=0 deferred=0 dex_only=4 goplus=1 requests=14 secs=3.8 bl_positions=2 bl_due=1 bl_eligible=1 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=18 labels_done=18 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-23T17:23:14Z,baseline,EXIT,MARSBASE,0x0b455a80139f9642bb47f2cb5afabbd8809a24af,HOLD,no_quote,
+2026-11-23T17:23:14Z,baseline,EXIT,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,HOLD,no_quote,
+2026-11-23T17:23:14Z,desk,VERIFY,BOOTR,0x47e6986aaaa10db388dd9255f693a5bb8169401c,WATCH,goplus_not_ready,"first_seen=2026-11-23T17:23:14Z checks=1 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct b1=8 s1=0 b24=8 s24=0 liq=145161 dex=uniswap:v2 qliq=72582 pair_age=4 token_age=4"
+2026-11-23T17:23:14Z,desk,VERIFY,XNVDL,0x0da550db852f79aa9543567f4af35c4ed0e8c751,SKIP,real_depth,goplus=skipped until=2026-11-24T17:23:14Z
+2026-11-23T17:23:14Z,desk,VERIFY,CHUBBY,0x9d012a93e85e23b7924ba53e9d255d3526a496fd,SKIP,real_depth,goplus=skipped until=2026-11-24T17:23:14Z
+2026-11-23T17:23:14Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
+2026-11-23T17:23:14Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=21 rechecks=0 new=3 checked=3 passed=0 bought=0 held=0 deferred=0 dex_only=2 goplus=1 requests=12 secs=3.1 bl_positions=2 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=17 labels_done=17 labels_calls=1 live=ok alerts=none alerts_sent=0
