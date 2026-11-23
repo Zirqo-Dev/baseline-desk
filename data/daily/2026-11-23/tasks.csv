@@ -2457,3 +2457,10 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-23T21:28:17Z,desk,VERIFY,idbot,0x28a93037256060c6bf75de2711d79a538c43688a,SKIP,real_depth,goplus=skipped until=2026-11-24T21:28:17Z
 2026-11-23T21:28:17Z,baseline,EXECUTE,NPC,0x57c1c6aa6d1f8cfd4ad4591411ee27ea41d656b7,SKIP,loss_halt,"seed=202611232128 eligible=3 pick=2 pool=011f73,197c76,57c1c6 desk=WATCH launchpad=other"
 2026-11-23T21:28:17Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=21 rechecks=4 new=2 checked=6 passed=0 bought=0 held=0 deferred=0 dex_only=3 goplus=3 requests=17 secs=7.6 bl_positions=2 bl_due=1 bl_eligible=3 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=19 labels_done=19 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-23T21:33:20Z,baseline,EXIT,MARSBASE,0x0b455a80139f9642bb47f2cb5afabbd8809a24af,HOLD,no_quote,
+2026-11-23T21:33:20Z,baseline,EXIT,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,HOLD,no_quote,
+2026-11-23T21:33:20Z,desk,VERIFY,BEASTOADY,0x1bd24dd17c477dd88623a9ec0c7a821c5a3bcccc,SKIP,real_depth,goplus=skipped until=2026-11-24T21:33:20Z
+2026-11-23T21:33:20Z,desk,VERIFY,NIHAO,0x727e587794415a162deccab44cecc44a2385cccc,SKIP,missing:liq_usd,goplus=skipped until=2026-11-24T21:33:20Z
+2026-11-23T21:33:20Z,desk,VERIFY,TIBBIR,0x564ace3af4807cda098e772e660a8c34fbd638e1,WATCH,goplus_not_ready,"first_seen=2026-11-23T21:33:20Z checks=1 pending=mint_open,freeze_or_blacklist,honeypot,buy_tax_pct,sell_tax_pct,dev_pct,top10_pct,lp_locked_pct,risk_flags b1=4 s1=0 b24=4 s24=0 liq=52566 dex=uniswap:v2 qliq=26285 pair_age=4 token_age=4"
+2026-11-23T21:33:20Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
+2026-11-23T21:33:20Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=21 rechecks=0 new=3 checked=3 passed=0 bought=0 held=0 deferred=0 dex_only=2 goplus=1 requests=12 secs=2.8 bl_positions=2 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=20 labels_done=20 labels_calls=1 live=ok alerts=none alerts_sent=0
