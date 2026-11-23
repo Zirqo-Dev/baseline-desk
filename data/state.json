@@ -50,9 +50,9 @@
         "entry_qliq": 208086,
         "entry_ts": "2026-11-23T00:03:15Z",
         "ladder_done": [],
-        "last_liq_usd": 718335.64,
-        "last_price": 0.09815,
-        "last_qliq": 207932,
+        "last_liq_usd": 716227.41,
+        "last_price": 0.09786,
+        "last_qliq": 207298,
         "launchpad": "other",
         "orig_qty": 49.46760102645427,
         "pair": "0x460745edc65ec334fb1503dbd1c73d6da8ed6c503e4d7864e2284e3fbcd31819",
@@ -81,7 +81,7 @@
     },
     "refill_week": "2026-W48",
     "refills_usd": 106.05022822478631,
-    "ticks_since_buy": 7
+    "ticks_since_buy": 8
   },
   "desk": {
     "cash": 50.0,
@@ -3770,6 +3770,14 @@
         "sight_qliq": 1,
         "symbol": "DYDX"
       },
+      "0x758d07e99c3aa37ffb781024cceed1c2150f8451": {
+        "done": [],
+        "first_price": 3.16e-06,
+        "first_seen": "2026-11-23T00:43:13Z",
+        "sight_pair": "0x13b03ef99c8f6209cdd27d315306094861fc1d88",
+        "sight_qliq": 26314,
+        "symbol": "UOGS"
+      },
       "0x7599e84df8a0f20a11c676129db2a7a41aba5bd4": {
         "done": [
           1
@@ -4335,7 +4343,9 @@
         "symbol": "OUGS"
       },
       "0xa16fd9c7342d84ae80fc8965df0ce726b4bc2a10": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 4.654e-06,
         "first_seen": "2026-11-22T23:38:21Z",
         "sight_pair": "0x5a0f1b9dd0972ba4f6d29bec934c50cb8e6534c1",
@@ -5621,7 +5631,8 @@
       },
       "0xeada2774c47ce328104b886056f40f7ed689c582": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 9.795e-05,
         "first_seen": "2026-11-22T18:38:16Z",
@@ -9859,6 +9870,12 @@
         "symbol": "CLAUDIA",
         "until": "2026-11-23T21:38:15Z"
       },
+      "0x88dcb09df4df1497d84d90ce31cd7ddcac69cccc": {
+        "at": "2026-11-23T00:43:13Z",
+        "reason": "missing:liq_usd",
+        "symbol": "PTB",
+        "until": "2026-11-24T00:43:13Z"
+      },
       "0x88f6934ebca935794665c9d9775d4719aeebc95f": {
         "at": "2026-11-22T17:33:13Z",
         "reason": "real_depth",
@@ -10579,6 +10596,12 @@
         "symbol": "NOTF",
         "until": "2026-11-23T15:48:18Z"
       },
+      "0xaa2f79b435b9a890a6d0797d152d7f2485cce9b0": {
+        "at": "2026-11-23T00:43:13Z",
+        "reason": "missing:liq_usd",
+        "symbol": "USDF",
+        "until": "2026-11-24T00:43:13Z"
+      },
       "0xaa61790a12f3dbc64e0502f6f740e5e2424dcccc": {
         "at": "2026-11-22T15:53:14Z",
         "reason": "real_depth",
@@ -10644,12 +10667,6 @@
         "reason": "real_depth",
         "symbol": "FIRE",
         "until": "2026-11-23T16:03:16Z"
-      },
-      "0xacda15673f6455e17cb1823cfecee91cd87c9352": {
-        "at": "2026-11-22T00:38:16Z",
-        "reason": "real_depth",
-        "symbol": "USDA",
-        "until": "2026-11-23T00:38:16Z"
       },
       "0xacdc1768d5f9f69b1eeabb88967d838679eb0271": {
         "at": "2026-11-22T16:38:15Z",
@@ -11208,6 +11225,12 @@
         "reason": "real_depth",
         "symbol": "DRIVE",
         "until": "2026-11-23T16:23:15Z"
+      },
+      "0xb20000000000000000000074a97c7230e46358f2": {
+        "at": "2026-11-23T00:43:13Z",
+        "reason": "real_depth",
+        "symbol": "Ratspeak",
+        "until": "2026-11-24T00:43:13Z"
       },
       "0xb20000000000000000000074d5bf3f7b82c63ab1": {
         "at": "2026-11-22T12:38:15Z",
@@ -12415,6 +12438,12 @@
         "symbol": "WOR",
         "until": "2026-11-23T16:23:15Z"
       },
+      "0xce464bae3187e2cee48030eff3ea79448b35b340": {
+        "at": "2026-11-23T00:43:13Z",
+        "reason": "real_depth",
+        "symbol": "PTA",
+        "until": "2026-11-24T00:43:13Z"
+      },
       "0xce5ed973b03fe2624ac3f08220391c25138f05ce": {
         "at": "2026-11-22T13:43:16Z",
         "reason": "real_depth",
@@ -13599,6 +13628,12 @@
         "last_check": "2026-11-23T00:33:16Z",
         "symbol": "NOTF"
       },
+      "0x758d07e99c3aa37ffb781024cceed1c2150f8451": {
+        "checks": 1,
+        "first_seen": "2026-11-23T00:43:13Z",
+        "last_check": "2026-11-23T00:43:13Z",
+        "symbol": "UOGS"
+      },
       "0x7afe438411ee3959c7de6f7fb76bf9c769320ba3": {
         "checks": 5,
         "first_seen": "2026-11-22T23:28:15Z",
@@ -13958,7 +13993,7 @@
     "gate_restart": "BL-32",
     "machine_due": "",
     "max_dd_pct": {
-      "baseline": 176.6740934777587,
+      "baseline": 176.69579489946008,
       "desk": 9.811123120222184
     },
     "peak": {
