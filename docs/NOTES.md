@@ -2709,3 +2709,95 @@ Moved from CLAUDE.md section 11 on 2026-10-23 (BL-2 process cleanup). Wording is
 - Seals kept: no candle row and no price value printed; no return, price change, MAX or P&L computed; only start times
   and counts were read from the answer. backtest/liquid/snapshots/sealed/, backtest/candles/, outcomes.csv, tasks.csv and
   every BL-34 result or candidate file were not opened. Nothing from BL-39's spec was run (no run tool exists).
+
+## BL-39 run tool
+- tools/bl39.py + tests/test_bl39.py (the owner's BL-39 run-tool prompt, plan "go", amendments 1-6 and the run-gate
+  decision A, 2026-11-23). Build and tests only: no stage was run, the tool was never run on real data except --check
+  (hashes, meta headers and timestamps), and no price, return, MAX, pick or P&L was printed or computed from a committed
+  file. During the build one command that included `python -m tools.bl39 --run --stage 1` on the real files was
+  blocked by the session's permission check before it ran: nothing ran and no result folder exists. Stdlib only,
+  offline (no network module imported, test), never on the tick path; core/ and the workflows never name it (test).
+  Nothing under core/, adapters/, data/, site/ or .github/ changed; no threshold, schedule or config change.
+- Commands: `python -m tools.bl39 --check [--stage 1|2]` prints the six hashes, the meta headers' card / cut /
+  fetched_at / first_day / last_day, universe.json's cut / fetched_at / token count, the family check, the stage's
+  Mondays, the load window, the result folder, whether a run-approval line and a stage-1-pass line exist, the open
+  questions and whether a run is allowed now. `python -m tools.bl39 --run --stage 1` is THE run (refused today).
+- Refusals, in the owner's order (2026-11-23, A); refusal() returns the FIRST failing step, and every step runs before
+  any candle, ETH or universe file is opened beyond hashing (sha256() streams raw bytes into the hash, nothing parsed):
+  1 hashes, then the family check on the two spec data files; 2 the run-approval line; 3 (stage 2) the "stage 1 pass"
+  line; 4 no result folder; 5 no unresolved CHOICES. A test spies on builtins.open and io.open (pathlib and gzip go
+  through them) and makes every data reader raise: on every refusal path no candle, ETH or universe file is opened
+  outside hashing and the results tree is unchanged (also through the CLI). The steps:
+  - sha256 pins (PINS): the spec .md 5202982dbe90..., -family.json 374b70eaf450..., -fees.json 4a7318c95a96...,
+    eth-daily.jsonl.gz 82bc487a78a2..., and the survey files daily.jsonl.gz 5d14fcee0fca... and universe.json
+    09c301d0ed8b.... NOTES records no survey hash in its own text: NOTES "BL-46" says they are pinned in
+    tests/test_snapshot.py, and PINS uses those pins (test: the same strings).
+  - Family check, offline, on the committed files only (amendment 3, no GoPlus or RPC call): the family file's ads and
+    creator equal the spec's, it lists 39 tokens, the fee file's ADS-quoted tokens (other_token = ADS) are exactly the 39,
+    its family flags are the same 39, each member's pool is the fee file's pool, ADS itself is not in the fee file or in
+    universe.json; the set excluded = the 39 + ADS. Pinned by hash only, NOT re-derived: the GoPlus creator half of the
+    rule (creator_address = 0xd95a...9db9; the family file's "checks" record 39 matches and 1 no-answer).
+  - Run gate (the owner, 2026-11-23, A): --run --stage N is refused unless docs/DECISIONS.md has a table row whose card
+    cell is BL-39, whose decision cell starts with "stage N run approved" (case ignored) and which is marked "(the
+    owner)". Stage 1's approval does not open stage 2, and a "stage 1 pass" line is not an approval.
+  - Stage 2: also needs a row of the same form starting "stage 1 pass".
+  - CHOICES: every open spec question below is a key, all None (unresolved); the run is refused while any is unresolved
+    or holds a value that is not one of its built options (an option listed as not built counts as unresolved).
+  - Run once: a stage whose folder backtest/results/bl39-max-momentum-v2.1-stage<N>/ exists is refused; no override
+    flag; write_result() creates the folder with mkdir (no exist_ok), so a second write fails too. A run writes
+    summary.json + legs.csv before it prints anything; there is no dry run. The spec's rerun path ("an owner rerun line in
+    DECISIONS, logged as a rerun") is not built: Q12.
+- Seal (amendment 1, owner A): read_daily() streams each file line and keeps full candles that start before
+  full_before; from full_before to open_until only the open (high, low, close and volume set to None); every later
+  candle dropped as the line is parsed. Stage 1: full before 2026-09-07, open only 2026-09-07, nothing after, for every
+  token and for ETH. A leg-week candle that is open-only raises SealError (test). Stage 2 (not runnable today): full
+  before 2026-11-02, opens 2026-11-02 .. 11-05 for the last legs' 3-day search. tools/candles.py read() is not reused
+  because it hands over every candle in a file.
+- What the code does, block by block (each block quotes its spec line): universe at m (pool created <= m - 31 d, 31
+  candles in [m - 31 d, m), 30-day median volume >= 50k, every day of the last 7 >= 10k, family out; a close <= 0 is a
+  missing number); MAX over the 30 close-to-close returns; k = ceil(n / 10), ties by lower address, stopped tokens not
+  eligible (Q1) with the slot to the next by MAX; legs from the m open (no candle = no_fill, counted, not a leg); stop
+  -30% on every leg-week candle incl. day one at min(level, open, close); end at the m + 7 d open, else the first open
+  in the next 3 days, else the last close (exit_gap); stage 1's last Monday no search; roll at the m + 7 d open with no
+  friction either side; a missing roll candle (Q2) = a real sell and a no_fill; no roll across the stage end. Friction
+  per real buy or sell = pool fee + each hop fee (unknown = 1% each) + 0.5%, applied as core/friction.py's fill
+  convention (buy at price x (1 + f), sell at price x (1 - f)). Benchmark = every universe token, same rules, gross.
+  Hold-ETH per leg (open to open; close for a stop or a last-close exit_gap); a missing ETH number refuses. Pass tests
+  1-5, the asymmetric inconclusive rule, the drawdown-only outcome, and every "always reported" line.
+- Open questions (CHOICES, all unresolved; every option built and tested on its own, not every combination):
+
+  | key | spec text | options |
+  |---|---|---|
+  | Q1 | "A token stopped in the week before m ... is not eligible" | pick_leg (its pick leg stopped) / any_leg (any leg of it, incl. its benchmark leg) |
+  | Q2 | ROLL "the old leg ends by the exit_gap rule" | search (the whole LEG fallback: next 3 days' open, else last close) / close (the last close at once) |
+  | Q3 | PASS (3) "the mean of (P_w - B_w)" | picked_weeks (weeks with a pick leg only) / zero_diff (others count 0) / cash_zero (others count P_w = 0) |
+  | Q4 | tests 1 AND 5 fail, 2-4 pass | inconclusive / drawdown (not passed: drawdown) |
+  | Q5 | STOP "the entry fill for a new position" | open / fill_picks (open + buy friction, pick legs; benchmark at the open) / fill_both |
+  | Q6 | "ETH 7-day return before m" | open_to_open (m - 7 d -> m) / close_to_close (m - 8 d -> m - 1 d) / open_to_close (m - 7 d open -> m - 1 d close) |
+  | Q7 | "top third of the universe by 30-day volatility" | simple_ceil / simple_floor / log_ceil / log_floor (stdev of simple or log returns; third rounded up or down) |
+  | Q8 | "legs on unknown-fee, hook and changeable-fee pools" | pool_only (pool unknown, non-zero hook, may_differ) / pool_or_hop (also an unknown hop) |
+  | Q9 | "the BL-45 measured-cost line" | replace_metered / metered_legs_only / side_by_side (amendment 4: fixtures only) |
+  | Q9s | the measured cost's source for the real run | none built: which BL-45 file and statistic is a later story's; backtest/costs/ was not opened |
+  | Q10 | "picks that joined the universe in the last 7 days" on Jun 15 (Jun 8 needs candles from May 8) | compute / na_first |
+  | Q11 | tests 2 and 4 with no leg, or <= 2 legs for "without the top 2" | fail / not_evaluable (inconclusive when 1 fails too) |
+  | Q12 | RUN "A second run of a stage needs an owner rerun line in DECISIONS, is logged as a rerun and never replaces the first result" | no_rerun (built: no rerun path in this tool, the run-once guard has no override, any rerun is its own story) / decisions_rerun (not built: a row "stage N rerun approved ... (the owner)" lets a second run write its own rerun folder, logged as a rerun, the first result never replaced) |
+
+  Sample vs population stdev is not a question (they rank the same over 30 returns). Readings taken as clear and
+  flagged for the review: the leg's candles are those in [m, m + 7 d) (a later exit only happens over missing days);
+  gross = from the m open; a booked day = the exit candle's day; "joined" = not in the universe at m - 7 d; "B_w without
+  the 0.01-0.05% pools" = the deepest pool's fee tier in [0.01, 0.05], an unknown fee kept; v1's line = 4% per side on
+  every leg with rolls as a real sell and buy; "friction at half / double" scales the whole per-side %; "picks whose MAX
+  day is the last day" includes a tie on the last day; drawdown against the running peak from 50 USD.
+- Process items in the spec's RUN line that the tool does not enforce: "BL-38's spec is frozen before BL-39 stage 1 is
+  read, or BL-38 tests only data after CUT" (a process rule for the owner and chat).
+- Tests: tests/test_bl39.py, 111, synthetic fixtures only (amendment 5: committed backtest/ files are hashed, never
+  parsed): the refusal order with the open() spy (each step, the first failing step wins, the CLI), the run-gate line
+  format, hash refusals for each of the six files, a missing file, stage-2 refusal and the pass-line format, run once
+  and write once, unresolved choices, the family check (each mismatch), the Sep 7 seal (fails if any other Sep 7 field
+  or any later timestamp gets through, for tokens and ETH), each universe rule, MAX, k and ties, leg start, no_fill,
+  exit_gap (stage 2 search, the stage 1 boundary, 3 days only), roll without friction and v1's re-buy, the stop incl.
+  day one, gap and exact level, friction (route, unknown 1%, half, double), benchmark, hold-ETH, pass tests 1-5, test 2
+  without the top 2, every outcome, each CHOICES option, every always-reported line, a full synthetic stage 1 (load ->
+  evaluate -> write), isolation. Seven hand mutations (stop level, k rounding, the Sep 7 window, ties, the 0.5%, roll
+  friction, median vs mean) each fail at least one test; two more (refusal() parsing universe.json, or gunzipping
+  daily.jsonl.gz) each fail 6 spy tests. Full suite 668 pass on 3.13 (557 before).

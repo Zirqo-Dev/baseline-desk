@@ -73,6 +73,11 @@ SNAPSHOT tools/snapshot.py          snapshot.yml every Monday (BL-46): the BL-39
                                    pool identity, reserve and 24 h volume only (no price, no return), young pools kept
                                    -> backtest/liquid/snapshots/<UTC day>.json.gz (no sealed address) + sealed/<UTC day>.json.gz
                                    (the seal's side file, read by nothing until a story after BL-34's run), never overwritten
+BL39     tools/bl39.py              by hand only (BL-39): the spec v2.1 run tool, offline, stdlib; sha256 pins on the spec, its
+                                   data files, eth-daily and the survey files; stage 1 loads only the 2026-09-07 open and nothing
+                                   later; --run --stage N only after a DECISIONS "stage N run approved" line (the owner), stage 2 also
+                                   after "stage 1 pass"; each stage once -> backtest/results/; --check prints hashes and
+                                   timestamps only; refuses while CHOICES (open spec questions) is unresolved
 TICK     core/tick.py              one run: roll day (+report, +machine cards, then twin restart once + weekly refills),
                                    exits (desk, baseline), scan -> verify -> buy, baseline buy,
                                    outcome labels (own try), live.json (own try, not on a crash), alerts (own try, also on a crash),
@@ -81,12 +86,14 @@ TICK     core/tick.py              one run: roll day (+report, +machine cards, t
 Folders:
 - core/: config.py, book.py, desk.py, verify.py, leads.py, exits.py, friction.py, tick.py, baseline.py, report.py, labels.py, live.py, alerts.py
 - tools/: replay.py (BL-29, offline replay by hand), backtest.py and candles.py (BL-33), liquid.py (BL-39 part 1),
-  costs.py + costprobe.sol + costprobe.hex (BL-45), snapshot.py (BL-46); never imported by core/, never on the tick path
+  costs.py + costprobe.sol + costprobe.hex (BL-45), snapshot.py (BL-46), bl39.py (BL-39 run tool); never imported by core/,
+  never on the tick path
 - backtest/: candles/ (<sight-day>.jsonl.gz written once when its 7-day windows closed, <day>.open.jsonl.gz until then,
-  eth-<day>.jsonl.gz, twin-validation.jsonl.gz), specs/ (bl34-survivor-momentum-v3.md + .json, frozen; v1 and v2 superseded, never run), results/<run>/
-  (summary.json, trades.csv), holdout.lock.json (BL-33; it also keeps the pass tests, BL-43), status.json (BL-43: which
+  eth-<day>.jsonl.gz, twin-validation.jsonl.gz), specs/ (bl34-survivor-momentum-v3.md + .json, frozen; v1 and v2 superseded, never run;
+  bl39-max-momentum-v2.1.md, -family.json and -fees.json, frozen, BL-39), results/<run>/
+  (summary.json, trades.csv; BL-39: bl39-max-momentum-v2.1-stage<N>/ summary.json + legs.csv, written once), holdout.lock.json (BL-33; it also keeps the pass tests, BL-43), status.json (BL-43: which
   candle files exist + the twin-validation totals, for the site), liquid/ (BL-39 part 1: universe.json + daily.jsonl.gz,
-  every candle day ended before CUT 2026-11-08; liquid/snapshots/<UTC day>.json.gz, BL-46, forward records, no price,
+  every candle day ended before CUT 2026-11-08; eth-daily.jsonl.gz, BL-39's ETH series, same CUT; liquid/snapshots/<UTC day>.json.gz, BL-46, forward records, no price,
   and liquid/snapshots/sealed/<UTC day>.json.gz, the seal's side file, read by nothing),
   costs/ (BL-45: tokens.json frozen, window.json, <UTC day>.csv);
   never under data/, never read by core/ or the tick
@@ -306,7 +313,7 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
   terminal and Paper equity card byte-identical (screenshots and sha256 pins). Telegram daily adds "<book> refilled +$x
   (not P&L)" (from state.json report.equity), "Gate B since ... · random N closes · kill at 200" and a per-trade line per
   book; every BL-3 line stays; no BL-34 line (core/ never reads backtest/, test) (docs/NOTES.md "BL-43").
-  Tests: stdlib unittest, `python -m unittest` (557 pass on 3.13.18).
+  Tests: stdlib unittest, `python -m unittest` (668 pass on 3.13.18).
 - cron-job.org token "baseline-desk cron" EXPIRES Thu 2027-01-21: renew by early January or the desk stops silently.
 - Technical detail per card, GoPlus diagnosis, BL-20 budget and full open items: docs/NOTES.md.
 - Open items:
@@ -452,12 +459,21 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
     183 daily candles 2026-05-09 .. 2026-11-07, 0 missing; BL-39's window Jun 8 .. Nov 7 153 of 153. Stored unread: no
     price printed, no return computed; BL-39 reads only the days its spec names, older days kept unread for a later,
     separately frozen spec (docs/NOTES.md "BL-39 ETH daily").
-  - Open item (2026-11-20): section 4's backtest/specs/ list does not yet name the BL-39 v2.1 files
-    (bl39-max-momentum-v2.1.md, -family.json, -fees.json), and its backtest/liquid/ list does not name eth-daily.jsonl.gz;
-    a later docs touch.
-- Next step: BL-39: a later story builds the BL-39 run tool (it refuses any spec sha256 other than the frozen .md's);
-  the daily ETH file is in place; stage 1 runs once; stage 2 only after a DECISIONS "stage 1 pass" line. BL-38's spec is
-  frozen before BL-39 stage 1 is read, or BL-38 tests only data after CUT.
+  - BL-39 run tool (2026-11-23, build and tests only, no run; the owner's prompt, go, amendments 1-6 and run gate A): tools/bl39.py
+    encodes spec v2.1 block by block (each quotes its spec line), offline and stdlib; refuses unless the spec, -family,
+    -fees, eth-daily and the survey files (daily.jsonl.gz, universe.json: the tests/test_snapshot.py pins, NOTES names no
+    hash itself) match their sha256; family check offline on the committed files (the 39 = the fee file's ADS-quoted
+    tokens, + ADS; the GoPlus creator half pinned by hash only); stage 1 loads only the 2026-09-07 open of each token and
+    ETH and nothing later. Refusal order, the first failing step wins, before any candle, ETH or universe file is opened
+    beyond hashing (open() spy test): hashes (+ family check) -> a DECISIONS BL-39 row "stage N run approved" (the
+    owner) -> for stage 2 a row "stage 1 pass" -> no result folder (no override) -> no unresolved CHOICES. 13 open spec
+    questions (Q1-Q12 + Q9s; Q9s the BL-45 cost source, Q12 the spec's rerun path, both with their DECISIONS-line option
+    not built) sit in CHOICES, all unresolved; the real run refuses until they are filled. --check on the real files:
+    6 hashes ok, family check ok, 12 Mondays Jun 15 .. Aug 31, run refused (no run-approval line) (docs/NOTES.md "BL-39 run tool").
+- Next step: BL-39: a fresh-context review of the run tool (tools/bl39.py) proposes answers to the open questions
+  (CHOICES Q1-Q12, Q9s; docs/NOTES.md "BL-39 run tool"); the owner decides; a small story fills CHOICES and records the
+  answers in DECISIONS; then the one stage 1 run as its own story, after the owner's DECISIONS row "stage 1 run approved". Stage 2 only after a DECISIONS "stage 1 pass" line.
+  BL-38's spec is frozen before BL-39 stage 1 is read, or BL-38 tests only data after CUT.
   BL-46: snapshot.yml runs automatic every Monday 00:37 UTC; next run Nov 23.
   How the sealed snapshot files (backtest/liquid/snapshots/sealed/) are opened is a later story, after BL-34's holdout
   run; until then nothing reads them.
@@ -472,7 +488,7 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
   done, counts only; no return has been computed from backtest/liquid/); the execution design is researched in
   parallel (no wallet code). BL-38..BL-42 are candidates only (DECISIONS 2026-11-04). The owner checks the deployed site
   and the first Telegram daily summary with the BL-43 lines.
-- Last updated: 2026-11-20.
+- Last updated: 2026-11-23.
 
 ## 12. Glossary
 - Lead: a token the scanner found. Survivor: a lead that passed every hard skip.
