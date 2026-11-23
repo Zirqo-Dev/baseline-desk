@@ -1,6 +1,6 @@
 {
   "baseline": {
-    "cash": 44.69507958716856,
+    "cash": 39.69507958716856,
     "cooldown": {
       "a:0x53f6d580b50c03e2a27d230d98e8b2ef6254aeac": "2026-11-24T00:48:16Z",
       "a:0x758d07e99c3aa37ffb781024cceed1c2150f8451": "2026-11-24T01:18:14Z",
@@ -32,6 +32,22 @@
         "qty": 22491.761282341395,
         "symbol": "MARSBASE"
       },
+      "0x24860d593dee8e36ee53d049f19080c7d75105bb": {
+        "cost_usd": 5.0,
+        "entry_fill": 8.136943551496704e-07,
+        "entry_intended": 7.898e-07,
+        "entry_liq_usd": 56048.42,
+        "entry_qliq": 19710,
+        "entry_ts": "2026-11-23T02:18:16Z",
+        "ladder_done": [],
+        "last_price": 7.898e-07,
+        "launchpad": "other",
+        "orig_qty": 6144813.428231665,
+        "pair": "0xce90ea5ee81e2702e1c2983385788a61e7e380711dcef5608f54a48c5fb30596",
+        "peak_price": 7.898e-07,
+        "qty": 6144813.428231665,
+        "symbol": "USOI"
+      },
       "0xa97d8577fef865b9717b7bc4102df9a24c940080": {
         "cost_usd": 5.0,
         "entry_fill": 5.6482339952106666e-05,
@@ -53,7 +69,7 @@
     },
     "refill_week": "2026-W48",
     "refills_usd": 106.05022822478631,
-    "ticks_since_buy": 12
+    "ticks_since_buy": 0
   },
   "desk": {
     "cash": 50.0,
@@ -1676,6 +1692,14 @@
         "sight_qliq": 13882,
         "symbol": "Antropic"
       },
+      "0x21a1044c8d168a843ece719ec41d302dc4f6e1e9": {
+        "done": [],
+        "first_price": 1.28e-05,
+        "first_seen": "2026-11-23T02:18:16Z",
+        "sight_pair": "0x853afa73fd979b1f21d6c89d7586c117b9c71a95",
+        "sight_qliq": 71029,
+        "symbol": "SI"
+      },
       "0x223b3bc5b663002b7480de38f6c040d2aa42fb37": {
         "done": [
           1
@@ -2464,17 +2488,6 @@
         "sight_qliq": 3430,
         "symbol": "National Oil Truts Fund"
       },
-      "0x32cebf836c4f76eb53a2703422947e2ebd7e434a": {
-        "done": [
-          1,
-          6
-        ],
-        "first_price": 0.7725,
-        "first_seen": "2026-11-22T02:18:16Z",
-        "sight_pair": "0xf2c065952f9e162a3954cd598eeca218e2de19b0928363c135f5ac752c299046",
-        "sight_qliq": 190590,
-        "symbol": "National Oil Truts Fund"
-      },
       "0x336e2f84a7f845f206c68efdd70f12e748b1a00e": {
         "done": [
           1,
@@ -2744,17 +2757,6 @@
         "sight_pair": "0xbc44f8c31589d2be753fcc458b8f806abf3372c3af753cc7aa327d1de8ca48b4",
         "sight_qliq": 172,
         "symbol": "UDO\u200aF"
-      },
-      "0x3948fe75e274cffa6cb2ceea12e260a6fc4920d5": {
-        "done": [
-          1,
-          6
-        ],
-        "first_price": 9.051e-05,
-        "first_seen": "2026-11-22T02:18:16Z",
-        "sight_pair": "0x0b5b87df112401673959e2189953e75f39cc14e2b14cd0702eeb7adef9226979",
-        "sight_qliq": 24,
-        "symbol": "DRV"
       },
       "0x396895cdc537b068340f795c08b28b0ecf906dbb": {
         "done": [
@@ -7115,12 +7117,6 @@
         "symbol": "BIDEN",
         "until": "2026-11-23T17:48:23Z"
       },
-      "0x2013c916c6fe8f1e2df31774f6b0fcdaedaf1d0e": {
-        "at": "2026-11-22T02:18:16Z",
-        "reason": "real_depth",
-        "symbol": "1KTO100M",
-        "until": "2026-11-23T02:18:16Z"
-      },
       "0x2016c11508f8b4cf32f5195187eff0aec4ac7ff3": {
         "at": "2026-11-22T10:43:13Z",
         "reason": "real_depth",
@@ -7306,6 +7302,12 @@
         "reason": "real_depth",
         "symbol": "USGOS",
         "until": "2026-11-23T14:38:16Z"
+      },
+      "0x24860d593dee8e36ee53d049f19080c7d75105bb": {
+        "at": "2026-11-23T02:18:16Z",
+        "reason": "goplus_timeout",
+        "symbol": "USOI",
+        "until": "2026-11-24T02:18:16Z"
       },
       "0x24c2900c925539b078db338b1d7bd64e0f545b01": {
         "at": "2026-11-22T14:18:22Z",
@@ -8098,12 +8100,6 @@
         "reason": "real_depth",
         "symbol": "UDO\u200aF",
         "until": "2026-11-23T11:38:16Z"
-      },
-      "0x3948fe75e274cffa6cb2ceea12e260a6fc4920d5": {
-        "at": "2026-11-22T02:18:16Z",
-        "reason": "real_depth",
-        "symbol": "DRV",
-        "until": "2026-11-23T02:18:16Z"
       },
       "0x396895cdc537b068340f795c08b28b0ecf906dbb": {
         "at": "2026-11-22T11:23:13Z",
@@ -9173,12 +9169,6 @@
         "symbol": "KellyClaude",
         "until": "2026-11-23T09:48:22Z"
       },
-      "0x65e419b82acf77eeaa304d1fa36851e4f1eafb74": {
-        "at": "2026-11-22T02:18:16Z",
-        "reason": "real_depth",
-        "symbol": "USOI",
-        "until": "2026-11-23T02:18:16Z"
-      },
       "0x662ca64eeae9ee4b35fc7c7dae36406852d21310": {
         "at": "2026-11-22T04:03:13Z",
         "reason": "real_depth",
@@ -9370,6 +9360,12 @@
         "reason": "real_depth",
         "symbol": "KNTQ",
         "until": "2026-11-23T11:33:14Z"
+      },
+      "0x71d490d8b7719ef9920ab8597f07698348ed39b8": {
+        "at": "2026-11-23T02:18:16Z",
+        "reason": "real_depth",
+        "symbol": "SNP500",
+        "until": "2026-11-24T02:18:16Z"
       },
       "0x722d1e7b0b38a9c53420ae7e112cfb569d1094b9": {
         "at": "2026-11-23T01:03:15Z",
@@ -9964,6 +9960,12 @@
         "reason": "real_depth",
         "symbol": "PI",
         "until": "2026-11-23T04:18:18Z"
+      },
+      "0x8e3131438f6294f6f73df5dbd78e0d0edfa49b9f": {
+        "at": "2026-11-23T02:18:16Z",
+        "reason": "real_depth",
+        "symbol": "SPACEX",
+        "until": "2026-11-24T02:18:16Z"
       },
       "0x8e5b78239fc015711f41212f92b7af47dac72915": {
         "at": "2026-11-22T06:13:18Z",
@@ -10979,12 +10981,6 @@
         "symbol": "CCPD",
         "until": "2026-11-23T10:38:15Z"
       },
-      "0xb2000000000000000000003f12e5fc780c430a18": {
-        "at": "2026-11-22T02:18:16Z",
-        "reason": "real_depth",
-        "symbol": "wstDIEM",
-        "until": "2026-11-23T02:18:16Z"
-      },
       "0xb20000000000000000000042eb1d37943eaa0e01": {
         "at": "2026-11-22T21:28:15Z",
         "reason": "real_depth",
@@ -11254,6 +11250,12 @@
         "reason": "real_depth",
         "symbol": "B3OS",
         "until": "2026-11-23T13:18:20Z"
+      },
+      "0xb200000000000000000000812d545f1e58a1b4f4": {
+        "at": "2026-11-23T02:18:16Z",
+        "reason": "missing:symbol",
+        "symbol": "",
+        "until": "2026-11-24T02:18:16Z"
       },
       "0xb20000000000000000000081b49fdfda818f8696": {
         "at": "2026-11-22T04:48:14Z",
@@ -11603,18 +11605,6 @@
         "symbol": "RYDE4",
         "until": "2026-11-23T07:53:13Z"
       },
-      "0xb200000000000000000000ebc28bd494e0f712b5": {
-        "at": "2026-11-22T02:18:16Z",
-        "reason": "real_depth",
-        "symbol": "ATX",
-        "until": "2026-11-23T02:18:16Z"
-      },
-      "0xb200000000000000000000ec8315de60973b1859": {
-        "at": "2026-11-22T02:18:16Z",
-        "reason": "real_depth",
-        "symbol": "CITYZEN",
-        "until": "2026-11-23T02:18:16Z"
-      },
       "0xb200000000000000000000ef8942e9c82d729d96": {
         "at": "2026-11-23T00:18:16Z",
         "reason": "real_depth",
@@ -11680,12 +11670,6 @@
         "reason": "real_depth",
         "symbol": "PENGU",
         "until": "2026-11-23T05:18:21Z"
-      },
-      "0xb200000000000000000000fed76ba3104dcdb345": {
-        "at": "2026-11-22T02:18:16Z",
-        "reason": "real_depth",
-        "symbol": "MAKE",
-        "until": "2026-11-23T02:18:16Z"
       },
       "0xb200000000000000000000ff71a9c589b419cd57": {
         "at": "2026-11-22T07:53:13Z",
@@ -12052,12 +12036,6 @@
         "reason": "real_depth",
         "symbol": "INFERO",
         "until": "2026-11-23T21:33:15Z"
-      },
-      "0xc118369494d7b9bdf2f603a8733a16b3a51443a1": {
-        "at": "2026-11-22T02:18:16Z",
-        "reason": "real_depth",
-        "symbol": "jeje",
-        "until": "2026-11-23T02:18:16Z"
       },
       "0xc17b313240ddde5c14ee7dd27f2939c59c27ebf4": {
         "at": "2026-11-22T20:03:15Z",
@@ -13031,12 +13009,6 @@
         "symbol": "ATX",
         "until": "2026-11-23T11:03:17Z"
       },
-      "0xe88872d8f5e0f57a92ba1afc99d732b191316e79": {
-        "at": "2026-11-22T02:18:16Z",
-        "reason": "real_depth",
-        "symbol": "SPACEX",
-        "until": "2026-11-23T02:18:16Z"
-      },
       "0xe98eab315dc58ab3db28ca122ff6e2d37916df19": {
         "at": "2026-11-22T13:38:16Z",
         "reason": "real_depth",
@@ -13549,28 +13521,28 @@
       }
     },
     "watch": {
-      "0x24860d593dee8e36ee53d049f19080c7d75105bb": {
-        "checks": 11,
-        "first_seen": "2026-11-22T23:03:17Z",
-        "last_check": "2026-11-23T01:58:22Z",
-        "symbol": "USOI"
+      "0x21a1044c8d168a843ece719ec41d302dc4f6e1e9": {
+        "checks": 1,
+        "first_seen": "2026-11-23T02:18:16Z",
+        "last_check": "2026-11-23T02:18:16Z",
+        "symbol": "SI"
       },
       "0x6f203a042e8c3f7eaede8082b881da0a81bd4760": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-23T02:03:16Z",
-        "last_check": "2026-11-23T02:03:16Z",
+        "last_check": "2026-11-23T02:18:16Z",
         "symbol": "SOLGPT"
       },
       "0x7afe438411ee3959c7de6f7fb76bf9c769320ba3": {
-        "checks": 10,
+        "checks": 11,
         "first_seen": "2026-11-22T23:28:15Z",
-        "last_check": "2026-11-23T01:58:22Z",
+        "last_check": "2026-11-23T02:18:16Z",
         "symbol": "BLOCKTRONICS"
       },
       "0x81d7ce1fb3a123d80f463b471a5b2f2e95e213a0": {
-        "checks": 8,
+        "checks": 9,
         "first_seen": "2026-11-23T00:08:14Z",
-        "last_check": "2026-11-23T01:58:22Z",
+        "last_check": "2026-11-23T02:18:16Z",
         "symbol": "VDINO"
       }
     }
@@ -13920,7 +13892,7 @@
     "gate_restart": "BL-32",
     "machine_due": "",
     "max_dd_pct": {
-      "baseline": 185.07205254518055,
+      "baseline": 185.56388693099734,
       "desk": 9.811123120222184
     },
     "peak": {
