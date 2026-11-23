@@ -46,9 +46,9 @@
         "entry_qliq": 38912,
         "entry_ts": "2026-11-23T05:38:15Z",
         "ladder_done": [],
-        "last_liq_usd": 96750.79,
-        "last_price": 0.0002317,
-        "last_qliq": 42014,
+        "last_liq_usd": 96073.68,
+        "last_price": 0.0002289,
+        "last_qliq": 41555,
         "launchpad": "other",
         "orig_qty": 23945.552111307665,
         "pair": "0x0c26a469b4aac41a321869dda4c141cd23a8acfc5a23f45026ef68319987a64b",
@@ -77,7 +77,7 @@
     },
     "refill_week": "2026-W48",
     "refills_usd": 106.05022822478631,
-    "ticks_since_buy": 5
+    "ticks_since_buy": 6
   },
   "desk": {
     "cash": 50.0,
@@ -927,7 +927,8 @@
       },
       "0x11b37ee38aabb52a54240a515554b64572c04d7e": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 5.463e-06,
         "first_seen": "2026-11-23T00:08:14Z",
@@ -3765,6 +3766,14 @@
         "sight_qliq": 2290,
         "symbol": "FOTF"
       },
+      "0x7a70bb2637fb903c62d22aa5f3b7816560d431db": {
+        "done": [],
+        "first_price": 6.253e-06,
+        "first_seen": "2026-11-23T06:08:14Z",
+        "sight_pair": "0x92816019feaddbb9aa4f881782a3ca336c2f769e",
+        "sight_qliq": 26737,
+        "symbol": "PUBLIC"
+      },
       "0x7ac063e43e5743f90500e68a134efddf6c690a43": {
         "done": [
           1,
@@ -3843,7 +3852,8 @@
       },
       "0x81d7ce1fb3a123d80f463b471a5b2f2e95e213a0": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 6.093e-05,
         "first_seen": "2026-11-23T00:08:14Z",
@@ -6058,6 +6068,12 @@
         "symbol": "OFDC",
         "until": "2026-11-23T23:48:16Z"
       },
+      "0x0523dbcd2a99626f179a5a2112421ac4a87f4b73": {
+        "at": "2026-11-23T06:08:14Z",
+        "reason": "real_depth",
+        "symbol": "XTruth Oil",
+        "until": "2026-11-24T06:08:14Z"
+      },
       "0x053ac9f89a342d03e6c1a1fa8c8f0f4766237dd5": {
         "at": "2026-11-22T09:18:20Z",
         "reason": "real_depth",
@@ -6981,6 +6997,12 @@
         "reason": "real_depth",
         "symbol": "GOAF",
         "until": "2026-11-24T05:48:17Z"
+      },
+      "0x1c5fe76a44046ba72dff66789ec5a86e8be3b0a8": {
+        "at": "2026-11-23T06:08:14Z",
+        "reason": "real_depth",
+        "symbol": "NUCLEAR U.S RESERVE",
+        "until": "2026-11-24T06:08:14Z"
       },
       "0x1c7c2ea6c44fd13eb7443b4c358135efe216eee6": {
         "at": "2026-11-22T15:08:22Z",
@@ -9087,6 +9109,12 @@
         "reason": "real_depth",
         "symbol": "USPR POWER",
         "until": "2026-11-23T20:18:17Z"
+      },
+      "0x618fea8b2441cc218cb56c0c4a195a213953afac": {
+        "at": "2026-11-23T06:08:14Z",
+        "reason": "real_depth",
+        "symbol": "777",
+        "until": "2026-11-24T06:08:14Z"
       },
       "0x6190bcf67953a872dc98b3c82bb1fce0a1a6b3e2": {
         "at": "2026-11-22T11:28:15Z",
@@ -12748,12 +12776,6 @@
         "symbol": "XCHAT",
         "until": "2026-11-23T19:18:20Z"
       },
-      "0xdac322635a56a2b7e9adc2b7cf25f479c0adaa49": {
-        "at": "2026-11-22T06:03:21Z",
-        "reason": "real_depth",
-        "symbol": "MEOW",
-        "until": "2026-11-23T06:03:21Z"
-      },
       "0xdadf6c764f99efc2fe589015fc20658a0fa7127e": {
         "at": "2026-11-22T10:33:15Z",
         "reason": "real_depth",
@@ -12849,12 +12871,6 @@
         "reason": "real_depth",
         "symbol": "AOP",
         "until": "2026-11-24T03:43:13Z"
-      },
-      "0xdd07efc6a0f67a340f696e8a64d034c88f19c0f3": {
-        "at": "2026-11-22T06:03:21Z",
-        "reason": "real_depth",
-        "symbol": "CHUBBY",
-        "until": "2026-11-23T06:03:21Z"
       },
       "0xdd2de6529320be071c170711d62d51ad38d59c59": {
         "at": "2026-11-23T03:43:13Z",
@@ -13632,23 +13648,11 @@
       }
     },
     "watch": {
-      "0x0523dbcd2a99626f179a5a2112421ac4a87f4b73": {
-        "checks": 1,
-        "first_seen": "2026-11-23T05:48:17Z",
-        "last_check": "2026-11-23T05:48:17Z",
-        "symbol": "XTruth Oil"
-      },
       "0x0dbf17467cb67ba2506626070f8c44aed6479d68": {
         "checks": 2,
         "first_seen": "2026-11-23T05:43:14Z",
         "last_check": "2026-11-23T05:58:15Z",
         "symbol": "CLAUDIA"
-      },
-      "0x1c5fe76a44046ba72dff66789ec5a86e8be3b0a8": {
-        "checks": 1,
-        "first_seen": "2026-11-23T05:48:17Z",
-        "last_check": "2026-11-23T05:48:17Z",
-        "symbol": "NUCLEAR U.S RESERVE"
       },
       "0x408362a405d6d72c9b6e3993dde7a01cbd51ee57": {
         "checks": 7,
@@ -13661,6 +13665,12 @@
         "first_seen": "2026-11-23T03:58:15Z",
         "last_check": "2026-11-23T05:53:16Z",
         "symbol": "VDINO"
+      },
+      "0x7a70bb2637fb903c62d22aa5f3b7816560d431db": {
+        "checks": 1,
+        "first_seen": "2026-11-23T06:08:14Z",
+        "last_check": "2026-11-23T06:08:14Z",
+        "symbol": "PUBLIC"
       },
       "0x91b27356d87f713dd3f482441352867aa5c09633": {
         "checks": 1,
