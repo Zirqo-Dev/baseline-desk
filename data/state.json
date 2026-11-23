@@ -1,6 +1,6 @@
 {
   "baseline": {
-    "cash": 0.5069789688682587,
+    "cash": 45.0,
     "cooldown": {
       "a:0x22d1223b6ffe267c11ad2acdd2799e69498dada3": "2026-11-20T07:43:15Z",
       "a:0x4fe70b7bab657f23fffa5788dee9db3ca9865de8": "2026-11-20T03:28:14Z",
@@ -17,8 +17,8 @@
       "s:VI": "2026-11-20T03:08:16Z",
       "s:VICE6": "2026-11-20T03:28:14Z"
     },
-    "day": "2026-11-22",
-    "day_start_value": 11.405641243534047,
+    "day": "2026-11-23",
+    "day_start_value": 60.89866227466579,
     "halted_day": "",
     "positions": {
       "0x0b455a80139f9642bb47f2cb5afabbd8809a24af": {
@@ -42,6 +42,22 @@
         "qty": 22491.761282341395,
         "symbol": "MARSBASE"
       },
+      "0x53f6d580b50c03e2a27d230d98e8b2ef6254aeac": {
+        "cost_usd": 5.0,
+        "entry_fill": 0.10107625791932182,
+        "entry_intended": 0.09813,
+        "entry_liq_usd": 718588.26,
+        "entry_qliq": 208086,
+        "entry_ts": "2026-11-23T00:03:15Z",
+        "ladder_done": [],
+        "last_price": 0.09813,
+        "launchpad": "other",
+        "orig_qty": 49.46760102645427,
+        "pair": "0x460745edc65ec334fb1503dbd1c73d6da8ed6c503e4d7864e2284e3fbcd31819",
+        "peak_price": 0.09813,
+        "qty": 49.46760102645427,
+        "symbol": "NOTF"
+      },
       "0xa97d8577fef865b9717b7bc4102df9a24c940080": {
         "cost_usd": 5.0,
         "entry_fill": 5.6482339952106666e-05,
@@ -61,17 +77,17 @@
         "symbol": "Zelleinu"
       }
     },
-    "refill_week": "2026-W47",
-    "refills_usd": 56.55720719365456,
-    "ticks_since_buy": 850
+    "refill_week": "2026-W48",
+    "refills_usd": 106.05022822478631,
+    "ticks_since_buy": 0
   },
   "desk": {
     "cash": 50.0,
-    "day": "2026-11-22",
+    "day": "2026-11-23",
     "day_start_value": 50.0,
     "halted_day": "",
     "positions": {},
-    "refill_week": "2026-W47",
+    "refill_week": "2026-W48",
     "refills_usd": 2.3922314211277893
   },
   "labels": {
@@ -99,7 +115,8 @@
       },
       "0x00e4940d792ceedc30396669b109829d0ceb9d95": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 9.625e-05,
         "first_seen": "2026-11-22T18:03:14Z",
@@ -1825,7 +1842,8 @@
       },
       "0x24c898a1bc4e12df371670177f3b4ee491f38d72": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 0.0001017,
         "first_seen": "2026-11-22T18:03:14Z",
@@ -2542,17 +2560,6 @@
         "sight_qliq": 2,
         "symbol": "WLFI"
       },
-      "0x35a7750be316df76c1519e96cb1e14a5e0e2a081": {
-        "done": [
-          1,
-          6
-        ],
-        "first_price": 4.577e-06,
-        "first_seen": "2026-11-22T00:03:15Z",
-        "sight_pair": "0xe2e5fc8e132ec83bce989fbbb9bf9b4500d2f4b0",
-        "sight_qliq": 25920,
-        "symbol": "UDOF"
-      },
       "0x35a7d5cd10e7ebddc57275e4389fd620646f1b19": {
         "done": [
           1,
@@ -2981,6 +2988,14 @@
         "sight_pair": "0xf78f45e1c188376f2ab4cc1db9c580c4af56a892972eee3ba294656c1c44d26c",
         "sight_qliq": 0,
         "symbol": "USWS"
+      },
+      "0x3e3b42e4227f217992bdcad6ea04ba25b50b0d15": {
+        "done": [],
+        "first_price": 4.868e-06,
+        "first_seen": "2026-11-23T00:03:15Z",
+        "sight_pair": "0xa8d9973ef7ce9d2b2e2033c7d3ee15aa5498764f",
+        "sight_qliq": 26301,
+        "symbol": "VDINO"
       },
       "0x3e407dad93f1eb7ef5d2c5b3e875b20be860cfb8": {
         "done": [
@@ -3571,17 +3586,6 @@
         "sight_pair": "0x669d554950b139ace7b0eb835b042cb197c651a2ca10a74394222269ece3203f",
         "sight_qliq": 0,
         "symbol": "NOTF"
-      },
-      "0x676409a8ab7c14b457006f0497072ec1b50a539e": {
-        "done": [
-          1,
-          6
-        ],
-        "first_price": 0.0001042,
-        "first_seen": "2026-11-22T00:03:15Z",
-        "sight_pair": "0x95339acab591da3881ef668721618e7b36d56ace9e6498978ce03ca75cb22df2",
-        "sight_qliq": 45,
-        "symbol": "UDOF"
       },
       "0x693dd1291215c05572a536d5662f92e9589e3653": {
         "done": [
@@ -5154,7 +5158,8 @@
       },
       "0xd3509bed7b28f0b586fa103e5e81ba45cdd565ee": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 9.813e-05,
         "first_seen": "2026-11-22T18:03:14Z",
@@ -5566,7 +5571,8 @@
       },
       "0xe76e525a7482bf0e364f9511166d35482680abf4": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 8.871e-05,
         "first_seen": "2026-11-22T18:03:14Z",
@@ -7070,12 +7076,6 @@
         "symbol": "USAR",
         "until": "2026-11-23T11:38:16Z"
       },
-      "0x1d164887cf9141900ae7e939e4b3dc44c08117ca": {
-        "at": "2026-11-22T00:03:15Z",
-        "reason": "real_depth",
-        "symbol": "CDSK",
-        "until": "2026-11-23T00:03:15Z"
-      },
       "0x1d2494a853cb0972ff30a11d14058ef3df031e6d": {
         "at": "2026-11-22T17:53:14Z",
         "reason": "real_depth",
@@ -7429,12 +7429,6 @@
         "reason": "real_depth",
         "symbol": "National Oil Truts Fund",
         "until": "2026-11-23T15:08:22Z"
-      },
-      "0x26244746d2ec5c6a13bf3d075a83e1724f4654a0": {
-        "at": "2026-11-22T00:03:15Z",
-        "reason": "real_depth",
-        "symbol": "LABUBU",
-        "until": "2026-11-23T00:03:15Z"
       },
       "0x26306a792c2cbadb721ad315a9a3181c6532b0c7": {
         "at": "2026-11-22T23:33:14Z",
@@ -7850,6 +7844,12 @@
         "symbol": "MEOW",
         "until": "2026-11-23T12:13:16Z"
       },
+      "0x31d79eb70f9ca15dd7b7985538fe8841a2fef230": {
+        "at": "2026-11-23T00:03:15Z",
+        "reason": "real_depth",
+        "symbol": "CRCKT",
+        "until": "2026-11-24T00:03:15Z"
+      },
       "0x31d8d9cc455fc7b31ba284a842c3a6ab8e7eb5bc": {
         "at": "2026-11-22T16:28:16Z",
         "reason": "real_depth",
@@ -7903,6 +7903,12 @@
         "reason": "real_depth",
         "symbol": "SI",
         "until": "2026-11-23T17:48:23Z"
+      },
+      "0x338cfb650082122d89ffc55b01ea4a3256e56301": {
+        "at": "2026-11-23T00:03:15Z",
+        "reason": "real_depth",
+        "symbol": "LEONE",
+        "until": "2026-11-24T00:03:15Z"
       },
       "0x33a9a7a4828a825c0201a832981e4a675650dd1e": {
         "at": "2026-11-22T11:28:15Z",
@@ -9254,12 +9260,6 @@
         "symbol": "NOTF",
         "until": "2026-11-23T13:33:15Z"
       },
-      "0x676409a8ab7c14b457006f0497072ec1b50a539e": {
-        "at": "2026-11-22T00:03:15Z",
-        "reason": "real_depth",
-        "symbol": "UDOF",
-        "until": "2026-11-23T00:03:15Z"
-      },
       "0x6790b449a72f9a076957c72ec2c284ad7016b657": {
         "at": "2026-11-22T02:08:15Z",
         "reason": "real_depth",
@@ -9601,6 +9601,12 @@
         "reason": "real_depth",
         "symbol": "NOCK",
         "until": "2026-11-23T10:53:15Z"
+      },
+      "0x7b7590ec773054018b077b12303007fcd86cdae1": {
+        "at": "2026-11-23T00:03:15Z",
+        "reason": "real_depth",
+        "symbol": "UOF",
+        "until": "2026-11-24T00:03:15Z"
       },
       "0x7bcdaa40beb32335a07403d80d3495a7a4375df4": {
         "at": "2026-11-22T17:18:14Z",
@@ -10988,12 +10994,6 @@
         "symbol": "FROGG",
         "until": "2026-11-23T00:28:15Z"
       },
-      "0xb20000000000000000000032867871c881d2a70a": {
-        "at": "2026-11-22T00:03:15Z",
-        "reason": "real_depth",
-        "symbol": "FROGG",
-        "until": "2026-11-23T00:03:15Z"
-      },
       "0xb2000000000000000000003315cc3d10681ad4f4": {
         "at": "2026-11-22T17:58:15Z",
         "reason": "real_depth",
@@ -11401,12 +11401,6 @@
         "reason": "real_depth",
         "symbol": "XMONEY",
         "until": "2026-11-23T08:33:14Z"
-      },
-      "0xb200000000000000000000a3920311bb7fb8b12d": {
-        "at": "2026-11-22T00:03:15Z",
-        "reason": "real_depth",
-        "symbol": "MAKE",
-        "until": "2026-11-23T00:03:15Z"
       },
       "0xb200000000000000000000a470ff2fbd43c84bc9": {
         "at": "2026-11-22T18:28:15Z",
@@ -13631,9 +13625,9 @@
     },
     "watch": {
       "0x0a9904c864c31012e1dee3acbb78cea1cff40117": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-22T23:43:19Z",
-        "last_check": "2026-11-22T23:43:19Z",
+        "last_check": "2026-11-23T00:03:15Z",
         "symbol": "REBOOT"
       },
       "0x24860d593dee8e36ee53d049f19080c7d75105bb": {
@@ -13642,16 +13636,22 @@
         "last_check": "2026-11-22T23:58:17Z",
         "symbol": "USOI"
       },
+      "0x3e3b42e4227f217992bdcad6ea04ba25b50b0d15": {
+        "checks": 1,
+        "first_seen": "2026-11-23T00:03:15Z",
+        "last_check": "2026-11-23T00:03:15Z",
+        "symbol": "VDINO"
+      },
       "0x53f6d580b50c03e2a27d230d98e8b2ef6254aeac": {
-        "checks": 5,
+        "checks": 6,
         "first_seen": "2026-11-22T22:38:14Z",
-        "last_check": "2026-11-22T23:43:19Z",
+        "last_check": "2026-11-23T00:03:15Z",
         "symbol": "NOTF"
       },
       "0x7afe438411ee3959c7de6f7fb76bf9c769320ba3": {
-        "checks": 2,
+        "checks": 3,
         "first_seen": "2026-11-22T23:28:15Z",
-        "last_check": "2026-11-22T23:43:19Z",
+        "last_check": "2026-11-23T00:03:15Z",
         "symbol": "BLOCKTRONICS"
       },
       "0xa16fd9c7342d84ae80fc8965df0ce726b4bc2a10": {
@@ -13825,6 +13825,13 @@
           "open": 2,
           "refills_usd": 56.557207,
           "value_usd": 11.075595
+        },
+        {
+          "cash_usd": 0.506979,
+          "day": "2026-11-22",
+          "open": 2,
+          "refills_usd": 56.557207,
+          "value_usd": 11.075595
         }
       ],
       "desk": [
@@ -13987,13 +13994,20 @@
           "open": 0,
           "refills_usd": 2.392231,
           "value_usd": 50.0
+        },
+        {
+          "cash_usd": 50.0,
+          "day": "2026-11-22",
+          "open": 0,
+          "refills_usd": 2.392231,
+          "value_usd": 50.0
         }
       ]
     },
     "gate_restart": "BL-32",
     "machine_due": "",
     "max_dd_pct": {
-      "baseline": 176.1858292686223,
+      "baseline": 176.6740934777587,
       "desk": 9.811123120222184
     },
     "peak": {
@@ -14005,33 +14019,33 @@
     "totals": {
       "funnel": {
         "buy": 1,
-        "gate": 1679,
+        "gate": 1713,
         "safety": 1,
-        "scan": 28472
+        "scan": 29771
       },
       "kills": {
         "gate": {
-          "asset:quote": 5,
+          "asset:quote": 6,
           "asset:stable": 29,
           "asset:wrapped": 24,
           "liquidity": 8614,
           "missing:age_min": 3,
-          "missing:liq_usd": 2182,
-          "missing:price": 213,
-          "missing:symbol": 356,
-          "real_depth": 15367
+          "missing:liq_usd": 2241,
+          "missing:price": 217,
+          "missing:symbol": 366,
+          "real_depth": 16558
         },
         "safety": {
-          "goplus_partial": 26,
-          "goplus_timeout": 1307,
+          "goplus_partial": 28,
+          "goplus_timeout": 1331,
           "lp_locked": 3,
-          "mint_open": 53,
-          "nobody_can_sell": 26,
+          "mint_open": 55,
+          "nobody_can_sell": 27,
           "too_old": 5,
           "top10_pct": 24
         }
       },
-      "through": "2026-11-21"
+      "through": "2026-11-22"
     }
   }
 }
