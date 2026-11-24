@@ -1,6 +1,6 @@
 {
   "baseline": {
-    "cash": 23.14367243108719,
+    "cash": 18.14367243108719,
     "cooldown": {
       "a:0x002f37062abffede4aebd49193af5c3399655655": "2026-11-25T00:13:15Z",
       "a:0x05c895f724f6a8f5e495c06b10565812f17a63d9": "2026-11-24T08:03:14Z",
@@ -44,6 +44,22 @@
         "qty": 22491.761282341395,
         "symbol": "MARSBASE"
       },
+      "0xa17f810381bc49b94e220f3fdc2a3f1ac305bd3d": {
+        "cost_usd": 5.0,
+        "entry_fill": 1.1691189709653504e-05,
+        "entry_intended": 1.135e-05,
+        "entry_liq_usd": 164557.82,
+        "entry_qliq": 82281,
+        "entry_ts": "2026-11-24T03:18:17Z",
+        "ladder_done": [],
+        "last_price": 1.135e-05,
+        "launchpad": "other",
+        "orig_qty": 427672.471679376,
+        "pair": "0x64eee8383dc2f0ce7faa48fc8c586c6dd2af689f",
+        "peak_price": 1.135e-05,
+        "qty": 427672.471679376,
+        "symbol": "REBOOT"
+      },
       "0xa97d8577fef865b9717b7bc4102df9a24c940080": {
         "cost_usd": 5.0,
         "entry_fill": 5.6482339952106666e-05,
@@ -65,7 +81,7 @@
     },
     "refill_week": "2026-W48",
     "refills_usd": 106.05022822478631,
-    "ticks_since_buy": 11
+    "ticks_since_buy": 0
   },
   "desk": {
     "cash": 50.0,
@@ -2423,7 +2439,8 @@
       },
       "0x382550b223858a9c394663af9b04abd95e8706ae": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 7.978e-05,
         "first_seen": "2026-11-23T21:18:15Z",
@@ -3804,17 +3821,6 @@
         "sight_pair": "0xa1d086f17163d5b21bb0ec63174f82badcbe9a95",
         "sight_qliq": 26165,
         "symbol": "VIOR"
-      },
-      "0x9869c9bfbfd88bca1e86e6dcf48bc1999272fca3": {
-        "done": [
-          1,
-          6
-        ],
-        "first_price": 4.843e-06,
-        "first_seen": "2026-11-23T03:18:15Z",
-        "sight_pair": "0x8b2f4e20617bc28cb9f7deca7531ec7dfa823963",
-        "sight_qliq": 26171,
-        "symbol": "UOSG"
       },
       "0x99b8e3a7791cdede4c80691c61f34c01af61e068": {
         "done": [
@@ -5500,6 +5506,12 @@
         "reason": "real_depth",
         "symbol": "APYX",
         "until": "2026-11-24T18:18:21Z"
+      },
+      "0x0e6f08b723fd242cdb765d0ac15dfa93f6000ba3": {
+        "at": "2026-11-24T03:18:17Z",
+        "reason": "real_depth",
+        "symbol": "MEGABAN",
+        "until": "2026-11-25T03:18:17Z"
       },
       "0x0e7337550edd8b638d46cd8d7d06f70eb77d8336": {
         "at": "2026-11-23T20:33:15Z",
@@ -7979,6 +7991,12 @@
         "symbol": "WORM",
         "until": "2026-11-24T11:33:15Z"
       },
+      "0x5c3ce4ed801bad4a5301a4c2690637b151ebc64c": {
+        "at": "2026-11-24T03:18:17Z",
+        "reason": "missing:price",
+        "symbol": "XRP  EVEREST",
+        "until": "2026-11-25T03:18:17Z"
+      },
       "0x5c70b48c27a981156d3ed11970dd8748325c82be": {
         "at": "2026-11-23T11:33:15Z",
         "reason": "real_depth",
@@ -8686,12 +8704,6 @@
         "reason": "real_depth",
         "symbol": "TRUMPUP",
         "until": "2026-11-24T19:03:14Z"
-      },
-      "0x81d7ce1fb3a123d80f463b471a5b2f2e95e213a0": {
-        "at": "2026-11-23T03:18:15Z",
-        "reason": "goplus_timeout",
-        "symbol": "VDINO",
-        "until": "2026-11-24T03:18:15Z"
       },
       "0x826fe494fdae0b08ffe304e170d0cd033394cd4d": {
         "at": "2026-11-24T00:23:17Z",
@@ -9634,12 +9646,6 @@
         "reason": "real_depth",
         "symbol": "ASSET RESERVE U.S",
         "until": "2026-11-24T12:58:17Z"
-      },
-      "0xaebe36dab3b2a49bb72e0c128cd7f1de90479aa9": {
-        "at": "2026-11-23T03:18:15Z",
-        "reason": "real_depth",
-        "symbol": "UGSO",
-        "until": "2026-11-24T03:18:15Z"
       },
       "0xaeee8b8b61221f03fe2032621b45a665f3bf2fdd": {
         "at": "2026-11-23T11:58:17Z",
@@ -10775,6 +10781,12 @@
         "symbol": "NOUNSIM",
         "until": "2026-11-24T21:48:17Z"
       },
+      "0xbab8ef9255601a5abb4540c88bc82ef75c31bba3": {
+        "at": "2026-11-24T03:18:17Z",
+        "reason": "missing:liq_usd",
+        "symbol": "SELICE",
+        "until": "2026-11-25T03:18:17Z"
+      },
       "0xbb61f67acc8abb92d780cc86a89bba8356b14958": {
         "at": "2026-11-23T03:43:13Z",
         "reason": "real_depth",
@@ -10960,6 +10972,12 @@
         "reason": "real_depth",
         "symbol": "NOTF",
         "until": "2026-11-24T15:28:17Z"
+      },
+      "0xc4b08921f8be53b548e024e34db7a7cb6d84f98f": {
+        "at": "2026-11-24T03:18:17Z",
+        "reason": "missing:liq_usd",
+        "symbol": "FCAT",
+        "until": "2026-11-25T03:18:17Z"
       },
       "0xc4c6c2422ce264bb41f2974eadceaea6bfcfb8be": {
         "at": "2026-11-23T06:48:16Z",
@@ -11966,15 +11984,15 @@
         "symbol": "JENSEN"
       },
       "0xa17f810381bc49b94e220f3fdc2a3f1ac305bd3d": {
-        "checks": 2,
+        "checks": 3,
         "first_seen": "2026-11-24T02:48:15Z",
-        "last_check": "2026-11-24T03:03:16Z",
+        "last_check": "2026-11-24T03:18:17Z",
         "symbol": "REBOOT"
       },
       "0xd59b136595aeab4b842fa26d37f55ab4a98c2e90": {
-        "checks": 2,
+        "checks": 3,
         "first_seen": "2026-11-24T02:48:15Z",
-        "last_check": "2026-11-24T03:03:16Z",
+        "last_check": "2026-11-24T03:18:17Z",
         "symbol": "$SOFS"
       },
       "0xe581bda8d6a29a34a91cd717bd292f2e237b234a": {
@@ -12344,7 +12362,7 @@
     "gate_restart": "BL-32",
     "machine_due": "",
     "max_dd_pct": {
-      "baseline": 221.17279996039093,
+      "baseline": 221.66145150518054,
       "desk": 9.811123120222184
     },
     "peak": {
