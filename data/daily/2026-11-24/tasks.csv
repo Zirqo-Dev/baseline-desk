@@ -2811,3 +2811,10 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-24T22:48:22Z,desk,VERIFY,CMP,0xb20000000000000000000078f39d7fb320af7701,SKIP,real_depth,goplus=skipped until=2026-11-25T22:48:22Z
 2026-11-24T22:48:22Z,baseline,EXECUTE,GOTF US.,0x146ba10216dd2096d8419c2ac11301882aa83353,SKIP,loss_halt,seed=202611242248 eligible=1 pick=0 pool=146ba1 desk=WATCH launchpad=other
 2026-11-24T22:48:22Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=21 rechecks=3 new=7 checked=10 passed=0 bought=0 held=0 deferred=0 dex_only=7 goplus=3 requests=21 secs=11.1 bl_positions=2 bl_due=1 bl_eligible=1 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=7 labels_done=7 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-24T22:53:15Z,baseline,EXIT,MARSBASE,0x0b455a80139f9642bb47f2cb5afabbd8809a24af,HOLD,no_quote,
+2026-11-24T22:53:15Z,baseline,EXIT,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,HOLD,no_quote,
+2026-11-24T22:53:15Z,desk,VERIFY,SEAL,0xb2000000000000000000004b6c9dc037d0cc4d40,SKIP,missing:liq_usd,goplus=skipped until=2026-11-25T22:53:15Z
+2026-11-24T22:53:15Z,desk,VERIFY,SSOF,0xe26d5ff89c4e5ddcccd2631c5966fbaee7e65501,SKIP,missing:liq_usd,goplus=skipped until=2026-11-25T22:53:15Z
+2026-11-24T22:53:15Z,desk,VERIFY,NAFO,0xbad2ac30755f9a2182111ca4ca3274d4f63dab0a,SKIP,real_depth,goplus=skipped until=2026-11-25T22:53:15Z b1=12 s1=0 b24=12 s24=0 liq=97245 dex=uniswap:v4 qliq=15 pair_age=4 token_age=4
+2026-11-24T22:53:15Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
+2026-11-24T22:53:15Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=21 rechecks=0 new=3 checked=3 passed=0 bought=0 held=0 deferred=0 dex_only=3 goplus=0 requests=11 secs=3.5 bl_positions=2 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=2 labels_done=2 labels_calls=1 live=ok alerts=none alerts_sent=0
