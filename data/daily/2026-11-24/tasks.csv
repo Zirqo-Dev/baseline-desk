@@ -1596,3 +1596,22 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-24T13:53:14Z,desk,VERIFY,TRANSPORT ER,0xe1856a422f884b3b34fedd8185b76cea91e3ee4d,SKIP,missing:price,goplus=skipped until=2026-11-25T13:53:14Z
 2026-11-24T13:53:14Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
 2026-11-24T13:53:14Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=0 new=4 checked=4 passed=0 bought=0 held=0 deferred=0 dex_only=4 goplus=0 requests=11 secs=2.5 bl_positions=2 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=none labels_due=0 labels_done=0 labels_calls=0 live=ok alerts=none alerts_sent=0
+2026-11-24T13:58:16Z,baseline,EXIT,MARSBASE,0x0b455a80139f9642bb47f2cb5afabbd8809a24af,HOLD,no_quote,
+2026-11-24T13:58:16Z,baseline,EXIT,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,HOLD,no_quote,
+2026-11-24T13:58:16Z,desk,VERIFY,SVAG,0x037eed48b22e417323ba0528007a3b7ca6f69545,WATCH,goplus_not_ready,"first_seen=2026-11-24T13:23:14Z checks=3 pending=mint_open,freeze_or_blacklist,honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct,risk_flags b1=456 s1=281 b24=456 s24=281 liq=69600 dex=uniswap:v4 qliq=30956 pair_age=41 token_age=41"
+2026-11-24T13:58:16Z,desk,VERIFY,NCSP,0x4b9ba90d94d1b2e8efeafb59b1cb6ea7dedbee55,SKIP,real_depth,first_seen=2026-11-24T13:38:22Z checks=2 goplus=skipped until=2026-11-25T13:58:16Z
+2026-11-24T13:58:16Z,desk,VERIFY,SVAG,0x515b919eb5bca69c109c5baf7343ce2f00a0595f,WATCH,goplus_not_ready,"first_seen=2026-11-24T13:38:22Z checks=2 pending=mint_open,freeze_or_blacklist,honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct,risk_flags b1=363 s1=230 b24=363 s24=230 liq=69647 dex=uniswap:v4 qliq=28868 pair_age=25 token_age=25"
+2026-11-24T13:58:16Z,desk,VERIFY,EDEL,0x319c1bdefbf0c8c36ef3d4255eff8ee94402c3a8,SKIP,real_depth,goplus=skipped until=2026-11-25T13:58:16Z
+2026-11-24T13:58:16Z,desk,VERIFY,RENN,0x5704157b37de7b3e0505898a31d4b5ff73d7cccc,SKIP,missing:liq_usd,goplus=skipped until=2026-11-25T13:58:16Z
+2026-11-24T13:58:16Z,desk,VERIFY,MICRODUCK,0xe92745a0ae66521fc19230bc656ee76571908eec,SKIP,real_depth,goplus=skipped until=2026-11-25T13:58:16Z
+2026-11-24T13:58:16Z,desk,VERIFY,VGOR,0x2a8162e2b3355ae162323729bf99a03cd644c5f9,WATCH,goplus_not_ready,"first_seen=2026-11-24T13:58:16Z checks=1 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct b1=5 s1=0 b24=5 s24=0 liq=52033 dex=uniswap:v2 qliq=26017 pair_age=4 token_age=4"
+2026-11-24T13:58:16Z,desk,VERIFY,bWorld,0x7c5cf641d4478629d31ac75a1040c8deb6d4e501,SKIP,real_depth,goplus=skipped until=2026-11-25T13:58:16Z
+2026-11-24T13:58:16Z,desk,VERIFY,NVDA,0x893d6a09b0e460f1a232c2f7613c7d8f2f72ab52,SKIP,missing:liq_usd,goplus=skipped until=2026-11-25T13:58:16Z
+2026-11-24T13:58:16Z,desk,VERIFY,NVDA,0x2993f3c56f5f5054a5555e508c827a6b9ee583c7,SKIP,missing:liq_usd,goplus=skipped until=2026-11-25T13:58:16Z
+2026-11-24T13:58:16Z,desk,VERIFY,NVDA,0xfc9439abbee67bf583b5327cbed0041f128d7f9b,SKIP,missing:liq_usd,goplus=skipped until=2026-11-25T13:58:16Z
+2026-11-24T13:58:16Z,desk,VERIFY,NVDA,0xb6070ce4d09f632373c6131625c67ab104b441a8,SKIP,missing:liq_usd,goplus=skipped until=2026-11-25T13:58:16Z
+2026-11-24T13:58:16Z,desk,VERIFY,.AI,0x03a02eb2ebd831c63a5191976f8b81322ac0dabc,SKIP,real_depth,goplus=skipped until=2026-11-25T13:58:16Z
+2026-11-24T13:58:16Z,desk,VERIFY,NVDA,0xae3c40472f8e08cd5e9d7831d64855956490c53d,SKIP,missing:liq_usd,goplus=skipped until=2026-11-25T13:58:16Z
+2026-11-24T13:58:16Z,desk,VERIFY,DOUBTREE,0xb20000000000000000000011e95f665178c849c9,SKIP,real_depth,goplus=skipped until=2026-11-25T13:58:16Z
+2026-11-24T13:58:16Z,baseline,EXECUTE,SVAG,0x037eed48b22e417323ba0528007a3b7ca6f69545,SKIP,loss_halt,"seed=202611241358 eligible=2 pick=0 pool=037eed,515b91 desk=WATCH launchpad=other"
+2026-11-24T13:58:16Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=3 new=12 checked=15 passed=0 bought=0 held=0 deferred=0 dex_only=12 goplus=3 requests=26 secs=8.0 bl_positions=2 bl_due=1 bl_eligible=2 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=4 labels_done=4 labels_calls=1 live=ok alerts=none alerts_sent=0
