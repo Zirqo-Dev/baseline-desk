@@ -953,3 +953,12 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-24T08:53:16Z,desk,VERIFY,GOTF,0xb2000000000000000000004e0630c7d40691701e,SKIP,real_depth,goplus=skipped until=2026-11-25T08:53:16Z
 2026-11-24T08:53:16Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
 2026-11-24T08:53:16Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=21 rechecks=0 new=2 checked=2 passed=0 bought=0 held=0 deferred=0 dex_only=2 goplus=0 requests=9 secs=2.3 bl_positions=2 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=none labels_due=0 labels_done=0 labels_calls=0 live=ok alerts=none alerts_sent=0
+2026-11-24T08:58:16Z,baseline,EXIT,MARSBASE,0x0b455a80139f9642bb47f2cb5afabbd8809a24af,HOLD,no_quote,
+2026-11-24T08:58:16Z,baseline,EXIT,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,HOLD,no_quote,
+2026-11-24T08:58:16Z,desk,VERIFY,Antropic,0x38136de7b3914bb19c9e7785716e9bbac5e2e139,WATCH,goplus_not_ready,"first_seen=2026-11-24T08:03:15Z checks=4 pending=honeypot,buy_tax_pct,sell_tax_pct,dev_pct,top10_pct,lp_locked_pct b1=18 s1=1 b24=18 s24=1 liq=1497717 dex=uniswap:v4 qliq=13758 pair_age=59 token_age=59"
+2026-11-24T08:58:16Z,desk,VERIFY,Nation al Oi l Tru s t Fu n d,0x415249ec3c37b22135a7438cd1dee7970273b108,WATCH,goplus_not_ready,"first_seen=2026-11-24T08:03:15Z checks=4 pending=honeypot,buy_tax_pct,sell_tax_pct,dev_pct,top10_pct,lp_locked_pct b1=21 s1=1 b24=21 s24=1 liq=1157128774 dex=uniswap:v4 qliq=191470 pair_age=59 token_age=59"
+2026-11-24T08:58:16Z,desk,VERIFY,FoolCoin,0xfe4948b77508e87dfc30b413aa22cfa47fce613b,SKIP,real_depth,goplus=skipped until=2026-11-25T08:58:16Z
+2026-11-24T08:58:16Z,desk,VERIFY,LIQUIDBGT,0x7ee0e9136f2d476b6a5df004969d80a6b5ec10ab,SKIP,real_depth,goplus=skipped until=2026-11-25T08:58:16Z
+2026-11-24T08:58:16Z,desk,VERIFY,TaskPay,0x2b202135393ada2c50b51ae617afdb37c4995ba3,SKIP,real_depth,goplus=skipped until=2026-11-25T08:58:16Z
+2026-11-24T08:58:16Z,baseline,EXECUTE,Nation al Oi l Tru s t Fu n d,0x415249ec3c37b22135a7438cd1dee7970273b108,SKIP,loss_halt,"seed=202611240858 eligible=2 pick=1 pool=38136d,415249 desk=WATCH launchpad=other"
+2026-11-24T08:58:16Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=21 rechecks=2 new=3 checked=5 passed=0 bought=0 held=0 deferred=0 dex_only=3 goplus=2 requests=15 secs=5.0 bl_positions=2 bl_due=1 bl_eligible=2 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=1 labels_done=1 labels_calls=1 live=ok alerts=none alerts_sent=0
