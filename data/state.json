@@ -67,7 +67,7 @@
     },
     "refill_week": "2026-W48",
     "refills_usd": 106.05022822478631,
-    "ticks_since_buy": 129
+    "ticks_since_buy": 130
   },
   "desk": {
     "cash": 50.0,
@@ -4258,7 +4258,9 @@
         "symbol": "DRV"
       },
       "0x8aae11ada4979ed23990f24dd9404dfe1ab4b466": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 0.0001343,
         "first_seen": "2026-11-24T14:08:16Z",
         "sight_pair": "0x53c1b21e88596455a25bbaa95433c28bb74136ca2b076fbe24d00658fc4f07b0",
@@ -4898,7 +4900,8 @@
       },
       "0xdbe35fd339ddd5fa49be71cb661804cacf42cb54": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 0.0005126,
         "first_seen": "2026-11-24T09:08:17Z",
@@ -4907,7 +4910,9 @@
         "symbol": "NOTF"
       },
       "0xdc01a37914117b946aa941e5c1a5ee1657d7ccc1": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 9.233e-06,
         "first_seen": "2026-11-24T14:08:16Z",
         "sight_pair": "0x09259523e60cb3dabc6e8ab528073a7c1b5a5dd0",
@@ -5237,7 +5242,12 @@
     }
   },
   "leads": {
-    "retry": {},
+    "retry": {
+      "0xda8046c2cfe28e18718b2cc03fa081b004e0bc4c": {
+        "last": "2026-11-24T15:08:22Z",
+        "tries": 1
+      }
+    },
     "skips": {
       "0x000851c6e7ee9086a30f2f202b59a5633d93cc25": {
         "at": "2026-11-24T02:13:15Z",
@@ -12586,21 +12596,21 @@
         "symbol": "SVAG"
       },
       "0x5bde70ccb6b32bf1ebbb0b9c86661cabe1382799": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-24T14:48:22Z",
-        "last_check": "2026-11-24T14:48:22Z",
+        "last_check": "2026-11-24T15:08:22Z",
         "symbol": "USEF"
       },
       "0x676adb41bb21ccb1a0469430f2cbe1331923cf98": {
-        "checks": 10,
+        "checks": 11,
         "first_seen": "2026-11-24T12:18:18Z",
-        "last_check": "2026-11-24T14:53:22Z",
+        "last_check": "2026-11-24T15:08:22Z",
         "symbol": "FLOP"
       },
       "0xa1d1c203ba47059d4fcd445be25ee6f5946d55e6": {
-        "checks": 10,
+        "checks": 11,
         "first_seen": "2026-11-24T12:18:18Z",
-        "last_check": "2026-11-24T14:53:22Z",
+        "last_check": "2026-11-24T15:08:22Z",
         "symbol": "XTEN"
       },
       "0xda8046c2cfe28e18718b2cc03fa081b004e0bc4c": {
@@ -12610,9 +12620,9 @@
         "symbol": "ANT"
       },
       "0xfdd579653568e83dab8f6e8569ec34b439fcf0fa": {
-        "checks": 5,
+        "checks": 6,
         "first_seen": "2026-11-24T13:48:19Z",
-        "last_check": "2026-11-24T14:53:22Z",
+        "last_check": "2026-11-24T15:08:22Z",
         "symbol": "NOTF"
       }
     }
