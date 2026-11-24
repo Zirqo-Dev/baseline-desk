@@ -66,7 +66,8 @@ CANDLES  tools/candles.py           by hand only (BL-33, backtest.yml): GeckoTer
                                    backtest/status.json after every run and by --status (BL-43, display only)
 LIQUID   tools/liquid.py            by hand only (BL-39 part 1): liquid Base token survey, GeckoTerminal pool lists + daily
                                    OHLCV ending before a CUT, counts and coverage only (no returns) -> backtest/liquid/
-COSTS    tools/costs.py             costs.yml every 2 h (BL-45, read-only, D5): 5 and 25 USD round trips in each frozen liquid
+COSTS    tools/costs.py             costs.yml every 2 h, dispatched by cron-job.org (BL-45, read-only, D5): 5 and 25 USD
+                                   round trips in each frozen liquid
                                    token's deepest pool + its hops to USDC, simulated by eth_call (tools/costprobe.sol) on
                                    Base's public RPC; percentages and pass/fail only -> backtest/costs/; --summary
 SNAPSHOT tools/snapshot.py          snapshot.yml every Monday (BL-46): the BL-39 survey's GeckoTerminal lists + /tokens/multi,
@@ -109,7 +110,7 @@ Folders:
 - .github/workflows/: tick.yml, pages.yml (BL-13: deploys site/ on push to main touching site/** or itself, or by hand; no report.yml, BL-8),
   alert-test.yml (BL-3: by hand only, read-only, sends one TEST message, commits nothing),
   backtest.yml (BL-33: by hand only, fetches candles one day per commit, stages backtest/candles/ only, "backtest:" commits),
-  costs.yml (BL-45: every 2 h + by hand, own group, stages backtest/costs/ only, "backtest: costs" commits, no secret),
+  costs.yml (BL-45: every 2 h by cron-job.org dispatch + by hand, no GitHub schedule, own group, stages backtest/costs/ only, "backtest: costs" commits, no secret),
   snapshot.yml (BL-46: Mondays 00:37 UTC + by hand, own group, stages backtest/liquid/snapshots/ only, "backtest: snapshot"
   commits, no secret)
 
@@ -140,7 +141,8 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
 - pages.yml deploys site/ only when site/ changes (GitHub Pages soft limit: 10 builds/hour).
 - backtest.yml (BL-33) runs only when the owner clicks Run workflow: candles one day per commit (+ status.json, BL-43), backtest/ only,
   pull --rebase with retry; it never touches data/ and the tick never reads backtest/.
-- costs.yml (BL-45) runs on a GitHub schedule (17 */2 * * *) and by hand: one meter run (~78 eth_calls, cap 100, ~40 s),
+- costs.yml (BL-45) is triggered by cron-job.org (POST workflow_dispatch at :17 every 2 h UTC, 00:17 ... 22:17), no
+  GitHub schedule (since 2026-11-24); never run both; to go back, turn cron-job.org off first. Also by hand. One meter run (~78 eth_calls, cap 100, ~40 s),
   backtest/costs/ only, pull --rebase with retry; own concurrency group, so it never blocks or reddens a tick.
 - snapshot.yml (BL-46) runs on a GitHub schedule (37 0 * * 1, Mondays) and by hand: one snapshot (cap 300 GeckoTerminal
   calls at ~8/min), backtest/liquid/snapshots/ only, pull --rebase with retry; own concurrency group; a partial run is
@@ -314,7 +316,8 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
   (not P&L)" (from state.json report.equity), "Gate B since ... · random N closes · kill at 200" and a per-trade line per
   book; every BL-3 line stays; no BL-34 line (core/ never reads backtest/, test) (docs/NOTES.md "BL-43").
   Tests: stdlib unittest, `python -m unittest` (668 pass on 3.13.18).
-- cron-job.org token "baseline-desk cron" EXPIRES Thu 2027-01-21: renew by early January or the desk stops silently.
+- cron-job.org token "baseline-desk cron" (it dispatches tick.yml and costs.yml) EXPIRES Thu 2027-01-21: renew by early
+  January or the desk and the cost meter stop silently.
 - Technical detail per card, GoPlus diagnosis, BL-20 budget and full open items: docs/NOTES.md.
 - Open items:
   - BL-33: spec fields today are log fields only; for sightings before 2026-11-05 the logs give no pool age, and the
@@ -470,7 +473,13 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
     questions (Q1-Q12 + Q9s; Q9s the BL-45 cost source, Q12 the spec's rerun path, both with their DECISIONS-line option
     not built) sit in CHOICES, all unresolved; the real run refuses until they are filled. --check on the real files:
     6 hashes ok, family check ok, 12 Mondays Jun 15 .. Aug 31, run refused (no run-approval line) (docs/NOTES.md "BL-39 run tool").
-- Next step: BL-39: a fresh-context review of the run tool (tools/bl39.py) proposes answers to the open questions
+- BL-45 cadence (2026-11-24, the owner's choice A, DECISIONS): costs.yml leaves GitHub's schedule for cron-job.org
+  (POST workflow_dispatch at :17 every 2 h UTC), the same move tick.yml made (BL-7). GitHub's schedule started 33 runs
+  Nov 14-23 against about 114 slots (2-4 a day, all success, ~50 s each). Workflow and tests only; the job is
+  unchanged; a test pins workflow_dispatch and no schedule: key (docs/NOTES.md "BL-45").
+- Next step: BL-45: the owner adds the cron-job.org job for costs.yml (settings in docs/NOTES.md "BL-45"); until it
+  is on, costs.yml runs only by hand.
+  BL-39: a fresh-context review of the run tool (tools/bl39.py) proposes answers to the open questions
   (CHOICES Q1-Q12, Q9s; docs/NOTES.md "BL-39 run tool"); the owner decides; a small story fills CHOICES and records the
   answers in DECISIONS; then the one stage 1 run as its own story, after the owner's DECISIONS row "stage 1 run approved". Stage 2 only after a DECISIONS "stage 1 pass" line.
   BL-38's spec is frozen before BL-39 stage 1 is read, or BL-38 tests only data after CUT.
@@ -488,7 +497,7 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
   done, counts only; no return has been computed from backtest/liquid/); the execution design is researched in
   parallel (no wallet code). BL-38..BL-42 are candidates only (DECISIONS 2026-11-04). The owner checks the deployed site
   and the first Telegram daily summary with the BL-43 lines.
-- Last updated: 2026-11-23.
+- Last updated: 2026-11-24.
 
 ## 12. Glossary
 - Lead: a token the scanner found. Survivor: a lead that passed every hard skip.

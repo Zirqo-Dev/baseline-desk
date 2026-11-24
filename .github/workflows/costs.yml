@@ -3,11 +3,16 @@
 # nothing broadcast, no secret, no key. Writes backtest/costs/<UTC day>.csv (+ window.json once) and commits ONLY
 # backtest/costs/ ("backtest: costs <ts>"). Never touches data/, never on the tick path, own concurrency group,
 # so it can never make tick.yml red. A failed run commits nothing.
+#
+# The cadence lives in cron-job.org, not here: it POSTs workflow_dispatch every 2 h at :17 UTC
+# (00:17, 02:17 ... 22:17). GitHub's schedule started 33 runs Nov 14-23 against about 114 slots (DECISIONS BL-45).
+# Never run a GitHub schedule and cron-job.org together (double runs).
+# To go back: turn cron-job.org off FIRST, then restore under on:
+#   schedule:
+#     - cron: "17 */2 * * *"
 name: costs
 
 on:
-  schedule:
-    - cron: "17 */2 * * *"
   workflow_dispatch:
 
 concurrency:

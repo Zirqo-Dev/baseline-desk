@@ -324,7 +324,6 @@ class Isolation(unittest.TestCase):
 
     def test_workflow(self):
         wf = (ROOT / ".github/workflows/costs.yml").read_text()
-        self.assertIn('cron: "17 */2 * * *"', wf)
         self.assertIn("workflow_dispatch:", wf)
         self.assertIn("group: costs", wf)
         self.assertIn("python -m tools.costs --run", wf)
@@ -332,6 +331,15 @@ class Isolation(unittest.TestCase):
         self.assertNotIn("secrets.", wf)
         self.assertNotIn("set -x", wf)
         self.assertIn("ABORT: something outside backtest/costs/ is staged", wf)
+
+    def test_workflow_dispatch_only(self):
+        # 2026-11-24 (DECISIONS BL-45): cron-job.org dispatches costs.yml; no GitHub schedule.
+        wf = (ROOT / ".github/workflows/costs.yml").read_text()
+        code = [ln.split("#", 1)[0] for ln in wf.splitlines()]
+        keys = [ln.strip() for ln in code if ln.strip()]
+        self.assertIn("workflow_dispatch:", keys)
+        self.assertNotIn("schedule:", keys)
+        self.assertFalse(any(k.startswith("- cron:") or k.startswith("cron:") for k in keys))
 
 
 class Seal(unittest.TestCase):

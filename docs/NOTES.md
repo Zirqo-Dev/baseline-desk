@@ -2026,7 +2026,8 @@ Moved from CLAUDE.md section 11 on 2026-10-23 (BL-2 process cleanup). Wording is
   latency ~120-140 ms. Pace 0.5 s (PACE_S). One full run = 1 eth_blockNumber + 1 mids + 4 hop trips + 72 token trips =
   78 calls, 38.7 s, 0 refused; hard cap MAX_CALLS 100 per run (retries count; at the cap the remaining rows are logged
   sim=error reason=cap). 12 runs a day = ~940 calls/day; ~70 KB of CSV a day. The freeze took 352 calls (2 min 56 s).
-- Workflow costs.yml: cron "17 */2 * * *" (GitHub schedule) + workflow_dispatch, concurrency group costs (never the
+- Workflow costs.yml: workflow_dispatch only (cron-job.org every 2 h at :17 UTC since 2026-11-24; before that GitHub
+  schedule cron "17 */2 * * *"), concurrency group costs (never the
   tick's), 15 min timeout, Python 3.13, no secret, no env; stages backtest/costs/ only (aborts if anything else is
   staged), commits "backtest: costs <UTC ts>", pull --rebase + push with 5 tries (backtest.yml's pattern). It can never
   make tick.yml red; a failed run commits nothing.
@@ -2042,7 +2043,7 @@ Moved from CLAUDE.md section 11 on 2026-10-23 (BL-2 process cleanup). Wording is
   round trip, instant flip, tax_like line, stage reasons, chaining, p90); a fake-chain run (columns, hop chaining,
   sizes in raw units, every request an eth_call to the probe pinned to the run's block, or eth_blockNumber); failure
   rows; the cap; window.json once; summary; no price / amount / value column; files under backtest/costs/ only; core/
-  never imports or reads it; tick.yml untouched; the workflow (schedule, group, no secret, stages only backtest/costs/);
+  never imports or reads it; tick.yml untouched; the workflow (workflow_dispatch and no schedule: key, group, no secret, stages only backtest/costs/);
   seal A (no meter address in any tasks.csv address column, read by that column only); tokens.json (39 / 36 / 3 v4,
   every start token has a slot) and the rule reproduced from the survey files; whole-word forbidden-word grep over
   *.py, *.sol, *.yml (no eth_sendTransaction, eth_sendRawTransaction, signing call, private key, mnemonic, approve);
@@ -2051,6 +2052,16 @@ Moved from CLAUDE.md section 11 on 2026-10-23 (BL-2 process cleanup). Wording is
   A, a later story); the hop pool is chosen by depth, not by the cheapest route (pessimistic); fee_pct is the freeze
   value (Slipstream fees can change; the measured costs carry the live fee); one simulation per run cannot prove a
   token never blocks sells later.
+- Cadence switch (2026-11-24, the owner's choice A, DECISIONS): GitHub's schedule "17 */2 * * *" started 33 runs from
+  Nov 14 to Nov 23, all Scheduled, all Success, about 50 s each, 2-4 a day against 12 scheduled (about 114 slots), so
+  about a quarter of the slots ran (counts read by chat from the public Actions page). costs.yml now has no schedule:
+  block; cron-job.org POSTs workflow_dispatch at :17 every 2 h UTC (00:17 ... 22:17), like tick.yml since BL-7. Job,
+  steps, concurrency, permissions and the main-only if are unchanged. cron-job.org job: POST
+  https://api.github.com/repos/Zirqo-Dev/baseline-desk/actions/workflows/costs.yml/dispatches, body {"ref":"main"},
+  the same "baseline-desk cron" token header as the tick job (Actions: read and write; expires Thu 2027-01-21), schedule
+  minute 17 of every even UTC hour. Until that job is on, costs.yml runs only by hand. Never run a GitHub schedule and
+  cron-job.org together; to go back, turn cron-job.org off first, then restore schedule: - cron: "17 */2 * * *".
+  Tests: test_workflow no longer pins the cron; test_workflow_dispatch_only checks workflow_dispatch and no schedule: key.
 
 ## BL-46
 - Weekly point-in-time snapshot of liquid Base pools (the owner's Nov 12 choices, all option A, and the Nov 13 go
