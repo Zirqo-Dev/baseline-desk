@@ -2491,3 +2491,12 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-24T20:28:16Z,desk,VERIFY,UDO F,0x1bf4886cbbe1a69d0a3a9998dbb5809abec1da06,SKIP,real_depth,goplus=skipped until=2026-11-25T20:28:16Z b1=3 s1=1 b24=3 s24=1 liq=2549525 dex=uniswap:v4 qliq=167 pair_age=3 token_age=3
 2026-11-24T20:28:16Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
 2026-11-24T20:28:16Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=22 rechecks=0 new=20 checked=20 passed=0 bought=0 held=0 deferred=0 dex_only=18 goplus=2 requests=29 secs=7.8 bl_positions=2 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=none labels_due=0 labels_done=0 labels_calls=0 live=ok alerts=none alerts_sent=0
+2026-11-24T20:33:19Z,baseline,EXIT,MARSBASE,0x0b455a80139f9642bb47f2cb5afabbd8809a24af,HOLD,no_quote,
+2026-11-24T20:33:19Z,baseline,EXIT,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,HOLD,no_quote,
+2026-11-24T20:33:19Z,desk,VERIFY,GOTF,0x0a0d194155ed2ccc1b82866d9fa652903ac0d303,SKIP,real_depth,first_seen=2026-11-24T19:23:15Z checks=5 goplus=skipped until=2026-11-25T20:33:19Z
+2026-11-24T20:33:19Z,desk,VERIFY,USRA,0xd24f1afca50c0c09b6b81f1b20abfd4ab06fd5d4,WATCH,goplus_not_ready,"first_seen=2026-11-24T20:18:17Z checks=2 pending=dev_pct,top10_pct b1=22 s1=1 b24=22 s24=1 liq=56706 dex=uniswap:v2 qliq=28352 pair_age=21 token_age=21"
+2026-11-24T20:33:19Z,desk,VERIFY,USOG,0x32ce0ae54599257fb588bdef518ef5acfda853df,SKIP,real_depth,goplus=skipped until=2026-11-25T20:33:19Z b1=11 s1=0 b24=11 s24=0 liq=92705 dex=uniswap:v4 qliq=1 pair_age=1 token_age=1
+2026-11-24T20:33:19Z,desk,VERIFY,ABURN,0xf79e0acde6bda6e05404fb207708f05c4474cccc,SKIP,real_depth,goplus=skipped until=2026-11-25T20:33:19Z
+2026-11-24T20:33:19Z,desk,VERIFY,ZOO,0xb200000000000000000000c3693cc6747b2f20b4,SKIP,real_depth,goplus=skipped until=2026-11-25T20:33:19Z
+2026-11-24T20:33:19Z,baseline,EXECUTE,USRA,0xd24f1afca50c0c09b6b81f1b20abfd4ab06fd5d4,SKIP,loss_halt,seed=202611242033 eligible=1 pick=0 pool=d24f1a desk=WATCH launchpad=other
+2026-11-24T20:33:19Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=22 rechecks=2 new=3 checked=5 passed=0 bought=0 held=0 deferred=0 dex_only=4 goplus=1 requests=14 secs=4.9 bl_positions=2 bl_due=1 bl_eligible=1 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=22 labels_done=22 labels_calls=1 live=ok alerts=none alerts_sent=0
