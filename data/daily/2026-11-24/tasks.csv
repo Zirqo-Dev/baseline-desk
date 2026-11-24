@@ -165,3 +165,13 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-24T01:53:14Z,desk,VERIFY,MATRIX,0xc33bd38128d9393a9b0200ad6209f9a4a810ae5d,SKIP,missing:price,goplus=skipped until=2026-11-25T01:53:14Z
 2026-11-24T01:53:14Z,desk,VERIFY,INTERIOR OBJECTIVE,0x0148ff4e4695a5395d3a5152af8dbcc9fb78fa81,SKIP,missing:liq_usd,goplus=skipped until=2026-11-25T01:53:14Z
 2026-11-24T01:53:14Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=19 rechecks=0 new=5 checked=5 passed=0 bought=0 held=0 deferred=0 dex_only=5 goplus=0 requests=14 secs=3.3 bl_positions=3 bl_due=0 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=1 labels_done=1 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-24T01:58:15Z,baseline,EXIT,MARSBASE,0x0b455a80139f9642bb47f2cb5afabbd8809a24af,HOLD,no_quote,
+2026-11-24T01:58:15Z,baseline,EXIT,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,HOLD,no_quote,
+2026-11-24T01:58:15Z,baseline,EXIT,NADF,0xb7d7e7a47fb9b85950bd4fb4bad9dec3c17e358f,HOLD,,pct=-2.94
+2026-11-24T01:58:15Z,desk,VERIFY,NOTF,0xf598e15c5a3dcef1e692471388afc740d416c00f,WATCH,goplus_not_ready,"first_seen=2026-11-23T22:58:25Z checks=11 pending=honeypot,buy_tax_pct,sell_tax_pct,lp_locked_pct b1=35 s1=12 b24=115 s24=38 liq=704420 dex=uniswap:v4 qliq=204630 pair_age=186 token_age=186"
+2026-11-24T01:58:15Z,desk,VERIFY,NADF,0xb7d7e7a47fb9b85950bd4fb4bad9dec3c17e358f,WATCH,goplus_not_ready,first_seen=2026-11-23T23:08:16Z checks=10 pending=honeypot b1=0 s1=0 b24=4 s24=2 liq=57408 dex=uniswap:v4 qliq=18729 pair_age=176 token_age=176
+2026-11-24T01:58:15Z,desk,VERIFY,BIDEN,0x000851c6e7ee9086a30f2f202b59a5633d93cc25,WATCH,goplus_not_ready,"first_seen=2026-11-24T01:38:17Z checks=2 pending=mint_open,freeze_or_blacklist,honeypot,buy_tax_pct,sell_tax_pct,dev_pct,top10_pct,lp_locked_pct,risk_flags b1=44 s1=0 b24=44 s24=0 liq=157989 dex=uniswap:v2 qliq=78988 pair_age=24 token_age=24"
+2026-11-24T01:58:15Z,desk,VERIFY,NVIDIA,0x2f75c159fb5367dd687137431afc50a40d979b07,SKIP,real_depth,goplus=skipped until=2026-11-25T01:58:15Z
+2026-11-24T01:58:15Z,desk,VERIFY,DOGEBULL,0xb2000000000000000000009f4a3dcd9ff99d3086,SKIP,real_depth,goplus=skipped until=2026-11-25T01:58:15Z
+2026-11-24T01:58:15Z,desk,VERIFY,CHIBI,0x9ea865887d60723ba2b3d0880adf06f86ed870b0,SKIP,real_depth,goplus=skipped until=2026-11-25T01:58:15Z
+2026-11-24T01:58:15Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=3 new=3 checked=6 passed=0 bought=0 held=0 deferred=0 dex_only=3 goplus=3 requests=18 secs=7.0 bl_positions=3 bl_due=0 bl_eligible=1 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=1 labels_done=1 labels_calls=1 live=ok alerts=none alerts_sent=0
