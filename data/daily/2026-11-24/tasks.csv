@@ -2663,3 +2663,14 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-24T21:38:17Z,desk,VERIFY,SOSF FUND,0xb53cf763d65dfc58e1f6332e92b3df72a7482bd0,SKIP,real_depth,goplus=skipped until=2026-11-25T21:38:17Z b1=5 s1=0 b24=5 s24=0 liq=84429 dex=uniswap:v4 qliq=2 pair_age=5 token_age=5
 2026-11-24T21:38:17Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
 2026-11-24T21:38:17Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=21 rechecks=0 new=5 checked=5 passed=0 bought=0 held=0 deferred=0 dex_only=5 goplus=0 requests=13 secs=4.3 bl_positions=2 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=3 labels_done=3 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-24T21:43:14Z,baseline,EXIT,MARSBASE,0x0b455a80139f9642bb47f2cb5afabbd8809a24af,HOLD,no_quote,
+2026-11-24T21:43:14Z,baseline,EXIT,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,HOLD,no_quote,
+2026-11-24T21:43:14Z,desk,VERIFY,NOTF,0x522b0a627ab057b411d431666ff7df0bd9acb29e,WATCH,goplus_not_ready,first_seen=2026-11-24T19:33:17Z checks=8 pending=honeypot b1=35 s1=12 b24=83 s24=27 liq=36972 dex=uniswap:v4 qliq=10249 pair_age=132 token_age=132
+2026-11-24T21:43:14Z,desk,VERIFY,GULD,0x14d6c649292c5c9790c5196d1a9ea039307947a1,WATCH,goplus_not_ready,first_seen=2026-11-24T19:48:17Z checks=7 pending=honeypot b1=4 s1=3 b24=56 s24=56 liq=2162261 dex=uniswap:v4 qliq=1067382 pair_age=237289 token_age=237289
+2026-11-24T21:43:14Z,desk,VERIFY,SRAU,0x1dc0024978e48c288c09ed6f6983773023c16bf4,SKIP,real_depth,first_seen=2026-11-24T20:53:15Z checks=4 goplus=skipped until=2026-11-25T21:43:14Z
+2026-11-24T21:43:14Z,desk,VERIFY,RGE,0xb2000000000000000000009e0b6b27b146ad3e01,SKIP,real_depth,goplus=skipped until=2026-11-25T21:43:14Z
+2026-11-24T21:43:14Z,desk,VERIFY,ecowealth,0x170dc0ca26f1247ced627d8abcafa90ecf1e1519,SKIP,real_depth,goplus=skipped until=2026-11-25T21:43:14Z
+2026-11-24T21:43:14Z,desk,VERIFY,WIZARD,0xadf4d43b7d7304a04f72094c29e389ad7ea2cccc,SKIP,real_depth,goplus=skipped until=2026-11-25T21:43:14Z
+2026-11-24T21:43:14Z,desk,VERIFY,MOR,0x7431ada8a591c955a994a21710752ef9b882b8e3,SKIP,mint_open,lp_unknown until=2026-11-25T21:43:14Z b1=1 s1=1 b24=26 s24=32 liq=33858 dex=aerodrome qliq=16932 pair_age=1138811 token_age=1139065
+2026-11-24T21:43:14Z,baseline,EXECUTE,NOTF,0x522b0a627ab057b411d431666ff7df0bd9acb29e,SKIP,loss_halt,seed=202611242143 eligible=1 pick=0 pool=522b0a desk=WATCH launchpad=other
+2026-11-24T21:43:14Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=21 rechecks=3 new=4 checked=7 passed=0 bought=0 held=0 deferred=0 dex_only=4 goplus=3 requests=18 secs=6.4 bl_positions=2 bl_due=1 bl_eligible=1 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=1 labels_done=1 labels_calls=1 live=ok alerts=none alerts_sent=0
