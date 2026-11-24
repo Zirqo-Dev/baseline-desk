@@ -67,7 +67,7 @@
     },
     "refill_week": "2026-W48",
     "refills_usd": 106.05022822478631,
-    "ticks_since_buy": 155
+    "ticks_since_buy": 156
   },
   "desk": {
     "cash": 50.0,
@@ -4218,6 +4218,14 @@
         "sight_qliq": 0,
         "symbol": "VIOR"
       },
+      "0x8994fda7499fd9c8a114789acc300471200b0ef0": {
+        "done": [],
+        "first_price": 0.09372,
+        "first_seen": "2026-11-24T17:18:16Z",
+        "sight_pair": "0x5bdaa5b2583e0ac99ac68f72d1dc591d79e53359999b773d769d4676c46cb0fd",
+        "sight_qliq": 200534,
+        "symbol": "NOTF"
+      },
       "0x8a9f554974f42fbae2ff35719322295d90e4fe61": {
         "done": [
           1,
@@ -5328,6 +5336,12 @@
         "reason": "missing:liq_usd",
         "symbol": "NHOV",
         "until": "2026-11-25T12:43:16Z"
+      },
+      "0x01a8200e453317aed96b879b7cc61cedf5f2887f": {
+        "at": "2026-11-24T17:18:16Z",
+        "reason": "real_depth",
+        "symbol": "NOTF",
+        "until": "2026-11-25T17:18:16Z"
       },
       "0x01bef728a137df7ad2b7c966b5f3ba6686921fc3": {
         "at": "2026-11-24T12:53:20Z",
@@ -8305,12 +8319,6 @@
         "symbol": "GOT",
         "until": "2026-11-25T15:58:20Z"
       },
-      "0x4a09128960ff7392270a118543d401fd7d6d8f27": {
-        "at": "2026-11-23T17:13:22Z",
-        "reason": "real_depth",
-        "symbol": "BOOTR",
-        "until": "2026-11-24T17:13:22Z"
-      },
       "0x4ae743db2c8808308dda1e21238959b9bcf155e8": {
         "at": "2026-11-24T11:23:20Z",
         "reason": "real_depth",
@@ -8502,12 +8510,6 @@
         "reason": "real_depth",
         "symbol": "STOX",
         "until": "2026-11-25T12:58:16Z"
-      },
-      "0x56ca3ee0a850ba65d1adea7ce05dd67141129f01": {
-        "at": "2026-11-23T17:18:16Z",
-        "reason": "real_depth",
-        "symbol": "ESA",
-        "until": "2026-11-24T17:18:16Z"
       },
       "0x5704157b37de7b3e0505898a31d4b5ff73d7cccc": {
         "at": "2026-11-24T13:58:16Z",
@@ -9294,12 +9296,6 @@
         "reason": "real_depth",
         "symbol": "ANTHROPIC",
         "until": "2026-11-25T15:38:16Z"
-      },
-      "0x870d683449843d3a832f5f9cbb67b220b9976e86": {
-        "at": "2026-11-23T17:18:16Z",
-        "reason": "real_depth",
-        "symbol": "BOOTR",
-        "until": "2026-11-24T17:18:16Z"
       },
       "0x87736943c759108c511de7bbde8f0c4d43e7fee1": {
         "at": "2026-11-24T05:58:16Z",
@@ -11347,12 +11343,6 @@
         "symbol": "BLIND",
         "until": "2026-11-24T22:28:15Z"
       },
-      "0xb6795b61c9de6da3104c20d4be35fdc7c9756ba3": {
-        "at": "2026-11-23T17:18:16Z",
-        "reason": "real_depth",
-        "symbol": "APPLETICK",
-        "until": "2026-11-24T17:18:16Z"
-      },
       "0xb6e984ed918b5f2d5492c2da67c0f21bb05ccccc": {
         "at": "2026-11-23T20:18:17Z",
         "reason": "real_depth",
@@ -11376,6 +11366,12 @@
         "reason": "real_depth",
         "symbol": "ANTHROPIC",
         "until": "2026-11-25T05:33:15Z"
+      },
+      "0xb79547de8719ec7df9ba8ebad3be23a7d9fbecfe": {
+        "at": "2026-11-24T17:18:16Z",
+        "reason": "real_depth",
+        "symbol": "CP172",
+        "until": "2026-11-25T17:18:16Z"
       },
       "0xb7d7e7a47fb9b85950bd4fb4bad9dec3c17e358f": {
         "at": "2026-11-24T02:13:15Z",
@@ -11544,12 +11540,6 @@
         "reason": "real_depth",
         "symbol": "SPACEX",
         "until": "2026-11-25T09:48:16Z"
-      },
-      "0xbf9ad1688aef16ad42d2b2c769843be8c1bca25b": {
-        "at": "2026-11-23T17:18:16Z",
-        "reason": "real_depth",
-        "symbol": "LIQUIDBGT",
-        "until": "2026-11-24T17:18:16Z"
       },
       "0xc03e5ebfec0b247b63baedc15067e8c680d25ba3": {
         "at": "2026-11-23T19:48:15Z",
@@ -12030,6 +12020,12 @@
         "reason": "real_depth",
         "symbol": "HUSS",
         "until": "2026-11-25T16:53:15Z"
+      },
+      "0xda8046c2cfe28e18718b2cc03fa081b004e0bc4c": {
+        "at": "2026-11-24T17:18:16Z",
+        "reason": "goplus_timeout",
+        "symbol": "ANT",
+        "until": "2026-11-25T17:18:16Z"
       },
       "0xdaf13294f5cb6347fac0b19560b731ce27080220": {
         "at": "2026-11-23T18:43:16Z",
@@ -12687,23 +12683,17 @@
       }
     },
     "watch": {
-      "0x01a8200e453317aed96b879b7cc61cedf5f2887f": {
-        "checks": 2,
-        "first_seen": "2026-11-24T16:43:16Z",
-        "last_check": "2026-11-24T16:58:17Z",
+      "0x8994fda7499fd9c8a114789acc300471200b0ef0": {
+        "checks": 1,
+        "first_seen": "2026-11-24T17:18:16Z",
+        "last_check": "2026-11-24T17:18:16Z",
         "symbol": "NOTF"
       },
       "0x9f4c76f421f47b3c234f841f477897f1d895177d": {
-        "checks": 3,
+        "checks": 4,
         "first_seen": "2026-11-24T16:18:18Z",
-        "last_check": "2026-11-24T16:58:17Z",
+        "last_check": "2026-11-24T17:18:16Z",
         "symbol": "INFI"
-      },
-      "0xda8046c2cfe28e18718b2cc03fa081b004e0bc4c": {
-        "checks": 10,
-        "first_seen": "2026-11-24T14:18:16Z",
-        "last_check": "2026-11-24T16:58:17Z",
-        "symbol": "ANT"
       },
       "0xf5f1bc2667367db1479c537726132228b008ddf3": {
         "checks": 1,

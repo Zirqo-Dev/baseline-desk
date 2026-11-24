@@ -2066,3 +2066,12 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-24T17:13:15Z,desk,VERIFY,ODDVERSE,0x46317376ab90be3e5d74918ea1e19d4172a3eef4,SKIP,missing:price,goplus=skipped until=2026-11-25T17:13:15Z
 2026-11-24T17:13:15Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
 2026-11-24T17:13:15Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=22 rechecks=0 new=6 checked=6 passed=0 bought=0 held=0 deferred=0 dex_only=6 goplus=0 requests=15 secs=3.7 bl_positions=2 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=3 labels_done=3 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-24T17:18:16Z,baseline,EXIT,MARSBASE,0x0b455a80139f9642bb47f2cb5afabbd8809a24af,HOLD,no_quote,
+2026-11-24T17:18:16Z,baseline,EXIT,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,HOLD,no_quote,
+2026-11-24T17:18:16Z,desk,VERIFY,ANT,0xda8046c2cfe28e18718b2cc03fa081b004e0bc4c,SKIP,goplus_timeout,first_seen=2026-11-24T14:18:16Z checks=11 until=2026-11-25T17:18:16Z b1=300 s1=300 b24=1185 s24=1139 liq=10212104 dex=aerodrome qliq=110030 pair_age=185 token_age=185
+2026-11-24T17:18:16Z,desk,VERIFY,INFI,0x9f4c76f421f47b3c234f841f477897f1d895177d,WATCH,goplus_not_ready,first_seen=2026-11-24T16:18:18Z checks=4 pending=honeypot b1=112 s1=98 b24=1677 s24=2281 liq=312242 dex=aero qliq=284170 pair_age=11305 token_age=11305
+2026-11-24T17:18:16Z,desk,VERIFY,NOTF,0x01a8200e453317aed96b879b7cc61cedf5f2887f,SKIP,real_depth,first_seen=2026-11-24T16:43:16Z checks=3 goplus=skipped until=2026-11-25T17:18:16Z
+2026-11-24T17:18:16Z,desk,VERIFY,CP172,0xb79547de8719ec7df9ba8ebad3be23a7d9fbecfe,SKIP,real_depth,goplus=skipped until=2026-11-25T17:18:16Z
+2026-11-24T17:18:16Z,desk,VERIFY,NOTF,0x8994fda7499fd9c8a114789acc300471200b0ef0,WATCH,goplus_not_ready,"first_seen=2026-11-24T17:18:16Z checks=1 pending=honeypot,buy_tax_pct,sell_tax_pct,dev_pct,top10_pct,lp_locked_pct b1=6 s1=3 b24=6 s24=3 liq=689725 dex=uniswap:v4 qliq=200534 pair_age=6 token_age=6"
+2026-11-24T17:18:16Z,baseline,EXECUTE,ANT,0xda8046c2cfe28e18718b2cc03fa081b004e0bc4c,SKIP,loss_halt,seed=202611241718 eligible=1 pick=0 pool=da8046 desk=goplus_timeout launchpad=other
+2026-11-24T17:18:16Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=3 new=2 checked=5 passed=0 bought=0 held=0 deferred=0 dex_only=2 goplus=3 requests=17 secs=7.5 bl_positions=2 bl_due=1 bl_eligible=1 bl_bought=0 report=none machine=none bl_error=none labels=none labels_due=0 labels_done=0 labels_calls=0 live=ok alerts=none alerts_sent=0
