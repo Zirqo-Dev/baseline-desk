@@ -332,12 +332,15 @@ class OpenSpy:
 
     def __init__(self, root, boom=True):
         self.root, self.hashing, self.seen, self.boom = Path(root).resolve(), 0, [], boom
+        self.events = []  # every open and (when a test logs it) every load() call, in order, with the gate state
         self.real_open, self.real_sha = builtins.open, B.sha256
         self.data = {(self.root / rel).resolve() for rel in (B.DAILY, B.ETH, B.UNIVERSE, B.COST)}
 
     def open(self, file, mode="r", *a, **k):
         if isinstance(file, (str, Path)):
             self.seen.append((Path(file).resolve(), mode, self.hashing > 0))
+            self.events.append({"kind": "open", "path": Path(file).resolve(), "mode": mode,
+                                "hashing": self.hashing > 0, "gate": B._GATE})
         return self.real_open(file, mode, *a, **k)
 
     def sha(self, path):
@@ -516,6 +519,48 @@ class ToolPinSummaryAttempt(unittest.TestCase):
         with mock.patch.object(B, "tool_sha", lambda: "a" * 64):
             self.assertIn("the tool is aaaaaaaaaaaa", B.refusal(self.r, 1, self.pins))
 
+    # The fresh-context review of the final tool (2026-11-24, GO): gaps b1, b2, b4, b5.
+    def assert_pin_refused(self, text):
+        self.dec(text)
+        why = B.refusal(self.r, 1, self.pins, ch())
+        self.assertTrue(why.startswith("refused: tool pin:"), why)
+        return why
+
+    def test_tool_pin_first_8_hex_only_is_refused(self):
+        """b1: a pin that matches the first 8 hex of the tool sha but differs afterwards."""
+        sha = B.tool_sha()
+        flip = "".join("1" if c == "0" else "0" for c in sha[8:])
+        for pin in (sha[:8] + flip[:4], sha[:8] + flip):  # 12 hex and the full 64
+            with self.subTest(pin=pin[:16]):
+                self.assertEqual(pin[:8], sha[:8])
+                self.assertFalse(sha.startswith(pin))
+                self.assert_pin_refused(row(f"stage 1 run approved, tools/bl39.py sha256 {pin} (the owner)"))
+
+    def test_tool_pin_substring_not_prefix_is_refused(self):
+        """b2: a pin that is a substring of the tool sha, not its prefix."""
+        sha = B.tool_sha()
+        for sub in (sha[1:13], sha[30:42], sha[52:], sha[1:]):
+            with self.subTest(sub=sub[:12]):
+                self.assertIn(sub, sha)
+                self.assertFalse(sha.startswith(sub))
+                self.assert_pin_refused(row(f"stage 1 run approved, tools/bl39.py sha256 {sub} (the owner)"))
+
+    def test_tool_pin_outside_the_decision_cell_is_refused(self):
+        """b4: a correct pin in the row's why or rejected cell, none in its decision cell."""
+        for cells in ((PIN, "rejected"), ("why", PIN), (PIN, PIN)):
+            with self.subTest(cells=cells):
+                why = self.assert_pin_refused(
+                    f"| 2026-12-01 | BL-39 | stage 1 run approved (the owner) | {cells[0]} | {cells[1]} |\n")
+                self.assertIn("the approval row names no tools/bl39.py sha256", why)
+        self.dec(f"| 2026-12-01 | BL-39 | stage 1 run approved, {PIN} (the owner) | why | rejected |\n")
+        self.assertEqual(B.refusal(self.r, 1, self.pins, ch()), "")  # the same pin in the decision cell passes
+
+    def test_tool_sha_is_the_file_actually_run(self):
+        """b5: tool_sha() = sha256 of the bytes of tools/bl39.py, the module file this process imported."""
+        run_file = Path(B.__file__).resolve()
+        self.assertEqual(run_file, (ROOT / "tools/bl39.py").resolve())
+        self.assertEqual(B.tool_sha(), hashlib.sha256(run_file.read_bytes()).hexdigest())
+
     def test_stage2_summary_gate(self):
         self.dec(APPROVE2, PASS1)
         for setup, want in [
@@ -600,6 +645,67 @@ class ToolPinSummaryAttempt(unittest.TestCase):
         r = B.run(self.r, 1, now=M0, pins=self.pins)
         self.assertIsInstance(r["reported"]["bl45_measured"], dict)  # replace_metered computed
         self.assertEqual(B.read_cost(self.r / B.COST), {self.w.tokens[0]: 0.1})
+
+
+class RunReadOrder(unittest.TestCase):
+    """The fresh-context review of the final tool (2026-11-24, GO), gaps g1, g3, g4: inside one successful run() on a
+    synthetic World, the attempt record is written first, then the gate opens, then load() and every data-file open.
+    The open() log and the load() wrapper are test-side monkeypatches only (OpenSpy, mock.patch)."""
+
+    def setUp(self):
+        self.w = World(n=3)
+        self.r, self.pins = make_root(self.w, APPROVE1)
+        self.addCleanup(shutil.rmtree, self.r)
+        self.attempt = B.attempt_path(self.r, 1).resolve()
+        self.gate = (self.r.resolve(), 1)
+        real_load = B.load
+        with OpenSpy(self.r, boom=False) as spy:
+            def logged_load(root, stage):
+                spy.events.append({"kind": "load", "gate": B._GATE, "attempt": self.attempt.exists()})
+                return real_load(root, stage)
+
+            with mock.patch.object(B, "load", logged_load):
+                B.run(self.r, 1, now=M0, pins=self.pins)
+        self.ev, self.data = spy.events, spy.data
+        self.assertTrue((B.result_dir(self.r, 1) / "summary.json").exists())  # the run succeeded
+        self.assertIsNone(B._GATE)
+
+    def first(self, pred, what):
+        for i, e in enumerate(self.ev):
+            if pred(e):
+                return i
+        self.fail(f"no {what} in the run")
+
+    def attempt_write(self):
+        return self.first(lambda e: e["kind"] == "open" and e["path"] == self.attempt
+                          and any(c in e["mode"] for c in "xwa"), "attempt record write")
+
+    def data_opens(self):
+        return [i for i, e in enumerate(self.ev)
+                if e["kind"] == "open" and e["path"] in self.data and not e["hashing"]]
+
+    def test_g1_load_not_called_before_the_attempt_record(self):
+        loads = [i for i, e in enumerate(self.ev) if e["kind"] == "load"]
+        self.assertEqual(len(loads), 1, "run() calls load() once")
+        self.assertGreater(loads[0], self.attempt_write())
+        self.assertTrue(self.ev[loads[0]]["attempt"], "load() ran before the attempt record existed")
+
+    def test_g3_gate_opens_only_after_the_attempt_record(self):
+        w = self.attempt_write()
+        self.assertEqual([e["gate"] for e in self.ev[:w + 1]], [None] * (w + 1),
+                         "the gate was open at or before the attempt record write")
+        opened = self.first(lambda e: e["gate"] is not None, "open gate")
+        self.assertGreater(opened, w)
+        self.assertEqual(self.ev[opened]["gate"], self.gate)
+
+    def test_g4_first_data_open_after_the_attempt_record_and_inside_the_gate(self):
+        opens = self.data_opens()
+        self.assertTrue(opens, "the run opened no data file")
+        self.assertGreater(opens[0], self.attempt_write())
+        self.assertEqual({self.ev[i]["path"] for i in opens}, self.data)  # daily, ETH, universe and cost all read
+        for i in opens:
+            with self.subTest(path=self.ev[i]["path"].name):
+                self.assertEqual(self.ev[i]["gate"], self.gate, "a data file was opened outside the gate")
 
 
 class PeekGuard(unittest.TestCase):

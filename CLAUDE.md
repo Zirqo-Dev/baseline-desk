@@ -321,7 +321,7 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
   terminal and Paper equity card byte-identical (screenshots and sha256 pins). Telegram daily adds "<book> refilled +$x
   (not P&L)" (from state.json report.equity), "Gate B since ... · random N closes · kill at 200" and a per-trade line per
   book; every BL-3 line stays; no BL-34 line (core/ never reads backtest/, test) (docs/NOTES.md "BL-43").
-  Tests: stdlib unittest, `python -m unittest` (687 pass on 3.13.18).
+  Tests: stdlib unittest, `python -m unittest` (694 pass on 3.13.18).
 - cron-job.org token "baseline-desk cron" (it dispatches tick.yml and costs.yml) EXPIRES Thu 2027-01-21: renew by early
   January or the desk and the cost meter stop silently.
 - Technical detail per card, GoPlus diagnosis, BL-20 budget and full open items: docs/NOTES.md.
@@ -497,13 +497,16 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
   (POST workflow_dispatch at :17 every 2 h UTC), the same move tick.yml made (BL-7). GitHub's schedule started 33 runs
   Nov 14-23 against about 114 slots (2-4 a day, all success, ~50 s each). Workflow and tests only; the job is
   unchanged; a test pins workflow_dispatch and no schedule: key (docs/NOTES.md "BL-45").
-- Next step: BL-45: the owner adds the cron-job.org job for costs.yml (settings in docs/NOTES.md "BL-45"); until it
-  is on, costs.yml runs only by hand.
-  BL-39: a fresh-context review of the final run tool (tools/bl39.py, CHOICES filled, sha256 94e638434edb...); then the
-  owner writes the DECISIONS BL-39 row "stage 1 run approved, tools/bl39.py sha256 <first 12 hex of the reviewed tool>
-  ... (the owner)", which also states that BL-38 tests only data after CUT; then the one stage 1 run as its own story
-  (python -m tools.bl39 --run --stage 1, result committed). Any tool change after the review changes the sha and
-  needs a new review and approval row. Stage 2 only after a DECISIONS "stage 1 pass" line and a stage 1 pass in its
+- Next step: BL-45: the cron-job.org job for costs.yml is on (UTC, :17 every 2 h); test dispatch 501935ed on
+  2026-11-24 (settings in docs/NOTES.md "BL-45").
+  BL-39: the fresh-context review of the final run tool (tools/bl39.py, sha256 94e638434edb...) gave GO, nothing
+  blocking; its 7 test gaps are closed (tests only, tool unchanged; mutation table in docs/NOTES.md "BL-39 run tool").
+  Next, the one stage 1 run as its own story: it writes the owner's DECISIONS BL-39 row "stage 1 run approved,
+  tools/bl39.py sha256 94e638434edb ... (the owner)", which also states that BL-38 tests only data after CUT, in its
+  own working tree, runs once (python -m tools.bl39 --run --stage 1), and commits the row, the attempt record and the
+  result together. The row is never pushed ahead of the run: a fresh clone with a pushed row could run stage 1
+  without the real attempt record (DECISIONS 2026-11-24). Any tool change changes the sha and needs a new review and
+  approval row. Stage 2 only after a DECISIONS "stage 1 pass" line and a stage 1 pass in its
   summary.json. BL-38 tests only data after CUT (the owner, A, 2026-11-24).
   BL-46: snapshot.yml runs automatic every Monday 00:37 UTC; next run Nov 23.
   How the sealed snapshot files (backtest/liquid/snapshots/sealed/) are opened is a later story, after BL-34's holdout

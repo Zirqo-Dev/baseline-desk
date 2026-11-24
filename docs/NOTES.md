@@ -2729,7 +2729,7 @@ Moved from CLAUDE.md section 11 on 2026-10-23 (BL-2 process cleanup). Wording is
   blocked by the session's permission check before it ran: nothing ran and no result folder exists. Stdlib only,
   offline (no network module imported, test), never on the tick path; core/ and the workflows never name it (test).
   Nothing under core/, adapters/, data/, site/ or .github/ changed; no threshold, schedule or config change.
-- Commands: `python -m tools.bl39 --check [--stage 1|2]` prints the six hashes, the meta headers' card / cut /
+- Commands: `python -m tools.bl39 --check [--stage 1|2]` prints the seven hashes, the meta headers' card / cut /
   fetched_at / first_day / last_day, universe.json's cut / fetched_at / token count, the family check, the stage's
   Mondays, the load window, the result folder, whether a run-approval line and a stage-1-pass line exist, the open
   questions and whether a run is allowed now. `python -m tools.bl39 --run --stage 1` is THE run (refused today).
@@ -2860,3 +2860,41 @@ Moved from CLAUDE.md section 11 on 2026-10-23 (BL-2 process cleanup). Wording is
     "refused: no docs/DECISIONS.md BL-39 row starting 'stage 1 run approved' (the owner)".
   - Tests: tests/test_bl39.py 129 (111 before), full suite 687 pass on 3.13. The hand-mutation pass of the 2026-11-23
     build was not repeated for the new steps (the session's permission check blocked the script before it ran).
+- BL-39 tests (2026-11-24, tests and docs only; tools/bl39.py unchanged, sha256 still
+  94e638434edb36803ebf39fb56bc1c45f9d1b257cd9f9543f6603d82be3792bf). A fresh-context review of the final tool at that
+  sha gave GO, nothing blocking, and named 7 test gaps; this story closes them in tests/test_bl39.py (136 tests, 129
+  before; full suite 694 pass on 3.13). Synthetic fixtures in temp dirs only; nothing under backtest/ or data/ was
+  opened beyond hashing and `--check --stage 1`, which still refuses only for the missing "stage 1 run approved" row.
+  - Tool pin (class ToolPinSummaryAttempt): b1 a pin matching only the first 8 hex of the tool sha is refused (12 and 64
+    hex forms); b2 a substring of the tool sha that is not its prefix is refused (middle, end, sha[1:]); b4 a correct pin
+    in the why or rejected cell, none in the decision cell, is refused ("names no tools/bl39.py sha256"), and the same
+    pin in the decision cell passes; b5 tool_sha() = sha256 of the bytes of tools.bl39.__file__, which is the repo's
+    tools/bl39.py.
+  - Read order (new class RunReadOrder, one successful run() on a synthetic World): OpenSpy (tests only) now also logs
+    every open with the gate state, and a test-side mock.patch wraps load() to log its call; g1 load() is called once,
+    after the attempt record was written and while it exists; g3 the gate is closed at every open up to and including
+    the attempt record write, then opens as (root, 1); g4 the first data-file open (daily, ETH, universe or cost,
+    outside hashing) comes after the attempt record write, every one of the four is read, each with the gate open.
+  - Mutation check (done this time; it was blocked in the 2026-11-24 CHOICES build): in a scratchpad copy holding only
+    tools/ and tests/ (no backtest/ or data/, a fresh git init), each mutation applied alone to the copy's
+    tools/bl39.py and only `python -m unittest tests.test_bl39` run there; before every run tools.bl39.__file__ and
+    tools.bl39.ROOT were printed and confirmed inside the copy. Unmutated, the copy fails 1 test
+    (test_committed_files_match_by_hash_only: no committed files there); "newly failing" is against that. The copy was
+    deleted afterwards.
+
+    | gap | mutation | caught | newly failing tests |
+    |---|---|---|---|
+    | b1 | have.startswith(n[:8]) | yes | test_tool_pin_first_8_hex_only_is_refused |
+    | b2 | n in have | yes | test_tool_pin_substring_not_prefix_is_refused |
+    | b4 | TOOL_PIN.findall(row) (whole row) | yes | test_tool_pin_outside_the_decision_cell_is_refused |
+    | b5 | tool_sha() hashes the sibling tools/liquid.py | yes | test_tool_sha_is_the_file_actually_run |
+    | g1 | load() before write_attempt() | yes | test_g1_load_not_called_before_the_attempt_record, test_g4_first_data_open_after_the_attempt_record_and_inside_the_gate, test_run_writes_attempt_then_opens_the_gate_then_reads |
+    | g3 | gate opened before write_attempt() | yes | test_g3_gate_opens_only_after_the_attempt_record |
+    | g4 | read_cost() between write_attempt() and the gate | yes | test_g4_first_data_open_after_the_attempt_record_and_inside_the_gate |
+
+    b5 is caught by its own test only: every other pin test derives its pin from tool_sha() itself. g3 and g4 were not
+    caught by the older test_run_writes_attempt_then_opens_the_gate_then_reads (it looks only at the load() call).
+  - Process (the owner, A, DECISIONS 2026-11-24): the stage 1 run story writes the owner's "stage 1 run approved" row
+    in its own working tree, runs once, and commits the row, the attempt record and the result together; the row is
+    never pushed ahead of the run. Why (the review): run-once holds only inside one repo copy; a fresh clone with a
+    pushed row and no attempt record could run stage 1 again.
