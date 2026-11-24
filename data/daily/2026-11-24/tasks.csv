@@ -1685,3 +1685,12 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-24T14:28:18Z,desk,VERIFY,ONMI,0xb200000000000000000000e3c33d2600f8739740,SKIP,real_depth,goplus=skipped until=2026-11-25T14:28:18Z
 2026-11-24T14:28:18Z,baseline,EXECUTE,SVAG,0x037eed48b22e417323ba0528007a3b7ca6f69545,SKIP,loss_halt,"seed=202611241428 eligible=3 pick=0 pool=037eed,2a8162,515b91 desk=WATCH launchpad=other"
 2026-11-24T14:28:18Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=3 new=3 checked=6 passed=0 bought=0 held=0 deferred=0 dex_only=3 goplus=3 requests=17 secs=7.0 bl_positions=2 bl_due=1 bl_eligible=3 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=2 labels_done=2 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-24T14:33:18Z,baseline,EXIT,MARSBASE,0x0b455a80139f9642bb47f2cb5afabbd8809a24af,HOLD,no_quote,
+2026-11-24T14:33:18Z,baseline,EXIT,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,HOLD,no_quote,
+2026-11-24T14:33:18Z,desk,VERIFY,ANT,0xda8046c2cfe28e18718b2cc03fa081b004e0bc4c,WATCH,goplus_not_ready,"first_seen=2026-11-24T14:18:16Z checks=2 pending=honeypot,buy_tax_pct b1=126 s1=113 b24=126 s24=113 liq=7818637 dex=aerodrome qliq=113011 pair_age=20 token_age=20"
+2026-11-24T14:33:18Z,desk,VERIFY,LAPTOP,0x3f06448bec5a04caa1b64eb9bc5fa2e4961183d6,SKIP,real_depth,goplus=skipped until=2026-11-25T14:33:18Z
+2026-11-24T14:33:18Z,desk,VERIFY,trenchbot,0xb200000000000000000000862994379afa22ba00,SKIP,real_depth,goplus=skipped until=2026-11-25T14:33:18Z
+2026-11-24T14:33:18Z,desk,VERIFY,BULL,0x77d49483a40e93b13a8b7dc8616e0b6c16ab61f7,SKIP,missing:liq_usd,goplus=skipped until=2026-11-25T14:33:18Z
+2026-11-24T14:33:18Z,desk,VERIFY,SLINGOOR,0xabb13bbb565144a3916ca14d9cf79c86223acccc,SKIP,missing:liq_usd,goplus=skipped until=2026-11-25T14:33:18Z
+2026-11-24T14:33:18Z,baseline,EXECUTE,ANT,0xda8046c2cfe28e18718b2cc03fa081b004e0bc4c,SKIP,loss_halt,seed=202611241433 eligible=1 pick=0 pool=da8046 desk=WATCH launchpad=other
+2026-11-24T14:33:18Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=1 new=4 checked=5 passed=0 bought=0 held=0 deferred=0 dex_only=4 goplus=1 requests=15 secs=4.1 bl_positions=2 bl_due=1 bl_eligible=1 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=17 labels_done=17 labels_calls=1 live=ok alerts=none alerts_sent=0
