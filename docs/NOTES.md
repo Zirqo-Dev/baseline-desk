@@ -2733,10 +2733,12 @@ Moved from CLAUDE.md section 11 on 2026-10-23 (BL-2 process cleanup). Wording is
   fetched_at / first_day / last_day, universe.json's cut / fetched_at / token count, the family check, the stage's
   Mondays, the load window, the result folder, whether a run-approval line and a stage-1-pass line exist, the open
   questions and whether a run is allowed now. `python -m tools.bl39 --run --stage 1` is THE run (refused today).
-- Refusals, in the owner's order (2026-11-23, A); refusal() returns the FIRST failing step, and every step runs before
-  any candle, ETH or universe file is opened beyond hashing (sha256() streams raw bytes into the hash, nothing parsed):
-  1 hashes, then the family check on the two spec data files; 2 the run-approval line; 3 (stage 2) the "stage 1 pass"
-  line; 4 no result folder; 5 no unresolved CHOICES. A test spies on builtins.open and io.open (pathlib and gzip go
+- Refusals, in the owner's order (2026-11-23, A, with the 2026-11-24 steps of "BL-39 CHOICES" below slotted in);
+  refusal() returns the FIRST failing step, and every step runs before any candle, ETH, universe or cost file is
+  opened beyond hashing (sha256() streams raw bytes into the hash, nothing parsed): 1 hashes (7 files), then the family
+  check on the two spec data files; 2 the run-approval line; 3 its tool pin; 4 (stage 2) the "stage 1 pass" line;
+  5 (stage 2) the stage 1 summary.json records a pass; 6 no result folder; 7 no attempt record; 8 no unresolved
+  CHOICES. A test spies on builtins.open and io.open (pathlib and gzip go
   through them) and makes every data reader raise: on every refusal path no candle, ETH or universe file is opened
   outside hashing and the results tree is unchanged (also through the CLI). The steps:
   - sha256 pins (PINS): the spec .md 5202982dbe90..., -family.json 374b70eaf450..., -fees.json 4a7318c95a96...,
@@ -2775,7 +2777,8 @@ Moved from CLAUDE.md section 11 on 2026-10-23 (BL-2 process cleanup). Wording is
   convention (buy at price x (1 + f), sell at price x (1 - f)). Benchmark = every universe token, same rules, gross.
   Hold-ETH per leg (open to open; close for a stop or a last-close exit_gap); a missing ETH number refuses. Pass tests
   1-5, the asymmetric inconclusive rule, the drawdown-only outcome, and every "always reported" line.
-- Open questions (CHOICES, all unresolved; every option built and tested on its own, not every combination):
+- Open questions (CHOICES; unresolved at the 2026-11-23 build, filled 2026-11-24, see "BL-39 CHOICES" below; every
+  option built and tested on its own, not every combination):
 
   | key | spec text | options |
   |---|---|---|
@@ -2788,7 +2791,7 @@ Moved from CLAUDE.md section 11 on 2026-10-23 (BL-2 process cleanup). Wording is
   | Q7 | "top third of the universe by 30-day volatility" | simple_ceil / simple_floor / log_ceil / log_floor (stdev of simple or log returns; third rounded up or down) |
   | Q8 | "legs on unknown-fee, hook and changeable-fee pools" | pool_only (pool unknown, non-zero hook, may_differ) / pool_or_hop (also an unknown hop) |
   | Q9 | "the BL-45 measured-cost line" | replace_metered / metered_legs_only / side_by_side (amendment 4: fixtures only) |
-  | Q9s | the measured cost's source for the real run | none built: which BL-45 file and statistic is a later story's; backtest/costs/ was not opened |
+  | Q9s | the measured cost's source for the real run | none built at the 2026-11-23 build; 2026-11-24: pinned_file (the frozen -bl45-cost.json) |
   | Q10 | "picks that joined the universe in the last 7 days" on Jun 15 (Jun 8 needs candles from May 8) | compute / na_first |
   | Q11 | tests 2 and 4 with no leg, or <= 2 legs for "without the top 2" | fail / not_evaluable (inconclusive when 1 fails too) |
   | Q12 | RUN "A second run of a stage needs an owner rerun line in DECISIONS, is logged as a rerun and never replaces the first result" | no_rerun (built: no rerun path in this tool, the run-once guard has no override, any rerun is its own story) / decisions_rerun (not built: a row "stage N rerun approved ... (the owner)" lets a second run write its own rerun folder, logged as a rerun, the first result never replaced) |
@@ -2800,7 +2803,8 @@ Moved from CLAUDE.md section 11 on 2026-10-23 (BL-2 process cleanup). Wording is
   every leg with rolls as a real sell and buy; "friction at half / double" scales the whole per-side %; "picks whose MAX
   day is the last day" includes a tie on the last day; drawdown against the running peak from 50 USD.
 - Process items in the spec's RUN line that the tool does not enforce: "BL-38's spec is frozen before BL-39 stage 1 is
-  read, or BL-38 tests only data after CUT" (a process rule for the owner and chat).
+  read, or BL-38 tests only data after CUT" (a process rule for the owner and chat; decided 2026-11-24: BL-38 tests only
+  data after CUT, and the stage 1 approval row states it).
 - Tests: tests/test_bl39.py, 111, synthetic fixtures only (amendment 5: committed backtest/ files are hashed, never
   parsed): the refusal order with the open() spy (each step, the first failing step wins, the CLI), the run-gate line
   format, hash refusals for each of the six files, a missing file, stage-2 refusal and the pass-line format, run once
@@ -2812,3 +2816,47 @@ Moved from CLAUDE.md section 11 on 2026-10-23 (BL-2 process cleanup). Wording is
   evaluate -> write), isolation. Seven hand mutations (stop level, k rounding, the Sep 7 window, ties, the 0.5%, roll
   friction, median vs mean) each fail at least one test; two more (refusal() parsing universe.json, or gunzipping
   daily.jsonl.gz) each fail 6 spy tests. Full suite 668 pass on 3.13 (557 before).
+- BL-39 CHOICES (2026-11-24, the owner's decisions in chat, all choice A, plus the go amendments: Q9s addresses B, the
+  private gate; DECISIONS). Build and tests only: no stage was run; load(), evaluate() and run() were never called on
+  the real committed files except the peek-guard tests that assert load()/evaluate() refuse them (open() spy: hashing
+  only). Nothing under core/, adapters/, data/, site/ or .github/ changed.
+  - CHOICES filled: Q1 pick_leg, Q2 close, Q3 zero_diff, Q4 inconclusive, Q5 fill_picks, Q6 open_to_open, Q7
+    simple_ceil, Q8 pool_or_hop, Q9 replace_metered, Q9s pinned_file, Q10 na_first, Q11 fail, Q12 no_rerun. Q12: the
+    first result is the verdict; any rerun is its own reviewed story, logged as a rerun (decisions_rerun stays not built).
+  - Q9s file backtest/specs/bl39-max-momentum-v2.1-bl45-cost.json, sha256
+    71d71de47e1d39b893c469f4ffa7f81be3ae595e4f627238e68301fe75d98566 (in PINS; JSON sorted keys, indent 1, ASCII):
+    fields source, window (2026-11-13T03:01:41Z .. 2026-11-20T03:01:41Z) and tokens [token, symbol, per_side_pct],
+    nothing else. per_side_pct = the "rt 5 USD %" column of the 14-token table in "BL-39 pre-freeze" / 2, an exact
+    decimal: CTR 0.011, QUID 0.011, ELSA 0.011, BRETT 0.6685, SOSO 0.012, PLAY 0.015, PROS 0.0105, NOCK 0.301, MAG7.ssi
+    0.2995, VELVET 0.019, KTA 0.5975, VCNT 0.2995, ICNT 0.0525, ZEN 0.449. The numbers come from the NOTES text only;
+    backtest/costs/ was not opened. Addresses (the owner, B, one narrow exception to the seal): the token and symbol
+    fields of the rows of -fees.json whose symbol is one of the 14 were read once (every row has a symbol; each of the
+    14 matched exactly one row); no other field and no other backtest/ file was read. The run reads the file
+    (read_cost(), after the gate) for the Q9 line only; a test shows the tests, verdict and every other reported line
+    are identical with and without it.
+  - Stage 2 gate: after the "stage 1 pass" row, backtest/results/bl39-max-momentum-v2.1-stage1/summary.json must exist,
+    be JSON and record stage 1 and verdict "pass"; read only at that step (test: never read before the pass-row step, never
+    for stage 1).
+  - Tool pin: a "stage N run approved" row passes only if its decision cell names "tools/bl39.py sha256 <hex>", at least
+    the first 12 hex of tools/bl39.py's current sha256 (the full hash is fine); any approval row naming the current
+    hash will do; a row naming none or another hash refuses ("refused: tool pin: ..."). summary.json and the attempt
+    record carry tool, tool_sha256, git_head (git rev-parse HEAD, None outside a repo), approval_row; summary.json also
+    attempt (the record's path). The tool's sha is not in PINS (it would change the tool's own hash).
+  - Attempt record: backtest/results/bl39-max-momentum-v2.1-stage<N>.attempt.json (beside the result folder), written by
+    run() with mode "x" after refusal() passed and before the first data read; it stays after a run. A record with no
+    result folder refuses every later run: "an aborted attempt exists: a retry is a rerun, its own story". With the folder
+    present, the run-once step fires first.
+  - Peek guard: load() (before it opens any file), read_daily(), read_universe(), read_cost(), evaluate() and simulate()
+    refuse a real committed file: a pinned path, anything under the repo's backtest/liquid/, or any file whose bytes hash
+    to a pin (a private copy of the pins, so patching PINS never unguards); load() tags what it returns with its root and
+    evaluate()/simulate() refuse tagged data. Allowed only while run()'s private gate _GATE = (root, stage) is open:
+    opened only by run(), after the attempt record, closed in a finally on every exit path; read_daily() also needs the
+    gate stage's own window. No CLI flag, no __all__. Re-calling refusal() inside the guard (the plan's first wording)
+    was not built: the attempt record would refuse the run's own load(). Tests: every guarded call refuses on the real
+    paths today, after each other public call, after a run that raised (load, read_cost, evaluate or write_result), and
+    for the wrong stage or root; synthetic temp files are not guarded.
+  - --check (real files): 7 hashes ok, family check ok, open_questions [], tool sha256
+    94e638434edb36803ebf39fb56bc1c45f9d1b257cd9f9543f6603d82be3792bf, no attempt record, no result folder, run_now
+    "refused: no docs/DECISIONS.md BL-39 row starting 'stage 1 run approved' (the owner)".
+  - Tests: tests/test_bl39.py 129 (111 before), full suite 687 pass on 3.13. The hand-mutation pass of the 2026-11-23
+    build was not repeated for the new steps (the session's permission check blocked the script before it ran).

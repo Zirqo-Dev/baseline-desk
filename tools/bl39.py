@@ -10,10 +10,18 @@ tested, and the real run is refused while any key is None (unresolved). A later 
 answers and records them in docs/DECISIONS.md.
 
 Refusals, in this order, the first failing step is the reason (refusal()), all before any candle, ETH or universe
-file is opened beyond hashing: the sha256 of the spec, its two data files, the survey files and the ETH file must
-equal PINS, and the family rule must give exactly the family list on the two spec data files; a docs/DECISIONS.md row
-(card BL-39) starting "stage N run approved" and marked "(the owner)"; for stage 2 a row starting "stage 1 pass"; no
-result folder for the stage (no override; Q12); no unresolved CHOICES.
+file is opened beyond hashing: 1 the sha256 of the spec, its two data files, the survey files, the ETH file and the
+Q9s cost file must equal PINS, and the family rule must give exactly the family list on the two spec data files;
+2 a docs/DECISIONS.md row (card BL-39) starting "stage N run approved" and marked "(the owner)"; 3 that row names
+"tools/bl39.py sha256 <the first 12 hex of this file's sha256>" (tool pin); 4 for stage 2 a row starting "stage 1 pass";
+5 for stage 2 the stage 1 result's summary.json exists and records a pass (read only at this step); 6 no result
+folder for the stage (no override; Q12); 7 no attempt record for the stage (an aborted attempt: a retry is a rerun,
+its own story); 8 no unresolved CHOICES. run() then writes the attempt record before the first data read.
+
+Peek guard (the owner, 2026-11-24, A): load(), evaluate(), simulate() and the readers refuse the real committed files
+(a pinned path, anything under the repo's backtest/liquid/, or any file whose bytes hash to a pin) unless run() has
+opened its private in-process gate for that root and stage, which it does only after refusal() passed and the attempt
+record is written, and closes in a finally on every exit path. Synthetic fixtures in temp dirs are not guarded.
 
 Seal (the owner, A): stage 1 keeps the full daily candles that start before 2026-09-07 and, of the 2026-09-07 candle,
 the open only (each token and ETH); its high, low, close and volume and every later candle are dropped as each file
@@ -25,6 +33,7 @@ import gzip
 import hashlib
 import json
 import math
+import re
 import statistics
 import sys
 from datetime import datetime, timezone
@@ -41,11 +50,14 @@ DAILY = "backtest/liquid/daily.jsonl.gz"
 ETH = "backtest/liquid/eth-daily.jsonl.gz"
 DECISIONS = "docs/DECISIONS.md"
 RESULTS = "backtest/results"
+COST = "backtest/specs/bl39-max-momentum-v2.1-bl45-cost.json"
+TOOL = "tools/bl39.py"
 NAME = "bl39-max-momentum-v2.1"
 
 # The spec, its two data files (DECISIONS 2026-11-20 (f), the spec's DATA line) and the ETH file (NOTES "BL-39 ETH
 # daily"). The survey files: NOTES "BL-46" records that their sha256 is pinned in tests/test_snapshot.py; these are
-# those pins (NOTES itself does not write the hash).
+# those pins (NOTES itself does not write the hash). The Q9s cost file: frozen 2026-11-24 from NOTES "BL-39 pre-freeze"
+# (the owner, Q9s), read only for the Q9 report line.
 PINS = {
     SPEC: "5202982dbe901b5fc7b77956ef322ef5770cc05f863acd1d878d749c9a2b53ba",
     FAMILY: "374b70eaf450e03d6a2bc208708fa1d3afcdaad77d080c2639aa39a00becc9ab",
@@ -53,7 +65,9 @@ PINS = {
     ETH: "82bc487a78a2f0306e56b1b1780b4bdab91b3d1588328c4edd3ece0f79828ac8",
     DAILY: "5d14fcee0fca60ac5f71f616acb6869a0cb5489cf99fc9d24d688aa6f6f71267",
     UNIVERSE: "09c301d0ed8b5fbe5d4365659b950749d085fbec192be44dd8226e760e9b695a",
+    COST: "71d71de47e1d39b893c469f4ffa7f81be3ae595e4f627238e68301fe75d98566",
 }
+_REAL_PINS = dict(PINS)  # the peek guard's copy: patching PINS (tests) never makes a committed file look synthetic
 
 # "GoPlus creator_address = 0xd95a366a2c887033ba71743c6342e2df470e9db9, or the deepest pool's other token is ADS
 #  0xb20a4bd059f5914a2f8b9c18881c637f79efb7df"
@@ -98,7 +112,7 @@ STAGES = {
 assert len(STAGES[1]["mondays"]) == 12 and _day(STAGES[1]["mondays"][-1]) == "2026-08-31"
 assert len(STAGES[2]["mondays"]) == 8 and _day(STAGES[2]["mondays"][-1]) == "2026-10-26"
 
-# ---- open questions: the tool does not choose (the owner, Nov 23: all unresolved until a later story) ----
+# ---- open questions: the tool does not choose; the owner answered them all (chat, 2026-11-24, DECISIONS) ----
 OPTIONS = {
     "Q1": ("pick_leg", "any_leg"),
     "Q2": ("search", "close"),
@@ -109,14 +123,13 @@ OPTIONS = {
     "Q7": ("simple_ceil", "simple_floor", "log_ceil", "log_floor"),
     "Q8": ("pool_only", "pool_or_hop"),
     "Q9": ("replace_metered", "metered_legs_only", "side_by_side"),
-    "Q9s": (),  # no option built: how the real run reads the BL-45 measured cost is a later story's
+    "Q9s": ("pinned_file",),  # the frozen COST file (PINS): NOTES "BL-39 pre-freeze", 5 USD round trip / 2
     "Q10": ("compute", "na_first"),
     "Q11": ("fail", "not_evaluable"),
     "Q12": ("no_rerun",),  # the one built option = today's behaviour; the DECISIONS-line rerun path is not built
 }
 # Options named in the open questions but not built in this story (a later story builds the chosen one).
 NOT_BUILT = {
-    "Q9s": ("a named BL-45 file and statistic (a later story writes the reader)",),
     "Q12": ("decisions_rerun: a docs/DECISIONS.md row 'stage N rerun approved ... (the owner)' lets a second run write "
             "its own rerun folder, logged as a rerun, the first result never replaced",),
 }
@@ -145,7 +158,9 @@ QUESTIONS = {
           "only (metered_legs_only); or no recompute, the spec friction and the measured cost side by side per picked "
           "metered token (side_by_side)?",
     "Q9s": "REPORT the BL-45 measured cost's source for the real run: which BL-45 cost-meter file and which "
-           "statistic (window, size, median or other). No reader is built; this tool never opens the BL-45 files.",
+           "statistic (window, size, median or other)? pinned_file = the frozen COST file under backtest/specs/ (the "
+           "14-token table of NOTES 'BL-39 pre-freeze', 5 USD round trip / 2 per side, window Nov 13-20); this tool "
+           "never opens the BL-45 cost-meter files.",
     "Q10": "REPORT 'picks that joined the universe in the last 7 days' on stage 1's first Monday (Jun 15): its m - 7 d "
            "universe (Jun 8) needs candles from May 8, before most pools' first candle (May 9): compute it by the same "
            "rule anyway (compute) or report Jun 15 as not available (na_first)?",
@@ -156,7 +171,11 @@ QUESTIONS = {
            "the first result': no rerun path in this tool, any rerun is its own story (no_rerun, built: the run-once "
            "guard has no override), or a DECISIONS-line rerun path (decisions_rerun, not built)?",
 }
-CHOICES = {q: None for q in OPTIONS}  # all unresolved (the owner, 2026-11-23); the real run refuses until filled
+# The owner's answers (chat, 2026-11-24, all choice A; docs/DECISIONS.md). Q12 no_rerun: the first result is the
+# verdict; any rerun is its own reviewed story, logged as a rerun.
+CHOICES = {"Q1": "pick_leg", "Q2": "close", "Q3": "zero_diff", "Q4": "inconclusive", "Q5": "fill_picks",
+           "Q6": "open_to_open", "Q7": "simple_ceil", "Q8": "pool_or_hop", "Q9": "replace_metered",
+           "Q9s": "pinned_file", "Q10": "na_first", "Q11": "fail", "Q12": "no_rerun"}
 
 
 class Refused(Exception):
@@ -231,18 +250,25 @@ def family_set(family, fees):
     return members | {ADS}
 
 
-def decision_line(root, start):
-    """The first docs/DECISIONS.md table row whose card cell is BL-39, whose decision cell starts with `start` (case
-    ignored) and which is marked "(the owner)"; "" when there is none."""
+def decision_lines(root, start):
+    """Every docs/DECISIONS.md table row whose card cell is BL-39, whose decision cell starts with `start` (case
+    ignored) and which is marked "(the owner)"."""
     p = Path(root) / DECISIONS
     if not p.exists():
-        return ""
+        return []
+    out = []
     for line in p.read_text().splitlines():
         cells = [c.strip() for c in line.split("|")]
         if len(cells) >= 5 and cells[2] == "BL-39" and cells[3].lower().startswith(start.lower()) \
                 and "(the owner)" in line:
-            return line
-    return ""
+            out.append(line)
+    return out
+
+
+def decision_line(root, start):
+    """The first such row; "" when there is none."""
+    rows = decision_lines(root, start)
+    return rows[0] if rows else ""
 
 
 def stage1_pass_line(root):
@@ -259,11 +285,55 @@ def result_dir(root, stage):
     return Path(root) / RESULTS / f"{NAME}-stage{stage}"
 
 
+def attempt_path(root, stage):
+    """The attempt record, written by run() after the gate and before the first data read (beside the folder)."""
+    return Path(root) / RESULTS / f"{NAME}-stage{stage}.attempt.json"
+
+
+def tool_sha():
+    """sha256 of this file (tools/bl39.py) as it runs now."""
+    return sha256(Path(__file__).resolve())
+
+
+TOOL_PIN = re.compile(r"tools/bl39\.py sha256 ([0-9a-f]{12,64})\b")
+
+
+def tool_pin_refusal(row):
+    """Tool pin (the owner, 2026-11-24, A): the run-approval row names "tools/bl39.py sha256 <hex>", at least the first
+    12 hex of the tool's current sha256; a row naming none, or another hash, refuses."""
+    cells = [c.strip() for c in row.split("|")]
+    named = TOOL_PIN.findall(cells[3] if len(cells) > 3 else row)
+    have = tool_sha()
+    if any(have.startswith(n) for n in named):
+        return ""
+    if named:
+        return (f"refused: tool pin: the approval row names tools/bl39.py sha256 {', '.join(n[:12] for n in named)}, "
+                f"the tool is {have[:12]}")
+    return f"refused: tool pin: the approval row names no tools/bl39.py sha256 (the tool is {have[:12]})"
+
+
+def stage1_summary_refusal(root):
+    """Stage 2 only, after the "stage 1 pass" row: the stage 1 result's summary.json exists and records a pass."""
+    p = result_dir(root, 1) / "summary.json"
+    rel = p.relative_to(root)
+    if not p.exists():
+        return f"refused: stage 2 needs {rel} (the stage 1 result), which does not exist"
+    try:
+        s = json.loads(p.read_text())
+    except ValueError:
+        return f"refused: stage 2 needs {rel} to be readable JSON"
+    if not isinstance(s, dict) or s.get("stage") != 1 or s.get("verdict") != "pass":
+        v = s.get("verdict") if isinstance(s, dict) else None
+        return f"refused: stage 2 needs {rel} to record a stage 1 pass; it records verdict {v!r}"
+    return ""
+
+
 def refusal(root, stage, pins=None, choices=None):
-    """"" when the run of `stage` may start, else the reason of the FIRST failing step (the owner's order, 2026-11-23):
-    1 spec and file hashes (raw bytes only), then the family check on the two spec data files; 2 the run-approval
-    line; 3 (stage 2) the "stage 1 pass" line; 4 no result folder; 5 no unresolved CHOICES. No candle, ETH or universe
-    file is opened beyond hashing and nothing is created (test, with an open() spy)."""
+    """"" when the run of `stage` may start, else the reason of the FIRST failing step (the owner's order, 2026-11-23,
+    with the 2026-11-24 steps slotted in): 1 spec and file hashes (raw bytes only), then the family check on the two
+    spec data files; 2 the run-approval line; 3 that line's tool pin; 4 (stage 2) the "stage 1 pass" line; 5 (stage 2)
+    the stage 1 summary.json records a pass; 6 no result folder; 7 no attempt record; 8 no unresolved CHOICES. No
+    candle, ETH, universe or cost file is opened beyond hashing and nothing is created (test, with an open() spy)."""
     choices = CHOICES if choices is None else choices
     if stage not in STAGES:
         return f"refused: no stage {stage}"
@@ -274,16 +344,76 @@ def refusal(root, stage, pins=None, choices=None):
         family_set(json.loads((Path(root) / FAMILY).read_text()), json.loads((Path(root) / FEES).read_text()))
     except Refused as e:
         return f"refused: {e}"
-    if not run_approved_line(root, stage):
+    rows = decision_lines(root, f"stage {stage} run approved")
+    if not rows:
         return f"refused: no docs/DECISIONS.md BL-39 row starting 'stage {stage} run approved' (the owner)"
+    pins_why = [tool_pin_refusal(r) for r in rows]
+    if all(pins_why):
+        return pins_why[0]
     if stage == 2 and not stage1_pass_line(root):
         return "refused: stage 2 needs a docs/DECISIONS.md BL-39 row starting 'stage 1 pass' (the owner)"
+    if stage == 2:
+        why = stage1_summary_refusal(root)
+        if why:
+            return why
     if result_dir(root, stage).exists():
         return f"refused: {result_dir(root, stage).relative_to(root)} exists: a stage runs once (no override)"
+    if attempt_path(root, stage).exists():
+        return (f"refused: an aborted attempt exists ({attempt_path(root, stage).relative_to(root)}, no result "
+                "folder): a retry is a rerun, its own story")
     open_q = unresolved(choices)
     if open_q:
         return "refused: open spec questions unresolved (CHOICES): " + " ".join(open_q)
     return ""
+
+
+# ---- peek guard: the committed files are read only inside run(), after its gate (the owner, 2026-11-24, A) ----
+_GATE = None  # (resolved root, stage) while run() is between its attempt record and its exit; private, no CLI flag
+
+
+class _Loaded(dict):
+    """A dict that load() returns; .real_root is set when it came from the real committed files."""
+    real_root = None
+
+
+def _is_real(path):
+    """A pinned committed path, anything under the repo's backtest/liquid/, or any file whose bytes hash to a pin."""
+    p = Path(path).resolve()
+    if any(p == (ROOT / rel).resolve() for rel in _REAL_PINS):
+        return True
+    if (ROOT / "backtest/liquid").resolve() in p.parents:
+        return True
+    return p.is_file() and sha256(p) in _REAL_PINS.values()
+
+
+def _gate_open(root, stage):
+    return _GATE is not None and _GATE == (Path(root).resolve(), stage)
+
+
+def _peek_refused(what, stage):
+    return Refused(f"refused: peek guard: {what} reads the committed files only inside run(), after the stage {stage} "
+                   "run gate passed (python -m tools.bl39 --check --stage N says why a run is refused now)")
+
+
+def _guard_path(path, what, window=None):
+    """Readers: a real file only while run()'s gate is open, for a file under the gate's root and, for read_daily, the
+    gate stage's own load window."""
+    if not _is_real(path):
+        return
+    ok = _GATE is not None and _GATE[0] in Path(path).resolve().parents
+    if ok and window is not None:
+        cfg = STAGES[_GATE[1]]
+        ok = window == (cfg["full_before"], cfg["open_until"])
+    if not ok:
+        raise _peek_refused(what, _GATE[1] if _GATE else "N")
+
+
+def _guard_data(stage, *xs):
+    """evaluate() and simulate(): data that load() took from the real files only while the gate is open for it."""
+    for x in xs:
+        r = getattr(x, "real_root", None)
+        if r is not None and not _gate_open(r, stage):
+            raise _peek_refused("evaluate()/simulate()", stage)
 
 
 # ---- readers ----
@@ -299,6 +429,7 @@ def read_daily(path, full_before, open_until):
     full_before to open_until (inclusive) the open only, as (o, None, None, None, None); every later candle and the
     other fields of an open-only candle are dropped as each line is parsed (the seal, the owner's amendment 1).
     tools/candles.py read() would hand over every candle of the file, so it is not reused here."""
+    _guard_path(path, "read_daily()", (full_before, open_until))
     out = {}
     with gzip.open(path, "rt", encoding="utf-8") as fh:
         for line in fh:
@@ -319,10 +450,17 @@ def read_daily(path, full_before, open_until):
 
 def read_universe(path):
     """universe.json: token, pool and pool_created_at only (no reserve)."""
+    _guard_path(path, "read_universe()")
     u = json.loads(Path(path).read_text())
     return {t["token"].lower(): {"pool": t["pool"].lower(), "created": _iso_ts(t["pool_created_at"])
                                  if t.get("pool_created_at") else None, "symbol": t.get("symbol", "")}
             for t in u["tokens"]}
+
+
+def read_cost(path):
+    """The Q9s cost file: {token: per-side %}, for the Q9 report line only, never the verdict."""
+    _guard_path(path, "read_cost()")
+    return {t["token"].lower(): float(t["per_side_pct"]) for t in json.loads(Path(path).read_text())["tokens"]}
 
 
 # ---- friction ----
@@ -498,6 +636,7 @@ def price_legs(legs, side_pct, eth):
 # ---- the simulation ----
 def simulate(stage, data, uni, family, eth, fees, choices, side_pct=None, rebuy=False, mondays=None):
     """Both books for one stage at one friction. side_pct(token) -> percent per side (default: the spec's route)."""
+    _guard_data(stage, data, uni, eth)
     mondays = mondays or STAGES[stage]["mondays"]
     ft = fee_table(fees)
     side_pct = side_pct or (lambda a: ft[a]["pct"])
@@ -631,7 +770,8 @@ def outcome(t, stage, choices):
 
 def evaluate(stage, data, uni, family, eth, fees, choices, measured=None, mondays=None):
     """Every pass test, the outcome and every "always reported, never the verdict" line. mondays: tests only (the run
-    uses the stage's own)."""
+    uses the stage's own). measured (the Q9s cost file) feeds the Q9 line only, never a test or the verdict."""
+    _guard_data(stage, data, uni, eth)
     cfg = STAGES[stage]
     ft = fee_table(fees)
     sim = simulate(stage, data, uni, family, eth, fees, choices, mondays=mondays)
@@ -705,7 +845,7 @@ def evaluate(stage, data, uni, family, eth, fees, choices, measured=None, monday
 
     # "the BL-45 measured-cost line" (Q9 = what it computes; Q9s = its source for the real run: not built)
     if measured is None:
-        rep["bl45_measured"] = "not computed: Q9s (the source of the BL-45 measured cost) is a later story's"
+        rep["bl45_measured"] = "not computed: no Q9s measured cost was passed"
     elif choices["Q9"] == "side_by_side":
         rep["bl45_measured"] = [{"token": a, "spec_pct": ft[a]["pct"], "measured_pct": measured[a]}
                                 for a in sorted(set(toks)) if a in measured]
@@ -800,13 +940,14 @@ LEG_FIELDS = ("book", "token", "monday", "rolled", "buy", "start_t", "start_px",
               "sell", "fric_pct", "gross", "net", "pnl", "eth")
 
 
-def write_result(root, stage, result, now, choices):
-    """The result folder is created once (mkdir without exist_ok: a second write fails), before anything is printed."""
+def write_result(root, stage, result, now, choices, meta=None):
+    """The result folder is created once (mkdir without exist_ok: a second write fails), before anything is printed.
+    meta (from run()): the tool's sha256, git HEAD, the approval row and the attempt record's path."""
     d = result_dir(root, stage)
     d.parent.mkdir(parents=True, exist_ok=True)
     d.mkdir()
     legs = result.pop("legs")
-    summary = dict(result, spec=SPEC, sha256=PINS[SPEC], ran_at=_iso(now), choices=dict(choices))
+    summary = dict(result, spec=SPEC, sha256=PINS[SPEC], ran_at=_iso(now), choices=dict(choices), **(meta or {}))
     (d / "summary.json").write_text(json.dumps(summary, indent=1, default=str) + "\n")
     with (d / "legs.csv").open("w", newline="") as fh:
         w = csv.writer(fh)
@@ -818,8 +959,14 @@ def write_result(root, stage, result, now, choices):
 
 
 def load(root, stage):
+    """The stage's data. Peek guard: the real committed files only while run()'s gate is open for this root and
+    stage; checked before any file is opened."""
     cfg = STAGES[stage]
     root = Path(root)
+    paths = [root / rel for rel in (DAILY, ETH, UNIVERSE, FAMILY, FEES, COST)]
+    real = any(_is_real(p) for p in paths)
+    if real and not _gate_open(root, stage):
+        raise _peek_refused("load()", stage)
     data = read_daily(root / DAILY, cfg["full_before"], cfg["open_until"])
     eth_lines = read_daily(root / ETH, cfg["full_before"], cfg["open_until"])
     if len(eth_lines) != 1:
@@ -830,19 +977,53 @@ def load(root, stage):
         raise Refused("ADS is in universe.json (the spec: it is not)")
     family = family_set(json.loads((root / FAMILY).read_text()), json.loads((root / FEES).read_text()))
     fees = json.loads((root / FEES).read_text())
+    data, uni, eth = _Loaded(data), _Loaded(uni), _Loaded(eth)
+    for x in (data, uni, eth):
+        x.real_root = root.resolve() if real else None
     return data, uni, family, eth, fees
+
+
+def _git_head(root):
+    import subprocess  # lazy: only the run records it
+    try:
+        r = subprocess.run(["git", "-C", str(root), "rev-parse", "HEAD"], capture_output=True, text=True, timeout=30)
+    except (OSError, subprocess.SubprocessError):
+        return None
+    return r.stdout.strip() if r.returncode == 0 else None
+
+
+def write_attempt(root, stage, now, row):
+    """The attempt record, created once (mode "x") before the first data read; it stays after the run."""
+    p = attempt_path(root, stage)
+    p.parent.mkdir(parents=True, exist_ok=True)
+    rec = {"stage": stage, "started_at": _iso(now), "tool": TOOL, "tool_sha256": tool_sha(),
+           "git_head": _git_head(root), "spec_sha256": PINS[SPEC], "approval_row": row}
+    with open(p, "x") as fh:
+        fh.write(json.dumps(rec, indent=1) + "\n")
+    return rec
 
 
 def run(root=ROOT, stage=1, now=None, pins=None, choices=None):
     """THE run of a stage. Refused unless every check passes and every CHOICES key is resolved; writes the result
     before returning it."""
+    global _GATE
     choices = CHOICES if choices is None else choices
     why = refusal(root, stage, pins, choices)
     if why:
         raise Refused(why)
-    data, uni, family, eth, fees = load(root, stage)
-    result = evaluate(stage, data, uni, family, eth, fees, choices)
-    write_result(root, stage, result, now or int(datetime.now(timezone.utc).timestamp()), choices)
+    now = now or int(datetime.now(timezone.utc).timestamp())
+    row = next(r for r in decision_lines(root, f"stage {stage} run approved") if not tool_pin_refusal(r))
+    rec = write_attempt(root, stage, now, row)
+    _GATE = (Path(root).resolve(), stage)
+    try:
+        data, uni, family, eth, fees = load(root, stage)
+        measured = read_cost(Path(root) / COST) if choices["Q9s"] == "pinned_file" else None
+        result = evaluate(stage, data, uni, family, eth, fees, choices, measured=measured)
+        meta = {"tool": TOOL, "tool_sha256": rec["tool_sha256"], "git_head": rec["git_head"], "approval_row": row,
+                "attempt": str(attempt_path(root, stage).relative_to(root))}
+        write_result(root, stage, result, now, choices, meta)
+    finally:
+        _GATE = None
     return result
 
 
@@ -876,8 +1057,11 @@ def check(root=ROOT, stage=1, pins=None):
                    "dropped": f"every candle after {_day(cfg['open_until'])}"}
     out["result_dir"] = {"path": str(result_dir(root, stage).relative_to(root)),
                          "exists": result_dir(root, stage).exists()}
+    out["tool_sha256"] = tool_sha()
     out["run_approved_line"] = bool(run_approved_line(root, stage))
     out["stage1_pass_line"] = bool(stage1_pass_line(root))
+    out["attempt_record"] = {"path": str(attempt_path(root, stage).relative_to(root)),
+                             "exists": attempt_path(root, stage).exists()}
     out["open_questions"] = unresolved(CHOICES)
     out["run_now"] = refusal(root, stage, pins) or "allowed"
     return out

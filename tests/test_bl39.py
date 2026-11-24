@@ -144,6 +144,8 @@ def make_root(w, decisions=""):
     (r / B.SPEC).write_text("synthetic spec\n")
     (r / B.FAMILY).write_text(json.dumps(family_file()))
     (r / B.FEES).write_text(json.dumps(w.fees))
+    (r / B.COST).write_text(json.dumps({"source": "synthetic", "window": {"from": "x", "to": "y"},
+                                        "tokens": [{"token": w.tokens[0], "symbol": "T0", "per_side_pct": "0.1"}]}))
     (r / "backtest/liquid").mkdir(parents=True)
     (r / B.UNIVERSE).write_text(json.dumps({"cut": "2026-11-08T00:00:00Z", "fetched_at": "2026-11-09T14:18:40Z",
                                             "tokens": [{"token": a, "pool": pool(a), "symbol": a[-4:],
@@ -172,7 +174,10 @@ class Pins(unittest.TestCase):
                 "4a7318c95a9650f5fa533ba0f9ac552db0b0449d7a9e8e22bca6797b16991180",
             "backtest/liquid/eth-daily.jsonl.gz": "82bc487a78a2f0306e56b1b1780b4bdab91b3d1588328c4edd3ece0f79828ac8",
             "backtest/liquid/daily.jsonl.gz": "5d14fcee0fca60ac5f71f616acb6869a0cb5489cf99fc9d24d688aa6f6f71267",
-            "backtest/liquid/universe.json": "09c301d0ed8b5fbe5d4365659b950749d085fbec192be44dd8226e760e9b695a"})
+            "backtest/liquid/universe.json": "09c301d0ed8b5fbe5d4365659b950749d085fbec192be44dd8226e760e9b695a",
+            "backtest/specs/bl39-max-momentum-v2.1-bl45-cost.json":
+                "71d71de47e1d39b893c469f4ffa7f81be3ae595e4f627238e68301fe75d98566"})
+        self.assertEqual(B._REAL_PINS, B.PINS)
 
     def test_committed_files_match_by_hash_only(self):
         self.assertEqual(B.hash_refusals(ROOT), [])
@@ -187,8 +192,10 @@ def row(text, card="BL-39"):
     return f"| 2026-12-01 | {card} | {text} | why | rejected |\n"
 
 
-APPROVE1 = row("stage 1 run approved (the owner)")
-APPROVE2 = row("stage 2 run approved (the owner)")
+SHA12 = B.tool_sha()[:12]
+PIN = f"tools/bl39.py sha256 {SHA12}"
+APPROVE1 = row(f"stage 1 run approved, {PIN} (the owner)")
+APPROVE2 = row(f"stage 2 run approved, {PIN} (the owner)")
 PASS1 = row("stage 1 pass: all five tests (the owner)")
 
 
@@ -204,10 +211,12 @@ class Refusals(unittest.TestCase):
         (self.root / B.DECISIONS).write_text("| date | card | decision | why | rejected |\n|---|---|---|---|---|\n"
                                              + "".join(rows))
 
-    def test_clean_approved_root_only_waits_on_choices(self):
+    def test_clean_approved_root_passes(self):
         self.assertEqual(B.hash_refusals(self.root, self.pins), [])
+        self.assertEqual(B.refusal(self.root, 1, self.pins, ch()), "")
+        self.assertEqual(B.refusal(self.root, 1, self.pins), "")  # the owner's CHOICES
         why = B.refusal(self.root, 1, self.pins, ch(Q9s="x"))
-        self.assertEqual(why, "refused: open spec questions unresolved (CHOICES): Q9s")  # Q9s has no built option
+        self.assertEqual(why, "refused: open spec questions unresolved (CHOICES): Q9s")
         self.assertEqual(B.refusal(self.root, 1, self.pins, ch(Q9s="x", Q12="decisions_rerun")),
                          "refused: open spec questions unresolved (CHOICES): Q9s Q12")  # not built = unresolved
 
@@ -232,17 +241,23 @@ class Refusals(unittest.TestCase):
         for rel in B.PINS:
             self.assertIn(rel, why)
 
+    def test_choices_are_the_owners_answers(self):
+        self.assertEqual(B.CHOICES, {"Q1": "pick_leg", "Q2": "close", "Q3": "zero_diff", "Q4": "inconclusive",
+                                     "Q5": "fill_picks", "Q6": "open_to_open", "Q7": "simple_ceil",
+                                     "Q8": "pool_or_hop", "Q9": "replace_metered", "Q9s": "pinned_file",
+                                     "Q10": "na_first", "Q11": "fail", "Q12": "no_rerun"})
+        self.assertEqual(B.unresolved(B.CHOICES), [])
+        self.assertEqual((B.OPTIONS["Q9s"], B.OPTIONS["Q12"]), (("pinned_file",), ("no_rerun",)))
+        self.assertEqual(set(B.NOT_BUILT), {"Q12"})
+        self.assertEqual(set(B.QUESTIONS), set(B.OPTIONS))
+
     def test_unresolved_choices_refuse_the_run(self):
-        self.assertEqual(B.unresolved(B.CHOICES), list(B.OPTIONS))
-        self.assertTrue(all(v is None for v in B.CHOICES.values()))
-        self.assertEqual((B.OPTIONS["Q9s"], B.OPTIONS["Q12"]), ((), ("no_rerun",)))
-        self.assertEqual(set(B.NOT_BUILT), {"Q9s", "Q12"})
         with self.assertRaises(B.Refused) as e:
-            B.run(self.root, 1, pins=self.pins)
+            B.run(self.root, 1, pins=self.pins, choices={q: None for q in B.OPTIONS})
         for q in B.OPTIONS:
             self.assertIn(q, str(e.exception))
         self.assertFalse(B.result_dir(self.root, 1).exists())
-        self.assertEqual(set(B.QUESTIONS), set(B.OPTIONS))
+        self.assertFalse(B.attempt_path(self.root, 1).exists())
 
     def test_bad_choice_value_is_unresolved(self):
         self.assertIn("Q1", B.unresolved(ch(Q1="maybe")))
@@ -250,11 +265,11 @@ class Refusals(unittest.TestCase):
     def test_run_gate(self):
         for rows, ok in [
             ((APPROVE1,), True),
-            ((row("Stage 1 run approved after the review (the owner)"),), True),
-            ((row("stage 1 run approved"),), False),  # not the owner's
-            ((row("stage 1 run approved (the owner)", card="BL-38"),), False),
-            ((row("no stage 1 run approved yet (the owner)"),), False),
-            (("stage 1 run approved BL-39 (the owner)\n",), False),
+            ((row(f"Stage 1 run approved after the review, {PIN} (the owner)"),), True),
+            ((row(f"stage 1 run approved, {PIN}"),), False),  # not the owner's
+            ((row(f"stage 1 run approved, {PIN} (the owner)", card="BL-38"),), False),
+            ((row(f"no stage 1 run approved yet, {PIN} (the owner)"),), False),
+            ((f"stage 1 run approved BL-39 {PIN} (the owner)\n",), False),
             ((APPROVE2,), False),  # stage 2's approval is not stage 1's
             ((PASS1,), False),  # a pass line is not a run approval
             ((), False),
@@ -270,7 +285,7 @@ class Refusals(unittest.TestCase):
         self.set_decisions(APPROVE1, APPROVE2)
         self.assertIn("stage 2 needs", B.refusal(self.root, 2, self.pins, ch()))
         self.set_decisions(APPROVE2, PASS1)
-        self.assertIn("Q9s", B.refusal(self.root, 2, self.pins, ch()))  # past both lines, on to CHOICES
+        self.assertIn("summary.json (the stage 1 result)", B.refusal(self.root, 2, self.pins, ch()))  # past both lines
 
     def test_stage2_pass_line(self):
         for line, ok in [
@@ -284,7 +299,8 @@ class Refusals(unittest.TestCase):
             with self.subTest(line=line):
                 self.set_decisions(APPROVE2, line)
                 self.assertEqual(bool(B.stage1_pass_line(self.root)), ok)
-                self.assertEqual("stage 2 needs" in B.refusal(self.root, 2, self.pins, ch()), not ok)
+                self.assertEqual("stage 2 needs a docs/DECISIONS.md" in B.refusal(self.root, 2, self.pins, ch()),
+                                 not ok)
 
     def test_run_once_guard(self):
         B.result_dir(self.root, 1).mkdir(parents=True)
@@ -314,10 +330,10 @@ class Refusals(unittest.TestCase):
 class OpenSpy:
     """Wraps builtins.open and io.open (pathlib and gzip go through them); B.sha256 is wrapped to mark hashing."""
 
-    def __init__(self, root):
-        self.root, self.hashing, self.seen = Path(root).resolve(), 0, []
+    def __init__(self, root, boom=True):
+        self.root, self.hashing, self.seen, self.boom = Path(root).resolve(), 0, [], boom
         self.real_open, self.real_sha = builtins.open, B.sha256
-        self.data = {(self.root / rel).resolve() for rel in (B.DAILY, B.ETH, B.UNIVERSE)}
+        self.data = {(self.root / rel).resolve() for rel in (B.DAILY, B.ETH, B.UNIVERSE, B.COST)}
 
     def open(self, file, mode="r", *a, **k):
         if isinstance(file, (str, Path)):
@@ -332,7 +348,7 @@ class OpenSpy:
             self.hashing -= 1
 
     def data_reads(self):
-        """Opens of a candle, ETH or universe file outside hashing."""
+        """Opens of a candle, ETH, universe or cost file outside hashing."""
         return [x for x in self.seen if x[0] in self.data and not x[2]]
 
     def hashed(self):
@@ -342,8 +358,10 @@ class OpenSpy:
         boom = mock.Mock(side_effect=AssertionError("a data reader was reached"))
         self.patches = [mock.patch("builtins.open", self.open), mock.patch("io.open", self.open),
                         mock.patch.object(B, "sha256", self.sha)]
-        self.patches += [mock.patch.object(B, f, boom) for f in ("load", "read_daily", "read_universe", "read_meta",
-                                                                 "evaluate", "simulate", "write_result")]
+        if self.boom:
+            self.patches += [mock.patch.object(B, f, boom) for f in ("load", "read_daily", "read_universe", "read_meta",
+                                                                     "read_cost", "evaluate", "simulate",
+                                                                     "write_result", "write_attempt")]
         for p in self.patches:
             p.start()
         return self
@@ -357,9 +375,16 @@ def tree(p):
     return sorted(str(x.relative_to(p)) for x in Path(p).rglob("*")) if Path(p).exists() else None
 
 
+def write_stage1_summary(r, verdict, stage=1):
+    d = B.result_dir(r, 1)
+    d.mkdir(parents=True, exist_ok=True)
+    (d / "summary.json").write_text(json.dumps({"stage": stage, "verdict": verdict}))
+
+
 class RefusalOrder(unittest.TestCase):
-    """The owner's order (2026-11-23, A): hashes -> run-approval line -> (stage 2) stage 1 pass -> no result folder ->
-    no unresolved CHOICES; every refusal path reads no candle, ETH or universe file and creates no result folder."""
+    """The owner's order (2026-11-23, A, with the 2026-11-24 steps): hashes -> run-approval line -> its tool pin ->
+    (stage 2) stage 1 pass line -> (stage 2) stage 1 summary records a pass -> no result folder -> no attempt record ->
+    no unresolved CHOICES; every refusal path reads no candle, ETH, universe or cost file and creates nothing."""
 
     def setUp(self):
         self.w = World(n=3)
@@ -418,10 +443,11 @@ class RefusalOrder(unittest.TestCase):
         self.refused(r, pins, 1, "refused: backtest/results/bl39-max-momentum-v2.1-stage1 exists")
         self.assertEqual((d / "summary.json").read_text(), "{}")
 
-    def test_5_unresolved_choices(self):
+    def test_8_unresolved_choices(self):
         r, pins = self.root()
-        self.refused(r, pins, 1, "refused: open spec questions unresolved (CHOICES): Q1 Q2")
-        self.refused(r, pins, 1, "refused: open spec questions unresolved (CHOICES): Q9s", choices=ch())
+        self.refused(r, pins, 1, "refused: open spec questions unresolved (CHOICES): Q1 Q2",
+                     choices={q: None for q in B.OPTIONS})
+        self.refused(r, pins, 1, "refused: open spec questions unresolved (CHOICES): Q9s", choices=ch(Q9s=None))
 
     def test_first_failing_step_wins(self):
         r, pins = self.root(decisions="")
@@ -432,19 +458,261 @@ class RefusalOrder(unittest.TestCase):
         self.refused(r, pins, 2, "refused: no docs/DECISIONS.md BL-39 row starting 'stage 2 run approved'")
         (r / B.DECISIONS).write_text(APPROVE2)
         self.refused(r, pins, 2, "refused: stage 2 needs")
+        (r / B.DECISIONS).write_text(row(f"stage 2 run approved, tools/bl39.py sha256 {'0' * 12} (the owner)") + PASS1)
+        self.refused(r, pins, 2, "refused: tool pin:")
+        (r / B.DECISIONS).write_text(APPROVE2)
+        self.refused(r, pins, 2, "refused: stage 2 needs a docs/DECISIONS.md")
         (r / B.DECISIONS).write_text(APPROVE2 + PASS1)
+        self.refused(r, pins, 2, "refused: stage 2 needs backtest/results/bl39-max-momentum-v2.1-stage1/summary.json")
+        write_stage1_summary(r, "pass")
         self.refused(r, pins, 2, "refused: backtest/results/bl39-max-momentum-v2.1-stage2 exists")
         shutil.rmtree(B.result_dir(r, 2))
-        self.refused(r, pins, 2, "refused: open spec questions unresolved")
+        B.attempt_path(r, 2).write_text("{}")
+        self.refused(r, pins, 2, "refused: an aborted attempt exists")
+        B.attempt_path(r, 2).unlink()
+        self.refused(r, pins, 2, "refused: open spec questions unresolved", choices=ch(Q1=None))
         self.assertFalse(B.result_dir(r, 2).exists())
 
     def test_cli_refusal_reads_nothing(self):
-        r, pins = self.root()
+        r, pins = self.root(decisions=row("stage 1 run approved (the owner)"))
         with OpenSpy(r) as spy, mock.patch.object(B, "PINS", pins), mock.patch("sys.stderr", io.StringIO()) as err:
             self.assertEqual(B.main(["--run", "--stage", "1", "--root", str(r)]), 2)
-        self.assertIn("refused: open spec questions unresolved", err.getvalue())
+        self.assertIn("refused: tool pin: the approval row names no tools/bl39.py sha256", err.getvalue())
         self.assertEqual(spy.data_reads(), [])
         self.assertIsNone(tree(r / B.RESULTS))
+
+
+class ToolPinSummaryAttempt(unittest.TestCase):
+    """The owner's 2026-11-24 fixes 2-4: the stage 2 summary gate, the tool pin, the attempt record."""
+
+    def setUp(self):
+        self.w = World(n=3)
+        self.r, self.pins = make_root(self.w, APPROVE1)
+        self.addCleanup(shutil.rmtree, self.r)
+
+    def dec(self, *rows):
+        (self.r / B.DECISIONS).write_text("".join(rows))
+
+    def test_tool_pin(self):
+        for text, ok in [
+            (f"stage 1 run approved, {PIN} (the owner)", True),
+            (f"stage 1 run approved, tools/bl39.py sha256 {B.tool_sha()} (the owner)", True),  # the full hash
+            ("stage 1 run approved (the owner)", False),
+            (f"stage 1 run approved, tools/bl39.py sha256 {SHA12[:11]} (the owner)", False),  # under 12 hex
+            (f"stage 1 run approved, tools/bl39.py sha256 {'f' * 12} (the owner)", False),
+            (f"stage 1 run approved, {SHA12} (the owner)", False),  # the phrase names the file
+        ]:
+            with self.subTest(text=text):
+                self.dec(row(text))
+                why = B.refusal(self.r, 1, self.pins, ch())
+                self.assertEqual(why, "" if ok else why)
+                self.assertEqual(why.startswith("refused: tool pin:"), not ok, why)
+        self.dec(row(f"stage 1 run approved, tools/bl39.py sha256 {'f' * 12} (the owner)"))
+        self.assertIn(f"names tools/bl39.py sha256 ffffffffffff, the tool is {SHA12}", B.refusal(self.r, 1, self.pins))
+        self.dec(row(f"stage 1 run approved, tools/bl39.py sha256 {'f' * 12} (the owner)"), APPROVE1)  # a later row
+        self.assertEqual(B.refusal(self.r, 1, self.pins), "")
+
+    def test_tool_pin_follows_the_file(self):
+        with mock.patch.object(B, "tool_sha", lambda: "a" * 64):
+            self.assertIn("the tool is aaaaaaaaaaaa", B.refusal(self.r, 1, self.pins))
+
+    def test_stage2_summary_gate(self):
+        self.dec(APPROVE2, PASS1)
+        for setup, want in [
+            (lambda: None, "summary.json (the stage 1 result), which does not exist"),
+            (lambda: write_stage1_summary(self.r, "retired"), "it records verdict 'retired'"),
+            (lambda: write_stage1_summary(self.r, "inconclusive"), "it records verdict 'inconclusive'"),
+            (lambda: write_stage1_summary(self.r, "pass", stage=2), "it records verdict 'pass'"),  # wrong stage
+            (lambda: (B.result_dir(self.r, 1) / "summary.json").write_text("{not json"), "readable JSON"),
+            (lambda: write_stage1_summary(self.r, "pass"), ""),
+        ]:
+            with self.subTest(want=want):
+                setup()
+                why = B.refusal(self.r, 2, self.pins, ch())
+                self.assertIn(want, why) if want else self.assertEqual(why, "")
+
+    def test_summary_read_only_after_the_pass_line(self):
+        write_stage1_summary(self.r, "pass")
+        self.dec(APPROVE1, APPROVE2)
+        with mock.patch.object(B, "stage1_summary_refusal", side_effect=AssertionError("read too early")):
+            self.assertIn("stage 2 needs a docs/DECISIONS.md", B.refusal(self.r, 2, self.pins, ch()))
+            self.assertIn("runs once", B.refusal(self.r, 1, self.pins, ch()))  # stage 1 never reads it
+
+    def test_attempt_record_refuses_a_retry(self):
+        B.attempt_path(self.r, 1).parent.mkdir(parents=True)
+        B.attempt_path(self.r, 1).write_text("{}")
+        why = B.refusal(self.r, 1, self.pins, ch())
+        self.assertIn("an aborted attempt exists", why)
+        self.assertIn("a retry is a rerun, its own story", why)
+        B.result_dir(self.r, 1).mkdir()
+        self.assertIn("runs once", B.refusal(self.r, 1, self.pins, ch()))  # the folder step comes first
+
+    def test_run_writes_attempt_then_opens_the_gate_then_reads(self):
+        seen = {}
+        real_load = B.load
+
+        def spy_load(root, stage):
+            seen["attempt"] = B.attempt_path(self.r, 1).exists()
+            seen["gate"] = B._GATE
+            return real_load(root, stage)
+
+        with mock.patch.object(B, "load", spy_load):
+            B.run(self.r, 1, now=M0, pins=self.pins)
+        self.assertEqual(seen, {"attempt": True, "gate": (self.r.resolve(), 1)})
+        self.assertIsNone(B._GATE)
+        rec = json.loads(B.attempt_path(self.r, 1).read_text())
+        s = json.loads((B.result_dir(self.r, 1) / "summary.json").read_text())
+        self.assertEqual(rec["tool_sha256"], B.tool_sha())
+        self.assertEqual(s["tool_sha256"], B.tool_sha())
+        self.assertEqual(s["tool"], "tools/bl39.py")
+        self.assertIn("git_head", s)
+        self.assertEqual(s["approval_row"], APPROVE1.strip())
+        self.assertEqual(s["attempt"], "backtest/results/bl39-max-momentum-v2.1-stage1.attempt.json")
+        self.assertEqual(s["choices"], B.CHOICES)
+        self.assertIn("runs once", B.refusal(self.r, 1, self.pins))
+
+    def test_git_head_recorded_in_a_repo(self):
+        self.assertRegex(B._git_head(ROOT) or "", r"^[0-9a-f]{40}$")
+        self.assertIsNone(B._git_head(self.r))  # a temp dir is no repo
+
+    def test_aborted_run_leaves_a_record_and_closes_the_gate(self):
+        with mock.patch.object(B, "evaluate", side_effect=RuntimeError("crash")):
+            with self.assertRaises(RuntimeError):
+                B.run(self.r, 1, now=M0, pins=self.pins)
+        self.assertIsNone(B._GATE)
+        self.assertTrue(B.attempt_path(self.r, 1).exists())
+        self.assertFalse(B.result_dir(self.r, 1).exists())
+        with self.assertRaises(B.Refused) as e:
+            B.run(self.r, 1, now=M0, pins=self.pins)
+        self.assertIn("an aborted attempt exists", str(e.exception))
+
+    def test_measured_feeds_the_q9_line_only(self):
+        w = world_with_top()
+        w.level(TOP, M0 + 7 * D, 1.2)
+        a = w.evaluate()
+        b = w.evaluate(measured={TOP: 0.01, w.tokens[0]: 3.0})
+        self.assertEqual((a["tests"], a["verdict"], a["next"]), (b["tests"], b["verdict"], b["next"]))
+        self.assertNotEqual(a["reported"]["bl45_measured"], b["reported"]["bl45_measured"])
+        self.assertEqual({k: v for k, v in a["reported"].items() if k != "bl45_measured"},
+                         {k: v for k, v in b["reported"].items() if k != "bl45_measured"})
+
+    def test_run_reads_the_cost_file_for_q9(self):
+        r = B.run(self.r, 1, now=M0, pins=self.pins)
+        self.assertIsInstance(r["reported"]["bl45_measured"], dict)  # replace_metered computed
+        self.assertEqual(B.read_cost(self.r / B.COST), {self.w.tokens[0]: 0.1})
+
+
+class PeekGuard(unittest.TestCase):
+    """The owner's 2026-11-24 peek guard: the real committed files are read only inside run(), after its gate."""
+
+    def real_calls(self):
+        s1, s2 = B.STAGES[1], B.STAGES[2]
+        return [("load 1", lambda: B.load(ROOT, 1)), ("load 2", lambda: B.load(ROOT, 2)),
+                ("daily", lambda: B.read_daily(ROOT / B.DAILY, s1["full_before"], s1["open_until"])),
+                ("daily 2", lambda: B.read_daily(ROOT / B.DAILY, s2["full_before"], s2["open_until"])),
+                ("eth", lambda: B.read_daily(ROOT / B.ETH, s1["full_before"], s1["open_until"])),
+                ("universe", lambda: B.read_universe(ROOT / B.UNIVERSE)), ("cost", lambda: B.read_cost(ROOT / B.COST)),
+                ("liquid", lambda: B.read_universe(ROOT / "backtest/liquid/any-other-file.json"))]
+
+    def tagged(self, root=ROOT):
+        w = world_with_top()
+        data, uni, eth = B._Loaded(w.data), B._Loaded(w.uni), B._Loaded(w.eth)
+        for x in (data, uni, eth):
+            x.real_root = Path(root).resolve()
+        return w, data, uni, eth
+
+    def assert_all_refuse(self):
+        self.assertIsNone(B._GATE)
+        with OpenSpy(ROOT, boom=False) as spy:
+            for name, call in self.real_calls():
+                with self.subTest(call=name):
+                    with self.assertRaises(B.Refused) as e:
+                        call()
+                    self.assertTrue(str(e.exception).startswith("refused: peek guard:"), str(e.exception))
+            w, data, uni, eth = self.tagged()
+            for stage in (1, 2):
+                with self.subTest(evaluate=stage):
+                    with self.assertRaises(B.Refused) as e:
+                        B.evaluate(stage, data, uni, w.family, eth, w.fees, ch(), mondays=[M0])
+                    self.assertIn("peek guard: evaluate()", str(e.exception))
+                    with self.assertRaises(B.Refused):
+                        B.simulate(stage, data, uni, w.family, eth, w.fees, ch(), mondays=[M0])
+        self.assertEqual(spy.data_reads(), [], "a committed data file was opened beyond hashing")
+        self.assertIsNone(B._GATE)
+
+    def test_load_and_evaluate_refuse_the_real_files_today(self):
+        self.assert_all_refuse()
+
+    def test_still_refused_after_every_other_public_call(self):
+        w = World(n=3)
+        r, pins = make_root(w, APPROVE1)
+        self.addCleanup(shutil.rmtree, r)
+        calls = [lambda: B.refusal(ROOT, 1), lambda: B.refusal(ROOT, 2), lambda: B.hash_refusals(ROOT),
+                 lambda: B.tool_sha(), lambda: B.run_approved_line(ROOT, 1), lambda: B.check(r, 1, pins),
+                 lambda: B.refusal(r, 1, pins), lambda: B.load(r, 1), lambda: B.run(r, 1, now=M0, pins=pins),
+                 lambda: B.run(r, 1, now=M0, pins=pins),  # refused: runs once
+                 lambda: B.main(["--check", "--stage", "1", "--root", str(r)]),
+                 lambda: B.main(["--run", "--stage", "2", "--root", str(r)])]
+        for i, call in enumerate(calls):
+            with self.subTest(call=i), mock.patch("sys.stdout", io.StringIO()), mock.patch("sys.stderr", io.StringIO()):
+                try:
+                    call()
+                except B.Refused:
+                    pass
+            self.assert_all_refuse()
+
+    def test_gate_closed_after_a_run_raises(self):
+        w = World(n=3)
+        for boom in ("load", "evaluate", "write_result", "read_cost"):
+            with self.subTest(boom=boom):
+                r, pins = make_root(w, APPROVE1)
+                self.addCleanup(shutil.rmtree, r)
+                with mock.patch.object(B, boom, side_effect=KeyError("boom")):
+                    with self.assertRaises(KeyError):
+                        B.run(r, 1, now=M0, pins=pins)
+                self.assertIsNone(B._GATE)
+                self.assert_all_refuse()
+
+    def test_open_gate_admits_only_its_root_and_stage(self):
+        w, data, uni, eth = self.tagged()
+        with mock.patch.object(B, "_GATE", (ROOT.resolve(), 2)):
+            with self.assertRaises(B.Refused):
+                B.evaluate(1, data, uni, w.family, eth, w.fees, ch(), mondays=[M0])
+            with OpenSpy(ROOT, boom=False) as spy:
+                with self.assertRaises(B.Refused):  # stage 1's window while stage 2's gate is open
+                    B.read_daily(ROOT / B.DAILY, B.STAGES[1]["full_before"], B.STAGES[1]["open_until"])
+            self.assertEqual(spy.data_reads(), [])
+        with mock.patch.object(B, "_GATE", (Path(tempfile.gettempdir()).resolve(), 1)):
+            with self.assertRaises(B.Refused):
+                B.evaluate(1, data, uni, w.family, eth, w.fees, ch(), mondays=[M0])
+
+    def test_a_copy_of_a_committed_file_is_real(self):
+        w = World(n=3)
+        r, pins = make_root(w, APPROVE1)
+        self.addCleanup(shutil.rmtree, r)
+        with mock.patch.object(B, "_REAL_PINS", dict(B._REAL_PINS, **{B.UNIVERSE: pins[B.UNIVERSE]})):
+            with self.assertRaises(B.Refused):
+                B.read_universe(r / B.UNIVERSE)
+            with self.assertRaises(B.Refused):
+                B.load(r, 1)
+        self.assertIsNotNone(B.read_universe(r / B.UNIVERSE))  # a synthetic file is not guarded
+        data, *_ = B.load(r, 1)
+        self.assertIsNone(data.real_root)
+
+    def test_patching_pins_never_unguards(self):
+        with mock.patch.object(B, "PINS", {}):
+            with self.assertRaises(B.Refused):
+                B.load(ROOT, 1)
+
+    def test_gate_is_private(self):
+        src = (ROOT / "tools/bl39.py").read_text()
+        self.assertNotIn("__all__", src)
+        self.assertEqual(src.count("_GATE = ("), 1)  # only run() opens it
+        self.assertIn("    finally:\n        _GATE = None\n", src)
+        for flag in ("--gate", "--open-gate", "--peek"):
+            with self.subTest(flag=flag), mock.patch("sys.stderr", io.StringIO()):
+                with self.assertRaises(SystemExit):
+                    B.main(["--check", flag])
 
 
 class Family(unittest.TestCase):
@@ -576,7 +844,9 @@ class Seal(unittest.TestCase):
         self.assertTrue(all(h["ok"] for h in c["hashes"].values()))
         self.assertTrue(c["family_check"].startswith("ok"))
         self.assertEqual(len(c["mondays"]), 12)
-        self.assertEqual(c["open_questions"], list(B.OPTIONS))
+        self.assertEqual(c["open_questions"], [])
+        self.assertEqual(c["tool_sha256"], B.tool_sha())
+        self.assertFalse(c["attempt_record"]["exists"])
         self.assertIn("refused", c["run_now"])
         for k in ("picks", "max", "return", "pnl", "price"):
             self.assertNotIn(f'"{k}"', out.lower())
@@ -1170,7 +1440,7 @@ class Reported(unittest.TestCase):
         w = world_with_top()
         w.level(TOP, M0 + 7 * D, 1.2)
         measured = {TOP: 0.1}
-        self.assertIn("Q9s", w.evaluate()["reported"]["bl45_measured"])
+        self.assertIn("no Q9s measured cost", w.evaluate()["reported"]["bl45_measured"])
         r = w.evaluate(ch(Q9="replace_metered"), measured=measured)["reported"]["bl45_measured"]
         top = 1.2 * 0.999 / 1.001 - 1
         flat_ = 0.992 / 1.008 - 1

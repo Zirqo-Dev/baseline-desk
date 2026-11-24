@@ -41,6 +41,9 @@ Path: paper -> backtest -> live small -> grow. Live starts with 100 USD split in
 6. Fully separate from other projects: no imports, no shared data, no shared workflows, no shared secrets.
 7. No position without its exit plan stored before entry; exits are never edited after entry.
 8. When live, the bot alone buys and sells; the owner's only manual action is the kill switch (pause + flatten).
+9. Backtest peek guard (BL-39, the owner, 2026-11-24): nobody calls tools/bl39.py load(), evaluate(), simulate() or its
+   readers on the real committed files before that stage's run gate passes; only run() opens its private gate, after
+   refusal() passed and the attempt record is written (the tool refuses otherwise).
 
 ## 4. Architecture
 SCAN     adapters/base.py scan()   DexScreener profiles+boosts, GeckoTerminal new_pools -> leads
@@ -77,8 +80,10 @@ SNAPSHOT tools/snapshot.py          snapshot.yml every Monday (BL-46): the BL-39
 BL39     tools/bl39.py              by hand only (BL-39): the spec v2.1 run tool, offline, stdlib; sha256 pins on the spec, its
                                    data files, eth-daily and the survey files; stage 1 loads only the 2026-09-07 open and nothing
                                    later; --run --stage N only after a DECISIONS "stage N run approved" line (the owner), stage 2 also
-                                   after "stage 1 pass"; each stage once -> backtest/results/; --check prints hashes and
-                                   timestamps only; refuses while CHOICES (open spec questions) is unresolved
+                                   after "stage 1 pass" and a stage 1 summary.json that records a pass; the approval row
+                                   names "tools/bl39.py sha256 <12 hex>"; an attempt record before the first data read,
+                                   an aborted attempt refuses a retry; each stage once -> backtest/results/; --check prints
+                                   hashes and timestamps only; CHOICES filled (the owner, 2026-11-24); peek guard
 TICK     core/tick.py              one run: roll day (+report, +machine cards, then twin restart once + weekly refills),
                                    exits (desk, baseline), scan -> verify -> buy, baseline buy,
                                    outcome labels (own try), live.json (own try, not on a crash), alerts (own try, also on a crash),
@@ -91,8 +96,9 @@ Folders:
   never on the tick path
 - backtest/: candles/ (<sight-day>.jsonl.gz written once when its 7-day windows closed, <day>.open.jsonl.gz until then,
   eth-<day>.jsonl.gz, twin-validation.jsonl.gz), specs/ (bl34-survivor-momentum-v3.md + .json, frozen; v1 and v2 superseded, never run;
-  bl39-max-momentum-v2.1.md, -family.json and -fees.json, frozen, BL-39), results/<run>/
-  (summary.json, trades.csv; BL-39: bl39-max-momentum-v2.1-stage<N>/ summary.json + legs.csv, written once), holdout.lock.json (BL-33; it also keeps the pass tests, BL-43), status.json (BL-43: which
+  bl39-max-momentum-v2.1.md, -family.json, -fees.json and -bl45-cost.json (Q9s), frozen, BL-39), results/<run>/
+  (summary.json, trades.csv; BL-39: bl39-max-momentum-v2.1-stage<N>/ summary.json + legs.csv, written once, and
+  bl39-max-momentum-v2.1-stage<N>.attempt.json beside it), holdout.lock.json (BL-33; it also keeps the pass tests, BL-43), status.json (BL-43: which
   candle files exist + the twin-validation totals, for the site), liquid/ (BL-39 part 1: universe.json + daily.jsonl.gz,
   every candle day ended before CUT 2026-11-08; eth-daily.jsonl.gz, BL-39's ETH series, same CUT; liquid/snapshots/<UTC day>.json.gz, BL-46, forward records, no price,
   and liquid/snapshots/sealed/<UTC day>.json.gz, the seal's side file, read by nothing),
@@ -315,7 +321,7 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
   terminal and Paper equity card byte-identical (screenshots and sha256 pins). Telegram daily adds "<book> refilled +$x
   (not P&L)" (from state.json report.equity), "Gate B since ... · random N closes · kill at 200" and a per-trade line per
   book; every BL-3 line stays; no BL-34 line (core/ never reads backtest/, test) (docs/NOTES.md "BL-43").
-  Tests: stdlib unittest, `python -m unittest` (668 pass on 3.13.18).
+  Tests: stdlib unittest, `python -m unittest` (687 pass on 3.13.18).
 - cron-job.org token "baseline-desk cron" (it dispatches tick.yml and costs.yml) EXPIRES Thu 2027-01-21: renew by early
   January or the desk and the cost meter stop silently.
 - Technical detail per card, GoPlus diagnosis, BL-20 budget and full open items: docs/NOTES.md.
@@ -471,18 +477,34 @@ buy_tax_pct, sell_tax_pct, lp_locked_pct, dev_pct, top10_pct, launchpad, risk_fl
     beyond hashing (open() spy test): hashes (+ family check) -> a DECISIONS BL-39 row "stage N run approved" (the
     owner) -> for stage 2 a row "stage 1 pass" -> no result folder (no override) -> no unresolved CHOICES. 13 open spec
     questions (Q1-Q12 + Q9s; Q9s the BL-45 cost source, Q12 the spec's rerun path, both with their DECISIONS-line option
-    not built) sit in CHOICES, all unresolved; the real run refuses until they are filled. --check on the real files:
-    6 hashes ok, family check ok, 12 Mondays Jun 15 .. Aug 31, run refused (no run-approval line) (docs/NOTES.md "BL-39 run tool").
+    not built) sat in CHOICES, all unresolved, until BL-39 CHOICES (below) (docs/NOTES.md "BL-39 run tool").
+  - BL-39 CHOICES (2026-11-24, build and tests only, no run; the owner's answers, all choice A, DECISIONS): CHOICES =
+    Q1 pick_leg, Q2 close, Q3 zero_diff, Q4 inconclusive, Q5 fill_picks, Q6 open_to_open, Q7 simple_ceil, Q8
+    pool_or_hop, Q9 replace_metered, Q9s pinned_file, Q10 na_first, Q11 fail, Q12 no_rerun (the first result is the
+    verdict; any rerun is its own reviewed story). Q9s = backtest/specs/bl39-max-momentum-v2.1-bl45-cost.json (sha256
+    71d71de47e1d..., in PINS): the 14 non-family metered tokens of NOTES "BL-39 pre-freeze", 5 USD round trip / 2 per
+    side, window Nov 13-20, addresses from the token and symbol fields of -fees.json (the owner, B); it feeds the Q9
+    report line only, never a test or the verdict (test). Fixes: stage 2 also needs the stage 1 summary.json to record a
+    pass; the run-approval row names "tools/bl39.py sha256 <first 12 hex>" of the current tool, and summary.json records
+    the tool sha256 and git HEAD; run() writes an attempt record before the first data read, and a record with no result
+    folder refuses a retry. Refusal order: hashes (7, + family check) -> run approval -> tool pin -> stage 1 pass row ->
+    stage 1 summary pass -> no result folder -> no attempt record -> no unresolved CHOICES. Peek guard: load(),
+    evaluate(), simulate() and the readers refuse the real files unless run()'s private in-process gate is open
+    (section 3, item 9). BL-38 tests only data after CUT (the owner, A), so stage 1 does not wait for a BL-38 freeze.
+    --check: 7 hashes ok, family check ok, no open question, tool sha256 94e638434edb..., run refused only for the
+    missing "stage 1 run approved" row (docs/NOTES.md "BL-39 run tool").
 - BL-45 cadence (2026-11-24, the owner's choice A, DECISIONS): costs.yml leaves GitHub's schedule for cron-job.org
   (POST workflow_dispatch at :17 every 2 h UTC), the same move tick.yml made (BL-7). GitHub's schedule started 33 runs
   Nov 14-23 against about 114 slots (2-4 a day, all success, ~50 s each). Workflow and tests only; the job is
   unchanged; a test pins workflow_dispatch and no schedule: key (docs/NOTES.md "BL-45").
 - Next step: BL-45: the owner adds the cron-job.org job for costs.yml (settings in docs/NOTES.md "BL-45"); until it
   is on, costs.yml runs only by hand.
-  BL-39: a fresh-context review of the run tool (tools/bl39.py) proposes answers to the open questions
-  (CHOICES Q1-Q12, Q9s; docs/NOTES.md "BL-39 run tool"); the owner decides; a small story fills CHOICES and records the
-  answers in DECISIONS; then the one stage 1 run as its own story, after the owner's DECISIONS row "stage 1 run approved". Stage 2 only after a DECISIONS "stage 1 pass" line.
-  BL-38's spec is frozen before BL-39 stage 1 is read, or BL-38 tests only data after CUT.
+  BL-39: a fresh-context review of the final run tool (tools/bl39.py, CHOICES filled, sha256 94e638434edb...); then the
+  owner writes the DECISIONS BL-39 row "stage 1 run approved, tools/bl39.py sha256 <first 12 hex of the reviewed tool>
+  ... (the owner)", which also states that BL-38 tests only data after CUT; then the one stage 1 run as its own story
+  (python -m tools.bl39 --run --stage 1, result committed). Any tool change after the review changes the sha and
+  needs a new review and approval row. Stage 2 only after a DECISIONS "stage 1 pass" line and a stage 1 pass in its
+  summary.json. BL-38 tests only data after CUT (the owner, A, 2026-11-24).
   BL-46: snapshot.yml runs automatic every Monday 00:37 UTC; next run Nov 23.
   How the sealed snapshot files (backtest/liquid/snapshots/sealed/) are opened is a later story, after BL-34's holdout
   run; until then nothing reads them.
