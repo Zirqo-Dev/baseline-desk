@@ -1,6 +1,6 @@
 {
   "baseline": {
-    "cash": 23.435285357981552,
+    "cash": 18.435285357981552,
     "cooldown": {
       "a:0x002f37062abffede4aebd49193af5c3399655655": "2026-11-25T00:13:15Z",
       "a:0x05c895f724f6a8f5e495c06b10565812f17a63d9": "2026-11-24T08:03:14Z",
@@ -61,11 +61,27 @@
         "peak_price": 7.723e-05,
         "qty": 88523.24468567828,
         "symbol": "Zelleinu"
+      },
+      "0xe581bda8d6a29a34a91cd717bd292f2e237b234a": {
+        "cost_usd": 5.0,
+        "entry_fill": 0.00010506506072874493,
+        "entry_intended": 0.000102,
+        "entry_liq_usd": 10203667.64,
+        "entry_qliq": 100776,
+        "entry_ts": "2026-11-24T02:18:18Z",
+        "ladder_done": [],
+        "last_price": 0.000102,
+        "launchpad": "other",
+        "orig_qty": 47589.55989097945,
+        "pair": "0x402d0073bbfee5ba43aed75845cf3f28fc0e5bb3",
+        "peak_price": 0.000102,
+        "qty": 47589.55989097945,
+        "symbol": "NVDA"
       }
     },
     "refill_week": "2026-W48",
     "refills_usd": 106.05022822478631,
-    "ticks_since_buy": 11
+    "ticks_since_buy": 0
   },
   "desk": {
     "cash": 50.0,
@@ -1513,7 +1529,8 @@
       },
       "0x21273b8ec512649ef4270e3c7cc55162b5e9be55": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 3.306e-06,
         "first_seen": "2026-11-23T20:18:17Z",
@@ -1564,17 +1581,6 @@
         "sight_pair": "0x9e94a2764eeec21bef0abaa7ea53ead3bde91c98ba75c2e3870a58e3712bd292",
         "sight_qliq": 523,
         "symbol": "UFDO"
-      },
-      "0x21a1044c8d168a843ece719ec41d302dc4f6e1e9": {
-        "done": [
-          1,
-          6
-        ],
-        "first_price": 1.28e-05,
-        "first_seen": "2026-11-23T02:18:16Z",
-        "sight_pair": "0x853afa73fd979b1f21d6c89d7586c117b9c71a95",
-        "sight_qliq": 71029,
-        "symbol": "SI"
       },
       "0x21cac1c30873dbababaea00df9c7c8e213a9616f": {
         "done": [
@@ -2844,6 +2850,14 @@
         "sight_pair": "0xdb42caeed388773c04533b0be7c0e2c997e44555b940503ec2b5a79ba7230dc0",
         "sight_qliq": 0,
         "symbol": "ANYONE"
+      },
+      "0x4d0747f3a4da378f1ff8068b34d9556e2aca8bc2": {
+        "done": [],
+        "first_price": 1.878e-05,
+        "first_seen": "2026-11-24T02:18:18Z",
+        "sight_pair": "0xcb21bf2fe32d2669923351c4bff5d987a9704b3e38aefdd7deff6249e565dd22",
+        "sight_qliq": 16977,
+        "symbol": "JENSEN"
       },
       "0x4e550782a7fcdbaa823181ac973f4a9b3696ba07": {
         "done": [
@@ -6169,12 +6183,6 @@
         "symbol": "UFDO",
         "until": "2026-11-24T23:08:16Z"
       },
-      "0x24860d593dee8e36ee53d049f19080c7d75105bb": {
-        "at": "2026-11-23T02:18:16Z",
-        "reason": "goplus_timeout",
-        "symbol": "USOI",
-        "until": "2026-11-24T02:18:16Z"
-      },
       "0x24d608bb8608480a4853c15f01dc75c75b9c5c8a": {
         "at": "2026-11-23T16:08:16Z",
         "reason": "real_depth",
@@ -8029,12 +8037,6 @@
         "symbol": "USOIL",
         "until": "2026-11-24T13:13:17Z"
       },
-      "0x71d490d8b7719ef9920ab8597f07698348ed39b8": {
-        "at": "2026-11-23T02:18:16Z",
-        "reason": "real_depth",
-        "symbol": "SNP500",
-        "until": "2026-11-24T02:18:16Z"
-      },
       "0x727e587794415a162deccab44cecc44a2385cccc": {
         "at": "2026-11-23T21:33:20Z",
         "reason": "missing:liq_usd",
@@ -8682,12 +8684,6 @@
         "reason": "missing:liq_usd",
         "symbol": "wtf",
         "until": "2026-11-24T10:23:14Z"
-      },
-      "0x8e3131438f6294f6f73df5dbd78e0d0edfa49b9f": {
-        "at": "2026-11-23T02:18:16Z",
-        "reason": "real_depth",
-        "symbol": "SPACEX",
-        "until": "2026-11-24T02:18:16Z"
       },
       "0x8e4664770d24cec088580f9139b91a30fd7eb4f8": {
         "at": "2026-11-23T04:43:15Z",
@@ -9673,6 +9669,12 @@
         "symbol": "RSTRM",
         "until": "2026-11-24T22:13:16Z"
       },
+      "0xb2000000000000000000003af20134d9da41b201": {
+        "at": "2026-11-24T02:18:18Z",
+        "reason": "real_depth",
+        "symbol": "GameStock",
+        "until": "2026-11-25T02:18:18Z"
+      },
       "0xb2000000000000000000003b19c4464930262998": {
         "at": "2026-11-23T16:33:17Z",
         "reason": "real_depth",
@@ -9906,12 +9908,6 @@
         "reason": "real_depth",
         "symbol": "BTC",
         "until": "2026-11-24T06:38:15Z"
-      },
-      "0xb200000000000000000000812d545f1e58a1b4f4": {
-        "at": "2026-11-23T02:18:16Z",
-        "reason": "missing:symbol",
-        "symbol": "",
-        "until": "2026-11-24T02:18:16Z"
       },
       "0xb20000000000000000000083422c136b927b0696": {
         "at": "2026-11-23T19:43:32Z",
@@ -11751,10 +11747,16 @@
         "last_check": "2026-11-24T02:13:15Z",
         "symbol": "BOOTR"
       },
+      "0x4d0747f3a4da378f1ff8068b34d9556e2aca8bc2": {
+        "checks": 1,
+        "first_seen": "2026-11-24T02:18:18Z",
+        "last_check": "2026-11-24T02:18:18Z",
+        "symbol": "JENSEN"
+      },
       "0xe581bda8d6a29a34a91cd717bd292f2e237b234a": {
-        "checks": 2,
+        "checks": 3,
         "first_seen": "2026-11-24T01:43:16Z",
-        "last_check": "2026-11-24T02:03:14Z",
+        "last_check": "2026-11-24T02:18:18Z",
         "symbol": "NVDA"
       }
     }
@@ -12118,7 +12120,7 @@
     "gate_restart": "BL-32",
     "machine_due": "",
     "max_dd_pct": {
-      "baseline": 220.68413786078403,
+      "baseline": 221.17279996039093,
       "desk": 9.811123120222184
     },
     "peak": {
