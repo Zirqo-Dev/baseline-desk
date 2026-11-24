@@ -1,6 +1,6 @@
 {
   "baseline": {
-    "cash": 18.14367243108719,
+    "cash": 13.14367243108719,
     "cooldown": {
       "a:0x002f37062abffede4aebd49193af5c3399655655": "2026-11-25T00:13:15Z",
       "a:0x05c895f724f6a8f5e495c06b10565812f17a63d9": "2026-11-24T08:03:14Z",
@@ -46,6 +46,22 @@
         "qty": 22491.761282341395,
         "symbol": "MARSBASE"
       },
+      "0x985e7dbe4fd276e974199e73f87b086669cf2cb0": {
+        "cost_usd": 5.0,
+        "entry_fill": 9.49411167112736e-06,
+        "entry_intended": 9.217e-06,
+        "entry_liq_usd": 153183.24,
+        "entry_qliq": 76595,
+        "entry_ts": "2026-11-24T04:18:18Z",
+        "ladder_done": [],
+        "last_price": 9.217e-06,
+        "launchpad": "other",
+        "orig_qty": 526642.215006334,
+        "pair": "0xd8de26ea39ce0b9fb04a0e70d9228a4ccf79e9fb",
+        "peak_price": 9.217e-06,
+        "qty": 526642.215006334,
+        "symbol": "TRUMP2028"
+      },
       "0xa97d8577fef865b9717b7bc4102df9a24c940080": {
         "cost_usd": 5.0,
         "entry_fill": 5.6482339952106666e-05,
@@ -67,7 +83,7 @@
     },
     "refill_week": "2026-W48",
     "refills_usd": 106.05022822478631,
-    "ticks_since_buy": 11
+    "ticks_since_buy": 0
   },
   "desk": {
     "cash": 50.0,
@@ -219,6 +235,14 @@
         "sight_pair": "0x6c53ea6889fea6a4375a902a181c192cab88f4eaf878599528a09f96fc49bbc5",
         "sight_qliq": 520,
         "symbol": "UFDO"
+      },
+      "0x030ebb782d6bcf7c8165912c5fff1a9f16f767e8": {
+        "done": [],
+        "first_price": 6.096e-06,
+        "first_seen": "2026-11-24T04:18:18Z",
+        "sight_pair": "0xbbc0658765290f78a75181364242f968bf05e425",
+        "sight_qliq": 26135,
+        "symbol": "pepep"
       },
       "0x032ed4ff67d6e157d4e5bcb566acf19d3e4f5343": {
         "done": [],
@@ -1513,7 +1537,8 @@
       },
       "0x1ee12fce9b657a90a70bfa5a3387e3ecc08adc0d": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 9.578e-05,
         "first_seen": "2026-11-23T22:13:16Z",
@@ -2917,7 +2942,8 @@
       },
       "0x498795d1fa23d5334083860174b8f453ee0d4ae6": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 0.000157,
         "first_seen": "2026-11-23T22:18:16Z",
@@ -3925,6 +3951,14 @@
         "sight_qliq": 0,
         "symbol": "NVDA"
       },
+      "0xad15f07ff942c16d47a60002fcd23a308a58f905": {
+        "done": [],
+        "first_price": 0.0002113,
+        "first_seen": "2026-11-24T04:18:18Z",
+        "sight_pair": "0x4f76f7e928e18ecdb86fc551162249eb1a42f46627ed45ba2ccd18137d8fe3e9",
+        "sight_qliq": 0,
+        "symbol": "ATX"
+      },
       "0xada29a0137f39e57d9806df5e33925b60ef54274": {
         "done": [
           1,
@@ -4357,7 +4391,8 @@
       },
       "0xd55c9312748b333dd8ff9e0d9e0465bc742658b8": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 8.2e-05,
         "first_seen": "2026-11-23T22:13:16Z",
@@ -6866,12 +6901,6 @@
         "symbol": "XRp Phoniex",
         "until": "2026-11-24T06:38:15Z"
       },
-      "0x38b31f56e5769708cd25cdb6ba32505d015d7ab3": {
-        "at": "2026-11-23T04:18:16Z",
-        "reason": "missing:liq_usd",
-        "symbol": "PUBLIC",
-        "until": "2026-11-24T04:18:16Z"
-      },
       "0x393416362e1197e94eff0a763f9282a24b88e81f": {
         "at": "2026-11-23T05:18:18Z",
         "reason": "missing:liq_usd",
@@ -9260,6 +9289,12 @@
         "symbol": "NVDA",
         "until": "2026-11-24T17:33:15Z"
       },
+      "0xad15f07ff942c16d47a60002fcd23a308a58f905": {
+        "at": "2026-11-24T04:18:18Z",
+        "reason": "real_depth",
+        "symbol": "ATX",
+        "until": "2026-11-25T04:18:18Z"
+      },
       "0xad3bf4df4a8d2f1b6b02b526e8c6e2461ee1c886": {
         "at": "2026-11-23T09:08:16Z",
         "reason": "real_depth",
@@ -9757,12 +9792,6 @@
         "reason": "real_depth",
         "symbol": "USNS",
         "until": "2026-11-25T03:28:15Z"
-      },
-      "0xb2000000000000000000006f393ea255a5b417b6": {
-        "at": "2026-11-23T04:18:16Z",
-        "reason": "missing:liq_usd",
-        "symbol": "MACCA",
-        "until": "2026-11-24T04:18:16Z"
       },
       "0xb200000000000000000000713d48f95f22185e69": {
         "at": "2026-11-23T10:48:17Z",
@@ -11306,12 +11335,6 @@
         "symbol": "JD",
         "until": "2026-11-24T19:33:25Z"
       },
-      "0xf16d91707da8ee16588e96dd9f6d50b017d7d187": {
-        "at": "2026-11-23T04:18:16Z",
-        "reason": "real_depth",
-        "symbol": "SPACEX",
-        "until": "2026-11-24T04:18:16Z"
-      },
       "0xf19e652d57200c737d0e9f57024eac383afdcccc": {
         "at": "2026-11-23T20:58:17Z",
         "reason": "real_depth",
@@ -11566,6 +11589,12 @@
       }
     },
     "watch": {
+      "0x030ebb782d6bcf7c8165912c5fff1a9f16f767e8": {
+        "checks": 1,
+        "first_seen": "2026-11-24T04:18:18Z",
+        "last_check": "2026-11-24T04:18:18Z",
+        "symbol": "pepep"
+      },
       "0x0c8184a9ae151433d3b762d179993ae5588e1b22": {
         "checks": 6,
         "first_seen": "2026-11-24T02:38:16Z",
@@ -11591,9 +11620,9 @@
         "symbol": "JENSEN"
       },
       "0x985e7dbe4fd276e974199e73f87b086669cf2cb0": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-24T04:03:15Z",
-        "last_check": "2026-11-24T04:03:15Z",
+        "last_check": "2026-11-24T04:18:18Z",
         "symbol": "TRUMP2028"
       },
       "0xe581bda8d6a29a34a91cd717bd292f2e237b234a": {
@@ -11963,7 +11992,7 @@
     "gate_restart": "BL-32",
     "machine_due": "",
     "max_dd_pct": {
-      "baseline": 229.54806989033312,
+      "baseline": 230.03697555434547,
       "desk": 9.811123120222184
     },
     "peak": {
