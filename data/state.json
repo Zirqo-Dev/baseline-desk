@@ -54,7 +54,9 @@
         "entry_qliq": 17074,
         "entry_ts": "2026-11-25T00:08:17Z",
         "ladder_done": [],
-        "last_price": 0.001392,
+        "last_liq_usd": 2081912.5,
+        "last_price": 0.001387,
+        "last_qliq": 17049,
         "launchpad": "other",
         "orig_qty": 3486.3427885334695,
         "pair": "0x103fbc091be0fb68fc6109d122bb0cee57ee4428c8484df1887a7f8e45640e22",
@@ -83,7 +85,7 @@
     },
     "refill_week": "2026-W48",
     "refills_usd": 106.05022822478631,
-    "ticks_since_buy": 0
+    "ticks_since_buy": 1
   },
   "desk": {
     "cash": 50.0,
@@ -4222,7 +4224,9 @@
         "symbol": "UASR"
       },
       "0x48812c73fd1b9b791d2aae6411f5e76f6656fa42": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 0.0006323,
         "first_seen": "2026-11-24T23:08:23Z",
         "sight_pair": "0x617fa13f6116eb6c5c25989887ebad48bd6d261724e1faef4cd7736b5d883db9",
@@ -7024,12 +7028,6 @@
         "symbol": "LU\u200aN\u200aC",
         "until": "2026-11-25T02:33:16Z"
       },
-      "0x1aa3cf790cdecfe1ee8a93d2b79aa9943081fcc3": {
-        "at": "2026-11-24T00:13:15Z",
-        "reason": "real_depth",
-        "symbol": "USEF",
-        "until": "2026-11-25T00:13:15Z"
-      },
       "0x1ad36c0523401ad49bf047baeee784e85610bd15": {
         "at": "2026-11-24T12:43:16Z",
         "reason": "real_depth",
@@ -8758,6 +8756,12 @@
         "symbol": "Nation\u200aal Oi\u200al Tru\u200as\u200at Fu\u200an\u200ad",
         "until": "2026-11-25T17:43:15Z"
       },
+      "0x3e78837684b031b07f102f5ce9e4495bd0311339": {
+        "at": "2026-11-25T00:13:17Z",
+        "reason": "real_depth",
+        "symbol": "TLTx",
+        "until": "2026-11-26T00:13:17Z"
+      },
       "0x3e7b74adc048c8b7dc305ad8df803422c76a968f": {
         "at": "2026-11-24T21:13:16Z",
         "reason": "real_depth",
@@ -10035,6 +10039,12 @@
         "reason": "missing:liq_usd",
         "symbol": "CASHCAT",
         "until": "2026-11-25T12:23:16Z"
+      },
+      "0x83598d3e1abd5a4d725dd0894628757399526151": {
+        "at": "2026-11-25T00:13:17Z",
+        "reason": "real_depth",
+        "symbol": "REBOOT",
+        "until": "2026-11-26T00:13:17Z"
       },
       "0x83c208b63e89ddc56f5299384fe3474d79aa920a": {
         "at": "2026-11-24T11:58:16Z",
@@ -12016,6 +12026,12 @@
         "symbol": "Circle",
         "until": "2026-11-25T21:23:22Z"
       },
+      "0xb200000000000000000000de1eae62115ad35746": {
+        "at": "2026-11-25T00:13:17Z",
+        "reason": "real_depth",
+        "symbol": "ICLANKER",
+        "until": "2026-11-26T00:13:17Z"
+      },
       "0xb200000000000000000000e1f16263164fd4d064": {
         "at": "2026-11-24T16:08:17Z",
         "reason": "real_depth",
@@ -12424,6 +12440,12 @@
         "symbol": "Kim",
         "until": "2026-11-25T18:13:16Z"
       },
+      "0xbd6159b9559c2cb6e2d25fd27d859650841fca8b": {
+        "at": "2026-11-25T00:13:17Z",
+        "reason": "real_depth",
+        "symbol": "1KTO100M",
+        "until": "2026-11-26T00:13:17Z"
+      },
       "0xbd8a76fe15067dd1ecce809c37651d3208e23f01": {
         "at": "2026-11-24T18:03:15Z",
         "reason": "real_depth",
@@ -12453,6 +12475,12 @@
         "reason": "real_depth",
         "symbol": "SPACEX",
         "until": "2026-11-25T09:48:16Z"
+      },
+      "0xbf1bc7711cc0b47499407a815f2ece883e22cb07": {
+        "at": "2026-11-25T00:13:17Z",
+        "reason": "real_depth",
+        "symbol": "CASHY",
+        "until": "2026-11-26T00:13:17Z"
       },
       "0xbf5393a3e88761918bc9e8acdb5b6c0a13429ba3": {
         "at": "2026-11-24T20:53:15Z",
@@ -12741,12 +12769,6 @@
         "reason": "real_depth",
         "symbol": "1KTO100M",
         "until": "2026-11-25T18:28:23Z"
-      },
-      "0xce4d7f0cfaa085d733e05fb5190942ae9459bb07": {
-        "at": "2026-11-24T00:13:15Z",
-        "reason": "real_depth",
-        "symbol": "Immunefi",
-        "until": "2026-11-25T00:13:15Z"
       },
       "0xcee886f0891815f1d0b4ba18b5d3ab3d17924c3c": {
         "at": "2026-11-24T17:23:15Z",
@@ -13705,21 +13727,15 @@
         "symbol": "GOTF US."
       },
       "0x5d941b169fc09d20bfb1280b077d4667e889183b": {
-        "checks": 5,
+        "checks": 6,
         "first_seen": "2026-11-24T22:43:14Z",
-        "last_check": "2026-11-24T23:58:16Z",
+        "last_check": "2026-11-25T00:13:17Z",
         "symbol": "NOTF"
       },
-      "0x83598d3e1abd5a4d725dd0894628757399526151": {
-        "checks": 2,
-        "first_seen": "2026-11-24T23:43:15Z",
-        "last_check": "2026-11-24T23:58:16Z",
-        "symbol": "REBOOT"
-      },
       "0xcb585250f852c6c6bf90434ab21a00f02833a4af": {
-        "checks": 2,
+        "checks": 3,
         "first_seen": "2026-11-24T23:38:26Z",
-        "last_check": "2026-11-24T23:58:16Z",
+        "last_check": "2026-11-25T00:13:17Z",
         "symbol": "cbXRP"
       },
       "0xd544bf8d89266dcda2a926f4ae2e39627733f091": {
@@ -14103,7 +14119,7 @@
     "gate_restart": "BL-32",
     "machine_due": "",
     "max_dd_pct": {
-      "baseline": 238.41596680036267,
+      "baseline": 238.44427730722768,
       "desk": 9.811123120222184
     },
     "peak": {
