@@ -61,7 +61,7 @@
     },
     "refill_week": "2026-W48",
     "refills_usd": 106.05022822478631,
-    "ticks_since_buy": 77
+    "ticks_since_buy": 78
   },
   "desk": {
     "cash": 50.0,
@@ -5017,7 +5017,9 @@
         "symbol": "UOGS"
       },
       "0x828b8bc2ff1c0a570e30f7a5999c9eadf989bfeb": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 2.899e-06,
         "first_seen": "2026-11-25T07:43:15Z",
         "sight_pair": "0x5ba3cb30a80024ba47e87fd6e5543c6d43952d2c",
@@ -5523,17 +5525,6 @@
         "sight_pair": "0x41b28d57b0b07e63db6a4addd0fea70e9bbb19aa",
         "sight_qliq": 100022,
         "symbol": "NVDA"
-      },
-      "0xc13bf69d329f21907ab701cf9628393b0d2849d4": {
-        "done": [
-          1,
-          6
-        ],
-        "first_price": 1.105e-05,
-        "first_seen": "2026-11-24T08:43:24Z",
-        "sight_pair": "0x72587a734106885cbfe4f5ac36f62e0fff034029",
-        "sight_qliq": 69556,
-        "symbol": "CLAUDIA"
       },
       "0xc146c78f4790ab786b0f8efb5775912a569b80f3": {
         "done": [
@@ -7105,12 +7096,6 @@
         "symbol": "USOI",
         "until": "2026-11-26T02:58:17Z"
       },
-      "0x111ae2354e2b0c12e6bd6bb56c2bc32b6de1cccc": {
-        "at": "2026-11-24T08:43:24Z",
-        "reason": "missing:liq_usd",
-        "symbol": "CAPPED",
-        "until": "2026-11-25T08:43:24Z"
-      },
       "0x111bc8f660abdb9a40104171ac1f6747cf85e355": {
         "at": "2026-11-24T10:18:16Z",
         "reason": "real_depth",
@@ -7362,6 +7347,12 @@
         "reason": "real_depth",
         "symbol": "Antropic",
         "until": "2026-11-25T12:13:25Z"
+      },
+      "0x1671356dc52dd35f724a094b1100645b2d9e1111": {
+        "at": "2026-11-25T08:43:25Z",
+        "reason": "missing:liq_usd",
+        "symbol": "BALIEN",
+        "until": "2026-11-26T08:43:25Z"
       },
       "0x16748850c91b55cf7491f2bbe9c4d835e18f06af": {
         "at": "2026-11-24T12:18:18Z",
@@ -8328,12 +8319,6 @@
         "reason": "real_depth",
         "symbol": "BEAST",
         "until": "2026-11-25T23:38:26Z"
-      },
-      "0x283a7d60015e669b24a214f72865bf975b137395": {
-        "at": "2026-11-24T08:43:24Z",
-        "reason": "goplus_timeout",
-        "symbol": "FIONA",
-        "until": "2026-11-25T08:43:24Z"
       },
       "0x2842484d8e9ff5830ef6e7654dcf21037780998b": {
         "at": "2026-11-25T08:38:17Z",
@@ -9817,6 +9802,12 @@
         "symbol": "BRIAN",
         "until": "2026-11-25T16:43:16Z"
       },
+      "0x5313966745392b50aec02cb9b2fbde1a85e40204": {
+        "at": "2026-11-25T08:43:25Z",
+        "reason": "real_depth",
+        "symbol": "BOOTR",
+        "until": "2026-11-26T08:43:25Z"
+      },
       "0x536baff7346c3e0e4161ad69b6a7a7e5ad144ba3": {
         "at": "2026-11-24T13:13:18Z",
         "reason": "real_depth",
@@ -9912,12 +9903,6 @@
         "reason": "real_depth",
         "symbol": "CIRCEL",
         "until": "2026-11-25T19:28:17Z"
-      },
-      "0x5723fbd821dea36c7a50c82d69723d897d45a31c": {
-        "at": "2026-11-24T08:38:21Z",
-        "reason": "real_depth",
-        "symbol": "PEPKING",
-        "until": "2026-11-25T08:38:21Z"
       },
       "0x576ae6873201bd425abfdc25586482b102ebd4ec": {
         "at": "2026-11-24T21:23:22Z",
@@ -11730,6 +11715,12 @@
         "reason": "real_depth",
         "symbol": "HODLA",
         "until": "2026-11-25T16:03:17Z"
+      },
+      "0xb2000000000000000000001e800a7f5189430cd0": {
+        "at": "2026-11-25T08:43:25Z",
+        "reason": "asset:wrapped",
+        "symbol": "TSLAc",
+        "until": "2026-11-26T08:43:25Z"
       },
       "0xb200000000000000000000210ff96bdff80a1501": {
         "at": "2026-11-24T14:23:16Z",
@@ -14113,12 +14104,6 @@
         "symbol": "1KTO100M",
         "until": "2026-11-25T21:48:21Z"
       },
-      "0xee669d3a08d0e6aadb223a8831de44609a090f42": {
-        "at": "2026-11-24T08:43:24Z",
-        "reason": "real_depth",
-        "symbol": "TRUMP2028",
-        "until": "2026-11-25T08:43:24Z"
-      },
       "0xeeeb073943f9eb2cb1eca891872dbc8ee86ecccc": {
         "at": "2026-11-25T05:53:16Z",
         "reason": "real_depth",
@@ -14506,9 +14491,9 @@
     },
     "watch": {
       "0x175abcf568c0ed13acc8139e9e16af0de0133ba4": {
-        "checks": 3,
+        "checks": 4,
         "first_seen": "2026-11-25T07:48:15Z",
-        "last_check": "2026-11-25T08:23:20Z",
+        "last_check": "2026-11-25T08:43:25Z",
         "symbol": "SVAG"
       },
       "0x189165ca7362a8434bc969df5421b3c762b68f98": {
@@ -14553,12 +14538,6 @@
         "last_check": "2026-11-25T08:38:17Z",
         "symbol": "REBOOT"
       },
-      "0x5313966745392b50aec02cb9b2fbde1a85e40204": {
-        "checks": 2,
-        "first_seen": "2026-11-25T08:08:23Z",
-        "last_check": "2026-11-25T08:28:17Z",
-        "symbol": "BOOTR"
-      },
       "0x673ac13487cc159956ae65673281f19fe2c3384f": {
         "checks": 1,
         "first_seen": "2026-11-25T08:33:17Z",
@@ -14566,9 +14545,9 @@
         "symbol": "USEF"
       },
       "0xa2aee96fdf666a44d345bf59abd6ab0411f3b194": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-25T08:23:20Z",
-        "last_check": "2026-11-25T08:23:20Z",
+        "last_check": "2026-11-25T08:43:25Z",
         "symbol": "US SUPPLY MINERAL"
       },
       "0xd3aa5353bf92c34ab3648acb9b4c4b020eb10509": {
@@ -14578,9 +14557,9 @@
         "symbol": "USOI"
       },
       "0xeb5b003a276e06ff219cb5422b6aa115ae2520b6": {
-        "checks": 2,
+        "checks": 3,
         "first_seen": "2026-11-25T08:03:21Z",
-        "last_check": "2026-11-25T08:23:20Z",
+        "last_check": "2026-11-25T08:43:25Z",
         "symbol": "USAR"
       }
     }
