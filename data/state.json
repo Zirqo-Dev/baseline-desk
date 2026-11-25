@@ -61,7 +61,7 @@
     },
     "refill_week": "2026-W48",
     "refills_usd": 106.05022822478631,
-    "ticks_since_buy": 78
+    "ticks_since_buy": 79
   },
   "desk": {
     "cash": 50.0,
@@ -1668,7 +1668,9 @@
         "symbol": "SOS\u200aF"
       },
       "0x175abcf568c0ed13acc8139e9e16af0de0133ba4": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 6.26e-05,
         "first_seen": "2026-11-25T07:48:15Z",
         "sight_pair": "0xd09c35fd21bfd77e7c14479ed38b9388301eeeb2b1e0c0906543b490a31473fd",
@@ -5949,6 +5951,14 @@
         "sight_qliq": 25799,
         "symbol": "SSFO"
       },
+      "0xe98cc0b8a03db0791ab5dfdac90f4ca496558abc": {
+        "done": [],
+        "first_price": 9.343e-05,
+        "first_seen": "2026-11-25T08:48:23Z",
+        "sight_pair": "0x8fd2514a088bdcb92b1a2c27bbcff57ffc15275b4c6566a0aa15a05736c35b23",
+        "sight_qliq": 1,
+        "symbol": "UOF"
+      },
       "0xeb2dab9da547711998c83ad5c55d7535779f3f46": {
         "done": [
           1,
@@ -7660,6 +7670,12 @@
         "symbol": "VTC6\u26a1\ufe0f",
         "until": "2026-11-25T12:13:25Z"
       },
+      "0x1d41430b23dadfed3b759ac35a0dc2459ac5cccc": {
+        "at": "2026-11-25T08:48:23Z",
+        "reason": "real_depth",
+        "symbol": "JENSEBACK",
+        "until": "2026-11-26T08:48:23Z"
+      },
       "0x1d6281a002b7aed556d3902eb250fafb3efb034e": {
         "at": "2026-11-24T23:28:19Z",
         "reason": "real_depth",
@@ -8889,6 +8905,12 @@
         "reason": "real_depth",
         "symbol": "ATX PROJECT",
         "until": "2026-11-25T17:43:15Z"
+      },
+      "0x355f1ac19ef4f1b66fa59910c34ab758571c246b": {
+        "at": "2026-11-25T08:48:23Z",
+        "reason": "real_depth",
+        "symbol": "VTC6\u26a1\ufe0f",
+        "until": "2026-11-26T08:48:23Z"
       },
       "0x357534d4dbbb2f293f39dabea658d2cb55dc1301": {
         "at": "2026-11-25T08:13:15Z",
@@ -11614,12 +11636,6 @@
         "symbol": "GSPOT",
         "until": "2026-11-26T02:03:16Z"
       },
-      "0xb20000000000000000000004da14f71a2d425502": {
-        "at": "2026-11-24T08:48:16Z",
-        "reason": "real_depth",
-        "symbol": "GOFT",
-        "until": "2026-11-25T08:48:16Z"
-      },
       "0xb20000000000000000000006291070e1c02d4901": {
         "at": "2026-11-24T19:38:16Z",
         "reason": "real_depth",
@@ -11739,12 +11755,6 @@
         "reason": "real_depth",
         "symbol": "CAPPED",
         "until": "2026-11-25T09:03:26Z"
-      },
-      "0xb20000000000000000000027915493c75a3e4a13": {
-        "at": "2026-11-24T08:48:16Z",
-        "reason": "real_depth",
-        "symbol": "CAPPED",
-        "until": "2026-11-25T08:48:16Z"
       },
       "0xb2000000000000000000002912f50154bc779c8a": {
         "at": "2026-11-24T12:58:16Z",
@@ -13882,12 +13892,6 @@
         "symbol": "CHUBBY",
         "until": "2026-11-25T12:18:18Z"
       },
-      "0xdf30ffb1ef413fa1c2dd68645fcdb0e50bd697f6": {
-        "at": "2026-11-24T08:48:16Z",
-        "reason": "real_depth",
-        "symbol": "LAPTOP",
-        "until": "2026-11-25T08:48:16Z"
-      },
       "0xdf4fcc2e3f9540479f3c638ae33ce782ac127406": {
         "at": "2026-11-24T14:53:22Z",
         "reason": "missing:liq_usd",
@@ -14038,17 +14042,17 @@
         "symbol": "mmtmoon",
         "until": "2026-11-26T02:23:14Z"
       },
+      "0xe98cc0b8a03db0791ab5dfdac90f4ca496558abc": {
+        "at": "2026-11-25T08:48:23Z",
+        "reason": "real_depth",
+        "symbol": "UOF",
+        "until": "2026-11-26T08:48:23Z"
+      },
       "0xea00e915231cba90818d5739963eda89c6d0bb55": {
         "at": "2026-11-25T04:58:16Z",
         "reason": "real_depth",
         "symbol": "XCHAT",
         "until": "2026-11-26T04:58:16Z"
-      },
-      "0xea507d560cdf1d033879a2e0961e07302da6ed44": {
-        "at": "2026-11-24T08:48:16Z",
-        "reason": "real_depth",
-        "symbol": "LIQUIDBGT",
-        "until": "2026-11-25T08:48:16Z"
       },
       "0xea5ab0aca918ae11ce60b3535acee6b7b3edfee1": {
         "at": "2026-11-24T15:13:24Z",
@@ -14497,15 +14501,15 @@
         "symbol": "SVAG"
       },
       "0x189165ca7362a8434bc969df5421b3c762b68f98": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-25T08:33:17Z",
-        "last_check": "2026-11-25T08:33:17Z",
+        "last_check": "2026-11-25T08:48:23Z",
         "symbol": "CMC20"
       },
       "0x19fff6bdbe61b531577077c76f455aab4b9493d2": {
-        "checks": 9,
+        "checks": 10,
         "first_seen": "2026-11-25T06:18:17Z",
-        "last_check": "2026-11-25T08:33:17Z",
+        "last_check": "2026-11-25T08:48:23Z",
         "symbol": "GOTF US."
       },
       "0x283cdc2e8fcd3bccbe8d39b05e3827d72b6d7ed1": {
@@ -14515,21 +14519,15 @@
         "symbol": "U\u200aS\u200aO\u200aE"
       },
       "0x3441e8fcdd380c4e7f5c7f55ccd599b2a2afcccc": {
-        "checks": 8,
+        "checks": 9,
         "first_seen": "2026-11-25T06:33:15Z",
-        "last_check": "2026-11-25T08:33:17Z",
+        "last_check": "2026-11-25T08:48:23Z",
         "symbol": "REVVY"
       },
-      "0x355f1ac19ef4f1b66fa59910c34ab758571c246b": {
-        "checks": 1,
-        "first_seen": "2026-11-25T08:33:17Z",
-        "last_check": "2026-11-25T08:33:17Z",
-        "symbol": "VTC6\u26a1\ufe0f"
-      },
       "0x3fbdcfae708be604c60e219b19ebd741b3c79708": {
-        "checks": 9,
+        "checks": 10,
         "first_seen": "2026-11-25T06:18:17Z",
-        "last_check": "2026-11-25T08:33:17Z",
+        "last_check": "2026-11-25T08:48:23Z",
         "symbol": "Nation\u200aal Oi\u200al Tru\u200as\u200at Fu\u200an\u200ad"
       },
       "0x4b71319be16effa672e51b3afac8410654956e63": {
@@ -14539,9 +14537,9 @@
         "symbol": "REBOOT"
       },
       "0x673ac13487cc159956ae65673281f19fe2c3384f": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-25T08:33:17Z",
-        "last_check": "2026-11-25T08:33:17Z",
+        "last_check": "2026-11-25T08:48:23Z",
         "symbol": "USEF"
       },
       "0xa2aee96fdf666a44d345bf59abd6ab0411f3b194": {
@@ -14551,9 +14549,9 @@
         "symbol": "US SUPPLY MINERAL"
       },
       "0xd3aa5353bf92c34ab3648acb9b4c4b020eb10509": {
-        "checks": 9,
+        "checks": 10,
         "first_seen": "2026-11-25T06:13:16Z",
-        "last_check": "2026-11-25T08:33:17Z",
+        "last_check": "2026-11-25T08:48:23Z",
         "symbol": "USOI"
       },
       "0xeb5b003a276e06ff219cb5422b6aa115ae2520b6": {
