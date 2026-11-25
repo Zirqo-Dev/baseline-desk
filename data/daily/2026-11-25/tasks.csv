@@ -1322,3 +1322,13 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-25T10:28:17Z,desk,VERIFY,BAR,0xb200000000000000000000d1e1a4737784874871,SKIP,real_depth,goplus=skipped until=2026-11-26T10:28:17Z
 2026-11-25T10:28:17Z,baseline,EXECUTE,USAR,0xeb5b003a276e06ff219cb5422b6aa115ae2520b6,SKIP,loss_halt,seed=202611251028 eligible=1 pick=0 pool=eb5b00 desk=WATCH launchpad=other
 2026-11-25T10:28:17Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=3 new=2 checked=5 passed=0 bought=0 held=0 deferred=0 dex_only=2 goplus=3 requests=16 secs=7.2 bl_positions=2 bl_due=1 bl_eligible=1 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=2 labels_done=2 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-25T10:33:18Z,baseline,EXIT,MARSBASE,0x0b455a80139f9642bb47f2cb5afabbd8809a24af,HOLD,no_quote,
+2026-11-25T10:33:18Z,baseline,EXIT,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,HOLD,no_quote,
+2026-11-25T10:33:18Z,desk,VERIFY,TRUMP2028,0xa2d2c5b74c00cb56489d4d2b03e05b763aad29cf,SKIP,real_depth,first_seen=2026-11-25T09:58:16Z checks=3 goplus=skipped until=2026-11-26T10:33:18Z
+2026-11-25T10:33:18Z,desk,VERIFY,BASKET,0x7b26d368c8b92739d093f77243b9d2e889db253b,WATCH,goplus_not_ready,"first_seen=2026-11-25T10:18:18Z checks=2 pending=honeypot,buy_tax_pct,sell_tax_pct,dev_pct,lp_locked_pct b1=20 s1=0 b24=20 s24=0 liq=54699 dex=uniswap:v2 qliq=27353 pair_age=19 token_age=19"
+2026-11-25T10:33:18Z,desk,VERIFY,TRUMP2028,0x14caa721a283b77cc138d9d76edac65e140601cf,WATCH,goplus_not_ready,"first_seen=2026-11-25T10:33:18Z checks=1 pending=honeypot,buy_tax_pct,sell_tax_pct,dev_pct,top10_pct,lp_locked_pct b1=5 s1=1 b24=5 s24=1 liq=133368 dex=uniswap:v2 qliq=66625 pair_age=1 token_age=1"
+2026-11-25T10:33:18Z,desk,VERIFY,LIQUIDBGT,0x46eed61a7305b603ae866d8a588e843cfe1c7fbf,SKIP,real_depth,goplus=skipped until=2026-11-26T10:33:18Z
+2026-11-25T10:33:18Z,desk,VERIFY,SPCX,0xb6ecc132fe166bd39c0bac741841daa84eb08527,SKIP,real_depth,goplus=skipped until=2026-11-26T10:33:18Z
+2026-11-25T10:33:18Z,desk,VERIFY,TenX,0xcf3ff807ece440450c7c4e937d513158af0b3ef9,WATCH,goplus_not_ready,"first_seen=2026-11-25T10:33:18Z checks=1 pending=mint_open,freeze_or_blacklist,honeypot,top10_pct,lp_locked_pct,risk_flags b1=1 s1=0 b24=1 s24=0 liq=60200 dex=uniswap:v2 qliq=30100 pair_age=11 token_age=11"
+2026-11-25T10:33:18Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
+2026-11-25T10:33:18Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=2 new=4 checked=6 passed=0 bought=0 held=0 deferred=0 dex_only=3 goplus=3 requests=17 secs=6.6 bl_positions=2 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=3 labels_done=3 labels_calls=1 live=ok alerts=none alerts_sent=0
