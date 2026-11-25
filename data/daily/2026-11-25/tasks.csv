@@ -1462,3 +1462,9 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-25T11:28:16Z,desk,VERIFY,CLAUDIA,0xc71f51e94035ba473d8b31fcc7dfed595621503c,WATCH,goplus_not_ready,"first_seen=2026-11-25T11:13:15Z checks=2 pending=honeypot,buy_tax_pct,sell_tax_pct,dev_pct,top10_pct,lp_locked_pct b1=41 s1=1 b24=41 s24=1 liq=149126 dex=uniswap:v2 qliq=74573 pair_age=19 token_age=19"
 2026-11-25T11:28:16Z,baseline,EXECUTE,CLAUDIA,0xc71f51e94035ba473d8b31fcc7dfed595621503c,SKIP,loss_halt,"seed=202611251128 eligible=2 pick=0 pool=c71f51,cf3ff8 desk=WATCH launchpad=other"
 2026-11-25T11:28:16Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=3 new=0 checked=3 passed=0 bought=0 held=0 deferred=0 dex_only=0 goplus=3 requests=14 secs=6.5 bl_positions=2 bl_due=1 bl_eligible=2 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=6 labels_done=6 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-25T11:33:17Z,baseline,EXIT,MARSBASE,0x0b455a80139f9642bb47f2cb5afabbd8809a24af,HOLD,no_quote,
+2026-11-25T11:33:17Z,baseline,EXIT,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,HOLD,no_quote,
+2026-11-25T11:33:17Z,desk,VERIFY,BAR,0xb2000000000000000000005bcdfa7b80fd53b11d,SKIP,real_depth,goplus=skipped until=2026-11-26T11:33:17Z
+2026-11-25T11:33:17Z,desk,VERIFY,INSUR,0xb2000000000000000000007ea9e014f6f765ff82,SKIP,real_depth,goplus=skipped until=2026-11-26T11:33:17Z
+2026-11-25T11:33:17Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
+2026-11-25T11:33:17Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=0 new=2 checked=2 passed=0 bought=0 held=0 deferred=0 dex_only=2 goplus=0 requests=10 secs=2.6 bl_positions=2 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=2 labels_done=2 labels_calls=1 live=ok alerts=none alerts_sent=0
