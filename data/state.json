@@ -61,7 +61,7 @@
     },
     "refill_week": "2026-W48",
     "refills_usd": 106.05022822478631,
-    "ticks_since_buy": 24
+    "ticks_since_buy": 25
   },
   "desk": {
     "cash": 50.0,
@@ -6099,7 +6099,9 @@
         "symbol": "OIL GLOBAL TRUST FUND"
       },
       "0xfd3f5e31d565520b38eaf0d33ddbce38c2387a4e": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 3.466e-06,
         "first_seen": "2026-11-25T03:13:22Z",
         "sight_pair": "0xf91a4cb9544146a23b642a169acde645afec677a",
@@ -6621,6 +6623,12 @@
         "symbol": "Nation\u200aal Oi\u200al Tru\u200as\u200at Fu\u200an\u200ad",
         "until": "2026-11-26T00:38:16Z"
       },
+      "0x0972befff25d3c8a3e387bfe114575c892a86098": {
+        "at": "2026-11-25T04:18:16Z",
+        "reason": "real_depth",
+        "symbol": "XST",
+        "until": "2026-11-26T04:18:16Z"
+      },
       "0x098056efb6292e2037e5eb651c85dbe90fe7eb92": {
         "at": "2026-11-24T23:33:16Z",
         "reason": "real_depth",
@@ -6710,6 +6718,12 @@
         "reason": "real_depth",
         "symbol": "LIQUIDBGT",
         "until": "2026-11-25T15:13:24Z"
+      },
+      "0x0b55806fcf4a3e22a70bd24a117fdef07f357961": {
+        "at": "2026-11-25T04:18:16Z",
+        "reason": "real_depth",
+        "symbol": "USIO",
+        "until": "2026-11-26T04:18:16Z"
       },
       "0x0b78a86127cfb4bf24c178874ed995e0d892991c": {
         "at": "2026-11-24T21:13:16Z",
@@ -8529,6 +8543,12 @@
         "symbol": "AO\u200aDT",
         "until": "2026-11-25T21:13:16Z"
       },
+      "0x2d54f874f29293dfac9a7c3bc30876827cc6ca03": {
+        "at": "2026-11-25T04:18:16Z",
+        "reason": "real_depth",
+        "symbol": "VTC6\u26a1\ufe0f",
+        "until": "2026-11-26T04:18:16Z"
+      },
       "0x2d57bff9029449d089091b73f873c84ed1cf3966": {
         "at": "2026-11-24T23:33:16Z",
         "reason": "real_depth",
@@ -8894,6 +8914,12 @@
         "reason": "real_depth",
         "symbol": "XST",
         "until": "2026-11-25T04:48:17Z"
+      },
+      "0x3702ccba5b1b3aeca7c9fa301febdb52f12f07e2": {
+        "at": "2026-11-25T04:18:16Z",
+        "reason": "real_depth",
+        "symbol": "AOTF",
+        "until": "2026-11-26T04:18:16Z"
       },
       "0x372692e684b752256ab7051811d27410f4077f54": {
         "at": "2026-11-24T22:38:18Z",
@@ -9458,6 +9484,12 @@
         "reason": "missing:liq_usd",
         "symbol": "DELLAI",
         "until": "2026-11-25T23:08:23Z"
+      },
+      "0x4195d11d22e972cb2dc508ccf5166b4bc64a161f": {
+        "at": "2026-11-25T04:18:16Z",
+        "reason": "real_depth",
+        "symbol": "URPS",
+        "until": "2026-11-26T04:18:16Z"
       },
       "0x41d1abb60fe2421b96a5840eaa230761bfbe9f78": {
         "at": "2026-11-24T11:18:17Z",
@@ -14387,23 +14419,11 @@
       }
     },
     "watch": {
-      "0x0972befff25d3c8a3e387bfe114575c892a86098": {
-        "checks": 1,
-        "first_seen": "2026-11-25T04:03:15Z",
-        "last_check": "2026-11-25T04:03:15Z",
-        "symbol": "XST"
-      },
       "0x0b0a161a7094d221b227251e0bf2952aeb793c48": {
         "checks": 5,
         "first_seen": "2026-11-25T02:58:17Z",
         "last_check": "2026-11-25T04:08:15Z",
         "symbol": "Antropic"
-      },
-      "0x0b55806fcf4a3e22a70bd24a117fdef07f357961": {
-        "checks": 1,
-        "first_seen": "2026-11-25T04:03:15Z",
-        "last_check": "2026-11-25T04:03:15Z",
-        "symbol": "USIO"
       },
       "0x0e4afb8c6f504bb9e1980317b9745568e75318d2": {
         "checks": 2,
@@ -14423,29 +14443,11 @@
         "last_check": "2026-11-25T04:13:20Z",
         "symbol": "Antropic"
       },
-      "0x2d54f874f29293dfac9a7c3bc30876827cc6ca03": {
-        "checks": 1,
-        "first_seen": "2026-11-25T04:03:15Z",
-        "last_check": "2026-11-25T04:03:15Z",
-        "symbol": "VTC6\u26a1\ufe0f"
-      },
-      "0x3702ccba5b1b3aeca7c9fa301febdb52f12f07e2": {
-        "checks": 1,
-        "first_seen": "2026-11-25T04:03:15Z",
-        "last_check": "2026-11-25T04:03:15Z",
-        "symbol": "AOTF"
-      },
       "0x3b2a57411f4e2db1d452cf597768a4005272aad2": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-25T04:03:15Z",
-        "last_check": "2026-11-25T04:03:15Z",
+        "last_check": "2026-11-25T04:18:16Z",
         "symbol": "CMC20"
-      },
-      "0x4195d11d22e972cb2dc508ccf5166b4bc64a161f": {
-        "checks": 1,
-        "first_seen": "2026-11-25T04:03:15Z",
-        "last_check": "2026-11-25T04:03:15Z",
-        "symbol": "URPS"
       },
       "0x48ef4d780555a9f2cc9ae4ce4fb202501841e06f": {
         "checks": 4,
