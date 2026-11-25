@@ -21,9 +21,9 @@
       "s:USOE": "2026-11-24T05:08:14Z",
       "s:VDINO": "2026-11-24T06:23:22Z"
     },
-    "day": "2026-11-24",
-    "day_start_value": 39.62768746170256,
-    "halted_day": "2026-11-24",
+    "day": "2026-11-25",
+    "day_start_value": 24.042334705752978,
+    "halted_day": "",
     "positions": {
       "0x0b455a80139f9642bb47f2cb5afabbd8809a24af": {
         "cost_usd": 1.6999999999999997,
@@ -67,11 +67,11 @@
     },
     "refill_week": "2026-W48",
     "refills_usd": 106.05022822478631,
-    "ticks_since_buy": 236
+    "ticks_since_buy": 237
   },
   "desk": {
     "cash": 50.0,
-    "day": "2026-11-24",
+    "day": "2026-11-25",
     "day_start_value": 50.0,
     "halted_day": "",
     "positions": {},
@@ -4772,7 +4772,9 @@
         "symbol": "GFOT"
       },
       "0x927cd6a0f6142c0254aa5baadebb086cb74fdafe": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 8.528e-05,
         "first_seen": "2026-11-24T23:03:15Z",
         "sight_pair": "0x8904b731fbef74eff42af593007124ba7024f47b16c425b69fe5403d7c711bb6",
@@ -5017,7 +5019,9 @@
         "symbol": "NVDA"
       },
       "0xade3c6f2d28d3713fe7ba9cd62f35794c04014b3": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 8.399e-06,
         "first_seen": "2026-11-24T23:03:15Z",
         "sight_pair": "0x4d2fcf289cc09a8b4415c78f34aefe3b5a2326ae",
@@ -10126,6 +10130,12 @@
         "symbol": "SPACEX",
         "until": "2026-11-25T04:23:14Z"
       },
+      "0x8afd6462967f3b44a65328064deb9f7b90ae7f25": {
+        "at": "2026-11-25T00:03:16Z",
+        "reason": "real_depth",
+        "symbol": "CASHY",
+        "until": "2026-11-26T00:03:16Z"
+      },
       "0x8c233585c49643d9ac43c1a61a80f6341ae5fbc1": {
         "at": "2026-11-24T16:48:19Z",
         "reason": "real_depth",
@@ -11434,12 +11444,6 @@
         "symbol": "SEAL",
         "until": "2026-11-25T22:38:18Z"
       },
-      "0xb2000000000000000000007287df48f8a3b8ae01": {
-        "at": "2026-11-24T00:03:15Z",
-        "reason": "missing:liq_usd",
-        "symbol": "C4A",
-        "until": "2026-11-25T00:03:15Z"
-      },
       "0xb20000000000000000000072aedbffe74d445801": {
         "at": "2026-11-24T19:53:16Z",
         "reason": "real_depth",
@@ -11703,12 +11707,6 @@
         "reason": "missing:liq_usd",
         "symbol": "BTC",
         "until": "2026-11-25T18:43:16Z"
-      },
-      "0xb200000000000000000000b06b649fa7c4263501": {
-        "at": "2026-11-24T00:03:15Z",
-        "reason": "real_depth",
-        "symbol": "FIONA",
-        "until": "2026-11-25T00:03:15Z"
       },
       "0xb200000000000000000000b0c0fc255c99571fca": {
         "at": "2026-11-24T22:23:14Z",
@@ -12189,12 +12187,6 @@
         "reason": "real_depth",
         "symbol": "1KTO100M",
         "until": "2026-11-25T16:38:16Z"
-      },
-      "0xb3a9fce72d4a68b945dbad44ccf9c9fe643a826b": {
-        "at": "2026-11-24T00:03:15Z",
-        "reason": "real_depth",
-        "symbol": "1KTO100M",
-        "until": "2026-11-25T00:03:15Z"
       },
       "0xb3aedf3f35b4e2efe1bb48e2db0305b5e1524772": {
         "at": "2026-11-24T00:33:16Z",
@@ -13669,9 +13661,9 @@
         "symbol": "Nation\u200aal Oi\u200al Tru\u200as\u200at Fu\u200an\u200ad"
       },
       "0x146ba10216dd2096d8419c2ac11301882aa83353": {
-        "checks": 9,
+        "checks": 10,
         "first_seen": "2026-11-24T21:18:15Z",
-        "last_check": "2026-11-24T23:48:15Z",
+        "last_check": "2026-11-25T00:03:16Z",
         "symbol": "GOTF US."
       },
       "0x5d941b169fc09d20bfb1280b077d4667e889183b": {
@@ -13685,12 +13677,6 @@
         "first_seen": "2026-11-24T23:43:15Z",
         "last_check": "2026-11-24T23:58:16Z",
         "symbol": "REBOOT"
-      },
-      "0x8afd6462967f3b44a65328064deb9f7b90ae7f25": {
-        "checks": 2,
-        "first_seen": "2026-11-24T23:28:19Z",
-        "last_check": "2026-11-24T23:48:15Z",
-        "symbol": "CASHY"
       },
       "0xcb585250f852c6c6bf90434ab21a00f02833a4af": {
         "checks": 2,
@@ -13877,6 +13863,13 @@
           "open": 2,
           "refills_usd": 106.050228,
           "value_usd": 39.297641
+        },
+        {
+          "cash_usd": 13.143672,
+          "day": "2026-11-24",
+          "open": 2,
+          "refills_usd": 106.050228,
+          "value_usd": 23.712288
         }
       ],
       "desk": [
@@ -14053,6 +14046,13 @@
           "open": 0,
           "refills_usd": 2.392231,
           "value_usd": 50.0
+        },
+        {
+          "cash_usd": 50.0,
+          "day": "2026-11-24",
+          "open": 0,
+          "refills_usd": 2.392231,
+          "value_usd": 50.0
         }
       ]
     },
@@ -14071,33 +14071,33 @@
     "totals": {
       "funnel": {
         "buy": 1,
-        "gate": 1742,
+        "gate": 1778,
         "safety": 1,
-        "scan": 30970
+        "scan": 32294
       },
       "kills": {
         "gate": {
-          "asset:quote": 7,
-          "asset:stable": 30,
-          "asset:wrapped": 25,
+          "asset:quote": 9,
+          "asset:stable": 33,
+          "asset:wrapped": 27,
           "liquidity": 8614,
           "missing:age_min": 3,
-          "missing:liq_usd": 2325,
-          "missing:price": 228,
-          "missing:symbol": 374,
-          "real_depth": 17622
+          "missing:liq_usd": 2453,
+          "missing:price": 240,
+          "missing:symbol": 391,
+          "real_depth": 18746
         },
         "safety": {
-          "goplus_partial": 28,
-          "goplus_timeout": 1348,
+          "goplus_partial": 29,
+          "goplus_timeout": 1372,
           "lp_locked": 3,
-          "mint_open": 57,
-          "nobody_can_sell": 29,
+          "mint_open": 58,
+          "nobody_can_sell": 32,
           "too_old": 5,
-          "top10_pct": 24
+          "top10_pct": 25
         }
       },
-      "through": "2026-11-23"
+      "through": "2026-11-24"
     }
   }
 }
