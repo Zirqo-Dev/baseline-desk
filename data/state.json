@@ -1,14 +1,16 @@
 {
   "baseline": {
-    "cash": 3.1436736556197715,
+    "cash": 7.835185085115594,
     "cooldown": {
       "a:0x131d9364d1ec6f170b5a776ae6ecbfbf708a5eef": "2026-11-26T00:38:16Z",
+      "a:0x5d941b169fc09d20bfb1280b077d4667e889183b": "2026-11-26T01:58:16Z",
       "a:0x985e7dbe4fd276e974199e73f87b086669cf2cb0": "2026-11-25T04:38:23Z",
       "a:0xa17f810381bc49b94e220f3fdc2a3f1ac305bd3d": "2026-11-25T03:23:16Z",
       "a:0xb7d7e7a47fb9b85950bd4fb4bad9dec3c17e358f": "2026-11-25T02:08:16Z",
       "a:0xe581bda8d6a29a34a91cd717bd292f2e237b234a": "2026-11-25T03:08:17Z",
       "s:NADF": "2026-11-25T02:08:16Z",
       "s:NATIONALOILTRUSTFUND": "2026-11-26T00:38:16Z",
+      "s:NOTF": "2026-11-26T01:58:16Z",
       "s:NVDA": "2026-11-25T03:08:17Z",
       "s:REBOOT": "2026-11-25T03:23:16Z",
       "s:TRUMP2028": "2026-11-25T04:38:23Z"
@@ -38,24 +40,6 @@
         "qty": 22491.761282341395,
         "symbol": "MARSBASE"
       },
-      "0x5d941b169fc09d20bfb1280b077d4667e889183b": {
-        "cost_usd": 5.0,
-        "entry_fill": 2.4466005224629556e-06,
-        "entry_intended": 2.375e-06,
-        "entry_liq_usd": 197297.33,
-        "entry_qliq": 33878,
-        "entry_ts": "2026-11-25T01:08:26Z",
-        "ladder_done": [],
-        "last_liq_usd": 196677.48,
-        "last_price": 2.371e-06,
-        "last_qliq": 33849,
-        "launchpad": "other",
-        "orig_qty": 2043651.9791823537,
-        "pair": "0x9c4b3da8855e9baef58829a9008f9562550bbb191ed0f9950581bd81cc0f7e42",
-        "peak_price": 2.39e-06,
-        "qty": 2043651.9791823537,
-        "symbol": "NOTF"
-      },
       "0xa97d8577fef865b9717b7bc4102df9a24c940080": {
         "cost_usd": 5.0,
         "entry_fill": 5.6482339952106666e-05,
@@ -77,7 +61,7 @@
     },
     "refill_week": "2026-W48",
     "refills_usd": 106.05022822478631,
-    "ticks_since_buy": 9
+    "ticks_since_buy": 10
   },
   "desk": {
     "cash": 50.0,
@@ -8613,12 +8597,6 @@
         "symbol": "USIO",
         "until": "2026-11-25T17:43:15Z"
       },
-      "0x2f75c159fb5367dd687137431afc50a40d979b07": {
-        "at": "2026-11-24T01:58:15Z",
-        "reason": "real_depth",
-        "symbol": "NVIDIA",
-        "until": "2026-11-25T01:58:15Z"
-      },
       "0x2fdb2b53f5fb1d9a00c461c15983a9ac1db888a7": {
         "at": "2026-11-25T01:08:26Z",
         "reason": "real_depth",
@@ -11067,12 +11045,6 @@
         "symbol": "POS",
         "until": "2026-11-25T13:43:24Z"
       },
-      "0x9ea865887d60723ba2b3d0880adf06f86ed870b0": {
-        "at": "2026-11-24T01:58:15Z",
-        "reason": "real_depth",
-        "symbol": "CHIBI",
-        "until": "2026-11-25T01:58:15Z"
-      },
       "0x9ec0b51fa6b323f77f393463f1af4df510e4aa59": {
         "at": "2026-11-24T22:28:16Z",
         "reason": "missing:liq_usd",
@@ -11180,6 +11152,12 @@
         "reason": "missing:liq_usd",
         "symbol": "NIGHTNT",
         "until": "2026-11-25T20:48:17Z"
+      },
+      "0xa3f1aeb58d424148d91145f8ee5969f915b2cd89": {
+        "at": "2026-11-25T01:58:16Z",
+        "reason": "real_depth",
+        "symbol": "SOSF",
+        "until": "2026-11-26T01:58:16Z"
       },
       "0xa4912d3f0c772084ebc57ed821adbeb52dad7b07": {
         "at": "2026-11-24T02:03:14Z",
@@ -12224,12 +12202,6 @@
         "reason": "real_depth",
         "symbol": "GPT",
         "until": "2026-11-25T17:38:17Z"
-      },
-      "0xb2000000000000000000009f4a3dcd9ff99d3086": {
-        "at": "2026-11-24T01:58:15Z",
-        "reason": "real_depth",
-        "symbol": "DOGEBULL",
-        "until": "2026-11-25T01:58:15Z"
       },
       "0xb200000000000000000000a0a57d77f40576cb01": {
         "at": "2026-11-24T09:53:15Z",
@@ -14316,16 +14288,10 @@
         "symbol": "VTC6\u26a1\ufe0f"
       },
       "0x7aaba3d47cf14ef648a98c64d31354674966f037": {
-        "checks": 1,
-        "first_seen": "2026-11-25T01:43:16Z",
-        "last_check": "2026-11-25T01:43:16Z",
-        "symbol": "CLAUDIA"
-      },
-      "0xa3f1aeb58d424148d91145f8ee5969f915b2cd89": {
         "checks": 2,
-        "first_seen": "2026-11-25T01:18:18Z",
-        "last_check": "2026-11-25T01:38:17Z",
-        "symbol": "SOSF"
+        "first_seen": "2026-11-25T01:43:16Z",
+        "last_check": "2026-11-25T01:58:16Z",
+        "symbol": "CLAUDIA"
       },
       "0xcb585250f852c6c6bf90434ab21a00f02833a4af": {
         "checks": 8,
@@ -14708,7 +14674,7 @@
     "gate_restart": "BL-32",
     "machine_due": "",
     "max_dd_pct": {
-      "baseline": 246.802440526905,
+      "baseline": 246.81572200784836,
       "desk": 9.811123120222184
     },
     "peak": {
