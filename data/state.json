@@ -61,7 +61,7 @@
     },
     "refill_week": "2026-W48",
     "refills_usd": 106.05022822478631,
-    "ticks_since_buy": 180
+    "ticks_since_buy": 181
   },
   "desk": {
     "cash": 50.0,
@@ -5396,7 +5396,9 @@
         "symbol": "TRUMP2028"
       },
       "0x780262a17db4f5db2153773672c130363d713921": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 2.923e-06,
         "first_seen": "2026-11-25T16:33:17Z",
         "sight_pair": "0xda7cbc7fd17208fb32ce28344831ed7b1d783a23",
@@ -5676,6 +5678,14 @@
         "sight_pair": "0x33fb630f1ab107c627a03d557143319b24481ebbaa7dcecdbd10c2dfd7de14a0",
         "sight_qliq": 8,
         "symbol": "LUNC"
+      },
+      "0x972d1dcc4c99f6807571240a2214f0013f418086": {
+        "done": [],
+        "first_price": 9.131e-05,
+        "first_seen": "2026-11-25T17:38:16Z",
+        "sight_pair": "0xd2a315c26959bdb535fab8f336dd992649c581ee91bc36dd4d835aa19316c0f7",
+        "sight_qliq": 0,
+        "symbol": "XRPST"
       },
       "0x987dbce78553260f42d865f5e845661add5dbdf1": {
         "done": [
@@ -7090,6 +7100,12 @@
         "reason": "real_depth",
         "symbol": "US CRYPTO RESERVES",
         "until": "2026-11-26T05:08:16Z"
+      },
+      "0x09156399180a21a982c5ce78a8d54b36931100d5": {
+        "at": "2026-11-25T17:38:16Z",
+        "reason": "real_depth",
+        "symbol": "CMC20",
+        "until": "2026-11-26T17:38:16Z"
       },
       "0x094125424c7aa2ab3de68f5145035957bfd59f0d": {
         "at": "2026-11-25T11:53:15Z",
@@ -11573,6 +11589,12 @@
         "symbol": "LAPTOP",
         "until": "2026-11-26T03:13:22Z"
       },
+      "0x972d1dcc4c99f6807571240a2214f0013f418086": {
+        "at": "2026-11-25T17:38:16Z",
+        "reason": "real_depth",
+        "symbol": "XRPST",
+        "until": "2026-11-26T17:38:16Z"
+      },
       "0x987353356d21d79d44af3cc9286ce390c97c6cf1": {
         "at": "2026-11-25T14:53:14Z",
         "reason": "real_depth",
@@ -14611,22 +14633,16 @@
       }
     },
     "watch": {
-      "0x09156399180a21a982c5ce78a8d54b36931100d5": {
-        "checks": 1,
-        "first_seen": "2026-11-25T17:23:16Z",
-        "last_check": "2026-11-25T17:23:16Z",
-        "symbol": "CMC20"
-      },
       "0x18bc5bcc660cf2b9ce3cd51a404afe1a0cbd3c22": {
-        "checks": 7,
+        "checks": 8,
         "first_seen": "2026-11-25T15:38:16Z",
-        "last_check": "2026-11-25T17:23:16Z",
+        "last_check": "2026-11-25T17:38:16Z",
         "symbol": "IDRX"
       },
       "0x48032e5677da3eb2df80113414417b5af13dca0e": {
-        "checks": 7,
+        "checks": 8,
         "first_seen": "2026-11-25T15:28:17Z",
-        "last_check": "2026-11-25T17:23:16Z",
+        "last_check": "2026-11-25T17:38:16Z",
         "symbol": "UBR"
       },
       "0xb8c44024bad9c92699a87f175b731eb1008b19d1": {
@@ -14636,21 +14652,21 @@
         "symbol": "REBOOT"
       },
       "0xbf5dae536d77097d99da7d6990f393cefcd79d9c": {
-        "checks": 10,
+        "checks": 11,
         "first_seen": "2026-11-25T14:53:14Z",
-        "last_check": "2026-11-25T17:23:16Z",
+        "last_check": "2026-11-25T17:38:16Z",
         "symbol": "SOSF"
       },
       "0xc0d5b8e1e6d3c96b6913a3b43f5e3ccb98a03938": {
-        "checks": 8,
+        "checks": 9,
         "first_seen": "2026-11-25T15:23:16Z",
-        "last_check": "2026-11-25T17:23:16Z",
+        "last_check": "2026-11-25T17:38:16Z",
         "symbol": "U0DF"
       },
       "0xd11b0944928a663419ba5a312087afcbfd86d63b": {
-        "checks": 2,
+        "checks": 3,
         "first_seen": "2026-11-25T17:03:22Z",
-        "last_check": "2026-11-25T17:23:16Z",
+        "last_check": "2026-11-25T17:38:16Z",
         "symbol": "USIO"
       }
     }
