@@ -61,7 +61,7 @@
     },
     "refill_week": "2026-W48",
     "refills_usd": 106.05022822478631,
-    "ticks_since_buy": 292
+    "ticks_since_buy": 293
   },
   "desk": {
     "cash": 50.0,
@@ -4352,7 +4352,9 @@
         "symbol": "U0DF"
       },
       "0x46ee315287057b74f6fd94af853a853c39f9e42d": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 1.067e-06,
         "first_seen": "2026-11-26T01:53:22Z",
         "sight_pair": "0x6f88795b6dd95569bd96eb6e12eada2cdf0f57c095d4c7958ea793abc7bd23ab",
@@ -4920,6 +4922,14 @@
         "sight_pair": "0x2290154f996271f525846c9a3670aaa89bdfd9000812ba89f3d1d36e96f1731a",
         "sight_qliq": 12,
         "symbol": "IOF"
+      },
+      "0x8b921f4d51d97c932f27c2088de9455f7a7a83c7": {
+        "done": [],
+        "first_price": 8.906e-06,
+        "first_seen": "2026-11-26T02:58:14Z",
+        "sight_pair": "0xca20b1f2bcc03c4ddc9276e4957c36834bb814b2",
+        "sight_qliq": 69013,
+        "symbol": "CLAUDIA"
       },
       "0x8c99c7ce5fa7e117954fad5c8de890f5d3c2533a": {
         "done": [
@@ -5954,12 +5964,7 @@
     }
   },
   "leads": {
-    "retry": {
-      "0x42dd44e6e393bfaaeb1e040679c4fa1ce6ac5f47": {
-        "last": "2026-11-26T02:53:18Z",
-        "tries": 1
-      }
-    },
+    "retry": {},
     "skips": {
       "0x008c152c05983e3900eef901c70da585a4a53588": {
         "at": "2026-11-25T09:43:18Z",
@@ -13998,9 +14003,9 @@
         "symbol": "ELSA"
       },
       "0x42dd44e6e393bfaaeb1e040679c4fa1ce6ac5f47": {
-        "checks": 2,
+        "checks": 3,
         "first_seen": "2026-11-26T02:18:16Z",
-        "last_check": "2026-11-26T02:38:16Z",
+        "last_check": "2026-11-26T02:58:14Z",
         "symbol": "Anthropic"
       },
       "0x5ce95d5f475d9445c0300fcd0d587de4b31082ca": {
@@ -14020,6 +14025,12 @@
         "first_seen": "2026-11-26T02:53:18Z",
         "last_check": "2026-11-26T02:53:18Z",
         "symbol": "RHINOCAT"
+      },
+      "0x8b921f4d51d97c932f27c2088de9455f7a7a83c7": {
+        "checks": 1,
+        "first_seen": "2026-11-26T02:58:14Z",
+        "last_check": "2026-11-26T02:58:14Z",
+        "symbol": "CLAUDIA"
       },
       "0xef0f1a4c41a6ec50126626b33cc9f265acb1ffea": {
         "checks": 3,
