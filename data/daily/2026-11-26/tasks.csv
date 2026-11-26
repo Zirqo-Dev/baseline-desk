@@ -319,3 +319,10 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-26T02:28:19Z,desk,VERIFY,ANTHROPIC,0xf61cb3dd2eef7be0761fee927fac2dcfb8d9a68b,SKIP,real_depth,goplus=skipped until=2026-11-27T02:28:19Z
 2026-11-26T02:28:19Z,baseline,EXECUTE,XST,0x08c9a0c769a64054474b23c7987c04c28fba3833,SKIP,size,"seed=202611260228 eligible=3 pick=0 pool=08c9a0,2b23dd,ef0f1a desk=WATCH launchpad=other"
 2026-11-26T02:28:19Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=21 rechecks=6 new=6 checked=12 passed=0 bought=0 held=0 deferred=0 dex_only=7 goplus=5 requests=25 secs=10.9 bl_positions=2 bl_due=1 bl_eligible=3 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=3 labels_done=3 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-26T02:33:21Z,baseline,EXIT,MARSBASE,0x0b455a80139f9642bb47f2cb5afabbd8809a24af,HOLD,no_quote,
+2026-11-26T02:33:21Z,baseline,EXIT,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,HOLD,no_quote,
+2026-11-26T02:33:21Z,desk,VERIFY,TRUMP2028,0xa2f4373cdd161056e2d8bfaccc905049dacc899f,SKIP,real_depth,first_seen=2026-11-26T01:58:17Z checks=3 goplus=skipped until=2026-11-27T02:33:21Z
+2026-11-26T02:33:21Z,desk,VERIFY,USNR,0x18d2cb6024bbec033148d807098df1b0e28ec8cd,WATCH,goplus_not_ready,first_seen=2026-11-26T02:18:16Z checks=2 pending=honeypot b1=51 s1=31 b24=51 s24=31 liq=178638 dex=uniswap:v4 qliq=29287 pair_age=16 token_age=16
+2026-11-26T02:33:21Z,desk,VERIFY,Anthropic,0x42dd44e6e393bfaaeb1e040679c4fa1ce6ac5f47,RETRY,fetch_error,first_seen=2026-11-26T02:18:16Z try=1 hosts=gt goplus=skipped
+2026-11-26T02:33:21Z,baseline,EXECUTE,USNR,0x18d2cb6024bbec033148d807098df1b0e28ec8cd,SKIP,size,seed=202611260233 eligible=1 pick=0 pool=18d2cb desk=WATCH launchpad=other
+2026-11-26T02:33:21Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=1 rechecks=3 new=0 checked=3 passed=0 bought=0 held=0 deferred=0 dex_only=2 goplus=1 requests=13 secs=3.1 bl_positions=2 bl_due=1 bl_eligible=1 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=2 labels_done=2 labels_calls=1 live=ok alerts=none alerts_sent=0
