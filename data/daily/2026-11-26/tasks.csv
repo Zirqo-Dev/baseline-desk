@@ -769,3 +769,7 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-26T06:18:17Z,desk,VERIFY,AGI,0x00ee1090248c2c3af4b4fad74b4d55e5014c6f86,WATCH,goplus_not_ready,"first_seen=2026-11-26T06:03:16Z checks=2 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct b1=224 s1=136 b24=224 s24=136 liq=69217 dex=uniswap:v4 qliq=28626 pair_age=25 token_age=25"
 2026-11-26T06:18:17Z,baseline,EXECUTE,BASKET,0x63f4d6588b941b188a26fa54faa586820940bc51,SKIP,size,"seed=202611260618 eligible=5 pick=4 pool=00ee10,0a12a7,27a721,3d6afe,63f4d6 desk=WATCH launchpad=other"
 2026-11-26T06:18:17Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=21 rechecks=7 new=0 checked=7 passed=0 bought=0 held=0 deferred=0 dex_only=0 goplus=7 requests=22 secs=14.5 bl_positions=2 bl_due=1 bl_eligible=5 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=30 labels_done=30 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-26T06:23:15Z,baseline,EXIT,MARSBASE,0x0b455a80139f9642bb47f2cb5afabbd8809a24af,HOLD,no_quote,
+2026-11-26T06:23:15Z,baseline,EXIT,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,HOLD,no_quote,
+2026-11-26T06:23:15Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
+2026-11-26T06:23:15Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=21 rechecks=0 new=0 checked=0 passed=0 bought=0 held=0 deferred=0 dex_only=0 goplus=0 requests=8 secs=2.3 bl_positions=2 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=2 labels_done=2 labels_calls=1 live=ok alerts=none alerts_sent=0
