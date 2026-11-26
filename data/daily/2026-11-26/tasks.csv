@@ -3067,3 +3067,12 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-26T17:08:16Z,desk,VERIFY,GOAF,0x28937f1f7a1369579c913501e1799cfd1b523e0d,SKIP,real_depth,goplus=skipped until=2026-11-27T17:08:16Z b1=3 s1=1 b24=3 s24=1 liq=2710799 dex=uniswap:v4 qliq=171 pair_age=2 token_age=2
 2026-11-26T17:08:16Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
 2026-11-26T17:08:16Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=0 new=20 checked=20 passed=0 bought=0 held=0 deferred=0 dex_only=15 goplus=5 requests=33 secs=11.4 bl_positions=2 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=1 labels_done=1 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-26T17:13:17Z,baseline,EXIT,MARSBASE,0x0b455a80139f9642bb47f2cb5afabbd8809a24af,HOLD,no_quote,
+2026-11-26T17:13:17Z,baseline,EXIT,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,HOLD,no_quote,
+2026-11-26T17:13:17Z,desk,VERIFY,SONIC,0xc784b99da57c51ea24f49cda8b4bcaa96b0f0d44,WATCH,goplus_not_ready,"first_seen=2026-11-26T16:38:18Z checks=3 pending=top10_pct,lp_locked_pct b1=35 s1=1 b24=35 s24=1 liq=61283 dex=uniswap:v2 qliq=30643 pair_age=39 token_age=39"
+2026-11-26T17:13:17Z,desk,VERIFY,PAI,0xb2000000000000000000000153bdba739af096ec,SKIP,real_depth,goplus=skipped until=2026-11-27T17:13:17Z
+2026-11-26T17:13:17Z,desk,VERIFY,SNP500,0x10d92920f243cbf6afb07989e4fee33963b7776f,SKIP,real_depth,goplus=skipped until=2026-11-27T17:13:17Z
+2026-11-26T17:13:17Z,desk,VERIFY,FRHCB,0x0f3a4e147f7f94c2f2acd401f9e063099a877c1c,SKIP,real_depth,goplus=skipped until=2026-11-27T17:13:17Z
+2026-11-26T17:13:17Z,desk,VERIFY,test!,0x3750f893241c8508d5b200851df339931d89cccc,SKIP,real_depth,goplus=skipped until=2026-11-27T17:13:17Z
+2026-11-26T17:13:17Z,baseline,EXECUTE,SONIC,0xc784b99da57c51ea24f49cda8b4bcaa96b0f0d44,SKIP,size,seed=202611261713 eligible=1 pick=0 pool=c784b9 desk=WATCH launchpad=other
+2026-11-26T17:13:17Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=1 new=4 checked=5 passed=0 bought=0 held=0 deferred=0 dex_only=4 goplus=1 requests=14 secs=4.2 bl_positions=2 bl_due=1 bl_eligible=1 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=22 labels_done=22 labels_calls=1 live=ok alerts=none alerts_sent=0
