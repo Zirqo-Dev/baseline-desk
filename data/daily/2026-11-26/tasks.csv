@@ -2340,3 +2340,11 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-26T13:23:17Z,desk,VERIFY,GTAVI,0xb2000000000000000000009a006d4e380eb4ef57,SKIP,real_depth,goplus=skipped until=2026-11-27T13:23:17Z
 2026-11-26T13:23:17Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
 2026-11-26T13:23:17Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=0 new=4 checked=4 passed=0 bought=0 held=0 deferred=0 dex_only=4 goplus=0 requests=11 secs=2.7 bl_positions=2 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=none labels_due=0 labels_done=0 labels_calls=0 live=ok alerts=none alerts_sent=0
+2026-11-26T13:28:18Z,baseline,EXIT,MARSBASE,0x0b455a80139f9642bb47f2cb5afabbd8809a24af,HOLD,no_quote,
+2026-11-26T13:28:18Z,baseline,EXIT,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,HOLD,no_quote,
+2026-11-26T13:28:18Z,desk,VERIFY,SWEEP,0x5e208e4dc6bfcf2bb87b0fe9146494da4146cccc,SKIP,missing:liq_usd,goplus=skipped until=2026-11-27T13:28:18Z
+2026-11-26T13:28:18Z,desk,VERIFY,BIDEN,0xbbcb354fa407f043a23d3805a505881100ad9159,SKIP,real_depth,goplus=skipped until=2026-11-27T13:28:18Z
+2026-11-26T13:28:18Z,desk,VERIFY,NOTF,0xa1cc328860adfd68e5bf204d80fe6a0f4b1321d3,WATCH,goplus_not_ready,"first_seen=2026-11-26T13:28:18Z checks=1 pending=mint_open,freeze_or_blacklist,honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct,risk_flags b1=3 s1=1 b24=3 s24=1 liq=428970 dex=uniswap:v4 qliq=34118 pair_age=4 token_age=4"
+2026-11-26T13:28:18Z,desk,VERIFY,Basedeer,0x0efa37f5a4cffcdc34440e1dedf68fd5db7a35c8,SKIP,real_depth,goplus=skipped until=2026-11-27T13:28:18Z
+2026-11-26T13:28:18Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
+2026-11-26T13:28:18Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=0 new=4 checked=4 passed=0 bought=0 held=0 deferred=0 dex_only=3 goplus=1 requests=13 secs=3.5 bl_positions=2 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=1 labels_done=1 labels_calls=1 live=ok alerts=none alerts_sent=0
