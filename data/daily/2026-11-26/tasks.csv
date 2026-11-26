@@ -587,3 +587,10 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-26T04:38:18Z,desk,VERIFY,Anthropic,0x42dd44e6e393bfaaeb1e040679c4fa1ce6ac5f47,WATCH,goplus_not_ready,"first_seen=2026-11-26T02:18:16Z checks=9 pending=honeypot,buy_tax_pct b1=333 s1=333 b24=1164 s24=1117 liq=10292167 dex=aerodrome qliq=190059 pair_age=146 token_age=146"
 2026-11-26T04:38:18Z,baseline,EXECUTE,Anthropic,0x42dd44e6e393bfaaeb1e040679c4fa1ce6ac5f47,SKIP,size,seed=202611260438 eligible=1 pick=0 pool=42dd44 desk=WATCH launchpad=other
 2026-11-26T04:38:18Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=21 rechecks=1 new=0 checked=1 passed=0 bought=0 held=0 deferred=0 dex_only=0 goplus=1 requests=10 secs=3.2 bl_positions=2 bl_due=1 bl_eligible=1 bl_bought=0 report=none machine=none bl_error=none labels=none labels_due=0 labels_done=0 labels_calls=0 live=ok alerts=none alerts_sent=0
+2026-11-26T04:43:20Z,baseline,EXIT,MARSBASE,0x0b455a80139f9642bb47f2cb5afabbd8809a24af,HOLD,no_quote,
+2026-11-26T04:43:20Z,baseline,EXIT,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,HOLD,no_quote,
+2026-11-26T04:43:20Z,desk,VERIFY,MEOW,0xf2ee728c5f7ffbdcf982e48f8e1f616dcba58ffd,SKIP,real_depth,goplus=skipped until=2026-11-27T04:43:20Z
+2026-11-26T04:43:20Z,desk,VERIFY,NIGHT,0xd16226912e60c8b53112a6b57c6a775cbc7ccccc,SKIP,real_depth,goplus=skipped until=2026-11-27T04:43:20Z
+2026-11-26T04:43:20Z,desk,VERIFY,UODF🦅,0xf9abb51c9e55f672fcf06d681ee57651f4554edc,WATCH,goplus_not_ready,first_seen=2026-11-26T04:43:20Z checks=1 pending=top10_pct b1=33 s1=0 b24=33 s24=0 liq=59590 dex=uniswap:v2 qliq=29803 pair_age=36 token_age=36
+2026-11-26T04:43:20Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
+2026-11-26T04:43:20Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=21 rechecks=0 new=3 checked=3 passed=0 bought=0 held=0 deferred=0 dex_only=2 goplus=1 requests=12 secs=2.8 bl_positions=2 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=1 labels_done=1 labels_calls=1 live=ok alerts=none alerts_sent=0
