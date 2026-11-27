@@ -2562,3 +2562,10 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-27T20:13:23Z,desk,VERIFY,TOADY,0xb200000000000000000000cf272cd707b35e5201,SKIP,real_depth,goplus=skipped until=2026-11-28T20:13:23Z
 2026-11-27T20:13:23Z,baseline,EXECUTE,UBR,0x1afc786d6dcbdba90c310bdacbdede0e331436cf,SKIP,size,"seed=202611272013 eligible=2 pick=0 pool=1afc78,4094bb desk=WATCH launchpad=other"
 2026-11-27T20:13:23Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=19 rechecks=2 new=1 checked=3 passed=0 bought=0 held=0 deferred=0 dex_only=1 goplus=2 requests=13 secs=4.6 bl_positions=2 bl_due=1 bl_eligible=2 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=2 labels_done=2 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-27T20:18:18Z,baseline,EXIT,MARSBASE,0x0b455a80139f9642bb47f2cb5afabbd8809a24af,HOLD,no_quote,
+2026-11-27T20:18:18Z,baseline,EXIT,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,HOLD,no_quote,
+2026-11-27T20:18:18Z,desk,VERIFY,SI,0x4518bc1c334af3f0d3e535b8d83d8edb2f742c4d,WATCH,goplus_not_ready,"first_seen=2026-11-27T20:18:18Z checks=1 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct b1=3 s1=0 b24=3 s24=0 liq=133496 dex=uniswap:v2 qliq=66756 pair_age=1 token_age=1"
+2026-11-27T20:18:18Z,desk,VERIFY,DAILY,0xb2000000000000000000009453c54e6d73bd9eff,SKIP,goplus_partial,until=2026-11-28T20:18:18Z b1=25 s1=8 b24=25 s24=8 liq=30431 dex=uniswap:v4 qliq=11051 pair_age=2 token_age=2
+2026-11-27T20:18:18Z,desk,VERIFY,GULD,0x14d6c649292c5c9790c5196d1a9ea039307947a1,WATCH,goplus_not_ready,first_seen=2026-11-27T20:18:18Z checks=1 pending=honeypot b1=30 s1=27 b24=685 s24=738 liq=2181132 dex=uniswap:v4 qliq=1067255 pair_age=241524 token_age=241524
+2026-11-27T20:18:18Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
+2026-11-27T20:18:18Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=19 rechecks=0 new=3 checked=3 passed=0 bought=0 held=0 deferred=0 dex_only=0 goplus=3 requests=14 secs=6.8 bl_positions=2 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=2 labels_done=2 labels_calls=1 live=ok alerts=none alerts_sent=0
