@@ -61,7 +61,7 @@
     },
     "refill_week": "2026-W48",
     "refills_usd": 106.05022822478631,
-    "ticks_since_buy": 642
+    "ticks_since_buy": 643
   },
   "desk": {
     "cash": 50.0,
@@ -202,7 +202,8 @@
       },
       "0x02d3bfb00e50e1a691a72762c74971c274dffc18": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 0.0002458,
         "first_seen": "2026-11-27T02:03:17Z",
@@ -3291,6 +3292,14 @@
         "sight_qliq": 171,
         "symbol": "NUCLEAR U.S RESERVE"
       },
+      "0x2f66a8e01b89d9f2547e78e6f11022246c713607": {
+        "done": [],
+        "first_price": 0.0002142,
+        "first_seen": "2026-11-27T08:08:16Z",
+        "sight_pair": "0xccdc998a72a5ddb9267a084d1b71a3d9aa5f7f04931c31019075a6f9dd96acb2",
+        "sight_qliq": 0,
+        "symbol": "NAOF"
+      },
       "0x30248b05cf6abfabf68f379c64eded2737d4488b": {
         "done": [
           1,
@@ -4896,7 +4905,8 @@
       },
       "0x81936959e4b7b481f8d4976820b55a3f8b61fcfb": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 8.084e-05,
         "first_seen": "2026-11-27T02:03:17Z",
@@ -5813,7 +5823,8 @@
       },
       "0xf4121169c8752f0396c92ac1402686a1e151c5b5": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 0.0002486,
         "first_seen": "2026-11-27T02:03:17Z",
@@ -7125,6 +7136,12 @@
         "symbol": "ATX PROJECT",
         "until": "2026-11-28T07:03:16Z"
       },
+      "0x0e13dc650e2225c082bf577ca7172aed33b098bc": {
+        "at": "2026-11-27T08:08:16Z",
+        "reason": "real_depth",
+        "symbol": "PITCH",
+        "until": "2026-11-28T08:08:16Z"
+      },
       "0x0e20226076d2f38bb00dfcb077e645c02477f17f": {
         "at": "2026-11-27T04:38:18Z",
         "reason": "goplus_timeout",
@@ -7670,12 +7687,6 @@
         "reason": "real_depth",
         "symbol": "STOOS",
         "until": "2026-11-27T14:38:19Z"
-      },
-      "0x13f4b1a02cb938474d559cb0d06cd1c284fc992e": {
-        "at": "2026-11-26T08:08:16Z",
-        "reason": "real_depth",
-        "symbol": "ETHEREUM BASE",
-        "until": "2026-11-27T08:08:16Z"
       },
       "0x141dac81c836fd27aa5538f9754e94d09ef9f5ff": {
         "at": "2026-11-26T22:08:16Z",
@@ -9998,6 +10009,12 @@
         "reason": "real_depth",
         "symbol": "NUCLEAR U.S RESERVE",
         "until": "2026-11-27T23:08:17Z"
+      },
+      "0x2f66a8e01b89d9f2547e78e6f11022246c713607": {
+        "at": "2026-11-27T08:08:16Z",
+        "reason": "real_depth",
+        "symbol": "NAOF",
+        "until": "2026-11-28T08:08:16Z"
       },
       "0x2f89bb42d52240fb5fd1f1af805c0e972a67ac9e": {
         "at": "2026-11-26T09:48:19Z",
@@ -15333,12 +15350,6 @@
         "symbol": "GRND",
         "until": "2026-11-27T10:03:18Z"
       },
-      "0x967ce21a827e171f5847e08e0991ec31b34acccc": {
-        "at": "2026-11-26T08:03:16Z",
-        "reason": "real_depth",
-        "symbol": "CB1",
-        "until": "2026-11-27T08:03:16Z"
-      },
       "0x96b4e2bf374a5da8a933b21b6bb994ccec7c447e": {
         "at": "2026-11-26T09:03:17Z",
         "reason": "real_depth",
@@ -16616,12 +16627,6 @@
         "reason": "real_depth",
         "symbol": "KIBO",
         "until": "2026-11-28T07:48:18Z"
-      },
-      "0xb2000000000000000000000263f896aa58ec823b": {
-        "at": "2026-11-26T08:03:16Z",
-        "reason": "real_depth",
-        "symbol": "CLOUDOS",
-        "until": "2026-11-27T08:03:16Z"
       },
       "0xb20000000000000000000002e0601178b04181a6": {
         "at": "2026-11-27T04:53:15Z",
@@ -20169,6 +20174,12 @@
         "symbol": "BASED",
         "until": "2026-11-27T20:38:17Z"
       },
+      "0xeef91548efb12b671f63dab96214c8c2d6170ba3": {
+        "at": "2026-11-27T08:08:16Z",
+        "reason": "real_depth",
+        "symbol": "USOD",
+        "until": "2026-11-28T08:08:16Z"
+      },
       "0xef284c33ba89d92d60035d6943ea5cd90f93c164": {
         "at": "2026-11-26T10:58:16Z",
         "reason": "real_depth",
@@ -20874,15 +20885,15 @@
     },
     "watch": {
       "0x0a35807debc4398b5fc0b87b5ea404b0f59a0334": {
-        "checks": 10,
+        "checks": 11,
         "first_seen": "2026-11-27T05:23:16Z",
-        "last_check": "2026-11-27T07:53:15Z",
+        "last_check": "2026-11-27T08:08:16Z",
         "symbol": "U0DF"
       },
       "0x0b88906d63b9b978e2a3fbb8cae4c016f363c733": {
-        "checks": 4,
+        "checks": 5,
         "first_seen": "2026-11-27T06:53:21Z",
-        "last_check": "2026-11-27T07:48:18Z",
+        "last_check": "2026-11-27T08:08:16Z",
         "symbol": "UBR"
       },
       "0x12fd770ae55c38397bdcd5098c8197be74bea263": {
@@ -20898,33 +20909,27 @@
         "symbol": "CMC20"
       },
       "0x7d1a562e81c7d8b7889bcc6ec694432ca1b02b07": {
-        "checks": 9,
+        "checks": 10,
         "first_seen": "2026-11-27T05:33:16Z",
-        "last_check": "2026-11-27T07:53:15Z",
+        "last_check": "2026-11-27T08:08:16Z",
         "symbol": "SpaceX"
       },
       "0xa1ea2a48b6be33b40762d87fd64618eb94ac90b1": {
-        "checks": 7,
+        "checks": 8,
         "first_seen": "2026-11-27T06:08:16Z",
-        "last_check": "2026-11-27T07:48:18Z",
+        "last_check": "2026-11-27T08:08:16Z",
         "symbol": "UBR"
       },
       "0xdab70d380d292ebb50bf1c1816b8f838b3a8d747": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-27T07:48:18Z",
-        "last_check": "2026-11-27T07:48:18Z",
+        "last_check": "2026-11-27T08:08:16Z",
         "symbol": "BIDEN"
       },
       "0xe26a2c26bacde257ae45ae0909d39f7a7dc6b7e8": {
         "checks": 1,
         "first_seen": "2026-11-27T08:03:15Z",
         "last_check": "2026-11-27T08:03:15Z",
-        "symbol": "USOD"
-      },
-      "0xeef91548efb12b671f63dab96214c8c2d6170ba3": {
-        "checks": 1,
-        "first_seen": "2026-11-27T07:53:15Z",
-        "last_check": "2026-11-27T07:53:15Z",
         "symbol": "USOD"
       }
     }
