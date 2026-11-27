@@ -1221,3 +1221,10 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-27T09:13:22Z,desk,VERIFY,5VRYMY,0xc5cc9ee72853f539cc7c6c32841ee7a621f548dc,SKIP,real_depth,goplus=skipped until=2026-11-28T09:13:22Z
 2026-11-27T09:13:22Z,baseline,EXECUTE,UBR,0xb3ca3148e37f1eb70eb0f15408eb3e15dcb07c5e,SKIP,size,"seed=202611270913 eligible=2 pick=1 pool=a1ea2a,b3ca31 desk=WATCH launchpad=other"
 2026-11-27T09:13:22Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=4 new=3 checked=7 passed=0 bought=0 held=0 deferred=0 dex_only=2 goplus=5 requests=20 secs=10.8 bl_positions=2 bl_due=1 bl_eligible=2 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=4 labels_done=4 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-27T09:18:16Z,baseline,EXIT,MARSBASE,0x0b455a80139f9642bb47f2cb5afabbd8809a24af,HOLD,no_quote,
+2026-11-27T09:18:16Z,baseline,EXIT,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,HOLD,no_quote,
+2026-11-27T09:18:16Z,desk,VERIFY,Basecat,0x9dbb1cadcfdfcd6cf2dda26491436171fb9ade1a,WATCH,goplus_not_ready,first_seen=2026-11-27T09:03:15Z checks=2 pending=top10_pct b1=36 s1=1 b24=36 s24=1 liq=157857 dex=uniswap:v2 qliq=78955 pair_age=20 token_age=20
+2026-11-27T09:18:16Z,desk,VERIFY,HALFKEY,0xb2000000000000000000003b1807dd718f797c6d,SKIP,real_depth,goplus=skipped until=2026-11-28T09:18:16Z
+2026-11-27T09:18:16Z,desk,VERIFY,Launchpad,0x77019f9375db196bb3fe4cf0bbe4a9944e8ae268,SKIP,missing:liq_usd,goplus=skipped until=2026-11-28T09:18:16Z
+2026-11-27T09:18:16Z,baseline,EXECUTE,Basecat,0x9dbb1cadcfdfcd6cf2dda26491436171fb9ade1a,SKIP,size,seed=202611270918 eligible=1 pick=0 pool=9dbb1c desk=WATCH launchpad=other
+2026-11-27T09:18:16Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=1 new=2 checked=3 passed=0 bought=0 held=0 deferred=0 dex_only=2 goplus=1 requests=12 secs=2.7 bl_positions=2 bl_due=1 bl_eligible=1 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=2 labels_done=2 labels_calls=1 live=ok alerts=none alerts_sent=0
