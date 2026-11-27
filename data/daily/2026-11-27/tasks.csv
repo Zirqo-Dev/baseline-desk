@@ -1988,3 +1988,9 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-27T15:23:21Z,desk,VERIFY,AGI,0xcdf178a93aa84516735b53c5fb78805412502388,SKIP,real_depth,goplus=skipped until=2026-11-28T15:23:21Z
 2026-11-27T15:23:21Z,baseline,EXECUTE,UBR,0x414b0f37273756fe9af83b3ce74e576198c052aa,SKIP,size,"seed=202611271523 eligible=4 pick=0 pool=414b0f,41e0a0,558aed,84378a desk=WATCH launchpad=other"
 2026-11-27T15:23:21Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=5 new=4 checked=9 passed=0 bought=0 held=0 deferred=0 dex_only=4 goplus=5 requests=22 secs=11.1 bl_positions=2 bl_due=1 bl_eligible=4 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=1 labels_done=1 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-27T15:28:21Z,baseline,EXIT,MARSBASE,0x0b455a80139f9642bb47f2cb5afabbd8809a24af,HOLD,no_quote,
+2026-11-27T15:28:21Z,baseline,EXIT,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,HOLD,no_quote,
+2026-11-27T15:28:21Z,desk,VERIFY,UBR,0x376418e61d2e4c5e0d146f0090b12a89db9d309a,WATCH,goplus_not_ready,"first_seen=2026-11-27T12:53:19Z checks=10 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct b1=0 s1=0 b24=23 s24=6 liq=233597 dex=uniswap:v4 qliq=233083 pair_age=160 token_age=160"
+2026-11-27T15:28:21Z,desk,VERIFY,USOD,0xa8dd8acd83853159ec7bd25024a15bf822462671,WATCH,goplus_not_ready,first_seen=2026-11-27T12:53:19Z checks=10 pending=honeypot b1=0 s1=0 b24=7 s24=2 liq=105392 dex=uniswap:v4 qliq=10264 pair_age=158 token_age=158
+2026-11-27T15:28:21Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
+2026-11-27T15:28:21Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=2 new=0 checked=2 passed=0 bought=0 held=0 deferred=0 dex_only=0 goplus=2 requests=12 secs=4.5 bl_positions=2 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=1 labels_done=1 labels_calls=1 live=ok alerts=none alerts_sent=0
