@@ -1710,3 +1710,10 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-27T12:58:16Z,desk,VERIFY,bordie,0x94c3e35019a8cd4c28a4d77805b18bfac1bdcccc,SKIP,real_depth,goplus=skipped until=2026-11-28T12:58:16Z
 2026-11-27T12:58:16Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
 2026-11-27T12:58:16Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=2 new=7 checked=9 passed=0 bought=0 held=0 deferred=0 dex_only=7 goplus=2 requests=19 secs=5.5 bl_positions=2 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=5 labels_done=5 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-27T13:03:17Z,baseline,EXIT,MARSBASE,0x0b455a80139f9642bb47f2cb5afabbd8809a24af,HOLD,no_quote,
+2026-11-27T13:03:17Z,baseline,EXIT,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,HOLD,no_quote,
+2026-11-27T13:03:17Z,desk,VERIFY,UOF,0x6ac8b30e6176dfe636ebf02cf5679a72bb48d4f5,WATCH,goplus_not_ready,first_seen=2026-11-27T12:48:17Z checks=2 pending=honeypot b1=4 s1=1 b24=4 s24=1 liq=108646 dex=uniswap:v4 qliq=11198 pair_age=16 token_age=16
+2026-11-27T13:03:17Z,desk,VERIFY,rhinodinos,0xb200000000000000000000fbd245898a9cd7219a,SKIP,real_depth,goplus=skipped until=2026-11-28T13:03:17Z
+2026-11-27T13:03:17Z,desk,VERIFY,flork,0x9b91880229a6ee3297893ef43ec56a20d173cccc,SKIP,real_depth,goplus=skipped until=2026-11-28T13:03:17Z
+2026-11-27T13:03:17Z,baseline,EXECUTE,UOF,0x6ac8b30e6176dfe636ebf02cf5679a72bb48d4f5,SKIP,size,seed=202611271303 eligible=1 pick=0 pool=6ac8b3 desk=WATCH launchpad=other
+2026-11-27T13:03:17Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=1 new=2 checked=3 passed=0 bought=0 held=0 deferred=0 dex_only=2 goplus=1 requests=12 secs=3.0 bl_positions=2 bl_due=1 bl_eligible=1 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=4 labels_done=4 labels_calls=1 live=ok alerts=none alerts_sent=0
