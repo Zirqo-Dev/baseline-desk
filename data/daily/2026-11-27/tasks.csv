@@ -1967,3 +1967,11 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-27T15:13:17Z,desk,VERIFY,GOAF,0x409a738ae620320998c518877d5e0aa370c865d6,SKIP,real_depth,goplus=skipped until=2026-11-28T15:13:17Z b1=6 s1=1 b24=6 s24=1 liq=2691203 dex=uniswap:v4 qliq=332 pair_age=10 token_age=10
 2026-11-27T15:13:17Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
 2026-11-27T15:13:17Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=2 new=4 checked=6 passed=0 bought=0 held=0 deferred=0 dex_only=4 goplus=2 requests=16 secs=5.4 bl_positions=2 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=1 labels_done=1 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-27T15:18:21Z,baseline,EXIT,MARSBASE,0x0b455a80139f9642bb47f2cb5afabbd8809a24af,HOLD,no_quote,
+2026-11-27T15:18:21Z,baseline,EXIT,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,HOLD,no_quote,
+2026-11-27T15:18:21Z,desk,VERIFY,REBOOT,0x208ff40d1684804a6f86dd70245deefd74cd2d81,WATCH,goplus_not_ready,"first_seen=2026-11-27T15:03:16Z checks=2 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct b1=39 s1=1 b24=39 s24=1 liq=149134 dex=uniswap:v2 qliq=74568 pair_age=22 token_age=22"
+2026-11-27T15:18:21Z,desk,VERIFY,SVAG,0x34c576e060a3795d15feb5d97667344846aa2901,SKIP,real_depth,goplus=skipped until=2026-11-28T15:18:21Z
+2026-11-27T15:18:21Z,desk,VERIFY,USOD,0x317bf379b9002819c140bd06a02468a525d1cccc,SKIP,missing:liq_usd,goplus=skipped until=2026-11-28T15:18:21Z
+2026-11-27T15:18:21Z,desk,VERIFY,EGG,0xe341ec57dc123616d5c13ad00e0cc935c3c6cccc,SKIP,missing:liq_usd,goplus=skipped until=2026-11-28T15:18:21Z
+2026-11-27T15:18:21Z,baseline,EXECUTE,REBOOT,0x208ff40d1684804a6f86dd70245deefd74cd2d81,SKIP,size,seed=202611271518 eligible=1 pick=0 pool=208ff4 desk=WATCH launchpad=other
+2026-11-27T15:18:21Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=1 new=3 checked=4 passed=0 bought=0 held=0 deferred=0 dex_only=3 goplus=1 requests=13 secs=2.9 bl_positions=2 bl_due=1 bl_eligible=1 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=3 labels_done=3 labels_calls=1 live=ok alerts=none alerts_sent=0

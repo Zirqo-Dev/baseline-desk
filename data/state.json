@@ -61,7 +61,7 @@
     },
     "refill_week": "2026-W48",
     "refills_usd": 106.05022822478631,
-    "ticks_since_buy": 728
+    "ticks_since_buy": 729
   },
   "desk": {
     "cash": 50.0,
@@ -4509,7 +4509,9 @@
         "symbol": "USOR OIL"
       },
       "0x3855f2100cf755c8f13ab5b4ba885088f3e81c3f": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 8.184e-06,
         "first_seen": "2026-11-27T14:18:16Z",
         "sight_pair": "0x19ceac7c15c379bb6401fd8ebafe08233740771b",
@@ -5868,7 +5870,9 @@
         "symbol": "EXEN"
       },
       "0x74fa05aef0eea72f6c03a8e02b6a89fe4cc17dc0": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 0.0002148,
         "first_seen": "2026-11-27T14:18:16Z",
         "sight_pair": "0x0334fbe56ec7a5a95e8e628d6dd3e36809eb8f1ee074458350c5dc6557338c79",
@@ -6997,7 +7001,8 @@
       },
       "0xed9b310fdb1a855a74b8e59773379af131909239": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 1.463e-06,
         "first_seen": "2026-11-27T09:13:22Z",
@@ -9423,12 +9428,6 @@
         "symbol": "Antropic",
         "until": "2026-11-27T19:58:17Z"
       },
-      "0x1fbf1f94e8bce0dfc25d55de26b57a938ad1cf95": {
-        "at": "2026-11-26T15:18:18Z",
-        "reason": "real_depth",
-        "symbol": "ATX PROJECT",
-        "until": "2026-11-27T15:18:18Z"
-      },
       "0x1fc06e93f55b735bf12c57c7418c14f357f527f2": {
         "at": "2026-11-27T03:33:17Z",
         "reason": "real_depth",
@@ -10449,6 +10448,12 @@
         "symbol": "ANTHROPIC",
         "until": "2026-11-28T03:38:16Z"
       },
+      "0x317bf379b9002819c140bd06a02468a525d1cccc": {
+        "at": "2026-11-27T15:18:21Z",
+        "reason": "missing:liq_usd",
+        "symbol": "USOD",
+        "until": "2026-11-28T15:18:21Z"
+      },
       "0x318df677735ddb84457757c0ba7b86008fe0fcb9": {
         "at": "2026-11-27T10:58:17Z",
         "reason": "real_depth",
@@ -10634,6 +10639,12 @@
         "reason": "real_depth",
         "symbol": "BALL",
         "until": "2026-11-28T12:08:18Z"
+      },
+      "0x34c576e060a3795d15feb5d97667344846aa2901": {
+        "at": "2026-11-27T15:18:21Z",
+        "reason": "real_depth",
+        "symbol": "SVAG",
+        "until": "2026-11-28T15:18:21Z"
       },
       "0x34dbe8d3668d6f6a9ac71997255035887313f3bc": {
         "at": "2026-11-27T11:23:17Z",
@@ -13011,12 +13022,6 @@
         "symbol": "TEL",
         "until": "2026-11-28T03:43:16Z"
       },
-      "0x888c7d576106ca2f84388538aee5b59836635354": {
-        "at": "2026-11-26T15:18:18Z",
-        "reason": "real_depth",
-        "symbol": "ANTHROPIC",
-        "until": "2026-11-27T15:18:18Z"
-      },
       "0x88e7f59d5d9747df2087603a5f3c630c0a401891": {
         "at": "2026-11-27T04:43:16Z",
         "reason": "real_depth",
@@ -13190,12 +13195,6 @@
         "reason": "real_depth",
         "symbol": "UODF",
         "until": "2026-11-28T07:53:15Z"
-      },
-      "0x9441807858833b47fe44dad52ca14ffc89e71add": {
-        "at": "2026-11-26T15:18:18Z",
-        "reason": "real_depth",
-        "symbol": "VVV",
-        "until": "2026-11-27T15:18:18Z"
       },
       "0x9459f7b70f4179b987e7169b6bf1d2a50d079de9": {
         "at": "2026-11-26T20:53:16Z",
@@ -15843,6 +15842,12 @@
         "symbol": "LAPTOP",
         "until": "2026-11-28T03:23:15Z"
       },
+      "0xe341ec57dc123616d5c13ad00e0cc935c3c6cccc": {
+        "at": "2026-11-27T15:18:21Z",
+        "reason": "missing:liq_usd",
+        "symbol": "EGG",
+        "until": "2026-11-28T15:18:21Z"
+      },
       "0xe3916c4a4f2e567f8891c70d3a376534bac1cccc": {
         "at": "2026-11-26T17:18:16Z",
         "reason": "real_depth",
@@ -16482,9 +16487,9 @@
     },
     "watch": {
       "0x208ff40d1684804a6f86dd70245deefd74cd2d81": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-27T15:03:16Z",
-        "last_check": "2026-11-27T15:03:16Z",
+        "last_check": "2026-11-27T15:18:21Z",
         "symbol": "REBOOT"
       },
       "0x376418e61d2e4c5e0d146f0090b12a89db9d309a": {
