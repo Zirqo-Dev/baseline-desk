@@ -61,7 +61,7 @@
     },
     "refill_week": "2026-W48",
     "refills_usd": 106.05022822478631,
-    "ticks_since_buy": 817
+    "ticks_since_buy": 818
   },
   "desk": {
     "cash": 50.0,
@@ -4369,7 +4369,9 @@
         "symbol": "UBR"
       },
       "0x3792dbdd07e87413247df995e692806aa13d3299": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 0.0001548,
         "first_seen": "2026-11-27T21:43:16Z",
         "sight_pair": "0x6e7b4416e3a2b873f6cd4840e6bee7d88f07da8f",
@@ -4654,6 +4656,14 @@
         "sight_pair": "0x9d4b9afe68c4620d26c09500c8b20bc8d7e45bdfaf34793a6063afd193c54708",
         "sight_qliq": 173,
         "symbol": "USIO"
+      },
+      "0x3b8c9cc2f6490bc729c4ec357bf8fb7b8407e137": {
+        "done": [],
+        "first_price": 0.0001377,
+        "first_seen": "2026-11-27T22:43:16Z",
+        "sight_pair": "0x637a8deb8f0dbe82321805aa08c48c156d824b78e1586a2891498e6c38767777",
+        "sight_qliq": 17,
+        "symbol": "GOFT"
       },
       "0x3b9e7b65a77c35add8a8fd2c8fa779ab5fe3a6fb": {
         "done": [
@@ -10412,6 +10422,12 @@
         "symbol": "USIO",
         "until": "2026-11-28T06:48:16Z"
       },
+      "0x3b8c9cc2f6490bc729c4ec357bf8fb7b8407e137": {
+        "at": "2026-11-27T22:43:16Z",
+        "reason": "real_depth",
+        "symbol": "GOFT",
+        "until": "2026-11-28T22:43:16Z"
+      },
       "0x3b9e7b65a77c35add8a8fd2c8fa779ab5fe3a6fb": {
         "at": "2026-11-27T12:53:19Z",
         "reason": "real_depth",
@@ -11161,6 +11177,12 @@
         "reason": "real_depth",
         "symbol": "Basecat",
         "until": "2026-11-28T06:03:14Z"
+      },
+      "0x56bda28051ef08a8c45bfc94d8a53aa2733f67d8": {
+        "at": "2026-11-27T22:43:16Z",
+        "reason": "real_depth",
+        "symbol": "NVDOGE",
+        "until": "2026-11-28T22:43:16Z"
       },
       "0x56d621fa5c37d70724cb4ed9147f8c1142d3a4ae": {
         "at": "2026-11-27T06:38:16Z",
@@ -11941,12 +11963,6 @@
         "reason": "real_depth",
         "symbol": "MEOW",
         "until": "2026-11-28T04:33:16Z"
-      },
-      "0x85b4ab16fec8aacb5a125151708790b6c633cccc": {
-        "at": "2026-11-26T22:43:14Z",
-        "reason": "real_depth",
-        "symbol": "DRIVE",
-        "until": "2026-11-27T22:43:14Z"
       },
       "0x860b58767e0e19a2c541fa320642a2ebc79bcccc": {
         "at": "2026-11-27T16:13:16Z",
@@ -12926,6 +12942,12 @@
         "symbol": "Venice",
         "until": "2026-11-28T14:38:16Z"
       },
+      "0xb2000000000000000000003ddd584118d6e53882": {
+        "at": "2026-11-27T22:43:16Z",
+        "reason": "missing:liq_usd",
+        "symbol": "BTC",
+        "until": "2026-11-28T22:43:16Z"
+      },
       "0xb2000000000000000000004046d7d61c387810d2": {
         "at": "2026-11-27T04:38:18Z",
         "reason": "real_depth",
@@ -13154,6 +13176,12 @@
         "symbol": "POWOUT27",
         "until": "2026-11-28T18:03:15Z"
       },
+      "0xb2000000000000000000007b301492d0efce5a4e": {
+        "at": "2026-11-27T22:43:16Z",
+        "reason": "real_depth",
+        "symbol": "TALLY",
+        "until": "2026-11-28T22:43:16Z"
+      },
       "0xb2000000000000000000007bc503d02612508286": {
         "at": "2026-11-27T00:58:16Z",
         "reason": "missing:liq_usd",
@@ -13297,6 +13325,12 @@
         "reason": "real_depth",
         "symbol": "TURKEY",
         "until": "2026-11-28T02:18:18Z"
+      },
+      "0xb2000000000000000000009f2f195d1aa2bf5501": {
+        "at": "2026-11-27T22:43:16Z",
+        "reason": "real_depth",
+        "symbol": "$1BCLUB",
+        "until": "2026-11-28T22:43:16Z"
       },
       "0xb200000000000000000000a018cd3eed6da49199": {
         "at": "2026-11-27T02:48:23Z",
@@ -14825,15 +14859,15 @@
         "symbol": "TRUMP2028"
       },
       "0x14d6c649292c5c9790c5196d1a9ea039307947a1": {
-        "checks": 8,
+        "checks": 9,
         "first_seen": "2026-11-27T20:18:18Z",
-        "last_check": "2026-11-27T22:23:21Z",
+        "last_check": "2026-11-27T22:43:16Z",
         "symbol": "GULD"
       },
       "0x4094bb0002aac2e3ffd7883884c7971685b6a449": {
-        "checks": 9,
+        "checks": 10,
         "first_seen": "2026-11-27T19:58:23Z",
-        "last_check": "2026-11-27T22:23:21Z",
+        "last_check": "2026-11-27T22:43:16Z",
         "symbol": "NOTF"
       },
       "0x4e3a622f4bd5ee25cfe0dd8eb67d9cc2eda146da": {
