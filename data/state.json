@@ -15,7 +15,7 @@
       "s:REBOOT": "2026-11-25T03:23:16Z",
       "s:TRUMP2028": "2026-11-25T04:38:23Z"
     },
-    "day": "2026-11-26",
+    "day": "2026-11-27",
     "day_start_value": 13.733847359781382,
     "halted_day": "",
     "positions": {
@@ -61,11 +61,11 @@
     },
     "refill_week": "2026-W48",
     "refills_usd": 106.05022822478631,
-    "ticks_since_buy": 545
+    "ticks_since_buy": 546
   },
   "desk": {
     "cash": 50.0,
-    "day": "2026-11-26",
+    "day": "2026-11-27",
     "day_start_value": 50.0,
     "halted_day": "",
     "positions": {},
@@ -809,7 +809,9 @@
         "symbol": "Antropic"
       },
       "0x0c7d85b8694610859b6cb955e9698c6ac650c7d9": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 9.459e-06,
         "first_seen": "2026-11-26T22:58:23Z",
         "sight_pair": "0xe0ea7c9e9918b5b3033eefdf6d9a9944dd8799ef",
@@ -3878,7 +3880,9 @@
         "symbol": "United Stat\u200aes Oi\u200al Ind\u200aex"
       },
       "0x423221f9032068897c7e813edccad110f6c2ea12": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 3.637e-06,
         "first_seen": "2026-11-26T22:58:23Z",
         "sight_pair": "0x9e98b2e9e02a4916a36b8ff66953e33516362910",
@@ -19917,6 +19921,13 @@
           "open": 2,
           "refills_usd": 106.050228,
           "value_usd": 13.403801
+        },
+        {
+          "cash_usd": 2.835185,
+          "day": "2026-11-26",
+          "open": 2,
+          "refills_usd": 106.050228,
+          "value_usd": 13.403801
         }
       ],
       "desk": [
@@ -20107,6 +20118,13 @@
           "open": 0,
           "refills_usd": 2.392231,
           "value_usd": 50.0
+        },
+        {
+          "cash_usd": 50.0,
+          "day": "2026-11-26",
+          "open": 0,
+          "refills_usd": 2.392231,
+          "value_usd": 50.0
         }
       ]
     },
@@ -20125,9 +20143,9 @@
     "totals": {
       "funnel": {
         "buy": 1,
-        "gate": 1823,
+        "gate": 1864,
         "safety": 1,
-        "scan": 33572
+        "scan": 36005
       },
       "kills": {
         "gate": {
@@ -20136,23 +20154,23 @@
           "asset:wrapped": 29,
           "liquidity": 8614,
           "missing:age_min": 3,
-          "missing:liq_usd": 2506,
-          "missing:price": 244,
-          "missing:symbol": 396,
-          "real_depth": 19913
+          "missing:liq_usd": 2588,
+          "missing:price": 253,
+          "missing:symbol": 428,
+          "real_depth": 22182
         },
         "safety": {
           "dev_pct": 1,
-          "goplus_partial": 30,
-          "goplus_timeout": 1409,
+          "goplus_partial": 34,
+          "goplus_timeout": 1435,
           "lp_locked": 3,
-          "mint_open": 58,
-          "nobody_can_sell": 33,
-          "too_old": 5,
-          "top10_pct": 25
+          "mint_open": 59,
+          "nobody_can_sell": 34,
+          "too_old": 6,
+          "top10_pct": 27
         }
       },
-      "through": "2026-11-25"
+      "through": "2026-11-26"
     }
   }
 }
