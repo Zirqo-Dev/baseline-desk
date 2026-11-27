@@ -594,3 +594,13 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-27T04:18:21Z,desk,VERIFY,FODF,0xad47616b158316356957a851ff0c7a81bd780d36,SKIP,real_depth,goplus=skipped until=2026-11-28T04:18:21Z b1=2 s1=0 b24=2 s24=0 liq=67261 dex=uniswap:v4 qliq=2288 pair_age=4 token_age=4
 2026-11-27T04:18:21Z,baseline,EXECUTE,NOTF,0x28f2f14f7549f1190017d48acdcee0764c67d1c6,SKIP,size,"seed=202611270418 eligible=5 pick=2 pool=02d3bf,0e2022,28f2f1,b4db21,f41211 desk=WATCH launchpad=other"
 2026-11-27T04:18:21Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=7 new=1 checked=8 passed=0 bought=0 held=0 deferred=0 dex_only=2 goplus=6 requests=22 secs=12.6 bl_positions=2 bl_due=1 bl_eligible=5 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=5 labels_done=5 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-27T04:23:16Z,baseline,EXIT,MARSBASE,0x0b455a80139f9642bb47f2cb5afabbd8809a24af,HOLD,no_quote,
+2026-11-27T04:23:16Z,baseline,EXIT,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,HOLD,no_quote,
+2026-11-27T04:23:16Z,desk,VERIFY,UBR,0x3dba94ad4f4f72ee6175b5e3580b40440b4808e2,WATCH,goplus_not_ready,"first_seen=2026-11-27T03:33:17Z checks=4 pending=honeypot,buy_tax_pct,sell_tax_pct,dev_pct,top10_pct,lp_locked_pct b1=21 s1=5 b24=21 s24=5 liq=1417775398 dex=uniswap:v4 qliq=232022 pair_age=52 token_age=52"
+2026-11-27T04:23:16Z,desk,VERIFY,PRSM,0x60b70aeb031557932cb1746d9545ce6917a01184,SKIP,real_depth,goplus=skipped until=2026-11-28T04:23:16Z
+2026-11-27T04:23:16Z,desk,VERIFY,JCT,0x8b08a33040f61a38d49ae30e61df0e2673ad3405,SKIP,missing:liq_usd,goplus=skipped until=2026-11-28T04:23:16Z
+2026-11-27T04:23:16Z,desk,VERIFY,NOTF,0xf69f15a5f99279147d6aab4820cfbb545914c8f5,SKIP,real_depth,goplus=skipped until=2026-11-28T04:23:16Z b1=18 s1=0 b24=18 s24=0 liq=733588 dex=uniswap:v4 qliq=1243 pair_age=4 token_age=4
+2026-11-27T04:23:16Z,desk,VERIFY,THORNLOOM,0xb2000000000000000000009214d144b6b226e2c1,SKIP,real_depth,goplus=skipped until=2026-11-28T04:23:16Z
+2026-11-27T04:23:16Z,desk,VERIFY,NVIDIA + ishares,0x813ecb0d7bdd3d1e7c1f6f4ddd43fad83438473b,SKIP,missing:price,goplus=skipped until=2026-11-28T04:23:16Z
+2026-11-27T04:23:16Z,baseline,EXECUTE,UBR,0x3dba94ad4f4f72ee6175b5e3580b40440b4808e2,SKIP,size,seed=202611270423 eligible=1 pick=0 pool=3dba94 desk=WATCH launchpad=other
+2026-11-27T04:23:16Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=1 new=5 checked=6 passed=0 bought=0 held=0 deferred=0 dex_only=5 goplus=1 requests=15 secs=3.5 bl_positions=2 bl_due=1 bl_eligible=1 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=3 labels_done=3 labels_calls=1 live=ok alerts=none alerts_sent=0

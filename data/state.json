@@ -61,7 +61,7 @@
     },
     "refill_week": "2026-W48",
     "refills_usd": 106.05022822478631,
-    "ticks_since_buy": 597
+    "ticks_since_buy": 598
   },
   "desk": {
     "cash": 50.0,
@@ -4539,7 +4539,9 @@
         "symbol": "AODT"
       },
       "0x65401732628ab8718b8196ea6d3c2d8d23381417": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 0.0001139,
         "first_seen": "2026-11-27T03:23:15Z",
         "sight_pair": "0xe9e26747f74c754b5024ba8751032d29d158145942a6e0262c164e50ae3bb812",
@@ -5248,7 +5250,8 @@
       },
       "0xbe17ac8a902121dc9dad6f8bfc1a88b07d510c64": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 4.703e-06,
         "first_seen": "2026-11-26T22:23:16Z",
@@ -5521,7 +5524,8 @@
       },
       "0xf1a36a1e1f60e0dd5e5587fd0dd9dc799dea96bd": {
         "done": [
-          1
+          1,
+          6
         ],
         "first_price": 7.031e-06,
         "first_seen": "2026-11-26T22:23:16Z",
@@ -5600,6 +5604,14 @@
         "sight_pair": "0x76353b83c2bcaa3211fe1124b3a22afa492bd22e451e56020c4457c3e52de211",
         "sight_qliq": 1,
         "symbol": "NOTP"
+      },
+      "0xf69f15a5f99279147d6aab4820cfbb545914c8f5": {
+        "done": [],
+        "first_price": 0.0004357,
+        "first_seen": "2026-11-27T04:23:16Z",
+        "sight_pair": "0xa4ab05c4fa7978df661548a25ec39093a9c62095b0a5f4fddefa439e0c4586d0",
+        "sight_qliq": 1243,
+        "symbol": "NOTF"
       },
       "0xf96dfd55529c3d7b68acd09641e1c9478cc949cc": {
         "done": [
@@ -12410,6 +12422,12 @@
         "symbol": "d1",
         "until": "2026-11-27T07:53:16Z"
       },
+      "0x60b70aeb031557932cb1746d9545ce6917a01184": {
+        "at": "2026-11-27T04:23:16Z",
+        "reason": "real_depth",
+        "symbol": "PRSM",
+        "until": "2026-11-28T04:23:16Z"
+      },
       "0x60bca673daa1d5a19145578cf45c91d4d2cf8b82": {
         "at": "2026-11-26T12:33:16Z",
         "reason": "real_depth",
@@ -13886,6 +13904,12 @@
         "symbol": "META",
         "until": "2026-11-27T10:13:16Z"
       },
+      "0x813ecb0d7bdd3d1e7c1f6f4ddd43fad83438473b": {
+        "at": "2026-11-27T04:23:16Z",
+        "reason": "missing:price",
+        "symbol": "NVIDIA + ishares",
+        "until": "2026-11-28T04:23:16Z"
+      },
       "0x81557e1340c34e6ccf2aae3f090596a225797dd8": {
         "at": "2026-11-26T17:38:17Z",
         "reason": "real_depth",
@@ -14323,6 +14347,12 @@
         "reason": "real_depth",
         "symbol": "AGI",
         "until": "2026-11-27T13:03:16Z"
+      },
+      "0x8b08a33040f61a38d49ae30e61df0e2673ad3405": {
+        "at": "2026-11-27T04:23:16Z",
+        "reason": "missing:liq_usd",
+        "symbol": "JCT",
+        "until": "2026-11-28T04:23:16Z"
       },
       "0x8b0daf99c946a312c2dd406a4dc221738cd5a605": {
         "at": "2026-11-26T12:03:19Z",
@@ -16603,6 +16633,12 @@
         "reason": "real_depth",
         "symbol": "O1BOT",
         "until": "2026-11-28T02:13:16Z"
+      },
+      "0xb2000000000000000000009214d144b6b226e2c1": {
+        "at": "2026-11-27T04:23:16Z",
+        "reason": "real_depth",
+        "symbol": "THORNLOOM",
+        "until": "2026-11-28T04:23:16Z"
       },
       "0xb20000000000000000000093162f1c73d0166908": {
         "at": "2026-11-26T18:33:16Z",
@@ -19970,6 +20006,12 @@
         "symbol": "PGX",
         "until": "2026-11-27T11:38:25Z"
       },
+      "0xf69f15a5f99279147d6aab4820cfbb545914c8f5": {
+        "at": "2026-11-27T04:23:16Z",
+        "reason": "real_depth",
+        "symbol": "NOTF",
+        "until": "2026-11-28T04:23:16Z"
+      },
       "0xf6bd616bc906247d92fdf7240ef1bf8bfbbd3eb9": {
         "at": "2026-11-26T12:43:17Z",
         "reason": "real_depth",
@@ -20321,9 +20363,9 @@
         "symbol": "DOAS"
       },
       "0x3dba94ad4f4f72ee6175b5e3580b40440b4808e2": {
-        "checks": 3,
+        "checks": 4,
         "first_seen": "2026-11-27T03:33:17Z",
-        "last_check": "2026-11-27T04:08:16Z",
+        "last_check": "2026-11-27T04:23:16Z",
         "symbol": "UBR"
       },
       "0x45a519f231a4b0caf35879a8962f8b2dc7a6e424": {
