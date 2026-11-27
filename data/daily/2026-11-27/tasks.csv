@@ -1845,3 +1845,12 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-27T14:08:19Z,desk,VERIFY,CLAUDE,0xad21cf7a087cb4e00399337fb662e184bcf6f283,SKIP,real_depth,goplus=skipped until=2026-11-28T14:08:19Z
 2026-11-27T14:08:19Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
 2026-11-27T14:08:19Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=0 new=3 checked=3 passed=0 bought=0 held=0 deferred=0 dex_only=3 goplus=0 requests=11 secs=2.9 bl_positions=2 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=1 labels_done=1 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-27T14:13:15Z,baseline,EXIT,MARSBASE,0x0b455a80139f9642bb47f2cb5afabbd8809a24af,HOLD,no_quote,
+2026-11-27T14:13:15Z,baseline,EXIT,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,HOLD,no_quote,
+2026-11-27T14:13:15Z,desk,VERIFY,UOF,0x6ac8b30e6176dfe636ebf02cf5679a72bb48d4f5,WATCH,goplus_not_ready,first_seen=2026-11-27T12:48:17Z checks=6 pending=honeypot b1=0 s1=0 b24=4 s24=1 liq=108646 dex=uniswap:v4 qliq=11198 pair_age=86 token_age=86
+2026-11-27T14:13:15Z,desk,VERIFY,UBR,0x558aed7c19569071dcad15a3710d4b60d29b7862,WATCH,goplus_not_ready,"first_seen=2026-11-27T13:53:23Z checks=2 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct b1=26 s1=13 b24=26 s24=13 liq=948968 dex=uniswap:v4 qliq=250578 pair_age=24 token_age=24"
+2026-11-27T14:13:15Z,desk,VERIFY,IBIT BLACKROCK,0x29ff65974c2e653794c7e365610cbee17cd55186,SKIP,real_depth,goplus=skipped until=2026-11-28T14:13:15Z b1=6 s1=0 b24=6 s24=0 liq=215205 dex=uniswap:v4 qliq=0 pair_age=4 token_age=4
+2026-11-27T14:13:15Z,desk,VERIFY,.AI,0x7bd4d6993bde816e865ad2c52c7e29bae1fdab38,SKIP,real_depth,goplus=skipped until=2026-11-28T14:13:15Z
+2026-11-27T14:13:15Z,desk,VERIFY,ACE,0x7defaa59acf03512b8226ecdf3fee37b6524dd68,SKIP,real_depth,goplus=skipped until=2026-11-28T14:13:15Z
+2026-11-27T14:13:15Z,baseline,EXECUTE,UBR,0x558aed7c19569071dcad15a3710d4b60d29b7862,SKIP,size,seed=202611271413 eligible=1 pick=0 pool=558aed desk=WATCH launchpad=other
+2026-11-27T14:13:15Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=2 new=3 checked=5 passed=0 bought=0 held=0 deferred=0 dex_only=3 goplus=2 requests=15 secs=4.9 bl_positions=2 bl_due=1 bl_eligible=1 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=1 labels_done=1 labels_calls=1 live=ok alerts=none alerts_sent=0
