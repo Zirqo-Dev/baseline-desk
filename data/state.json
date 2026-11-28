@@ -61,7 +61,7 @@
     },
     "refill_week": "2026-W48",
     "refills_usd": 106.05022822478631,
-    "ticks_since_buy": 944
+    "ticks_since_buy": 945
   },
   "desk": {
     "cash": 50.0,
@@ -4889,6 +4889,14 @@
         "sight_qliq": 69024,
         "symbol": "BOOTR"
       },
+      "0x48c4f0384bb3f4496b7d06f04f44b38d29b85c3f": {
+        "done": [],
+        "first_price": 0.0001248,
+        "first_seen": "2026-11-28T09:18:22Z",
+        "sight_pair": "0x801a46d19b3822696b2e774edcd02694cea54c3af9b96ef6934f600cf7122bf7",
+        "sight_qliq": 0,
+        "symbol": "DTCCT"
+      },
       "0x4b7789fe06ee231e0be1545eabdd6fbbdba2a27d": {
         "done": [
           1,
@@ -4912,7 +4920,9 @@
         "symbol": "FOFD"
       },
       "0x4e01fca174b9b25021a10d2326ef3314872a9bb9": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 9.545e-05,
         "first_seen": "2026-11-28T08:13:23Z",
         "sight_pair": "0xa03a28a4b9517f4d859bc8ab984ab0c4d5d1450756c4e0b52f8ef4f4b6220fab",
@@ -5126,7 +5136,9 @@
         "symbol": "XRC"
       },
       "0x68fcae0990fb6186129344aba17adae4a0c72011": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 7.213e-06,
         "first_seen": "2026-11-28T08:13:23Z",
         "sight_pair": "0x7788ad261f886440ee03038423a24f55628355e9",
@@ -6286,17 +6298,6 @@
         "sight_pair": "0x5e6ca4afccf57b993c4bd79424bf3f4f131bfd62",
         "sight_qliq": 26677,
         "symbol": "XRPL"
-      },
-      "0xed9b310fdb1a855a74b8e59773379af131909239": {
-        "done": [
-          1,
-          6
-        ],
-        "first_price": 1.463e-06,
-        "first_seen": "2026-11-27T09:13:22Z",
-        "sight_pair": "0x0ac068a9f40228b95ba9730475e08d4e3ec2e9f01dbca91294d4678a19ceef78",
-        "sight_qliq": 17306,
-        "symbol": "NOAF"
       },
       "0xedcde71144fdeed3a0351d92f2d77201437478b3": {
         "done": [
@@ -7459,6 +7460,12 @@
         "reason": "real_depth",
         "symbol": "Antropic",
         "until": "2026-11-29T09:08:18Z"
+      },
+      "0x139f747eda582227bdb794d5e26a22718ee7fee1": {
+        "at": "2026-11-28T09:18:22Z",
+        "reason": "real_depth",
+        "symbol": "COOPAD",
+        "until": "2026-11-29T09:18:22Z"
       },
       "0x13a3afa1eb3ab96627aaa8f85449797944274578": {
         "at": "2026-11-27T10:48:23Z",
@@ -9842,6 +9849,12 @@
         "symbol": "BOOTR",
         "until": "2026-11-28T21:23:16Z"
       },
+      "0x48c4f0384bb3f4496b7d06f04f44b38d29b85c3f": {
+        "at": "2026-11-28T09:18:22Z",
+        "reason": "real_depth",
+        "symbol": "DTCCT",
+        "until": "2026-11-29T09:18:22Z"
+      },
       "0x498b52649aa8bcf1f1813b3c53eddeec59038190": {
         "at": "2026-11-28T04:48:16Z",
         "reason": "missing:liq_usd",
@@ -9883,12 +9896,6 @@
         "reason": "missing:liq_usd",
         "symbol": "HYPE",
         "until": "2026-11-29T01:43:15Z"
-      },
-      "0x4c6156ead2ca50445f5c9ece21bff3cad0669aba": {
-        "at": "2026-11-27T09:13:22Z",
-        "reason": "real_depth",
-        "symbol": "HALFKEY",
-        "until": "2026-11-28T09:13:22Z"
       },
       "0x4cc702d3f34c8d9228738fba8262216ad7c920f6": {
         "at": "2026-11-27T18:08:17Z",
@@ -10435,12 +10442,6 @@
         "reason": "real_depth",
         "symbol": "POL",
         "until": "2026-11-28T09:53:16Z"
-      },
-      "0x77019f9375db196bb3fe4cf0bbe4a9944e8ae268": {
-        "at": "2026-11-27T09:18:16Z",
-        "reason": "missing:liq_usd",
-        "symbol": "Launchpad",
-        "until": "2026-11-28T09:18:16Z"
       },
       "0x773fec40d64ce10891fdd357b66995b416f95144": {
         "at": "2026-11-27T09:38:18Z",
@@ -11000,12 +11001,6 @@
         "symbol": "TONNEL",
         "until": "2026-11-28T20:33:16Z"
       },
-      "0xa1ea2a48b6be33b40762d87fd64618eb94ac90b1": {
-        "at": "2026-11-27T09:13:22Z",
-        "reason": "goplus_timeout",
-        "symbol": "UBR",
-        "until": "2026-11-28T09:13:22Z"
-      },
       "0xa2a7c2f21b123de5da9d77d9227c8b3ef3338a32": {
         "at": "2026-11-27T19:53:15Z",
         "reason": "real_depth",
@@ -11389,12 +11384,6 @@
         "reason": "missing:liq_usd",
         "symbol": "VETO",
         "until": "2026-11-28T12:08:18Z"
-      },
-      "0xb2000000000000000000003b1807dd718f797c6d": {
-        "at": "2026-11-27T09:18:16Z",
-        "reason": "real_depth",
-        "symbol": "HALFKEY",
-        "until": "2026-11-28T09:18:16Z"
       },
       "0xb2000000000000000000003c00581b0fc3eeb123": {
         "at": "2026-11-27T14:38:16Z",
@@ -12398,12 +12387,6 @@
         "symbol": "dogvault",
         "until": "2026-11-29T05:08:16Z"
       },
-      "0xc5cc9ee72853f539cc7c6c32841ee7a621f548dc": {
-        "at": "2026-11-27T09:13:22Z",
-        "reason": "real_depth",
-        "symbol": "5VRYMY",
-        "until": "2026-11-28T09:13:22Z"
-      },
       "0xc5d21020dcd738a5d4ed0227e9d48e423bd0b0c1": {
         "at": "2026-11-27T16:58:16Z",
         "reason": "real_depth",
@@ -12992,6 +12975,12 @@
         "symbol": "Safe Landing",
         "until": "2026-11-28T14:28:16Z"
       },
+      "0xef325169f80a62caa3c2cf2cb42984de6cb2391e": {
+        "at": "2026-11-28T09:18:22Z",
+        "reason": "real_depth",
+        "symbol": ".AI",
+        "until": "2026-11-29T09:18:22Z"
+      },
       "0xef48eb1733c745eae9c98d6935cccea266fdb488": {
         "at": "2026-11-28T06:03:17Z",
         "reason": "real_depth",
@@ -13241,15 +13230,15 @@
         "symbol": "UBR"
       },
       "0x31be522b20e9af0784d9f13cc93e2f27b2a5f315": {
-        "checks": 4,
+        "checks": 5,
         "first_seen": "2026-11-28T08:03:18Z",
-        "last_check": "2026-11-28T08:58:19Z",
+        "last_check": "2026-11-28T09:18:22Z",
         "symbol": "UBR"
       },
       "0x3b26d6fbf89b08c25d184246db12d946a9884522": {
-        "checks": 8,
+        "checks": 9,
         "first_seen": "2026-11-28T06:58:18Z",
-        "last_check": "2026-11-28T08:58:19Z",
+        "last_check": "2026-11-28T09:18:22Z",
         "symbol": "UBR"
       },
       "0xb93d6aa95eb177d8680deea28895d120565aaf62": {
