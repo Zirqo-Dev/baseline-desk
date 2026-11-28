@@ -457,3 +457,10 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-28T04:33:14Z,desk,VERIFY,Necro,0x4cc7477aca2101dd25bf2f1af5d8a4aa2d1e9ba3,SKIP,missing:liq_usd,goplus=skipped until=2026-11-29T04:33:14Z
 2026-11-28T04:33:14Z,baseline,EXECUTE,,,SKIP,no_eligible,eligible=0
 2026-11-28T04:33:14Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=0 new=3 checked=3 passed=0 bought=0 held=0 deferred=0 dex_only=3 goplus=0 requests=10 secs=2.3 bl_positions=2 bl_due=1 bl_eligible=0 bl_bought=0 report=none machine=none bl_error=none labels=none labels_due=0 labels_done=0 labels_calls=0 live=ok alerts=none alerts_sent=0
+2026-11-28T04:38:17Z,baseline,EXIT,MARSBASE,0x0b455a80139f9642bb47f2cb5afabbd8809a24af,HOLD,no_quote,
+2026-11-28T04:38:17Z,baseline,EXIT,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,HOLD,no_quote,
+2026-11-28T04:38:17Z,desk,VERIFY,UBR,0x26598b61c13f80ee827d94d4c92569edc6dfeb20,WATCH,goplus_not_ready,"first_seen=2026-11-28T02:28:16Z checks=8 pending=honeypot,buy_tax_pct,sell_tax_pct,lp_locked_pct b1=15 s1=1 b24=41 s24=6 liq=237087 dex=uniswap:v4 qliq=236601 pair_age=135 token_age=135"
+2026-11-28T04:38:17Z,desk,VERIFY,CLAUDIA,0xffeb10227f64aa5dc21addb36f52ffc4b799490c,SKIP,real_depth,first_seen=2026-11-28T04:03:15Z checks=3 goplus=skipped until=2026-11-29T04:38:17Z
+2026-11-28T04:38:17Z,desk,VERIFY,USGD,0x74865f20fc34a79961fdd93d92c879c24d85513c,SKIP,real_depth,goplus=skipped until=2026-11-29T04:38:17Z
+2026-11-28T04:38:17Z,baseline,EXECUTE,UBR,0x26598b61c13f80ee827d94d4c92569edc6dfeb20,SKIP,size,seed=202611280438 eligible=1 pick=0 pool=26598b desk=WATCH launchpad=other
+2026-11-28T04:38:17Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=2 new=1 checked=3 passed=0 bought=0 held=0 deferred=0 dex_only=2 goplus=1 requests=12 secs=3.4 bl_positions=2 bl_due=1 bl_eligible=1 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=8 labels_done=8 labels_calls=1 live=ok alerts=none alerts_sent=0
