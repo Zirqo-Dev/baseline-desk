@@ -61,7 +61,7 @@
     },
     "refill_week": "2026-W48",
     "refills_usd": 106.05022822478631,
-    "ticks_since_buy": 899
+    "ticks_since_buy": 900
   },
   "desk": {
     "cash": 50.0,
@@ -4904,17 +4904,6 @@
         "sight_qliq": 206272,
         "symbol": "UBR"
       },
-      "0x566a34ffe86302806c4b0a316329afb5a0c038ee": {
-        "done": [
-          1,
-          6
-        ],
-        "first_price": 1.083e-05,
-        "first_seen": "2026-11-27T05:28:17Z",
-        "sight_pair": "0xef5cd50b52bc2f09ed1462834c07765db2324fed",
-        "sight_qliq": 71534,
-        "symbol": "Basecat"
-      },
       "0x57060b07bb68564b20615134c1627793cecdb338": {
         "done": [
           1,
@@ -5201,17 +5190,6 @@
         "sight_pair": "0x172157e0b7ae2f7322f8f35c94ed3fd9b7497bac218ef9c8230b112bba91b7e6",
         "sight_qliq": 20,
         "symbol": "GAIN"
-      },
-      "0x7d1a562e81c7d8b7889bcc6ec694432ca1b02b07": {
-        "done": [
-          1,
-          6
-        ],
-        "first_price": 9.999e-05,
-        "first_seen": "2026-11-27T05:33:16Z",
-        "sight_pair": "0x7aedde5c8fe7d178d726f4bdc44e2eaafb7c1006",
-        "sight_qliq": 100023,
-        "symbol": "SpaceX"
       },
       "0x7e87a997b15718bba86fd00306ec15a545b8aded": {
         "done": [
@@ -5858,7 +5836,9 @@
         "symbol": "XPL DEX"
       },
       "0xc3b8f3ebe0fe5846c72923d649561fe5633f2c6f": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 7.557e-05,
         "first_seen": "2026-11-28T04:33:14Z",
         "sight_pair": "0xd81a6a15321ae18889fc7746ae4129d57eddd791bd033442e2f9659ea47ae7c9",
@@ -8512,6 +8492,12 @@
         "symbol": "Antropic",
         "until": "2026-11-28T11:58:17Z"
       },
+      "0x26598b61c13f80ee827d94d4c92569edc6dfeb20": {
+        "at": "2026-11-28T05:33:17Z",
+        "reason": "goplus_timeout",
+        "symbol": "UBR",
+        "until": "2026-11-29T05:33:17Z"
+      },
       "0x268a73de85be40279c36dfceb4b917f29c95765f": {
         "at": "2026-11-28T00:08:16Z",
         "reason": "real_depth",
@@ -8769,12 +8755,6 @@
         "reason": "real_depth",
         "symbol": "AOTF",
         "until": "2026-11-29T04:43:15Z"
-      },
-      "0x2ceab0774c7e245b66224d8bff438367794a22c5": {
-        "at": "2026-11-27T05:28:17Z",
-        "reason": "real_depth",
-        "symbol": "REBOOT",
-        "until": "2026-11-28T05:28:17Z"
       },
       "0x2cfebc0c78f0b7fe8aa99075037d7d7587c8c1c7": {
         "at": "2026-11-27T07:58:16Z",
@@ -9249,12 +9229,6 @@
         "reason": "real_depth",
         "symbol": "United Stat\u200aes Oi\u200al Ind\u200aex",
         "until": "2026-11-28T11:43:15Z"
-      },
-      "0x366f10f8d77b4f39d087ff7e3b747d0223a9d654": {
-        "at": "2026-11-27T05:33:16Z",
-        "reason": "real_depth",
-        "symbol": "LIQUIDBGT",
-        "until": "2026-11-28T05:33:16Z"
       },
       "0x3672e8d0b64d8bb835016216aacaedda6524c5d1": {
         "at": "2026-11-27T07:18:16Z",
@@ -10210,12 +10184,6 @@
         "symbol": "COMPUTE",
         "until": "2026-11-28T17:18:17Z"
       },
-      "0x5dfb8b5a9a75c416bacc89844594db0ba3870cda": {
-        "at": "2026-11-27T05:33:16Z",
-        "reason": "real_depth",
-        "symbol": "LAPTOP",
-        "until": "2026-11-28T05:33:16Z"
-      },
       "0x5e794740b1510a6fc18155ecb524a0ec7ac9fba3": {
         "at": "2026-11-27T13:38:16Z",
         "reason": "real_depth",
@@ -10839,6 +10807,12 @@
         "reason": "missing:symbol",
         "symbol": "",
         "until": "2026-11-28T16:18:19Z"
+      },
+      "0x8d8f52f3b3b3c1934d4853343b2224dfb7cf0380": {
+        "at": "2026-11-28T05:33:17Z",
+        "reason": "real_depth",
+        "symbol": "1KTO100M",
+        "until": "2026-11-29T05:33:17Z"
       },
       "0x8e3bff02371d54b2ec84c86e757d801d925fb701": {
         "at": "2026-11-27T16:13:16Z",
@@ -13435,15 +13409,9 @@
     },
     "watch": {
       "0x15e40973f77321fd369177c1ba3453e8d45d6388": {
-        "checks": 3,
+        "checks": 4,
         "first_seen": "2026-11-28T04:43:15Z",
-        "last_check": "2026-11-28T05:13:17Z",
-        "symbol": "UBR"
-      },
-      "0x26598b61c13f80ee827d94d4c92569edc6dfeb20": {
-        "checks": 10,
-        "first_seen": "2026-11-28T02:28:16Z",
-        "last_check": "2026-11-28T05:13:17Z",
+        "last_check": "2026-11-28T05:33:17Z",
         "symbol": "UBR"
       },
       "0x3a1c39b6278a37bbb8a8ea589d342541454cd4e0": {
