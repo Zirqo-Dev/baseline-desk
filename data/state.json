@@ -61,7 +61,7 @@
     },
     "refill_week": "2026-W48",
     "refills_usd": 106.05022822478631,
-    "ticks_since_buy": 999
+    "ticks_since_buy": 1000
   },
   "desk": {
     "cash": 50.0,
@@ -1503,7 +1503,9 @@
         "symbol": "FET"
       },
       "0x12e6d495401582501eb5188af35030bb1dddec20": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 3.385e-06,
         "first_seen": "2026-11-28T12:48:18Z",
         "sight_pair": "0x68554d7917a2d4913e8f82ebe1faf9597e7a13e8",
@@ -5253,7 +5255,9 @@
         "symbol": "UBR"
       },
       "0x5445a279dc585a780616cc4e9c024ffb4d127bda": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 1.045e-05,
         "first_seen": "2026-11-28T12:53:17Z",
         "sight_pair": "0x532cd7328af35af6c547dddc8f32001b4b8a09cb",
@@ -6655,6 +6659,12 @@
         "symbol": "United Oil Dividend Fund",
         "until": "2026-11-28T16:18:19Z"
       },
+      "0x0085045dba537d7cdec83e25c591c72dd629105e": {
+        "at": "2026-11-28T13:53:17Z",
+        "reason": "real_depth",
+        "symbol": "ZOTH",
+        "until": "2026-11-29T13:53:17Z"
+      },
       "0x009901153268ec05db87f42f9ccbb5a4e41e531b": {
         "at": "2026-11-28T11:23:15Z",
         "reason": "real_depth",
@@ -7536,6 +7546,12 @@
         "reason": "real_depth",
         "symbol": "HEIMDALL",
         "until": "2026-11-28T18:43:16Z"
+      },
+      "0x11c6f94e4b8cb6638e70b450908bfb8c1b88e161": {
+        "at": "2026-11-28T13:53:17Z",
+        "reason": "real_depth",
+        "symbol": "VTC6\u26a1\ufe0f",
+        "until": "2026-11-29T13:53:17Z"
       },
       "0x11de894a74b098cb084a2ba6816e67ee575ec81c": {
         "at": "2026-11-27T19:43:15Z",
@@ -11065,6 +11081,12 @@
         "symbol": "ANTHROPIC",
         "until": "2026-11-29T09:48:17Z"
       },
+      "0x9991982154e96feeabd875af3b1733463e89cfd6": {
+        "at": "2026-11-28T13:53:17Z",
+        "reason": "missing:liq_usd",
+        "symbol": "VIOR",
+        "until": "2026-11-29T13:53:17Z"
+      },
       "0x9ac0c4cd660e329f558877730d50f7567aea9fd8": {
         "at": "2026-11-27T16:48:16Z",
         "reason": "real_depth",
@@ -11598,6 +11620,12 @@
         "reason": "real_depth",
         "symbol": "CIRCUS",
         "until": "2026-11-28T16:28:24Z"
+      },
+      "0xb20000000000000000000065190c6ea4dd393f24": {
+        "at": "2026-11-28T13:53:17Z",
+        "reason": "real_depth",
+        "symbol": "EURS",
+        "until": "2026-11-29T13:53:17Z"
       },
       "0xb20000000000000000000066e4913196aa6a163f": {
         "at": "2026-11-28T04:08:21Z",
@@ -12685,6 +12713,12 @@
         "symbol": "LIQUIDBGT",
         "until": "2026-11-29T06:23:15Z"
       },
+      "0xd3ceb20eda10a382d754e333b0fe5be41264e25a": {
+        "at": "2026-11-28T13:53:17Z",
+        "reason": "missing:liq_usd",
+        "symbol": "VIOR",
+        "until": "2026-11-29T13:53:17Z"
+      },
       "0xd68ab21929cf6b9515d3760c2c02eaa3c3c78453": {
         "at": "2026-11-27T18:23:23Z",
         "reason": "real_depth",
@@ -13162,21 +13196,15 @@
     },
     "watch": {
       "0x0aebaac58830d393174c969777b0758b8471af42": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-28T13:33:18Z",
-        "last_check": "2026-11-28T13:33:18Z",
+        "last_check": "2026-11-28T13:53:17Z",
         "symbol": "Antropic"
       },
-      "0x11c6f94e4b8cb6638e70b450908bfb8c1b88e161": {
-        "checks": 1,
-        "first_seen": "2026-11-28T13:33:18Z",
-        "last_check": "2026-11-28T13:33:18Z",
-        "symbol": "VTC6\u26a1\ufe0f"
-      },
       "0x220de2bcd25b5565bef8a51d56b1c80375a19489": {
-        "checks": 6,
+        "checks": 7,
         "first_seen": "2026-11-28T12:08:23Z",
-        "last_check": "2026-11-28T13:33:18Z",
+        "last_check": "2026-11-28T13:53:17Z",
         "symbol": "ANT"
       },
       "0x25c448101c36d7306ed8053b96b090bb56a87b07": {
@@ -13186,21 +13214,21 @@
         "symbol": "BOTCOIN"
       },
       "0x25e2c940429f4aaa8f8327cfda2d2680a6e539a6": {
-        "checks": 9,
+        "checks": 10,
         "first_seen": "2026-11-28T11:23:15Z",
-        "last_check": "2026-11-28T13:33:18Z",
+        "last_check": "2026-11-28T13:53:17Z",
         "symbol": "UBR"
       },
       "0x30c1dcefe88dd18b72dcbd18770319b1d9fc31c4": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-28T13:33:18Z",
-        "last_check": "2026-11-28T13:33:18Z",
+        "last_check": "2026-11-28T13:53:17Z",
         "symbol": "United Global Oil Supply"
       },
       "0x3ad791ea41102d3662d0d27088aaadea56fcb393": {
-        "checks": 1,
+        "checks": 2,
         "first_seen": "2026-11-28T13:33:18Z",
-        "last_check": "2026-11-28T13:33:18Z",
+        "last_check": "2026-11-28T13:53:17Z",
         "symbol": "UBR"
       },
       "0x4016bc0230f754a0a67211b6a6872501ea60385b": {
