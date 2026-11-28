@@ -1246,3 +1246,13 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-28T11:53:22Z,desk,VERIFY,UBR,0x25e2c940429f4aaa8f8327cfda2d2680a6e539a6,WATCH,goplus_not_ready,"first_seen=2026-11-28T11:23:15Z checks=3 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct b1=16 s1=5 b24=16 s24=5 liq=2153877230 dex=uniswap:v4 qliq=234874 pair_age=35 token_age=35"
 2026-11-28T11:53:22Z,baseline,EXECUTE,UBR,0x25e2c940429f4aaa8f8327cfda2d2680a6e539a6,SKIP,size,seed=202611281153 eligible=1 pick=0 pool=25e2c9 desk=WATCH launchpad=other
 2026-11-28T11:53:22Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=1 rechecks=1 new=0 checked=1 passed=0 bought=0 held=0 deferred=0 dex_only=0 goplus=1 requests=10 secs=2.5 bl_positions=2 bl_due=1 bl_eligible=1 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=20 labels_done=20 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-28T11:58:17Z,baseline,EXIT,MARSBASE,0x0b455a80139f9642bb47f2cb5afabbd8809a24af,HOLD,no_quote,
+2026-11-28T11:58:17Z,baseline,EXIT,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,HOLD,no_quote,
+2026-11-28T11:58:17Z,desk,VERIFY,BOTCOIN,0x25c448101c36d7306ed8053b96b090bb56a87b07,WATCH,goplus_not_ready,first_seen=2026-11-28T10:48:16Z checks=5 pending=honeypot b1=0 s1=0 b24=4 s24=6 liq=80964 dex=uniswap:v4 qliq=39832 pair_age=158586 token_age=158586
+2026-11-28T11:58:17Z,desk,VERIFY,MATIC,0x5ad1ba268e4ee5275a33723d8272a783f50f0c81,WATCH,goplus_not_ready,"first_seen=2026-11-28T11:28:16Z checks=3 pending=top10_pct,lp_locked_pct b1=31 s1=1 b24=31 s24=1 liq=59051 dex=uniswap:v2 qliq=29529 pair_age=31 token_age=31"
+2026-11-28T11:58:17Z,desk,VERIFY,ANTHROPIC,0xc70338143c617c126895a16ea0103319e905e989,SKIP,real_depth,goplus=skipped until=2026-11-29T11:58:17Z
+2026-11-28T11:58:17Z,desk,VERIFY,TUSD,0xb2000000000000000000007a6694ab3e6f5f71ce,SKIP,real_depth,goplus=skipped until=2026-11-29T11:58:17Z
+2026-11-28T11:58:17Z,desk,VERIFY,XCHAT,0x251694812f22af595949fc4c24b4d9f18215f969,SKIP,real_depth,goplus=skipped until=2026-11-29T11:58:17Z
+2026-11-28T11:58:17Z,desk,VERIFY,PENCUN,0xa6ba205bee4ce5e8c35b365330980a6bc0abcccc,SKIP,real_depth,goplus=skipped until=2026-11-29T11:58:17Z
+2026-11-28T11:58:17Z,baseline,EXECUTE,MATIC,0x5ad1ba268e4ee5275a33723d8272a783f50f0c81,SKIP,size,seed=202611281158 eligible=1 pick=0 pool=5ad1ba desk=WATCH launchpad=other
+2026-11-28T11:58:17Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=2 new=4 checked=6 passed=0 bought=0 held=0 deferred=0 dex_only=4 goplus=2 requests=16 secs=5.2 bl_positions=2 bl_due=1 bl_eligible=1 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=1 labels_done=1 labels_calls=1 live=ok alerts=none alerts_sent=0
