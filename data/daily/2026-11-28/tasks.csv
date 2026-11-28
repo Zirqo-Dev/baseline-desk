@@ -342,3 +342,10 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-28T03:18:18Z,desk,VERIFY,CHUBBY,0xaa1bb4df1b41630f63ba64e3063f97b7ec28b4e5,SKIP,real_depth,goplus=skipped until=2026-11-29T03:18:18Z
 2026-11-28T03:18:18Z,baseline,EXECUTE,UBR,0xf8ca58b0fa08321a5be25fb83684f00439bb5769,SKIP,size,seed=202611280318 eligible=1 pick=0 pool=f8ca58 desk=WATCH launchpad=other
 2026-11-28T03:18:18Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=2 new=1 checked=3 passed=0 bought=0 held=0 deferred=0 dex_only=1 goplus=2 requests=13 secs=4.5 bl_positions=2 bl_due=1 bl_eligible=1 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=4 labels_done=4 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-28T03:23:22Z,baseline,EXIT,MARSBASE,0x0b455a80139f9642bb47f2cb5afabbd8809a24af,HOLD,no_quote,
+2026-11-28T03:23:22Z,baseline,EXIT,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,HOLD,no_quote,
+2026-11-28T03:23:22Z,desk,VERIFY,UBR,0x26598b61c13f80ee827d94d4c92569edc6dfeb20,WATCH,goplus_not_ready,"first_seen=2026-11-28T02:28:16Z checks=4 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct b1=18 s1=4 b24=22 s24=5 liq=2146441384 dex=uniswap:v4 qliq=170646 pair_age=60 token_age=60"
+2026-11-28T03:23:22Z,desk,VERIFY,USFF,0xb2000000000000000000002c1346693362092207,SKIP,real_depth,goplus=skipped until=2026-11-29T03:23:22Z
+2026-11-28T03:23:22Z,desk,VERIFY,USOI,0xce7530f462638c8f8d23fca68d23e01b3e7f41c8,SKIP,real_depth,goplus=skipped until=2026-11-29T03:23:22Z b1=2 s1=0 b24=2 s24=0 liq=79753 dex=uniswap:v4 qliq=16 pair_age=4 token_age=4
+2026-11-28T03:23:22Z,baseline,EXECUTE,UBR,0x26598b61c13f80ee827d94d4c92569edc6dfeb20,SKIP,size,seed=202611280323 eligible=1 pick=0 pool=26598b desk=WATCH launchpad=other
+2026-11-28T03:23:22Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=1 new=2 checked=3 passed=0 bought=0 held=0 deferred=0 dex_only=2 goplus=1 requests=12 secs=2.8 bl_positions=2 bl_due=1 bl_eligible=1 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=1 labels_done=1 labels_calls=1 live=ok alerts=none alerts_sent=0
