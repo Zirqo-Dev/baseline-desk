@@ -61,7 +61,7 @@
     },
     "refill_week": "2026-W48",
     "refills_usd": 106.05022822478631,
-    "ticks_since_buy": 858
+    "ticks_since_buy": 859
   },
   "desk": {
     "cash": 50.0,
@@ -232,17 +232,6 @@
         "sight_pair": "0xd89d99ff681d171938e4ec8cb01a03ded3f4af6e348da684f287e6dc4fd6ed83",
         "sight_qliq": 868,
         "symbol": "CMC20"
-      },
-      "0x02d3bfb00e50e1a691a72762c74971c274dffc18": {
-        "done": [
-          1,
-          6
-        ],
-        "first_price": 0.0002458,
-        "first_seen": "2026-11-27T02:03:17Z",
-        "sight_pair": "0x90319f0b421e9b4302f398bceae22677825e944f",
-        "sight_qliq": 23577,
-        "symbol": "XTEN"
       },
       "0x030136fa153b9062b6593793db9a855c9023ee87": {
         "done": [
@@ -1735,7 +1724,9 @@
         "symbol": "United States Oil Dividend"
       },
       "0x1427b63009cd44b88f54dcdeb63fd1e00a22fd8e": {
-        "done": [],
+        "done": [
+          1
+        ],
         "first_price": 1.044e-06,
         "first_seen": "2026-11-28T01:08:15Z",
         "sight_pair": "0x965caa85835ded6962618028f52b353105fafd62a4da80926c4cbad3c545d5b3",
@@ -5552,17 +5543,6 @@
         "sight_qliq": 2,
         "symbol": "KNTQ"
       },
-      "0x81936959e4b7b481f8d4976820b55a3f8b61fcfb": {
-        "done": [
-          1,
-          6
-        ],
-        "first_price": 8.084e-05,
-        "first_seen": "2026-11-27T02:03:17Z",
-        "sight_pair": "0x7a31ae5e7ebe9c3965ac83237f21d2687d05061e21142f58275b28b616e20e7b",
-        "sight_qliq": 2,
-        "symbol": "SOAF"
-      },
       "0x81a20c5ae577c77a2925426d43a78bda590e8c53": {
         "done": [
           1,
@@ -6718,17 +6698,6 @@
         "sight_pair": "0x20925b698f82606b7d0b648f2a6b92005229ed0c",
         "sight_qliq": 70648,
         "symbol": "TRUMP2028"
-      },
-      "0xf4121169c8752f0396c92ac1402686a1e151c5b5": {
-        "done": [
-          1,
-          6
-        ],
-        "first_price": 0.0002486,
-        "first_seen": "2026-11-27T02:03:17Z",
-        "sight_pair": "0xcfbfc309a8bce72c043e8e5f68fc1f0318048626",
-        "sight_qliq": 23690,
-        "symbol": "ZOTH"
       },
       "0xf4422a3a9edf91e7f5eea4c7e3f82bd7c712df8d": {
         "done": [
@@ -10246,6 +10215,12 @@
         "symbol": "SALECAT",
         "until": "2026-11-28T12:13:16Z"
       },
+      "0x3efd3f34c486161936ee4a0bcfe71dbcd5c174e9": {
+        "at": "2026-11-28T02:08:16Z",
+        "reason": "real_depth",
+        "symbol": "AVA",
+        "until": "2026-11-29T02:08:16Z"
+      },
       "0x3f02ba211ed605caf6a40d531d06e708d473fe1d": {
         "at": "2026-11-27T10:48:23Z",
         "reason": "real_depth",
@@ -11385,12 +11360,6 @@
         "reason": "missing:price",
         "symbol": "NVIDIA + ishares",
         "until": "2026-11-28T04:23:16Z"
-      },
-      "0x81936959e4b7b481f8d4976820b55a3f8b61fcfb": {
-        "at": "2026-11-27T02:03:17Z",
-        "reason": "real_depth",
-        "symbol": "SOAF",
-        "until": "2026-11-28T02:03:17Z"
       },
       "0x81a20c5ae577c77a2925426d43a78bda590e8c53": {
         "at": "2026-11-27T06:13:23Z",
@@ -12777,12 +12746,6 @@
         "reason": "real_depth",
         "symbol": "NAF",
         "until": "2026-11-28T08:18:16Z"
-      },
-      "0xb200000000000000000000a45e8eba8faeb07867": {
-        "at": "2026-11-27T02:03:17Z",
-        "reason": "real_depth",
-        "symbol": "1F47D",
-        "until": "2026-11-28T02:03:17Z"
       },
       "0xb200000000000000000000a60c4f846846fae406": {
         "at": "2026-11-27T03:38:16Z",
@@ -14292,12 +14255,6 @@
         "last_check": "2026-11-28T01:58:17Z",
         "symbol": "BOOTR"
       },
-      "0x3efd3f34c486161936ee4a0bcfe71dbcd5c174e9": {
-        "checks": 3,
-        "first_seen": "2026-11-28T01:13:14Z",
-        "last_check": "2026-11-28T01:48:16Z",
-        "symbol": "AVA"
-      },
       "0x3f5bf3edac59d650d8fdf9657a71f2f904a3a4ee": {
         "checks": 9,
         "first_seen": "2026-11-27T23:33:21Z",
@@ -14305,9 +14262,9 @@
         "symbol": "AERO"
       },
       "0xf8ca58b0fa08321a5be25fb83684f00439bb5769": {
-        "checks": 3,
+        "checks": 4,
         "first_seen": "2026-11-28T01:13:14Z",
-        "last_check": "2026-11-28T01:48:16Z",
+        "last_check": "2026-11-28T02:08:16Z",
         "symbol": "UBR"
       }
     }
