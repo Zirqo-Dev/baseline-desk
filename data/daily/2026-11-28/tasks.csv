@@ -567,3 +567,12 @@ ts,book,stage,symbol,address,action,reason,detail
 2026-11-28T05:33:17Z,desk,VERIFY,1KTO100M,0x8d8f52f3b3b3c1934d4853343b2224dfb7cf0380,SKIP,real_depth,goplus=skipped until=2026-11-29T05:33:17Z
 2026-11-28T05:33:17Z,baseline,EXECUTE,UBR,0x26598b61c13f80ee827d94d4c92569edc6dfeb20,SKIP,size,"seed=202611280533 eligible=2 pick=1 pool=15e409,26598b desk=goplus_timeout launchpad=other"
 2026-11-28T05:33:17Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=2 new=1 checked=3 passed=0 bought=0 held=0 deferred=0 dex_only=1 goplus=2 requests=13 secs=4.9 bl_positions=2 bl_due=1 bl_eligible=2 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=3 labels_done=3 labels_calls=1 live=ok alerts=none alerts_sent=0
+2026-11-28T05:38:15Z,baseline,EXIT,MARSBASE,0x0b455a80139f9642bb47f2cb5afabbd8809a24af,HOLD,no_quote,
+2026-11-28T05:38:15Z,baseline,EXIT,Zelleinu,0xa97d8577fef865b9717b7bc4102df9a24c940080,HOLD,no_quote,
+2026-11-28T05:38:15Z,desk,VERIFY,BIDEN,0x3a1c39b6278a37bbb8a8ea589d342541454cd4e0,WATCH,goplus_not_ready,"first_seen=2026-11-28T05:18:19Z checks=2 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct b1=44 s1=1 b24=44 s24=1 liq=157142 dex=uniswap:v2 qliq=78579 pair_age=24 token_age=24"
+2026-11-28T05:38:15Z,desk,VERIFY,UBR,0x521406b4dab83d10faa37dec9264e453e2d230d5,WATCH,goplus_not_ready,"first_seen=2026-11-28T05:18:19Z checks=2 pending=honeypot,buy_tax_pct,sell_tax_pct,top10_pct,lp_locked_pct b1=22 s1=13 b24=22 s24=13 liq=1057492 dex=uniswap:v4 qliq=265584 pair_age=22 token_age=22"
+2026-11-28T05:38:15Z,desk,VERIFY,ANDURL,0x78573a9818a5be2f31266168b79cf01b5ac4e396,SKIP,real_depth,goplus=skipped until=2026-11-29T05:38:15Z b1=3 s1=0 b24=3 s24=0 liq=85909 dex=uniswap:v4 qliq=20 pair_age=2 token_age=2
+2026-11-28T05:38:15Z,desk,VERIFY,WLFI,0x8e4e1c9f46e5cbd8264eb2acf9016ba4c6e2ab07,SKIP,real_depth,goplus=skipped until=2026-11-29T05:38:15Z
+2026-11-28T05:38:15Z,desk,VERIFY,PAD,0xb200000000000000000000802f4cac65b04a4c2a,SKIP,real_depth,goplus=skipped until=2026-11-29T05:38:15Z
+2026-11-28T05:38:15Z,baseline,EXECUTE,BIDEN,0x3a1c39b6278a37bbb8a8ea589d342541454cd4e0,SKIP,size,"seed=202611280538 eligible=2 pick=0 pool=3a1c39,521406 desk=WATCH launchpad=other"
+2026-11-28T05:38:15Z,desk,TICK,,,HEARTBEAT,,positions=0 seen=20 rechecks=2 new=3 checked=5 passed=0 bought=0 held=0 deferred=0 dex_only=3 goplus=2 requests=15 secs=4.8 bl_positions=2 bl_due=1 bl_eligible=2 bl_bought=0 report=none machine=none bl_error=none labels=ok labels_due=1 labels_done=1 labels_calls=1 live=ok alerts=none alerts_sent=0
